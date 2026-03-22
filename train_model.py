@@ -81,6 +81,7 @@ def validate_temporal_integrity(train_df: pd.DataFrame, test_df: pd.DataFrame) -
         raise ValueError(
             f"Temporal leakage detected: max train date ({max_train_date.date()}) >= min test date ({min_test_date.date()})."
         )
+    print(f"[OK] Temporal integrity check passed: max(train_date)={max_train_date.date()} < min(test_date)={min_test_date.date()}")
 
 
 def run_dataset_sanity_checks(df: pd.DataFrame, train_df: pd.DataFrame, test_df: pd.DataFrame) -> None:

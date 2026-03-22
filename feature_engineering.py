@@ -14,7 +14,7 @@ SPRAY_CENTER_X = 125.42
 SPRAY_HOME_Y = 198.27
 
 
-def build_player_game_dataset(statcast_df: pd.DataFrame) -> pd.DataFrame:
+def build_player_game_dataset(statcast_df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Aggregate Statcast pitch-level data into one batter-game row."""
     pa_df = _extract_plate_appearances(statcast_df)
     if pa_df.empty:
@@ -82,9 +82,16 @@ def validate_dataset(df: pd.DataFrame) -> list[str]:
         raise ValueError(f"Dataset has {duplicate_count} duplicate batter-game rows.")
 
     warnings: list[str] = []
-    same_day_equal = df["hr_per_pa_last_30d"].notna() & (df["hr_per_pa_last_30d"] == df["hit_hr"])
-    if same_day_equal.mean() > 0.5:
-        warnings.append("hr_per_pa_last_30d equals hit_hr unusually often; inspect leakage-safe rolling logic.")
+    # Leakage check: for each player's very first game appearance, the 30-day rolling
+    # window uses closed="left", so it must have seen zero prior games and should be NaN.
+    # If it is non-NaN for any player's first game, same-day data leaked into the window.
+    first_game_date_per_player = df.groupby("player_id")["game_date"].transform("min")
+    is_first_game = df["game_date"] == first_game_date_per_player
+    if df.loc[is_first_game, "hr_per_pa_last_30d"].notna().any():
+        warnings.append(
+            "hr_per_pa_last_30d is non-NaN for a player's first game appearance; "
+            "the closed='left' rolling window may be including same-day data (leakage)."
+        )
     return warnings
 
 
