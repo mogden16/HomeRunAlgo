@@ -1,289 +1,220 @@
-"""
-train_model.py
+"""Time-aware backtest for real MLB home run prediction from batter-game data."""
 
-Time-aware backtest for MLB home run prediction.
+from __future__ import annotations
 
-WHY CHRONOLOGICAL SPLITTING IS REQUIRED
-----------------------------------------
-Sports prediction is a forecasting problem: at prediction time we only know
-information that existed *before* the game being predicted. A random
-train/test split (sklearn default) shuffles rows across time, so the model
-could train on rows from late September while testing on rows from April.
-This leaks future information into training (e.g. end-of-season hot streaks,
-opponent fatigue) and produces optimistic evaluation metrics that do not
-reflect real-world performance. Chronological splitting ensures every test
-observation is strictly *after* every training observation, matching the
-actual deployment scenario.
+import argparse
+from pathlib import Path
 
-SPLIT STRATEGY
---------------
-  - Sort all rows by game_date ascending.
-  - Training set  : first 67% of rows (earlier games).
-  - Holdout test  : final 33% of rows (later games).
-  - Within training: walk-forward (expanding window) cross-validation via
-    sklearn TimeSeriesSplit for hyperparameter tuning, so validation folds
-    are always chronologically after the corresponding training folds.
-
-LEAKAGE PREVENTION
-------------------
-  - All rolling / season-to-date features (iso_season_td, hr_last_30,
-    at_bats_season, pitcher_hr9) are computed in generate_data.py using only
-    information *before* each game row. No same-day or future values are used.
-  - The StandardScaler and SimpleImputer are fit ONLY on the training set and
-    then applied (transform-only) to the test set.
-  - No feature selection or encoding step sees test-set labels.
-"""
-
-import sys
 import numpy as np
 import pandas as pd
-from pathlib import Path
-from sklearn.linear_model import LogisticRegression
-from sklearn.preprocessing import StandardScaler
-from sklearn.impute import SimpleImputer
-from sklearn.pipeline import Pipeline
-from sklearn.model_selection import TimeSeriesSplit, GridSearchCV
-from sklearn.metrics import (
-    log_loss,
-    brier_score_loss,
-    roc_auc_score,
-    accuracy_score,
-)
 from sklearn.calibration import calibration_curve
+from sklearn.impute import SimpleImputer
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import (
+    accuracy_score,
+    average_precision_score,
+    brier_score_loss,
+    log_loss,
+    roc_auc_score,
+)
+from sklearn.model_selection import GridSearchCV, TimeSeriesSplit
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
 
-# ---------------------------------------------------------------------------
-# Configuration
-# ---------------------------------------------------------------------------
-DATA_PATH = "data/mlb_player_game.csv"
-DATE_COL = "game_date"          # True game-date column used for chronological split
-TARGET_COL = "hit_hr"           # Binary target: 1 if batter hit a HR in this game
-TRAIN_FRACTION = 0.67           # First 67% of sorted rows → training set
-TSCV_N_SPLITS = 5               # Walk-forward CV folds within the training set
-RANDOM_STATE = 42
+from config import FINAL_DATA_PATH, RANDOM_STATE, TRAIN_FRACTION, TSCV_N_SPLITS
 
-
-# ---------------------------------------------------------------------------
-# Feature columns (no target, no date, no high-cardinality IDs)
-# ---------------------------------------------------------------------------
-NUMERIC_FEATURES = [
-    "hr_rate_career",    # career HR rate (static batter attribute, no leakage)
-    "iso_season_td",     # isolated power season-to-date *before* this game
-    "hr_last_30",        # HR count in last 30 games *before* this game
-    "at_bats_season",    # season at-bats accumulated *before* this game
-    "pitcher_hr9",       # opponent pitcher HR/9 season-to-date *before* this game
-    "park_factor",       # ballpark HR park factor (static, no leakage)
+DATE_COL = "game_date"
+TARGET_COL = "hit_hr"
+FEATURE_COLUMNS = [
+    "hr_per_pa_last_30d",
+    "barrel_rate_last_50_bbe",
+    "hard_hit_rate_last_50_bbe",
+    "avg_exit_velocity_last_50_bbe",
+    "avg_launch_angle_last_50_bbe",
+    "fly_ball_rate_last_50_bbe",
+    "pitcher_hr9_season_to_date",
+    "pitcher_barrel_rate_allowed_last_50_bbe",
+    "pitcher_hard_hit_rate_allowed_last_50_bbe",
+    "temperature_f",
+    "wind_speed_mph",
+    "humidity_pct",
+    "expected_pa_proxy",
+    "days_since_last_game",
+    "platoon_advantage",
+]
+OPTIONAL_SECONDARY_FEATURES = [
+    "hr_rate_season_to_date",
+    "pull_air_rate_last_50_bbe",
+    "batter_k_rate_season_to_date",
+    "batter_bb_rate_season_to_date",
+    "pitcher_fb_rate_allowed_last_50_bbe",
+    "pitcher_k_rate_season_to_date",
+    "pitcher_bb_rate_season_to_date",
+    "pressure_hpa",
+    "wind_direction_deg",
+    "recent_form_hr_last_7d",
+    "recent_form_barrels_last_14d",
 ]
 
 
-# ---------------------------------------------------------------------------
-# Helpers
-# ---------------------------------------------------------------------------
-
 def load_data(path: str) -> pd.DataFrame:
     df = pd.read_csv(path, parse_dates=[DATE_COL])
-    return df
+    missing_columns = [col for col in [DATE_COL, TARGET_COL] + FEATURE_COLUMNS if col not in df.columns]
+    if missing_columns:
+        raise ValueError(f"Dataset is missing required columns: {missing_columns}")
+    return df.sort_values([DATE_COL, "game_pk", "player_id"]).reset_index(drop=True)
 
 
-def chronological_split(df: pd.DataFrame, fraction: float = TRAIN_FRACTION):
-    """
-    Split a dataframe into train and test sets using chronological ordering.
-
-    All rows are sorted by DATE_COL ascending. The split is made at a clean
-    *date boundary* so that no single game date straddles the train/test
-    boundary (which would happen if multiple players share a game date and a
-    row-index split lands mid-date). Specifically:
-
-      1. Find the game date at the approximate `fraction` row index.
-      2. Assign ALL rows with dates strictly before that cutoff date to train.
-      3. Assign ALL rows with dates >= cutoff date to test.
-
-    This guarantees max(train_date) < min(test_date), preventing any future
-    information from leaking into the training set — a requirement for valid
-    sports-prediction evaluation.
-
-    Parameters
-    ----------
-    df       : DataFrame already containing DATE_COL
-    fraction : proportion of rows (by time) assigned to training
-
-    Returns
-    -------
-    train_df, test_df : DataFrames with no overlapping rows
-    """
-    # Sort by game date ascending so earlier games come first
+def chronological_split(df: pd.DataFrame, fraction: float = TRAIN_FRACTION) -> tuple[pd.DataFrame, pd.DataFrame]:
     df_sorted = df.sort_values(DATE_COL).reset_index(drop=True)
-
-    # Identify the cutoff date at the approximate fraction boundary.
-    # We split on a clean date so no game date straddles the boundary.
-    approx_index = int(len(df_sorted) * fraction)
+    approx_index = min(max(int(len(df_sorted) * fraction), 1), len(df_sorted) - 1)
     cutoff_date = df_sorted.iloc[approx_index][DATE_COL]
-
-    # All rows strictly BEFORE the cutoff date go to train.
-    # All rows ON OR AFTER the cutoff date go to test.
-    # This ensures max(train_date) < min(test_date).
     train_df = df_sorted[df_sorted[DATE_COL] < cutoff_date].copy()
     test_df = df_sorted[df_sorted[DATE_COL] >= cutoff_date].copy()
-
     return train_df, test_df
 
 
 def validate_temporal_integrity(train_df: pd.DataFrame, test_df: pd.DataFrame) -> None:
-    """
-    Assert that every test row is strictly after every training row.
-    Raises ValueError if temporal leakage is detected.
-    """
     max_train_date = train_df[DATE_COL].max()
     min_test_date = test_df[DATE_COL].min()
-
     if max_train_date >= min_test_date:
         raise ValueError(
-            f"Temporal leakage detected: max train date ({max_train_date.date()}) "
-            f">= min test date ({min_test_date.date()}). "
-            "Ensure the data is split chronologically."
+            f"Temporal leakage detected: max train date ({max_train_date.date()}) >= min test date ({min_test_date.date()})."
         )
-    print(f"[OK] Temporal integrity check passed: "
-          f"max(train_date)={max_train_date.date()} < min(test_date)={min_test_date.date()}")
 
 
-def build_pipeline() -> Pipeline:
-    """
-    Build an sklearn Pipeline with:
-      1. SimpleImputer  — handles any NaN values (fit on train only)
-      2. StandardScaler — zero-mean unit-variance scaling (fit on train only)
-      3. LogisticRegression — probabilistic classifier
-
-    The Pipeline ensures that imputer and scaler are fit on training data and
-    only applied (transform) to test data, preventing preprocessing leakage.
-    """
-    return Pipeline([
-        ("imputer", SimpleImputer(strategy="median")),
-        ("scaler", StandardScaler()),
-        ("clf", LogisticRegression(max_iter=1000, random_state=RANDOM_STATE)),
-    ])
+def run_dataset_sanity_checks(df: pd.DataFrame, train_df: pd.DataFrame, test_df: pd.DataFrame) -> None:
+    if df.duplicated(["game_pk", "player_id"]).any():
+        raise ValueError("Duplicate batter-game rows found.")
+    if df[[DATE_COL, "player_id", TARGET_COL]].isna().any().any():
+        raise ValueError("Missing game_date, player_id, or hit_hr values found.")
+    validate_temporal_integrity(train_df, test_df)
 
 
-def tune_with_walk_forward_cv(
-    X_train: np.ndarray,
-    y_train: np.ndarray,
-) -> Pipeline:
-    """
-    Hyperparameter tuning using walk-forward (expanding-window) cross-validation.
+def available_feature_columns(df: pd.DataFrame) -> list[str]:
+    real_features = [column for column in FEATURE_COLUMNS if column in df.columns]
+    extra_features = [column for column in OPTIONAL_SECONDARY_FEATURES if column in df.columns]
+    return real_features + extra_features
 
-    TimeSeriesSplit creates folds where each validation fold is strictly after
-    its corresponding training fold, preserving temporal order inside the
-    training set. This mirrors real-world model selection where we only tune
-    on data available at the time of each decision.
 
-    The final model is re-trained on ALL training data after the best
-    hyperparameters are selected.
-    """
-    tscv = TimeSeriesSplit(n_splits=TSCV_N_SPLITS)
-
-    param_grid = {
-        # Inverse regularization strength: smaller C = stronger regularization
-        "clf__C": [0.01, 0.1, 1.0, 10.0],
-    }
-
-    grid_search = GridSearchCV(
-        estimator=build_pipeline(),
-        param_grid=param_grid,
-        cv=tscv,            # Walk-forward CV — no future leakage inside training
-        scoring="neg_log_loss",
-        refit=True,         # Re-fit best model on full training set
-        n_jobs=-1,
-        verbose=0,
+def build_logistic_pipeline() -> Pipeline:
+    return Pipeline(
+        steps=[
+            ("imputer", SimpleImputer(strategy="median")),
+            ("scaler", StandardScaler()),
+            ("clf", LogisticRegression(max_iter=1000, random_state=RANDOM_STATE, class_weight="balanced")),
+        ]
     )
-    grid_search.fit(X_train, y_train)
 
-    print(f"  Best C: {grid_search.best_params_['clf__C']}  "
-          f"(CV log-loss: {-grid_search.best_score_:.4f})")
-    return grid_search.best_estimator_
+
+def tune_logistic_pipeline(X_train: np.ndarray, y_train: np.ndarray) -> Pipeline:
+    splitter = TimeSeriesSplit(n_splits=TSCV_N_SPLITS)
+    grid = GridSearchCV(
+        estimator=build_logistic_pipeline(),
+        param_grid={"clf__C": [0.05, 0.1, 0.5, 1.0, 2.0]},
+        cv=splitter,
+        scoring="neg_log_loss",
+        n_jobs=-1,
+        refit=True,
+    )
+    grid.fit(X_train, y_train)
+    print(f"Best logistic C: {grid.best_params_['clf__C']} (CV log loss {-grid.best_score_:.4f})")
+    return grid.best_estimator_
+
+
+def build_xgboost_pipeline() -> Pipeline | None:
+    try:
+        from xgboost import XGBClassifier
+    except ImportError:
+        return None
+    return Pipeline(
+        steps=[
+            ("imputer", SimpleImputer(strategy="median")),
+            (
+                "clf",
+                XGBClassifier(
+                    n_estimators=250,
+                    max_depth=4,
+                    learning_rate=0.05,
+                    subsample=0.9,
+                    colsample_bytree=0.9,
+                    objective="binary:logistic",
+                    eval_metric="logloss",
+                    random_state=RANDOM_STATE,
+                ),
+            ),
+        ]
+    )
 
 
 def print_calibration_summary(y_true: np.ndarray, y_prob: np.ndarray, n_bins: int = 5) -> None:
-    """Print a simple calibration table: mean predicted prob vs. actual fraction positive."""
     fraction_pos, mean_pred = calibration_curve(y_true, y_prob, n_bins=n_bins, strategy="uniform")
-    print("\n  Calibration summary (predicted prob → actual HR rate):")
-    print(f"  {'Pred prob':>10}  {'Actual rate':>12}")
-    for pred, actual in zip(mean_pred, fraction_pos):
-        print(f"  {pred:>10.3f}  {actual:>12.3f}")
+    print("\nCalibration summary (predicted probability -> actual HR rate):")
+    for predicted, observed in zip(mean_pred, fraction_pos):
+        print(f"  {predicted:0.3f} -> {observed:0.3f}")
 
 
-# ---------------------------------------------------------------------------
-# Main backtest
-# ---------------------------------------------------------------------------
+def evaluate_predictions(y_true: np.ndarray, y_prob: np.ndarray) -> dict[str, float]:
+    y_pred = (y_prob >= 0.5).astype(int)
+    metrics = {
+        "accuracy": accuracy_score(y_true, y_pred),
+        "log_loss": log_loss(y_true, y_prob, labels=[0, 1]),
+        "brier_score": brier_score_loss(y_true, y_prob),
+        "roc_auc": roc_auc_score(y_true, y_prob),
+        "pr_auc": average_precision_score(y_true, y_prob),
+    }
+    return metrics
 
-def run_backtest(data_path: str = DATA_PATH) -> None:
-    # ---- 1. Load data -------------------------------------------------------
+
+def run_backtest(data_path: str, model_name: str = "logistic") -> None:
     if not Path(data_path).exists():
-        print(f"Data file not found at '{data_path}'. Generating it now...")
-        from generate_data import generate_mlb_dataset
-        generate_mlb_dataset(data_path)
+        raise FileNotFoundError(f"Dataset not found: {data_path}. Run python generate_data.py first.")
 
     df = load_data(data_path)
+    train_df, test_df = chronological_split(df)
+    run_dataset_sanity_checks(df, train_df, test_df)
 
-    # ---- 2. Chronological split ---------------------------------------------
-    #
-    # WHY: We sort by game_date and take the first 67% as training data.
-    # The final 33% serve as the holdout test set representing "future" games
-    # the model has never seen. This mirrors production deployment where the
-    # model is trained on historical data and evaluated on upcoming games.
-    #
-    train_df, test_df = chronological_split(df, fraction=TRAIN_FRACTION)
+    feature_columns = available_feature_columns(df)
+    X_train = train_df[feature_columns].to_numpy()
+    y_train = train_df[TARGET_COL].to_numpy()
+    X_test = test_df[feature_columns].to_numpy()
+    y_test = test_df[TARGET_COL].to_numpy()
 
-    # ---- 3. Temporal integrity check (lightweight validation) ---------------
-    validate_temporal_integrity(train_df, test_df)
-
-    # ---- 4. Summary ---------------------------------------------------------
-    print("\n" + "=" * 60)
-    print("  TIME-AWARE BACKTEST SUMMARY")
     print("=" * 60)
-    print(f"  Total rows      : {len(df):,}")
-    print(f"  Train rows      : {len(train_df):,}  ({len(train_df)/len(df)*100:.1f}%)")
-    print(f"  Test rows       : {len(test_df):,}  ({len(test_df)/len(df)*100:.1f}%)")
-    print(f"  Train date range: {train_df[DATE_COL].min().date()} → {train_df[DATE_COL].max().date()}")
-    print(f"  Test  date range: {test_df[DATE_COL].min().date()} → {test_df[DATE_COL].max().date()}")
-    print(f"  Target column   : '{TARGET_COL}'")
-    print(f"  HR rate (train) : {train_df[TARGET_COL].mean():.4f}")
-    print(f"  HR rate (test)  : {test_df[TARGET_COL].mean():.4f}")
+    print("TIME-AWARE BACKTEST SUMMARY")
+    print("=" * 60)
+    print(f"Rows: total={len(df):,}, train={len(train_df):,}, test={len(test_df):,}")
+    print(f"Train date range: {train_df[DATE_COL].min().date()} -> {train_df[DATE_COL].max().date()}")
+    print(f"Test date range : {test_df[DATE_COL].min().date()} -> {test_df[DATE_COL].max().date()}")
+    print(f"Base HR rate train/test: {train_df[TARGET_COL].mean():.4f} / {test_df[TARGET_COL].mean():.4f}")
+    print(f"Features used ({len(feature_columns)}): {', '.join(feature_columns)}")
 
-    # ---- 5. Prepare feature matrices ----------------------------------------
-    X_train = train_df[NUMERIC_FEATURES].values
-    y_train = train_df[TARGET_COL].values
+    if model_name == "xgboost":
+        model = build_xgboost_pipeline()
+        if model is None:
+            print("XGBoost is not installed; falling back to logistic regression.")
+            model = tune_logistic_pipeline(X_train, y_train)
+        else:
+            model.fit(X_train, y_train)
+    else:
+        model = tune_logistic_pipeline(X_train, y_train)
 
-    X_test = test_df[NUMERIC_FEATURES].values
-    y_test = test_df[TARGET_COL].values
-
-    # ---- 6. Tune + train (walk-forward CV inside training set) --------------
-    print("\n  Tuning hyperparameters with walk-forward CV (TimeSeriesSplit)...")
-    model = tune_with_walk_forward_cv(X_train, y_train)
-
-    # ---- 7. Evaluate on holdout test set ------------------------------------
-    #
-    # The test set is evaluated ONCE after all training decisions are final.
-    # Imputer and scaler were fit only on train data (via the Pipeline) and are
-    # only applied (transform) to the test set here.
-    #
     y_prob = model.predict_proba(X_test)[:, 1]
-    y_pred = model.predict(X_test)
+    metrics = evaluate_predictions(y_test, y_prob)
 
-    ll = log_loss(y_test, y_prob)
-    brier = brier_score_loss(y_test, y_prob)
-    auc = roc_auc_score(y_test, y_prob)
-    acc = accuracy_score(y_test, y_pred)
-
-    print("\n" + "=" * 60)
-    print("  HOLDOUT TEST SET EVALUATION")
-    print("=" * 60)
-    print(f"  Accuracy        : {acc:.4f}")
-    print(f"  Log Loss        : {ll:.4f}  (lower = better)")
-    print(f"  Brier Score     : {brier:.4f}  (lower = better)")
-    print(f"  ROC-AUC         : {auc:.4f}  (higher = better)")
-
+    print("\nHoldout evaluation")
+    print("-" * 60)
+    print(f"Accuracy   : {metrics['accuracy']:.4f}")
+    print(f"Log loss   : {metrics['log_loss']:.4f}")
+    print(f"Brier score: {metrics['brier_score']:.4f}")
+    print(f"ROC-AUC    : {metrics['roc_auc']:.4f}")
+    print(f"PR-AUC     : {metrics['pr_auc']:.4f}")
     print_calibration_summary(y_test, y_prob)
-    print("=" * 60)
 
 
 if __name__ == "__main__":
-    data_path = sys.argv[1] if len(sys.argv) > 1 else DATA_PATH
-    run_backtest(data_path)
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("data_path", nargs="?", default=str(FINAL_DATA_PATH), help="Path to batter-game dataset CSV.")
+    parser.add_argument("--model", choices=["logistic", "xgboost"], default="logistic", help="Model family to train.")
+    args = parser.parse_args()
+    run_backtest(args.data_path, model_name=args.model)

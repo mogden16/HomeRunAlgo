@@ -1,123 +1,58 @@
-"""
-generate_data.py
+"""Build a real 2024 MLB batter-game home run dataset from Statcast and Meteostat."""
 
-Generates a synthetic MLB player-game dataset for development and testing.
-Each row represents one player-game appearance (plate appearance context).
+from __future__ import annotations
 
-Columns produced:
-  game_date       - date of the game (used for chronological splitting)
-  player_id       - integer player identifier
-  team            - batter's team abbreviation
-  opponent        - opponent team abbreviation
-  ballpark        - ballpark name
-  hr_rate_career  - simulated career HR rate for the batter (static, no leakage)
-  iso_season_td   - isolated power, season-to-date *before* this game (rolling, no leakage)
-  hr_last_30      - HR in the last 30 games *before* this game (rolling, no leakage)
-  at_bats_season  - at-bats accumulated in the season *before* this game (rolling)
-  pitcher_hr9     - opponent pitcher's season HR/9 *before* this game (rolling)
-  park_factor     - HR park factor for the ballpark (static)
-  hit_hr          - TARGET: 1 if the batter hit a home run in this game, else 0
-"""
+import argparse
 
-import numpy as np
 import pandas as pd
-from pathlib import Path
 
-SEED = 42
-N_PLAYERS = 60
-TEAMS = [
-    "NYY", "BOS", "LAD", "HOU", "ATL", "CHC", "STL", "SF",
-    "PHI", "SD", "SEA", "TB", "MIN", "CLE", "MIL",
-]
-PARKS = {team: f"{team}_Park" for team in TEAMS}
-# Simulated park HR factors (1.0 = neutral, >1 = hitter-friendly)
-PARK_FACTORS = {team: round(np.random.default_rng(SEED).uniform(0.85, 1.20), 3)
-                for team in TEAMS}
+from config import FINAL_DATA_PATH, MIN_DATASET_WARNING_ROWS, SEASON_END, SEASON_START
+from data_sources import build_weather_table, fetch_statcast_season
+from feature_engineering import add_leakage_safe_features, build_player_game_dataset, validate_dataset
 
 
-def generate_mlb_dataset(output_path: str = "data/mlb_player_game.csv") -> pd.DataFrame:
-    rng = np.random.default_rng(SEED)
+def generate_mlb_dataset(
+    output_path: str = str(FINAL_DATA_PATH),
+    start_date: str = SEASON_START,
+    end_date: str = SEASON_END,
+    force_refresh: bool = False,
+) -> pd.DataFrame:
+    """Generate a real player-game dataset with leakage-safe historical features."""
+    statcast_df = fetch_statcast_season(start_date=start_date, end_date=end_date, force_refresh=force_refresh)
+    player_game_df, pitcher_game_df = build_player_game_dataset(statcast_df)
+    dataset = add_leakage_safe_features(player_game_df, pitcher_game_df)
 
-    # Season: 2024 regular season (~April 1 – Sep 29, ~182 days)
-    season_start = pd.Timestamp("2024-04-01")
-    season_end = pd.Timestamp("2024-09-29")
-    game_dates = pd.date_range(season_start, season_end, freq="D")
-    # ~162 games but not every player plays every day
-    game_dates = [d for d in game_dates if d.weekday() != 0 or rng.random() > 0.3]
+    schedule = dataset[["game_date", "team", "opponent", "is_home"]].copy()
+    schedule["home_team"] = schedule.apply(lambda row: row["team"] if row["is_home"] else row["opponent"], axis=1)
+    weather_df = build_weather_table(schedule[["game_date", "home_team"]].drop_duplicates(), force_refresh=force_refresh)
+    dataset["home_team"] = dataset.apply(lambda row: row["team"] if row["is_home"] else row["opponent"], axis=1)
+    dataset = dataset.merge(weather_df, on=["game_date", "home_team"], how="left", validate="many_to_one")
+    dataset = dataset.drop(columns=["home_team"])
 
-    records = []
-
-    # Assign each player a true latent HR talent (used to generate realistic probabilities)
-    player_talents = {pid: rng.beta(1.5, 18) for pid in range(N_PLAYERS)}
-    player_teams = {pid: TEAMS[pid % len(TEAMS)] for pid in range(N_PLAYERS)}
-
-    for player_id in range(N_PLAYERS):
-        talent = player_talents[player_id]
-        team = player_teams[player_id]
-        # season-level accumulators (reset each season, updated *before* each game row)
-        hr_this_season = 0
-        ab_this_season = 0
-        hr_last30_window: list[int] = []
-
-        for i, gdate in enumerate(game_dates):
-            # Skip ~15% of games (days off, bench appearances)
-            if rng.random() < 0.15:
-                continue
-
-            opponent = rng.choice([t for t in TEAMS if t != team])
-            park = team if rng.random() > 0.5 else opponent  # home or away
-
-            park_factor = PARK_FACTORS[park]
-
-            # Season-to-date features built BEFORE this game (no leakage)
-            games_played_so_far = i + 1
-            iso_season_td = (hr_this_season / max(ab_this_season, 1)) * 4  # crude ISO proxy
-            hr_last_30 = sum(hr_last30_window[-30:])
-            at_bats_season = ab_this_season
-
-            # Pitcher HR/9: simulate opponent pitcher quality (season-to-date before game)
-            # Higher value = pitcher allows more HRs
-            pitcher_hr9 = rng.gamma(shape=2.0, scale=0.6)
-
-            # True probability of hitting HR this game
-            p_hr = (
-                0.5 * talent
-                + 0.15 * park_factor * talent
-                + 0.05 * (pitcher_hr9 / 5.0)
-                + 0.02 * min(hr_last_30 / 5, 1.0)  # hot-hand signal (weak)
-            )
-            p_hr = float(np.clip(p_hr, 0.001, 0.25))
-
-            hit_hr = int(rng.random() < p_hr)
-
-            records.append({
-                "game_date": gdate,
-                "player_id": player_id,
-                "team": team,
-                "opponent": opponent,
-                "ballpark": PARKS[park],
-                "hr_rate_career": round(talent, 4),
-                "iso_season_td": round(iso_season_td, 4),
-                "hr_last_30": hr_last_30,
-                "at_bats_season": at_bats_season,
-                "pitcher_hr9": round(pitcher_hr9, 4),
-                "park_factor": park_factor,
-                "hit_hr": hit_hr,
-            })
-
-            # Update rolling accumulators AFTER the row is recorded
-            ab_game = int(rng.integers(2, 5))
-            hr_this_season += hit_hr
-            ab_this_season += ab_game
-            hr_last30_window.append(hit_hr)
-
-    df = pd.DataFrame(records).sort_values("game_date").reset_index(drop=True)
-
+    warnings = validate_dataset(dataset)
+    dataset = dataset.sort_values(["game_date", "game_pk", "player_id"]).reset_index(drop=True)
+    from pathlib import Path
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
-    df.to_csv(output_path, index=False)
-    print(f"Dataset saved to {output_path}  ({len(df):,} rows)")
-    return df
+    dataset.to_csv(output_path, index=False)
+
+    print(f"Saved real MLB player-game dataset to {output_path} ({len(dataset):,} rows).")
+    if len(dataset) < MIN_DATASET_WARNING_ROWS:
+        print("WARNING: dataset is smaller than expected; source availability may be limited.")
+    for warning in warnings:
+        print(f"WARNING: {warning}")
+    return dataset
 
 
 if __name__ == "__main__":
-    generate_mlb_dataset()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", default=str(FINAL_DATA_PATH), help="Output CSV path.")
+    parser.add_argument("--start-date", default=SEASON_START, help="Inclusive Statcast start date (YYYY-MM-DD).")
+    parser.add_argument("--end-date", default=SEASON_END, help="Inclusive Statcast end date (YYYY-MM-DD).")
+    parser.add_argument("--force-refresh", action="store_true", help="Ignore cached raw files and re-pull remote data.")
+    args = parser.parse_args()
+    generate_mlb_dataset(
+        output_path=args.output,
+        start_date=args.start_date,
+        end_date=args.end_date,
+        force_refresh=args.force_refresh,
+    )
