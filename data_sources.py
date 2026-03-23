@@ -7,6 +7,8 @@ from datetime import timedelta
 from pathlib import Path
 from typing import Iterable
 
+import warnings
+
 import pandas as pd
 from meteostat import hourly, Point
 from pybaseball import cache, statcast
@@ -101,7 +103,8 @@ def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False
         if home_team not in PARKS:
             raise KeyError(f"No park mapping configured for home team '{home_team}'.")
         park = PARKS[home_team]
-        point = Point(park["lat"], park["lon"], radius=75000)
+        Point.radius = 75_000  # meteostat uses a class-level attribute; must be set before constructing
+        point = Point(park["lat"], park["lon"])
         tz_name = park["tz"]
         local_dates = pd.to_datetime(park_games["game_date"]).dt.normalize().drop_duplicates().sort_values()
         if local_dates.empty:
@@ -112,6 +115,7 @@ def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False
         hourly_query = hourly(point, start_local.tz_convert("UTC").to_pydatetime().replace(tzinfo=None), end_local.tz_convert("UTC").to_pydatetime().replace(tzinfo=None))
         weather = hourly_query.fetch()
         if weather is None or weather.empty:
+            warnings.warn(f"Meteostat returned no hourly weather for {home_team} — filling with nulls.")
             for game_date in local_dates:
                 rows.append(WeatherLookupRow(game_date=game_date, home_team=home_team,
                                              temperature_f=None, humidity_pct=None, wind_speed_mph=None,
