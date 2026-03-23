@@ -596,7 +596,10 @@ def evaluate_baseline_feature(
         max_positive_rate,
         threshold_tolerance,
     )
-    holdout_metrics = evaluate_predictions(test_y, test_scores, float(threshold_info["threshold"]))
+    # Baseline features are raw ranking scores, not calibrated probabilities, so
+    # evaluate only threshold-based classification metrics here. Probability-only
+    # metrics such as log loss or Brier score are intentionally not computed.
+    holdout_metrics = compute_threshold_metrics(test_y, test_scores, float(threshold_info["threshold"]))
     actual_rate = float(test_y.mean())
     operationally_usable = is_operationally_usable(holdout_metrics, actual_rate)
 
