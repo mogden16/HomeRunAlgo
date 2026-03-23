@@ -101,7 +101,7 @@ def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False
         if home_team not in PARKS:
             raise KeyError(f"No park mapping configured for home team '{home_team}'.")
         park = PARKS[home_team]
-        point = Point(park["lat"], park["lon"])
+        point = Point(park["lat"], park["lon"], radius=75000)
         tz_name = park["tz"]
         local_dates = pd.to_datetime(park_games["game_date"]).dt.normalize().drop_duplicates().sort_values()
         if local_dates.empty:
@@ -112,7 +112,11 @@ def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False
         hourly_query = hourly(point, start_local.tz_convert("UTC").to_pydatetime().replace(tzinfo=None), end_local.tz_convert("UTC").to_pydatetime().replace(tzinfo=None))
         weather = hourly_query.fetch()
         if weather is None or weather.empty:
-            raise RuntimeError(f"Meteostat returned no hourly weather for {home_team}.")
+            for game_date in local_dates:
+                rows.append(WeatherLookupRow(game_date=game_date, home_team=home_team,
+                                             temperature_f=None, humidity_pct=None, wind_speed_mph=None,
+                                             wind_direction_deg=None, pressure_hpa=None))
+            continue
 
         weather = weather.tz_convert(tz_name)
         weather["weather_date"] = weather.index.normalize()
