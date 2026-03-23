@@ -1228,7 +1228,8 @@ def _is_barrel(launch_speed: pd.Series, launch_angle: pd.Series) -> pd.Series:
     la = pd.to_numeric(launch_angle, errors="coerce")
     min_angle = 26 - ((ev - 98).clip(lower=0) * 0.5)
     max_angle = 30 + ((ev - 98).clip(lower=0) * 0.5)
-    return ev.ge(98) & la.ge(min_angle) & la.le(max_angle)
+    is_barrel = ev.ge(98) & la.ge(min_angle) & la.le(max_angle)
+    return is_barrel.fillna(False)
 
 
 def _is_pull_air(pa_df: pd.DataFrame) -> pd.Series:
