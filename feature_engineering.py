@@ -128,12 +128,12 @@ def _aggregate_batter_games(pa_df: pd.DataFrame) -> pd.DataFrame:
         "game_date",
         "game_pk",
         "batter",
-        "player_name",
         "team",
         "opponent",
         "is_home",
     ]
     agg = pa_df.groupby(group_cols, dropna=False).agg(
+        player_name=("player_name", "first"),
         plate_appearances=("plate_appearance", "sum"),
         at_bats=("at_bat", "sum"),
         hr_count=("is_hr", "sum"),
