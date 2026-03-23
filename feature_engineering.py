@@ -10,7 +10,7 @@ from typing import Iterable
 import numpy as np
 import pandas as pd
 
-from config import AB_EVENTS, FINAL_DATA_PATH, PA_ENDING_EVENTS, PARKS
+from config import AB_EVENTS, FINAL_DATA_PATH, PA_ENDING_EVENTS, PARKS, STATCAST_COLUMNS
 
 SPRAY_CENTER_X = 125.42
 SPRAY_HOME_Y = 198.27
@@ -178,6 +178,32 @@ def add_leakage_safe_features(
     _final_feature_quality_report(df, audit_ctx, dropped_features)
     return df
 
+
+
+
+def audit_existing_engineered_dataset(df: pd.DataFrame, debug_feature_audit: bool = False) -> pd.DataFrame:
+    """Audit an already-engineered batter-game dataset without rebuilding from raw Statcast rows."""
+    audit_ctx = FeatureAuditContext(enabled=debug_feature_audit)
+    if "game_date" in df.columns:
+        df = df.copy()
+        df["game_date"] = pd.to_datetime(df["game_date"], errors="coerce")
+    _print_feature_lineage(debug_feature_audit)
+    audit_ctx.log("[FEATURE-AUDIT] Input looks like an already-engineered batter-game dataset; skipping raw Statcast aggregation and running dataset-level audits only.")
+    _summarize_feature_missingness(df, FLAGGED_FEATURES, "engineered dataset input", audit_ctx, batter_col="player_id", pitcher_col="opp_pitcher_id")
+    _audit_identifier_columns(df, audit_ctx, batter_col="player_id", pitcher_col="opp_pitcher_id")
+    df, dropped_features = _drop_unreliable_flagged_features(df, audit_ctx)
+    _summarize_feature_missingness(df, FLAGGED_FEATURES, "final selected feature output", audit_ctx, batter_col="player_id", pitcher_col="opp_pitcher_id")
+    _final_feature_quality_report(df, audit_ctx, dropped_features)
+    return df
+
+
+def _looks_like_raw_statcast(df: pd.DataFrame) -> bool:
+    return {"at_bat_number", "pitch_number", "events", "inning_topbot"}.issubset(df.columns)
+
+
+def _looks_like_engineered_dataset(df: pd.DataFrame) -> bool:
+    required = {"game_date", "game_pk", "player_id", "hit_hr"}
+    return required.issubset(df.columns) and not _looks_like_raw_statcast(df)
 
 def validate_dataset(df: pd.DataFrame) -> list[str]:
     """Return sanity-check warnings or raise on hard validation failures."""
@@ -765,23 +791,33 @@ def _is_pull_air(pa_df: pd.DataFrame) -> pd.Series:
     return (air & (right_pull | left_pull)).astype(int)
 
 
-def _load_statcast_input(input_path: str) -> pd.DataFrame:
+def _load_input_dataframe(input_path: str) -> pd.DataFrame:
     return pd.read_csv(input_path, parse_dates=["game_date"], low_memory=False)
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("input_path", help="Path to a raw Statcast CSV file to audit.")
-    parser.add_argument("--output", default=str(FINAL_DATA_PATH), help="Optional path for writing the engineered dataset.")
+    parser.add_argument("input_path", nargs="?", default=str(FINAL_DATA_PATH), help="Path to either a raw Statcast CSV file or an already-engineered batter-game dataset. Defaults to the configured final dataset path.")
+    parser.add_argument("--output", default=str(FINAL_DATA_PATH), help="Optional path for writing the engineered dataset or audited engineered copy.")
     parser.add_argument("--debug-feature-audit", action="store_true", help="Print step-by-step lineage, merge, and missingness diagnostics for the four flagged features.")
     args = parser.parse_args()
 
-    statcast_df = _load_statcast_input(args.input_path)
-    player_game_df, pitcher_game_df = build_player_game_dataset(statcast_df, debug_feature_audit=args.debug_feature_audit)
-    dataset = add_leakage_safe_features(player_game_df, pitcher_game_df, debug_feature_audit=args.debug_feature_audit)
+    input_df = _load_input_dataframe(args.input_path)
+    if _looks_like_raw_statcast(input_df):
+        dataset_type = "raw Statcast pitch-level input"
+        dataset = add_leakage_safe_features(*build_player_game_dataset(input_df, debug_feature_audit=args.debug_feature_audit), debug_feature_audit=args.debug_feature_audit)
+    elif _looks_like_engineered_dataset(input_df):
+        dataset_type = "already-engineered batter-game dataset"
+        dataset = audit_existing_engineered_dataset(input_df, debug_feature_audit=args.debug_feature_audit)
+    else:
+        missing_statcast = sorted(set(STATCAST_COLUMNS) - set(input_df.columns))
+        raise ValueError(
+            "Input file is neither recognized raw Statcast data nor a batter-game engineered dataset. "
+            f"Missing raw Statcast columns include: {missing_statcast[:8]}"
+        )
     Path(args.output).parent.mkdir(parents=True, exist_ok=True)
     dataset.to_csv(args.output, index=False)
-    print(f"Saved engineered dataset to {args.output} ({len(dataset):,} rows).")
+    print(f"Saved {dataset_type} audit output to {args.output} ({len(dataset):,} rows).")
 
 
 if __name__ == "__main__":
