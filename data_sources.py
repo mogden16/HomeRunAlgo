@@ -10,7 +10,7 @@ from typing import Iterable
 import warnings
 
 import pandas as pd
-from meteostat import hourly, Point
+import requests
 from pybaseball import cache, statcast
 
 from config import (
@@ -87,6 +87,30 @@ def fetch_statcast_season(start_date: str, end_date: str, force_refresh: bool = 
     return statcast_df
 
 
+_OPEN_METEO_URL = "https://archive-api.open-meteo.com/v1/archive"
+
+
+def _fetch_open_meteo(lat: float, lon: float, start_date: str, end_date: str, tz: str) -> pd.DataFrame:
+    """Fetch hourly weather from the Open-Meteo archive (ERA5). No API key required."""
+    params = {
+        "latitude": lat,
+        "longitude": lon,
+        "start_date": start_date,
+        "end_date": end_date,
+        "hourly": "temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,surface_pressure",
+        "temperature_unit": "fahrenheit",
+        "wind_speed_unit": "mph",
+        "timezone": tz,
+    }
+    resp = requests.get(_OPEN_METEO_URL, params=params, timeout=60)
+    resp.raise_for_status()
+    data = resp.json()["hourly"]
+    df = pd.DataFrame(data)
+    df.index = pd.to_datetime(df["time"]).dt.tz_localize(tz, ambiguous="infer", nonexistent="shift_forward")
+    df = df.drop(columns=["time"])
+    return df
+
+
 def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False) -> pd.DataFrame:
     """Pull hourly historical weather for each MLB park/date pair used in the dataset."""
     ensure_directories()
@@ -103,29 +127,24 @@ def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False
         if home_team not in PARKS:
             raise KeyError(f"No park mapping configured for home team '{home_team}'.")
         park = PARKS[home_team]
-        Point.radius = 75_000  # meteostat uses a class-level attribute; must be set before constructing
-        point = Point(park["lat"], park["lon"])
         tz_name = park["tz"]
         local_dates = pd.to_datetime(park_games["game_date"]).dt.normalize().drop_duplicates().sort_values()
         if local_dates.empty:
             continue
 
-        start_local = local_dates.min().tz_localize(tz_name) - timedelta(hours=2)
-        end_local = local_dates.max().tz_localize(tz_name) + timedelta(hours=23)
-        start_utc = start_local.tz_convert("UTC").to_pydatetime().replace(tzinfo=None)
-        end_utc = end_local.tz_convert("UTC").to_pydatetime().replace(tzinfo=None)
-        hourly_query = hourly(point, start_utc, end_utc)
-        weather = hourly_query.fetch()
-        if weather is None or weather.empty:
-            warnings.warn(f"Meteostat returned no hourly weather for {home_team} — filling with nulls.")
+        start_str = local_dates.min().strftime("%Y-%m-%d")
+        end_str = local_dates.max().strftime("%Y-%m-%d")
+        try:
+            weather = _fetch_open_meteo(park["lat"], park["lon"], start_str, end_str, tz_name)
+        except Exception as exc:
+            warnings.warn(f"Open-Meteo fetch failed for {home_team}: {exc} — filling with nulls.")
             for game_date in local_dates:
                 rows.append(WeatherLookupRow(game_date=game_date, home_team=home_team,
                                              temperature_f=None, humidity_pct=None, wind_speed_mph=None,
                                              wind_direction_deg=None, pressure_hpa=None))
             continue
 
-        weather = weather.tz_convert(tz_name)
-        weather["weather_date"] = weather.index.normalize()
+        weather["weather_date"] = weather.index.normalize().tz_localize(None)
         weather["hour_diff"] = (weather.index.hour - DEFAULT_GAME_HOUR_LOCAL).abs()
 
         for game_date in local_dates:
@@ -135,16 +154,16 @@ def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False
                                              temperature_f=None, humidity_pct=None, wind_speed_mph=None,
                                              wind_direction_deg=None, pressure_hpa=None))
                 continue
-            best = day_weather.sort_values(["hour_diff", "temp"], na_position="last").iloc[0]
+            best = day_weather.sort_values("hour_diff").iloc[0]
             rows.append(
                 WeatherLookupRow(
                     game_date=game_date,
                     home_team=home_team,
-                    temperature_f=_c_to_f(best.get("temp")),
-                    humidity_pct=_safe_float(best.get("rhum")),
-                    wind_speed_mph=_kph_to_mph(best.get("wspd")),
-                    wind_direction_deg=_safe_float(best.get("wdir")),
-                    pressure_hpa=_safe_float(best.get("pres")),
+                    temperature_f=_safe_float(best.get("temperature_2m")),
+                    humidity_pct=_safe_float(best.get("relative_humidity_2m")),
+                    wind_speed_mph=_safe_float(best.get("wind_speed_10m")),
+                    wind_direction_deg=_safe_float(best.get("wind_direction_10m")),
+                    pressure_hpa=_safe_float(best.get("surface_pressure")),
                 )
             )
 
@@ -157,15 +176,3 @@ def _safe_float(value: object) -> float | None:
     if pd.isna(value):
         return None
     return float(value)
-
-
-def _c_to_f(value: object) -> float | None:
-    if pd.isna(value):
-        return None
-    return float(value) * 9 / 5 + 32
-
-
-def _kph_to_mph(value: object) -> float | None:
-    if pd.isna(value):
-        return None
-    return float(value) * 0.621371

@@ -94,7 +94,7 @@ STATCAST_COLUMNS = [
 ]
 
 PARKS = {
-    "ARI": {"ballpark": "Chase Field", "lat": 33.4455, "lon": -112.0667, "tz": "America/Phoenix"},
+    "AZ": {"ballpark": "Chase Field", "lat": 33.4455, "lon": -112.0667, "tz": "America/Phoenix"},
     "ATL": {"ballpark": "Truist Park", "lat": 33.8907, "lon": -84.4677, "tz": "America/New_York"},
     "BAL": {"ballpark": "Oriole Park at Camden Yards", "lat": 39.2838, "lon": -76.6217, "tz": "America/New_York"},
     "BOS": {"ballpark": "Fenway Park", "lat": 42.3467, "lon": -71.0972, "tz": "America/New_York"},
