@@ -145,7 +145,7 @@ def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False
             continue
 
         weather["weather_date"] = weather.index.normalize().tz_localize(None)
-        weather["hour_diff"] = (weather.index.hour - DEFAULT_GAME_HOUR_LOCAL).abs()
+        weather["hour_diff"] = abs(weather.index.hour - DEFAULT_GAME_HOUR_LOCAL)
 
         for game_date in local_dates:
             day_weather = weather[weather["weather_date"] == game_date]
