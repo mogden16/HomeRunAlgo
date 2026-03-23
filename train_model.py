@@ -104,9 +104,13 @@ def fit_safely_with_imputer_warning_suppressed(estimator, X, y):
 
 def load_data(path: str) -> pd.DataFrame:
     df = pd.read_csv(path, parse_dates=[DATE_COL])
-    missing_columns = [col for col in [DATE_COL, TARGET_COL] + FEATURE_COLUMNS if col not in df.columns]
-    if missing_columns:
-        raise ValueError(f"Dataset is missing required columns: {missing_columns}")
+    required_columns = [DATE_COL, TARGET_COL, "game_pk", "player_id"]
+    missing_required = [col for col in required_columns if col not in df.columns]
+    if missing_required:
+        raise ValueError(f"Dataset is missing required columns: {missing_required}")
+    missing_model_features = [col for col in FEATURE_COLUMNS if col not in df.columns]
+    if missing_model_features:
+        print(f"WARNING: dataset is missing configured model features and will train with the remaining available features only: {missing_model_features}")
     return df.sort_values([DATE_COL, "game_pk", "player_id"]).reset_index(drop=True)
 
 

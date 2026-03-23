@@ -14,6 +14,9 @@ from config import AB_EVENTS, FINAL_DATA_PATH, PA_ENDING_EVENTS, PARKS, STATCAST
 
 SPRAY_CENTER_X = 125.42
 SPRAY_HOME_Y = 198.27
+PARK_FACTOR_FEATURE = "park_factor_hr"
+AUTO_DROP_MISSINGNESS_THRESHOLD = 0.50
+DEFAULT_FAIL_MISSINGNESS_THRESHOLD = 0.50
 FLAGGED_FEATURES = [
     "expected_pa_proxy",
     "hr_per_pa_last_30d",
@@ -58,7 +61,7 @@ def build_player_game_dataset(
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Aggregate Statcast pitch-level data into one batter-game row."""
     _print_feature_lineage(debug_feature_audit)
-    audit_ctx = FeatureAuditContext(enabled=debug_feature_audit)
+    audit_ctx = FeatureAuditContext(enabled=debug_feature_audit, mode="rebuild")
     _summarize_feature_missingness(statcast_df, FLAGGED_FEATURES, "raw source load", audit_ctx, batter_col="batter", pitcher_col="pitcher")
 
     pa_df = _extract_plate_appearances(statcast_df)
@@ -94,8 +97,9 @@ def build_player_game_dataset(
 
 
 class FeatureAuditContext:
-    def __init__(self, enabled: bool = False):
+    def __init__(self, enabled: bool = False, mode: str = "auto"):
         self.enabled = enabled
+        self.mode = mode
         self.feature_statuses = {
             feature: {"status": "pending", "explanation": "Not yet audited.", "final_missing_pct": None}
             for feature in FLAGGED_FEATURES
@@ -122,9 +126,10 @@ def add_leakage_safe_features(
     player_game_df: pd.DataFrame,
     pitcher_game_df: pd.DataFrame,
     debug_feature_audit: bool = False,
+    missingness_threshold: float = AUTO_DROP_MISSINGNESS_THRESHOLD,
 ) -> pd.DataFrame:
     """Add rolling batter and pitcher features using only pre-game information."""
-    audit_ctx = FeatureAuditContext(enabled=debug_feature_audit)
+    audit_ctx = FeatureAuditContext(enabled=debug_feature_audit, mode="rebuild")
     df = player_game_df.copy()
     df["game_date"] = pd.to_datetime(df["game_date"])
     pitcher_game_df = pitcher_game_df.copy()
@@ -173,7 +178,7 @@ def add_leakage_safe_features(
     )
     df["starter_or_bullpen_proxy"] = np.where(df["opp_pitcher_bf"] >= 12, "starter_like", "bullpen_like")
 
-    df, dropped_features = _drop_unreliable_flagged_features(df, audit_ctx)
+    df, dropped_features = _drop_unreliable_flagged_features(df, audit_ctx, missingness_threshold=missingness_threshold)
     _summarize_feature_missingness(df, FLAGGED_FEATURES, "final selected feature output", audit_ctx, batter_col="player_id", pitcher_col="opp_pitcher_id")
     _final_feature_quality_report(df, audit_ctx, dropped_features)
     return df
@@ -181,9 +186,13 @@ def add_leakage_safe_features(
 
 
 
-def audit_existing_engineered_dataset(df: pd.DataFrame, debug_feature_audit: bool = False) -> pd.DataFrame:
+def audit_existing_engineered_dataset(
+    df: pd.DataFrame,
+    debug_feature_audit: bool = False,
+    missingness_threshold: float = AUTO_DROP_MISSINGNESS_THRESHOLD,
+) -> pd.DataFrame:
     """Audit an already-engineered batter-game dataset without rebuilding from raw Statcast rows."""
-    audit_ctx = FeatureAuditContext(enabled=debug_feature_audit)
+    audit_ctx = FeatureAuditContext(enabled=debug_feature_audit, mode="audit")
     if "game_date" in df.columns:
         df = df.copy()
         df["game_date"] = pd.to_datetime(df["game_date"], errors="coerce")
@@ -191,19 +200,41 @@ def audit_existing_engineered_dataset(df: pd.DataFrame, debug_feature_audit: boo
     audit_ctx.log("[FEATURE-AUDIT] Input looks like an already-engineered batter-game dataset; skipping raw Statcast aggregation and running dataset-level audits only.")
     _summarize_feature_missingness(df, FLAGGED_FEATURES, "engineered dataset input", audit_ctx, batter_col="player_id", pitcher_col="opp_pitcher_id")
     _audit_identifier_columns(df, audit_ctx, batter_col="player_id", pitcher_col="opp_pitcher_id")
-    df, dropped_features = _drop_unreliable_flagged_features(df, audit_ctx)
+    df, dropped_features = _drop_unreliable_flagged_features(df, audit_ctx, missingness_threshold=missingness_threshold)
     _summarize_feature_missingness(df, FLAGGED_FEATURES, "final selected feature output", audit_ctx, batter_col="player_id", pitcher_col="opp_pitcher_id")
     _final_feature_quality_report(df, audit_ctx, dropped_features)
     return df
 
 
-def _looks_like_raw_statcast(df: pd.DataFrame) -> bool:
-    return {"at_bat_number", "pitch_number", "events", "inning_topbot"}.issubset(df.columns)
+def _classify_input_dataframe(df: pd.DataFrame) -> tuple[str, list[str]]:
+    raw_markers = [column for column in ["at_bat_number", "pitch_number", "events", "inning_topbot"] if column in df.columns]
+    engineered_markers = [column for column in ["game_pk", "player_id", "hit_hr"] if column in df.columns]
+    if len(raw_markers) == 4:
+        return "raw_statcast", raw_markers
+    if len(engineered_markers) == 3:
+        return "engineered_dataset", engineered_markers
+    return "unknown", raw_markers + engineered_markers
 
 
-def _looks_like_engineered_dataset(df: pd.DataFrame) -> bool:
-    required = {"game_date", "game_pk", "player_id", "hit_hr"}
-    return required.issubset(df.columns) and not _looks_like_raw_statcast(df)
+def _print_input_classification(input_path: str, dataset_kind: str, trigger_columns: list[str], mode: str) -> None:
+    print(f"[FEATURE-AUDIT] Reading input file: {input_path}")
+    print(f"[FEATURE-AUDIT] Requested mode: {mode}")
+    print(f"[FEATURE-AUDIT] Classified input as: {dataset_kind}")
+    print(f"[FEATURE-AUDIT] Trigger columns for classification: {trigger_columns}")
+
+
+def _assert_missingness_threshold(df: pd.DataFrame, threshold: float) -> None:
+    feature_columns = [column for column in FLAGGED_FEATURES + [PARK_FACTOR_FEATURE] if column in df.columns]
+    offenders = []
+    for feature in feature_columns:
+        missing_pct = float(df[feature].isna().mean() * 100)
+        if missing_pct > threshold * 100:
+            offenders.append(f"{feature}={missing_pct:.2f}%")
+    if offenders:
+        raise ValueError(
+            f"Missingness threshold exceeded ({threshold:.0%}) for selected features: {', '.join(offenders)}"
+        )
+
 
 def validate_dataset(df: pd.DataFrame) -> list[str]:
     """Return sanity-check warnings or raise on hard validation failures."""
@@ -672,7 +703,11 @@ def _merge_with_audit(
     return merged
 
 
-def _drop_unreliable_flagged_features(df: pd.DataFrame, audit_ctx: FeatureAuditContext) -> tuple[pd.DataFrame, list[str]]:
+def _drop_unreliable_flagged_features(
+    df: pd.DataFrame,
+    audit_ctx: FeatureAuditContext,
+    missingness_threshold: float = AUTO_DROP_MISSINGNESS_THRESHOLD,
+) -> tuple[pd.DataFrame, list[str]]:
     dropped: list[str] = []
     for feature in FLAGGED_FEATURES:
         if feature not in df.columns:
@@ -681,12 +716,23 @@ def _drop_unreliable_flagged_features(df: pd.DataFrame, audit_ctx: FeatureAuditC
             continue
         missing_pct = float(df[feature].isna().mean() * 100)
         if feature == "expected_pa_proxy":
-            audit_ctx.set_status(
-                feature,
-                "simplified",
-                "Repaired with a two-stage proxy: prior 14-day plate appearances, then batting-order fallback when recent history is unavailable.",
-                missing_pct,
-            )
+            if missing_pct > missingness_threshold * 100:
+                df = df.drop(columns=[feature])
+                dropped.append(feature)
+                audit_ctx.set_status(
+                    feature,
+                    "dropped",
+                    f"Dropped because the two-stage proxy still left {missing_pct:.2f}% missingness, above the allowed threshold.",
+                    missing_pct,
+                )
+                audit_ctx.log(f"[FEATURE-AUDIT][WARN] Dropping {feature} because the repaired proxy still left {missing_pct:.2f}% missingness.")
+            else:
+                audit_ctx.set_status(
+                    feature,
+                    "simplified",
+                    "Repaired with a two-stage proxy: prior 14-day plate appearances, then batting-order fallback when recent history is unavailable.",
+                    missing_pct,
+                )
             continue
         audit_ctx.set_status(
             feature,
@@ -694,7 +740,7 @@ def _drop_unreliable_flagged_features(df: pd.DataFrame, audit_ctx: FeatureAuditC
             "Shifted rolling window retained; min_periods=1 now preserves valid prior-history windows without introducing leakage.",
             missing_pct,
         )
-        if missing_pct > 95.0:
+        if missing_pct > missingness_threshold * 100:
             df = df.drop(columns=[feature])
             dropped.append(feature)
             audit_ctx.set_status(
@@ -704,6 +750,13 @@ def _drop_unreliable_flagged_features(df: pd.DataFrame, audit_ctx: FeatureAuditC
                 missing_pct,
             )
             audit_ctx.log(f"[FEATURE-AUDIT][WARN] Dropping {feature} from final dataset because missingness remained {missing_pct:.2f}%.")
+
+    if PARK_FACTOR_FEATURE in df.columns:
+        park_missing_pct = float(df[PARK_FACTOR_FEATURE].isna().mean() * 100)
+        if park_missing_pct >= 100.0:
+            df = df.drop(columns=[PARK_FACTOR_FEATURE])
+            dropped.append(PARK_FACTOR_FEATURE)
+            audit_ctx.log(f"[FEATURE-AUDIT][WARN] Dropping {PARK_FACTOR_FEATURE} because it is 100% missing and no source-backed rebuild exists in this pipeline.")
     return df, dropped
 
 
@@ -767,7 +820,7 @@ def _final_feature_quality_report(df: pd.DataFrame, audit_ctx: FeatureAuditConte
         )
     fixed = [f for f, meta in audit_ctx.feature_statuses.items() if meta["status"] in {"repaired", "simplified"}]
     dropped = dropped_features
-    still_high = [f for f in FLAGGED_FEATURES if f in df.columns and df[f].isna().mean() > 0.20]
+    still_high = [f for f in FLAGGED_FEATURES if f in df.columns and df[f].isna().mean() > AUTO_DROP_MISSINGNESS_THRESHOLD]
     verdict = "suitable" if not still_high and not dropped else "needs review"
     audit_ctx.log("\n[FEATURE-AUDIT] Final verdict:")
     audit_ctx.log(f"[FEATURE-AUDIT] fixed_or_simplified={fixed}")
@@ -799,25 +852,76 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("input_path", nargs="?", default=str(FINAL_DATA_PATH), help="Path to either a raw Statcast CSV file or an already-engineered batter-game dataset. Defaults to the configured final dataset path.")
     parser.add_argument("--output", default=str(FINAL_DATA_PATH), help="Optional path for writing the engineered dataset or audited engineered copy.")
+    parser.add_argument("--mode", choices=["auto", "rebuild", "audit"], default="auto", help="Execution mode: rebuild from raw data, audit an existing engineered dataset, or auto-detect.")
     parser.add_argument("--debug-feature-audit", action="store_true", help="Print step-by-step lineage, merge, and missingness diagnostics for the four flagged features.")
+    parser.add_argument("--fail-on-high-missingness", action="store_true", help="Fail if selected tracked features exceed the configured missingness threshold after rebuild/audit.")
+    parser.add_argument("--missingness-threshold", type=float, default=DEFAULT_FAIL_MISSINGNESS_THRESHOLD, help="Missingness threshold used by --fail-on-high-missingness and rebuild-time feature dropping. Expressed as a 0-1 fraction.")
     args = parser.parse_args()
 
     input_df = _load_input_dataframe(args.input_path)
-    if _looks_like_raw_statcast(input_df):
-        dataset_type = "raw Statcast pitch-level input"
-        dataset = add_leakage_safe_features(*build_player_game_dataset(input_df, debug_feature_audit=args.debug_feature_audit), debug_feature_audit=args.debug_feature_audit)
-    elif _looks_like_engineered_dataset(input_df):
-        dataset_type = "already-engineered batter-game dataset"
-        dataset = audit_existing_engineered_dataset(input_df, debug_feature_audit=args.debug_feature_audit)
-    else:
-        missing_statcast = sorted(set(STATCAST_COLUMNS) - set(input_df.columns))
-        raise ValueError(
-            "Input file is neither recognized raw Statcast data nor a batter-game engineered dataset. "
-            f"Missing raw Statcast columns include: {missing_statcast[:8]}"
+    dataset_kind, trigger_columns = _classify_input_dataframe(input_df)
+    _print_input_classification(args.input_path, dataset_kind, trigger_columns, args.mode)
+
+    if args.mode == "rebuild":
+        if dataset_kind != "raw_statcast":
+            raise ValueError(
+                "Rebuild mode requires raw Statcast-style pitch-level input. "
+                f"Received {dataset_kind} based on columns {trigger_columns}."
+            )
+        print("[FEATURE-AUDIT] Executing rebuild branch: raw Statcast -> plate appearances -> batter-game -> rolling features -> final export.")
+        player_game_df, pitcher_game_df = build_player_game_dataset(input_df, debug_feature_audit=args.debug_feature_audit)
+        dataset = add_leakage_safe_features(
+            player_game_df,
+            pitcher_game_df,
+            debug_feature_audit=args.debug_feature_audit,
+            missingness_threshold=args.missingness_threshold,
         )
+        dataset_type = "rebuilt engineered dataset"
+    elif args.mode == "audit":
+        if dataset_kind != "engineered_dataset":
+            raise ValueError(
+                "Audit mode requires an already-engineered batter-game dataset. "
+                f"Received {dataset_kind} based on columns {trigger_columns}."
+            )
+        print("[FEATURE-AUDIT] Executing audit branch: existing engineered dataset only (no raw rebuild performed).")
+        dataset = audit_existing_engineered_dataset(
+            input_df,
+            debug_feature_audit=args.debug_feature_audit,
+            missingness_threshold=args.missingness_threshold,
+        )
+        dataset_type = "audited engineered dataset"
+    else:
+        if dataset_kind == "raw_statcast":
+            print("[FEATURE-AUDIT] Auto mode selected rebuild branch because raw Statcast markers were found.")
+            player_game_df, pitcher_game_df = build_player_game_dataset(input_df, debug_feature_audit=args.debug_feature_audit)
+            dataset = add_leakage_safe_features(
+                player_game_df,
+                pitcher_game_df,
+                debug_feature_audit=args.debug_feature_audit,
+                missingness_threshold=args.missingness_threshold,
+            )
+            dataset_type = "rebuilt engineered dataset"
+        elif dataset_kind == "engineered_dataset":
+            print("[FEATURE-AUDIT] Auto mode selected audit branch because engineered-dataset markers were found and raw event-level columns were absent.")
+            dataset = audit_existing_engineered_dataset(
+                input_df,
+                debug_feature_audit=args.debug_feature_audit,
+                missingness_threshold=args.missingness_threshold,
+            )
+            dataset_type = "audited engineered dataset"
+        else:
+            missing_statcast = sorted(set(STATCAST_COLUMNS) - set(input_df.columns))
+            raise ValueError(
+                "Input file is neither recognized raw Statcast data nor a batter-game engineered dataset. "
+                f"Missing raw Statcast columns include: {missing_statcast[:8]}"
+            )
+
+    if args.fail_on_high_missingness:
+        _assert_missingness_threshold(dataset, args.missingness_threshold)
+
     Path(args.output).parent.mkdir(parents=True, exist_ok=True)
     dataset.to_csv(args.output, index=False)
-    print(f"Saved {dataset_type} audit output to {args.output} ({len(dataset):,} rows).")
+    print(f"Saved {dataset_type} to {args.output} ({len(dataset):,} rows).")
 
 
 if __name__ == "__main__":
