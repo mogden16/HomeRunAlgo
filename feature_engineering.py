@@ -407,4 +407,4 @@ def _is_pull_air(pa_df: pd.DataFrame) -> pd.Series:
     air = pa_df["bb_type"].isin(["fly_ball", "line_drive", "popup"])
     right_pull = pa_df["stand"].eq("R") & pa_df["spray_angle"].lt(-15)
     left_pull = pa_df["stand"].eq("L") & pa_df["spray_angle"].gt(15)
-    return (air & (right_pull | left_pull)).astype(int)
+    return (air & (right_pull | left_pull)).fillna(False).astype(int)
