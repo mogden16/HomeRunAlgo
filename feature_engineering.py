@@ -395,7 +395,9 @@ def _extract_plate_appearances(statcast_df: pd.DataFrame) -> pd.DataFrame:
     pa_df["is_hard_hit"] = (pa_df["launch_speed"] >= 95).fillna(False).astype(int)
     pa_df["is_barrel"] = _is_barrel(pa_df["launch_speed"], pa_df["launch_angle"]).astype(int)
     pa_df["is_fly_ball"] = pa_df["bb_type"].isin(["fly_ball", "popup"]).astype(int)
-    pa_df["spray_angle"] = np.degrees(np.arctan2(pa_df["hc_x"] - SPRAY_CENTER_X, SPRAY_HOME_Y - pa_df["hc_y"]))
+    hc_x = pd.to_numeric(pa_df["hc_x"], errors="coerce")
+    hc_y = pd.to_numeric(pa_df["hc_y"], errors="coerce")
+    pa_df["spray_angle"] = np.degrees(np.arctan2(hc_x - SPRAY_CENTER_X, SPRAY_HOME_Y - hc_y))
     pa_df["is_pull_air"] = _is_pull_air(pa_df)
     pa_df["batting_order"] = pa_df.groupby(["game_pk", "team"])["at_bat_number"].rank(method="dense").clip(upper=9)
     return pa_df
@@ -1252,7 +1254,7 @@ def _is_pull_air(pa_df: pd.DataFrame) -> pd.Series:
     air = pa_df["bb_type"].isin(["fly_ball", "line_drive", "popup"])
     right_pull = pa_df["stand"].eq("R") & pa_df["spray_angle"].lt(-15)
     left_pull = pa_df["stand"].eq("L") & pa_df["spray_angle"].gt(15)
-    return (air & (right_pull | left_pull)).astype(int)
+    return (air & (right_pull | left_pull)).fillna(False).astype(int)
 
 
 def _load_input_dataframe(input_path: str) -> pd.DataFrame:
