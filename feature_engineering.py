@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 from collections import deque
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
 
@@ -55,6 +56,105 @@ FEATURE_LINEAGE = {
 }
 
 
+NEW_FEATURE_MISSINGNESS_THRESHOLD = 0.90
+PITCH_TYPE_GROUPS = {
+    "fastball": {"FF", "FA", "FT", "FC", "FS", "SI", "SF"},
+    "breaking": {"SL", "CU", "KC", "SV", "CS", "KN"},
+    "offspeed": {"CH", "FO", "SC", "EP"},
+}
+PITCH_TYPE_GROUP_LABELS = {
+    "fastball": "fastball = FF/FA/FT/FC/FS/SI/SF; breaking = SL/CU/KC/SV/CS/KN; offspeed = CH/FO/SC/EP",
+    "breaking": "fastball = FF/FA/FT/FC/FS/SI/SF; breaking = SL/CU/KC/SV/CS/KN; offspeed = CH/FO/SC/EP",
+    "offspeed": "fastball = FF/FA/FT/FC/FS/SI/SF; breaking = SL/CU/KC/SV/CS/KN; offspeed = CH/FO/SC/EP",
+}
+NEW_FEATURE_NOTES = {
+    "hr_per_pa_last_30d": "Trailing 30-day batter HR per PA using prior batter-game rows only.",
+    "hr_per_pa_last_10d": "Trailing 10-day batter HR per PA using prior batter-game rows only.",
+    "hr_count_last_30d": "Trailing 30-day batter HR count using prior batter-game rows only.",
+    "hr_count_last_10d": "Trailing 10-day batter HR count using prior batter-game rows only.",
+    "pa_last_30d": "Trailing 30-day batter PA total using prior batter-game rows only.",
+    "pa_last_10d": "Trailing 10-day batter PA total using prior batter-game rows only.",
+    "barrels_per_pa_last_10d": "Trailing 10-day batter barrels per PA from prior games only.",
+    "barrels_per_pa_last_30d": "Trailing 30-day batter barrels per PA from prior games only.",
+    "barrels_last_10d": "Trailing 10-day batter barrel count from prior games only.",
+    "barrels_last_30d": "Trailing 30-day batter barrel count from prior games only.",
+    "hard_hit_rate_last_10d": "Trailing 10-day hard-hit / BBE from prior games only.",
+    "hard_hit_rate_last_30d": "Trailing 30-day hard-hit / BBE from prior games only.",
+    "hard_hit_bbe_last_10d": "Trailing 10-day hard-hit BBE count from prior games only.",
+    "hard_hit_bbe_last_30d": "Trailing 30-day hard-hit BBE count from prior games only.",
+    "bbe_last_10d": "Trailing 10-day BBE count from prior games only.",
+    "bbe_last_30d": "Trailing 30-day BBE count from prior games only.",
+    "avg_exit_velocity_last_10d": "Trailing 10-day mean exit velocity over prior BBE only.",
+    "avg_exit_velocity_last_30d": "Trailing 30-day mean exit velocity over prior BBE only.",
+    "max_exit_velocity_last_10d": "Trailing 10-day max exit velocity over prior BBE only.",
+    "bbe_95plus_ev_rate_last_10d": "Trailing 10-day share of prior BBE hit 95+ mph.",
+    "bbe_95plus_ev_rate_last_30d": "Trailing 30-day share of prior BBE hit 95+ mph.",
+    "pitcher_hr_allowed_per_pa_last_30d": "Trailing 30-day pitcher HR allowed per PA against prior batters only.",
+    "pitcher_hr_allowed_last_30d": "Trailing 30-day pitcher HR allowed count against prior batters only.",
+    "pitcher_barrels_allowed_per_bbe_last_30d": "Trailing 30-day pitcher barrels allowed per BBE against prior batters only.",
+    "pitcher_barrels_allowed_last_30d": "Trailing 30-day pitcher barrels allowed count against prior batters only.",
+    "pitcher_hard_hit_allowed_rate_last_30d": "Trailing 30-day pitcher hard-hit allowed / BBE against prior batters only.",
+    "pitcher_hard_hit_allowed_last_30d": "Trailing 30-day pitcher hard-hit allowed count against prior batters only.",
+    "pitcher_bbe_allowed_last_30d": "Trailing 30-day pitcher BBE allowed count against prior batters only.",
+    "pitcher_avg_ev_allowed_last_30d": "Trailing 30-day pitcher average EV allowed over prior BBE only.",
+    "pitcher_95plus_ev_allowed_rate_last_30d": "Trailing 30-day pitcher 95+ mph BBE allowed rate over prior BBE only.",
+    "pitcher_fastball_pct": "Shifted season-to-date pitcher fastball share from prior pitch-level usage.",
+    "pitcher_breaking_ball_pct": "Shifted season-to-date pitcher breaking-ball share from prior pitch-level usage.",
+    "pitcher_offspeed_pct": "Shifted season-to-date pitcher offspeed share from prior pitch-level usage.",
+    "pitcher_four_seam_pct": "Shifted season-to-date pitcher FF share from prior pitch-level usage.",
+    "pitcher_sinker_pct": "Shifted season-to-date pitcher SI share from prior pitch-level usage.",
+    "pitcher_slider_pct": "Shifted season-to-date pitcher SL share from prior pitch-level usage.",
+    "pitcher_curveball_pct": "Shifted season-to-date pitcher CU/KC share from prior pitch-level usage.",
+    "pitcher_changeup_pct": "Shifted season-to-date pitcher CH share from prior pitch-level usage.",
+    "batter_contact_rate_vs_fastballs": "Shifted season-to-date batter contact / swings versus fastballs from prior pitch-level events.",
+    "batter_hard_hit_rate_vs_fastballs": "Shifted season-to-date batter hard-hit / BBE versus fastballs from prior pitch-level events.",
+    "batter_barrel_rate_vs_fastballs": "Shifted season-to-date batter barrels / BBE versus fastballs from prior pitch-level events.",
+    "batter_slugging_vs_fastballs": "Shifted season-to-date batter total bases / AB-ending fastballs from prior pitch-level events.",
+    "batter_avg_ev_vs_fastballs": "Shifted season-to-date batter average EV on BBE versus fastballs from prior pitch-level events.",
+    "fastball_matchup_hard_hit": "Pitcher fastball usage multiplied by batter hard-hit rate versus fastballs.",
+    "fastball_matchup_barrel": "Pitcher fastball usage multiplied by batter barrel rate versus fastballs.",
+    "fastball_matchup_contact": "Pitcher fastball usage multiplied by batter contact rate versus fastballs.",
+}
+EXPORT_CANDIDATE_NEW_FEATURES = list(NEW_FEATURE_NOTES.keys())
+
+
+@dataclass
+class NewFeatureRegistry:
+    coverage_threshold: float = NEW_FEATURE_MISSINGNESS_THRESHOLD
+
+    def __post_init__(self) -> None:
+        self.records: dict[str, dict[str, object]] = {}
+        self.warnings: list[str] = []
+
+    def register(self, feature_names: Iterable[str], note: str | None = None) -> None:
+        for feature in feature_names:
+            self.records.setdefault(feature, {"note": note or NEW_FEATURE_NOTES.get(feature, ""), "included": False, "reason": "not evaluated"})
+
+    def warn(self, message: str) -> None:
+        self.warnings.append(message)
+        print(f"[NEW-FEATURES][WARN] {message}")
+
+    def evaluate(self, df: pd.DataFrame) -> tuple[list[str], list[str]]:
+        included: list[str] = []
+        skipped: list[str] = []
+        total_rows = len(df)
+        for feature, meta in self.records.items():
+            if feature not in df.columns:
+                meta.update({"included": False, "reason": "not created"})
+                skipped.append(feature)
+                continue
+            non_null = int(df[feature].notna().sum())
+            missing_pct = float(100.0 * (1 - non_null / total_rows)) if total_rows else 100.0
+            meta["non_null"] = non_null
+            meta["missing_pct"] = missing_pct
+            if missing_pct >= self.coverage_threshold * 100:
+                meta.update({"included": False, "reason": f"skipped due to {missing_pct:.2f}% missingness"})
+                skipped.append(feature)
+            else:
+                meta.update({"included": True, "reason": "coverage acceptable"})
+                included.append(feature)
+        return included, skipped
+
 def build_player_game_dataset(
     statcast_df: pd.DataFrame,
     debug_feature_audit: bool = False,
@@ -70,9 +170,11 @@ def build_player_game_dataset(
     _summarize_feature_missingness(pa_df, FLAGGED_FEATURES, "cleaning / normalization of player identifiers and dates", audit_ctx, batter_col="batter", pitcher_col="pitcher")
 
     player_game = _aggregate_batter_games(pa_df)
+    player_game = _merge_optional_event_level_features(player_game, _aggregate_batter_pitch_type_game_features(statcast_df), ["game_pk", "player_id"], "batter pitch-type game features")
     _summarize_feature_missingness(player_game, FLAGGED_FEATURES, "grouped batter-game aggregation", audit_ctx, batter_col="player_id")
 
     pitcher_game = _aggregate_pitcher_games(pa_df)
+    pitcher_game = _merge_optional_event_level_features(pitcher_game, _aggregate_pitcher_pitch_type_game_features(statcast_df), ["game_pk", "pitcher"], "pitcher pitch-type game features")
     primary_pitchers = _select_primary_pitchers(pitcher_game)
     _summarize_feature_missingness(primary_pitchers, FLAGGED_FEATURES, "grouped pitcher aggregation", audit_ctx, pitcher_col="opp_pitcher_id")
 
@@ -130,6 +232,8 @@ def add_leakage_safe_features(
 ) -> pd.DataFrame:
     """Add rolling batter and pitcher features using only pre-game information."""
     audit_ctx = FeatureAuditContext(enabled=debug_feature_audit, mode="rebuild")
+    registry = NewFeatureRegistry()
+    registry.register(EXPORT_CANDIDATE_NEW_FEATURES)
     df = player_game_df.copy()
     df["game_date"] = pd.to_datetime(df["game_date"])
     pitcher_game_df = pitcher_game_df.copy()
@@ -177,10 +281,20 @@ def add_leakage_safe_features(
         np.nan,
     )
     df["starter_or_bullpen_proxy"] = np.where(df["opp_pitcher_bf"] >= 12, "starter_like", "bullpen_like")
+    df = compute_pitch_matchup_interactions(df, registry)
+
+    included_new_features, skipped_new_features = summarize_new_feature_quality(df, registry)
+    if skipped_new_features:
+        df = df.drop(columns=[feature for feature in skipped_new_features if feature in df.columns], errors="ignore")
 
     df, dropped_features = _drop_unreliable_flagged_features(df, audit_ctx, missingness_threshold=missingness_threshold)
     _summarize_feature_missingness(df, FLAGGED_FEATURES, "final selected feature output", audit_ctx, batter_col="player_id", pitcher_col="opp_pitcher_id")
     _final_feature_quality_report(df, audit_ctx, dropped_features)
+    print("\n[NEW-FEATURES] Verdict:")
+    print(f"[NEW-FEATURES] added={included_new_features}")
+    print(f"[NEW-FEATURES] skipped={skipped_new_features}")
+    ready = "yes" if included_new_features else "no"
+    print(f"[NEW-FEATURES] engineered dataset ready to rerun train_model.py: {ready}")
     return df
 
 
@@ -281,7 +395,9 @@ def _extract_plate_appearances(statcast_df: pd.DataFrame) -> pd.DataFrame:
     pa_df["is_hard_hit"] = (pa_df["launch_speed"] >= 95).fillna(False).astype(int)
     pa_df["is_barrel"] = _is_barrel(pa_df["launch_speed"], pa_df["launch_angle"]).astype(int)
     pa_df["is_fly_ball"] = pa_df["bb_type"].isin(["fly_ball", "popup"]).astype(int)
-    pa_df["spray_angle"] = np.degrees(np.arctan2(pa_df["hc_x"] - SPRAY_CENTER_X, SPRAY_HOME_Y - pa_df["hc_y"]))
+    hc_x = pd.to_numeric(pa_df["hc_x"], errors="coerce")
+    hc_y = pd.to_numeric(pa_df["hc_y"], errors="coerce")
+    pa_df["spray_angle"] = np.degrees(np.arctan2(hc_x - SPRAY_CENTER_X, SPRAY_HOME_Y - hc_y))
     pa_df["is_pull_air"] = _is_pull_air(pa_df)
     pa_df["batting_order"] = pa_df.groupby(["game_pk", "team"])["at_bat_number"].rank(method="dense").clip(upper=9)
     return pa_df
@@ -309,6 +425,7 @@ def _aggregate_batter_games(pa_df: pd.DataFrame) -> pd.DataFrame:
         pull_air_count=("is_pull_air", "sum"),
         avg_launch_angle=("launch_angle", "mean"),
         avg_exit_velocity=("launch_speed", "mean"),
+        max_exit_velocity_game=("launch_speed", "max"),
         batter_k_count=("is_k", "sum"),
         batter_bb_count=("is_bb", "sum"),
         batting_order=("batting_order", "min"),
@@ -331,9 +448,136 @@ def _aggregate_pitcher_games(pa_df: pd.DataFrame) -> pd.DataFrame:
         pitcher_k_count=("is_k", "sum"),
         pitcher_bb_count=("is_bb", "sum"),
         outs_recorded=("at_bat", "sum"),
+        pitcher_avg_ev_allowed_game=("launch_speed", "mean"),
+        pitcher_95plus_ev_allowed=("is_hard_hit", "sum"),
     ).reset_index()
     agg["innings_pitched_est"] = agg["outs_recorded"] / 3.0
     return agg
+
+
+def _merge_optional_event_level_features(base_df: pd.DataFrame, extra_df: pd.DataFrame, keys: list[str], label: str) -> pd.DataFrame:
+    if extra_df.empty:
+        print(f"[NEW-FEATURES][WARN] No {label} were created from source data; continuing without them.")
+        return base_df
+    overlap = [column for column in extra_df.columns if column in base_df.columns and column not in keys]
+    if overlap:
+        extra_df = extra_df.drop(columns=overlap)
+    return base_df.merge(extra_df, how="left", on=keys, validate="one_to_one")
+
+
+def _find_pitch_type_column(df: pd.DataFrame) -> str | None:
+    for column in ["pitch_type", "pitch_name"]:
+        if column in df.columns:
+            return column
+    return None
+
+
+def _normalize_pitch_classes(series: pd.Series) -> pd.Series:
+    codes = series.astype(str).str.upper().str.strip()
+    pitch_class = pd.Series(pd.NA, index=series.index, dtype="object")
+    for label, codes_set in PITCH_TYPE_GROUPS.items():
+        pitch_class = pitch_class.where(~codes.isin(codes_set), label)
+    return pitch_class
+
+
+def _is_swing(description: pd.Series) -> pd.Series:
+    desc = description.fillna("").astype(str)
+    swing_tokens = ["swinging_strike", "foul", "hit_into_play", "foul_tip", "missed_bunt", "foul_bunt"]
+    return desc.apply(lambda value: any(token in value for token in swing_tokens))
+
+
+def _is_contact(description: pd.Series) -> pd.Series:
+    desc = description.fillna("").astype(str)
+    contact_tokens = ["foul", "hit_into_play", "foul_tip", "foul_bunt"]
+    return desc.apply(lambda value: any(token in value for token in contact_tokens))
+
+
+def _total_bases_from_events(events: pd.Series) -> pd.Series:
+    mapping = {"single": 1, "double": 2, "triple": 3, "home_run": 4}
+    return events.map(mapping).fillna(0).astype(float)
+
+
+def validate_pitch_type_feature_availability(statcast_df: pd.DataFrame) -> dict[str, object]:
+    pitch_type_col = _find_pitch_type_column(statcast_df)
+    availability = {
+        "pitch_type_col": pitch_type_col,
+        "has_pitch_type": pitch_type_col is not None,
+        "has_batter_id": "batter" in statcast_df.columns,
+        "has_pitcher_id": "pitcher" in statcast_df.columns,
+        "has_description": "description" in statcast_df.columns,
+        "has_events": "events" in statcast_df.columns,
+        "has_ev": "launch_speed" in statcast_df.columns,
+        "has_launch_angle": "launch_angle" in statcast_df.columns,
+    }
+    availability["supported"] = all(availability[key] for key in ["has_pitch_type", "has_batter_id", "has_pitcher_id", "has_description", "has_events", "has_ev", "has_launch_angle"])
+    if not availability["supported"]:
+        missing = [key for key, value in availability.items() if key.startswith("has_") and not value]
+        print(f"[NEW-FEATURES][WARN] Pitch-type features skipped because required raw fields are unavailable: {missing}")
+    else:
+        print(f"[NEW-FEATURES] Pitch-type feature source detected via column '{pitch_type_col}'.")
+    return availability
+
+
+def _aggregate_batter_pitch_type_game_features(statcast_df: pd.DataFrame) -> pd.DataFrame:
+    availability = validate_pitch_type_feature_availability(statcast_df)
+    if not availability["supported"]:
+        return pd.DataFrame()
+    pitch_type_col = availability["pitch_type_col"]
+    pitch_df = statcast_df.copy()
+    pitch_df["pitch_class"] = _normalize_pitch_classes(pitch_df[pitch_type_col])
+    pitch_df = pitch_df[pitch_df["pitch_class"].notna()].copy()
+    if pitch_df.empty:
+        print("[NEW-FEATURES][WARN] Pitch-type column exists, but no rows mapped into fastball/breaking/offspeed buckets.")
+        return pd.DataFrame()
+    pitch_df["is_swing"] = _is_swing(pitch_df["description"]).astype(int)
+    pitch_df["is_contact"] = _is_contact(pitch_df["description"]).astype(int)
+    pitch_df["is_bbe"] = pitch_df["launch_speed"].notna().astype(int)
+    pitch_df["is_hard_hit"] = (pitch_df["launch_speed"] >= 95).fillna(False).astype(int)
+    pitch_df["is_barrel"] = _is_barrel(pitch_df["launch_speed"], pitch_df["launch_angle"]).astype(int)
+    pitch_df["ab_ending_fastball"] = ((pitch_df["events"].isin(AB_EVENTS)) & (pitch_df["pitch_class"] == "fastball")).astype(int)
+    pitch_df["tb_fastball"] = np.where(pitch_df["pitch_class"] == "fastball", _total_bases_from_events(pitch_df["events"]), 0.0)
+    pitch_df["fastball_bbe_ev_sum"] = np.where((pitch_df["pitch_class"] == "fastball") & pitch_df["launch_speed"].notna(), pitch_df["launch_speed"], 0.0)
+    out = pitch_df.groupby(["game_date", "game_pk", "batter"], dropna=False).agg(
+        fastball_swings=("is_swing", lambda s: float(s[pitch_df.loc[s.index, "pitch_class"] == "fastball"].sum())),
+        fastball_contact=("is_contact", lambda s: float(s[pitch_df.loc[s.index, "pitch_class"] == "fastball"].sum())),
+        fastball_bbe=("is_bbe", lambda s: float(s[pitch_df.loc[s.index, "pitch_class"] == "fastball"].sum())),
+        fastball_hard_hit=("is_hard_hit", lambda s: float(s[pitch_df.loc[s.index, "pitch_class"] == "fastball"].sum())),
+        fastball_barrels=("is_barrel", lambda s: float(s[pitch_df.loc[s.index, "pitch_class"] == "fastball"].sum())),
+        fastball_total_bases=("tb_fastball", "sum"),
+        fastball_ab=("ab_ending_fastball", "sum"),
+        fastball_ev_sum=("fastball_bbe_ev_sum", "sum"),
+    ).reset_index().rename(columns={"batter": "player_id"})
+    return out
+
+
+def _aggregate_pitcher_pitch_type_game_features(statcast_df: pd.DataFrame) -> pd.DataFrame:
+    availability = validate_pitch_type_feature_availability(statcast_df)
+    if not availability["supported"]:
+        return pd.DataFrame()
+    pitch_type_col = availability["pitch_type_col"]
+    pitch_df = statcast_df.copy()
+    pitch_df["pitch_class"] = _normalize_pitch_classes(pitch_df[pitch_type_col])
+    pitch_df = pitch_df[pitch_df["pitch_class"].notna()].copy()
+    if pitch_df.empty:
+        return pd.DataFrame()
+    pitch_df["pitch_count"] = 1
+    pitch_df["is_four_seam"] = pitch_df[pitch_type_col].astype(str).str.upper().eq("FF").astype(int)
+    pitch_df["is_sinker"] = pitch_df[pitch_type_col].astype(str).str.upper().eq("SI").astype(int)
+    pitch_df["is_slider"] = pitch_df[pitch_type_col].astype(str).str.upper().eq("SL").astype(int)
+    pitch_df["is_curveball"] = pitch_df[pitch_type_col].astype(str).str.upper().isin(["CU", "KC"]).astype(int)
+    pitch_df["is_changeup"] = pitch_df[pitch_type_col].astype(str).str.upper().eq("CH").astype(int)
+    out = pitch_df.groupby(["game_date", "game_pk", "pitcher"], dropna=False).agg(
+        pitch_count=("pitch_count", "sum"),
+        fastball_pitch_count=("pitch_class", lambda s: float((s == "fastball").sum())),
+        breaking_pitch_count=("pitch_class", lambda s: float((s == "breaking").sum())),
+        offspeed_pitch_count=("pitch_class", lambda s: float((s == "offspeed").sum())),
+        four_seam_pitch_count=("is_four_seam", "sum"),
+        sinker_pitch_count=("is_sinker", "sum"),
+        slider_pitch_count=("is_slider", "sum"),
+        curveball_pitch_count=("is_curveball", "sum"),
+        changeup_pitch_count=("is_changeup", "sum"),
+    ).reset_index()
+    return out
 
 
 def _select_primary_pitchers(pitcher_game_df: pd.DataFrame) -> pd.DataFrame:
@@ -356,12 +600,27 @@ def _build_batter_daily(df: pd.DataFrame) -> pd.DataFrame:
     enriched = df.copy()
     enriched["avg_exit_velocity_num"] = enriched["avg_exit_velocity"] * enriched["bbe_count"]
     enriched["avg_launch_angle_num"] = enriched["avg_launch_angle"] * enriched["bbe_count"]
+    optional_sum_columns = [
+        "hard_hit_95plus_count",
+        "fastball_swings",
+        "fastball_contact",
+        "fastball_bbe",
+        "fastball_hard_hit",
+        "fastball_barrels",
+        "fastball_total_bases",
+        "fastball_ab",
+        "fastball_ev_sum",
+    ]
+    for column in optional_sum_columns:
+        if column not in enriched.columns:
+            enriched[column] = 0.0
     daily = enriched.groupby(["player_id", "game_date"], dropna=False).agg(
         plate_appearances=("plate_appearances", "sum"),
         hr_count=("hr_count", "sum"),
         bbe_count=("bbe_count", "sum"),
         barrel_count=("barrel_count", "sum"),
         hard_hit_count=("hard_hit_count", "sum"),
+        hard_hit_95plus_count=("hard_hit_count", "sum"),
         fly_ball_count=("fly_ball_count", "sum"),
         pull_air_count=("pull_air_count", "sum"),
         batter_k_count=("batter_k_count", "sum"),
@@ -369,8 +628,61 @@ def _build_batter_daily(df: pd.DataFrame) -> pd.DataFrame:
         avg_exit_velocity_num=("avg_exit_velocity_num", "sum"),
         avg_launch_angle_num=("avg_launch_angle_num", "sum"),
         batting_order=("batting_order", "min"),
+        fastball_swings=("fastball_swings", "sum"),
+        fastball_contact=("fastball_contact", "sum"),
+        fastball_bbe=("fastball_bbe", "sum"),
+        fastball_hard_hit=("fastball_hard_hit", "sum"),
+        fastball_barrels=("fastball_barrels", "sum"),
+        fastball_total_bases=("fastball_total_bases", "sum"),
+        fastball_ab=("fastball_ab", "sum"),
+        fastball_ev_sum=("fastball_ev_sum", "sum"),
+        max_exit_velocity_game=("max_exit_velocity_game", "max"),
     ).reset_index()
     return daily.sort_values(["player_id", "game_date"]).reset_index(drop=True)
+
+
+def compute_batter_trailing_hr_features(grp: pd.DataFrame) -> pd.DataFrame:
+    grp["hr_count_last_30d"] = _rolling_day_sum(grp, value_col="hr_count", window="30D")
+    grp["hr_count_last_10d"] = _rolling_day_sum(grp, value_col="hr_count", window="10D")
+    grp["pa_last_30d"] = _rolling_day_sum(grp, value_col="plate_appearances", window="30D")
+    grp["pa_last_10d"] = _rolling_day_sum(grp, value_col="plate_appearances", window="10D")
+    grp["hr_per_pa_last_30d"] = grp["hr_count_last_30d"] / grp["pa_last_30d"].replace({0: np.nan})
+    grp["hr_per_pa_last_10d"] = grp["hr_count_last_10d"] / grp["pa_last_10d"].replace({0: np.nan})
+    return grp
+
+
+def compute_batter_recent_contact_quality_features(grp: pd.DataFrame) -> pd.DataFrame:
+    grp["barrels_last_10d"] = _rolling_day_sum(grp, value_col="barrel_count", window="10D")
+    grp["barrels_last_30d"] = _rolling_day_sum(grp, value_col="barrel_count", window="30D")
+    grp["bbe_last_10d"] = _rolling_day_sum(grp, value_col="bbe_count", window="10D")
+    grp["bbe_last_30d"] = _rolling_day_sum(grp, value_col="bbe_count", window="30D")
+    grp["hard_hit_bbe_last_10d"] = _rolling_day_sum(grp, value_col="hard_hit_count", window="10D")
+    grp["hard_hit_bbe_last_30d"] = _rolling_day_sum(grp, value_col="hard_hit_count", window="30D")
+    grp["barrels_per_pa_last_10d"] = grp["barrels_last_10d"] / grp["pa_last_10d"].replace({0: np.nan})
+    grp["barrels_per_pa_last_30d"] = grp["barrels_last_30d"] / grp["pa_last_30d"].replace({0: np.nan})
+    grp["hard_hit_rate_last_10d"] = grp["hard_hit_bbe_last_10d"] / grp["bbe_last_10d"].replace({0: np.nan})
+    grp["hard_hit_rate_last_30d"] = grp["hard_hit_bbe_last_30d"] / grp["bbe_last_30d"].replace({0: np.nan})
+    grp["avg_exit_velocity_last_10d"] = _rolling_day_weighted_mean(grp, value_num_col="avg_exit_velocity_num", weight_col="bbe_count", window="10D")
+    grp["avg_exit_velocity_last_30d"] = _rolling_day_weighted_mean(grp, value_num_col="avg_exit_velocity_num", weight_col="bbe_count", window="30D")
+    grp["max_exit_velocity_last_10d"] = _rolling_day_max(grp, value_col="max_exit_velocity_game", window="10D")
+    grp["bbe_95plus_ev_rate_last_10d"] = grp["hard_hit_bbe_last_10d"] / grp["bbe_last_10d"].replace({0: np.nan})
+    grp["bbe_95plus_ev_rate_last_30d"] = grp["hard_hit_bbe_last_30d"] / grp["bbe_last_30d"].replace({0: np.nan})
+    return grp
+
+
+def compute_batter_pitch_type_split_features(grp: pd.DataFrame) -> pd.DataFrame:
+    fastball_cols = ["fastball_swings", "fastball_contact", "fastball_bbe", "fastball_hard_hit", "fastball_barrels", "fastball_total_bases", "fastball_ab", "fastball_ev_sum"]
+    if not any(column in grp.columns for column in fastball_cols):
+        return grp
+    for column in fastball_cols:
+        if column not in grp.columns:
+            grp[column] = 0.0
+    grp["batter_contact_rate_vs_fastballs"] = _shifted_cumulative_rate(grp["fastball_contact"], grp["fastball_swings"])
+    grp["batter_hard_hit_rate_vs_fastballs"] = _shifted_cumulative_rate(grp["fastball_hard_hit"], grp["fastball_bbe"])
+    grp["batter_barrel_rate_vs_fastballs"] = _shifted_cumulative_rate(grp["fastball_barrels"], grp["fastball_bbe"])
+    grp["batter_slugging_vs_fastballs"] = _shifted_cumulative_rate(grp["fastball_total_bases"], grp["fastball_ab"])
+    grp["batter_avg_ev_vs_fastballs"] = _shifted_cumulative_rate(grp["fastball_ev_sum"], grp["fastball_bbe"])
+    return grp
 
 
 def _compute_batter_daily_features(daily: pd.DataFrame, audit_ctx: FeatureAuditContext | None = None) -> pd.DataFrame:
@@ -391,6 +703,11 @@ def _compute_batter_daily_features(daily: pd.DataFrame, audit_ctx: FeatureAuditC
         grp["expected_pa_proxy_fallback"] = _expected_pa_fallback(grp)
         grp["expected_pa_proxy"] = grp["expected_pa_proxy_raw"].where(grp["expected_pa_proxy_raw"].notna(), grp["expected_pa_proxy_fallback"])
         grp["days_since_last_game"] = grp["game_date"].diff().dt.days.astype(float)
+
+        grp = compute_batter_trailing_hr_features(grp)
+        grp = compute_batter_recent_contact_quality_features(grp)
+        grp = compute_batter_pitch_type_split_features(grp)
+
         grp[[
             "barrel_rate_last_50_bbe",
             "hard_hit_rate_last_50_bbe",
@@ -414,34 +731,35 @@ def _compute_batter_daily_features(daily: pd.DataFrame, audit_ctx: FeatureAuditC
             },
             window_size=50,
         )
-        features.append(grp[[
-            "player_id",
-            "game_date",
-            "hr_rate_season_to_date",
-            "hr_per_pa_last_30d",
-            "barrel_rate_last_50_bbe",
-            "hard_hit_rate_last_50_bbe",
-            "avg_launch_angle_last_50_bbe",
-            "avg_exit_velocity_last_50_bbe",
-            "fly_ball_rate_last_50_bbe",
-            "pull_air_rate_last_50_bbe",
-            "batter_k_rate_season_to_date",
-            "batter_bb_rate_season_to_date",
-            "expected_pa_proxy_raw",
-            "expected_pa_proxy_fallback",
-            "expected_pa_proxy",
-            "days_since_last_game",
-            "recent_form_hr_last_7d",
-            "recent_form_barrels_last_14d",
-            "bbe_count_last_50",
-        ]])
+        features.append(grp)
     feature_df = pd.concat(features, ignore_index=True)
+    keep_columns = [
+        "player_id", "game_date", "hr_rate_season_to_date", "hr_per_pa_last_30d", "barrel_rate_last_50_bbe",
+        "hard_hit_rate_last_50_bbe", "avg_launch_angle_last_50_bbe", "avg_exit_velocity_last_50_bbe",
+        "fly_ball_rate_last_50_bbe", "pull_air_rate_last_50_bbe", "batter_k_rate_season_to_date",
+        "batter_bb_rate_season_to_date", "expected_pa_proxy_raw", "expected_pa_proxy_fallback",
+        "expected_pa_proxy", "days_since_last_game", "recent_form_hr_last_7d", "recent_form_barrels_last_14d",
+        "bbe_count_last_50"
+    ] + [feature for feature in EXPORT_CANDIDATE_NEW_FEATURES if feature in feature_df.columns]
+    keep_columns = list(dict.fromkeys(keep_columns))
     _audit_flagged_rolling_features(daily, feature_df, audit_ctx)
-    return feature_df
+    return feature_df[keep_columns]
 
 
 def _build_pitcher_daily(df: pd.DataFrame) -> pd.DataFrame:
-    daily = df.groupby(["pitcher", "game_date"], dropna=False).agg(
+    enriched = df.copy()
+    if "pitcher_avg_ev_allowed_game" not in enriched.columns:
+        enriched["pitcher_avg_ev_allowed_game"] = np.nan
+    enriched["pitcher_ev_allowed_sum"] = enriched["pitcher_avg_ev_allowed_game"] * enriched["pitcher_bbe_allowed"].fillna(0)
+    optional_sum_columns = [
+        "pitch_count", "fastball_pitch_count", "breaking_pitch_count", "offspeed_pitch_count",
+        "four_seam_pitch_count", "sinker_pitch_count", "slider_pitch_count", "curveball_pitch_count", "changeup_pitch_count",
+        "pitcher_95plus_ev_allowed",
+    ]
+    for column in optional_sum_columns:
+        if column not in enriched.columns:
+            enriched[column] = 0.0
+    daily = enriched.groupby(["pitcher", "game_date"], dropna=False).agg(
         innings_pitched_est=("innings_pitched_est", "sum"),
         pitcher_hr_allowed=("pitcher_hr_allowed", "sum"),
         pitcher_bbe_allowed=("pitcher_bbe_allowed", "sum"),
@@ -451,8 +769,47 @@ def _build_pitcher_daily(df: pd.DataFrame) -> pd.DataFrame:
         pitcher_k_count=("pitcher_k_count", "sum"),
         pitcher_bb_count=("pitcher_bb_count", "sum"),
         batters_faced=("batters_faced", "sum"),
+        pitch_count=("pitch_count", "sum"),
+        fastball_pitch_count=("fastball_pitch_count", "sum"),
+        breaking_pitch_count=("breaking_pitch_count", "sum"),
+        offspeed_pitch_count=("offspeed_pitch_count", "sum"),
+        four_seam_pitch_count=("four_seam_pitch_count", "sum"),
+        sinker_pitch_count=("sinker_pitch_count", "sum"),
+        slider_pitch_count=("slider_pitch_count", "sum"),
+        curveball_pitch_count=("curveball_pitch_count", "sum"),
+        changeup_pitch_count=("changeup_pitch_count", "sum"),
+        pitcher_ev_allowed_sum=("pitcher_ev_allowed_sum", "sum"),
+        pitcher_95plus_ev_allowed=("pitcher_95plus_ev_allowed", "sum"),
     ).reset_index().rename(columns={"pitcher": "pitcher_id"})
     return daily.sort_values(["pitcher_id", "game_date"]).reset_index(drop=True)
+
+
+def compute_pitcher_recent_contact_allowed_features(grp: pd.DataFrame) -> pd.DataFrame:
+    grp["pitcher_hr_allowed_last_30d"] = _rolling_day_sum(grp, value_col="pitcher_hr_allowed", window="30D")
+    grp["pitcher_bbe_allowed_last_30d"] = _rolling_day_sum(grp, value_col="pitcher_bbe_allowed", window="30D")
+    grp["pitcher_barrels_allowed_last_30d"] = _rolling_day_sum(grp, value_col="pitcher_barrel_allowed", window="30D")
+    grp["pitcher_hard_hit_allowed_last_30d"] = _rolling_day_sum(grp, value_col="pitcher_hard_hit_allowed", window="30D")
+    grp["pitcher_pa_allowed_last_30d"] = _rolling_day_sum(grp, value_col="batters_faced", window="30D")
+    grp["pitcher_hr_allowed_per_pa_last_30d"] = grp["pitcher_hr_allowed_last_30d"] / grp["pitcher_pa_allowed_last_30d"].replace({0: np.nan})
+    grp["pitcher_barrels_allowed_per_bbe_last_30d"] = grp["pitcher_barrels_allowed_last_30d"] / grp["pitcher_bbe_allowed_last_30d"].replace({0: np.nan})
+    grp["pitcher_hard_hit_allowed_rate_last_30d"] = grp["pitcher_hard_hit_allowed_last_30d"] / grp["pitcher_bbe_allowed_last_30d"].replace({0: np.nan})
+    grp["pitcher_avg_ev_allowed_last_30d"] = _rolling_day_weighted_mean(grp, value_num_col="pitcher_ev_allowed_sum", weight_col="pitcher_bbe_allowed", window="30D")
+    grp["pitcher_95plus_ev_allowed_rate_last_30d"] = _rolling_day_sum(grp, value_col="pitcher_95plus_ev_allowed", window="30D") / grp["pitcher_bbe_allowed_last_30d"].replace({0: np.nan})
+    return grp
+
+
+def compute_pitcher_pitch_mix_features(grp: pd.DataFrame) -> pd.DataFrame:
+    if "pitch_count" not in grp.columns:
+        return grp
+    grp["pitcher_fastball_pct"] = _shifted_cumulative_rate(grp["fastball_pitch_count"], grp["pitch_count"])
+    grp["pitcher_breaking_ball_pct"] = _shifted_cumulative_rate(grp["breaking_pitch_count"], grp["pitch_count"])
+    grp["pitcher_offspeed_pct"] = _shifted_cumulative_rate(grp["offspeed_pitch_count"], grp["pitch_count"])
+    grp["pitcher_four_seam_pct"] = _shifted_cumulative_rate(grp["four_seam_pitch_count"], grp["pitch_count"])
+    grp["pitcher_sinker_pct"] = _shifted_cumulative_rate(grp["sinker_pitch_count"], grp["pitch_count"])
+    grp["pitcher_slider_pct"] = _shifted_cumulative_rate(grp["slider_pitch_count"], grp["pitch_count"])
+    grp["pitcher_curveball_pct"] = _shifted_cumulative_rate(grp["curveball_pitch_count"], grp["pitch_count"])
+    grp["pitcher_changeup_pct"] = _shifted_cumulative_rate(grp["changeup_pitch_count"], grp["pitch_count"])
+    return grp
 
 
 def _compute_pitcher_daily_features(daily: pd.DataFrame) -> pd.DataFrame:
@@ -464,6 +821,8 @@ def _compute_pitcher_daily_features(daily: pd.DataFrame) -> pd.DataFrame:
         grp["pitcher_hr9_season_to_date"] = np.where(shifted_ip > 0, shifted_hr * 9 / shifted_ip, np.nan)
         grp["pitcher_k_rate_season_to_date"] = _shifted_cumulative_rate(grp["pitcher_k_count"], grp["batters_faced"])
         grp["pitcher_bb_rate_season_to_date"] = _shifted_cumulative_rate(grp["pitcher_bb_count"], grp["batters_faced"])
+        grp = compute_pitcher_recent_contact_allowed_features(grp)
+        grp = compute_pitcher_pitch_mix_features(grp)
         grp[[
             "pitcher_barrel_rate_allowed_last_50_bbe",
             "pitcher_hard_hit_rate_allowed_last_50_bbe",
@@ -480,17 +839,54 @@ def _compute_pitcher_daily_features(daily: pd.DataFrame) -> pd.DataFrame:
             weighted_means={},
             window_size=50,
         )
-        features.append(grp[[
-            "pitcher_id",
-            "game_date",
-            "pitcher_hr9_season_to_date",
-            "pitcher_barrel_rate_allowed_last_50_bbe",
-            "pitcher_hard_hit_rate_allowed_last_50_bbe",
-            "pitcher_fb_rate_allowed_last_50_bbe",
-            "pitcher_k_rate_season_to_date",
-            "pitcher_bb_rate_season_to_date",
-        ]])
-    return pd.concat(features, ignore_index=True)
+        features.append(grp)
+    feature_df = pd.concat(features, ignore_index=True)
+    keep_columns = [
+        "pitcher_id", "game_date", "pitcher_hr9_season_to_date", "pitcher_barrel_rate_allowed_last_50_bbe",
+        "pitcher_hard_hit_rate_allowed_last_50_bbe", "pitcher_fb_rate_allowed_last_50_bbe",
+        "pitcher_k_rate_season_to_date", "pitcher_bb_rate_season_to_date"
+    ] + [feature for feature in EXPORT_CANDIDATE_NEW_FEATURES if feature in feature_df.columns]
+    keep_columns = list(dict.fromkeys(keep_columns))
+    return feature_df[keep_columns]
+
+
+def _rolling_day_weighted_mean(grp: pd.DataFrame, value_num_col: str, weight_col: str, window: str) -> pd.Series:
+    temp = grp.set_index("game_date")
+    numerator = temp[value_num_col].rolling(window=window, closed="left", min_periods=1).sum()
+    denominator = temp[weight_col].rolling(window=window, closed="left", min_periods=1).sum()
+    return (numerator / denominator.replace({0: np.nan})).reset_index(drop=True)
+
+
+def _rolling_day_max(grp: pd.DataFrame, value_col: str, window: str) -> pd.Series:
+    temp = grp.set_index("game_date")
+    return temp[value_col].rolling(window=window, closed="left", min_periods=1).max().reset_index(drop=True)
+
+
+def compute_pitch_matchup_interactions(df: pd.DataFrame, registry: NewFeatureRegistry | None = None) -> pd.DataFrame:
+    interaction_specs = {
+        "fastball_matchup_hard_hit": ("pitcher_fastball_pct", "batter_hard_hit_rate_vs_fastballs"),
+        "fastball_matchup_barrel": ("pitcher_fastball_pct", "batter_barrel_rate_vs_fastballs"),
+        "fastball_matchup_contact": ("pitcher_fastball_pct", "batter_contact_rate_vs_fastballs"),
+    }
+    for feature, (left_col, right_col) in interaction_specs.items():
+        if left_col in df.columns and right_col in df.columns:
+            df[feature] = df[left_col] * df[right_col]
+        elif registry is not None:
+            registry.warn(f"Skipped {feature} because {left_col} and/or {right_col} were unavailable.")
+    return df
+
+
+def summarize_new_feature_quality(df: pd.DataFrame, registry: NewFeatureRegistry) -> tuple[list[str], list[str]]:
+    included, skipped = registry.evaluate(df)
+    print("\n[NEW-FEATURES] Focused feature-quality summary")
+    print("-" * 120)
+    print(f"{'feature':<42} {'non_null':>10} {'missing_%':>10} {'included':>10} note")
+    for feature in registry.records:
+        meta = registry.records[feature]
+        print(
+            f"{feature:<42} {int(meta.get('non_null', 0)):>10} {float(meta.get('missing_pct', 100.0)):>10.2f} {str(bool(meta.get('included', False))):>10} {meta.get('note', '')}"
+        )
+    return included, skipped
 
 
 def _rolling_day_sum(grp: pd.DataFrame, value_col: str, window: str) -> pd.Series:
@@ -644,6 +1040,16 @@ def _audit_flagged_rolling_features(daily: pd.DataFrame, feature_df: pd.DataFram
             audit_ctx.note(feature, "expected_pa_proxy lineage: raw source does not include projected lineups, so the repair uses prior 14-day PA totals first and a batting-order proxy fallback second.")
 
 
+def _drop_missing_merge_keys(df: pd.DataFrame, keys: list[str]) -> tuple[pd.DataFrame, int]:
+    if not keys:
+        return df, 0
+    missing_mask = df[keys].isna().any(axis=1)
+    dropped = int(missing_mask.sum())
+    if not dropped:
+        return df, 0
+    return df.loc[~missing_mask].copy(), dropped
+
+
 def _merge_with_audit(
     left_df: pd.DataFrame,
     right_df: pd.DataFrame,
@@ -656,31 +1062,37 @@ def _merge_with_audit(
     **merge_kwargs,
 ) -> pd.DataFrame:
     tracked_features = list(tracked_features or [])
-    if not audit_ctx.enabled:
-        return left_df.merge(right_df, how=how, **merge_kwargs)
 
-    merge_keys = merge_kwargs.get("on") or list(zip(merge_kwargs.get("left_on", []), merge_kwargs.get("right_on", [])))
+    on = merge_kwargs.get("on")
+    if on is not None:
+        left_keys = list(on)
+        right_keys = list(on)
+    else:
+        left_keys = list(merge_kwargs.get("left_on", []))
+        right_keys = list(merge_kwargs.get("right_on", []))
+
+    sanitized_right_df, dropped_right_missing_keys = _drop_missing_merge_keys(right_df, right_keys)
+
+    if not audit_ctx.enabled:
+        return left_df.merge(sanitized_right_df, how=how, **merge_kwargs)
+
+    merge_keys = merge_kwargs.get("on") or list(zip(left_keys, right_keys))
     audit_ctx.log(f"[FEATURE-AUDIT] Merge audit: {step_name}")
     audit_ctx.log(f"[FEATURE-AUDIT] merge keys={merge_keys}")
     audit_ctx.log(f"[FEATURE-AUDIT] left rows={len(left_df):,}, right rows={len(right_df):,}")
 
-    on = merge_kwargs.get("on")
-    if on is not None:
-        left_keys = on
-        right_keys = on
-    else:
-        left_keys = merge_kwargs.get("left_on", [])
-        right_keys = merge_kwargs.get("right_on", [])
+    if dropped_right_missing_keys:
+        audit_ctx.log(f"[FEATURE-AUDIT][WARN] Dropped {dropped_right_missing_keys:,} right-side rows with missing merge keys before {step_name} to prevent null-key cartesian matches.")
     for l_key, r_key in zip(left_keys, right_keys):
         if l_key in left_df.columns and r_key in right_df.columns and left_df[l_key].dtype != right_df[r_key].dtype:
             audit_ctx.log(f"[FEATURE-AUDIT][WARN] dtype mismatch for merge key {l_key}/{r_key}: left={left_df[l_key].dtype}, right={right_df[r_key].dtype}")
     if uniqueness_expected:
-        dupes = int(right_df.duplicated(right_keys).sum()) if right_keys else 0
+        dupes = int(sanitized_right_df.duplicated(right_keys).sum()) if right_keys else 0
         if dupes:
             audit_ctx.log(f"[FEATURE-AUDIT][WARN] {dupes:,} duplicate right-side merge keys detected where uniqueness was expected.")
 
     matched_pairs = left_df.merge(
-        right_df[right_keys].drop_duplicates(),
+        sanitized_right_df[right_keys].drop_duplicates(),
         how="left",
         left_on=left_keys,
         right_on=right_keys,
@@ -693,7 +1105,7 @@ def _merge_with_audit(
     if unmatched_rate > 0.05:
         audit_ctx.log(f"[FEATURE-AUDIT][WARN] High unmatched rate in {step_name}: {unmatched_rate:.2%}")
 
-    merged = left_df.merge(right_df, how=how, indicator=True, **merge_kwargs)
+    merged = left_df.merge(sanitized_right_df, how=how, indicator=True, **merge_kwargs)
     if tracked_features:
         for feature in tracked_features:
             if feature in merged.columns:
@@ -834,14 +1246,15 @@ def _is_barrel(launch_speed: pd.Series, launch_angle: pd.Series) -> pd.Series:
     la = pd.to_numeric(launch_angle, errors="coerce")
     min_angle = 26 - ((ev - 98).clip(lower=0) * 0.5)
     max_angle = 30 + ((ev - 98).clip(lower=0) * 0.5)
-    return ev.ge(98) & la.ge(min_angle) & la.le(max_angle)
+    is_barrel = ev.ge(98) & la.ge(min_angle) & la.le(max_angle)
+    return is_barrel.fillna(False)
 
 
 def _is_pull_air(pa_df: pd.DataFrame) -> pd.Series:
     air = pa_df["bb_type"].isin(["fly_ball", "line_drive", "popup"])
     right_pull = pa_df["stand"].eq("R") & pa_df["spray_angle"].lt(-15)
     left_pull = pa_df["stand"].eq("L") & pa_df["spray_angle"].gt(15)
-    return (air & (right_pull | left_pull)).astype(int)
+    return (air & (right_pull | left_pull)).fillna(False).astype(int)
 
 
 def _load_input_dataframe(input_path: str) -> pd.DataFrame:
