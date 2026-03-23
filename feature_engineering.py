@@ -132,7 +132,6 @@ def _aggregate_batter_games(pa_df: pd.DataFrame) -> pd.DataFrame:
         "team",
         "opponent",
         "is_home",
-        "stand",
     ]
     agg = pa_df.groupby(group_cols, dropna=False).agg(
         plate_appearances=("plate_appearance", "sum"),
@@ -148,8 +147,9 @@ def _aggregate_batter_games(pa_df: pd.DataFrame) -> pd.DataFrame:
         batter_k_count=("is_k", "sum"),
         batter_bb_count=("is_bb", "sum"),
         batting_order=("batting_order", "min"),
+        bat_side=("stand", lambda x: x.mode().iloc[0] if len(x) > 0 else None),
     ).reset_index()
-    agg = agg.rename(columns={"batter": "player_id", "stand": "bat_side"})
+    agg = agg.rename(columns={"batter": "player_id"})
     agg["hit_hr"] = (agg["hr_count"] > 0).astype(int)
     agg["batting_order"] = agg["batting_order"].where(agg["batting_order"] <= 9)
     return agg
