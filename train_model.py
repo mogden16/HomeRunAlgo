@@ -8,7 +8,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from sklearn.base import clone
-from sklearn.calibration import calibration_curve
+from sklearn.calibration import CalibratedClassifierCV, calibration_curve
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (
@@ -78,6 +78,8 @@ METRIC_COLUMNS = [
     "balanced_accuracy",
     "positive_prediction_rate",
 ]
+CONSERVATIVE_SORT_COLUMNS = ["precision", "positive_prediction_rate", "threshold"]
+CONSERVATIVE_SORT_ASC = [False, True, False]
 
 
 def load_data(path: str) -> pd.DataFrame:
@@ -171,8 +173,31 @@ def build_xgboost_pipeline() -> Pipeline | None:
     )
 
 
-def get_oof_probabilities_time_series(
+def maybe_calibrate_logistic(
     estimator: Pipeline,
+    X_train: np.ndarray,
+    y_train: np.ndarray,
+    calibrate_logistic: bool,
+    model_name: str,
+) -> tuple[Pipeline | CalibratedClassifierCV, str]:
+    if model_name != "logistic":
+        return estimator, "not_applicable"
+    if not calibrate_logistic:
+        return estimator, "disabled"
+
+    # Use a time-aware CV wrapper so the sigmoid calibration is learned only from
+    # historical training folds, preserving chronology as much as sklearn allows.
+    calibrator = CalibratedClassifierCV(
+        estimator=clone(estimator),
+        method="sigmoid",
+        cv=TimeSeriesSplit(n_splits=TSCV_N_SPLITS),
+    )
+    calibrator.fit(X_train, y_train)
+    return calibrator, "enabled"
+
+
+def get_oof_probabilities_time_series(
+    estimator: Pipeline | CalibratedClassifierCV,
     X_train: np.ndarray,
     y_train: np.ndarray,
     n_splits: int = TSCV_N_SPLITS,
@@ -233,7 +258,7 @@ def summarize_thresholds(y_true: np.ndarray, y_score: np.ndarray, thresholds: np
     return pd.DataFrame(rows)
 
 
-def objective_value(row: pd.Series, objective: str) -> float:
+def objective_value(row: pd.Series | dict[str, float], objective: str) -> float:
     if objective in {"f1", "f0.5", "balanced_accuracy"}:
         return float(row[objective])
     if objective == "precision_at_min_recall":
@@ -241,33 +266,92 @@ def objective_value(row: pd.Series, objective: str) -> float:
     raise ValueError(f"Unsupported threshold objective: {objective}")
 
 
+def add_objective_score(summary_df: pd.DataFrame, objective: str) -> pd.DataFrame:
+    return summary_df.assign(objective_score=summary_df.apply(lambda row: objective_value(row, objective), axis=1))
+
+
+def conservative_rank(df: pd.DataFrame) -> pd.DataFrame:
+    return df.sort_values(
+        by=["objective_score", *CONSERVATIVE_SORT_COLUMNS],
+        ascending=[False, *CONSERVATIVE_SORT_ASC],
+        kind="mergesort",
+    )
+
+
+def select_threshold_with_tolerance(
+    candidate_df: pd.DataFrame,
+    objective: str,
+    threshold_tolerance: float,
+) -> pd.Series:
+    ranked_df = conservative_rank(add_objective_score(candidate_df, objective))
+    best_score = float(ranked_df.iloc[0]["objective_score"])
+    near_best_df = ranked_df[ranked_df["objective_score"] >= best_score - threshold_tolerance].copy()
+    return conservative_rank(near_best_df).iloc[0]
+
+
+def apply_threshold_constraints(summary_df: pd.DataFrame, min_recall: float, max_positive_rate: float) -> pd.DataFrame:
+    return summary_df.loc[
+        (summary_df["recall"] >= min_recall) & (summary_df["positive_prediction_rate"] <= max_positive_rate)
+    ].copy()
+
+
 def find_best_threshold(
     summary_df: pd.DataFrame,
     objective: str,
     min_recall: float,
     max_positive_rate: float,
-) -> tuple[pd.Series, bool]:
+    threshold_tolerance: float,
+) -> dict[str, float | str | bool | pd.Series]:
     if summary_df.empty:
         raise ValueError("Threshold search failed because no threshold candidates were evaluated.")
 
-    constrained_mask = (
-        (summary_df["recall"] >= min_recall)
-        & (summary_df["positive_prediction_rate"] <= max_positive_rate)
-    )
-    candidate_df = summary_df.loc[constrained_mask].copy()
-    used_fallback = False
-    if candidate_df.empty:
-        candidate_df = summary_df.copy()
-        used_fallback = True
+    stages: list[tuple[str, float, float]] = [("requested_constraints", min_recall, max_positive_rate)]
+    relaxed_positive_rate = max_positive_rate
+    while relaxed_positive_rate < 0.25 - 1e-12:
+        relaxed_positive_rate = round(min(relaxed_positive_rate + 0.02, 0.25), 4)
+        stages.append((f"relaxed_max_positive_rate_to_{relaxed_positive_rate:.2f}", min_recall, relaxed_positive_rate))
 
-    ranked_df = candidate_df.assign(
-        objective_score=lambda df: df.apply(lambda row: objective_value(row, objective), axis=1)
-    ).sort_values(
-        by=["objective_score", "precision", "positive_prediction_rate", "threshold"],
-        ascending=[False, False, True, False],
-        kind="mergesort",
-    )
-    return ranked_df.iloc[0], used_fallback
+    relaxed_min_recall = min_recall
+    while relaxed_min_recall > 0.05 + 1e-12:
+        relaxed_min_recall = round(max(relaxed_min_recall - 0.02, 0.05), 4)
+        stages.append((f"relaxed_min_recall_to_{relaxed_min_recall:.2f}", relaxed_min_recall, relaxed_positive_rate))
+
+    selected_row: pd.Series | None = None
+    stage_name = "unconstrained_best"
+    used_fallback = False
+    constraint_min_recall = min_recall
+    constraint_max_positive_rate = max_positive_rate
+    for current_stage, stage_min_recall, stage_max_positive_rate in stages:
+        candidate_df = apply_threshold_constraints(summary_df, stage_min_recall, stage_max_positive_rate)
+        if candidate_df.empty:
+            continue
+        selected_row = select_threshold_with_tolerance(candidate_df, objective, threshold_tolerance)
+        stage_name = current_stage
+        used_fallback = current_stage != "requested_constraints"
+        constraint_min_recall = stage_min_recall
+        constraint_max_positive_rate = stage_max_positive_rate
+        break
+
+    warning = ""
+    if selected_row is None:
+        selected_row = select_threshold_with_tolerance(summary_df, objective, threshold_tolerance)
+        used_fallback = True
+        warning = (
+            "WARNING: No threshold satisfied the requested or staged fallback constraints; "
+            "using the unconstrained near-best threshold."
+        )
+
+    return {
+        "selected_row": selected_row,
+        "threshold": float(selected_row["threshold"]),
+        "objective_score": float(objective_value(selected_row, objective)),
+        "used_fallback": bool(used_fallback),
+        "fallback_stage": stage_name,
+        "applied_min_recall": float(constraint_min_recall),
+        "applied_max_positive_rate": float(constraint_max_positive_rate),
+        "threshold_tolerance": float(threshold_tolerance),
+        "warning": warning,
+    }
 
 
 def evaluate_predictions(y_true: np.ndarray, y_prob: np.ndarray, threshold: float) -> dict[str, float]:
@@ -284,45 +368,66 @@ def evaluate_predictions(y_true: np.ndarray, y_prob: np.ndarray, threshold: floa
     return metrics
 
 
-def print_metric_block(metrics: dict[str, float], include_probability_metrics: bool = False) -> None:
-    print(f"Precision          : {metrics['precision']:.4f}")
-    print(f"Recall             : {metrics['recall']:.4f}")
-    print(f"F1                 : {metrics['f1']:.4f}")
-    print(f"F0.5               : {metrics['f0.5']:.4f}")
-    print(f"Balanced Accuracy  : {metrics['balanced_accuracy']:.4f}")
-    print(f"Positive pred rate : {metrics['positive_prediction_rate']:.4f}")
+def prediction_rate_ratio(predicted_rate: float, actual_rate: float) -> float:
+    if actual_rate <= 0:
+        return float("inf") if predicted_rate > 0 else 1.0
+    return float(predicted_rate / actual_rate)
+
+
+def is_operationally_usable(metrics_dict: dict[str, float], actual_rate: float) -> bool:
+    return (
+        metrics_dict["positive_prediction_rate"] <= 0.20
+        and metrics_dict["precision"] > actual_rate
+        and metrics_dict["recall"] >= 0.05
+    )
+
+
+def print_prevalence_summary(actual_rate: float, positive_prediction_rate: float, label: str) -> None:
+    ratio = prediction_rate_ratio(positive_prediction_rate, actual_rate)
+    print(f"{label} actual HR rate              : {actual_rate:.4f}")
+    print(f"{label} positive prediction rate   : {positive_prediction_rate:.4f}")
+    print(f"{label} prediction/actual rate ratio: {ratio:.4f}")
+
+
+def print_metric_block(
+    metrics: dict[str, float],
+    actual_rate: float,
+    label: str,
+    include_probability_metrics: bool = False,
+) -> None:
+    print(f"Precision                    : {metrics['precision']:.4f}")
+    print(f"Recall                       : {metrics['recall']:.4f}")
+    print(f"F1                           : {metrics['f1']:.4f}")
+    print(f"F0.5                         : {metrics['f0.5']:.4f}")
+    print(f"Balanced Accuracy            : {metrics['balanced_accuracy']:.4f}")
+    print(f"Positive prediction rate     : {metrics['positive_prediction_rate']:.4f}")
+    print_prevalence_summary(actual_rate, metrics["positive_prediction_rate"], label)
     if include_probability_metrics:
-        print(f"Accuracy           : {metrics['accuracy']:.4f}")
-        print(f"Log loss           : {metrics['log_loss']:.4f}")
-        print(f"Brier score        : {metrics['brier_score']:.4f}")
-        print(f"ROC-AUC            : {metrics['roc_auc']:.4f}")
-        print(f"PR-AUC             : {metrics['pr_auc']:.4f}")
+        print(f"Accuracy                     : {metrics['accuracy']:.4f}")
+        print(f"Log loss                     : {metrics['log_loss']:.4f}")
+        print(f"Brier score                  : {metrics['brier_score']:.4f}")
+        print(f"ROC-AUC                      : {metrics['roc_auc']:.4f}")
+        print(f"PR-AUC                       : {metrics['pr_auc']:.4f}")
 
 
 def print_threshold_table(summary_df: pd.DataFrame, title: str, objective: str, limit: int | None = None) -> None:
-    display_df = summary_df.copy()
-    display_df = display_df.assign(
-        objective_score=display_df.apply(lambda row: objective_value(row, objective), axis=1)
-    ).sort_values(
-        by=["objective_score", "precision", "positive_prediction_rate", "threshold"],
-        ascending=[False, False, True, False],
-        kind="mergesort",
-    )
+    display_df = conservative_rank(add_objective_score(summary_df.copy(), objective))
     if limit is not None:
         display_df = display_df.head(limit)
 
     print(f"\n{title}")
     print("-" * len(title))
     header = (
-        f"{'thr':>6} {'obj':>7} {'prec':>7} {'rec':>7} {'f1':>7} "
-        f"{'f0.5':>7} {'bal_acc':>8} {'pos_rate':>9}"
+        f"{'thr':>6} {'obj':>7} {'prec':>7} {'rec':>7} {'f1':>7} {'f0.5':>7} "
+        f"{'bal_acc':>8} {'pos_rate':>9} {'tp':>6} {'fp':>6} {'fn':>6} {'tn':>6}"
     )
     print(header)
     for _, row in display_df.iterrows():
         print(
-            f"{row['threshold']:6.2f} {objective_value(row, objective):7.4f} {row['precision']:7.4f} "
-            f"{row['recall']:7.4f} {row['f1']:7.4f} {row['f0.5']:7.4f} "
-            f"{row['balanced_accuracy']:8.4f} {row['positive_prediction_rate']:9.4f}"
+            f"{row['threshold']:6.2f} {row['objective_score']:7.4f} {row['precision']:7.4f} "
+            f"{row['recall']:7.4f} {row['f1']:7.4f} {row['f0.5']:7.4f} {row['balanced_accuracy']:8.4f} "
+            f"{row['positive_prediction_rate']:9.4f} {int(row['tp']):6d} {int(row['fp']):6d} "
+            f"{int(row['fn']):6d} {int(row['tn']):6d}"
         )
 
 
@@ -342,18 +447,28 @@ def print_calibration_summary(y_true: np.ndarray, y_prob: np.ndarray, n_bins: in
         print(f"  {predicted:0.3f} -> {observed:0.3f}")
 
 
-def fit_selected_model(X_train: np.ndarray, y_train: np.ndarray, model_name: str) -> tuple[Pipeline, str, dict[str, float]]:
+def fit_selected_model(
+    X_train: np.ndarray,
+    y_train: np.ndarray,
+    model_name: str,
+    calibrate_logistic: bool,
+) -> tuple[Pipeline | CalibratedClassifierCV, str, dict[str, float], str]:
+    calibration_status = "not_applicable"
     if model_name == "xgboost":
         model = build_xgboost_pipeline()
         if model is None:
             print("XGBoost is not installed; falling back to logistic regression.")
             grid = tune_logistic_pipeline(X_train, y_train)
-            return grid.best_estimator_, "logistic", grid.best_params_
+            model, calibration_status = maybe_calibrate_logistic(grid.best_estimator_, X_train, y_train, calibrate_logistic, "logistic")
+            return model, "logistic", grid.best_params_, calibration_status
         model.fit(X_train, y_train)
-        return model, "xgboost", {}
+        return model, "xgboost", {}, calibration_status
 
     grid = tune_logistic_pipeline(X_train, y_train)
-    return grid.best_estimator_, "logistic", grid.best_params_
+    model, calibration_status = maybe_calibrate_logistic(
+        grid.best_estimator_, X_train, y_train, calibrate_logistic, "logistic"
+    )
+    return model, "logistic", grid.best_params_, calibration_status
 
 
 def evaluate_baseline_feature(
@@ -363,11 +478,17 @@ def evaluate_baseline_feature(
     objective: str,
     min_recall: float,
     max_positive_rate: float,
-) -> dict[str, float | str]:
+    threshold_tolerance: float,
+) -> dict[str, float | str | bool]:
+    if feature_name not in train_df.columns or feature_name not in test_df.columns:
+        return {"model": feature_name, "warning": "missing_feature_column"}
+
     train_subset = train_df[[feature_name, TARGET_COL]].dropna()
     test_subset = test_df[[feature_name, TARGET_COL]].dropna()
     if train_subset.empty or test_subset.empty:
         return {"model": feature_name, "warning": "insufficient_non_missing_rows"}
+    if train_subset[feature_name].nunique(dropna=True) < 2:
+        return {"model": feature_name, "warning": "no_threshold_variation_in_train"}
 
     train_scores = train_subset[feature_name].to_numpy(dtype=float)
     train_y = train_subset[TARGET_COL].to_numpy()
@@ -376,13 +497,34 @@ def evaluate_baseline_feature(
 
     baseline_thresholds = np.unique(train_scores[np.isfinite(train_scores)])
     baseline_summary = summarize_thresholds(train_y, train_scores, baseline_thresholds)
-    best_row, used_fallback = find_best_threshold(baseline_summary, objective, min_recall, max_positive_rate)
-    holdout_metrics = compute_threshold_metrics(test_y, test_scores, float(best_row["threshold"]))
+    threshold_info = find_best_threshold(
+        baseline_summary,
+        objective,
+        min_recall,
+        max_positive_rate,
+        threshold_tolerance,
+    )
+    holdout_metrics = compute_threshold_metrics(test_y, test_scores, float(threshold_info["threshold"]))
+    actual_rate = float(test_y.mean())
+    operationally_usable = is_operationally_usable(holdout_metrics, actual_rate)
+    if holdout_metrics["positive_prediction_rate"] > 0.50:
+        operationally_usable = False
+
     return {
         "model": feature_name,
-        "threshold": float(best_row["threshold"]),
-        "used_fallback": bool(used_fallback),
-        **{metric: float(holdout_metrics[metric]) for metric in METRIC_COLUMNS},
+        "threshold": float(threshold_info["threshold"]),
+        "used_fallback": bool(threshold_info["used_fallback"]),
+        "fallback_stage": str(threshold_info["fallback_stage"]),
+        "objective_score": float(threshold_info["objective_score"]),
+        "operationally_usable": "yes" if operationally_usable else "no",
+        "not_operationally_usable_reason": "holdout_positive_rate_above_0.50"
+        if holdout_metrics["positive_prediction_rate"] > 0.50
+        else "",
+        **{metric: float(holdout_metrics[metric]) for metric in [*METRIC_COLUMNS, "tp", "fp", "fn", "tn"]},
+        "actual_hr_rate": actual_rate,
+        "prediction_to_actual_rate_ratio": prediction_rate_ratio(
+            holdout_metrics["positive_prediction_rate"], actual_rate
+        ),
         "train_rows": int(len(train_subset)),
         "test_rows": int(len(test_subset)),
     }
@@ -391,24 +533,68 @@ def evaluate_baseline_feature(
 def print_comparison_table(rows: list[dict[str, float | str]], title: str) -> None:
     print(f"\n{title}")
     print("-" * len(title))
-    header = f"{'model':<28} {'prec':>7} {'rec':>7} {'f1':>7} {'f0.5':>7} {'bal_acc':>8} {'pos_rate':>9}"
+    header = (
+        f"{'name':<28} {'thr':>6} {'prec':>7} {'rec':>7} {'f1':>7} {'f0.5':>7} {'bal_acc':>8} "
+        f"{'pos_rate':>9} {'act_rate':>9} {'ratio':>8} {'usable':>8}"
+    )
     print(header)
     for row in rows:
         if "warning" in row:
-            print(f"{str(row['model']):<28} {'n/a':>7} {'n/a':>7} {'n/a':>7} {'n/a':>7} {'n/a':>8} {'n/a':>9}  ({row['warning']})")
+            print(
+                f"{str(row['model']):<28} {'n/a':>6} {'n/a':>7} {'n/a':>7} {'n/a':>7} {'n/a':>7} "
+                f"{'n/a':>8} {'n/a':>9} {'n/a':>9} {'n/a':>8} {'no':>8}  ({row['warning']})"
+            )
             continue
         print(
-            f"{str(row['model']):<28} {row['precision']:7.4f} {row['recall']:7.4f} {row['f1']:7.4f} "
-            f"{row['f0.5']:7.4f} {row['balanced_accuracy']:8.4f} {row['positive_prediction_rate']:9.4f}"
+            f"{str(row['model']):<28} {row['threshold']:6.2f} {row['precision']:7.4f} {row['recall']:7.4f} "
+            f"{row['f1']:7.4f} {row['f0.5']:7.4f} {row['balanced_accuracy']:8.4f} "
+            f"{row['positive_prediction_rate']:9.4f} {row['actual_hr_rate']:9.4f} "
+            f"{row['prediction_to_actual_rate_ratio']:8.4f} {str(row['operationally_usable']):>8}"
         )
+
+
+def holdout_commentary(
+    model_row: dict[str, float | str],
+    baseline_rows: list[dict[str, float | str]],
+) -> list[str]:
+    actual_rate = float(model_row["actual_hr_rate"])
+    pred_rate = float(model_row["positive_prediction_rate"])
+    ratio = float(model_row["prediction_to_actual_rate_ratio"])
+    overpredicting = ratio > 1.0 + 1e-9
+    beat_baselines = True
+    evaluated_baselines = [row for row in baseline_rows if "warning" not in row]
+    if evaluated_baselines:
+        best_baseline = max(evaluated_baselines, key=lambda row: (row["f0.5"], row["precision"]))
+        beat_baselines = (float(model_row["f0.5"]) > float(best_baseline["f0.5"])) or (
+            np.isclose(float(model_row["f0.5"]), float(best_baseline["f0.5"]))
+            and float(model_row["precision"]) > float(best_baseline["precision"])
+        )
+
+    return [
+        (
+            f"Overprediction check: {'yes' if overpredicting else 'no'} "
+            f"(predicted positive rate {pred_rate:.4f} vs actual HR rate {actual_rate:.4f}, ratio {ratio:.4f})."
+        ),
+        f"Operational usability: {model_row['operationally_usable']}.",
+        (
+            "Full model vs baselines: "
+            + (
+                "full model beat the evaluated single-feature baselines on the decision-usefulness ranking."
+                if beat_baselines
+                else "at least one evaluated single-feature baseline matched or beat the full model on F0.5/precision."
+            )
+        ),
+    ]
 
 
 def run_backtest(
     data_path: str,
     model_name: str = "logistic",
     threshold_objective: str = "f0.5",
-    min_recall: float = 0.15,
-    max_positive_rate: float = 0.20,
+    min_recall: float = 0.10,
+    max_positive_rate: float = 0.15,
+    threshold_tolerance: float = 0.002,
+    calibrate_logistic: bool = False,
 ) -> None:
     if not Path(data_path).exists():
         raise FileNotFoundError(f"Dataset not found: {data_path}. Run python generate_data.py first.")
@@ -434,12 +620,16 @@ def run_backtest(
     print(f"Model family requested: {model_name}")
     print(f"Threshold objective   : {threshold_objective}")
     print(f"Threshold constraints : min_recall={min_recall:.2f}, max_positive_rate={max_positive_rate:.2f}")
+    print(f"Threshold tolerance   : {threshold_tolerance:.4f}")
+    print(f"Logistic calibration  : {'enabled' if calibrate_logistic else 'disabled'}")
     print("\nWhy this workflow is classification-focused:")
     print("- Time-aware validation keeps every fold trained only on past games.")
     print("- Threshold tuning uses training-period OOF probabilities only, so the holdout set stays untouched until the end.")
     print("- This matters for imbalanced HR events because the best yes/no threshold is rarely 0.50.")
 
-    model, resolved_model_name, best_params = fit_selected_model(X_train, y_train, model_name)
+    model, resolved_model_name, best_params, calibration_status = fit_selected_model(
+        X_train, y_train, model_name, calibrate_logistic
+    )
     print(f"\nModel family used: {resolved_model_name}")
     if best_params:
         print(f"Best hyperparameters: {best_params}")
@@ -447,33 +637,44 @@ def run_backtest(
             print(f"Best logistic C: {best_params['clf__C']}")
     else:
         print("Best hyperparameters: fixed default configuration")
+    print(f"Calibration applied   : {calibration_status}")
 
     print("\nGenerating training OOF probabilities for threshold tuning...")
     y_train_oof, y_prob_oof = get_oof_probabilities_time_series(model, X_train, y_train)
     train_threshold_summary = summarize_thresholds(y_train_oof, y_prob_oof, THRESHOLD_GRID)
-    threshold_result, used_fallback = find_best_threshold(
+    threshold_info = find_best_threshold(
         train_threshold_summary,
         threshold_objective,
         min_recall,
         max_positive_rate,
+        threshold_tolerance,
     )
-    chosen_threshold = float(threshold_result["threshold"])
+    threshold_result = threshold_info["selected_row"]
+    chosen_threshold = float(threshold_info["threshold"])
 
     print("\nThreshold tuning summary (training CV only)")
     print("-" * 60)
-    print(f"Chosen threshold         : {chosen_threshold:.2f}")
-    print(f"Objective used           : {threshold_objective}")
-    print(f"Objective score          : {objective_value(threshold_result, threshold_objective):.4f}")
-    print(f"Precision                : {threshold_result['precision']:.4f}")
-    print(f"Recall                   : {threshold_result['recall']:.4f}")
-    print(f"F1                       : {threshold_result['f1']:.4f}")
-    print(f"F0.5                     : {threshold_result['f0.5']:.4f}")
-    print(f"Balanced accuracy        : {threshold_result['balanced_accuracy']:.4f}")
-    print(f"Positive prediction rate : {threshold_result['positive_prediction_rate']:.4f}")
-    if used_fallback:
+    print(f"Chosen threshold               : {chosen_threshold:.2f}")
+    print(f"Objective used                 : {threshold_objective}")
+    print(f"Objective score                : {threshold_info['objective_score']:.4f}")
+    print(f"Threshold tolerance            : {threshold_tolerance:.4f}")
+    print(f"Fallback used                  : {'yes' if threshold_info['used_fallback'] else 'no'}")
+    print(f"Fallback stage                 : {threshold_info['fallback_stage']}")
+    print(f"Applied min_recall             : {threshold_info['applied_min_recall']:.2f}")
+    print(f"Applied max_positive_rate      : {threshold_info['applied_max_positive_rate']:.2f}")
+    print(f"Precision                      : {threshold_result['precision']:.4f}")
+    print(f"Recall                         : {threshold_result['recall']:.4f}")
+    print(f"F1                             : {threshold_result['f1']:.4f}")
+    print(f"F0.5                           : {threshold_result['f0.5']:.4f}")
+    print(f"Balanced accuracy              : {threshold_result['balanced_accuracy']:.4f}")
+    print(f"Positive prediction rate       : {threshold_result['positive_prediction_rate']:.4f}")
+    print_prevalence_summary(float(y_train_oof.mean()), float(threshold_result['positive_prediction_rate']), "Training OOF")
+    if threshold_info["warning"]:
+        print(str(threshold_info["warning"]))
+    else:
         print(
-            "WARNING: No threshold satisfied the configured min_recall/max_positive_rate constraints; "
-            "fell back to the unconstrained best training threshold."
+            "Selection rationale             : chose the most conservative near-best threshold within tolerance "
+            "after applying the staged constraint search."
         )
 
     print_threshold_table(
@@ -485,11 +686,14 @@ def run_backtest(
 
     y_prob_test = model.predict_proba(X_test)[:, 1]
     metrics = evaluate_predictions(y_test, y_prob_test, chosen_threshold)
+    actual_holdout_rate = float(y_test.mean())
+    operationally_usable = is_operationally_usable(metrics, actual_holdout_rate)
 
     print("\nHoldout evaluation")
     print("-" * 60)
-    print(f"Threshold used     : {chosen_threshold:.2f}")
-    print_metric_block(metrics, include_probability_metrics=True)
+    print(f"Threshold used                 : {chosen_threshold:.2f}")
+    print_metric_block(metrics, actual_holdout_rate, label="Holdout", include_probability_metrics=True)
+    print(f"Operationally usable           : {'yes' if operationally_usable else 'no'}")
     print_confusion_matrix(metrics)
     print_calibration_summary(y_test, y_prob_test)
 
@@ -501,41 +705,63 @@ def run_backtest(
         limit=None,
     )
 
-    baseline_rows: list[dict[str, float | str]] = []
+    baseline_rows: list[dict[str, float | str | bool]] = []
     print("\nSingle-feature baseline holdout comparison")
     print("-" * 60)
     for baseline_feature in BASELINE_FEATURES:
-        if baseline_feature not in df.columns:
-            row = {"model": baseline_feature, "warning": "missing_feature"}
-        else:
-            row = evaluate_baseline_feature(
-                train_df=train_df,
-                test_df=test_df,
-                feature_name=baseline_feature,
-                objective=threshold_objective,
-                min_recall=min_recall,
-                max_positive_rate=max_positive_rate,
-            )
+        row = evaluate_baseline_feature(
+            train_df=train_df,
+            test_df=test_df,
+            feature_name=baseline_feature,
+            objective=threshold_objective,
+            min_recall=min_recall,
+            max_positive_rate=max_positive_rate,
+            threshold_tolerance=threshold_tolerance,
+        )
         baseline_rows.append(row)
         if "warning" in row:
             print(f"{baseline_feature}: {row['warning']}")
             continue
-        fallback_note = " (fallback to unconstrained threshold)" if row.get("used_fallback") else ""
+        unusable_note = ""
+        if row.get("not_operationally_usable_reason"):
+            unusable_note = f"; not operationally usable ({row['not_operationally_usable_reason']})"
         print(
             f"{baseline_feature}: threshold={row['threshold']:.4f}, precision={row['precision']:.4f}, "
             f"recall={row['recall']:.4f}, f1={row['f1']:.4f}, f0.5={row['f0.5']:.4f}, "
-            f"balanced_accuracy={row['balanced_accuracy']:.4f}, pos_rate={row['positive_prediction_rate']:.4f}"
-            f"{fallback_note}"
+            f"balanced_accuracy={row['balanced_accuracy']:.4f}, pos_rate={row['positive_prediction_rate']:.4f}, "
+            f"actual_rate={row['actual_hr_rate']:.4f}, ratio={row['prediction_to_actual_rate_ratio']:.4f}, "
+            f"fallback_used={'yes' if row['used_fallback'] else 'no'} ({row['fallback_stage']}), "
+            f"operationally_usable={row['operationally_usable']}{unusable_note}"
         )
 
     comparison_rows: list[dict[str, float | str]] = [
         {
             "model": f"{resolved_model_name} full model",
+            "threshold": chosen_threshold,
             **{metric: float(metrics[metric]) for metric in METRIC_COLUMNS},
+            "actual_hr_rate": actual_holdout_rate,
+            "prediction_to_actual_rate_ratio": prediction_rate_ratio(
+                metrics["positive_prediction_rate"], actual_holdout_rate
+            ),
+            "operationally_usable": "yes" if operationally_usable else "no",
         }
     ]
     comparison_rows.extend(baseline_rows)
-    print_comparison_table(comparison_rows, title="Model comparison summary (holdout set)")
+    comparison_rows_sorted = sorted(
+        comparison_rows,
+        key=lambda row: (
+            0 if row.get("warning") else (1 if row.get("operationally_usable") == "yes" else 0),
+            float(row.get("f0.5", -1.0)) if "warning" not in row else -1.0,
+            float(row.get("precision", -1.0)) if "warning" not in row else -1.0,
+        ),
+        reverse=True,
+    )
+    print_comparison_table(comparison_rows_sorted, title="Model comparison summary (ranked by decision usefulness)")
+
+    print("\nHoldout text summary")
+    print("-" * 60)
+    for line in holdout_commentary(comparison_rows[0], baseline_rows):
+        print(f"- {line}")
 
 
 def parse_args() -> argparse.Namespace:
@@ -551,14 +777,25 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--min-recall",
         type=float,
-        default=0.15,
+        default=0.10,
         help="Minimum recall required during threshold search before falling back.",
     )
     parser.add_argument(
         "--max-positive-rate",
         type=float,
-        default=0.20,
+        default=0.15,
         help="Maximum predicted positive rate allowed during threshold search before falling back.",
+    )
+    parser.add_argument(
+        "--threshold-tolerance",
+        type=float,
+        default=0.002,
+        help="Allow thresholds within this objective tolerance of the best score, then pick the most conservative option.",
+    )
+    parser.add_argument(
+        "--calibrate-logistic",
+        action="store_true",
+        help="Apply sigmoid probability calibration for logistic models using time-aware CV on training data only.",
     )
     return parser.parse_args()
 
@@ -571,4 +808,6 @@ if __name__ == "__main__":
         threshold_objective=args.threshold_objective,
         min_recall=args.min_recall,
         max_positive_rate=args.max_positive_rate,
+        threshold_tolerance=args.threshold_tolerance,
+        calibrate_logistic=args.calibrate_logistic,
     )
