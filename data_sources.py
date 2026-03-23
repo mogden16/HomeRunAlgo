@@ -111,7 +111,7 @@ def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False
         end_local = local_dates.max().tz_localize(tz_name) + timedelta(hours=23)
         hourly_query = hourly(point, start_local.tz_convert("UTC").to_pydatetime().replace(tzinfo=None), end_local.tz_convert("UTC").to_pydatetime().replace(tzinfo=None))
         weather = hourly_query.fetch()
-        if weather.empty:
+        if weather is None or weather.empty:
             raise RuntimeError(f"Meteostat returned no hourly weather for {home_team}.")
 
         weather = weather.tz_convert(tz_name)
