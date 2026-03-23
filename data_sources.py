@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Iterable
 
 import pandas as pd
-from meteostat import Hourly, Point
+from meteostat import hourly, Point
 from pybaseball import cache, statcast
 
 from config import (
