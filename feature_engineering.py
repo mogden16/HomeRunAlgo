@@ -115,7 +115,7 @@ def _extract_plate_appearances(statcast_df: pd.DataFrame) -> pd.DataFrame:
     pa_df["is_k"] = pa_df["events"].isin(["strikeout", "strikeout_double_play"]).astype(int)
     pa_df["is_bbe"] = pa_df["launch_speed"].notna().astype(int)
     pa_df["is_hard_hit"] = (pa_df["launch_speed"] >= 95).fillna(False).astype(int)
-    pa_df["is_barrel"] = _is_barrel(pa_df["launch_speed"], pa_df["launch_angle"]).astype(int)
+    pa_df["is_barrel"] = _is_barrel(pa_df["launch_speed"], pa_df["launch_angle"]).fillna(False).astype(int)
     pa_df["is_fly_ball"] = pa_df["bb_type"].isin(["fly_ball", "popup"]).astype(int)
     pa_df["spray_angle"] = np.degrees(np.arctan2(pa_df["hc_x"] - SPRAY_CENTER_X, SPRAY_HOME_Y - pa_df["hc_y"]))
     pa_df["is_pull_air"] = _is_pull_air(pa_df)
