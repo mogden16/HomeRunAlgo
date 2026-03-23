@@ -1038,6 +1038,16 @@ def _audit_flagged_rolling_features(daily: pd.DataFrame, feature_df: pd.DataFram
             audit_ctx.note(feature, "expected_pa_proxy lineage: raw source does not include projected lineups, so the repair uses prior 14-day PA totals first and a batting-order proxy fallback second.")
 
 
+def _drop_missing_merge_keys(df: pd.DataFrame, keys: list[str]) -> tuple[pd.DataFrame, int]:
+    if not keys:
+        return df, 0
+    missing_mask = df[keys].isna().any(axis=1)
+    dropped = int(missing_mask.sum())
+    if not dropped:
+        return df, 0
+    return df.loc[~missing_mask].copy(), dropped
+
+
 def _merge_with_audit(
     left_df: pd.DataFrame,
     right_df: pd.DataFrame,
@@ -1050,31 +1060,37 @@ def _merge_with_audit(
     **merge_kwargs,
 ) -> pd.DataFrame:
     tracked_features = list(tracked_features or [])
-    if not audit_ctx.enabled:
-        return left_df.merge(right_df, how=how, **merge_kwargs)
 
-    merge_keys = merge_kwargs.get("on") or list(zip(merge_kwargs.get("left_on", []), merge_kwargs.get("right_on", [])))
+    on = merge_kwargs.get("on")
+    if on is not None:
+        left_keys = list(on)
+        right_keys = list(on)
+    else:
+        left_keys = list(merge_kwargs.get("left_on", []))
+        right_keys = list(merge_kwargs.get("right_on", []))
+
+    sanitized_right_df, dropped_right_missing_keys = _drop_missing_merge_keys(right_df, right_keys)
+
+    if not audit_ctx.enabled:
+        return left_df.merge(sanitized_right_df, how=how, **merge_kwargs)
+
+    merge_keys = merge_kwargs.get("on") or list(zip(left_keys, right_keys))
     audit_ctx.log(f"[FEATURE-AUDIT] Merge audit: {step_name}")
     audit_ctx.log(f"[FEATURE-AUDIT] merge keys={merge_keys}")
     audit_ctx.log(f"[FEATURE-AUDIT] left rows={len(left_df):,}, right rows={len(right_df):,}")
 
-    on = merge_kwargs.get("on")
-    if on is not None:
-        left_keys = on
-        right_keys = on
-    else:
-        left_keys = merge_kwargs.get("left_on", [])
-        right_keys = merge_kwargs.get("right_on", [])
+    if dropped_right_missing_keys:
+        audit_ctx.log(f"[FEATURE-AUDIT][WARN] Dropped {dropped_right_missing_keys:,} right-side rows with missing merge keys before {step_name} to prevent null-key cartesian matches.")
     for l_key, r_key in zip(left_keys, right_keys):
         if l_key in left_df.columns and r_key in right_df.columns and left_df[l_key].dtype != right_df[r_key].dtype:
             audit_ctx.log(f"[FEATURE-AUDIT][WARN] dtype mismatch for merge key {l_key}/{r_key}: left={left_df[l_key].dtype}, right={right_df[r_key].dtype}")
     if uniqueness_expected:
-        dupes = int(right_df.duplicated(right_keys).sum()) if right_keys else 0
+        dupes = int(sanitized_right_df.duplicated(right_keys).sum()) if right_keys else 0
         if dupes:
             audit_ctx.log(f"[FEATURE-AUDIT][WARN] {dupes:,} duplicate right-side merge keys detected where uniqueness was expected.")
 
     matched_pairs = left_df.merge(
-        right_df[right_keys].drop_duplicates(),
+        sanitized_right_df[right_keys].drop_duplicates(),
         how="left",
         left_on=left_keys,
         right_on=right_keys,
@@ -1087,7 +1103,7 @@ def _merge_with_audit(
     if unmatched_rate > 0.05:
         audit_ctx.log(f"[FEATURE-AUDIT][WARN] High unmatched rate in {step_name}: {unmatched_rate:.2%}")
 
-    merged = left_df.merge(right_df, how=how, indicator=True, **merge_kwargs)
+    merged = left_df.merge(sanitized_right_df, how=how, indicator=True, **merge_kwargs)
     if tracked_features:
         for feature in tracked_features:
             if feature in merged.columns:
