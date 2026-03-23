@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import warnings
 from pathlib import Path
 
 import numpy as np
@@ -20,6 +21,7 @@ from sklearn.metrics import (
     f1_score,
     fbeta_score,
     log_loss,
+    make_scorer,
     precision_score,
     recall_score,
     roc_auc_score,
@@ -71,6 +73,7 @@ THRESHOLD_GRID = np.arange(0.05, 0.51, 0.01)
 HOLDOUT_SUMMARY_THRESHOLDS = [0.10, 0.12, 0.15, 0.18, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45]
 THRESHOLD_OBJECTIVES = ["f1", "f0.5", "precision_at_min_recall", "balanced_accuracy"]
 CALIBRATION_CHOICES = ["disabled", "sigmoid", "isotonic"]
+MODEL_CHOICES = ["logistic", "xgboost", "both"]
 METRIC_COLUMNS = [
     "precision",
     "recall",
@@ -79,6 +82,24 @@ METRIC_COLUMNS = [
     "balanced_accuracy",
     "positive_prediction_rate",
 ]
+TOP_MISSING_FEATURES_TO_PRINT = 8
+
+warnings.filterwarnings(
+    "ignore",
+    message="Skipping features without any observed values:",
+    category=UserWarning,
+)
+
+
+def fit_safely_with_imputer_warning_suppressed(estimator, X, y):
+    with warnings.catch_warnings():
+        warnings.filterwarnings(
+            "ignore",
+            message="Skipping features without any observed values:",
+            category=UserWarning,
+        )
+        estimator.fit(X, y)
+    return estimator
 
 
 def load_data(path: str) -> pd.DataFrame:
@@ -132,21 +153,6 @@ def build_logistic_pipeline() -> Pipeline:
     )
 
 
-def tune_logistic_pipeline(X_train: np.ndarray, y_train: np.ndarray) -> GridSearchCV:
-    splitter = TimeSeriesSplit(n_splits=TSCV_N_SPLITS)
-    grid = GridSearchCV(
-        estimator=build_logistic_pipeline(),
-        param_grid={"clf__C": [0.01, 0.05, 0.1, 0.5, 1.0, 2.0, 5.0]},
-        cv=splitter,
-        scoring="f1",
-        n_jobs=-1,
-        refit=True,
-        error_score=0.0,
-    )
-    grid.fit(X_train, y_train)
-    return grid
-
-
 def build_xgboost_pipeline() -> Pipeline | None:
     try:
         from xgboost import XGBClassifier
@@ -158,18 +164,60 @@ def build_xgboost_pipeline() -> Pipeline | None:
             (
                 "clf",
                 XGBClassifier(
-                    n_estimators=250,
-                    max_depth=4,
-                    learning_rate=0.05,
-                    subsample=0.9,
-                    colsample_bytree=0.9,
                     objective="binary:logistic",
                     eval_metric="logloss",
                     random_state=RANDOM_STATE,
+                    n_jobs=1,
                 ),
             ),
         ]
     )
+
+
+def get_classification_scorer():
+    return make_scorer(fbeta_score, beta=0.5, zero_division=0)
+
+
+def tune_logistic_pipeline(X_train: pd.DataFrame, y_train: np.ndarray) -> GridSearchCV:
+    splitter = TimeSeriesSplit(n_splits=TSCV_N_SPLITS)
+    grid = GridSearchCV(
+        estimator=build_logistic_pipeline(),
+        param_grid={"clf__C": [0.01, 0.05, 0.1, 0.5, 1.0, 2.0, 5.0]},
+        cv=splitter,
+        scoring=get_classification_scorer(),
+        n_jobs=-1,
+        refit=True,
+        error_score=0.0,
+    )
+    fit_safely_with_imputer_warning_suppressed(grid, X_train, y_train)
+    return grid
+
+
+def tune_xgboost_pipeline(X_train: pd.DataFrame, y_train: np.ndarray) -> GridSearchCV | None:
+    pipeline = build_xgboost_pipeline()
+    if pipeline is None:
+        return None
+    splitter = TimeSeriesSplit(n_splits=TSCV_N_SPLITS)
+    grid = GridSearchCV(
+        estimator=pipeline,
+        param_grid=[
+            {
+                "clf__n_estimators": [150, 300],
+                "clf__max_depth": [3, 5],
+                "clf__learning_rate": [0.03, 0.08],
+                "clf__min_child_weight": [1, 3],
+                "clf__subsample": [0.8],
+                "clf__colsample_bytree": [0.8],
+            }
+        ],
+        cv=splitter,
+        scoring=get_classification_scorer(),
+        n_jobs=-1,
+        refit=True,
+        error_score=0.0,
+    )
+    fit_safely_with_imputer_warning_suppressed(grid, X_train, y_train)
+    return grid
 
 
 def calibration_cv_supported(y_train: np.ndarray, n_splits: int) -> tuple[bool, str]:
@@ -181,9 +229,108 @@ def calibration_cv_supported(y_train: np.ndarray, n_splits: int) -> tuple[bool, 
     return True, ""
 
 
+def missingness_percentages(X_df: pd.DataFrame) -> pd.Series:
+    return X_df.isna().mean().mul(100.0)
+
+
+def fully_missing_feature_names(X_df: pd.DataFrame) -> list[str]:
+    return [str(column) for column in X_df.columns[X_df.isna().all()]]
+
+
+def fold_missingness_records(X_train_df: pd.DataFrame, n_splits: int = TSCV_N_SPLITS) -> list[dict[str, object]]:
+    splitter = TimeSeriesSplit(n_splits=n_splits)
+    records: list[dict[str, object]] = []
+    for fold_number, (fit_idx, valid_idx) in enumerate(splitter.split(X_train_df), start=1):
+        fit_df = X_train_df.iloc[fit_idx]
+        missing_pct = missingness_percentages(fit_df).sort_values(ascending=False)
+        all_missing = fully_missing_feature_names(fit_df)
+        records.append(
+            {
+                "fold": fold_number,
+                "train_rows": len(fit_idx),
+                "valid_rows": len(valid_idx),
+                "all_missing_features": all_missing,
+                "missing_pct": missing_pct,
+                "all_missing_count": len(all_missing),
+                "imputer_skips_features": len(all_missing) > 0,
+            }
+        )
+    return records
+
+
+def print_missingness_summary(
+    train_df: pd.DataFrame,
+    test_df: pd.DataFrame,
+    feature_columns: list[str],
+    fold_records: list[dict[str, object]],
+) -> pd.DataFrame:
+    fold_missing_features = {
+        feature
+        for record in fold_records
+        for feature in record["all_missing_features"]
+    }
+    summary_df = pd.DataFrame(
+        {
+            "feature": feature_columns,
+            "train_missing_pct": train_df[feature_columns].isna().mean().mul(100.0).reindex(feature_columns).values,
+            "test_missing_pct": test_df[feature_columns].isna().mean().mul(100.0).reindex(feature_columns).values,
+            "ever_fully_missing_in_train_fold": [feature in fold_missing_features for feature in feature_columns],
+        }
+    ).sort_values(
+        by=["train_missing_pct", "test_missing_pct", "ever_fully_missing_in_train_fold", "feature"],
+        ascending=[False, False, False, True],
+        kind="mergesort",
+    )
+
+    print("\nDataset-level missingness summary (selected model features)")
+    print("-" * 60)
+    print(f"{'feature':<36} {'train_%':>9} {'test_%':>9} {'full_miss_any_fold':>18}")
+    for _, row in summary_df.iterrows():
+        print(
+            f"{row['feature']:<36} {row['train_missing_pct']:9.2f} {row['test_missing_pct']:9.2f} "
+            f"{str(bool(row['ever_fully_missing_in_train_fold'])):>18}"
+        )
+    return summary_df
+
+
+def print_fold_missingness_diagnostics(fold_records: list[dict[str, object]]) -> list[str]:
+    print("\nTraining OOF fold missing-feature diagnostics")
+    print("-" * 60)
+    fully_missing_union: list[str] = []
+    for record in fold_records:
+        all_missing = list(record["all_missing_features"])
+        fully_missing_union.extend(all_missing)
+        top_missing = record["missing_pct"].head(TOP_MISSING_FEATURES_TO_PRINT)
+        top_missing_text = ", ".join(f"{feature}={pct:.1f}%" for feature, pct in top_missing.items())
+        all_missing_text = ", ".join(all_missing) if all_missing else "none"
+        print(
+            f"Fold {record['fold']}: train_rows={record['train_rows']:,}, valid_rows={record['valid_rows']:,}, "
+            f"100%-missing features={record['all_missing_count']}"
+        )
+        print(f"  Fully missing feature names : {all_missing_text}")
+        print(f"  Worst missingness in train  : {top_missing_text}")
+        print(
+            "  Imputer behavior            : "
+            + (
+                "SimpleImputer(strategy='median') will skip/drop these fully missing columns in this fold's transformed matrix."
+                if record["imputer_skips_features"]
+                else "No features are fully missing in this fold, so median imputation can operate on every feature."
+            )
+        )
+    unique_fully_missing = sorted(set(fully_missing_union))
+    if unique_fully_missing:
+        print(
+            "\nFeatures that are fully missing in at least one training fold: "
+            + ", ".join(unique_fully_missing)
+        )
+    else:
+        print("\nNo selected model feature is fully missing in any TimeSeriesSplit training fold.")
+    return unique_fully_missing
+
+
 def maybe_calibrate_logistic(
     estimator: Pipeline,
-    X_train: np.ndarray,
+    X_train: pd.DataFrame,
     y_train: np.ndarray,
     calibration_mode: str,
     model_name: str,
@@ -214,10 +361,10 @@ def maybe_calibrate_logistic(
     if calibration_mode == "isotonic":
         methods_to_try.append("sigmoid")
 
-    # Safest reasonable implementation: sklearn's calibrated CV refits the tuned
-    # estimator inside each chronological split using only prior training rows,
-    # then learns the calibration map on that fold's validation rows. This is not
-    # a custom rolling calibrator, but it preserves time order and avoids holdout leakage.
+    # Safest reasonable implementation: calibrated CV refits the tuned estimator
+    # inside each chronological split using only earlier training rows, then learns
+    # the calibrator on that fold's validation rows. This preserves time ordering
+    # and avoids holdout leakage, even though it is not a custom rolling calibrator.
     last_error = ""
     for method in methods_to_try:
         try:
@@ -226,7 +373,7 @@ def maybe_calibrate_logistic(
                 method=method,
                 cv=TimeSeriesSplit(n_splits=TSCV_N_SPLITS),
             )
-            calibrator.fit(X_train, y_train)
+            fit_safely_with_imputer_warning_suppressed(calibrator, X_train, y_train)
             if method == calibration_mode:
                 status.update(
                     {
@@ -241,8 +388,7 @@ def maybe_calibrate_logistic(
                         "used": method,
                         "status": "downgraded",
                         "message": (
-                            f"Requested {calibration_mode} calibration, but downgraded to {method} "
-                            f"for stability after: {last_error}"
+                            f"Requested {calibration_mode} calibration, but downgraded to {method} for stability after: {last_error}"
                         ),
                     }
                 )
@@ -263,8 +409,9 @@ def maybe_calibrate_logistic(
 
 def get_oof_probabilities_time_series(
     estimator: Pipeline | CalibratedClassifierCV,
-    X_train: np.ndarray,
+    X_train: pd.DataFrame,
     y_train: np.ndarray,
+    feature_columns: list[str],
     n_splits: int = TSCV_N_SPLITS,
 ) -> tuple[np.ndarray, np.ndarray]:
     """Generate time-ordered OOF probabilities using only past data in each fold."""
@@ -272,16 +419,27 @@ def get_oof_probabilities_time_series(
     oof_prob = np.full(shape=len(y_train), fill_value=np.nan, dtype=float)
 
     for fold_number, (fit_idx, valid_idx) in enumerate(splitter.split(X_train), start=1):
+        fit_df = X_train.iloc[fit_idx]
+        valid_df = X_train.iloc[valid_idx]
         if np.unique(y_train[fit_idx]).size < 2:
             print(
-                f"  OOF fold {fold_number}/{n_splits}: skipped because the training window "
-                "contains only one class."
+                f"  OOF fold {fold_number}/{n_splits}: skipped because the training window contains only one class."
             )
             continue
 
+        all_missing = fully_missing_feature_names(fit_df)
+        if all_missing:
+            feature_index_map = ", ".join(
+                f"{feature_columns.index(feature)}={feature}" for feature in all_missing
+            )
+            print(
+                f"  OOF fold {fold_number}/{n_splits}: fully-missing training features -> {feature_index_map}. "
+                "Median imputation will drop these columns for this fold."
+            )
+
         fold_model = clone(estimator)
-        fold_model.fit(X_train[fit_idx], y_train[fit_idx])
-        oof_prob[valid_idx] = fold_model.predict_proba(X_train[valid_idx])[:, 1]
+        fit_safely_with_imputer_warning_suppressed(fold_model, fit_df, y_train[fit_idx])
+        oof_prob[valid_idx] = fold_model.predict_proba(valid_df)[:, 1]
         print(
             f"  OOF fold {fold_number}/{n_splits}: train_rows={len(fit_idx):,}, "
             f"valid_rows={len(valid_idx):,}, valid_hr_rate={y_train[valid_idx].mean():.4f}"
@@ -527,11 +685,11 @@ def print_calibration_summary(y_true: np.ndarray, y_prob: np.ndarray, n_bins: in
 
 
 def fit_selected_model(
-    X_train: np.ndarray,
+    X_train: pd.DataFrame,
     y_train: np.ndarray,
     model_name: str,
     calibration_mode: str,
-) -> tuple[Pipeline | CalibratedClassifierCV, str, dict[str, float], dict[str, str]]:
+) -> tuple[Pipeline | CalibratedClassifierCV | None, str, dict[str, object], dict[str, str]]:
     calibration_status = {
         "requested": calibration_mode,
         "used": "not_applicable",
@@ -539,13 +697,17 @@ def fit_selected_model(
         "message": "Calibration not applicable.",
     }
     if model_name == "xgboost":
-        model = build_xgboost_pipeline()
-        if model is None:
-            print("XGBoost is not installed; falling back to logistic regression.")
-            grid = tune_logistic_pipeline(X_train, y_train)
-            model, calibration_status = maybe_calibrate_logistic(grid.best_estimator_, X_train, y_train, calibration_mode, "logistic")
-            return model, "logistic", grid.best_params_, calibration_status
-        model.fit(X_train, y_train)
+        grid = tune_xgboost_pipeline(X_train, y_train)
+        if grid is None:
+            calibration_status.update(
+                {
+                    "requested": calibration_mode,
+                    "used": "not_applicable",
+                    "status": "skipped",
+                    "message": "XGBoost is unavailable in this environment.",
+                }
+            )
+            return None, "xgboost", {}, calibration_status
         calibration_status.update(
             {
                 "requested": calibration_mode,
@@ -554,7 +716,7 @@ def fit_selected_model(
                 "message": "Calibration skipped because XGBoost was used.",
             }
         )
-        return model, "xgboost", {}, calibration_status
+        return grid.best_estimator_, "xgboost", grid.best_params_, calibration_status
 
     grid = tune_logistic_pipeline(X_train, y_train)
     model, calibration_status = maybe_calibrate_logistic(
@@ -596,9 +758,6 @@ def evaluate_baseline_feature(
         max_positive_rate,
         threshold_tolerance,
     )
-    # Baseline features are raw ranking scores, not calibrated probabilities, so
-    # evaluate only threshold-based classification metrics here. Probability-only
-    # metrics such as log loss or Brier score are intentionally not computed.
     holdout_metrics = compute_threshold_metrics(test_y, test_scores, float(threshold_info["threshold"]))
     actual_rate = float(test_y.mean())
     operationally_usable = is_operationally_usable(holdout_metrics, actual_rate)
@@ -655,6 +814,22 @@ def print_comparison_table(rows: list[dict[str, float | str]], title: str) -> No
         )
 
 
+def print_model_family_comparison(rows: list[dict[str, float | str]]) -> None:
+    print("\nModel-family comparison summary")
+    print("-" * 60)
+    header = (
+        f"{'model_family':<14} {'thr':>8} {'prec':>7} {'rec':>7} {'f1':>7} {'f0.5':>7} {'bal_acc':>8} "
+        f"{'pos_rate':>9} {'roc_auc':>8} {'pr_auc':>8} {'usable':>8}"
+    )
+    print(header)
+    for row in rows:
+        print(
+            f"{str(row['model_family']):<14} {row['threshold']:8.4f} {row['precision']:7.4f} {row['recall']:7.4f} "
+            f"{row['f1']:7.4f} {row['f0.5']:7.4f} {row['balanced_accuracy']:8.4f} {row['positive_prediction_rate']:9.4f} "
+            f"{row['roc_auc']:8.4f} {row['pr_auc']:8.4f} {str(row['operationally_usable']):>8}"
+        )
+
+
 def best_evaluated_baseline(baseline_rows: list[dict[str, float | str]]) -> dict[str, float | str] | None:
     evaluated_baselines = [row for row in baseline_rows if "warning" not in row]
     if not evaluated_baselines:
@@ -662,10 +837,7 @@ def best_evaluated_baseline(baseline_rows: list[dict[str, float | str]]) -> dict
     return max(evaluated_baselines, key=lambda row: (float(row["f0.5"]), float(row["precision"])))
 
 
-def holdout_commentary(
-    model_row: dict[str, float | str],
-    baseline_rows: list[dict[str, float | str]],
-) -> list[str]:
+def holdout_commentary(model_row: dict[str, float | str], baseline_rows: list[dict[str, float | str]]) -> list[str]:
     actual_rate = float(model_row["actual_hr_rate"])
     pred_rate = float(model_row["positive_prediction_rate"])
     ratio = float(model_row["prediction_to_actual_rate_ratio"])
@@ -679,8 +851,7 @@ def holdout_commentary(
             and float(model_row["precision"]) > float(best_baseline["precision"])
         )
         baseline_line = (
-            f"Full model vs baselines: {'beats' if beat_baselines else 'does not beat'} the best single-feature baseline "
-            f"({best_baseline['model']}) on F0.5/precision."
+            f"Full model vs baselines: {'beats' if beat_baselines else 'does not beat'} the best single-feature baseline ({best_baseline['model']}) on F0.5/precision."
         )
 
     return [
@@ -693,57 +864,47 @@ def holdout_commentary(
     ]
 
 
-def run_backtest(
-    data_path: str,
-    model_name: str = "logistic",
-    threshold_objective: str = "f0.5",
-    min_recall: float = 0.10,
-    max_positive_rate: float = 0.12,
-    threshold_tolerance: float = 0.001,
-    calibration: str = "sigmoid",
-) -> None:
-    if not Path(data_path).exists():
-        raise FileNotFoundError(f"Dataset not found: {data_path}. Run python generate_data.py first.")
-
-    df = load_data(data_path)
-    train_df, test_df = chronological_split(df)
-    run_dataset_sanity_checks(df, train_df, test_df)
-
-    feature_columns = available_feature_columns(df)
-    X_train = train_df[feature_columns].to_numpy()
+def evaluate_model_run(
+    train_df: pd.DataFrame,
+    test_df: pd.DataFrame,
+    feature_columns: list[str],
+    model_name: str,
+    threshold_objective: str,
+    min_recall: float,
+    max_positive_rate: float,
+    threshold_tolerance: float,
+    calibration: str,
+) -> dict[str, object] | None:
+    X_train = train_df[feature_columns]
     y_train = train_df[TARGET_COL].to_numpy()
-    X_test = test_df[feature_columns].to_numpy()
+    X_test = test_df[feature_columns]
     y_test = test_df[TARGET_COL].to_numpy()
 
+    print("\n" + "=" * 60)
+    print(f"MODEL RUN: {model_name.upper()}")
     print("=" * 60)
-    print("TIME-AWARE BACKTEST SUMMARY")
-    print("=" * 60)
-    print(f"Rows: total={len(df):,}, train={len(train_df):,}, test={len(test_df):,}")
-    print(f"Train date range: {train_df[DATE_COL].min().date()} -> {train_df[DATE_COL].max().date()}")
-    print(f"Test date range : {test_df[DATE_COL].min().date()} -> {test_df[DATE_COL].max().date()}")
-    print(f"Base HR rate train/test: {train_df[TARGET_COL].mean():.4f} / {test_df[TARGET_COL].mean():.4f}")
-    print(f"Features used ({len(feature_columns)}): {', '.join(feature_columns)}")
-    print(f"Model family requested       : {model_name}")
-    print(f"Threshold objective used     : {threshold_objective}")
-    print(f"Max positive rate used       : {max_positive_rate:.2f}")
-    print(f"Threshold tolerance used     : {threshold_tolerance:.4f}")
-    print(f"Calibration mode requested   : {calibration}")
 
     model, resolved_model_name, best_params, calibration_status = fit_selected_model(
         X_train, y_train, model_name, calibration
     )
-    print(f"\nModel family used            : {resolved_model_name}")
-    if best_params:
-        print(f"Best hyperparameters         : {best_params}")
-    else:
-        print("Best hyperparameters         : fixed default configuration")
+    if model is None:
+        print(f"Skipping {model_name}: {calibration_status['message']}")
+        return None
+
+    print(f"Model family used            : {resolved_model_name}")
+    print(f"Best hyperparameters         : {best_params if best_params else 'fixed default configuration'}")
     print(f"Calibration mode requested   : {calibration_status['requested']}")
     print(f"Calibration mode actually used: {calibration_status['used']}")
     print(f"Calibration status           : {calibration_status['status']}")
     print(f"Calibration note             : {calibration_status['message']}")
 
     print("\nGenerating training OOF probabilities for threshold tuning...")
-    y_train_oof, y_prob_oof = get_oof_probabilities_time_series(model, X_train, y_train)
+    y_train_oof, y_prob_oof = get_oof_probabilities_time_series(
+        model,
+        X_train,
+        y_train,
+        feature_columns=feature_columns,
+    )
     train_threshold_summary = summarize_thresholds(y_train_oof, y_prob_oof, THRESHOLD_GRID)
     threshold_info = find_best_threshold(
         train_threshold_summary,
@@ -777,10 +938,8 @@ def run_backtest(
         print(str(threshold_info["warning"]))
     else:
         print(
-            "Selection rationale          : objective ranked exactly as before; within tolerance, ties were broken by "
-            "higher precision, then lower positive rate, then higher threshold."
+            "Selection rationale          : objective ranked exactly as before; within tolerance, ties were broken by higher precision, then lower positive rate, then higher threshold."
         )
-
     print_threshold_table(
         train_threshold_summary,
         title=f"Top 10 training OOF thresholds ranked by {threshold_objective}",
@@ -792,10 +951,13 @@ def run_backtest(
     metrics = evaluate_predictions(y_test, y_prob_test, chosen_threshold)
     actual_holdout_rate = float(y_test.mean())
     operationally_usable = is_operationally_usable(metrics, actual_holdout_rate)
-    full_model_row: dict[str, float | str] = {
+    model_row: dict[str, float | str] = {
         "model": f"{resolved_model_name} full model",
+        "model_family": resolved_model_name,
         "threshold": chosen_threshold,
         **{metric: float(metrics[metric]) for metric in METRIC_COLUMNS},
+        "roc_auc": float(metrics["roc_auc"]),
+        "pr_auc": float(metrics["pr_auc"]),
         "actual_hr_rate": actual_holdout_rate,
         "prediction_to_actual_rate_ratio": prediction_rate_ratio(
             metrics["positive_prediction_rate"], actual_holdout_rate
@@ -809,18 +971,73 @@ def run_backtest(
     print(f"Selected threshold           : {chosen_threshold:.4f}")
     print(f"Actual holdout HR rate       : {actual_holdout_rate:.4f}")
     print_metric_block(metrics, actual_holdout_rate, label="Holdout", include_probability_metrics=True)
-    print(f"Operationally usable         : {full_model_row['operationally_usable']}")
-    print(f"Operational usability rule   : {full_model_row['operational_usability_reason']}")
+    print(f"Operationally usable         : {model_row['operationally_usable']}")
+    print(f"Operational usability rule   : {model_row['operational_usability_reason']}")
     print_confusion_matrix(metrics)
     print_calibration_summary(y_test, y_prob_test)
-
-    holdout_threshold_summary = summarize_thresholds(y_test, y_prob_test, HOLDOUT_SUMMARY_THRESHOLDS)
     print_threshold_table(
-        holdout_threshold_summary,
+        summarize_thresholds(y_test, y_prob_test, HOLDOUT_SUMMARY_THRESHOLDS),
         title="Holdout threshold tradeoff summary (key thresholds)",
         objective=threshold_objective,
         limit=None,
     )
+
+    return {
+        "model_name": resolved_model_name,
+        "fitted_model": model,
+        "best_params": best_params,
+        "calibration_status": calibration_status,
+        "threshold_info": threshold_info,
+        "threshold_result": threshold_result,
+        "holdout_metrics": metrics,
+        "summary_row": model_row,
+    }
+
+
+def run_backtest(
+    data_path: str,
+    model_name: str = "logistic",
+    threshold_objective: str = "f0.5",
+    min_recall: float = 0.10,
+    max_positive_rate: float = 0.12,
+    threshold_tolerance: float = 0.001,
+    calibration: str = "sigmoid",
+) -> None:
+    if not Path(data_path).exists():
+        raise FileNotFoundError(f"Dataset not found: {data_path}. Run python generate_data.py first.")
+
+    df = load_data(data_path)
+    train_df, test_df = chronological_split(df)
+    run_dataset_sanity_checks(df, train_df, test_df)
+
+    feature_columns = available_feature_columns(df)
+    fold_records = fold_missingness_records(train_df[feature_columns])
+
+    print("=" * 60)
+    print("TIME-AWARE BACKTEST SUMMARY")
+    print("=" * 60)
+    print(f"Rows: total={len(df):,}, train={len(train_df):,}, test={len(test_df):,}")
+    print(f"Train date range: {train_df[DATE_COL].min().date()} -> {train_df[DATE_COL].max().date()}")
+    print(f"Test date range : {test_df[DATE_COL].min().date()} -> {test_df[DATE_COL].max().date()}")
+    print(f"Base HR rate train/test: {train_df[TARGET_COL].mean():.4f} / {test_df[TARGET_COL].mean():.4f}")
+    print(f"Features used ({len(feature_columns)}): {', '.join(feature_columns)}")
+    print(f"Model family requested       : {model_name}")
+    print(f"Threshold objective used     : {threshold_objective}")
+    print(f"Max positive rate used       : {max_positive_rate:.2f}")
+    print(f"Threshold tolerance used     : {threshold_tolerance:.4f}")
+    print(f"Calibration mode requested   : {calibration}")
+    print("Missing-value handling       : SimpleImputer(strategy='median') inside each model pipeline.")
+    print("Fully-missing fold behavior  : if a feature is 100% missing in a training fold, sklearn's median imputer drops that column for that fold; diagnostics below map the feature names explicitly.")
+
+    missingness_summary = print_missingness_summary(train_df, test_df, feature_columns, fold_records)
+    fully_missing_features = print_fold_missingness_diagnostics(fold_records)
+    if fully_missing_features:
+        feature_index_map = ", ".join(
+            f"{feature_columns.index(feature)}={feature}" for feature in fully_missing_features
+        )
+        print(f"Mapped fully-missing feature indices: {feature_index_map}")
+    else:
+        print("Mapped fully-missing feature indices: none")
 
     baseline_rows: list[dict[str, float | str | bool]] = []
     print("\nSingle-feature baseline holdout comparison")
@@ -842,44 +1059,81 @@ def run_backtest(
         if "warning" not in row:
             print(f"  - {row['model']}: operationally_usable={row['operationally_usable']} ({row['operational_usability_reason']})")
 
-    comparison_rows: list[dict[str, float | str]] = [full_model_row]
-    comparison_rows.extend(baseline_rows)
-    print_comparison_table(comparison_rows, title="Compact model comparison summary")
+    requested_models = ["logistic", "xgboost"] if model_name == "both" else [model_name]
+    model_results: list[dict[str, object]] = []
+    for requested_model in requested_models:
+        result = evaluate_model_run(
+            train_df=train_df,
+            test_df=test_df,
+            feature_columns=feature_columns,
+            model_name=requested_model,
+            threshold_objective=threshold_objective,
+            min_recall=min_recall,
+            max_positive_rate=max_positive_rate,
+            threshold_tolerance=threshold_tolerance,
+            calibration=calibration,
+        )
+        if result is not None:
+            comparison_rows: list[dict[str, float | str]] = [result["summary_row"]]
+            comparison_rows.extend(baseline_rows)
+            print_comparison_table(comparison_rows, title=f"Compact model comparison summary ({requested_model})")
+            print("\nHoldout text summary")
+            print("-" * 60)
+            for line in holdout_commentary(result["summary_row"], baseline_rows):
+                print(f"- {line}")
+            model_results.append(result)
 
-    best_baseline = best_evaluated_baseline(baseline_rows)
+    if not model_results:
+        print("\nNo model family completed successfully.")
+        return
+
     print("\nOperational usability summary")
     print("-" * 60)
+    actual_holdout_rate = float(test_df[TARGET_COL].mean())
     print(f"Actual holdout HR rate       : {actual_holdout_rate:.4f}")
-    print(
-        f"{full_model_row['model']}: {full_model_row['operationally_usable']} "
-        f"({full_model_row['operational_usability_reason']})"
-    )
+    for result in model_results:
+        row = result["summary_row"]
+        print(f"{row['model']}: {row['operationally_usable']} ({row['operational_usability_reason']})")
     for row in baseline_rows:
         if "warning" in row:
             print(f"{row['model']}: no ({row['warning']})")
         else:
             print(f"{row['model']}: {row['operationally_usable']} ({row['operational_usability_reason']})")
 
-    print("\nHoldout text summary")
+    if len(model_results) > 1:
+        print_model_family_comparison([result["summary_row"] for result in model_results])
+        logistic_row = next((result["summary_row"] for result in model_results if result["summary_row"]["model_family"] == "logistic"), None)
+        xgboost_row = next((result["summary_row"] for result in model_results if result["summary_row"]["model_family"] == "xgboost"), None)
+        if logistic_row is not None and xgboost_row is not None:
+            xgb_beats_logistic = (float(xgboost_row["f0.5"]) > float(logistic_row["f0.5"])) or (
+                np.isclose(float(xgboost_row["f0.5"]), float(logistic_row["f0.5"]))
+                and float(xgboost_row["precision"]) > float(logistic_row["precision"])
+            )
+            print(
+                f"\nDirect model-family verdict: XGBoost {'beats' if xgb_beats_logistic else 'does not beat'} logistic on holdout using the F0.5/precision ranking."
+            )
+
+    severe_missingness = missingness_summary[
+        (missingness_summary["train_missing_pct"] >= 50.0)
+        | (missingness_summary["ever_fully_missing_in_train_fold"])
+    ]
+    print("\nMissing-data verdict")
     print("-" * 60)
-    for line in holdout_commentary(full_model_row, baseline_rows):
-        print(f"- {line}")
-    if best_baseline is not None:
-        beats_baselines = (float(full_model_row['f0.5']) > float(best_baseline['f0.5'])) or (
-            np.isclose(float(full_model_row['f0.5']), float(best_baseline['f0.5']))
-            and float(full_model_row['precision']) > float(best_baseline['precision'])
+    if severe_missingness.empty:
+        print("Missing-data issue severity  : manageable; no selected feature is fully missing in any training fold and no train feature exceeds 50% missingness.")
+    else:
+        flagged = ", ".join(
+            f"{row.feature} (train_missing={row.train_missing_pct:.1f}%, full_missing_fold={bool(row.ever_fully_missing_in_train_fold)})"
+            for row in severe_missingness.itertuples()
         )
-        print(
-            f"- Best evaluated baseline: {best_baseline['model']} with threshold {float(best_baseline['threshold']):.4f}, "
-            f"F0.5 {float(best_baseline['f0.5']):.4f}, precision {float(best_baseline['precision']):.4f}."
-        )
-        print(f"- Logistic full model beats simple baselines: {'yes' if beats_baselines else 'no'}.")
+        print("Missing-data issue severity  : high enough to rethink at least some features before adding more.")
+        print(f"Flagged features             : {flagged}")
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("data_path", nargs="?", default=str(FINAL_DATA_PATH), help="Path to batter-game dataset CSV.")
-    parser.add_argument("--model", choices=["logistic", "xgboost"], default="logistic", help="Model family to train.")
+    parser.add_argument("--model", choices=MODEL_CHOICES, default="logistic", help="Model family to train.")
     parser.add_argument(
         "--threshold-objective",
         choices=THRESHOLD_OBJECTIVES,
