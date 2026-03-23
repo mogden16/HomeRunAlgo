@@ -43,6 +43,36 @@ SOURCE_SUMMARY_COLUMNS = [
     "stand",
     "p_throws",
 ]
+BATTER_TRAILING_FEATURE_COLUMNS = [
+    "hr_per_pa_last_30d",
+    "hr_per_pa_last_10d",
+    "hr_count_last_30d",
+    "hr_count_last_10d",
+    "pa_last_30d",
+    "pa_last_10d",
+    "barrels_per_pa_last_30d",
+    "barrels_per_pa_last_10d",
+    "barrels_last_30d",
+    "barrels_last_10d",
+    "hard_hit_rate_last_30d",
+    "hard_hit_rate_last_10d",
+    "bbe_95plus_ev_rate_last_30d",
+    "bbe_95plus_ev_rate_last_10d",
+    "avg_exit_velocity_last_10d",
+    "max_exit_velocity_last_10d",
+]
+PITCHER_TRAILING_FEATURE_COLUMNS = [
+    "pitcher_hr_allowed_per_pa_last_30d",
+    "pitcher_hr_allowed_last_30d",
+    "pitcher_barrels_allowed_per_bbe_last_30d",
+    "pitcher_barrels_allowed_last_30d",
+    "pitcher_hard_hit_allowed_rate_last_30d",
+    "pitcher_hard_hit_allowed_last_30d",
+    "pitcher_bbe_allowed_last_30d",
+    "pitcher_avg_ev_allowed_last_30d",
+    "pitcher_95plus_ev_allowed_rate_last_30d",
+]
+
 FINAL_FEATURE_SPECS = {
     "hr_per_pa_last_30d": "batter_trailing",
     "hr_per_pa_last_10d": "batter_trailing",
@@ -290,6 +320,26 @@ def add_leakage_safe_features(
     batter_features = compute_batter_trailing_features(batter_df)
     pitcher_features = compute_pitcher_trailing_features(pitcher_df)
 
+    print_pre_merge_feature_table_diagnostics(
+        table_name="batter trailing feature table",
+        feature_df=batter_features,
+        feature_columns=BATTER_TRAILING_FEATURE_COLUMNS,
+        key_columns=["batter_id", "game_pk"],
+        left_df=batter_df,
+        left_keys=["batter_id", "game_pk"],
+    )
+    print_pre_merge_feature_table_diagnostics(
+        table_name="pitcher trailing feature table",
+        feature_df=pitcher_features,
+        feature_columns=PITCHER_TRAILING_FEATURE_COLUMNS,
+        key_columns=["pitcher_id", "game_pk"],
+        left_df=batter_df,
+        left_keys=["pitcher_id", "game_pk"],
+    )
+
+    batter_before_counts = count_non_nulls(batter_features, BATTER_TRAILING_FEATURE_COLUMNS)
+    pitcher_before_counts = count_non_nulls(pitcher_features, PITCHER_TRAILING_FEATURE_COLUMNS)
+
     dataset = merge_with_diagnostics(
         batter_df,
         batter_features,
@@ -297,6 +347,7 @@ def add_leakage_safe_features(
         how="left",
         step_name="merge batter trailing features",
         validate="one_to_one",
+        tracked_feature_columns=BATTER_TRAILING_FEATURE_COLUMNS,
     )
     dataset = merge_with_diagnostics(
         dataset,
@@ -306,6 +357,14 @@ def add_leakage_safe_features(
         how="left",
         step_name="merge pitcher trailing features",
         validate="many_to_one",
+        tracked_feature_columns=PITCHER_TRAILING_FEATURE_COLUMNS,
+    )
+
+    print_before_after_trailing_report(
+        batter_before_counts=batter_before_counts,
+        batter_after_counts=count_non_nulls(dataset, BATTER_TRAILING_FEATURE_COLUMNS),
+        pitcher_before_counts=pitcher_before_counts,
+        pitcher_after_counts=count_non_nulls(dataset, PITCHER_TRAILING_FEATURE_COLUMNS),
     )
 
     pitch_type_status = {"included": False, "reason": "pitch-type features were not attempted"}
@@ -340,47 +399,84 @@ def add_leakage_safe_features(
 
 
 def compute_batter_trailing_features(batter_game_df: pd.DataFrame) -> pd.DataFrame:
+    print("=== BATTER TRAILING FEATURE DIAGNOSTICS ===")
+    print(f"input row count: {len(batter_game_df):,}")
+    print(f"distinct batter count: {batter_game_df['batter_id'].nunique(dropna=True):,}")
+    print(f"date range: {batter_game_df['game_date'].min()} -> {batter_game_df['game_date'].max()}")
+    print(f"input grain one row per batter-game: {not batter_game_df.duplicated(['batter_id', 'game_pk']).any()}")
+    print("sorting keys: ['batter_id', 'game_date', 'game_pk']")
+    print("grouping keys: ['batter_id']")
+
     feature_frames: list[pd.DataFrame] = []
-    for batter_id, group in batter_game_df.groupby("batter_id", sort=False):
-        grp = group.sort_values(["game_date", "game_pk"]).copy()
+    rows_with_prior_1 = 0
+    rows_with_prior_2 = 0
+    sample_frames: list[pd.DataFrame] = []
+    for sample_idx, (batter_id, group) in enumerate(batter_game_df.groupby("batter_id", sort=False), start=1):
+        grp = group.sort_values(["game_date", "game_pk"]).reset_index(drop=True).copy()
         if grp[["game_date", "game_pk"]].duplicated().any():
             raise ValueError(f"Batter {batter_id} has duplicate game_date/game_pk rows after aggregation.")
+
+        prior_games = np.arange(len(grp))
+        rows_with_prior_1 += int((prior_games >= 1).sum())
+        rows_with_prior_2 += int((prior_games >= 2).sum())
+
+        # Root cause fixed here: the prior implementation built rolling Series with a reset 0..n-1 index
+        # but assigned them back onto grouped frames that still carried their original row index labels.
+        # Pandas aligned on index labels during assignment, which made the trailing columns appear all-null
+        # after computation for most groups. Resetting per-group index before rolling keeps the results aligned.
         grp = _append_date_window_features(
             grp,
             entity_id=batter_id,
             entity_label="batter",
-            configs=[
-                ("30D", "30d"),
-                ("10D", "10d"),
-            ],
+            configs=[("30D", "30d"), ("10D", "10d")],
         )
-        feature_frames.append(grp[[
-            "batter_id",
-            "game_pk",
-            "hr_per_pa_last_30d",
-            "hr_per_pa_last_10d",
-            "hr_count_last_30d",
-            "hr_count_last_10d",
-            "pa_last_30d",
-            "pa_last_10d",
-            "barrels_per_pa_last_30d",
-            "barrels_per_pa_last_10d",
-            "barrels_last_30d",
-            "barrels_last_10d",
-            "hard_hit_rate_last_30d",
-            "hard_hit_rate_last_10d",
-            "bbe_95plus_ev_rate_last_30d",
-            "bbe_95plus_ev_rate_last_10d",
-            "avg_exit_velocity_last_10d",
-            "max_exit_velocity_last_10d",
-        ]])
-    return pd.concat(feature_frames, ignore_index=True) if feature_frames else pd.DataFrame()
+        feature_frames.append(grp[["batter_id", "game_pk"] + BATTER_TRAILING_FEATURE_COLUMNS])
+
+        if sample_idx <= 3:
+            sample_frames.append(grp[[
+                "batter_id",
+                "game_pk",
+                "game_date",
+                "pa_count",
+                "hr_count",
+                "barrel_count",
+                "hard_hit_bbe_count",
+                "hr_per_pa_last_30d",
+                "hr_per_pa_last_10d",
+                "barrels_per_pa_last_30d",
+                "hard_hit_rate_last_10d",
+            ]].head(6))
+
+    feature_df = pd.concat(feature_frames, ignore_index=True) if feature_frames else pd.DataFrame(columns=["batter_id", "game_pk"] + BATTER_TRAILING_FEATURE_COLUMNS)
+    print(f"rows with at least 1 prior game: {rows_with_prior_1:,}")
+    print(f"rows with at least 2 prior games: {rows_with_prior_2:,}")
+    print("valid non-null counts before merge-back:")
+    for column, count in count_non_nulls(feature_df, BATTER_TRAILING_FEATURE_COLUMNS).items():
+        print(f"  {column}: {count:,}")
+    for idx, sample in enumerate(sample_frames, start=1):
+        print(f"example batter sample {idx}:")
+        print(sample.to_string(index=False))
+    print("==========================================\n")
+    assert_trailing_feature_table_has_signal(feature_df, BATTER_TRAILING_FEATURE_COLUMNS, "batter")
+    return feature_df
 
 
 def compute_pitcher_trailing_features(pitcher_game_df: pd.DataFrame) -> pd.DataFrame:
+    print("=== PITCHER TRAILING FEATURE DIAGNOSTICS ===")
+    print(f"input row count: {len(pitcher_game_df):,}")
+    print(f"distinct pitcher count: {pitcher_game_df['pitcher_id'].nunique(dropna=True):,}")
+    print(f"date range: {pitcher_game_df['game_date'].min()} -> {pitcher_game_df['game_date'].max()}")
+    print(f"input grain one row per pitcher-game: {not pitcher_game_df.duplicated(['pitcher_id', 'game_pk']).any()}")
+    print("grouping keys: ['pitcher_id']")
+    print("sorting keys: ['pitcher_id', 'game_date', 'game_pk']")
+
     feature_frames: list[pd.DataFrame] = []
-    for pitcher_id, group in pitcher_game_df.groupby("pitcher_id", sort=False):
-        grp = group.sort_values(["game_date", "game_pk"]).copy()
+    rows_with_prior_history = 0
+    sample_frames: list[pd.DataFrame] = []
+    for sample_idx, (pitcher_id, group) in enumerate(pitcher_game_df.groupby("pitcher_id", sort=False), start=1):
+        grp = group.sort_values(["game_date", "game_pk"]).reset_index(drop=True).copy()
+        rows_with_prior_history += int((np.arange(len(grp)) >= 1).sum())
+
         rolled = grp.set_index("game_date")
         hr_last_30 = rolled["hr_allowed"].rolling("30D", closed="left", min_periods=1).sum().reset_index(drop=True)
         pa_last_30 = rolled["pa_against"].rolling("30D", closed="left", min_periods=1).sum().reset_index(drop=True)
@@ -389,29 +485,42 @@ def compute_pitcher_trailing_features(pitcher_game_df: pd.DataFrame) -> pd.DataF
         hard_hit_last_30 = rolled["hard_hit_bbe_allowed"].rolling("30D", closed="left", min_periods=1).sum().reset_index(drop=True)
         ev95_last_30 = rolled["ev_95plus_bbe_allowed"].rolling("30D", closed="left", min_periods=1).sum().reset_index(drop=True)
         ev_num_last_30 = (rolled["avg_ev_allowed"].fillna(0) * rolled["bbe_allowed"].fillna(0)).rolling("30D", closed="left", min_periods=1).sum().reset_index(drop=True)
-        grp["pitcher_hr_allowed_last_30d"] = hr_last_30
-        grp["pitcher_bbe_allowed_last_30d"] = bbe_last_30
-        grp["pitcher_barrels_allowed_last_30d"] = barrels_last_30
-        grp["pitcher_hard_hit_allowed_last_30d"] = hard_hit_last_30
-        grp["pitcher_hr_allowed_per_pa_last_30d"] = safe_rate(hr_last_30, pa_last_30)
-        grp["pitcher_barrels_allowed_per_bbe_last_30d"] = safe_rate(barrels_last_30, bbe_last_30)
-        grp["pitcher_hard_hit_allowed_rate_last_30d"] = safe_rate(hard_hit_last_30, bbe_last_30)
-        grp["pitcher_avg_ev_allowed_last_30d"] = safe_rate(ev_num_last_30, bbe_last_30)
-        grp["pitcher_95plus_ev_allowed_rate_last_30d"] = safe_rate(ev95_last_30, bbe_last_30)
-        feature_frames.append(grp[[
-            "pitcher_id",
-            "game_pk",
-            "pitcher_hr_allowed_per_pa_last_30d",
-            "pitcher_hr_allowed_last_30d",
-            "pitcher_barrels_allowed_per_bbe_last_30d",
-            "pitcher_barrels_allowed_last_30d",
-            "pitcher_hard_hit_allowed_rate_last_30d",
-            "pitcher_hard_hit_allowed_last_30d",
-            "pitcher_bbe_allowed_last_30d",
-            "pitcher_avg_ev_allowed_last_30d",
-            "pitcher_95plus_ev_allowed_rate_last_30d",
-        ]])
-    return pd.concat(feature_frames, ignore_index=True) if feature_frames else pd.DataFrame()
+        grp["pitcher_hr_allowed_last_30d"] = hr_last_30.to_numpy()
+        grp["pitcher_bbe_allowed_last_30d"] = bbe_last_30.to_numpy()
+        grp["pitcher_barrels_allowed_last_30d"] = barrels_last_30.to_numpy()
+        grp["pitcher_hard_hit_allowed_last_30d"] = hard_hit_last_30.to_numpy()
+        grp["pitcher_hr_allowed_per_pa_last_30d"] = safe_rate(hr_last_30, pa_last_30).to_numpy()
+        grp["pitcher_barrels_allowed_per_bbe_last_30d"] = safe_rate(barrels_last_30, bbe_last_30).to_numpy()
+        grp["pitcher_hard_hit_allowed_rate_last_30d"] = safe_rate(hard_hit_last_30, bbe_last_30).to_numpy()
+        grp["pitcher_avg_ev_allowed_last_30d"] = safe_rate(ev_num_last_30, bbe_last_30).to_numpy()
+        grp["pitcher_95plus_ev_allowed_rate_last_30d"] = safe_rate(ev95_last_30, bbe_last_30).to_numpy()
+        feature_frames.append(grp[["pitcher_id", "game_pk"] + PITCHER_TRAILING_FEATURE_COLUMNS])
+
+        if sample_idx <= 3:
+            sample_frames.append(grp[[
+                "pitcher_id",
+                "game_pk",
+                "game_date",
+                "pa_against",
+                "hr_allowed",
+                "barrels_allowed",
+                "hard_hit_bbe_allowed",
+                "pitcher_hr_allowed_per_pa_last_30d",
+                "pitcher_barrels_allowed_per_bbe_last_30d",
+                "pitcher_hard_hit_allowed_rate_last_30d",
+            ]].head(6))
+
+    feature_df = pd.concat(feature_frames, ignore_index=True) if feature_frames else pd.DataFrame(columns=["pitcher_id", "game_pk"] + PITCHER_TRAILING_FEATURE_COLUMNS)
+    print(f"rows with prior history: {rows_with_prior_history:,}")
+    print("valid non-null counts before merge-back:")
+    for column, count in count_non_nulls(feature_df, PITCHER_TRAILING_FEATURE_COLUMNS).items():
+        print(f"  {column}: {count:,}")
+    for idx, sample in enumerate(sample_frames, start=1):
+        print(f"example pitcher sample {idx}:")
+        print(sample.to_string(index=False))
+    print("===========================================\n")
+    assert_trailing_feature_table_has_signal(feature_df, PITCHER_TRAILING_FEATURE_COLUMNS, "pitcher")
+    return feature_df
 
 
 def build_pitch_type_matchup_features(statcast_df: pd.DataFrame, model_df: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, object]]:
@@ -487,7 +596,8 @@ def build_pitch_type_matchup_features(statcast_df: pd.DataFrame, model_df: pd.Da
     return features.drop(columns=["pitcher_id"]), {"included": True, "reason": "raw Statcast pitch_type was available"}
 
 
-def merge_with_diagnostics(left_df: pd.DataFrame, right_df: pd.DataFrame, *, step_name: str, **merge_kwargs) -> pd.DataFrame:
+def merge_with_diagnostics(left_df: pd.DataFrame, right_df: pd.DataFrame, *, step_name: str, tracked_feature_columns: Iterable[str] | None = None, **merge_kwargs) -> pd.DataFrame:
+    tracked_feature_columns = list(tracked_feature_columns or [])
     left_keys = merge_kwargs.get("on") or merge_kwargs.get("left_on")
     right_keys = merge_kwargs.get("on") or merge_kwargs.get("right_on")
     if isinstance(left_keys, str):
@@ -518,12 +628,67 @@ def merge_with_diagnostics(left_df: pd.DataFrame, right_df: pd.DataFrame, *, ste
     print(f"unmatched row count: {unmatched:,}")
     merged = left_df.merge(right_df, indicator=True, **merge_kwargs)
     print(f"row count after merge: {len(merged):,}")
+    for feature in tracked_feature_columns:
+        if feature in merged.columns:
+            print(f"post-merge non-null {feature}: {int(merged[feature].notna().sum()):,}")
     many_to_many = len(merged) > len(left_df) and merge_kwargs.get("how", "left") in {"left", "inner"}
     if many_to_many:
         print("WARNING: merge increased row count; inspect keys for many-to-many behavior.")
     print("==========================================\n")
     return merged.drop(columns=["_merge"])
 
+
+
+
+def count_non_nulls(df: pd.DataFrame, feature_columns: Iterable[str]) -> dict[str, int]:
+    return {column: int(df[column].notna().sum()) for column in feature_columns if column in df.columns}
+
+
+def assert_trailing_feature_table_has_signal(feature_df: pd.DataFrame, feature_columns: Iterable[str], label: str) -> None:
+    if feature_df.empty:
+        raise ValueError(f"{label.title()} trailing feature table is empty before merge-back.")
+    counts = count_non_nulls(feature_df, feature_columns)
+    if counts and max(counts.values()) == 0:
+        raise ValueError(f"{label.title()} trailing feature table was computed but every tracked trailing feature is null before merge-back.")
+
+
+def print_pre_merge_feature_table_diagnostics(
+    *,
+    table_name: str,
+    feature_df: pd.DataFrame,
+    feature_columns: Iterable[str],
+    key_columns: list[str],
+    left_df: pd.DataFrame,
+    left_keys: list[str],
+) -> None:
+    print(f"=== PRE-MERGE DIAGNOSTICS: {table_name} ===")
+    print(f"row count: {len(feature_df):,}")
+    print(f"duplicate key count: {int(feature_df.duplicated(key_columns).sum()):,}")
+    print("non-null counts:")
+    for column, count in count_non_nulls(feature_df, feature_columns).items():
+        print(f"  {column}: {count:,}")
+    print(f"merge keys left: {left_keys}")
+    print(f"merge keys right: {key_columns}")
+    for left_key, right_key in zip(left_keys, key_columns):
+        print(f"  dtype {left_key} (left)={left_df[left_key].dtype} | {right_key} (right)={feature_df[right_key].dtype}")
+    print("===========================================\n")
+
+
+def print_before_after_trailing_report(
+    *,
+    batter_before_counts: dict[str, int],
+    batter_after_counts: dict[str, int],
+    pitcher_before_counts: dict[str, int],
+    pitcher_after_counts: dict[str, int],
+) -> None:
+    print("=== TRAILING FEATURE BEFORE/AFTER COUNTS ===")
+    print("batter trailing features:")
+    for column in BATTER_TRAILING_FEATURE_COLUMNS:
+        print(f"  {column}: before={batter_before_counts.get(column, 0):,}, after={batter_after_counts.get(column, 0):,}")
+    print("pitcher trailing features:")
+    for column in PITCHER_TRAILING_FEATURE_COLUMNS:
+        print(f"  {column}: before={pitcher_before_counts.get(column, 0):,}, after={pitcher_after_counts.get(column, 0):,}")
+    print("============================================\n")
 
 def finalize_feature_export(df: pd.DataFrame, missingness_threshold: float = 0.95) -> dict[str, ExportDecision]:
     decisions: dict[str, ExportDecision] = {}
@@ -568,7 +733,7 @@ def print_final_feature_quality_summary(df: pd.DataFrame, decisions: dict[str, E
 
 
 def print_rerun_verdict(df: pd.DataFrame, pitch_type_status: dict[str, object]) -> None:
-    hr_features_ready = all(feature in df.columns for feature in ["hr_per_pa_last_30d", "hr_per_pa_last_10d"])
+    hr_features_ready = all(feature in df.columns and df[feature].notna().any() for feature in ["hr_per_pa_last_30d", "hr_per_pa_last_10d"])
     pitcher_features_ready = all(
         feature in df.columns
         for feature in [
@@ -576,7 +741,11 @@ def print_rerun_verdict(df: pd.DataFrame, pitch_type_status: dict[str, object]) 
             "pitcher_barrels_allowed_per_bbe_last_30d",
             "pitcher_hard_hit_allowed_rate_last_30d",
         ]
-    )
+    ) and all(feature in df.columns and df[feature].notna().any() for feature in [
+            "pitcher_hr_allowed_per_pa_last_30d",
+            "pitcher_barrels_allowed_per_bbe_last_30d",
+            "pitcher_hard_hit_allowed_rate_last_30d",
+        ])
     print("=== RERUN VERDICT ===")
     print(f"dataset_valid_for_train_model: {not df.duplicated(['batter_id', 'game_pk']).any()}")
     print(f"pitch_type_features_included: {pitch_type_status.get('included', False)}")
@@ -615,16 +784,16 @@ def _append_date_window_features(grp: pd.DataFrame, entity_id: object, entity_la
         ev95_sum = rolled["ev_95plus_bbe_count"].rolling(window, closed="left", min_periods=1).sum().reset_index(drop=True)
         avg_ev_num = (rolled["avg_exit_velocity"].fillna(0) * rolled["bbe_count"].fillna(0)).rolling(window, closed="left", min_periods=1).sum().reset_index(drop=True)
         max_ev = rolled["max_exit_velocity"].rolling(window, closed="left", min_periods=1).max().reset_index(drop=True)
-        grp[f"hr_count_last_{suffix}"] = hr_sum
-        grp[f"pa_last_{suffix}"] = pa_sum
-        grp[f"barrels_last_{suffix}"] = barrel_sum
-        grp[f"hr_per_pa_last_{suffix}"] = safe_rate(hr_sum, pa_sum)
-        grp[f"barrels_per_pa_last_{suffix}"] = safe_rate(barrel_sum, pa_sum)
-        grp[f"hard_hit_rate_last_{suffix}"] = safe_rate(hard_hit_sum, bbe_sum)
-        grp[f"bbe_95plus_ev_rate_last_{suffix}"] = safe_rate(ev95_sum, bbe_sum)
+        grp[f"hr_count_last_{suffix}"] = hr_sum.to_numpy()
+        grp[f"pa_last_{suffix}"] = pa_sum.to_numpy()
+        grp[f"barrels_last_{suffix}"] = barrel_sum.to_numpy()
+        grp[f"hr_per_pa_last_{suffix}"] = safe_rate(hr_sum, pa_sum).to_numpy()
+        grp[f"barrels_per_pa_last_{suffix}"] = safe_rate(barrel_sum, pa_sum).to_numpy()
+        grp[f"hard_hit_rate_last_{suffix}"] = safe_rate(hard_hit_sum, bbe_sum).to_numpy()
+        grp[f"bbe_95plus_ev_rate_last_{suffix}"] = safe_rate(ev95_sum, bbe_sum).to_numpy()
         if suffix == "10d":
-            grp["avg_exit_velocity_last_10d"] = safe_rate(avg_ev_num, bbe_sum)
-            grp["max_exit_velocity_last_10d"] = max_ev
+            grp["avg_exit_velocity_last_10d"] = safe_rate(avg_ev_num, bbe_sum).to_numpy()
+            grp["max_exit_velocity_last_10d"] = max_ev.to_numpy()
     if grp.sort_values(["game_date", "game_pk"]).index.tolist() != grp.index.tolist():
         raise ValueError(f"{entity_label} {entity_id} trailing window input must remain sorted by game_date and game_pk.")
     return grp
