@@ -113,7 +113,7 @@ PARKS = {
     "MIN": {"ballpark": "Target Field", "lat": 44.9817, "lon": -93.2776, "tz": "America/Chicago"},
     "NYM": {"ballpark": "Citi Field", "lat": 40.7571, "lon": -73.8458, "tz": "America/New_York"},
     "NYY": {"ballpark": "Yankee Stadium", "lat": 40.8296, "lon": -73.9262, "tz": "America/New_York"},
-    "ATH": {"ballpark": "Sutter Health Park", "lat": 38.5803, "lon": -121.5085, "tz": "America/Los_Angeles"},
+    "ATH": {"ballpark": "Oakland Coliseum", "lat": 37.7516, "lon": -122.2005, "tz": "America/Los_Angeles"},
     "OAK": {"ballpark": "Oakland Coliseum", "lat": 37.7516, "lon": -122.2005, "tz": "America/Los_Angeles"},
     "PHI": {"ballpark": "Citizens Bank Park", "lat": 39.9061, "lon": -75.1665, "tz": "America/New_York"},
     "PIT": {"ballpark": "PNC Park", "lat": 40.4469, "lon": -80.0057, "tz": "America/New_York"},
