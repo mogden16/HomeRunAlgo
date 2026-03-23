@@ -16,11 +16,12 @@ def generate_mlb_dataset(
     start_date: str = SEASON_START,
     end_date: str = SEASON_END,
     force_refresh: bool = False,
+    debug_feature_audit: bool = False,
 ) -> pd.DataFrame:
     """Generate a real player-game dataset with leakage-safe historical features."""
     statcast_df = fetch_statcast_season(start_date=start_date, end_date=end_date, force_refresh=force_refresh)
-    player_game_df, pitcher_game_df = build_player_game_dataset(statcast_df)
-    dataset = add_leakage_safe_features(player_game_df, pitcher_game_df)
+    player_game_df, pitcher_game_df = build_player_game_dataset(statcast_df, debug_feature_audit=debug_feature_audit)
+    dataset = add_leakage_safe_features(player_game_df, pitcher_game_df, debug_feature_audit=debug_feature_audit)
 
     schedule = dataset[["game_date", "team", "opponent", "is_home"]].copy()
     schedule["home_team"] = schedule.apply(lambda row: row["team"] if row["is_home"] else row["opponent"], axis=1)
@@ -49,10 +50,12 @@ if __name__ == "__main__":
     parser.add_argument("--start-date", default=SEASON_START, help="Inclusive Statcast start date (YYYY-MM-DD).")
     parser.add_argument("--end-date", default=SEASON_END, help="Inclusive Statcast end date (YYYY-MM-DD).")
     parser.add_argument("--force-refresh", action="store_true", help="Ignore cached raw files and re-pull remote data.")
+    parser.add_argument("--debug-feature-audit", action="store_true", help="Print flagged-feature lineage, merge audits, and missingness diagnostics during feature engineering.")
     args = parser.parse_args()
     generate_mlb_dataset(
         output_path=args.output,
         start_date=args.start_date,
         end_date=args.end_date,
         force_refresh=args.force_refresh,
+        debug_feature_audit=args.debug_feature_audit,
     )

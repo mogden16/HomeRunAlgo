@@ -2,33 +2,89 @@
 
 from __future__ import annotations
 
+import argparse
 from collections import deque
+from pathlib import Path
 from typing import Iterable
 
 import numpy as np
 import pandas as pd
 
-from config import AB_EVENTS, PA_ENDING_EVENTS, PARKS
+from config import AB_EVENTS, FINAL_DATA_PATH, PA_ENDING_EVENTS, PARKS, STATCAST_COLUMNS
 
 SPRAY_CENTER_X = 125.42
 SPRAY_HOME_Y = 198.27
+PARK_FACTOR_FEATURE = "park_factor_hr"
+AUTO_DROP_MISSINGNESS_THRESHOLD = 0.50
+DEFAULT_FAIL_MISSINGNESS_THRESHOLD = 0.50
+FLAGGED_FEATURES = [
+    "expected_pa_proxy",
+    "hr_per_pa_last_30d",
+    "recent_form_barrels_last_14d",
+    "recent_form_hr_last_7d",
+]
+FEATURE_LINEAGE = {
+    "expected_pa_proxy": {
+        "sources": ["plate_appearances", "batting_order"],
+        "transformation": "Primary path: 14-day shifted rolling sum of prior plate_appearances by player_id. Fallback path: batting-order-based deterministic proxy when rolling history is unavailable.",
+        "grouping_keys": ["player_id"],
+        "merge_keys": ["player_id", "game_date"],
+        "null_rules": "Null before repair when player had no prior game in the last 14 days. Fallback remains null only if both prior batting_order and current batting_order are missing.",
+    },
+    "hr_per_pa_last_30d": {
+        "sources": ["hr_count", "plate_appearances"],
+        "transformation": "30-day shifted rolling HR / PA rate using prior daily batter rows only.",
+        "grouping_keys": ["player_id"],
+        "merge_keys": ["player_id", "game_date"],
+        "null_rules": "Null when there is no prior plate appearance in the previous 30 days or denominator is zero.",
+    },
+    "recent_form_barrels_last_14d": {
+        "sources": ["barrel_count"],
+        "transformation": "14-day shifted rolling sum of prior barrel_count values.",
+        "grouping_keys": ["player_id"],
+        "merge_keys": ["player_id", "game_date"],
+        "null_rules": "Null when there is no prior game in the previous 14 days.",
+    },
+    "recent_form_hr_last_7d": {
+        "sources": ["hr_count"],
+        "transformation": "7-day shifted rolling sum of prior hr_count values.",
+        "grouping_keys": ["player_id"],
+        "merge_keys": ["player_id", "game_date"],
+        "null_rules": "Null when there is no prior game in the previous 7 days.",
+    },
+}
 
 
-def build_player_game_dataset(statcast_df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+def build_player_game_dataset(
+    statcast_df: pd.DataFrame,
+    debug_feature_audit: bool = False,
+) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Aggregate Statcast pitch-level data into one batter-game row."""
+    _print_feature_lineage(debug_feature_audit)
+    audit_ctx = FeatureAuditContext(enabled=debug_feature_audit, mode="rebuild")
+    _summarize_feature_missingness(statcast_df, FLAGGED_FEATURES, "raw source load", audit_ctx, batter_col="batter", pitcher_col="pitcher")
+
     pa_df = _extract_plate_appearances(statcast_df)
     if pa_df.empty:
         raise RuntimeError("No plate appearances were derived from Statcast input.")
+    _summarize_feature_missingness(pa_df, FLAGGED_FEATURES, "cleaning / normalization of player identifiers and dates", audit_ctx, batter_col="batter", pitcher_col="pitcher")
 
     player_game = _aggregate_batter_games(pa_df)
+    _summarize_feature_missingness(player_game, FLAGGED_FEATURES, "grouped batter-game aggregation", audit_ctx, batter_col="player_id")
+
     pitcher_game = _aggregate_pitcher_games(pa_df)
     primary_pitchers = _select_primary_pitchers(pitcher_game)
+    _summarize_feature_missingness(primary_pitchers, FLAGGED_FEATURES, "grouped pitcher aggregation", audit_ctx, pitcher_col="opp_pitcher_id")
 
-    dataset = player_game.merge(
+    dataset = _merge_with_audit(
+        player_game,
         primary_pitchers,
         how="left",
         on=["game_pk", "team", "opponent"],
         validate="many_to_one",
+        step_name="merge primary pitcher onto batter-game table",
+        audit_ctx=audit_ctx,
+        uniqueness_expected=True,
     )
 
     dataset["ballpark"] = dataset["opponent"].map(lambda team: PARKS.get(team, {}).get("ballpark"))
@@ -36,28 +92,83 @@ def build_player_game_dataset(statcast_df: pd.DataFrame) -> tuple[pd.DataFrame, 
     dataset.loc[home_mask, "ballpark"] = dataset.loc[home_mask, "team"].map(lambda team: PARKS.get(team, {}).get("ballpark"))
     dataset["park_factor_hr"] = np.nan
     dataset = dataset.sort_values(["game_date", "game_pk", "player_id"]).reset_index(drop=True)
+    _summarize_feature_missingness(dataset, FLAGGED_FEATURES, "post primary-pitcher join batter-game table", audit_ctx, batter_col="player_id", pitcher_col="opp_pitcher_id")
     return dataset, pitcher_game
 
 
-def add_leakage_safe_features(player_game_df: pd.DataFrame, pitcher_game_df: pd.DataFrame) -> pd.DataFrame:
+class FeatureAuditContext:
+    def __init__(self, enabled: bool = False, mode: str = "auto"):
+        self.enabled = enabled
+        self.mode = mode
+        self.feature_statuses = {
+            feature: {"status": "pending", "explanation": "Not yet audited.", "final_missing_pct": None}
+            for feature in FLAGGED_FEATURES
+        }
+        self.lineage_events: dict[str, list[str]] = {feature: [] for feature in FLAGGED_FEATURES}
+
+    def log(self, message: str) -> None:
+        if self.enabled:
+            print(message)
+
+    def note(self, feature: str, message: str) -> None:
+        self.lineage_events.setdefault(feature, []).append(message)
+        self.log(f"[FEATURE-AUDIT] {feature}: {message}")
+
+    def set_status(self, feature: str, status: str, explanation: str, final_missing_pct: float | None = None) -> None:
+        self.feature_statuses[feature] = {
+            "status": status,
+            "explanation": explanation,
+            "final_missing_pct": final_missing_pct,
+        }
+
+
+def add_leakage_safe_features(
+    player_game_df: pd.DataFrame,
+    pitcher_game_df: pd.DataFrame,
+    debug_feature_audit: bool = False,
+    missingness_threshold: float = AUTO_DROP_MISSINGNESS_THRESHOLD,
+) -> pd.DataFrame:
     """Add rolling batter and pitcher features using only pre-game information."""
+    audit_ctx = FeatureAuditContext(enabled=debug_feature_audit, mode="rebuild")
     df = player_game_df.copy()
     df["game_date"] = pd.to_datetime(df["game_date"])
     pitcher_game_df = pitcher_game_df.copy()
     pitcher_game_df["game_date"] = pd.to_datetime(pitcher_game_df["game_date"])
+    _summarize_feature_missingness(df, FLAGGED_FEATURES, "feature pipeline start", audit_ctx, batter_col="player_id", pitcher_col="opp_pitcher_id")
+    _audit_identifier_columns(df, audit_ctx, batter_col="player_id", pitcher_col="opp_pitcher_id")
 
     batter_daily = _build_batter_daily(df)
-    batter_features = _compute_batter_daily_features(batter_daily)
-    df = df.merge(batter_features, on=["player_id", "game_date"], how="left", validate="many_to_one")
+    _summarize_feature_missingness(batter_daily, FLAGGED_FEATURES, "daily batter rollup before rolling stats", audit_ctx, batter_col="player_id")
+    batter_features = _compute_batter_daily_features(batter_daily, audit_ctx=audit_ctx)
+    _summarize_feature_missingness(batter_features, FLAGGED_FEATURES, "rolling-stat calculations before merge-back", audit_ctx, batter_col="player_id")
+    df = _merge_with_audit(
+        df,
+        batter_features,
+        how="left",
+        on=["player_id", "game_date"],
+        validate="many_to_one",
+        step_name="merge batter rolling features back to batter-game table",
+        audit_ctx=audit_ctx,
+        tracked_features=FLAGGED_FEATURES,
+        uniqueness_expected=True,
+    )
+    df = df.drop(columns=["expected_pa_proxy_raw", "expected_pa_proxy_fallback"], errors="ignore")
+    _summarize_feature_missingness(df, FLAGGED_FEATURES, "post batter rolling-feature merge", audit_ctx, batter_col="player_id", pitcher_col="opp_pitcher_id")
 
     pitcher_daily = _build_pitcher_daily(pitcher_game_df)
     pitcher_features = _compute_pitcher_daily_features(pitcher_daily)
-    df = df.merge(
+    _summarize_feature_missingness(pitcher_features, FLAGGED_FEATURES, "pitcher rolling-stat calculations", audit_ctx, pitcher_col="pitcher_id")
+    df = _merge_with_audit(
+        df,
         pitcher_features,
+        how="left",
         left_on=["opp_pitcher_id", "game_date"],
         right_on=["pitcher_id", "game_date"],
-        how="left",
         validate="many_to_one",
+        step_name="merge pitcher rolling features back to batter-game table",
+        audit_ctx=audit_ctx,
+        tracked_features=[],
+        uniqueness_expected=True,
     ).drop(columns=["pitcher_id"], errors="ignore")
 
     df["platoon_advantage"] = np.where(
@@ -66,7 +177,63 @@ def add_leakage_safe_features(player_game_df: pd.DataFrame, pitcher_game_df: pd.
         np.nan,
     )
     df["starter_or_bullpen_proxy"] = np.where(df["opp_pitcher_bf"] >= 12, "starter_like", "bullpen_like")
+
+    df, dropped_features = _drop_unreliable_flagged_features(df, audit_ctx, missingness_threshold=missingness_threshold)
+    _summarize_feature_missingness(df, FLAGGED_FEATURES, "final selected feature output", audit_ctx, batter_col="player_id", pitcher_col="opp_pitcher_id")
+    _final_feature_quality_report(df, audit_ctx, dropped_features)
     return df
+
+
+
+
+def audit_existing_engineered_dataset(
+    df: pd.DataFrame,
+    debug_feature_audit: bool = False,
+    missingness_threshold: float = AUTO_DROP_MISSINGNESS_THRESHOLD,
+) -> pd.DataFrame:
+    """Audit an already-engineered batter-game dataset without rebuilding from raw Statcast rows."""
+    audit_ctx = FeatureAuditContext(enabled=debug_feature_audit, mode="audit")
+    if "game_date" in df.columns:
+        df = df.copy()
+        df["game_date"] = pd.to_datetime(df["game_date"], errors="coerce")
+    _print_feature_lineage(debug_feature_audit)
+    audit_ctx.log("[FEATURE-AUDIT] Input looks like an already-engineered batter-game dataset; skipping raw Statcast aggregation and running dataset-level audits only.")
+    _summarize_feature_missingness(df, FLAGGED_FEATURES, "engineered dataset input", audit_ctx, batter_col="player_id", pitcher_col="opp_pitcher_id")
+    _audit_identifier_columns(df, audit_ctx, batter_col="player_id", pitcher_col="opp_pitcher_id")
+    df, dropped_features = _drop_unreliable_flagged_features(df, audit_ctx, missingness_threshold=missingness_threshold)
+    _summarize_feature_missingness(df, FLAGGED_FEATURES, "final selected feature output", audit_ctx, batter_col="player_id", pitcher_col="opp_pitcher_id")
+    _final_feature_quality_report(df, audit_ctx, dropped_features)
+    return df
+
+
+def _classify_input_dataframe(df: pd.DataFrame) -> tuple[str, list[str]]:
+    raw_markers = [column for column in ["at_bat_number", "pitch_number", "events", "inning_topbot"] if column in df.columns]
+    engineered_markers = [column for column in ["game_pk", "player_id", "hit_hr"] if column in df.columns]
+    if len(raw_markers) == 4:
+        return "raw_statcast", raw_markers
+    if len(engineered_markers) == 3:
+        return "engineered_dataset", engineered_markers
+    return "unknown", raw_markers + engineered_markers
+
+
+def _print_input_classification(input_path: str, dataset_kind: str, trigger_columns: list[str], mode: str) -> None:
+    print(f"[FEATURE-AUDIT] Reading input file: {input_path}")
+    print(f"[FEATURE-AUDIT] Requested mode: {mode}")
+    print(f"[FEATURE-AUDIT] Classified input as: {dataset_kind}")
+    print(f"[FEATURE-AUDIT] Trigger columns for classification: {trigger_columns}")
+
+
+def _assert_missingness_threshold(df: pd.DataFrame, threshold: float) -> None:
+    feature_columns = [column for column in FLAGGED_FEATURES + [PARK_FACTOR_FEATURE] if column in df.columns]
+    offenders = []
+    for feature in feature_columns:
+        missing_pct = float(df[feature].isna().mean() * 100)
+        if missing_pct > threshold * 100:
+            offenders.append(f"{feature}={missing_pct:.2f}%")
+    if offenders:
+        raise ValueError(
+            f"Missingness threshold exceeded ({threshold:.0%}) for selected features: {', '.join(offenders)}"
+        )
 
 
 def validate_dataset(df: pd.DataFrame) -> list[str]:
@@ -82,12 +249,9 @@ def validate_dataset(df: pd.DataFrame) -> list[str]:
         raise ValueError(f"Dataset has {duplicate_count} duplicate batter-game rows.")
 
     warnings: list[str] = []
-    # Leakage check: for each player's very first game appearance, the 30-day rolling
-    # window uses closed="left", so it must have seen zero prior games and should be NaN.
-    # If it is non-NaN for any player's first game, same-day data leaked into the window.
     first_game_date_per_player = df.groupby("player_id")["game_date"].transform("min")
     is_first_game = df["game_date"] == first_game_date_per_player
-    if df.loc[is_first_game, "hr_per_pa_last_30d"].notna().any():
+    if "hr_per_pa_last_30d" in df.columns and df.loc[is_first_game, "hr_per_pa_last_30d"].notna().any():
         warnings.append(
             "hr_per_pa_last_30d is non-NaN for a player's first game appearance; "
             "the closed='left' rolling window may be including same-day data (leakage)."
@@ -115,7 +279,7 @@ def _extract_plate_appearances(statcast_df: pd.DataFrame) -> pd.DataFrame:
     pa_df["is_k"] = pa_df["events"].isin(["strikeout", "strikeout_double_play"]).astype(int)
     pa_df["is_bbe"] = pa_df["launch_speed"].notna().astype(int)
     pa_df["is_hard_hit"] = (pa_df["launch_speed"] >= 95).fillna(False).astype(int)
-    pa_df["is_barrel"] = _is_barrel(pa_df["launch_speed"], pa_df["launch_angle"]).fillna(False).astype(int)
+    pa_df["is_barrel"] = _is_barrel(pa_df["launch_speed"], pa_df["launch_angle"]).astype(int)
     pa_df["is_fly_ball"] = pa_df["bb_type"].isin(["fly_ball", "popup"]).astype(int)
     pa_df["spray_angle"] = np.degrees(np.arctan2(pa_df["hc_x"] - SPRAY_CENTER_X, SPRAY_HOME_Y - pa_df["hc_y"]))
     pa_df["is_pull_air"] = _is_pull_air(pa_df)
@@ -128,12 +292,13 @@ def _aggregate_batter_games(pa_df: pd.DataFrame) -> pd.DataFrame:
         "game_date",
         "game_pk",
         "batter",
+        "player_name",
         "team",
         "opponent",
         "is_home",
+        "stand",
     ]
     agg = pa_df.groupby(group_cols, dropna=False).agg(
-        player_name=("player_name", "first"),
         plate_appearances=("plate_appearance", "sum"),
         at_bats=("at_bat", "sum"),
         hr_count=("is_hr", "sum"),
@@ -147,9 +312,8 @@ def _aggregate_batter_games(pa_df: pd.DataFrame) -> pd.DataFrame:
         batter_k_count=("is_k", "sum"),
         batter_bb_count=("is_bb", "sum"),
         batting_order=("batting_order", "min"),
-        bat_side=("stand", lambda x: x.mode().iloc[0] if len(x) > 0 else None),
     ).reset_index()
-    agg = agg.rename(columns={"batter": "player_id"})
+    agg = agg.rename(columns={"batter": "player_id", "stand": "bat_side"})
     agg["hit_hr"] = (agg["hr_count"] > 0).astype(int)
     agg["batting_order"] = agg["batting_order"].where(agg["batting_order"] <= 9)
     return agg
@@ -204,21 +368,28 @@ def _build_batter_daily(df: pd.DataFrame) -> pd.DataFrame:
         batter_bb_count=("batter_bb_count", "sum"),
         avg_exit_velocity_num=("avg_exit_velocity_num", "sum"),
         avg_launch_angle_num=("avg_launch_angle_num", "sum"),
+        batting_order=("batting_order", "min"),
     ).reset_index()
     return daily.sort_values(["player_id", "game_date"]).reset_index(drop=True)
 
 
-def _compute_batter_daily_features(daily: pd.DataFrame) -> pd.DataFrame:
+def _compute_batter_daily_features(daily: pd.DataFrame, audit_ctx: FeatureAuditContext | None = None) -> pd.DataFrame:
     features: list[pd.DataFrame] = []
-    for _, group in daily.groupby("player_id", sort=False):
+    audit_ctx = audit_ctx or FeatureAuditContext(enabled=False)
+    for player_id, group in daily.groupby("player_id", sort=False):
         grp = group.sort_values("game_date").copy()
+        if not grp["game_date"].is_monotonic_increasing:
+            raise ValueError(f"Batter rolling features require sorted game_date per player_id; found unsorted rows for player {player_id}.")
+
         grp["hr_rate_season_to_date"] = _shifted_cumulative_rate(grp["hr_count"], grp["plate_appearances"])
         grp["batter_k_rate_season_to_date"] = _shifted_cumulative_rate(grp["batter_k_count"], grp["plate_appearances"])
         grp["batter_bb_rate_season_to_date"] = _shifted_cumulative_rate(grp["batter_bb_count"], grp["plate_appearances"])
         grp["hr_per_pa_last_30d"] = _rolling_day_rate(grp, numerator_col="hr_count", denominator_col="plate_appearances", window="30D")
         grp["recent_form_hr_last_7d"] = _rolling_day_sum(grp, value_col="hr_count", window="7D")
         grp["recent_form_barrels_last_14d"] = _rolling_day_sum(grp, value_col="barrel_count", window="14D")
-        grp["expected_pa_proxy"] = _rolling_day_rate(grp, numerator_col="plate_appearances", denominator_col=None, window="14D")
+        grp["expected_pa_proxy_raw"] = _rolling_day_sum(grp, value_col="plate_appearances", window="14D")
+        grp["expected_pa_proxy_fallback"] = _expected_pa_fallback(grp)
+        grp["expected_pa_proxy"] = grp["expected_pa_proxy_raw"].where(grp["expected_pa_proxy_raw"].notna(), grp["expected_pa_proxy_fallback"])
         grp["days_since_last_game"] = grp["game_date"].diff().dt.days.astype(float)
         grp[[
             "barrel_rate_last_50_bbe",
@@ -256,13 +427,17 @@ def _compute_batter_daily_features(daily: pd.DataFrame) -> pd.DataFrame:
             "pull_air_rate_last_50_bbe",
             "batter_k_rate_season_to_date",
             "batter_bb_rate_season_to_date",
+            "expected_pa_proxy_raw",
+            "expected_pa_proxy_fallback",
             "expected_pa_proxy",
             "days_since_last_game",
             "recent_form_hr_last_7d",
             "recent_form_barrels_last_14d",
             "bbe_count_last_50",
         ]])
-    return pd.concat(features, ignore_index=True)
+    feature_df = pd.concat(features, ignore_index=True)
+    _audit_flagged_rolling_features(daily, feature_df, audit_ctx)
+    return feature_df
 
 
 def _build_pitcher_daily(df: pd.DataFrame) -> pd.DataFrame:
@@ -320,15 +495,15 @@ def _compute_pitcher_daily_features(daily: pd.DataFrame) -> pd.DataFrame:
 
 def _rolling_day_sum(grp: pd.DataFrame, value_col: str, window: str) -> pd.Series:
     temp = grp.set_index("game_date")
-    return temp[value_col].rolling(window=window, closed="left").sum().reset_index(drop=True)
+    return temp[value_col].rolling(window=window, closed="left", min_periods=1).sum().reset_index(drop=True)
 
 
 def _rolling_day_rate(grp: pd.DataFrame, numerator_col: str, denominator_col: str | None, window: str) -> pd.Series:
     temp = grp.set_index("game_date")
-    numerator = temp[numerator_col].rolling(window=window, closed="left").sum()
+    numerator = temp[numerator_col].rolling(window=window, closed="left", min_periods=1).sum()
     if denominator_col is None:
         return numerator.reset_index(drop=True)
-    denominator = temp[denominator_col].rolling(window=window, closed="left").sum()
+    denominator = temp[denominator_col].rolling(window=window, closed="left", min_periods=1).sum()
     return (numerator / denominator.replace({0: np.nan})).reset_index(drop=True)
 
 
@@ -395,6 +570,265 @@ def _count_window_features(
     return pd.DataFrame(rows, index=grp.index)
 
 
+def _expected_pa_fallback(grp: pd.DataFrame) -> pd.Series:
+    prior_batting_order = grp["batting_order"].shift(1)
+    current_batting_order = grp["batting_order"]
+    order = prior_batting_order.where(prior_batting_order.notna(), current_batting_order)
+    proxy = 4.65 - 0.08 * (order.fillna(9) - 1)
+    proxy = proxy.clip(lower=3.6, upper=4.8)
+    proxy = proxy.where(order.notna(), np.nan)
+    return proxy.astype(float)
+
+
+def _audit_identifier_columns(df: pd.DataFrame, audit_ctx: FeatureAuditContext, batter_col: str, pitcher_col: str | None = None) -> None:
+    if not audit_ctx.enabled:
+        return
+    audit_ctx.log("[FEATURE-AUDIT] Join key audit: checking identifier normalization, dtypes, and date alignment.")
+    if batter_col in df.columns:
+        audit_ctx.log(
+            f"[FEATURE-AUDIT] batter key={batter_col} dtype={df[batter_col].dtype} missing={int(df[batter_col].isna().sum())} distinct={df[batter_col].nunique(dropna=True)}"
+        )
+    if pitcher_col and pitcher_col in df.columns:
+        audit_ctx.log(
+            f"[FEATURE-AUDIT] pitcher key={pitcher_col} dtype={df[pitcher_col].dtype} missing={int(df[pitcher_col].isna().sum())} distinct={df[pitcher_col].nunique(dropna=True)}"
+        )
+    if "player_name" in df.columns:
+        normalized_name_count = int(df["player_name"].astype(str).str.strip().str.lower().nunique(dropna=True))
+        audit_ctx.log(f"[FEATURE-AUDIT] player_name normalization audit: normalized distinct names={normalized_name_count}. Name-based joins are not used for flagged features.")
+    if "game_date" in df.columns:
+        audit_ctx.log(f"[FEATURE-AUDIT] game_date dtype={df['game_date'].dtype}; flagged-feature joins use game_date only (no separate event_date key).")
+
+
+def _audit_flagged_rolling_features(daily: pd.DataFrame, feature_df: pd.DataFrame, audit_ctx: FeatureAuditContext) -> None:
+    if not audit_ctx.enabled:
+        return
+    joined = daily.merge(feature_df[["player_id", "game_date"] + FLAGGED_FEATURES + ["expected_pa_proxy_raw", "expected_pa_proxy_fallback"]], on=["player_id", "game_date"], how="left", validate="one_to_one")
+    total_rows = len(joined)
+    specs = {
+        "hr_per_pa_last_30d": {"window": 30, "source_cols": ["hr_count", "plate_appearances"], "empty_window": "no prior PA in 30-day lookback or denominator zero"},
+        "recent_form_hr_last_7d": {"window": 7, "source_cols": ["hr_count"], "empty_window": "no prior game in 7-day lookback"},
+        "recent_form_barrels_last_14d": {"window": 14, "source_cols": ["barrel_count"], "empty_window": "no prior game in 14-day lookback"},
+        "expected_pa_proxy": {"window": 14, "source_cols": ["plate_appearances", "batting_order"], "empty_window": "no prior PA in 14-day lookback before batting-order fallback"},
+    }
+    for feature, spec in specs.items():
+        groups = daily.sort_values(["player_id", "game_date"]).groupby("player_id", sort=False)
+        eligible = 0
+        source_missing = 0
+        insufficient_history = 0
+        for _, grp in groups:
+            dates = grp["game_date"]
+            for idx in range(len(grp)):
+                prior = grp.iloc[:idx]
+                if prior.empty:
+                    insufficient_history += 1
+                    continue
+                days = (dates.iloc[idx] - prior["game_date"]).dt.days
+                within_window = prior.loc[(days >= 0) & (days <= spec["window"])].copy()
+                if within_window.empty:
+                    insufficient_history += 1
+                    continue
+                source_available = within_window[spec["source_cols"]].notna().all(axis=1).any()
+                if source_available:
+                    eligible += 1
+                else:
+                    source_missing += 1
+        valid = int(joined[feature].notna().sum()) if feature in joined.columns else 0
+        merge_failure = max(eligible - valid, 0) if feature != "expected_pa_proxy" else 0
+        audit_ctx.note(
+            feature,
+            f"Rolling audit -> eligible={eligible:,}, valid={valid:,}, insufficient_history={insufficient_history:,}, source_missing={source_missing:,}, merge_failure_after_calc={merge_failure:,}.",
+        )
+        if feature == "expected_pa_proxy":
+            fallback_count = int((joined["expected_pa_proxy_raw"].isna() & joined["expected_pa_proxy_fallback"].notna()).sum())
+            audit_ctx.note(feature, f"expected_pa_proxy fallback rows supplied by batting-order proxy={fallback_count:,}.")
+            audit_ctx.note(feature, "expected_pa_proxy lineage: raw source does not include projected lineups, so the repair uses prior 14-day PA totals first and a batting-order proxy fallback second.")
+
+
+def _merge_with_audit(
+    left_df: pd.DataFrame,
+    right_df: pd.DataFrame,
+    *,
+    how: str,
+    step_name: str,
+    audit_ctx: FeatureAuditContext,
+    tracked_features: Iterable[str] | None = None,
+    uniqueness_expected: bool = False,
+    **merge_kwargs,
+) -> pd.DataFrame:
+    tracked_features = list(tracked_features or [])
+    if not audit_ctx.enabled:
+        return left_df.merge(right_df, how=how, **merge_kwargs)
+
+    merge_keys = merge_kwargs.get("on") or list(zip(merge_kwargs.get("left_on", []), merge_kwargs.get("right_on", [])))
+    audit_ctx.log(f"[FEATURE-AUDIT] Merge audit: {step_name}")
+    audit_ctx.log(f"[FEATURE-AUDIT] merge keys={merge_keys}")
+    audit_ctx.log(f"[FEATURE-AUDIT] left rows={len(left_df):,}, right rows={len(right_df):,}")
+
+    on = merge_kwargs.get("on")
+    if on is not None:
+        left_keys = on
+        right_keys = on
+    else:
+        left_keys = merge_kwargs.get("left_on", [])
+        right_keys = merge_kwargs.get("right_on", [])
+    for l_key, r_key in zip(left_keys, right_keys):
+        if l_key in left_df.columns and r_key in right_df.columns and left_df[l_key].dtype != right_df[r_key].dtype:
+            audit_ctx.log(f"[FEATURE-AUDIT][WARN] dtype mismatch for merge key {l_key}/{r_key}: left={left_df[l_key].dtype}, right={right_df[r_key].dtype}")
+    if uniqueness_expected:
+        dupes = int(right_df.duplicated(right_keys).sum()) if right_keys else 0
+        if dupes:
+            audit_ctx.log(f"[FEATURE-AUDIT][WARN] {dupes:,} duplicate right-side merge keys detected where uniqueness was expected.")
+
+    matched_pairs = left_df.merge(
+        right_df[right_keys].drop_duplicates(),
+        how="left",
+        left_on=left_keys,
+        right_on=right_keys,
+        indicator=True,
+    )["_merge"]
+    matched = int((matched_pairs == "both").sum())
+    unmatched = int((matched_pairs != "both").sum())
+    unmatched_rate = unmatched / len(left_df) if len(left_df) else 0.0
+    audit_ctx.log(f"[FEATURE-AUDIT] matched rows={matched:,}, unmatched rows={unmatched:,} ({unmatched_rate:.2%})")
+    if unmatched_rate > 0.05:
+        audit_ctx.log(f"[FEATURE-AUDIT][WARN] High unmatched rate in {step_name}: {unmatched_rate:.2%}")
+
+    merged = left_df.merge(right_df, how=how, indicator=True, **merge_kwargs)
+    if tracked_features:
+        for feature in tracked_features:
+            if feature in merged.columns:
+                valid = int(merged[feature].notna().sum())
+                audit_ctx.log(f"[FEATURE-AUDIT] {feature} non-null after {step_name}: {valid:,} / {len(merged):,}")
+    merged = merged.drop(columns=["_merge"])
+    return merged
+
+
+def _drop_unreliable_flagged_features(
+    df: pd.DataFrame,
+    audit_ctx: FeatureAuditContext,
+    missingness_threshold: float = AUTO_DROP_MISSINGNESS_THRESHOLD,
+) -> tuple[pd.DataFrame, list[str]]:
+    dropped: list[str] = []
+    for feature in FLAGGED_FEATURES:
+        if feature not in df.columns:
+            audit_ctx.set_status(feature, "dropped", "Feature is absent from the engineered dataset.", 100.0)
+            dropped.append(feature)
+            continue
+        missing_pct = float(df[feature].isna().mean() * 100)
+        if feature == "expected_pa_proxy":
+            if missing_pct > missingness_threshold * 100:
+                df = df.drop(columns=[feature])
+                dropped.append(feature)
+                audit_ctx.set_status(
+                    feature,
+                    "dropped",
+                    f"Dropped because the two-stage proxy still left {missing_pct:.2f}% missingness, above the allowed threshold.",
+                    missing_pct,
+                )
+                audit_ctx.log(f"[FEATURE-AUDIT][WARN] Dropping {feature} because the repaired proxy still left {missing_pct:.2f}% missingness.")
+            else:
+                audit_ctx.set_status(
+                    feature,
+                    "simplified",
+                    "Repaired with a two-stage proxy: prior 14-day plate appearances, then batting-order fallback when recent history is unavailable.",
+                    missing_pct,
+                )
+            continue
+        audit_ctx.set_status(
+            feature,
+            "repaired",
+            "Shifted rolling window retained; min_periods=1 now preserves valid prior-history windows without introducing leakage.",
+            missing_pct,
+        )
+        if missing_pct > missingness_threshold * 100:
+            df = df.drop(columns=[feature])
+            dropped.append(feature)
+            audit_ctx.set_status(
+                feature,
+                "dropped",
+                f"Dropped because missingness remained {missing_pct:.2f}% after audit, indicating unreliable source coverage or merge alignment.",
+                missing_pct,
+            )
+            audit_ctx.log(f"[FEATURE-AUDIT][WARN] Dropping {feature} from final dataset because missingness remained {missing_pct:.2f}%.")
+
+    if PARK_FACTOR_FEATURE in df.columns:
+        park_missing_pct = float(df[PARK_FACTOR_FEATURE].isna().mean() * 100)
+        if park_missing_pct >= 100.0:
+            df = df.drop(columns=[PARK_FACTOR_FEATURE])
+            dropped.append(PARK_FACTOR_FEATURE)
+            audit_ctx.log(f"[FEATURE-AUDIT][WARN] Dropping {PARK_FACTOR_FEATURE} because it is 100% missing and no source-backed rebuild exists in this pipeline.")
+    return df, dropped
+
+
+def _summarize_feature_missingness(
+    df: pd.DataFrame,
+    feature_names: Iterable[str],
+    step_name: str,
+    audit_ctx: FeatureAuditContext,
+    batter_col: str | None = None,
+    pitcher_col: str | None = None,
+) -> None:
+    if not audit_ctx.enabled:
+        return
+    row_count = len(df)
+    batter_count = df[batter_col].nunique(dropna=True) if batter_col and batter_col in df.columns else "n/a"
+    pitcher_count = df[pitcher_col].nunique(dropna=True) if pitcher_col and pitcher_col in df.columns else "n/a"
+    audit_ctx.log(f"\n[FEATURE-AUDIT] Step: {step_name}")
+    audit_ctx.log(f"[FEATURE-AUDIT] rows={row_count:,}, distinct batters={batter_count}, distinct pitchers={pitcher_count}")
+    for feature in feature_names:
+        if feature in df.columns:
+            non_null = int(df[feature].notna().sum())
+            missing_pct = (1 - non_null / row_count) * 100 if row_count else 0.0
+            audit_ctx.log(f"[FEATURE-AUDIT] {feature}: non_null={non_null:,}, missing_pct={missing_pct:.2f}%")
+        else:
+            audit_ctx.log(f"[FEATURE-AUDIT] {feature}: column not present at this step")
+
+
+def _print_feature_lineage(enabled: bool) -> None:
+    if not enabled:
+        return
+    print("[FEATURE-AUDIT] Flagged feature lineage overview:")
+    for feature, lineage in FEATURE_LINEAGE.items():
+        print(f"  - {feature}: sources={lineage['sources']}; grouping_keys={lineage['grouping_keys']}; merge_keys={lineage['merge_keys']}")
+        print(f"    transformation={lineage['transformation']}")
+        print(f"    null-risk={lineage['null_rules']}")
+
+
+def _final_feature_quality_report(df: pd.DataFrame, audit_ctx: FeatureAuditContext, dropped_features: list[str]) -> None:
+    if not audit_ctx.enabled:
+        return
+    numeric_or_engineered = [col for col in df.columns if col not in {"player_name", "opp_pitcher_name", "starter_or_bullpen_proxy", "ballpark"}]
+    report_rows = []
+    for col in numeric_or_engineered:
+        non_null = int(df[col].notna().sum())
+        missing_pct = float(df[col].isna().mean() * 100)
+        source_note = "flagged feature" if col in FLAGGED_FEATURES else ""
+        report_rows.append((col, non_null, missing_pct, source_note))
+    report_rows.sort(key=lambda row: (-row[2], row[0]))
+    audit_ctx.log("\n[FEATURE-AUDIT] Final feature quality report (worst missingness first):")
+    for feature, non_null, missing_pct, source_note in report_rows:
+        audit_ctx.log(f"[FEATURE-AUDIT] {feature}: non_null={non_null:,}, missing_pct={missing_pct:.2f}% {source_note}".rstrip())
+
+    audit_ctx.log("\n[FEATURE-AUDIT] Focused flagged-feature verdict:")
+    for feature in FLAGGED_FEATURES:
+        status = audit_ctx.feature_statuses.get(feature, {})
+        final_missing_pct = status.get("final_missing_pct")
+        if feature in df.columns:
+            final_missing_pct = float(df[feature].isna().mean() * 100)
+        audit_ctx.log(
+            f"[FEATURE-AUDIT] {feature}: status={status.get('status', 'unknown')}, final_missing_pct={final_missing_pct if final_missing_pct is not None else 'n/a'}, explanation={status.get('explanation', 'n/a')}"
+        )
+    fixed = [f for f, meta in audit_ctx.feature_statuses.items() if meta["status"] in {"repaired", "simplified"}]
+    dropped = dropped_features
+    still_high = [f for f in FLAGGED_FEATURES if f in df.columns and df[f].isna().mean() > AUTO_DROP_MISSINGNESS_THRESHOLD]
+    verdict = "suitable" if not still_high and not dropped else "needs review"
+    audit_ctx.log("\n[FEATURE-AUDIT] Final verdict:")
+    audit_ctx.log(f"[FEATURE-AUDIT] fixed_or_simplified={fixed}")
+    audit_ctx.log(f"[FEATURE-AUDIT] dropped={dropped}")
+    audit_ctx.log(f"[FEATURE-AUDIT] still_high_missingness={still_high}")
+    audit_ctx.log(f"[FEATURE-AUDIT] engineered dataset verdict={verdict}; {'re-run train_model.py next.' if verdict == 'suitable' else 'resolve remaining flagged-feature coverage before more tuning.'}")
+
+
 def _is_barrel(launch_speed: pd.Series, launch_angle: pd.Series) -> pd.Series:
     ev = pd.to_numeric(launch_speed, errors="coerce")
     la = pd.to_numeric(launch_angle, errors="coerce")
@@ -407,4 +841,88 @@ def _is_pull_air(pa_df: pd.DataFrame) -> pd.Series:
     air = pa_df["bb_type"].isin(["fly_ball", "line_drive", "popup"])
     right_pull = pa_df["stand"].eq("R") & pa_df["spray_angle"].lt(-15)
     left_pull = pa_df["stand"].eq("L") & pa_df["spray_angle"].gt(15)
-    return (air & (right_pull | left_pull)).fillna(False).astype(int)
+    return (air & (right_pull | left_pull)).astype(int)
+
+
+def _load_input_dataframe(input_path: str) -> pd.DataFrame:
+    return pd.read_csv(input_path, parse_dates=["game_date"], low_memory=False)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("input_path", nargs="?", default=str(FINAL_DATA_PATH), help="Path to either a raw Statcast CSV file or an already-engineered batter-game dataset. Defaults to the configured final dataset path.")
+    parser.add_argument("--output", default=str(FINAL_DATA_PATH), help="Optional path for writing the engineered dataset or audited engineered copy.")
+    parser.add_argument("--mode", choices=["auto", "rebuild", "audit"], default="auto", help="Execution mode: rebuild from raw data, audit an existing engineered dataset, or auto-detect.")
+    parser.add_argument("--debug-feature-audit", action="store_true", help="Print step-by-step lineage, merge, and missingness diagnostics for the four flagged features.")
+    parser.add_argument("--fail-on-high-missingness", action="store_true", help="Fail if selected tracked features exceed the configured missingness threshold after rebuild/audit.")
+    parser.add_argument("--missingness-threshold", type=float, default=DEFAULT_FAIL_MISSINGNESS_THRESHOLD, help="Missingness threshold used by --fail-on-high-missingness and rebuild-time feature dropping. Expressed as a 0-1 fraction.")
+    args = parser.parse_args()
+
+    input_df = _load_input_dataframe(args.input_path)
+    dataset_kind, trigger_columns = _classify_input_dataframe(input_df)
+    _print_input_classification(args.input_path, dataset_kind, trigger_columns, args.mode)
+
+    if args.mode == "rebuild":
+        if dataset_kind != "raw_statcast":
+            raise ValueError(
+                "Rebuild mode requires raw Statcast-style pitch-level input. "
+                f"Received {dataset_kind} based on columns {trigger_columns}."
+            )
+        print("[FEATURE-AUDIT] Executing rebuild branch: raw Statcast -> plate appearances -> batter-game -> rolling features -> final export.")
+        player_game_df, pitcher_game_df = build_player_game_dataset(input_df, debug_feature_audit=args.debug_feature_audit)
+        dataset = add_leakage_safe_features(
+            player_game_df,
+            pitcher_game_df,
+            debug_feature_audit=args.debug_feature_audit,
+            missingness_threshold=args.missingness_threshold,
+        )
+        dataset_type = "rebuilt engineered dataset"
+    elif args.mode == "audit":
+        if dataset_kind != "engineered_dataset":
+            raise ValueError(
+                "Audit mode requires an already-engineered batter-game dataset. "
+                f"Received {dataset_kind} based on columns {trigger_columns}."
+            )
+        print("[FEATURE-AUDIT] Executing audit branch: existing engineered dataset only (no raw rebuild performed).")
+        dataset = audit_existing_engineered_dataset(
+            input_df,
+            debug_feature_audit=args.debug_feature_audit,
+            missingness_threshold=args.missingness_threshold,
+        )
+        dataset_type = "audited engineered dataset"
+    else:
+        if dataset_kind == "raw_statcast":
+            print("[FEATURE-AUDIT] Auto mode selected rebuild branch because raw Statcast markers were found.")
+            player_game_df, pitcher_game_df = build_player_game_dataset(input_df, debug_feature_audit=args.debug_feature_audit)
+            dataset = add_leakage_safe_features(
+                player_game_df,
+                pitcher_game_df,
+                debug_feature_audit=args.debug_feature_audit,
+                missingness_threshold=args.missingness_threshold,
+            )
+            dataset_type = "rebuilt engineered dataset"
+        elif dataset_kind == "engineered_dataset":
+            print("[FEATURE-AUDIT] Auto mode selected audit branch because engineered-dataset markers were found and raw event-level columns were absent.")
+            dataset = audit_existing_engineered_dataset(
+                input_df,
+                debug_feature_audit=args.debug_feature_audit,
+                missingness_threshold=args.missingness_threshold,
+            )
+            dataset_type = "audited engineered dataset"
+        else:
+            missing_statcast = sorted(set(STATCAST_COLUMNS) - set(input_df.columns))
+            raise ValueError(
+                "Input file is neither recognized raw Statcast data nor a batter-game engineered dataset. "
+                f"Missing raw Statcast columns include: {missing_statcast[:8]}"
+            )
+
+    if args.fail_on_high_missingness:
+        _assert_missingness_threshold(dataset, args.missingness_threshold)
+
+    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+    dataset.to_csv(args.output, index=False)
+    print(f"Saved {dataset_type} to {args.output} ({len(dataset):,} rows).")
+
+
+if __name__ == "__main__":
+    main()
