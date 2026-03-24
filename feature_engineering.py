@@ -28,38 +28,7 @@ GRANULAR_PITCH_TYPES = {
     "curveball": {"CU", "KC", "KN", "SV", "CS"},
     "changeup": {"CH", "FS", "FO", "SC"},
 }
-PARK_FACTOR_LOOKUP = {
-    "ARI": {"park_factor_hr": 1.02, "park_factor_hr_vs_lhb": 1.01, "park_factor_hr_vs_rhb": 1.03},
-    "ATL": {"park_factor_hr": 1.07, "park_factor_hr_vs_lhb": 1.04, "park_factor_hr_vs_rhb": 1.10},
-    "BAL": {"park_factor_hr": 0.96, "park_factor_hr_vs_lhb": 0.92, "park_factor_hr_vs_rhb": 1.00},
-    "BOS": {"park_factor_hr": 1.04, "park_factor_hr_vs_lhb": 0.99, "park_factor_hr_vs_rhb": 1.08},
-    "CHC": {"park_factor_hr": 1.01, "park_factor_hr_vs_lhb": 1.00, "park_factor_hr_vs_rhb": 1.02},
-    "CHW": {"park_factor_hr": 1.08, "park_factor_hr_vs_lhb": 1.05, "park_factor_hr_vs_rhb": 1.11},
-    "CIN": {"park_factor_hr": 1.12, "park_factor_hr_vs_lhb": 1.10, "park_factor_hr_vs_rhb": 1.14},
-    "CLE": {"park_factor_hr": 0.99, "park_factor_hr_vs_lhb": 0.97, "park_factor_hr_vs_rhb": 1.01},
-    "COL": {"park_factor_hr": 1.18, "park_factor_hr_vs_lhb": 1.16, "park_factor_hr_vs_rhb": 1.20},
-    "DET": {"park_factor_hr": 0.95, "park_factor_hr_vs_lhb": 0.93, "park_factor_hr_vs_rhb": 0.97},
-    "HOU": {"park_factor_hr": 1.04, "park_factor_hr_vs_lhb": 1.06, "park_factor_hr_vs_rhb": 1.02},
-    "KCR": {"park_factor_hr": 0.92, "park_factor_hr_vs_lhb": 0.90, "park_factor_hr_vs_rhb": 0.94},
-    "LAA": {"park_factor_hr": 0.98, "park_factor_hr_vs_lhb": 0.97, "park_factor_hr_vs_rhb": 0.99},
-    "LAD": {"park_factor_hr": 0.97, "park_factor_hr_vs_lhb": 0.96, "park_factor_hr_vs_rhb": 0.98},
-    "MIA": {"park_factor_hr": 0.93, "park_factor_hr_vs_lhb": 0.91, "park_factor_hr_vs_rhb": 0.95},
-    "MIL": {"park_factor_hr": 1.05, "park_factor_hr_vs_lhb": 1.03, "park_factor_hr_vs_rhb": 1.07},
-    "MIN": {"park_factor_hr": 1.01, "park_factor_hr_vs_lhb": 1.00, "park_factor_hr_vs_rhb": 1.02},
-    "NYM": {"park_factor_hr": 0.95, "park_factor_hr_vs_lhb": 0.94, "park_factor_hr_vs_rhb": 0.96},
-    "NYY": {"park_factor_hr": 1.09, "park_factor_hr_vs_lhb": 1.15, "park_factor_hr_vs_rhb": 1.03},
-    "ATH": {"park_factor_hr": 0.89, "park_factor_hr_vs_lhb": 0.87, "park_factor_hr_vs_rhb": 0.91},
-    "PHI": {"park_factor_hr": 1.10, "park_factor_hr_vs_lhb": 1.09, "park_factor_hr_vs_rhb": 1.11},
-    "PIT": {"park_factor_hr": 0.94, "park_factor_hr_vs_lhb": 0.93, "park_factor_hr_vs_rhb": 0.95},
-    "SDP": {"park_factor_hr": 0.93, "park_factor_hr_vs_lhb": 0.91, "park_factor_hr_vs_rhb": 0.95},
-    "SEA": {"park_factor_hr": 0.92, "park_factor_hr_vs_lhb": 0.89, "park_factor_hr_vs_rhb": 0.95},
-    "SFG": {"park_factor_hr": 0.90, "park_factor_hr_vs_lhb": 0.88, "park_factor_hr_vs_rhb": 0.92},
-    "STL": {"park_factor_hr": 0.97, "park_factor_hr_vs_lhb": 0.95, "park_factor_hr_vs_rhb": 0.99},
-    "TBR": {"park_factor_hr": 0.96, "park_factor_hr_vs_lhb": 0.94, "park_factor_hr_vs_rhb": 0.98},
-    "TEX": {"park_factor_hr": 1.05, "park_factor_hr_vs_lhb": 1.04, "park_factor_hr_vs_rhb": 1.06},
-    "TOR": {"park_factor_hr": 1.08, "park_factor_hr_vs_lhb": 1.05, "park_factor_hr_vs_rhb": 1.11},
-    "WSN": {"park_factor_hr": 1.00, "park_factor_hr_vs_lhb": 0.98, "park_factor_hr_vs_rhb": 1.02},
-}
+PARK_FACTOR_LOOKUP_PATH = Path("data/park_factors_hr.csv")
 NEW_CONTEXT_FEATURE_FAMILIES = {
     "park": ["park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb"],
     "handedness_split": [
@@ -590,6 +559,12 @@ def add_leakage_safe_features(
     print_final_feature_quality_summary(dataset, decisions)
     summarize_new_context_feature_quality(dataset, decisions)
     print_requested_feature_audit(dataset, decisions)
+    print_focused_pass_summary(
+        dataset,
+        decisions,
+        park_status=park_status,
+        pybaseball_audit=park_status.get("pybaseball_audit"),
+    )
     print_rerun_verdict(
         dataset,
         pitch_type_status=pitch_type_status,
@@ -780,14 +755,35 @@ def audit_pybaseball_park_factor_support() -> dict[str, object]:
     if usable:
         print(f"candidate_modules_with_park_factor_terms: {hits[:10]}")
     else:
-        print("No documented or accessible pybaseball park-factor source found; using fallback park-factor construction")
+        print("No direct pybaseball park-factor source found; using fallback park-factor source")
     print("====================================\n")
     return {"usable": usable, "hits": hits}
 
 
+def load_local_park_factor_lookup(path: Path = PARK_FACTOR_LOOKUP_PATH) -> pd.DataFrame | None:
+    """Load maintainable local park-factor table (100 = league average) if available."""
+    if not path.exists():
+        print(f"WARNING: local park-factor file not found at {path}; trying empirical fallback.")
+        return None
+
+    lookup = pd.read_csv(path)
+    required = {"venue_key", "park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb"}
+    missing = sorted(required - set(lookup.columns))
+    if missing:
+        print(f"WARNING: local park-factor file missing required columns {missing}; trying empirical fallback.")
+        return None
+
+    lookup = lookup.rename(columns={"venue_key": "park_team_code"})
+    for feature in ["park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb"]:
+        lookup[feature] = pd.to_numeric(lookup[feature], errors="coerce")
+    return lookup[["park_team_code", "park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb"]].drop_duplicates(
+        subset=["park_team_code"]
+    )
+
+
 def derive_empirical_park_factors_from_statcast(statcast_df: pd.DataFrame) -> pd.DataFrame:
     pa_df = extract_plate_appearances(statcast_df.copy())
-    pa_df["home_team_for_park"] = np.where(pa_df["inning_topbot"].eq("Top"), pa_df["home_team"], pa_df["home_team"])
+    pa_df["home_team_for_park"] = pa_df["home_team"]
     pa_df["bbe"] = pa_df["bbe_count"].fillna(0)
     pa_df["hr"] = pa_df["hr_count"].fillna(0)
     league_hr_rate = safe_scalar_rate(pa_df["hr"].sum(), pa_df["bbe"].sum())
@@ -803,9 +799,15 @@ def derive_empirical_park_factors_from_statcast(statcast_df: pd.DataFrame) -> pd
         bbe_rhb=("bbe", lambda s: pa_df.loc[s.index, "bbe"].where(pa_df.loc[s.index, "stand"].eq("R"), 0).sum()),
     ).reset_index()
     prior_weight = 50.0
-    park["park_factor_hr"] = ((park["hr"] + prior_weight * league_hr_rate) / (park["bbe"] + prior_weight)) / league_hr_rate
-    park["park_factor_hr_vs_lhb"] = ((park["hr_lhb"] + prior_weight * league_hr_rate) / (park["bbe_lhb"] + prior_weight)) / league_hr_rate
-    park["park_factor_hr_vs_rhb"] = ((park["hr_rhb"] + prior_weight * league_hr_rate) / (park["bbe_rhb"] + prior_weight)) / league_hr_rate
+    park["park_factor_hr"] = (
+        ((park["hr"] + prior_weight * league_hr_rate) / (park["bbe"] + prior_weight)) / league_hr_rate
+    ) * 100.0
+    park["park_factor_hr_vs_lhb"] = (
+        ((park["hr_lhb"] + prior_weight * league_hr_rate) / (park["bbe_lhb"] + prior_weight)) / league_hr_rate
+    ) * 100.0
+    park["park_factor_hr_vs_rhb"] = (
+        ((park["hr_rhb"] + prior_weight * league_hr_rate) / (park["bbe_rhb"] + prior_weight)) / league_hr_rate
+    ) * 100.0
     return park.rename(columns={"home_team_for_park": "park_team_code"})[
         ["park_team_code", "park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb"]
     ]
@@ -820,18 +822,20 @@ def add_park_factor_features(model_df: pd.DataFrame, statcast_df: pd.DataFrame |
     pybaseball_audit = audit_pybaseball_park_factor_support()
     if pybaseball_audit["usable"]:
         print("WARNING: pybaseball park-factor candidates were found but no stable documented API was identified; continuing with fallback.")
-    if statcast_df is not None:
-        park_table = derive_empirical_park_factors_from_statcast(statcast_df)
-        source = "empirical_statcast_fallback"
-    else:
-        park_table = pd.DataFrame.from_dict(PARK_FACTOR_LOOKUP, orient="index").reset_index().rename(columns={"index": "park_team_code"})
-        source = "static_lookup_fallback"
+    park_table = load_local_park_factor_lookup()
+    source = "local_lookup_csv" if park_table is not None else ""
+    if park_table is None:
+        if statcast_df is not None:
+            park_table = derive_empirical_park_factors_from_statcast(statcast_df)
+            source = "empirical_statcast_fallback"
+        else:
+            raise ValueError("No local park-factor lookup file and no Statcast dataframe available for empirical fallback.")
     df = merge_with_diagnostics(
         df,
         park_table,
         on=["park_team_code"],
         how="left",
-        step_name="attach static park factor lookup",
+        step_name="attach park factor lookup",
         validate="many_to_one",
     )
     print("=== PARK FACTOR DIAGNOSTICS ===")
@@ -839,19 +843,28 @@ def add_park_factor_features(model_df: pd.DataFrame, statcast_df: pd.DataFrame |
     print(f"venue/team fields available in model df: {sorted([col for col in ['game_pk', 'game_date', 'team', 'opponent', 'is_home', 'ballpark'] if col in df.columns])}")
     print(f"park identified via ballpark field rows: {int((df['park_source'] == 'ballpark_name').sum()):,}")
     print(f"park identified via home_team fallback rows: {int((df['park_source'] == 'home_team_fallback').sum()):,}")
+    print("venue key used for mapping: park_team_code")
+    matched = int(df["park_factor_hr"].notna().sum()) if "park_factor_hr" in df.columns else 0
     unmatched = int(df["park_factor_hr"].isna().sum()) if "park_factor_hr" in df.columns else len(df)
+    print(f"matched park factor rows: {matched:,} / {len(df):,}")
     print(f"unmatched park factor rows: {unmatched:,} / {len(df):,} ({(unmatched / len(df) * 100 if len(df) else 0):.2f}%)")
     for feature in ["park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb"]:
         non_null = int(df[feature].notna().sum()) if feature in df.columns else 0
         miss_pct = float(df[feature].isna().mean() * 100) if feature in df.columns else 100.0
         print(f"{feature}: non_null={non_null:,}, missing_pct={miss_pct:.2f}%")
     df["park_factor_hr_vs_batter_hand"] = np.where(df["bat_side"].eq("L"), df["park_factor_hr_vs_lhb"], df["park_factor_hr_vs_rhb"])
+    non_null = int(df["park_factor_hr_vs_batter_hand"].notna().sum())
+    miss_pct = float(df["park_factor_hr_vs_batter_hand"].isna().mean() * 100) if len(df) else 100.0
+    print(f"park_factor_hr_vs_batter_hand: non_null={non_null:,}, missing_pct={miss_pct:.2f}%")
     if df["park_factor_hr"].notna().sum() == 0:
-        warning = "Park factor mapping failed; park features will be excluded by export coverage checks."
-        print(f"WARNING: {warning}")
-        status = {"included": False, "reason": warning}
+        raise ValueError("park_factor_hr is 100% missing after park-factor mapping.")
     else:
-        status = {"included": True, "reason": f"park factors populated using {source}"}
+        status = {
+            "included": True,
+            "reason": f"park factors populated using {source}",
+            "source": source,
+            "pybaseball_audit": pybaseball_audit,
+        }
     print("===============================\n")
     return df.drop(columns=["home_team_for_park", "park_team_code", "park_source"]), status
 
@@ -1266,18 +1279,59 @@ def print_requested_feature_audit(df: pd.DataFrame, decisions: dict[str, ExportD
                 missing_pct = 100.0
             decision = decisions.get(feature)
             included_in_export = bool(decision.included_in_export) if decision else False
+            included_in_model_bool = feature in model_features
             if not present:
                 status = "MISSING"
                 reason = "feature not produced"
-            elif present and not included_in_export:
+            elif present and not included_in_model_bool:
                 status = "PRESENT_BUT_NOT_EXPORTED"
-                reason = decision.reason if decision else "not exported"
+                reason = "present but not in model list"
+            elif present and included_in_model_bool and not included_in_export:
+                status = "PRESENT_BUT_NOT_EXPORTED"
+                reason = decision.reason if decision else "excluded from engineered export"
             else:
                 status = "PRESENT_AND_EXPORTED"
                 reason = ""
-            included_in_model = "yes" if feature in model_features else "no"
+            included_in_model = "yes" if included_in_model_bool else "no"
             print(f"{feature} | {family} | {status} | {non_null:,} | {missing_pct:.2f}% | {included_in_model} | {reason}")
     print("====================================\n")
+
+
+def print_focused_pass_summary(
+    df: pd.DataFrame,
+    decisions: dict[str, ExportDecision],
+    park_status: dict[str, object],
+    pybaseball_audit: dict[str, object] | None,
+) -> None:
+    model_features = load_model_feature_list()
+    requested = [feature for features in REQUESTED_FEATURE_AUDIT.values() for feature in features]
+    newly_implemented = [feature for feature in requested if feature in df.columns]
+    present_but_omitted = [feature for feature in requested if feature in df.columns and feature not in model_features]
+    now_included = [feature for feature in requested if feature in df.columns and feature in model_features]
+    skipped = [feature for feature in requested if feature not in df.columns]
+    dead_features = [
+        feature
+        for feature in requested
+        if feature in df.columns and feature in decisions and not decisions[feature].included_in_export
+    ]
+
+    pybaseball_has_source = bool(pybaseball_audit["usable"]) if pybaseball_audit else False
+    park_series = df.loc[:, "park_factor_hr"] if "park_factor_hr" in df.columns else pd.Series(dtype=float)
+    if isinstance(park_series, pd.DataFrame):
+        park_series = park_series.iloc[:, 0]
+    park_populated = bool(park_series.notna().any()) if "park_factor_hr" in df.columns else False
+
+    print("=== FOCUSED PARK + FEATURE-AUDIT SUMMARY ===")
+    print(f"pybaseball_park_factor_source_found: {pybaseball_has_source}")
+    print(f"park_factor_source_used: {park_status.get('source', park_status.get('reason', 'unknown'))}")
+    print(f"park_factor_hr_populated: {park_populated}")
+    print(f"park_factor_hr_in_model_feature_list: {'park_factor_hr' in model_features}")
+    print(f"requested_features_present_in_engineered_dataset: {len(newly_implemented)}")
+    print(f"requested_features_present_but_omitted_from_model_list: {present_but_omitted if present_but_omitted else 'none'}")
+    print(f"requested_features_present_and_in_model_list: {len(now_included)}")
+    print(f"requested_features_still_missing: {skipped if skipped else 'none'}")
+    print(f"requested_features_excluded_from_export_due_to_quality: {dead_features if dead_features else 'none'}")
+    print("===========================================\n")
 
 
 def print_rerun_verdict(
