@@ -885,6 +885,8 @@ def build_ranked_predictions_output(
     y_true: np.ndarray | None = None,
 ) -> pd.DataFrame:
     ranked = source_df.copy().reset_index(drop=True)
+    identity_columns = [col for col in ["batter_id", "batter_name", "pitcher_id", "pitcher_name", "opp_pitcher_name"] if col in ranked.columns]
+    print(f"Ranked-output identity columns available: {identity_columns}")
     ranked["predicted_hr_probability"] = y_prob
     ranked["predicted_hr_percentile"] = ranked["predicted_hr_probability"].rank(method="first", pct=True)
     ranked["predicted_hr_score"] = (ranked["predicted_hr_percentile"] * 100).round(1)
@@ -906,6 +908,8 @@ def build_ranked_predictions_output(
     rename_candidates = {
         "player_id": "batter_id",
         "player_name": "batter_name",
+        "opp_pitcher_id": "pitcher_id",
+        "opp_pitcher_name": "pitcher_name",
         "batting_team": "team",
         "home_team": "team",
         "away_team": "opponent_team",
@@ -913,6 +917,14 @@ def build_ranked_predictions_output(
         "opponent": "opponent_team",
     }
     ranked = ranked.rename(columns={src: dst for src, dst in rename_candidates.items() if src in ranked.columns and dst not in ranked.columns})
+    ranked = validate_ranked_output_identity(ranked)
+    dedupe_keys = [col for col in ["game_pk", "batter_id"] if col in ranked.columns]
+    if dedupe_keys:
+        before = len(ranked)
+        ranked = ranked.drop_duplicates(subset=dedupe_keys, keep="first").copy()
+        dropped = before - len(ranked)
+        if dropped > 0:
+            print(f"WARNING: dropped {dropped} duplicate ranked rows on keys {dedupe_keys}.")
     export_columns = [col for col in RANKING_EXPORT_CORE_COLUMNS if col in ranked.columns]
     export_columns += [
         "predicted_hr_probability",
@@ -925,6 +937,26 @@ def build_ranked_predictions_output(
         export_columns.append("actual_hit_hr")
     export_columns += ["top_reason_1", "top_reason_2", "top_reason_3"]
     return ranked.sort_values("rank").reset_index(drop=True)[export_columns]
+
+
+def validate_ranked_output_identity(ranked: pd.DataFrame) -> pd.DataFrame:
+    required = ["batter_id", "batter_name"]
+    missing = [col for col in required if col not in ranked.columns]
+    if missing:
+        raise ValueError(f"Ranked output missing hitter identity columns: {missing}")
+
+    batter_null = int(ranked["batter_id"].isna().sum())
+    if batter_null > 0:
+        raise ValueError(f"Ranked output has {batter_null} rows with missing batter_id.")
+
+    if "pitcher_name" in ranked.columns:
+        compare = ranked[["batter_name", "pitcher_name"]].dropna()
+        mismatch_share = float((compare["batter_name"] == compare["pitcher_name"]).mean()) if len(compare) else 0.0
+        print(f"ranked_output_identity_mismatch_share(batter_name==pitcher_name): {mismatch_share:.3f}")
+        if mismatch_share > 0.25:
+            print("WARNING: high batter/pitcher name overlap detected; sample top rows for inspection:")
+            print(ranked[["batter_id", "batter_name", "pitcher_id", "pitcher_name"]].head(10).to_string(index=False))
+    return ranked
 
 
 def print_top_bucket_lift_table(lift_df: pd.DataFrame) -> None:

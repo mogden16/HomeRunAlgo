@@ -6,8 +6,8 @@ import argparse
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
-import inspect
 import pkgutil
+import re
 import pybaseball
 
 import numpy as np
@@ -323,7 +323,31 @@ def extract_plate_appearances(statcast_df: pd.DataFrame) -> pd.DataFrame:
     pa_df["contact_event_count"] = pa_df["description"].isin(CONTACT_DESCRIPTIONS).astype(int)
     pa_df["swing_event_count"] = pa_df["description"].isin(SWING_DESCRIPTIONS).astype(int)
     pa_df["pitch_type_bucket"] = pa_df["pitch_type"].map(classify_pitch_type_bucket) if "pitch_type" in pa_df.columns else np.nan
+    pa_df["inferred_batter_name"] = pa_df["des"].map(infer_batter_name_from_description) if "des" in pa_df.columns else np.nan
     return pa_df
+
+
+def infer_batter_name_from_description(description: object) -> str | float:
+    if pd.isna(description):
+        return np.nan
+    text = str(description).strip()
+    if not text:
+        return np.nan
+
+    intentional_walk_match = re.search(r"intentionally walks ([^\\.]+)", text, flags=re.IGNORECASE)
+    if intentional_walk_match:
+        return intentional_walk_match.group(1).strip()
+
+    pattern = re.compile(
+        r"^([A-Za-zÀ-ÖØ-öø-ÿ'., -]+?) "
+        r"(?:singles|doubles|triples|homers|walks|strikes out|grounds|flies|lines|"
+        r"pops|reaches|called out|out on|hits|bunts|sacrifices|hit by pitch)",
+        flags=re.IGNORECASE,
+    )
+    match = pattern.search(text)
+    if match:
+        return match.group(1).strip()
+    return np.nan
 
 
 def aggregate_batter_games(pa_df: pd.DataFrame) -> pd.DataFrame:
@@ -331,8 +355,8 @@ def aggregate_batter_games(pa_df: pd.DataFrame) -> pd.DataFrame:
     # We keep the most frequent pitcher seen by the batter in that game as the opposing pitcher proxy.
     batter_pitcher_map = (
         pa_df.groupby(["game_pk", "batter", "pitcher"], dropna=False)
-        .size()
-        .reset_index(name="pa_vs_pitcher")
+        .agg(pa_vs_pitcher=("plate_appearance", "sum"), opp_pitcher_name=("player_name", "first"))
+        .reset_index()
         .sort_values(["game_pk", "batter", "pa_vs_pitcher", "pitcher"], ascending=[True, True, False, True])
         .drop_duplicates(["game_pk", "batter"], keep="first")
         .rename(columns={"pitcher": "pitcher_id"})
@@ -341,7 +365,7 @@ def aggregate_batter_games(pa_df: pd.DataFrame) -> pd.DataFrame:
     batter_game_df = (
         pa_df.groupby(["game_pk", "game_date", "batter"], dropna=False)
         .agg(
-            batter_name=("player_name", "first"),
+            batter_name=("inferred_batter_name", "first"),
             team=("batting_team", "first"),
             opponent=("fielding_team", "first"),
             is_home=("is_home", "max"),
@@ -364,17 +388,22 @@ def aggregate_batter_games(pa_df: pd.DataFrame) -> pd.DataFrame:
     batter_game_df["hit_hr"] = (batter_game_df["hr_count"] > 0).astype(int)
     batter_game_df = merge_with_diagnostics(
         batter_game_df,
-        batter_pitcher_map[["game_pk", "batter", "pitcher_id"]].rename(columns={"batter": "batter_id"}),
+        batter_pitcher_map[["game_pk", "batter", "pitcher_id", "opp_pitcher_name"]].rename(columns={"batter": "batter_id"}),
         left_on=["game_pk", "batter_id"],
         right_on=["game_pk", "batter_id"],
         how="left",
         step_name="attach primary opposing pitcher to batter-game table",
         validate="one_to_one",
     )
+    missing_batter_names = batter_game_df["batter_name"].isna()
+    if missing_batter_names.any():
+        batter_game_df["batter_name"] = batter_game_df["batter_name"].astype("string")
+        batter_game_df.loc[missing_batter_names, "batter_name"] = (
+            "batter_" + batter_game_df.loc[missing_batter_names, "batter_id"].astype("Int64").astype(str)
+        )
     batter_game_df["player_id"] = batter_game_df["batter_id"]
     batter_game_df["player_name"] = batter_game_df["batter_name"]
     batter_game_df["opp_pitcher_id"] = batter_game_df["pitcher_id"]
-    batter_game_df["opp_pitcher_name"] = np.nan
     batter_game_df["pitch_hand_primary"] = batter_game_df["pitcher_hand"]
     batter_game_df["opp_pitcher_bf"] = np.nan
     batter_game_df["ballpark"] = np.where(
@@ -736,19 +765,14 @@ def _mlb_team_to_bref_code(team: object) -> str | None:
 
 
 def audit_pybaseball_park_factor_support() -> dict[str, object]:
-    keywords = ["park factor", "park_factors", "stadium factor", "venue factor", "home run factor"]
+    keywords = ["park", "stadium", "venue", "factor"]
     hits: list[str] = []
     modules_checked = 0
     for module_info in pkgutil.walk_packages(pybaseball.__path__, prefix="pybaseball."):
         modules_checked += 1
-        module_name = module_info.name
-        try:
-            module = __import__(module_name, fromlist=["dummy"])
-            module_src = inspect.getsource(module).lower()
-        except Exception:
-            continue
-        if any(keyword in module_src for keyword in keywords):
-            hits.append(module_name)
+        module_name = module_info.name.lower()
+        if any(keyword in module_name for keyword in keywords):
+            hits.append(module_info.name)
     usable = len(hits) > 0
     print("=== PYBASEBALL PARK-FACTOR AUDIT ===")
     print(f"modules_scanned: {modules_checked}")
@@ -819,6 +843,12 @@ def add_park_factor_features(model_df: pd.DataFrame, statcast_df: pd.DataFrame |
     df["home_team_for_park"] = np.where(df["is_home"].astype(bool), df["team"], df["opponent"])
     df["park_source"] = np.where(df["ballpark"].notna(), "ballpark_name", "home_team_fallback")
     df["park_team_code"] = df["home_team_for_park"].map(_mlb_team_to_bref_code)
+    print("=== PARK-FACTOR SOURCE AUDIT ===")
+    print(f"local_park_factor_lookup_exists: {PARK_FACTOR_LOOKUP_PATH.exists()} ({PARK_FACTOR_LOOKUP_PATH})")
+    venue_fields = [col for col in ["venue_id", "venue_name", "home_team", "away_team", "ballpark", "game_pk", "game_date"] if col in df.columns]
+    print(f"available_venue_game_fields_in_batter_game_table: {venue_fields}")
+    print("================================\n")
+
     pybaseball_audit = audit_pybaseball_park_factor_support()
     if pybaseball_audit["usable"]:
         print("WARNING: pybaseball park-factor candidates were found but no stable documented API was identified; continuing with fallback.")
@@ -830,6 +860,8 @@ def add_park_factor_features(model_df: pd.DataFrame, statcast_df: pd.DataFrame |
             source = "empirical_statcast_fallback"
         else:
             raise ValueError("No local park-factor lookup file and no Statcast dataframe available for empirical fallback.")
+    print(f"park_lookup_key_count: {park_table['park_team_code'].nunique(dropna=True):,}")
+    print(f"park_lookup_key_sample: {park_table['park_team_code'].dropna().astype(str).head(10).tolist()}")
     df = merge_with_diagnostics(
         df,
         park_table,
@@ -848,6 +880,10 @@ def add_park_factor_features(model_df: pd.DataFrame, statcast_df: pd.DataFrame |
     unmatched = int(df["park_factor_hr"].isna().sum()) if "park_factor_hr" in df.columns else len(df)
     print(f"matched park factor rows: {matched:,} / {len(df):,}")
     print(f"unmatched park factor rows: {unmatched:,} / {len(df):,} ({(unmatched / len(df) * 100 if len(df) else 0):.2f}%)")
+    unmatched_keys = df.loc[df["park_factor_hr"].isna(), "park_team_code"].dropna().astype(str).unique().tolist()
+    matched_keys = df.loc[df["park_factor_hr"].notna(), "park_team_code"].dropna().astype(str).unique().tolist()
+    print(f"sample unmatched venue keys: {unmatched_keys[:10]}")
+    print(f"sample matched venue keys: {matched_keys[:10]}")
     for feature in ["park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb"]:
         non_null = int(df[feature].notna().sum()) if feature in df.columns else 0
         miss_pct = float(df[feature].isna().mean() * 100) if feature in df.columns else 100.0
@@ -1328,6 +1364,9 @@ def print_focused_pass_summary(
     print(f"park_factor_hr_in_model_feature_list: {'park_factor_hr' in model_features}")
     print(f"requested_features_present_in_engineered_dataset: {len(newly_implemented)}")
     print(f"requested_features_present_but_omitted_from_model_list: {present_but_omitted if present_but_omitted else 'none'}")
+    if present_but_omitted:
+        for feature in present_but_omitted:
+            print(f"Feature existed but was omitted from model list; now included: {feature}")
     print(f"requested_features_present_and_in_model_list: {len(now_included)}")
     print(f"requested_features_still_missing: {skipped if skipped else 'none'}")
     print(f"requested_features_excluded_from_export_due_to_quality: {dead_features if dead_features else 'none'}")
