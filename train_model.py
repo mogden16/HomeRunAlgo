@@ -533,6 +533,64 @@ def apply_threshold_constraints(summary_df: pd.DataFrame, min_recall: float, max
     ].copy()
 
 
+def select_best_by_metric(
+    summary_df: pd.DataFrame,
+    metric: str,
+    min_recall: float,
+    max_positive_rate: float,
+) -> tuple[pd.Series, bool]:
+    constrained_df = apply_threshold_constraints(summary_df, min_recall, max_positive_rate)
+    source_df = constrained_df if not constrained_df.empty else summary_df
+    used_fallback = constrained_df.empty
+    ranked_df = source_df.sort_values(
+        by=[metric, "precision", "positive_prediction_rate", "threshold"],
+        ascending=[False, False, True, False],
+        kind="mergesort",
+    )
+    return ranked_df.iloc[0], used_fallback
+
+
+def select_best_precision_subject_to_recall_floor(
+    summary_df: pd.DataFrame,
+    min_recall: float,
+    max_positive_rate: float,
+) -> tuple[pd.Series, str]:
+    constrained_df = apply_threshold_constraints(summary_df, min_recall, max_positive_rate)
+    candidate_df = constrained_df
+    fallback_reason = ""
+    if candidate_df.empty:
+        candidate_df = summary_df.loc[summary_df["recall"] >= min_recall].copy()
+        fallback_reason = (
+            "WARNING: No thresholds met recall and positive-rate constraints; "
+            "falling back to thresholds meeting recall only."
+        )
+    if candidate_df.empty:
+        candidate_df = summary_df
+        fallback_reason = (
+            "WARNING: No thresholds met recall floor; falling back to the full OOF threshold table."
+        )
+
+    ranked_df = candidate_df.sort_values(
+        by=["precision", "f0.5", "threshold"],
+        ascending=[False, False, False],
+        kind="mergesort",
+    )
+    return ranked_df.iloc[0], fallback_reason
+
+
+def get_recommended_threshold_band(
+    summary_df: pd.DataFrame,
+    min_recall: float,
+    max_positive_rate: float,
+    f0_5_tolerance: float = 0.005,
+) -> pd.DataFrame:
+    constrained_df = apply_threshold_constraints(summary_df, min_recall, max_positive_rate)
+    if constrained_df.empty:
+        return constrained_df
+    best_f0_5 = float(constrained_df["f0.5"].max())
+    return constrained_df.loc[constrained_df["f0.5"] >= best_f0_5 - f0_5_tolerance].copy()
+
+
 def find_best_threshold(
     summary_df: pd.DataFrame,
     objective: str,
@@ -683,6 +741,95 @@ def print_threshold_table(summary_df: pd.DataFrame, title: str, objective: str, 
             f"{row['recall']:7.4f} {row['f1']:7.4f} {row['f0.5']:7.4f} {row['balanced_accuracy']:8.4f} "
             f"{row['positive_prediction_rate']:9.4f} {int(row['tp']):6d} {int(row['fp']):6d} "
             f"{int(row['fn']):6d} {int(row['tn']):6d}"
+        )
+
+
+def print_oof_threshold_diagnostics(
+    train_threshold_summary: pd.DataFrame,
+    min_recall: float,
+    max_positive_rate: float,
+) -> None:
+    best_f0_5_row, f0_5_used_fallback = select_best_by_metric(
+        train_threshold_summary, metric="f0.5", min_recall=min_recall, max_positive_rate=max_positive_rate
+    )
+    best_bal_acc_row, bal_acc_used_fallback = select_best_by_metric(
+        train_threshold_summary, metric="balanced_accuracy", min_recall=min_recall, max_positive_rate=max_positive_rate
+    )
+    best_prec_recall_row, precision_fallback_warning = select_best_precision_subject_to_recall_floor(
+        train_threshold_summary, min_recall=min_recall, max_positive_rate=max_positive_rate
+    )
+    recommended_band = get_recommended_threshold_band(
+        train_threshold_summary,
+        min_recall=min_recall,
+        max_positive_rate=max_positive_rate,
+        f0_5_tolerance=0.005,
+    )
+
+    constrained_df = apply_threshold_constraints(train_threshold_summary, min_recall, max_positive_rate)
+    top5_source_df = constrained_df
+    top5_warning = ""
+    if top5_source_df.empty:
+        top5_source_df = train_threshold_summary
+        top5_warning = "WARNING: No thresholds met constraints; showing top 5 from full OOF threshold table."
+    top5_df = top5_source_df.sort_values(
+        by=["f0.5", "precision"],
+        ascending=[False, False],
+        kind="mergesort",
+    ).head(5)
+
+    print("\nOOF threshold diagnostics")
+    print("-" * 60)
+    if f0_5_used_fallback:
+        print("WARNING: Best OOF F0.5 used fallback to full threshold table (no constrained candidates).")
+    print(
+        "Best threshold by OOF F0.5                 : "
+        f"thr={best_f0_5_row['threshold']:.4f}, f0.5={best_f0_5_row['f0.5']:.4f}, "
+        f"precision={best_f0_5_row['precision']:.4f}, recall={best_f0_5_row['recall']:.4f}, "
+        f"pos_rate={best_f0_5_row['positive_prediction_rate']:.4f}"
+    )
+    if bal_acc_used_fallback:
+        print("WARNING: Best OOF balanced accuracy used fallback to full threshold table (no constrained candidates).")
+    print(
+        "Best threshold by OOF balanced accuracy    : "
+        f"thr={best_bal_acc_row['threshold']:.4f}, bal_acc={best_bal_acc_row['balanced_accuracy']:.4f}, "
+        f"precision={best_bal_acc_row['precision']:.4f}, recall={best_bal_acc_row['recall']:.4f}, "
+        f"pos_rate={best_bal_acc_row['positive_prediction_rate']:.4f}"
+    )
+    if precision_fallback_warning:
+        print(precision_fallback_warning)
+    print(
+        "Best threshold by precision @ recall floor : "
+        f"thr={best_prec_recall_row['threshold']:.4f}, precision={best_prec_recall_row['precision']:.4f}, "
+        f"recall={best_prec_recall_row['recall']:.4f}, f0.5={best_prec_recall_row['f0.5']:.4f}, "
+        f"pos_rate={best_prec_recall_row['positive_prediction_rate']:.4f}"
+    )
+
+    print(
+        "Recommended threshold band                 : "
+        "thresholds within 0.005 of best constrained OOF F0.5"
+    )
+    if recommended_band.empty:
+        print("  No recommended band found under constraints.")
+    else:
+        print(
+            f"  lower={recommended_band['threshold'].min():.4f}, "
+            f"upper={recommended_band['threshold'].max():.4f}, "
+            f"count={len(recommended_band)}"
+        )
+
+    if top5_warning:
+        print(top5_warning)
+    print("Top 5 OOF thresholds under constraints")
+    header = (
+        f"{'threshold':>9} {'precision':>9} {'recall':>8} {'f1':>7} {'f0.5':>7} "
+        f"{'bal_acc':>8} {'pos_rate':>9}"
+    )
+    print(header)
+    for _, row in top5_df.iterrows():
+        print(
+            f"{row['threshold']:9.4f} {row['precision']:9.4f} {row['recall']:8.4f} "
+            f"{row['f1']:7.4f} {row['f0.5']:7.4f} {row['balanced_accuracy']:8.4f} "
+            f"{row['positive_prediction_rate']:9.4f}"
         )
 
 
@@ -964,6 +1111,11 @@ def evaluate_model_run(
         objective=threshold_objective,
         limit=10,
     )
+    print_oof_threshold_diagnostics(
+        train_threshold_summary,
+        min_recall=min_recall,
+        max_positive_rate=max_positive_rate,
+    )
 
     y_prob_test = model.predict_proba(X_test)[:, 1]
     metrics = evaluate_predictions(y_test, y_prob_test, chosen_threshold)
@@ -1161,13 +1313,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--min-recall",
         type=float,
-        default=0.10,
+        default=0.15,
         help="Minimum recall required during threshold search before falling back.",
     )
     parser.add_argument(
         "--max-positive-rate",
         type=float,
-        default=0.12,
+        default=0.14,
         help="Maximum predicted positive rate allowed during threshold search before falling back.",
     )
     parser.add_argument(
