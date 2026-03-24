@@ -1016,8 +1016,8 @@ def run_backtest(
     data_path: str,
     model_name: str = "logistic",
     threshold_objective: str = "f0.5",
-    min_recall: float = 0.10,
-    max_positive_rate: float = 0.12,
+    min_recall: float = 0.15,
+    max_positive_rate: float = 0.14,
     threshold_tolerance: float = 0.001,
     calibration: str = "sigmoid",
 ) -> None:
