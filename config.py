@@ -91,6 +91,7 @@ STATCAST_COLUMNS = [
     "hc_x",
     "hc_y",
     "release_speed",
+    "pitch_type",
 ]
 
 PARKS = {
