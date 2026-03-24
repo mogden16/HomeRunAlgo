@@ -948,14 +948,29 @@ def validate_ranked_output_identity(ranked: pd.DataFrame) -> pd.DataFrame:
     batter_null = int(ranked["batter_id"].isna().sum())
     if batter_null > 0:
         raise ValueError(f"Ranked output has {batter_null} rows with missing batter_id.")
+    name_null = int(ranked["batter_name"].isna().sum())
+    if name_null > 0:
+        raise ValueError(f"Ranked output has {name_null} rows with missing batter_name.")
+    if "player_name" in ranked.columns:
+        disagree = int((ranked["batter_name"].fillna("") != ranked["player_name"].fillna("")).sum())
+        print(f"ranked_output_identity_check(batter_name vs player_name disagreements): {disagree:,}")
+    candidate_identity_from_hitter = "batter_name" in ranked.columns and "batter_id" in ranked.columns
+    print(f"ranked_output_candidate_fields_use_hitter_identity: {candidate_identity_from_hitter}")
 
     if "pitcher_name" in ranked.columns:
         compare = ranked[["batter_name", "pitcher_name"]].dropna()
         mismatch_share = float((compare["batter_name"] == compare["pitcher_name"]).mean()) if len(compare) else 0.0
         print(f"ranked_output_identity_mismatch_share(batter_name==pitcher_name): {mismatch_share:.3f}")
+        display_cols = [col for col in ["batter_id", "batter_name", "pitcher_id", "pitcher_name"] if col in ranked.columns]
+        print("ranked_output_identity_preview_top20:")
+        print(ranked[display_cols].head(20).to_string(index=False))
         if mismatch_share > 0.25:
-            print("WARNING: high batter/pitcher name overlap detected; sample top rows for inspection:")
-            print(ranked[["batter_id", "batter_name", "pitcher_id", "pitcher_name"]].head(10).to_string(index=False))
+            raise ValueError("Ranked output identity risk: batter_name overlaps pitcher_name too frequently in top rows.")
+    if "pitcher_id" in ranked.columns:
+        id_overlap = float((ranked["batter_id"] == ranked["pitcher_id"]).mean())
+        print(f"ranked_output_identity_id_overlap_share(batter_id==pitcher_id): {id_overlap:.3f}")
+        if id_overlap > 0.10:
+            raise ValueError("Ranked output identity risk: displayed candidate ids appear to come from pitcher_id.")
     return ranked
 
 
@@ -987,10 +1002,12 @@ def print_top_candidates_summary(ranked_df: pd.DataFrame, top_n: int = DEFAULT_T
     print(f"\nTop {top_n} ranked HR candidates (ranking tool output)")
     print("-" * 60)
     for _, row in ranked_df.head(top_n).iterrows():
-        name = row["batter_name"] if "batter_name" in ranked_df.columns else row.get("batter_id", "unknown")
+        batter_id = row.get("batter_id", "unknown")
+        name = row["batter_name"] if "batter_name" in ranked_df.columns else batter_id
+        pitcher_name = row.get("pitcher_name", "unknown")
         actual_txt = f" | actual_hr={int(row['actual_hit_hr'])}" if "actual_hit_hr" in ranked_df.columns else ""
         print(
-            f"{int(row['rank'])}. {name} | score={row['predicted_hr_score']:.1f} | "
+            f"{int(row['rank'])}. batter_id={batter_id} | batter_name={name} | pitcher_name={pitcher_name} | score={row['predicted_hr_score']:.1f} | "
             f"tier={row['confidence_tier']}{actual_txt}"
         )
         reasons = [row.get("top_reason_1", ""), row.get("top_reason_2", ""), row.get("top_reason_3", "")]

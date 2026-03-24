@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Iterable
 import pkgutil
 import re
+import string
 import pybaseball
 
 import numpy as np
@@ -29,6 +30,26 @@ GRANULAR_PITCH_TYPES = {
     "changeup": {"CH", "FS", "FO", "SC"},
 }
 PARK_FACTOR_LOOKUP_PATH = Path("data/park_factors_hr.csv")
+TEAM_VENUE_KEY_ALIASES = {
+    "AZ": "ARI",
+    "ARI": "ARI",
+    "ARIZONA": "ARI",
+    "CWS": "CHW",
+    "CHISOX": "CHW",
+    "WHITESOX": "CHW",
+    "KC": "KCR",
+    "KANSASCITY": "KCR",
+    "SD": "SDP",
+    "SAN DIEGO": "SDP",
+    "SF": "SFG",
+    "SAN FRANCISCO": "SFG",
+    "TB": "TBR",
+    "TAMPA": "TBR",
+    "WSH": "WSN",
+    "WAS": "WSN",
+    "NATIONALS": "WSN",
+    "OAK": "ATH",
+}
 NEW_CONTEXT_FEATURE_FAMILIES = {
     "park": ["park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb"],
     "handedness_split": [
@@ -246,6 +267,34 @@ def validate_batter_game_df(df: pd.DataFrame) -> None:
         raise ValueError(f"Batter-game dataframe must be unique on batter_id + game_pk. Offending keys: {duplicates.head(10).to_dict('records')}")
 
 
+def validate_batter_identity(df: pd.DataFrame, *, context: str) -> dict[str, object]:
+    required = ["batter_id", "batter_name"]
+    missing = [column for column in required if column not in df.columns]
+    if missing:
+        raise ValueError(f"{context}: missing batter identity columns: {missing}")
+    print(f"=== BATTER IDENTITY AUDIT: {context} ===")
+    print(f"row count: {len(df):,}")
+    print(f"distinct batter_id count: {df['batter_id'].nunique(dropna=True):,}")
+    print(f"distinct batter_name count: {df['batter_name'].nunique(dropna=True):,}")
+    grouped = df.dropna(subset=["batter_id", "batter_name"]).groupby("batter_id", dropna=False)["batter_name"].nunique(dropna=True)
+    unstable = grouped[grouped > 1].sort_values(ascending=False)
+    stable_mapping = unstable.empty
+    print(f"batter_id -> batter_name stable one-to-one: {stable_mapping}")
+    if not stable_mapping:
+        offenders = unstable.head(20).index.tolist()
+        detail = (
+            df[df["batter_id"].isin(offenders)][["batter_id", "batter_name", "game_pk", "game_date"]]
+            .drop_duplicates()
+            .sort_values(["batter_id", "batter_name", "game_date"])
+        )
+        print("top 20 batter_ids with multiple batter_name values:")
+        print(unstable.head(20).to_string())
+        print("sample offending rows:")
+        print(detail.head(60).to_string(index=False))
+    print("==========================================\n")
+    return {"stable": stable_mapping, "unstable_ids": unstable.head(20).index.tolist(), "unstable_count": int(len(unstable))}
+
+
 def validate_pitcher_game_df(df: pd.DataFrame) -> None:
     required = ["game_pk", "game_date", "pitcher_id"]
     missing = [column for column in required if column not in df.columns]
@@ -346,8 +395,17 @@ def infer_batter_name_from_description(description: object) -> str | float:
     )
     match = pattern.search(text)
     if match:
-        return match.group(1).strip()
+        return canonicalize_batter_name(match.group(1).strip())
     return np.nan
+
+
+def canonicalize_batter_name(name: object) -> str | float:
+    if pd.isna(name):
+        return np.nan
+    cleaned = str(name).strip()
+    cleaned = re.sub(r"\s+", " ", cleaned)
+    cleaned = re.sub(r"\b(bunt|ground|fly|line|pop)\b$", "", cleaned, flags=re.IGNORECASE).strip()
+    return cleaned or np.nan
 
 
 def aggregate_batter_games(pa_df: pd.DataFrame) -> pd.DataFrame:
@@ -397,10 +455,18 @@ def aggregate_batter_games(pa_df: pd.DataFrame) -> pd.DataFrame:
     )
     missing_batter_names = batter_game_df["batter_name"].isna()
     if missing_batter_names.any():
+        preferred_name = (
+            batter_game_df.dropna(subset=["batter_name"])
+            .groupby("batter_id", dropna=False)["batter_name"]
+            .agg(lambda s: s.astype(str).value_counts().index[0])
+        )
         batter_game_df["batter_name"] = batter_game_df["batter_name"].astype("string")
+        batter_game_df.loc[missing_batter_names, "batter_name"] = batter_game_df.loc[missing_batter_names, "batter_id"].map(preferred_name)
+        missing_batter_names = batter_game_df["batter_name"].isna()
         batter_game_df.loc[missing_batter_names, "batter_name"] = (
             "batter_" + batter_game_df.loc[missing_batter_names, "batter_id"].astype("Int64").astype(str)
         )
+    batter_game_df["batter_name"] = batter_game_df["batter_name"].map(canonicalize_batter_name)
     batter_game_df["player_id"] = batter_game_df["batter_id"]
     batter_game_df["player_name"] = batter_game_df["batter_name"]
     batter_game_df["opp_pitcher_id"] = batter_game_df["pitcher_id"]
@@ -413,6 +479,8 @@ def aggregate_batter_games(pa_df: pd.DataFrame) -> pd.DataFrame:
     )
     batter_game_df["park_factor_hr"] = np.nan
     batter_game_df = batter_game_df.sort_values(["batter_id", "game_date", "game_pk"]).reset_index(drop=True)
+    print("batter_name source in batter-game construction: inferred_batter_name from PA rows (batter-side), then ID fallback.")
+    validate_batter_identity(batter_game_df, context="aggregate_batter_games output")
     return batter_game_df
 
 
@@ -566,6 +634,11 @@ def add_leakage_safe_features(
     )
     dataset = build_matchup_selected_handedness_features(dataset)
     hand_status = {"included": True, "reason": "batter/pitcher handedness split features were computed from prior games"}
+    identity_suffix_columns = [col for col in dataset.columns if col in {"batter_name_x", "batter_name_y", "pitcher_name_x", "pitcher_name_y"}]
+    batter_merge_overwrite_detected = len(identity_suffix_columns) > 0
+    print(f"identity suffix columns after feature merges: {identity_suffix_columns if identity_suffix_columns else 'none'}")
+    print(f"batter_name merge overwrite detected: {batter_merge_overwrite_detected}")
+    batter_identity_status = validate_batter_identity(dataset, context="post feature merges")
 
     assert_no_duplicate_batter_game_rows(dataset, context="post feature merges")
 
@@ -593,6 +666,8 @@ def add_leakage_safe_features(
         decisions,
         park_status=park_status,
         pybaseball_audit=park_status.get("pybaseball_audit"),
+        batter_identity_status=batter_identity_status,
+        batter_merge_overwrite_detected=batter_merge_overwrite_detected,
     )
     print_rerun_verdict(
         dataset,
@@ -764,6 +839,29 @@ def _mlb_team_to_bref_code(team: object) -> str | None:
     return mapping.get(team, team)
 
 
+def normalize_venue_key(value: object) -> str | None:
+    if pd.isna(value):
+        return None
+    text = str(value).strip().lower()
+    text = re.sub(r"\s+", " ", text)
+    text = re.sub(rf"[{re.escape(string.punctuation)}]", "", text)
+    return text or None
+
+
+def normalize_team_venue_key(value: object) -> str | None:
+    if pd.isna(value):
+        return None
+    text = str(value).strip()
+    if not text:
+        return None
+    if text.isnumeric():
+        text = str(int(float(text)))
+    normalized = re.sub(rf"[{re.escape(string.punctuation)}\s]", "", text.upper())
+    normalized = TEAM_VENUE_KEY_ALIASES.get(normalized, normalized)
+    normalized = _mlb_team_to_bref_code(normalized)
+    return normalized
+
+
 def audit_pybaseball_park_factor_support() -> dict[str, object]:
     keywords = ["park", "stadium", "venue", "factor"]
     hits: list[str] = []
@@ -798,10 +896,11 @@ def load_local_park_factor_lookup(path: Path = PARK_FACTOR_LOOKUP_PATH) -> pd.Da
         return None
 
     lookup = lookup.rename(columns={"venue_key": "park_team_code"})
+    lookup["park_mapping_key"] = lookup["park_team_code"].map(normalize_team_venue_key)
     for feature in ["park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb"]:
         lookup[feature] = pd.to_numeric(lookup[feature], errors="coerce")
-    return lookup[["park_team_code", "park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb"]].drop_duplicates(
-        subset=["park_team_code"]
+    return lookup[["park_team_code", "park_mapping_key", "park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb"]].drop_duplicates(
+        subset=["park_mapping_key"]
     )
 
 
@@ -832,9 +931,9 @@ def derive_empirical_park_factors_from_statcast(statcast_df: pd.DataFrame) -> pd
     park["park_factor_hr_vs_rhb"] = (
         ((park["hr_rhb"] + prior_weight * league_hr_rate) / (park["bbe_rhb"] + prior_weight)) / league_hr_rate
     ) * 100.0
-    return park.rename(columns={"home_team_for_park": "park_team_code"})[
-        ["park_team_code", "park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb"]
-    ]
+    park = park.rename(columns={"home_team_for_park": "park_team_code"})
+    park["park_mapping_key"] = park["park_team_code"].map(normalize_team_venue_key)
+    return park[["park_team_code", "park_mapping_key", "park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb"]]
 
 
 def add_park_factor_features(model_df: pd.DataFrame, statcast_df: pd.DataFrame | None) -> tuple[pd.DataFrame, dict[str, object]]:
@@ -843,10 +942,13 @@ def add_park_factor_features(model_df: pd.DataFrame, statcast_df: pd.DataFrame |
     df["home_team_for_park"] = np.where(df["is_home"].astype(bool), df["team"], df["opponent"])
     df["park_source"] = np.where(df["ballpark"].notna(), "ballpark_name", "home_team_fallback")
     df["park_team_code"] = df["home_team_for_park"].map(_mlb_team_to_bref_code)
+    df["park_mapping_key"] = df["park_team_code"].map(normalize_team_venue_key)
+    df["normalized_ballpark_key"] = df["ballpark"].map(normalize_venue_key) if "ballpark" in df.columns else np.nan
     print("=== PARK-FACTOR SOURCE AUDIT ===")
     print(f"local_park_factor_lookup_exists: {PARK_FACTOR_LOOKUP_PATH.exists()} ({PARK_FACTOR_LOOKUP_PATH})")
     venue_fields = [col for col in ["venue_id", "venue_name", "home_team", "away_team", "ballpark", "game_pk", "game_date"] if col in df.columns]
     print(f"available_venue_game_fields_in_batter_game_table: {venue_fields}")
+    print("park_factor canonical mapping key: park_mapping_key (normalized home-team venue code)")
     print("================================\n")
 
     pybaseball_audit = audit_pybaseball_park_factor_support()
@@ -860,12 +962,20 @@ def add_park_factor_features(model_df: pd.DataFrame, statcast_df: pd.DataFrame |
             source = "empirical_statcast_fallback"
         else:
             raise ValueError("No local park-factor lookup file and no Statcast dataframe available for empirical fallback.")
-    print(f"park_lookup_key_count: {park_table['park_team_code'].nunique(dropna=True):,}")
-    print(f"park_lookup_key_sample: {park_table['park_team_code'].dropna().astype(str).head(10).tolist()}")
+    print(f"park_lookup_key_count: {park_table['park_mapping_key'].nunique(dropna=True):,}")
+    print(f"park_lookup_key_sample: {park_table['park_mapping_key'].dropna().astype(str).head(10).tolist()}")
+    print(f"park-factor source row count: {len(park_table):,}")
+    print(f"available key columns in park-factor table: {[c for c in park_table.columns if 'park' in c or 'key' in c or 'venue' in c]}")
+    print(f"available venue/game/team columns in batter-game table: {[c for c in df.columns if c in {'game_pk','game_date','team','opponent','home_team_for_park','park_team_code','park_mapping_key','ballpark','normalized_ballpark_key'}]}")
+    print("exact merge keys chosen: left=['park_mapping_key'] right=['park_mapping_key']")
+    print(f"merge key dtype left park_mapping_key={df['park_mapping_key'].dtype} | right park_mapping_key={park_table['park_mapping_key'].dtype}")
+    print(f"unique merge keys left={df['park_mapping_key'].nunique(dropna=True):,} | right={park_table['park_mapping_key'].nunique(dropna=True):,}")
+    print(f"sample left keys (20): {df['park_mapping_key'].dropna().astype(str).drop_duplicates().head(20).tolist()}")
+    print(f"sample right keys (20): {park_table['park_mapping_key'].dropna().astype(str).drop_duplicates().head(20).tolist()}")
     df = merge_with_diagnostics(
         df,
         park_table,
-        on=["park_team_code"],
+        on=["park_mapping_key"],
         how="left",
         step_name="attach park factor lookup",
         validate="many_to_one",
@@ -875,15 +985,15 @@ def add_park_factor_features(model_df: pd.DataFrame, statcast_df: pd.DataFrame |
     print(f"venue/team fields available in model df: {sorted([col for col in ['game_pk', 'game_date', 'team', 'opponent', 'is_home', 'ballpark'] if col in df.columns])}")
     print(f"park identified via ballpark field rows: {int((df['park_source'] == 'ballpark_name').sum()):,}")
     print(f"park identified via home_team fallback rows: {int((df['park_source'] == 'home_team_fallback').sum()):,}")
-    print("venue key used for mapping: park_team_code")
+    print("venue key used for mapping: park_mapping_key")
     matched = int(df["park_factor_hr"].notna().sum()) if "park_factor_hr" in df.columns else 0
     unmatched = int(df["park_factor_hr"].isna().sum()) if "park_factor_hr" in df.columns else len(df)
     print(f"matched park factor rows: {matched:,} / {len(df):,}")
     print(f"unmatched park factor rows: {unmatched:,} / {len(df):,} ({(unmatched / len(df) * 100 if len(df) else 0):.2f}%)")
-    unmatched_keys = df.loc[df["park_factor_hr"].isna(), "park_team_code"].dropna().astype(str).unique().tolist()
-    matched_keys = df.loc[df["park_factor_hr"].notna(), "park_team_code"].dropna().astype(str).unique().tolist()
-    print(f"sample unmatched venue keys: {unmatched_keys[:10]}")
-    print(f"sample matched venue keys: {matched_keys[:10]}")
+    unmatched_keys = df.loc[df["park_factor_hr"].isna(), "park_mapping_key"].dropna().astype(str).unique().tolist()
+    matched_keys = df.loc[df["park_factor_hr"].notna(), "park_mapping_key"].dropna().astype(str).unique().tolist()
+    print(f"sample unmatched venue keys (20): {unmatched_keys[:20]}")
+    print(f"sample matched venue keys (20): {matched_keys[:20]}")
     for feature in ["park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb"]:
         non_null = int(df[feature].notna().sum()) if feature in df.columns else 0
         miss_pct = float(df[feature].isna().mean() * 100) if feature in df.columns else 100.0
@@ -893,16 +1003,20 @@ def add_park_factor_features(model_df: pd.DataFrame, statcast_df: pd.DataFrame |
     miss_pct = float(df["park_factor_hr_vs_batter_hand"].isna().mean() * 100) if len(df) else 100.0
     print(f"park_factor_hr_vs_batter_hand: non_null={non_null:,}, missing_pct={miss_pct:.2f}%")
     if df["park_factor_hr"].notna().sum() == 0:
-        raise ValueError("park_factor_hr is 100% missing after park-factor mapping.")
+        print('WARNING: park_factor_hr excluded because venue mapping produced zero usable values')
+        raise ValueError("park_factor_hr is 100% missing after park-factor mapping; excluded because venue mapping produced zero usable values.")
     else:
         status = {
             "included": True,
             "reason": f"park factors populated using {source}",
             "source": source,
+            "merge_keys": "park_mapping_key <- park_mapping_key",
+            "matched_rows": matched,
+            "unmatched_rows": unmatched,
             "pybaseball_audit": pybaseball_audit,
         }
     print("===============================\n")
-    return df.drop(columns=["home_team_for_park", "park_team_code", "park_source"]), status
+    return df.drop(columns=["home_team_for_park", "park_team_code", "park_mapping_key", "park_source", "normalized_ballpark_key"], errors="ignore"), status
 
 
 def _split_causal_rate(
@@ -1157,8 +1271,23 @@ def merge_with_diagnostics(left_df: pd.DataFrame, right_df: pd.DataFrame, *, ste
     unmatched = int((matched_probe["_merge"] != "both").sum())
     print(f"matched row count: {matched:,}")
     print(f"unmatched row count: {unmatched:,}")
+    identity_cols = ["batter_name", "pitcher_name", "batter_id", "pitcher_id"]
+    left_identity_presence = {col: col in left_df.columns for col in identity_cols}
+    right_identity_presence = {col: col in right_df.columns for col in identity_cols}
+    print(f"identity columns before merge (left): {left_identity_presence}")
+    print(f"identity columns before merge (right): {right_identity_presence}")
+    shared_identity = [col for col in identity_cols if col in left_df.columns and col in right_df.columns]
+    if shared_identity:
+        print(f"WARNING: right table also contains identity columns that could overwrite/suffix: {shared_identity}")
     merged = left_df.merge(right_df, indicator=True, **merge_kwargs)
     print(f"row count after merge: {len(merged):,}")
+    for col in identity_cols:
+        if col in merged.columns:
+            continue
+        left_suffix_col = f"{col}_x"
+        right_suffix_col = f"{col}_y"
+        if left_suffix_col in merged.columns or right_suffix_col in merged.columns:
+            print(f"WARNING: merge produced suffixed identity columns for {col}; preserving left-side hitter/pitcher identity columns is required.")
     for feature in tracked_feature_columns:
         if feature in merged.columns:
             print(f"post-merge non-null {feature}: {int(merged[feature].notna().sum()):,}")
@@ -1338,6 +1467,8 @@ def print_focused_pass_summary(
     decisions: dict[str, ExportDecision],
     park_status: dict[str, object],
     pybaseball_audit: dict[str, object] | None,
+    batter_identity_status: dict[str, object],
+    batter_merge_overwrite_detected: bool,
 ) -> None:
     model_features = load_model_feature_list()
     requested = [feature for features in REQUESTED_FEATURE_AUDIT.values() for feature in features]
@@ -1357,11 +1488,21 @@ def print_focused_pass_summary(
         park_series = park_series.iloc[:, 0]
     park_populated = bool(park_series.notna().any()) if "park_factor_hr" in df.columns else False
 
-    print("=== FOCUSED PARK + FEATURE-AUDIT SUMMARY ===")
+    print("=== FINAL VALIDATION SUMMARY ===")
+    print("[A] Park-factor status")
     print(f"pybaseball_park_factor_source_found: {pybaseball_has_source}")
     print(f"park_factor_source_used: {park_status.get('source', park_status.get('reason', 'unknown'))}")
+    print(f"park_factor_merge_keys_used: {park_status.get('merge_keys', 'park_mapping_key <- park_mapping_key')}")
+    print(f"park_factor_matched_rows: {park_status.get('matched_rows', 'unknown')}")
+    print(f"park_factor_unmatched_rows: {park_status.get('unmatched_rows', 'unknown')}")
+    print(f"park_factor_hr_non_null_count: {int(park_series.notna().sum()) if 'park_factor_hr' in df.columns else 0}")
     print(f"park_factor_hr_populated: {park_populated}")
     print(f"park_factor_hr_in_model_feature_list: {'park_factor_hr' in model_features}")
+    print("\n[B] Batter identity status")
+    print(f"batter_id_to_batter_name_stable: {batter_identity_status.get('stable')}")
+    print(f"batter_name_overwritten_by_merges: {batter_merge_overwrite_detected}")
+    print("ranked_output_candidate_names_confirmed_hitters: evaluated in train_model.validate_ranked_output_identity")
+    print("\n[C] Requested feature audit")
     print(f"requested_features_present_in_engineered_dataset: {len(newly_implemented)}")
     print(f"requested_features_present_but_omitted_from_model_list: {present_but_omitted if present_but_omitted else 'none'}")
     if present_but_omitted:
@@ -1370,7 +1511,7 @@ def print_focused_pass_summary(
     print(f"requested_features_present_and_in_model_list: {len(now_included)}")
     print(f"requested_features_still_missing: {skipped if skipped else 'none'}")
     print(f"requested_features_excluded_from_export_due_to_quality: {dead_features if dead_features else 'none'}")
-    print("===========================================\n")
+    print("================================\n")
 
 
 def print_rerun_verdict(
