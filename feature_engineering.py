@@ -17,6 +17,67 @@ SPRAY_HOME_Y = 198.27
 FASTBALL_TYPES = {"FF", "FT", "SI", "FC", "FA"}
 BREAKING_BALL_TYPES = {"SL", "CU", "KC", "KN", "SV", "CS"}
 OFFSPEED_TYPES = {"CH", "FS", "FO", "SC", "EP"}
+GRANULAR_PITCH_TYPES = {
+    "four_seam": {"FF", "FA"},
+    "sinker": {"SI", "FT"},
+    "cutter": {"FC"},
+    "slider": {"SL"},
+    "curveball": {"CU", "KC", "KN", "SV", "CS"},
+    "changeup": {"CH", "FS", "FO", "SC"},
+}
+PARK_FACTOR_LOOKUP = {
+    "ARI": {"park_factor_hr": 1.02, "park_factor_hr_vs_lhb": 1.01, "park_factor_hr_vs_rhb": 1.03},
+    "ATL": {"park_factor_hr": 1.07, "park_factor_hr_vs_lhb": 1.04, "park_factor_hr_vs_rhb": 1.10},
+    "BAL": {"park_factor_hr": 0.96, "park_factor_hr_vs_lhb": 0.92, "park_factor_hr_vs_rhb": 1.00},
+    "BOS": {"park_factor_hr": 1.04, "park_factor_hr_vs_lhb": 0.99, "park_factor_hr_vs_rhb": 1.08},
+    "CHC": {"park_factor_hr": 1.01, "park_factor_hr_vs_lhb": 1.00, "park_factor_hr_vs_rhb": 1.02},
+    "CHW": {"park_factor_hr": 1.08, "park_factor_hr_vs_lhb": 1.05, "park_factor_hr_vs_rhb": 1.11},
+    "CIN": {"park_factor_hr": 1.12, "park_factor_hr_vs_lhb": 1.10, "park_factor_hr_vs_rhb": 1.14},
+    "CLE": {"park_factor_hr": 0.99, "park_factor_hr_vs_lhb": 0.97, "park_factor_hr_vs_rhb": 1.01},
+    "COL": {"park_factor_hr": 1.18, "park_factor_hr_vs_lhb": 1.16, "park_factor_hr_vs_rhb": 1.20},
+    "DET": {"park_factor_hr": 0.95, "park_factor_hr_vs_lhb": 0.93, "park_factor_hr_vs_rhb": 0.97},
+    "HOU": {"park_factor_hr": 1.04, "park_factor_hr_vs_lhb": 1.06, "park_factor_hr_vs_rhb": 1.02},
+    "KCR": {"park_factor_hr": 0.92, "park_factor_hr_vs_lhb": 0.90, "park_factor_hr_vs_rhb": 0.94},
+    "LAA": {"park_factor_hr": 0.98, "park_factor_hr_vs_lhb": 0.97, "park_factor_hr_vs_rhb": 0.99},
+    "LAD": {"park_factor_hr": 0.97, "park_factor_hr_vs_lhb": 0.96, "park_factor_hr_vs_rhb": 0.98},
+    "MIA": {"park_factor_hr": 0.93, "park_factor_hr_vs_lhb": 0.91, "park_factor_hr_vs_rhb": 0.95},
+    "MIL": {"park_factor_hr": 1.05, "park_factor_hr_vs_lhb": 1.03, "park_factor_hr_vs_rhb": 1.07},
+    "MIN": {"park_factor_hr": 1.01, "park_factor_hr_vs_lhb": 1.00, "park_factor_hr_vs_rhb": 1.02},
+    "NYM": {"park_factor_hr": 0.95, "park_factor_hr_vs_lhb": 0.94, "park_factor_hr_vs_rhb": 0.96},
+    "NYY": {"park_factor_hr": 1.09, "park_factor_hr_vs_lhb": 1.15, "park_factor_hr_vs_rhb": 1.03},
+    "ATH": {"park_factor_hr": 0.89, "park_factor_hr_vs_lhb": 0.87, "park_factor_hr_vs_rhb": 0.91},
+    "PHI": {"park_factor_hr": 1.10, "park_factor_hr_vs_lhb": 1.09, "park_factor_hr_vs_rhb": 1.11},
+    "PIT": {"park_factor_hr": 0.94, "park_factor_hr_vs_lhb": 0.93, "park_factor_hr_vs_rhb": 0.95},
+    "SDP": {"park_factor_hr": 0.93, "park_factor_hr_vs_lhb": 0.91, "park_factor_hr_vs_rhb": 0.95},
+    "SEA": {"park_factor_hr": 0.92, "park_factor_hr_vs_lhb": 0.89, "park_factor_hr_vs_rhb": 0.95},
+    "SFG": {"park_factor_hr": 0.90, "park_factor_hr_vs_lhb": 0.88, "park_factor_hr_vs_rhb": 0.92},
+    "STL": {"park_factor_hr": 0.97, "park_factor_hr_vs_lhb": 0.95, "park_factor_hr_vs_rhb": 0.99},
+    "TBR": {"park_factor_hr": 0.96, "park_factor_hr_vs_lhb": 0.94, "park_factor_hr_vs_rhb": 0.98},
+    "TEX": {"park_factor_hr": 1.05, "park_factor_hr_vs_lhb": 1.04, "park_factor_hr_vs_rhb": 1.06},
+    "TOR": {"park_factor_hr": 1.08, "park_factor_hr_vs_lhb": 1.05, "park_factor_hr_vs_rhb": 1.11},
+    "WSN": {"park_factor_hr": 1.00, "park_factor_hr_vs_lhb": 0.98, "park_factor_hr_vs_rhb": 1.02},
+}
+NEW_CONTEXT_FEATURE_FAMILIES = {
+    "park": ["park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb"],
+    "handedness_split": [
+        "batter_hr_per_pa_vs_rhp", "batter_hr_per_pa_vs_lhp", "batter_barrels_per_pa_vs_rhp", "batter_barrels_per_pa_vs_lhp",
+        "batter_hard_hit_rate_vs_rhp", "batter_hard_hit_rate_vs_lhp", "batter_95plus_ev_rate_vs_rhp", "batter_95plus_ev_rate_vs_lhp",
+        "batter_hr_per_pa_vs_pitcher_hand", "batter_barrels_per_pa_vs_pitcher_hand", "batter_hard_hit_rate_vs_pitcher_hand", "batter_95plus_ev_rate_vs_pitcher_hand",
+        "pitcher_hr_allowed_per_pa_vs_rhb", "pitcher_hr_allowed_per_pa_vs_lhb", "pitcher_barrels_allowed_per_bbe_vs_rhb", "pitcher_barrels_allowed_per_bbe_vs_lhb",
+        "pitcher_hard_hit_allowed_rate_vs_rhb", "pitcher_hard_hit_allowed_rate_vs_lhb", "pitcher_95plus_ev_allowed_rate_vs_rhb", "pitcher_95plus_ev_allowed_rate_vs_lhb",
+        "pitcher_hr_allowed_per_pa_vs_batter_hand", "pitcher_barrels_allowed_per_bbe_vs_batter_hand", "pitcher_hard_hit_allowed_rate_vs_batter_hand", "pitcher_95plus_ev_allowed_rate_vs_batter_hand",
+        "split_matchup_hr", "split_matchup_barrel", "split_matchup_hard_hit",
+    ],
+    "pitch_type_matchup": [
+        "pitcher_four_seam_pct", "pitcher_sinker_pct", "pitcher_cutter_pct", "pitcher_slider_pct", "pitcher_curveball_pct", "pitcher_changeup_pct",
+        "batter_hard_hit_rate_vs_breaking", "batter_barrel_rate_vs_breaking", "batter_contact_rate_vs_breaking",
+        "batter_hard_hit_rate_vs_offspeed", "batter_barrel_rate_vs_offspeed", "batter_contact_rate_vs_offspeed",
+        "batter_hard_hit_rate_vs_slider", "batter_barrel_rate_vs_slider", "batter_hard_hit_rate_vs_changeup", "batter_barrel_rate_vs_changeup",
+        "batter_hard_hit_rate_vs_curveball", "batter_barrel_rate_vs_curveball",
+        "breaking_matchup_hard_hit", "breaking_matchup_barrel", "offspeed_matchup_hard_hit", "offspeed_matchup_barrel",
+        "slider_matchup_barrel", "changeup_matchup_barrel",
+    ],
+}
 CONTACT_DESCRIPTIONS = {
     "foul",
     "foul_tip",
@@ -107,6 +168,60 @@ FINAL_FEATURE_SPECS = {
     "batter_contact_rate_vs_fastballs": "pitch_type",
     "fastball_matchup_hard_hit": "pitch_type",
     "fastball_matchup_barrel": "pitch_type",
+    "park_factor_hr": "park",
+    "park_factor_hr_vs_lhb": "park",
+    "park_factor_hr_vs_rhb": "park",
+    "batter_hr_per_pa_vs_rhp": "handedness_split",
+    "batter_hr_per_pa_vs_lhp": "handedness_split",
+    "batter_barrels_per_pa_vs_rhp": "handedness_split",
+    "batter_barrels_per_pa_vs_lhp": "handedness_split",
+    "batter_hard_hit_rate_vs_rhp": "handedness_split",
+    "batter_hard_hit_rate_vs_lhp": "handedness_split",
+    "batter_95plus_ev_rate_vs_rhp": "handedness_split",
+    "batter_95plus_ev_rate_vs_lhp": "handedness_split",
+    "batter_hr_per_pa_vs_pitcher_hand": "handedness_split",
+    "batter_barrels_per_pa_vs_pitcher_hand": "handedness_split",
+    "batter_hard_hit_rate_vs_pitcher_hand": "handedness_split",
+    "batter_95plus_ev_rate_vs_pitcher_hand": "handedness_split",
+    "pitcher_hr_allowed_per_pa_vs_rhb": "handedness_split",
+    "pitcher_hr_allowed_per_pa_vs_lhb": "handedness_split",
+    "pitcher_barrels_allowed_per_bbe_vs_rhb": "handedness_split",
+    "pitcher_barrels_allowed_per_bbe_vs_lhb": "handedness_split",
+    "pitcher_hard_hit_allowed_rate_vs_rhb": "handedness_split",
+    "pitcher_hard_hit_allowed_rate_vs_lhb": "handedness_split",
+    "pitcher_95plus_ev_allowed_rate_vs_rhb": "handedness_split",
+    "pitcher_95plus_ev_allowed_rate_vs_lhb": "handedness_split",
+    "pitcher_hr_allowed_per_pa_vs_batter_hand": "handedness_split",
+    "pitcher_barrels_allowed_per_bbe_vs_batter_hand": "handedness_split",
+    "pitcher_hard_hit_allowed_rate_vs_batter_hand": "handedness_split",
+    "pitcher_95plus_ev_allowed_rate_vs_batter_hand": "handedness_split",
+    "split_matchup_hr": "handedness_split",
+    "split_matchup_barrel": "handedness_split",
+    "split_matchup_hard_hit": "handedness_split",
+    "pitcher_four_seam_pct": "pitch_type",
+    "pitcher_sinker_pct": "pitch_type",
+    "pitcher_cutter_pct": "pitch_type",
+    "pitcher_slider_pct": "pitch_type",
+    "pitcher_curveball_pct": "pitch_type",
+    "pitcher_changeup_pct": "pitch_type",
+    "batter_hard_hit_rate_vs_breaking": "pitch_type",
+    "batter_barrel_rate_vs_breaking": "pitch_type",
+    "batter_contact_rate_vs_breaking": "pitch_type",
+    "batter_hard_hit_rate_vs_offspeed": "pitch_type",
+    "batter_barrel_rate_vs_offspeed": "pitch_type",
+    "batter_contact_rate_vs_offspeed": "pitch_type",
+    "batter_hard_hit_rate_vs_slider": "pitch_type",
+    "batter_barrel_rate_vs_slider": "pitch_type",
+    "batter_hard_hit_rate_vs_changeup": "pitch_type",
+    "batter_barrel_rate_vs_changeup": "pitch_type",
+    "batter_hard_hit_rate_vs_curveball": "pitch_type",
+    "batter_barrel_rate_vs_curveball": "pitch_type",
+    "breaking_matchup_hard_hit": "pitch_type",
+    "breaking_matchup_barrel": "pitch_type",
+    "offspeed_matchup_hard_hit": "pitch_type",
+    "offspeed_matchup_barrel": "pitch_type",
+    "slider_matchup_barrel": "pitch_type",
+    "changeup_matchup_barrel": "pitch_type",
 }
 
 
@@ -281,8 +396,19 @@ def aggregate_batter_games(pa_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def aggregate_pitcher_games(pa_df: pd.DataFrame) -> pd.DataFrame:
+    pa_enriched = pa_df.copy()
+    pa_enriched["is_rhb"] = pa_enriched["stand"].eq("R").astype(int)
+    pa_enriched["is_lhb"] = pa_enriched["stand"].eq("L").astype(int)
+    for side in ["rhb", "lhb"]:
+        mask = pa_enriched[f"is_{side}"]
+        pa_enriched[f"pa_against_{side}"] = pa_enriched["pa_count"] * mask
+        pa_enriched[f"hr_allowed_{side}"] = pa_enriched["hr_count"] * mask
+        pa_enriched[f"bbe_allowed_{side}"] = pa_enriched["bbe_count"] * mask
+        pa_enriched[f"barrels_allowed_{side}"] = pa_enriched["barrel_count"] * mask
+        pa_enriched[f"hard_hit_bbe_allowed_{side}"] = pa_enriched["hard_hit_bbe_count"] * mask
+        pa_enriched[f"ev_95plus_bbe_allowed_{side}"] = pa_enriched["ev_95plus_bbe_count"] * mask
     pitcher_game_df = (
-        pa_df.groupby(["game_pk", "game_date", "pitcher"], dropna=False)
+        pa_enriched.groupby(["game_pk", "game_date", "pitcher"], dropna=False)
         .agg(
             pitcher_name=("player_name", "first"),
             p_throws=("p_throws", "first"),
@@ -294,6 +420,18 @@ def aggregate_pitcher_games(pa_df: pd.DataFrame) -> pd.DataFrame:
             avg_ev_allowed=("launch_speed", "mean"),
             max_ev_allowed=("launch_speed", "max"),
             ev_95plus_bbe_allowed=("ev_95plus_bbe_count", "sum"),
+            pa_against_rhb=("pa_against_rhb", "sum"),
+            pa_against_lhb=("pa_against_lhb", "sum"),
+            hr_allowed_rhb=("hr_allowed_rhb", "sum"),
+            hr_allowed_lhb=("hr_allowed_lhb", "sum"),
+            bbe_allowed_rhb=("bbe_allowed_rhb", "sum"),
+            bbe_allowed_lhb=("bbe_allowed_lhb", "sum"),
+            barrels_allowed_rhb=("barrels_allowed_rhb", "sum"),
+            barrels_allowed_lhb=("barrels_allowed_lhb", "sum"),
+            hard_hit_bbe_allowed_rhb=("hard_hit_bbe_allowed_rhb", "sum"),
+            hard_hit_bbe_allowed_lhb=("hard_hit_bbe_allowed_lhb", "sum"),
+            ev_95plus_bbe_allowed_rhb=("ev_95plus_bbe_allowed_rhb", "sum"),
+            ev_95plus_bbe_allowed_lhb=("ev_95plus_bbe_allowed_lhb", "sum"),
         )
         .reset_index()
         .rename(columns={"pitcher": "pitcher_id"})
@@ -316,9 +454,12 @@ def add_leakage_safe_features(
     pitcher_df["game_date"] = pd.to_datetime(pitcher_df["game_date"])
     validate_batter_game_df(batter_df)
     validate_pitcher_game_df(pitcher_df)
+    raw_field_status = validate_required_raw_fields(statcast_df)
 
     batter_features = compute_batter_trailing_features(batter_df)
     pitcher_features = compute_pitcher_trailing_features(pitcher_df)
+    batter_hand_features = compute_batter_handedness_split_features(batter_df)
+    pitcher_hand_features = compute_pitcher_handedness_split_features(pitcher_df)
 
     print_pre_merge_feature_table_diagnostics(
         table_name="batter trailing feature table",
@@ -368,7 +509,10 @@ def add_leakage_safe_features(
     )
 
     pitch_type_status = {"included": False, "reason": "pitch-type features were not attempted"}
+    park_status = {"included": False, "reason": "park factors were not attempted"}
+    hand_status = {"included": False, "reason": "handedness split features were not attempted"}
     if statcast_df is not None:
+        dataset, park_status = add_park_factor_features(dataset, statcast_df=statcast_df)
         pitch_type_features, pitch_type_status = build_pitch_type_matchup_features(statcast_df, dataset)
         if not pitch_type_features.empty:
             dataset = merge_with_diagnostics(
@@ -379,6 +523,30 @@ def add_leakage_safe_features(
                 step_name="merge pitch-type matchup features",
                 validate="one_to_one",
             )
+    else:
+        dataset, park_status = add_park_factor_features(dataset, statcast_df=None)
+
+    dataset = merge_with_diagnostics(
+        dataset,
+        batter_hand_features,
+        on=["batter_id", "game_pk"],
+        how="left",
+        step_name="merge batter handedness split features",
+        validate="one_to_one",
+    )
+    dataset = merge_with_diagnostics(
+        dataset,
+        pitcher_hand_features,
+        left_on=["pitcher_id", "game_pk"],
+        right_on=["pitcher_id", "game_pk"],
+        how="left",
+        step_name="merge pitcher handedness split features",
+        validate="many_to_one",
+    )
+    dataset = build_matchup_selected_handedness_features(dataset)
+    hand_status = {"included": True, "reason": "batter/pitcher handedness split features were computed from prior games"}
+
+    assert_no_duplicate_batter_game_rows(dataset, context="post feature merges")
 
     dataset["platoon_advantage"] = np.where(
         dataset["bat_side"].notna() & dataset["pitch_hand_primary"].notna(),
@@ -394,7 +562,14 @@ def add_leakage_safe_features(
     dataset["player_id"] = dataset["batter_id"]
     validate_final_model_df(dataset)
     print_final_feature_quality_summary(dataset, decisions)
-    print_rerun_verdict(dataset, pitch_type_status)
+    summarize_new_context_feature_quality(dataset, decisions)
+    print_rerun_verdict(
+        dataset,
+        pitch_type_status=pitch_type_status,
+        park_status=park_status,
+        hand_status=hand_status,
+        raw_field_status=raw_field_status,
+    )
     return dataset
 
 
@@ -523,77 +698,294 @@ def compute_pitcher_trailing_features(pitcher_game_df: pd.DataFrame) -> pd.DataF
     return feature_df
 
 
+def validate_required_raw_fields(statcast_df: pd.DataFrame | None) -> dict[str, bool]:
+    required = {
+        "park_mapping_fields": {"game_pk", "game_date", "home_team", "away_team"},
+        "handedness_fields": {"stand", "p_throws", "batter", "pitcher"},
+        "pitch_type_fields": {"pitch_type", "description", "batter", "pitcher"},
+        "key_fields": {"game_pk", "game_date", "batter", "pitcher"},
+    }
+    status: dict[str, bool] = {}
+    if statcast_df is None:
+        print("WARNING: Raw Statcast dataframe not supplied; skipping raw-field validation checks.")
+        for label in required:
+            status[label] = False
+        return status
+    columns = set(statcast_df.columns)
+    print("\n=== RAW FIELD SUPPORT CHECKS ===")
+    for label, fields in required.items():
+        missing = sorted(fields - columns)
+        supported = len(missing) == 0
+        status[label] = supported
+        if supported:
+            print(f"{label}: supported")
+        else:
+            print(f"{label}: missing -> {missing}")
+    print("================================\n")
+    return status
+
+
+def _mlb_team_to_bref_code(team: object) -> str | None:
+    if pd.isna(team):
+        return None
+    team = str(team).upper()
+    mapping = {"AZ": "ARI", "CWS": "CHW", "KC": "KCR", "SD": "SDP", "SF": "SFG", "TB": "TBR", "WSH": "WSN", "OAK": "ATH"}
+    return mapping.get(team, team)
+
+
+def add_park_factor_features(model_df: pd.DataFrame, statcast_df: pd.DataFrame | None) -> tuple[pd.DataFrame, dict[str, object]]:
+    df = model_df.copy()
+    df = df.drop(columns=["park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb"], errors="ignore")
+    df["home_team_for_park"] = np.where(df["is_home"].astype(bool), df["team"], df["opponent"])
+    df["park_source"] = np.where(df["ballpark"].notna(), "ballpark_name", "home_team_fallback")
+    df["park_team_code"] = df["home_team_for_park"].map(_mlb_team_to_bref_code)
+    park_table = pd.DataFrame.from_dict(PARK_FACTOR_LOOKUP, orient="index").reset_index().rename(columns={"index": "park_team_code"})
+    df = merge_with_diagnostics(
+        df,
+        park_table,
+        on=["park_team_code"],
+        how="left",
+        step_name="attach static park factor lookup",
+        validate="many_to_one",
+    )
+    print("=== PARK FACTOR DIAGNOSTICS ===")
+    print("park-factor source: static in-repo lookup (approximate HR factors by home park)")
+    print(f"park identified via ballpark field rows: {int((df['park_source'] == 'ballpark_name').sum()):,}")
+    print(f"park identified via home_team fallback rows: {int((df['park_source'] == 'home_team_fallback').sum()):,}")
+    for feature in ["park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb"]:
+        non_null = int(df[feature].notna().sum()) if feature in df.columns else 0
+        miss_pct = float(df[feature].isna().mean() * 100) if feature in df.columns else 100.0
+        print(f"{feature}: non_null={non_null:,}, missing_pct={miss_pct:.2f}%")
+    if df["park_factor_hr"].notna().sum() == 0:
+        warning = "Park factor mapping failed; park features will be excluded by export coverage checks."
+        print(f"WARNING: {warning}")
+        status = {"included": False, "reason": warning}
+    else:
+        status = {"included": True, "reason": "park factor lookup applied"}
+    print("===============================\n")
+    return df.drop(columns=["home_team_for_park", "park_team_code", "park_source"]), status
+
+
+def _split_causal_rate(
+    grp: pd.DataFrame,
+    split_col: str,
+    split_value: str,
+    numerator_col: str,
+    denominator_col: str,
+) -> pd.Series:
+    mask = grp[split_col].eq(split_value).astype(float)
+    numerator = grp[numerator_col].fillna(0.0) * mask
+    denominator = grp[denominator_col].fillna(0.0) * mask
+    return numerator.cumsum().shift(1) / denominator.cumsum().shift(1).replace({0.0: np.nan})
+
+
+def compute_batter_handedness_split_features(batter_game_df: pd.DataFrame) -> pd.DataFrame:
+    records: list[pd.DataFrame] = []
+    for _, group in batter_game_df.groupby("batter_id", sort=False):
+        grp = group.sort_values(["game_date", "game_pk"]).reset_index(drop=True).copy()
+        for hand, suffix in [("R", "rhp"), ("L", "lhp")]:
+            grp[f"batter_hr_per_pa_vs_{suffix}"] = _split_causal_rate(grp, "pitcher_hand", hand, "hr_count", "pa_count")
+            grp[f"batter_barrels_per_pa_vs_{suffix}"] = _split_causal_rate(grp, "pitcher_hand", hand, "barrel_count", "pa_count")
+            grp[f"batter_hard_hit_rate_vs_{suffix}"] = _split_causal_rate(grp, "pitcher_hand", hand, "hard_hit_bbe_count", "bbe_count")
+            grp[f"batter_95plus_ev_rate_vs_{suffix}"] = _split_causal_rate(grp, "pitcher_hand", hand, "ev_95plus_bbe_count", "bbe_count")
+        records.append(grp[[
+            "batter_id", "game_pk", "batter_hr_per_pa_vs_rhp", "batter_hr_per_pa_vs_lhp", "batter_barrels_per_pa_vs_rhp",
+            "batter_barrels_per_pa_vs_lhp", "batter_hard_hit_rate_vs_rhp", "batter_hard_hit_rate_vs_lhp",
+            "batter_95plus_ev_rate_vs_rhp", "batter_95plus_ev_rate_vs_lhp",
+        ]])
+    return pd.concat(records, ignore_index=True) if records else pd.DataFrame(columns=["batter_id", "game_pk"])
+
+
+def compute_pitcher_handedness_split_features(pitcher_game_df: pd.DataFrame) -> pd.DataFrame:
+    required = [
+        "pa_against_rhb", "pa_against_lhb", "hr_allowed_rhb", "hr_allowed_lhb", "bbe_allowed_rhb", "bbe_allowed_lhb",
+        "barrels_allowed_rhb", "barrels_allowed_lhb", "hard_hit_bbe_allowed_rhb", "hard_hit_bbe_allowed_lhb",
+        "ev_95plus_bbe_allowed_rhb", "ev_95plus_bbe_allowed_lhb",
+    ]
+    if not all(col in pitcher_game_df.columns for col in required):
+        print("WARNING: Skipping pitcher handedness split features; aggregate pitcher splits were unavailable.")
+        return pd.DataFrame(columns=["pitcher_id", "game_pk"])
+
+    records: list[pd.DataFrame] = []
+    for _, group in pitcher_game_df.groupby("pitcher_id", sort=False):
+        grp = group.sort_values(["game_date", "game_pk"]).reset_index(drop=True).copy()
+        prior = grp[required].fillna(0.0).cumsum().shift(1)
+        grp["pitcher_hr_allowed_per_pa_vs_rhb"] = safe_rate(prior["hr_allowed_rhb"], prior["pa_against_rhb"])
+        grp["pitcher_hr_allowed_per_pa_vs_lhb"] = safe_rate(prior["hr_allowed_lhb"], prior["pa_against_lhb"])
+        grp["pitcher_barrels_allowed_per_bbe_vs_rhb"] = safe_rate(prior["barrels_allowed_rhb"], prior["bbe_allowed_rhb"])
+        grp["pitcher_barrels_allowed_per_bbe_vs_lhb"] = safe_rate(prior["barrels_allowed_lhb"], prior["bbe_allowed_lhb"])
+        grp["pitcher_hard_hit_allowed_rate_vs_rhb"] = safe_rate(prior["hard_hit_bbe_allowed_rhb"], prior["bbe_allowed_rhb"])
+        grp["pitcher_hard_hit_allowed_rate_vs_lhb"] = safe_rate(prior["hard_hit_bbe_allowed_lhb"], prior["bbe_allowed_lhb"])
+        grp["pitcher_95plus_ev_allowed_rate_vs_rhb"] = safe_rate(prior["ev_95plus_bbe_allowed_rhb"], prior["bbe_allowed_rhb"])
+        grp["pitcher_95plus_ev_allowed_rate_vs_lhb"] = safe_rate(prior["ev_95plus_bbe_allowed_lhb"], prior["bbe_allowed_lhb"])
+        records.append(grp[[
+            "pitcher_id", "game_pk", "pitcher_hr_allowed_per_pa_vs_rhb", "pitcher_hr_allowed_per_pa_vs_lhb",
+            "pitcher_barrels_allowed_per_bbe_vs_rhb", "pitcher_barrels_allowed_per_bbe_vs_lhb",
+            "pitcher_hard_hit_allowed_rate_vs_rhb", "pitcher_hard_hit_allowed_rate_vs_lhb",
+            "pitcher_95plus_ev_allowed_rate_vs_rhb", "pitcher_95plus_ev_allowed_rate_vs_lhb",
+        ]])
+    return pd.concat(records, ignore_index=True) if records else pd.DataFrame(columns=["pitcher_id", "game_pk"])
+
+
+def build_matchup_selected_handedness_features(df: pd.DataFrame) -> pd.DataFrame:
+    dataset = df.copy()
+    dataset["batter_hr_per_pa_vs_pitcher_hand"] = np.where(dataset["pitcher_hand"].eq("L"), dataset.get("batter_hr_per_pa_vs_lhp"), dataset.get("batter_hr_per_pa_vs_rhp"))
+    dataset["batter_barrels_per_pa_vs_pitcher_hand"] = np.where(dataset["pitcher_hand"].eq("L"), dataset.get("batter_barrels_per_pa_vs_lhp"), dataset.get("batter_barrels_per_pa_vs_rhp"))
+    dataset["batter_hard_hit_rate_vs_pitcher_hand"] = np.where(dataset["pitcher_hand"].eq("L"), dataset.get("batter_hard_hit_rate_vs_lhp"), dataset.get("batter_hard_hit_rate_vs_rhp"))
+    dataset["batter_95plus_ev_rate_vs_pitcher_hand"] = np.where(dataset["pitcher_hand"].eq("L"), dataset.get("batter_95plus_ev_rate_vs_lhp"), dataset.get("batter_95plus_ev_rate_vs_rhp"))
+
+    dataset["pitcher_hr_allowed_per_pa_vs_batter_hand"] = np.where(dataset["bat_side"].eq("L"), dataset.get("pitcher_hr_allowed_per_pa_vs_lhb"), dataset.get("pitcher_hr_allowed_per_pa_vs_rhb"))
+    dataset["pitcher_barrels_allowed_per_bbe_vs_batter_hand"] = np.where(dataset["bat_side"].eq("L"), dataset.get("pitcher_barrels_allowed_per_bbe_vs_lhb"), dataset.get("pitcher_barrels_allowed_per_bbe_vs_rhb"))
+    dataset["pitcher_hard_hit_allowed_rate_vs_batter_hand"] = np.where(dataset["bat_side"].eq("L"), dataset.get("pitcher_hard_hit_allowed_rate_vs_lhb"), dataset.get("pitcher_hard_hit_allowed_rate_vs_rhb"))
+    dataset["pitcher_95plus_ev_allowed_rate_vs_batter_hand"] = np.where(dataset["bat_side"].eq("L"), dataset.get("pitcher_95plus_ev_allowed_rate_vs_lhb"), dataset.get("pitcher_95plus_ev_allowed_rate_vs_rhb"))
+
+    dataset["split_matchup_hr"] = dataset["batter_hr_per_pa_vs_pitcher_hand"] * dataset["pitcher_hr_allowed_per_pa_vs_batter_hand"]
+    dataset["split_matchup_barrel"] = dataset["batter_barrels_per_pa_vs_pitcher_hand"] * dataset["pitcher_barrels_allowed_per_bbe_vs_batter_hand"]
+    dataset["split_matchup_hard_hit"] = dataset["batter_hard_hit_rate_vs_pitcher_hand"] * dataset["pitcher_hard_hit_allowed_rate_vs_batter_hand"]
+    return dataset
+
+
+def compute_expanded_pitch_mix_features(raw_df: pd.DataFrame) -> pd.DataFrame:
+    pitch_df = raw_df[["game_pk", "game_date", "pitcher", "pitch_type"]].copy()
+    pitch_df["game_date"] = pd.to_datetime(pitch_df["game_date"], errors="coerce")
+    pitch_df = pitch_df.dropna(subset=["game_pk", "pitcher", "pitch_type"])
+    for name, pitch_types in GRANULAR_PITCH_TYPES.items():
+        pitch_df[f"is_{name}"] = pitch_df["pitch_type"].isin(pitch_types).astype(int)
+    pitch_df["is_fastball"] = pitch_df["pitch_type"].isin(FASTBALL_TYPES).astype(int)
+    pitch_df["is_breaking_ball"] = pitch_df["pitch_type"].isin(BREAKING_BALL_TYPES).astype(int)
+    pitch_df["is_offspeed"] = pitch_df["pitch_type"].isin(OFFSPEED_TYPES).astype(int)
+    pitcher_game = pitch_df.groupby(["pitcher", "game_date", "game_pk"], dropna=False).agg(
+        total_pitches=("pitch_type", "size"),
+        fastball=("is_fastball", "sum"),
+        breaking_ball=("is_breaking_ball", "sum"),
+        offspeed=("is_offspeed", "sum"),
+        four_seam=("is_four_seam", "sum"),
+        sinker=("is_sinker", "sum"),
+        cutter=("is_cutter", "sum"),
+        slider=("is_slider", "sum"),
+        curveball=("is_curveball", "sum"),
+        changeup=("is_changeup", "sum"),
+    ).reset_index().rename(columns={"pitcher": "pitcher_id"}).sort_values(["pitcher_id", "game_date", "game_pk"])
+    out_frames: list[pd.DataFrame] = []
+    for _, group in pitcher_game.groupby("pitcher_id", sort=False):
+        grp = group.copy()
+        rolled = grp.set_index("game_date")
+        total_prior = rolled["total_pitches"].rolling("30D", closed="left", min_periods=1).sum().reset_index(drop=True)
+        for col in ["fastball", "breaking_ball", "offspeed", "four_seam", "sinker", "cutter", "slider", "curveball", "changeup"]:
+            prior = rolled[col].rolling("30D", closed="left", min_periods=1).sum().reset_index(drop=True)
+            grp[f"pitcher_{col}_pct"] = safe_rate(prior, total_prior).to_numpy()
+        out_frames.append(grp[[
+            "pitcher_id", "game_pk", "pitcher_fastball_pct", "pitcher_breaking_ball_pct", "pitcher_offspeed_pct",
+            "pitcher_four_seam_pct", "pitcher_sinker_pct", "pitcher_cutter_pct", "pitcher_slider_pct", "pitcher_curveball_pct", "pitcher_changeup_pct",
+        ]])
+    return pd.concat(out_frames, ignore_index=True) if out_frames else pd.DataFrame(columns=["pitcher_id", "game_pk"])
+
+
+def compute_batter_pitch_type_split_features(pa_df: pd.DataFrame, model_df: pd.DataFrame) -> pd.DataFrame:
+    pa = pa_df.copy()
+    pa["granular_pitch_bucket"] = pa["pitch_type"].apply(classify_granular_pitch_type)
+    bucket_rows: list[pd.DataFrame] = []
+    specs = [
+        ("fastball", "fastballs"),
+        ("breaking_ball", "breaking"),
+        ("offspeed", "offspeed"),
+        ("slider", "slider"),
+        ("changeup", "changeup"),
+        ("curveball", "curveball"),
+    ]
+    for bucket_value, bucket_label in specs:
+        sub = pa[pa["pitch_type_bucket"].eq(bucket_value) | pa["granular_pitch_bucket"].eq(bucket_value)].copy()
+        if sub.empty:
+            continue
+        agg = sub.groupby(["batter", "game_date", "game_pk"], dropna=False).agg(
+            bbe=("bbe_count", "sum"),
+            hard_hit=("hard_hit_bbe_count", "sum"),
+            barrel=("barrel_count", "sum"),
+            contact=("contact_event_count", "sum"),
+            swing=("swing_event_count", "sum"),
+        ).reset_index().sort_values(["batter", "game_date", "game_pk"])
+        out = []
+        for batter_id, group in agg.groupby("batter", sort=False):
+            g = group.copy()
+            prior = g[["bbe", "hard_hit", "barrel", "contact", "swing"]].cumsum().shift(1)
+            g[f"batter_hard_hit_rate_vs_{bucket_label}"] = safe_rate(prior["hard_hit"], prior["bbe"])
+            g[f"batter_barrel_rate_vs_{bucket_label}"] = safe_rate(prior["barrel"], prior["bbe"])
+            if bucket_label in {"fastballs", "breaking", "offspeed"}:
+                g[f"batter_contact_rate_vs_{bucket_label}"] = safe_rate(prior["contact"], prior["swing"])
+            out.append(g)
+        joined = pd.concat(out, ignore_index=True)
+        cols = [c for c in joined.columns if c.startswith("batter_")]
+        bucket_rows.append(joined[["batter", "game_pk"] + cols].rename(columns={"batter": "batter_id"}))
+    if not bucket_rows:
+        return pd.DataFrame(columns=["batter_id", "game_pk"])
+    merged = bucket_rows[0]
+    for extra in bucket_rows[1:]:
+        merged = merge_with_diagnostics(merged, extra, on=["batter_id", "game_pk"], how="outer", step_name="combine batter pitch-type split blocks", validate="one_to_one")
+    return merge_with_diagnostics(
+        model_df[["batter_id", "game_pk"]],
+        merged,
+        on=["batter_id", "game_pk"],
+        how="left",
+        step_name="attach batter causal pitch-type split features",
+        validate="one_to_one",
+    )
+
+
+def build_expanded_pitch_matchup_interactions(df: pd.DataFrame) -> pd.DataFrame:
+    out = df.copy()
+    nan_series = pd.Series(np.nan, index=out.index)
+    out["breaking_matchup_hard_hit"] = out.get("pitcher_breaking_ball_pct", nan_series) * out.get("batter_hard_hit_rate_vs_breaking", nan_series)
+    out["breaking_matchup_barrel"] = out.get("pitcher_breaking_ball_pct", nan_series) * out.get("batter_barrel_rate_vs_breaking", nan_series)
+    out["offspeed_matchup_hard_hit"] = out.get("pitcher_offspeed_pct", nan_series) * out.get("batter_hard_hit_rate_vs_offspeed", nan_series)
+    out["offspeed_matchup_barrel"] = out.get("pitcher_offspeed_pct", nan_series) * out.get("batter_barrel_rate_vs_offspeed", nan_series)
+    out["slider_matchup_barrel"] = out.get("pitcher_slider_pct", nan_series) * out.get("batter_barrel_rate_vs_slider", nan_series)
+    out["changeup_matchup_barrel"] = out.get("pitcher_changeup_pct", nan_series) * out.get("batter_barrel_rate_vs_changeup", nan_series)
+    return out
+
+
 def build_pitch_type_matchup_features(statcast_df: pd.DataFrame, model_df: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, object]]:
     raw_df = statcast_df.copy()
     raw_df["game_date"] = pd.to_datetime(raw_df["game_date"], errors="coerce")
-    required_raw = {"pitch_type", "description", "batter", "pitcher", "game_pk"}
+    required_raw = {"pitch_type", "description", "batter", "pitcher", "game_pk", "game_date"}
     if not required_raw.issubset(raw_df.columns):
         warning = f"Skipping pitch-type features because raw Statcast is missing columns: {sorted(required_raw - set(raw_df.columns))}"
         print(f"WARNING: {warning}")
         return pd.DataFrame(), {"included": False, "reason": warning}
 
-    print("Pitch-type feature path selected: Path A (raw pitch-level Statcast with pitch_type support).")
     pa_df = extract_plate_appearances(raw_df)
-    fastball_pa = pa_df[pa_df["pitch_type_bucket"] == "fastball"].copy()
-    if fastball_pa.empty:
-        warning = "Skipping pitch-type features because no fastball-classified terminal PA rows were available."
+    if pa_df.empty:
+        warning = "Skipping pitch-type features because no plate appearances were derivable."
         print(f"WARNING: {warning}")
         return pd.DataFrame(), {"included": False, "reason": warning}
 
-    batter_fastball = (
-        fastball_pa.groupby("batter", dropna=False)
-        .agg(
-            batter_hard_hit_rate_vs_fastballs=("hard_hit_bbe_count", "mean"),
-            batter_barrel_rate_vs_fastballs=("barrel_count", "mean"),
-            batter_contact_rate_vs_fastballs=("contact_event_count", lambda s: safe_scalar_rate(s.sum(), fastball_pa.loc[s.index, "swing_event_count"].sum())),
-        )
-        .reset_index()
-        .rename(columns={"batter": "batter_id"})
-    )
-    pitcher_share = (
-        raw_df.assign(pitch_type_bucket=raw_df["pitch_type"].map(classify_pitch_type_bucket))
-        .dropna(subset=["pitcher", "pitch_type_bucket"])
-        .groupby(["game_pk", "pitcher", "pitch_type_bucket"], dropna=False)
-        .size()
-        .rename("pitch_count")
-        .reset_index()
-    )
-    if pitcher_share.empty:
-        warning = "Skipping pitch-type features because raw Statcast pitch_type counts could not be computed."
-        print(f"WARNING: {warning}")
-        return pd.DataFrame(), {"included": False, "reason": warning}
-
-    totals = pitcher_share.groupby(["game_pk", "pitcher"], dropna=False)["pitch_count"].sum().rename("total_pitches").reset_index()
-    pitcher_share = pitcher_share.merge(totals, on=["game_pk", "pitcher"], how="left", validate="many_to_one")
-    pitcher_share["pitch_pct"] = pitcher_share["pitch_count"] / pitcher_share["total_pitches"].replace({0: np.nan})
-    pitcher_game_share = (
-        pitcher_share.pivot_table(index=["game_pk", "pitcher"], columns="pitch_type_bucket", values="pitch_pct", aggfunc="first")
-        .reset_index()
-        .rename(columns={"pitcher": "pitcher_id", "fastball": "pitcher_fastball_pct", "breaking_ball": "pitcher_breaking_ball_pct", "offspeed": "pitcher_offspeed_pct"})
-    )
-    for column in ["pitcher_fastball_pct", "pitcher_breaking_ball_pct", "pitcher_offspeed_pct"]:
-        if column not in pitcher_game_share.columns:
-            pitcher_game_share[column] = np.nan
-
+    pitcher_mix = compute_expanded_pitch_mix_features(raw_df)
+    batter_splits = compute_batter_pitch_type_split_features(pa_df, model_df)
     features = merge_with_diagnostics(
         model_df[["batter_id", "game_pk", "pitcher_id"]],
-        pitcher_game_share,
+        pitcher_mix.drop(columns=["batter_id"], errors="ignore"),
         on=["game_pk", "pitcher_id"],
         how="left",
-        step_name="attach pitcher game-level pitch-type shares",
+        step_name="attach expanded pitcher pitch mix onto model rows",
         validate="many_to_one",
     )
     features = merge_with_diagnostics(
         features,
-        batter_fastball,
-        on=["batter_id"],
+        batter_splits,
+        on=["batter_id", "game_pk"],
         how="left",
-        step_name="attach batter fastball outcome splits",
-        validate="many_to_one",
+        step_name="attach batter expanded pitch-type splits onto model rows",
+        validate="one_to_one",
     )
+    features = build_expanded_pitch_matchup_interactions(features)
     features["fastball_matchup_hard_hit"] = features["pitcher_fastball_pct"] * features["batter_hard_hit_rate_vs_fastballs"]
     features["fastball_matchup_barrel"] = features["pitcher_fastball_pct"] * features["batter_barrel_rate_vs_fastballs"]
-    return features.drop(columns=["pitcher_id"]), {"included": True, "reason": "raw Statcast pitch_type was available"}
+    return features.drop(columns=["pitcher_id"]), {"included": True, "reason": "causal pitch-type splits and pitcher mix features were computed"}
+
+
+def assert_no_duplicate_batter_game_rows(df: pd.DataFrame, context: str) -> None:
+    if df.duplicated(["batter_id", "game_pk"]).any():
+        offenders = df[df.duplicated(["batter_id", "game_pk"], keep=False)][["batter_id", "game_pk"]].drop_duplicates().head(10)
+        raise ValueError(f"Duplicate batter-game rows detected {context}. Offending keys: {offenders.to_dict('records')}")
 
 
 def merge_with_diagnostics(left_df: pd.DataFrame, right_df: pd.DataFrame, *, step_name: str, tracked_feature_columns: Iterable[str] | None = None, **merge_kwargs) -> pd.DataFrame:
@@ -692,6 +1084,11 @@ def print_before_after_trailing_report(
 
 def finalize_feature_export(df: pd.DataFrame, missingness_threshold: float = 0.95) -> dict[str, ExportDecision]:
     decisions: dict[str, ExportDecision] = {}
+    family_thresholds = {
+        "park": 0.50,
+        "handedness_split": 0.70,
+        "pitch_type": 0.70,
+    }
     for feature, source_table in FINAL_FEATURE_SPECS.items():
         if feature not in df.columns:
             print(f"WARNING: Excluding {feature} because the source table did not produce it.")
@@ -702,9 +1099,10 @@ def finalize_feature_export(df: pd.DataFrame, missingness_threshold: float = 0.9
             print(f"WARNING: Excluding {feature} because it is 100% missing.")
             decisions[feature] = ExportDecision(source_table, False, "100% missing")
             continue
-        if missing_pct > missingness_threshold:
-            print(f"WARNING: Excluding {feature} because missingness {missing_pct:.1%} exceeded threshold {missingness_threshold:.1%}.")
-            decisions[feature] = ExportDecision(source_table, False, f"missingness {missing_pct:.1%} above threshold")
+        threshold = family_thresholds.get(source_table, missingness_threshold)
+        if missing_pct > threshold:
+            print(f"WARNING: Excluding {feature} because missingness {missing_pct:.1%} exceeded threshold {threshold:.1%}.")
+            decisions[feature] = ExportDecision(source_table, False, f"missingness {missing_pct:.1%} above {threshold:.1%} threshold")
             continue
         decisions[feature] = ExportDecision(source_table, True, "feature passed coverage checks")
     return decisions
@@ -725,14 +1123,41 @@ def print_final_feature_quality_summary(df: pd.DataFrame, decisions: dict[str, E
     print("\n=== FINAL FEATURE QUALITY SUMMARY ===")
     print("feature_name | non_null_count | missing_pct | source_table | included_in_export | reason")
     for feature, decision in decisions.items():
-        series = df[feature] if feature in df.columns else pd.Series(dtype=float)
+        raw = df.loc[:, feature] if feature in df.columns else pd.Series(dtype=float)
+        series = raw.iloc[:, 0] if isinstance(raw, pd.DataFrame) else raw
         non_null = int(series.notna().sum()) if feature in df.columns else 0
         missing_pct = float(series.isna().mean() * 100) if feature in df.columns and len(df) else 100.0
         print(f"{feature} | {non_null:,} | {missing_pct:.2f}% | {decision.source_table} | {'yes' if decision.included_in_export else 'no'} | {decision.reason}")
     print("=====================================\n")
 
 
-def print_rerun_verdict(df: pd.DataFrame, pitch_type_status: dict[str, object]) -> None:
+def summarize_new_context_feature_quality(df: pd.DataFrame, decisions: dict[str, ExportDecision]) -> None:
+    print("=== NEW CONTEXT FEATURE QUALITY SUMMARY ===")
+    print("feature_name | non_null_count | missing_pct | source_family | included_in_export | reason_if_excluded")
+    for family, features in NEW_CONTEXT_FEATURE_FAMILIES.items():
+        for feature in features:
+            if feature not in df.columns and feature not in decisions:
+                continue
+            raw = df.loc[:, feature] if feature in df.columns else pd.Series(dtype=float)
+            series = raw.iloc[:, 0] if isinstance(raw, pd.DataFrame) else raw
+            non_null = int(series.notna().sum()) if feature in df.columns else 0
+            missing_pct = float(series.isna().mean() * 100) if feature in df.columns and len(df) else 100.0
+            decision = decisions.get(feature)
+            included = decision.included_in_export if decision else False
+            reason = decision.reason if decision else "feature not produced"
+            excluded_reason = "" if included else reason
+            print(f"{feature} | {non_null:,} | {missing_pct:.2f}% | {family} | {'yes' if included else 'no'} | {excluded_reason}")
+    print("===========================================\n")
+
+
+def print_rerun_verdict(
+    df: pd.DataFrame,
+    *,
+    pitch_type_status: dict[str, object],
+    park_status: dict[str, object],
+    hand_status: dict[str, object],
+    raw_field_status: dict[str, bool],
+) -> None:
     hr_features_ready = all(feature in df.columns and df[feature].notna().any() for feature in ["hr_per_pa_last_30d", "hr_per_pa_last_10d"])
     pitcher_features_ready = all(
         feature in df.columns
@@ -748,8 +1173,13 @@ def print_rerun_verdict(df: pd.DataFrame, pitch_type_status: dict[str, object]) 
         ])
     print("=== RERUN VERDICT ===")
     print(f"dataset_valid_for_train_model: {not df.duplicated(['batter_id', 'game_pk']).any()}")
+    print(f"park_features_included: {park_status.get('included', False)}")
+    print(f"park_features_reason: {park_status.get('reason')}")
+    print(f"handedness_features_included: {hand_status.get('included', False)}")
+    print(f"handedness_features_reason: {hand_status.get('reason')}")
     print(f"pitch_type_features_included: {pitch_type_status.get('included', False)}")
     print(f"pitch_type_features_reason: {pitch_type_status.get('reason')}")
+    print(f"raw_field_support_status: {raw_field_status}")
     print(f"batter_trailing_hr_features_included: {hr_features_ready}")
     print(f"pitcher_recent_contact_features_included: {pitcher_features_ready}")
     print("=====================\n")
@@ -834,6 +1264,16 @@ def classify_pitch_type_bucket(pitch_type: object) -> str | float:
         return "breaking_ball"
     if pitch in OFFSPEED_TYPES:
         return "offspeed"
+    return np.nan
+
+
+def classify_granular_pitch_type(pitch_type: object) -> str | float:
+    if pd.isna(pitch_type):
+        return np.nan
+    pitch = str(pitch_type).upper()
+    for label, pitch_types in GRANULAR_PITCH_TYPES.items():
+        if pitch in pitch_types:
+            return label
     return np.nan
 
 
