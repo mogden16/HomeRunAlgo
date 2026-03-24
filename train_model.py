@@ -97,6 +97,35 @@ METRIC_COLUMNS = [
     "positive_prediction_rate",
 ]
 TOP_MISSING_FEATURES_TO_PRINT = 8
+TOP_BUCKET_PERCENTS = [0.01, 0.02, 0.05, 0.10, 0.20]
+DEFAULT_TOP_CANDIDATES_TO_PRINT = 20
+RANKING_EXPORT_CORE_COLUMNS = [
+    "game_date",
+    "game_pk",
+    "batter_id",
+    "batter_name",
+    "team",
+    "opponent_team",
+    "pitcher_id",
+    "pitcher_name",
+]
+REASON_TEXT_BY_FEATURE = {
+    "hr_per_pa_last_10d": "elite recent HR form",
+    "hr_per_pa_last_30d": "strong recent HR form",
+    "barrels_per_pa_last_10d": "strong recent barrel rate",
+    "barrels_per_pa_last_30d": "solid recent barrel trend",
+    "hard_hit_rate_last_10d": "strong recent hard-hit form",
+    "hard_hit_rate_last_30d": "consistent hard-hit contact",
+    "bbe_95plus_ev_rate_last_10d": "strong recent 95+ EV contact",
+    "bbe_95plus_ev_rate_last_30d": "sustained 95+ EV contact",
+    "pitcher_hard_hit_allowed_rate_last_30d": "pitcher allows hard contact",
+    "pitcher_barrels_allowed_per_bbe_last_30d": "pitcher allows barrels",
+    "pitcher_95plus_ev_allowed_rate_last_30d": "pitcher allows loud contact",
+    "pitcher_hr_allowed_per_pa_last_30d": "pitcher has elevated HR risk",
+    "fastball_matchup_barrel": "favorable fastball matchup",
+    "fastball_matchup_hard_hit": "favorable hard-hit pitch mix matchup",
+    "platoon_advantage": "platoon advantage",
+}
 
 warnings.filterwarnings(
     "ignore",
@@ -664,6 +693,224 @@ def evaluate_predictions(y_true: np.ndarray, y_prob: np.ndarray, threshold: floa
     return metrics
 
 
+def summarize_top_bucket_lift(
+    y_true: np.ndarray,
+    y_prob: np.ndarray,
+    top_percents: list[float] | None = None,
+) -> pd.DataFrame:
+    if top_percents is None:
+        top_percents = TOP_BUCKET_PERCENTS
+    ranked = pd.DataFrame({"actual": y_true, "score": y_prob}).sort_values("score", ascending=False).reset_index(drop=True)
+    baseline_rate = float(ranked["actual"].mean())
+    total_hr = int(ranked["actual"].sum())
+    rows: list[dict[str, float | int | str]] = []
+    for pct in top_percents:
+        n_rows = max(1, int(np.ceil(len(ranked) * pct)))
+        bucket = ranked.head(n_rows)
+        hr_rate = float(bucket["actual"].mean()) if n_rows > 0 else 0.0
+        cumulative_hrs = int(bucket["actual"].sum())
+        rows.append(
+            {
+                "bucket": f"top_{int(pct * 100)}%",
+                "top_percent": float(pct),
+                "rows": int(n_rows),
+                "bucket_hr_rate": hr_rate,
+                "baseline_hr_rate": baseline_rate,
+                "lift_vs_baseline": (hr_rate / baseline_rate) if baseline_rate > 0 else float("nan"),
+                "cumulative_hrs_captured": cumulative_hrs,
+                "cumulative_hr_capture_pct": (cumulative_hrs / total_hr) if total_hr > 0 else float("nan"),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def summarize_prediction_deciles(y_true: np.ndarray, y_prob: np.ndarray, bins: int = 10) -> pd.DataFrame:
+    ranked = pd.DataFrame({"actual": y_true, "score": y_prob}).sort_values("score", ascending=False).reset_index(drop=True)
+    ranked["bucket"] = pd.qcut(
+        ranked["score"].rank(method="first", ascending=False),
+        q=min(bins, len(ranked)),
+        labels=False,
+        duplicates="drop",
+    )
+    grouped = (
+        ranked.groupby("bucket", as_index=False)
+        .agg(rows=("actual", "size"), avg_predicted_score=("score", "mean"), actual_hr_rate=("actual", "mean"), hrs=("actual", "sum"))
+        .sort_values("bucket")
+    )
+    total_hrs = float(grouped["hrs"].sum())
+    grouped["bucket"] = grouped["bucket"].astype(int) + 1
+    grouped["bucket_label"] = grouped["bucket"].apply(lambda x: f"{bins - x + 1}/{bins} (high→low)")
+    grouped["cumulative_hrs"] = grouped["hrs"].cumsum()
+    grouped["cumulative_hr_capture_pct"] = grouped["cumulative_hrs"] / total_hrs if total_hrs > 0 else np.nan
+    return grouped
+
+
+def assign_confidence_tiers(predicted_percentile: pd.Series) -> pd.Series:
+    """
+    Assign adaptive tiers using percentile ranks within the current slate:
+    A=top 1%, B=next 4%, C=next 15%, D=remaining candidates.
+    """
+    return np.select(
+        [predicted_percentile >= 0.99, predicted_percentile >= 0.95, predicted_percentile >= 0.80],
+        ["A", "B", "C"],
+        default="D",
+    )
+
+
+def extract_logistic_coefficient_map(
+    fitted_model: Pipeline | CalibratedClassifierCV,
+    feature_columns: list[str],
+) -> dict[str, float]:
+    pipeline: Pipeline | None = None
+    if isinstance(fitted_model, Pipeline):
+        pipeline = fitted_model
+    elif isinstance(fitted_model, CalibratedClassifierCV) and hasattr(fitted_model, "calibrated_classifiers_"):
+        if fitted_model.calibrated_classifiers_:
+            pipeline = fitted_model.calibrated_classifiers_[0].estimator
+    if pipeline is None or not hasattr(pipeline.named_steps.get("clf"), "coef_"):
+        return {}
+
+    imputer = pipeline.named_steps.get("imputer")
+    clf = pipeline.named_steps.get("clf")
+    if imputer is None or clf is None:
+        return {}
+    coef = clf.coef_.ravel()
+    stats = getattr(imputer, "statistics_", None)
+    if stats is None:
+        return {}
+    kept_columns = [feature for feature, stat in zip(feature_columns, stats, strict=False) if not np.isnan(stat)]
+    if len(kept_columns) != len(coef):
+        return {}
+    return {feature: float(value) for feature, value in zip(kept_columns, coef, strict=False)}
+
+
+def generate_reason_strings(
+    row: pd.Series,
+    reference_df: pd.DataFrame,
+    positive_coef_map: dict[str, float],
+    max_reasons: int = 3,
+) -> list[str]:
+    contributions: list[tuple[float, str]] = []
+    for feature, reason in REASON_TEXT_BY_FEATURE.items():
+        if feature not in row.index or feature not in reference_df.columns:
+            continue
+        value = row.get(feature)
+        if pd.isna(value):
+            continue
+        series = reference_df[feature].dropna()
+        if series.empty:
+            continue
+        q75 = float(series.quantile(0.75))
+        q90 = float(series.quantile(0.90))
+        coef_weight = max(positive_coef_map.get(feature, 0.0), 0.0)
+        if coef_weight <= 0 and feature not in {"platoon_advantage"}:
+            continue
+        is_platoon = feature == "platoon_advantage"
+        strong_signal = bool(value >= q90) or (is_platoon and value >= 1)
+        medium_signal = bool(value >= q75) or (is_platoon and value >= 1)
+        if strong_signal:
+            score = 2.0 + coef_weight
+            contributions.append((score, reason))
+        elif medium_signal:
+            score = 1.0 + coef_weight
+            contributions.append((score, reason))
+    if not contributions:
+        return ["overall model score is strong", "multiple supportive form and matchup signals", "profile ranks well for HR upside"][:max_reasons]
+    reasons = [reason for _, reason in sorted(contributions, key=lambda x: x[0], reverse=True)]
+    deduped = list(dict.fromkeys(reasons))
+    return deduped[:max_reasons]
+
+
+def build_ranked_predictions_output(
+    source_df: pd.DataFrame,
+    y_prob: np.ndarray,
+    reference_df: pd.DataFrame,
+    fitted_model: Pipeline | CalibratedClassifierCV,
+    feature_columns: list[str],
+    y_true: np.ndarray | None = None,
+) -> pd.DataFrame:
+    ranked = source_df.copy().reset_index(drop=True)
+    ranked["predicted_hr_probability"] = y_prob
+    ranked["predicted_hr_percentile"] = ranked["predicted_hr_probability"].rank(method="first", pct=True)
+    ranked["predicted_hr_score"] = (ranked["predicted_hr_percentile"] * 100).round(1)
+    ranked["rank"] = ranked["predicted_hr_probability"].rank(method="first", ascending=False).astype(int)
+    ranked["confidence_tier"] = assign_confidence_tiers(ranked["predicted_hr_percentile"])
+    if y_true is not None:
+        ranked["actual_hit_hr"] = y_true
+
+    coef_map = extract_logistic_coefficient_map(fitted_model, feature_columns)
+    positive_coef_map = {k: v for k, v in coef_map.items() if v > 0}
+    reasons = ranked.apply(
+        lambda row: generate_reason_strings(row, reference_df=reference_df, positive_coef_map=positive_coef_map, max_reasons=3),
+        axis=1,
+    )
+    ranked["top_reason_1"] = reasons.apply(lambda items: items[0] if len(items) > 0 else "")
+    ranked["top_reason_2"] = reasons.apply(lambda items: items[1] if len(items) > 1 else "")
+    ranked["top_reason_3"] = reasons.apply(lambda items: items[2] if len(items) > 2 else "")
+
+    rename_candidates = {
+        "player_id": "batter_id",
+        "player_name": "batter_name",
+        "batting_team": "team",
+        "home_team": "team",
+        "away_team": "opponent_team",
+        "opposing_team": "opponent_team",
+        "opponent": "opponent_team",
+    }
+    ranked = ranked.rename(columns={src: dst for src, dst in rename_candidates.items() if src in ranked.columns and dst not in ranked.columns})
+    export_columns = [col for col in RANKING_EXPORT_CORE_COLUMNS if col in ranked.columns]
+    export_columns += [
+        "predicted_hr_probability",
+        "predicted_hr_score",
+        "predicted_hr_percentile",
+        "rank",
+        "confidence_tier",
+    ]
+    if "actual_hit_hr" in ranked.columns:
+        export_columns.append("actual_hit_hr")
+    export_columns += ["top_reason_1", "top_reason_2", "top_reason_3"]
+    return ranked.sort_values("rank").reset_index(drop=True)[export_columns]
+
+
+def print_top_bucket_lift_table(lift_df: pd.DataFrame) -> None:
+    print("\nHoldout ranking quality: top-bucket lift")
+    print("-" * 60)
+    print(
+        f"{'bucket':<8} {'rows':>7} {'bucket_hr':>10} {'baseline':>10} {'lift':>8} {'cum_HR':>8} {'cum_capture':>12}"
+    )
+    for _, row in lift_df.iterrows():
+        print(
+            f"{row['bucket']:<8} {int(row['rows']):7d} {row['bucket_hr_rate']:10.4f} {row['baseline_hr_rate']:10.4f} "
+            f"{row['lift_vs_baseline']:8.2f} {int(row['cumulative_hrs_captured']):8d} {row['cumulative_hr_capture_pct']:12.4f}"
+        )
+
+
+def print_prediction_bucket_summary(decile_df: pd.DataFrame, label: str) -> None:
+    print(f"\n{label}")
+    print("-" * 60)
+    print(f"{'bucket':<14} {'rows':>7} {'avg_score':>10} {'actual_hr':>10} {'cum_capture':>12}")
+    for _, row in decile_df.iterrows():
+        print(
+            f"{row['bucket_label']:<14} {int(row['rows']):7d} {row['avg_predicted_score']:10.4f} "
+            f"{row['actual_hr_rate']:10.4f} {row['cumulative_hr_capture_pct']:12.4f}"
+        )
+
+
+def print_top_candidates_summary(ranked_df: pd.DataFrame, top_n: int = DEFAULT_TOP_CANDIDATES_TO_PRINT) -> None:
+    print(f"\nTop {top_n} ranked HR candidates (ranking tool output)")
+    print("-" * 60)
+    for _, row in ranked_df.head(top_n).iterrows():
+        name = row["batter_name"] if "batter_name" in ranked_df.columns else row.get("batter_id", "unknown")
+        actual_txt = f" | actual_hr={int(row['actual_hit_hr'])}" if "actual_hit_hr" in ranked_df.columns else ""
+        print(
+            f"{int(row['rank'])}. {name} | score={row['predicted_hr_score']:.1f} | "
+            f"tier={row['confidence_tier']}{actual_txt}"
+        )
+        reasons = [row.get("top_reason_1", ""), row.get("top_reason_2", ""), row.get("top_reason_3", "")]
+        for reason in [reason for reason in reasons if reason]:
+            print(f"   - {reason}")
+
+
 def prediction_rate_ratio(predicted_rate: float, actual_rate: float) -> float:
     if actual_rate <= 0:
         return float("inf") if predicted_rate > 0 else 1.0
@@ -1039,6 +1286,8 @@ def evaluate_model_run(
     max_positive_rate: float,
     threshold_tolerance: float,
     calibration: str,
+    save_ranked_output: bool = False,
+    ranked_output_path: str | None = None,
 ) -> dict[str, object] | None:
     X_train = train_df[feature_columns]
     y_train = train_df[TARGET_COL].to_numpy()
@@ -1151,6 +1400,35 @@ def evaluate_model_run(
         objective=threshold_objective,
         limit=None,
     )
+    print("\nRanking-first note")
+    print("-" * 60)
+    print("This model output is intended primarily for ranking/surfacing HR candidates, not as a strict yes/no oracle.")
+
+    lift_df = summarize_top_bucket_lift(y_test, y_prob_test, top_percents=TOP_BUCKET_PERCENTS)
+    decile_df = summarize_prediction_deciles(y_test, y_prob_test, bins=10)
+    ventile_df = summarize_prediction_deciles(y_test, y_prob_test, bins=20)
+    print_top_bucket_lift_table(lift_df)
+    print_prediction_bucket_summary(decile_df, label="Holdout prediction deciles (high→low score buckets)")
+    print_prediction_bucket_summary(ventile_df, label="Holdout prediction ventiles (high→low score buckets)")
+
+    ranked_output = build_ranked_predictions_output(
+        source_df=test_df,
+        y_prob=y_prob_test,
+        reference_df=train_df,
+        fitted_model=model,
+        feature_columns=feature_columns,
+        y_true=y_test,
+    )
+    print_top_candidates_summary(ranked_output, top_n=min(DEFAULT_TOP_CANDIDATES_TO_PRINT, len(ranked_output)))
+
+    output_path: str | None = None
+    if save_ranked_output:
+        if ranked_output_path:
+            output_path = ranked_output_path
+        else:
+            output_path = f"ranked_predictions_{resolved_model_name}.csv"
+        ranked_output.to_csv(output_path, index=False)
+        print(f"\nRanked output CSV saved       : {output_path}")
 
     return {
         "model_name": resolved_model_name,
@@ -1161,6 +1439,11 @@ def evaluate_model_run(
         "threshold_result": threshold_result,
         "holdout_metrics": metrics,
         "summary_row": model_row,
+        "lift_df": lift_df,
+        "decile_df": decile_df,
+        "ventile_df": ventile_df,
+        "ranked_output": ranked_output,
+        "ranked_output_path": output_path,
     }
 
 
@@ -1172,6 +1455,8 @@ def run_backtest(
     max_positive_rate: float = 0.14,
     threshold_tolerance: float = 0.001,
     calibration: str = "sigmoid",
+    save_ranked_output: bool = False,
+    ranked_output_path: str | None = None,
 ) -> None:
     if not Path(data_path).exists():
         raise FileNotFoundError(f"Dataset not found: {data_path}. Run python generate_data.py first.")
@@ -1242,6 +1527,8 @@ def run_backtest(
             max_positive_rate=max_positive_rate,
             threshold_tolerance=threshold_tolerance,
             calibration=calibration,
+            save_ranked_output=save_ranked_output,
+            ranked_output_path=ranked_output_path,
         )
         if result is not None:
             comparison_rows: list[dict[str, float | str]] = [result["summary_row"]]
@@ -1339,6 +1626,16 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Deprecated alias for --calibration sigmoid to preserve existing CLI behavior.",
     )
+    parser.add_argument(
+        "--save-ranked-output",
+        action="store_true",
+        help="Save holdout ranked candidates to CSV for downstream inspection/use.",
+    )
+    parser.add_argument(
+        "--ranked-output-path",
+        default=None,
+        help="Optional output path for ranked prediction CSV.",
+    )
     args = parser.parse_args()
     if args.calibrate_logistic and args.calibration == "disabled":
         args.calibration = "sigmoid"
@@ -1355,4 +1652,6 @@ if __name__ == "__main__":
         max_positive_rate=args.max_positive_rate,
         threshold_tolerance=args.threshold_tolerance,
         calibration=args.calibration,
+        save_ranked_output=args.save_ranked_output,
+        ranked_output_path=args.ranked_output_path,
     )
