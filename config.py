@@ -8,10 +8,10 @@ ROOT_DIR = Path(__file__).resolve().parent
 DATA_DIR = ROOT_DIR / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"
 FINAL_DATA_PATH = DATA_DIR / "mlb_player_game_real.csv"
-WEATHER_CACHE_PATH = RAW_DATA_DIR / "weather_2024.csv"
 
 SEASON_START = "2024-03-28"
 SEASON_END = "2024-09-30"
+DEFAULT_SEASON = int(SEASON_END[:4])
 STATCAST_CHUNK_DAYS = 7
 DEFAULT_GAME_HOUR_LOCAL = 19
 MIN_DATASET_WARNING_ROWS = 1_000
@@ -87,10 +87,16 @@ STATCAST_COLUMNS = [
     "on_3b",
     "launch_speed",
     "launch_angle",
+    "hit_distance_sc",
     "bb_type",
     "hc_x",
     "hc_y",
     "release_speed",
+    "pitch_type",
+    "pitch_name",
+    "release_spin_rate",
+    "release_extension",
+    "spin_axis",
 ]
 
 PARKS = {
@@ -126,3 +132,44 @@ PARKS = {
     "TOR": {"ballpark": "Rogers Centre", "lat": 43.6414, "lon": -79.3894, "tz": "America/Toronto"},
     "WSH": {"ballpark": "Nationals Park", "lat": 38.873, "lon": -77.0074, "tz": "America/New_York"},
 }
+
+ATH_2025_PARK = {
+    "ballpark": "Sutter Health Park",
+    "lat": 38.5806,
+    "lon": -121.5136,
+    "tz": "America/Los_Angeles",
+}
+
+
+def season_from_date(date_value: str) -> int:
+    return int(str(date_value)[:4])
+
+
+def season_from_date_range(start_date: str, end_date: str) -> int:
+    start_season = season_from_date(start_date)
+    end_season = season_from_date(end_date)
+    if start_season != end_season:
+        raise ValueError(f"Expected a single MLB season date range, got {start_date} -> {end_date}.")
+    return end_season
+
+
+def weather_cache_path(season: int) -> Path:
+    return RAW_DATA_DIR / f"weather_{season}.csv"
+
+
+def park_factor_cache_path(season: int) -> Path:
+    return RAW_DATA_DIR / f"park_factors_{season}.csv"
+
+
+def raw_statcast_chunk_path(season: int, start_date: str, end_date: str) -> Path:
+    return RAW_DATA_DIR / f"statcast_{season}_{start_date}_{end_date}.csv"
+
+
+def get_park_info(team: str, season: int | None = None) -> dict[str, object]:
+    if season is not None and season >= 2025 and team == "ATH":
+        return ATH_2025_PARK
+    return PARKS.get(team, {})
+
+
+WEATHER_CACHE_PATH = weather_cache_path(DEFAULT_SEASON)
+PARK_FACTOR_CACHE_PATH = park_factor_cache_path(DEFAULT_SEASON)
