@@ -852,6 +852,43 @@ def build_recommendation_table(
     return recommendation_df[columns]
 
 
+def _format_reason_list(reason_text: str) -> str:
+    reason_parts = [part.strip() for part in str(reason_text).split(";") if part.strip()]
+    if not reason_parts:
+        return "the model rates him highly for this slate based on the available batter, pitcher, and context features"
+    if len(reason_parts) == 1:
+        return f"he shows {reason_parts[0]}"
+    if len(reason_parts) == 2:
+        return f"he shows {reason_parts[0]} and {reason_parts[1]}"
+    return f"he shows {', '.join(reason_parts[:-1])}, and {reason_parts[-1]}"
+
+
+def print_live_top_pick_explanations(recommendation_table: pd.DataFrame, limit: int = 5) -> None:
+    print("\nWhy these top picks")
+    print("-" * 60)
+    print("Model score is the ranking score; confidence reflects score strength, historical tier lift, history depth, and feature coverage.")
+    if recommendation_table.empty:
+        print("No live recommendations available.")
+        return
+
+    top_rows = recommendation_table.sort_values("score", ascending=False).head(limit).reset_index(drop=True)
+    for idx, row in top_rows.iterrows():
+        batter_name = row.get("batter_name", "Unknown batter")
+        team = row.get("team", "?")
+        opponent = row.get("opponent", "?")
+        pitcher_name = row.get("pitcher_name", "Unknown pitcher")
+        tier = row.get("recommendation_tier", "Unranked")
+        confidence_label = row.get("confidence_label", "Unknown")
+        confidence_score = float(row.get("confidence_score", np.nan))
+        score = float(row.get("score", np.nan))
+        why_text = _format_reason_list(row.get("confidence_reasons", ""))
+        print(
+            f"{idx + 1}. {batter_name} ({team} vs {opponent}, facing {pitcher_name}) is a {tier} pick "
+            f"with confidence {confidence_label} ({confidence_score:.1f}) and model score {score:.3f} "
+            f"because {why_text}."
+        )
+
+
 def prepare_recommendation_results(
     scored_df: pd.DataFrame,
     model: Pipeline,
@@ -1617,6 +1654,8 @@ def run_live_recommendation(live_ts: pd.Timestamp, slate_mode: str = "auto", mod
     print("\nDeeper longshots (Tier 3-4)")
     print("-" * 60)
     print(longshot_df.to_string(index=False) if not longshot_df.empty else "None")
+
+    print_live_top_pick_explanations(recommendation_table)
 
     print("\nIncomplete/skipped games")
     print("-" * 60)
