@@ -35,6 +35,13 @@ DISPLAY_COLUMNS = [
 ]
 
 
+def score_sort_value(row: dict[str, Any]) -> float:
+    score = row.get("predicted_hr_score")
+    if score is None:
+        return float("-inf")
+    return float(score)
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--current-picks-path", default=str(DEFAULT_CURRENT_PICKS_PATH), help="Path to the latest published picks JSON.")
@@ -147,7 +154,13 @@ def normalize_pick(row: dict[str, Any], tracking_start_date: str) -> dict[str, A
 
 
 def upsert_history(existing_rows: list[dict[str, Any]], current_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    by_id = {str(row["pick_id"]): dict(row) for row in existing_rows}
+    current_dates = {str(row["game_date"]) for row in current_rows}
+    retained_existing = [
+        row
+        for row in existing_rows
+        if not (str(row["game_date"]) in current_dates and row.get("result_label") == "Pending")
+    ]
+    by_id = {str(row["pick_id"]): dict(row) for row in retained_existing}
     for row in current_rows:
         key = str(row["pick_id"])
         previous = by_id.get(key)
@@ -158,12 +171,20 @@ def upsert_history(existing_rows: list[dict[str, Any]], current_rows: list[dict[
             by_id[key].update(row)
         else:
             by_id[key] = dict(row)
-    return sorted(by_id.values(), key=lambda row: (row["game_date"], row["rank"], row["batter_name"]))
+    return sorted(
+        by_id.values(),
+        key=lambda row: (
+            row["game_date"],
+            -score_sort_value(row),
+            row["rank"],
+            row["batter_name"],
+        ),
+    )
 
 
 def top_k_by_date(rows: list[dict[str, Any]], k: int) -> list[dict[str, Any]]:
     grouped: dict[str, list[dict[str, Any]]] = {}
-    for row in sorted(rows, key=lambda item: (item["game_date"], item["rank"], item["batter_name"])):
+    for row in sorted(rows, key=lambda item: (item["game_date"], -score_sort_value(item), item["rank"], item["batter_name"])):
         grouped.setdefault(row["game_date"], []).append(row)
     trimmed: list[dict[str, Any]] = []
     for game_date in sorted(grouped):
@@ -271,12 +292,12 @@ def main() -> None:
     history_path.write_text(json.dumps(merged_history, indent=2), encoding="utf-8")
 
     latest_game_date = max((row["game_date"] for row in current_rows), default=args.tracking_start_date)
-    latest_picks = sorted(current_rows, key=lambda row: (row["rank"], row["batter_name"]))[: args.latest_count]
+    latest_picks = sorted(current_rows, key=lambda row: (-score_sort_value(row), row["rank"], row["batter_name"]))[: args.latest_count]
     dashboard_history = list(reversed(top_k_by_date(merged_history, args.history_per_date)))
     settled_rows = [row for row in merged_history if row["actual_hit_hr"] is not None]
     recent_successes = [
         row
-        for row in sorted(settled_rows, key=lambda item: (item["game_date"], item["rank"]), reverse=True)
+        for row in sorted(settled_rows, key=lambda item: (item["game_date"], score_sort_value(item), -item["rank"]), reverse=True)
         if row["actual_hit_hr"] == 1
     ][:25]
 
@@ -305,7 +326,13 @@ def main() -> None:
         "top_k_summary": [summarize_top_k(settled_rows, k) for k in (1, 3, 5, args.history_per_date)],
         "confidence_summary": summarize_confidence(settled_rows),
         "latest_picks": to_records(latest_picks),
-        "history": to_records(sorted(dashboard_history, key=lambda row: (row["game_date"], -row["rank"]), reverse=True)),
+        "history": to_records(
+            sorted(
+                dashboard_history,
+                key=lambda row: (row["game_date"], score_sort_value(row), -row["rank"]),
+                reverse=True,
+            )
+        ),
         "player_leaderboard": build_player_leaderboard(settled_rows, args.min_player_picks),
         "recent_successes": to_records(recent_successes),
     }

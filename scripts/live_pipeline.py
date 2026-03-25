@@ -43,6 +43,7 @@ from train_model import (
 
 MLB_SCHEDULE_URL = "https://statsapi.mlb.com/api/v1/schedule"
 MLB_PERSON_URL_TEMPLATE = "https://statsapi.mlb.com/api/v1/people/{player_id}"
+MLB_TEAM_ROSTER_URL_TEMPLATE = "https://statsapi.mlb.com/api/v1/teams/{team_id}/roster"
 OPEN_METEO_FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
 TEAM_CODE_ALIASES = {
     "ARI": "AZ",
@@ -233,6 +234,8 @@ def fetch_schedule_games(target_date: str) -> list[dict[str, Any]]:
                     "game_date": str(game.get("officialDate") or target_date),
                     "game_datetime": str(game.get("gameDate") or ""),
                     "status": str(game.get("status", {}).get("detailedState") or ""),
+                    "home_team_id": int(home.get("team", {}).get("id")) if home.get("team", {}).get("id") else None,
+                    "away_team_id": int(away.get("team", {}).get("id")) if away.get("team", {}).get("id") else None,
                     "home_team": normalize_team_code(home.get("team", {}).get("abbreviation")),
                     "away_team": normalize_team_code(away.get("team", {}).get("abbreviation")),
                     "home_team_name": str(home.get("team", {}).get("name") or ""),
@@ -259,6 +262,49 @@ def fetch_player_handedness(player_id: int | None) -> str | None:
     if hand in {"L", "R"}:
         return str(hand)
     return None
+
+
+def fetch_active_roster(team_id: int | None) -> pd.DataFrame:
+    if team_id is None:
+        return pd.DataFrame(columns=["batter_id", "batter_name"])
+    response = requests.get(
+        MLB_TEAM_ROSTER_URL_TEMPLATE.format(team_id=team_id),
+        params={"rosterType": "active"},
+        timeout=60,
+    )
+    response.raise_for_status()
+    payload = response.json()
+    rows: list[dict[str, Any]] = []
+    for item in payload.get("roster", []):
+        person = item.get("person", {})
+        player_id = person.get("id")
+        if not player_id:
+            continue
+        rows.append(
+            {
+                "batter_id": int(player_id),
+                "batter_name": str(person.get("fullName") or ""),
+            }
+        )
+    if not rows:
+        return pd.DataFrame(columns=["batter_id", "batter_name"])
+    roster = pd.DataFrame(rows).drop_duplicates(subset=["batter_id"], keep="first")
+    roster["batter_id"] = pd.to_numeric(roster["batter_id"], errors="coerce").astype("Int64")
+    return roster
+
+
+def build_active_roster_map(schedule_games: list[dict[str, Any]]) -> dict[str, pd.DataFrame]:
+    roster_map: dict[str, pd.DataFrame] = {}
+    team_specs = {}
+    for game in schedule_games:
+        for team_code_key, team_id_key in [("home_team", "home_team_id"), ("away_team", "away_team_id")]:
+            team_code = normalize_team_code(game.get(team_code_key))
+            team_id = game.get(team_id_key)
+            if team_code and team_code not in team_specs:
+                team_specs[team_code] = team_id
+    for team_code, team_id in team_specs.items():
+        roster_map[team_code] = fetch_active_roster(int(team_id) if team_id is not None else None)
+    return roster_map
 
 
 def load_live_dataset(dataset_path: Path = LIVE_MODEL_DATA_PATH) -> pd.DataFrame:
@@ -304,11 +350,19 @@ def select_probable_lineup_hitters(
     target_date: str,
     hitters_per_team: int = 9,
     lookback_days: int = 21,
+    active_roster: pd.DataFrame | None = None,
 ) -> list[dict[str, Any]]:
     historical = dataset_df[dataset_df["game_date"] < pd.Timestamp(target_date)].copy()
     team_rows = historical[historical["team"] == team_code].copy()
     if team_rows.empty:
         return []
+    if active_roster is not None:
+        active_roster = active_roster.copy()
+        active_roster["batter_id"] = pd.to_numeric(active_roster["batter_id"], errors="coerce").astype("Int64")
+        team_rows["batter_id"] = pd.to_numeric(team_rows["batter_id"], errors="coerce").astype("Int64")
+        team_rows = team_rows[team_rows["batter_id"].isin(active_roster["batter_id"])].copy()
+        if team_rows.empty:
+            return []
 
     recent_cutoff = pd.Timestamp(target_date) - pd.Timedelta(days=lookback_days)
     recent_rows = team_rows[team_rows["game_date"] >= recent_cutoff].copy()
@@ -326,6 +380,16 @@ def select_probable_lineup_hitters(
             selected_ids.add(batter_id)
             if len(selected) >= hitters_per_team:
                 break
+    if active_roster is not None and selected:
+        roster_name_lookup = {
+            int(row.batter_id): str(row.batter_name)
+            for row in active_roster[["batter_id", "batter_name"]].drop_duplicates().itertuples(index=False)
+            if pd.notna(row.batter_id)
+        }
+        for row in selected:
+            batter_id = int(row["batter_id"])
+            if batter_id in roster_name_lookup and roster_name_lookup[batter_id]:
+                row["batter_name"] = roster_name_lookup[batter_id]
     return selected[:hitters_per_team]
 
 
@@ -464,6 +528,7 @@ def build_live_candidate_frame(
     *,
     target_date: str,
     hitters_per_team: int = 9,
+    active_roster_map: dict[str, pd.DataFrame] | None = None,
 ) -> pd.DataFrame:
     forecast_weather = fetch_forecast_weather(
         [game["home_team"] for game in schedule_games],
@@ -493,6 +558,7 @@ def build_live_candidate_frame(
                 team_code=spec["batting_team"],
                 target_date=target_date,
                 hitters_per_team=hitters_per_team,
+                active_roster=active_roster_map.get(spec["batting_team"]) if active_roster_map else None,
             )
             pitcher_hand = latest_pitcher_hand(dataset_df, spec["pitcher_id"]) or fetch_player_handedness(spec["pitcher_id"])
             for hitter in hitters:
@@ -629,7 +695,6 @@ def score_live_candidates(
     scored["predicted_hr_probability"] = probabilities
     scored["predicted_hr_percentile"] = scored["predicted_hr_probability"].rank(method="first", pct=True)
     scored["predicted_hr_score"] = (scored["predicted_hr_percentile"] * 100.0).round(1)
-    scored["rank"] = scored["predicted_hr_probability"].rank(method="first", ascending=False).astype(int)
     scored["confidence_tier"] = scored["predicted_hr_percentile"].apply(confidence_tier_from_percentile)
 
     coef_map = extract_logistic_coefficient_map(model, feature_columns)
@@ -642,7 +707,8 @@ def score_live_candidates(
     scored["top_reason_2"] = reasons.apply(lambda items: items[1] if len(items) > 1 else "")
     scored["top_reason_3"] = reasons.apply(lambda items: items[2] if len(items) > 2 else "")
 
-    ranked = scored.sort_values(["rank", "batter_name"]).head(max_picks).copy()
+    ranked = scored.sort_values(["predicted_hr_score", "predicted_hr_probability", "batter_name"], ascending=[False, False, True]).head(max_picks).copy()
+    ranked["rank"] = np.arange(1, len(ranked) + 1)
     publish_time = published_at or datetime.now(timezone.utc).isoformat()
 
     rows: list[dict[str, Any]] = []
@@ -723,5 +789,13 @@ def load_pick_history(path: Path = LIVE_PICK_HISTORY_PATH) -> list[dict[str, Any
 
 
 def write_pick_history(rows: list[dict[str, Any]], path: Path = LIVE_PICK_HISTORY_PATH) -> None:
-    ordered = sorted(rows, key=lambda row: (str(row.get("game_date") or ""), int(row.get("rank") or 999), str(row.get("batter_name") or "")))
+    ordered = sorted(
+        rows,
+        key=lambda row: (
+            str(row.get("game_date") or ""),
+            -(float(row.get("predicted_hr_score")) if row.get("predicted_hr_score") is not None else -999.0),
+            int(row.get("rank") or 999),
+            str(row.get("batter_name") or ""),
+        ),
+    )
     write_json_array(path, ordered)

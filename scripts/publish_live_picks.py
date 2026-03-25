@@ -12,6 +12,7 @@ if str(ROOT_DIR) not in sys.path:
 
 from config import LIVE_CURRENT_PICKS_PATH, LIVE_MODEL_BUNDLE_PATH, LIVE_MODEL_DATA_PATH
 from scripts.live_pipeline import (
+    build_active_roster_map,
     build_live_candidate_frame,
     build_live_feature_frame,
     default_publish_date,
@@ -40,12 +41,14 @@ def main() -> None:
     dataset_df = load_live_dataset(Path(args.dataset_path))
     bundle = load_model_bundle(Path(args.bundle_path))
     schedule_games = fetch_schedule_games(schedule_date)
+    active_roster_map = build_active_roster_map(schedule_games)
 
     candidates = build_live_candidate_frame(
         dataset_df,
         schedule_games,
         target_date=schedule_date,
         hitters_per_team=args.hitters_per_team,
+        active_roster_map=active_roster_map,
     )
     featured = build_live_feature_frame(dataset_df, candidates)
     picks = score_live_candidates(featured, bundle, max_picks=args.max_picks)
