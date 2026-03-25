@@ -614,6 +614,60 @@ def build_live_candidate_frame(
     return candidate_df
 
 
+LIVE_CONTEXT_FEATURES = {"temperature_f", "wind_speed_mph", "humidity_pct", "platoon_advantage"}
+LIVE_BATTER_FEATURES = [feature for feature in FEATURE_COLUMNS if feature not in LIVE_CONTEXT_FEATURES and not feature.startswith("pitcher_")]
+LIVE_PITCHER_FEATURES = [feature for feature in FEATURE_COLUMNS if feature.startswith("pitcher_")]
+
+
+def build_latest_feature_snapshot(
+    dataset_df: pd.DataFrame,
+    *,
+    entity_key: str,
+    feature_columns: list[str],
+) -> pd.DataFrame:
+    available_features = [feature for feature in feature_columns if feature in dataset_df.columns]
+    if entity_key not in dataset_df.columns or not available_features:
+        return pd.DataFrame(columns=[entity_key, *available_features])
+    snapshot = dataset_df[[entity_key, "game_date", "game_pk", *available_features]].copy()
+    snapshot[entity_key] = pd.to_numeric(snapshot[entity_key], errors="coerce").astype("Int64")
+    snapshot["game_date"] = pd.to_datetime(snapshot["game_date"])
+    snapshot = snapshot.dropna(subset=[entity_key]).sort_values([entity_key, "game_date", "game_pk"])
+    rows: list[dict[str, Any]] = []
+    for entity_value, group in snapshot.groupby(entity_key, dropna=True):
+        row: dict[str, Any] = {entity_key: int(entity_value)}
+        for feature in available_features:
+            row[feature] = latest_non_null(group[feature], default=np.nan)
+        rows.append(row)
+    return pd.DataFrame(rows)
+
+
+def fill_missing_features_from_snapshot(
+    frame: pd.DataFrame,
+    *,
+    snapshot_df: pd.DataFrame,
+    entity_key: str,
+    feature_columns: list[str],
+    suffix: str,
+) -> pd.DataFrame:
+    available_features = [feature for feature in feature_columns if feature in snapshot_df.columns]
+    if frame.empty or snapshot_df.empty or not available_features:
+        return frame
+    rename_map = {feature: f"{feature}_{suffix}" for feature in available_features}
+    merged = frame.merge(
+        snapshot_df[[entity_key, *available_features]].rename(columns=rename_map),
+        on=entity_key,
+        how="left",
+        validate="many_to_one",
+    )
+    for feature in available_features:
+        fallback_column = rename_map[feature]
+        if feature not in merged.columns:
+            merged[feature] = np.nan
+        merged[feature] = merged[feature].where(merged[feature].notna(), merged[fallback_column])
+    drop_columns = list(rename_map.values())
+    return merged.drop(columns=drop_columns)
+
+
 def build_live_feature_frame(dataset_df: pd.DataFrame, candidate_df: pd.DataFrame) -> pd.DataFrame:
     if candidate_df.empty:
         return candidate_df.copy()
@@ -667,6 +721,30 @@ def build_live_feature_frame(dataset_df: pd.DataFrame, candidate_df: pd.DataFram
         on=["pitcher_id", "game_pk"],
         how="left",
         validate="many_to_one",
+    )
+    batter_snapshot = build_latest_feature_snapshot(
+        dataset_df,
+        entity_key="batter_id",
+        feature_columns=LIVE_BATTER_FEATURES,
+    )
+    featured = fill_missing_features_from_snapshot(
+        featured,
+        snapshot_df=batter_snapshot,
+        entity_key="batter_id",
+        feature_columns=LIVE_BATTER_FEATURES,
+        suffix="latest_batter",
+    )
+    pitcher_snapshot = build_latest_feature_snapshot(
+        dataset_df,
+        entity_key="pitcher_id",
+        feature_columns=LIVE_PITCHER_FEATURES,
+    )
+    featured = fill_missing_features_from_snapshot(
+        featured,
+        snapshot_df=pitcher_snapshot,
+        entity_key="pitcher_id",
+        feature_columns=LIVE_PITCHER_FEATURES,
+        suffix="latest_pitcher",
     )
     featured["opponent_team"] = featured["opponent"]
     return featured

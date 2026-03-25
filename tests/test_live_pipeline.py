@@ -13,7 +13,14 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 from scripts import build_dashboard_artifacts
-from scripts.live_pipeline import build_pick_id, score_live_candidates, select_probable_lineup_hitters, settle_pick_records
+from scripts.live_pipeline import (
+    build_live_feature_frame,
+    build_pick_id,
+    score_live_candidates,
+    select_probable_lineup_hitters,
+    settle_pick_records,
+)
+from train_model import generate_reason_strings
 
 
 class LivePipelineTests(unittest.TestCase):
@@ -118,6 +125,116 @@ class LivePipelineTests(unittest.TestCase):
         self.assertEqual([row["batter_name"] for row in picks], ["Bravo", "Charlie", "Alpha"])
         self.assertEqual([row["rank"] for row in picks], [1, 2, 3])
 
+    def test_build_live_feature_frame_backfills_latest_batter_and_pitcher_features(self) -> None:
+        dataset_df = pd.DataFrame(
+            [
+                {
+                    "game_pk": 9,
+                    "game_date": "2024-09-20",
+                    "batter_id": 101,
+                    "batter_name": "Alpha",
+                    "team": "NYY",
+                    "opponent": "TOR",
+                    "is_home": 0,
+                    "bat_side": "R",
+                    "pitcher_hand": "R",
+                    "pitch_hand_primary": "R",
+                    "pitcher_id": 202,
+                    "opp_pitcher_name": "Max Fried",
+                    "pa_count": 4,
+                    "hr_count": 0,
+                    "hit_hr": 0,
+                    "bbe_count": 3,
+                    "barrel_count": 1,
+                    "hard_hit_bbe_count": 1,
+                    "avg_exit_velocity": 91.0,
+                    "max_exit_velocity": 105.0,
+                    "ev_95plus_bbe_count": 1,
+                    "fly_ball_bbe_count": 1,
+                    "pull_air_bbe_count": 0,
+                    "ballpark": "Rogers Centre",
+                    "hard_hit_rate_last_10d": 0.41,
+                    "max_exit_velocity_last_10d": 108.0,
+                    "pitcher_hard_hit_allowed_rate_last_30d": 0.37,
+                    "pitcher_hr_allowed_per_pa_last_30d": 0.05,
+                },
+                {
+                    "game_pk": 10,
+                    "game_date": "2024-09-30",
+                    "batter_id": 101,
+                    "batter_name": "Alpha",
+                    "team": "NYY",
+                    "opponent": "BOS",
+                    "is_home": 1,
+                    "bat_side": "R",
+                    "pitcher_hand": "L",
+                    "pitch_hand_primary": "L",
+                    "pitcher_id": 202,
+                    "opp_pitcher_name": "Max Fried",
+                    "pa_count": 4,
+                    "hr_count": 1,
+                    "hit_hr": 1,
+                    "bbe_count": 3,
+                    "barrel_count": 1,
+                    "hard_hit_bbe_count": 2,
+                    "avg_exit_velocity": 95.0,
+                    "max_exit_velocity": 108.0,
+                    "ev_95plus_bbe_count": 2,
+                    "fly_ball_bbe_count": 1,
+                    "pull_air_bbe_count": 1,
+                    "ballpark": "Yankee Stadium",
+                    "hard_hit_rate_last_10d": 0.58,
+                    "max_exit_velocity_last_10d": 112.0,
+                    "pitcher_hard_hit_allowed_rate_last_30d": 0.44,
+                    "pitcher_hr_allowed_per_pa_last_30d": 0.07,
+                }
+            ]
+        )
+        dataset_df["game_date"] = pd.to_datetime(dataset_df["game_date"])
+        candidate_df = pd.DataFrame(
+            [
+                {
+                    "game_pk": 999,
+                    "game_date": "2026-03-25",
+                    "batter_id": 101,
+                    "batter_name": "Alpha",
+                    "player_id": 101,
+                    "player_name": "Alpha",
+                    "team": "NYY",
+                    "opponent": "BOS",
+                    "is_home": 1,
+                    "bat_side": "R",
+                    "pitcher_hand": "L",
+                    "pitch_hand_primary": "L",
+                    "pitcher_id": 202,
+                    "opp_pitcher_id": 202,
+                    "pitcher_name": "Max Fried",
+                    "opp_pitcher_name": "Max Fried",
+                    "pa_count": 0,
+                    "hr_count": 0,
+                    "hit_hr": 0,
+                    "bbe_count": 0,
+                    "barrel_count": 0,
+                    "hard_hit_bbe_count": 0,
+                    "avg_exit_velocity": None,
+                    "max_exit_velocity": None,
+                    "ev_95plus_bbe_count": 0,
+                    "fly_ball_bbe_count": 0,
+                    "pull_air_bbe_count": 0,
+                    "ballpark": "Yankee Stadium",
+                    "temperature_f": 61.0,
+                    "wind_speed_mph": 14.0,
+                    "humidity_pct": 55.0,
+                    "platoon_advantage": 1.0,
+                }
+            ]
+        )
+        featured = build_live_feature_frame(dataset_df, candidate_df)
+        self.assertEqual(float(featured.iloc[0]["hard_hit_rate_last_10d"]), 0.58)
+        self.assertEqual(float(featured.iloc[0]["max_exit_velocity_last_10d"]), 112.0)
+        self.assertEqual(float(featured.iloc[0]["pitcher_hard_hit_allowed_rate_last_30d"]), 0.44)
+        self.assertEqual(float(featured.iloc[0]["pitcher_hr_allowed_per_pa_last_30d"]), 0.07)
+
     def test_dashboard_builder_merges_current_into_history(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
@@ -200,6 +317,107 @@ class LivePipelineTests(unittest.TestCase):
         ]
         ordered = sorted(rows, key=lambda row: (-build_dashboard_artifacts.score_sort_value(row), row["rank"], row["batter_name"]))
         self.assertEqual([row["pick_id"] for row in ordered], ["b", "c", "a"])
+
+    def test_generate_reason_strings_returns_feature_specific_batter_reason(self) -> None:
+        row = pd.Series(
+            {
+                "batter_name": "Alpha",
+                "pitcher_name": "Pitcher",
+                "hard_hit_rate_last_10d": 0.58,
+                "platoon_advantage": 0.0,
+            }
+        )
+        reference_df = pd.DataFrame({"hard_hit_rate_last_10d": [0.20, 0.25, 0.30, 0.35, 0.40, 0.58]})
+        reasons = generate_reason_strings(
+            row,
+            reference_df=reference_df,
+            positive_coef_map={"hard_hit_rate_last_10d": 0.8},
+            max_reasons=3,
+        )
+        self.assertTrue(reasons)
+        self.assertIn("Hard-hit rate over the last 10 days is 58.0%", reasons[0])
+
+    def test_generate_reason_strings_returns_pitcher_risk_reason_with_name(self) -> None:
+        row = pd.Series(
+            {
+                "batter_name": "Alpha",
+                "pitcher_name": "Max Fried",
+                "pitcher_hard_hit_allowed_rate_last_30d": 0.47,
+            }
+        )
+        reference_df = pd.DataFrame({"pitcher_hard_hit_allowed_rate_last_30d": [0.21, 0.25, 0.29, 0.33, 0.38, 0.47]})
+        reasons = generate_reason_strings(
+            row,
+            reference_df=reference_df,
+            positive_coef_map={"pitcher_hard_hit_allowed_rate_last_30d": 0.9},
+            max_reasons=3,
+        )
+        self.assertTrue(reasons)
+        self.assertIn("Max Fried", reasons[0])
+        self.assertIn("47.0%", reasons[0])
+
+    def test_generate_reason_strings_returns_weather_reason(self) -> None:
+        row = pd.Series(
+            {
+                "batter_name": "Alpha",
+                "pitcher_name": "Pitcher",
+                "wind_speed_mph": 14.0,
+            }
+        )
+        reference_df = pd.DataFrame({"wind_speed_mph": [4.0, 5.0, 6.5, 7.0, 8.0, 14.0]})
+        reasons = generate_reason_strings(
+            row,
+            reference_df=reference_df,
+            positive_coef_map={"wind_speed_mph": 0.4},
+            max_reasons=3,
+        )
+        self.assertTrue(reasons)
+        self.assertIn("14.0 mph", reasons[0])
+
+    def test_generate_reason_strings_prefers_batter_and_pitcher_before_weather(self) -> None:
+        row = pd.Series(
+            {
+                "batter_name": "Alpha",
+                "pitcher_name": "Max Fried",
+                "hard_hit_rate_last_30d": 0.54,
+                "pitcher_hard_hit_allowed_rate_last_30d": 0.46,
+                "wind_speed_mph": 14.0,
+            }
+        )
+        reference_df = pd.DataFrame(
+            {
+                "hard_hit_rate_last_30d": [0.28, 0.32, 0.35, 0.38, 0.42, 0.54],
+                "pitcher_hard_hit_allowed_rate_last_30d": [0.24, 0.27, 0.30, 0.33, 0.36, 0.46],
+                "wind_speed_mph": [4.0, 5.0, 6.5, 7.0, 8.0, 14.0],
+            }
+        )
+        reasons = generate_reason_strings(
+            row,
+            reference_df=reference_df,
+            positive_coef_map={
+                "hard_hit_rate_last_30d": 0.7,
+                "pitcher_hard_hit_allowed_rate_last_30d": 0.5,
+                "wind_speed_mph": 0.4,
+            },
+            max_reasons=3,
+        )
+        self.assertGreaterEqual(len(reasons), 2)
+        self.assertIn("Hard-hit rate over the last 30 days is 54.0%", reasons[0])
+        self.assertIn("Max Fried", reasons[1])
+
+    def test_generate_reason_strings_uses_generic_fallback_only_when_needed(self) -> None:
+        row = pd.Series({"batter_name": "Alpha", "pitcher_name": "Pitcher", "hard_hit_rate_last_10d": 0.10})
+        reference_df = pd.DataFrame({"hard_hit_rate_last_10d": [0.20, 0.25, 0.30, 0.35, 0.40]})
+        reasons = generate_reason_strings(
+            row,
+            reference_df=reference_df,
+            positive_coef_map={"hard_hit_rate_last_10d": 0.8},
+            max_reasons=3,
+        )
+        self.assertEqual(
+            reasons,
+            ["The live model favors the overall recent-form and matchup profile, but no single feature cleared the explanation threshold."],
+        )
 
 
 if __name__ == "__main__":

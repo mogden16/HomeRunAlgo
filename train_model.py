@@ -166,21 +166,25 @@ RANKING_EXPORT_CORE_COLUMNS = [
     "pitcher_name",
 ]
 REASON_TEXT_BY_FEATURE = {
-    "hr_per_pa_last_10d": "elite recent HR form",
-    "hr_per_pa_last_30d": "strong recent HR form",
-    "barrels_per_pa_last_10d": "strong recent barrel rate",
-    "barrels_per_pa_last_30d": "solid recent barrel trend",
-    "hard_hit_rate_last_10d": "strong recent hard-hit form",
-    "hard_hit_rate_last_30d": "consistent hard-hit contact",
-    "bbe_95plus_ev_rate_last_10d": "strong recent 95+ EV contact",
-    "bbe_95plus_ev_rate_last_30d": "sustained 95+ EV contact",
-    "pitcher_hard_hit_allowed_rate_last_30d": "pitcher allows hard contact",
-    "pitcher_barrels_allowed_per_bbe_last_30d": "pitcher allows barrels",
-    "pitcher_95plus_ev_allowed_rate_last_30d": "pitcher allows loud contact",
-    "pitcher_hr_allowed_per_pa_last_30d": "pitcher has elevated HR risk",
-    "fastball_matchup_barrel": "favorable fastball matchup",
-    "fastball_matchup_hard_hit": "favorable hard-hit pitch mix matchup",
-    "platoon_advantage": "platoon advantage",
+    "hr_per_pa_last_10d": "recent_hr_rate_10d",
+    "hr_per_pa_last_30d": "recent_hr_rate_30d",
+    "barrels_per_pa_last_10d": "recent_barrel_rate_10d",
+    "barrels_per_pa_last_30d": "recent_barrel_rate_30d",
+    "hard_hit_rate_last_10d": "recent_hard_hit_rate_10d",
+    "hard_hit_rate_last_30d": "recent_hard_hit_rate_30d",
+    "bbe_95plus_ev_rate_last_10d": "recent_95plus_ev_rate_10d",
+    "bbe_95plus_ev_rate_last_30d": "recent_95plus_ev_rate_30d",
+    "avg_exit_velocity_last_10d": "recent_avg_ev_10d",
+    "max_exit_velocity_last_10d": "recent_max_ev_10d",
+    "pitcher_hr_allowed_per_pa_last_30d": "pitcher_hr_allowed_30d",
+    "pitcher_barrels_allowed_per_bbe_last_30d": "pitcher_barrels_allowed_30d",
+    "pitcher_hard_hit_allowed_rate_last_30d": "pitcher_hard_hit_allowed_30d",
+    "pitcher_avg_ev_allowed_last_30d": "pitcher_avg_ev_allowed_30d",
+    "pitcher_95plus_ev_allowed_rate_last_30d": "pitcher_95plus_ev_allowed_30d",
+    "temperature_f": "temperature",
+    "wind_speed_mph": "wind_speed",
+    "humidity_pct": "humidity",
+    "platoon_advantage": "platoon_advantage",
 }
 
 warnings.filterwarnings(
@@ -875,14 +879,86 @@ def extract_logistic_coefficient_map(
     return {feature: float(value) for feature, value in zip(kept_columns, coef, strict=False)}
 
 
+def _format_pct(value: float) -> str:
+    return f"{value * 100:.1f}%"
+
+
+def _format_mph(value: float) -> str:
+    return f"{value:.1f} mph"
+
+
+def _format_temp(value: float) -> str:
+    return f"{value:.0f}F"
+
+
+def _strength_label(percentile: float) -> str:
+    if percentile >= 0.90:
+        return "top-decile"
+    if percentile >= 0.75:
+        return "top-quartile"
+    return "above-baseline"
+
+
+def _feature_reason_bucket(feature: str) -> str:
+    if feature.startswith("pitcher_"):
+        return "pitcher"
+    if feature in {"temperature_f", "wind_speed_mph", "humidity_pct", "platoon_advantage"}:
+        return "context"
+    return "batter"
+
+
+def _build_feature_reason(feature: str, value: float, percentile: float, row: pd.Series) -> str:
+    pitcher_name = str(row.get("pitcher_name") or "the opposing pitcher")
+    strength = _strength_label(percentile)
+    if feature == "hr_per_pa_last_10d":
+        return f"HR rate over the last 10 days is {_format_pct(value)}, a {strength} live-model signal."
+    if feature == "hr_per_pa_last_30d":
+        return f"HR rate over the last 30 days is {_format_pct(value)}, which keeps the recent power trend elevated."
+    if feature == "barrels_per_pa_last_10d":
+        return f"Barrel rate over the last 10 days is {_format_pct(value)}, a {strength} indicator of current lift-and-damage contact."
+    if feature == "barrels_per_pa_last_30d":
+        return f"Barrel rate over the last 30 days is {_format_pct(value)}, which the model treats as sustained power quality."
+    if feature == "hard_hit_rate_last_10d":
+        return f"Hard-hit rate over the last 10 days is {_format_pct(value)}, a {strength} recent-contact signal."
+    if feature == "hard_hit_rate_last_30d":
+        return f"Hard-hit rate over the last 30 days is {_format_pct(value)}, showing consistent quality contact."
+    if feature == "bbe_95plus_ev_rate_last_10d":
+        return f"95+ EV contact rate over the last 10 days is {_format_pct(value)}, which supports near-term HR upside."
+    if feature == "bbe_95plus_ev_rate_last_30d":
+        return f"95+ EV contact rate over the last 30 days is {_format_pct(value)}, a strong loud-contact input for the model."
+    if feature == "avg_exit_velocity_last_10d":
+        return f"Average exit velocity over the last 10 days is {value:.1f} mph, a {strength} recent batted-ball quality marker."
+    if feature == "max_exit_velocity_last_10d":
+        return f"Peak exit velocity over the last 10 days is {value:.1f} mph, which points to top-end HR juice."
+    if feature == "pitcher_hr_allowed_per_pa_last_30d":
+        return f"{pitcher_name} has allowed homers in {_format_pct(value)} of plate appearances over the last 30 days."
+    if feature == "pitcher_barrels_allowed_per_bbe_last_30d":
+        return f"{pitcher_name} has allowed barrels on {_format_pct(value)} of recent batted balls."
+    if feature == "pitcher_hard_hit_allowed_rate_last_30d":
+        return f"{pitcher_name} has allowed a {_format_pct(value)} hard-hit rate over the last 30 days."
+    if feature == "pitcher_avg_ev_allowed_last_30d":
+        return f"{pitcher_name} has allowed {value:.1f} mph average exit velocity recently, which the model flags as hittable contact."
+    if feature == "pitcher_95plus_ev_allowed_rate_last_30d":
+        return f"{pitcher_name} has allowed {_format_pct(value)} 95+ EV contact over the last 30 days."
+    if feature == "temperature_f":
+        return f"Forecast temperature is {_format_temp(value)}, a positive hitting-context input in the live model."
+    if feature == "wind_speed_mph":
+        return f"Projected wind speed is {_format_mph(value)}, which the live model treats as favorable weather context."
+    if feature == "humidity_pct":
+        return f"Projected humidity is {value:.0f}%, a modest positive weather input in the live model."
+    if feature == "platoon_advantage":
+        return "The hitter has the platoon advantage in this matchup."
+    return ""
+
+
 def generate_reason_strings(
     row: pd.Series,
     reference_df: pd.DataFrame,
     positive_coef_map: dict[str, float],
     max_reasons: int = 3,
 ) -> list[str]:
-    contributions: list[tuple[float, str]] = []
-    for feature, reason in REASON_TEXT_BY_FEATURE.items():
+    contributions: list[dict[str, object]] = []
+    for feature in REASON_TEXT_BY_FEATURE:
         if feature not in row.index or feature not in reference_df.columns:
             continue
         value = row.get(feature)
@@ -891,25 +967,72 @@ def generate_reason_strings(
         series = reference_df[feature].dropna()
         if series.empty:
             continue
+        q60 = float(series.quantile(0.60))
         q75 = float(series.quantile(0.75))
         q90 = float(series.quantile(0.90))
+        q85 = float(series.quantile(0.85))
         coef_weight = max(positive_coef_map.get(feature, 0.0), 0.0)
-        if coef_weight <= 0 and feature not in {"platoon_advantage"}:
+        if coef_weight <= 0:
             continue
+        bucket = _feature_reason_bucket(feature)
         is_platoon = feature == "platoon_advantage"
-        strong_signal = bool(value >= q90) or (is_platoon and value >= 1)
-        medium_signal = bool(value >= q75) or (is_platoon and value >= 1)
+        percentile = float((series <= value).mean()) if not is_platoon else 1.0
+        if bucket == "context":
+            strong_signal = bool(value >= q90) or (is_platoon and value >= 1)
+            medium_signal = bool(value >= q85) or (is_platoon and value >= 1)
+            supporting_signal = False
+        else:
+            strong_signal = bool(value >= q90) or (is_platoon and value >= 1)
+            medium_signal = bool(value >= q75) or (is_platoon and value >= 1)
+            supporting_signal = bool(value >= q60) or (is_platoon and value >= 1)
+        reason = _build_feature_reason(feature, float(value), percentile, row)
+        if not reason:
+            continue
+        score = None
         if strong_signal:
-            score = 2.0 + coef_weight
-            contributions.append((score, reason))
+            score = 2.0 + coef_weight + percentile
         elif medium_signal:
-            score = 1.0 + coef_weight
-            contributions.append((score, reason))
+            score = 1.0 + coef_weight + percentile
+        elif supporting_signal:
+            score = 0.5 + coef_weight + percentile
+        if score is None:
+            continue
+        bucket_priority = {"batter": 3.0, "pitcher": 2.5, "context": 1.0}.get(bucket, 0.0)
+        contributions.append(
+            {
+                "feature": feature,
+                "bucket": bucket,
+                "score": float(score) + bucket_priority,
+                "percentile": percentile,
+                "reason": reason,
+            }
+        )
     if not contributions:
-        return ["overall model score is strong", "multiple supportive form and matchup signals", "profile ranks well for HR upside"][:max_reasons]
-    reasons = [reason for _, reason in sorted(contributions, key=lambda x: x[0], reverse=True)]
-    deduped = list(dict.fromkeys(reasons))
-    return deduped[:max_reasons]
+        return ["The live model favors the overall recent-form and matchup profile, but no single feature cleared the explanation threshold."][:max_reasons]
+    ordered = sorted(contributions, key=lambda item: float(item["score"]), reverse=True)
+    selected: list[str] = []
+    seen_reasons: set[str] = set()
+    for bucket in ["batter", "pitcher", "context"]:
+        for item in ordered:
+            if item["bucket"] != bucket:
+                continue
+            reason = str(item["reason"])
+            if reason in seen_reasons:
+                continue
+            selected.append(reason)
+            seen_reasons.add(reason)
+            break
+        if len(selected) >= max_reasons:
+            return selected[:max_reasons]
+    for item in ordered:
+        reason = str(item["reason"])
+        if reason in seen_reasons:
+            continue
+        selected.append(reason)
+        seen_reasons.add(reason)
+        if len(selected) >= max_reasons:
+            break
+    return selected[:max_reasons]
 
 
 def build_ranked_predictions_output(
