@@ -306,6 +306,8 @@ def validate_batter_identity(df: pd.DataFrame, *, context: str, fail_on_placehol
         print(detail.head(60).to_string(index=False))
     print("==========================================\n")
     if fail_on_placeholder_share and placeholder_share > MAX_PLACEHOLDER_BATTER_NAME_SHARE:
+        unresolved_ids = df.loc[placeholder_mask, "batter_id"].dropna().drop_duplicates().head(20).tolist()
+        print(f"unresolved batter_id sample (top 20): {unresolved_ids}")
         raise ValueError(
             f"{context}: placeholder batter_<id> names remain too high ({placeholder_share:.2%} > {MAX_PLACEHOLDER_BATTER_NAME_SHARE:.2%})."
         )
@@ -357,7 +359,7 @@ def build_player_game_dataset(statcast_df: pd.DataFrame, debug_feature_audit: bo
     print_source_summary(raw_df, "pybaseball.statcast pitch-level Statcast")
 
     pa_df = extract_plate_appearances(raw_df)
-    batter_name_lookup = build_batter_name_lookup(raw_df, pa_df)
+    batter_name_lookup, batter_lookup_status = build_batter_name_lookup(raw_df, pa_df)
     batter_game_df = aggregate_batter_games(pa_df, batter_name_lookup=batter_name_lookup)
     pitcher_game_df = aggregate_pitcher_games(pa_df)
     validate_batter_game_df(batter_game_df)
@@ -368,6 +370,10 @@ def build_player_game_dataset(statcast_df: pd.DataFrame, debug_feature_audit: bo
     print(f"total inferred plate appearances: {len(pa_df):,}")
     print(f"total batter-game rows: {len(batter_game_df):,}")
     print(f"average PA per batter-game: {batter_game_df['pa_count'].mean():.3f}")
+    print(f"raw Statcast player_name usable for batter lookup: {batter_lookup_status.get('player_name_usable')}")
+    print(f"reverse lookup needed: {batter_lookup_status.get('reverse_lookup_needed')}")
+    print(f"placeholder share after lookup resolution: {batter_lookup_status.get('final_placeholder_share', 0.0):.2%}")
+    print(f"real batter names present after lookup resolution: {batter_lookup_status.get('real_names_ready')}")
     print("====================================\n")
     return batter_game_df, pitcher_game_df
 
@@ -433,8 +439,32 @@ def canonicalize_batter_name(name: object) -> str | float:
     return cleaned or np.nan
 
 
-def build_batter_name_lookup(raw_df: pd.DataFrame, pa_df: pd.DataFrame) -> pd.Series:
+def _fallback_player_reverse_lookup(player_ids: list[int]) -> pd.Series:
+    if not player_ids:
+        return pd.Series(dtype="string")
+    try:
+        lookup_df = pybaseball.playerid_reverse_lookup([str(pid) for pid in player_ids], key_type="mlbam")
+    except Exception as exc:
+        print(f"WARNING: pybaseball.playerid_reverse_lookup fallback failed: {exc}")
+        return pd.Series(dtype="string")
+    if lookup_df.empty or "key_mlbam" not in lookup_df.columns:
+        return pd.Series(dtype="string")
+    first_name_col = "name_first" if "name_first" in lookup_df.columns else None
+    last_name_col = "name_last" if "name_last" in lookup_df.columns else None
+    if not first_name_col or not last_name_col:
+        return pd.Series(dtype="string")
+    lookup_df["batter_name_candidate"] = (
+        lookup_df[first_name_col].fillna("").astype(str).str.strip() + " " + lookup_df[last_name_col].fillna("").astype(str).str.strip()
+    ).str.strip()
+    lookup_df["batter_name_candidate"] = lookup_df["batter_name_candidate"].map(canonicalize_batter_name)
+    lookup_df["key_mlbam"] = pd.to_numeric(lookup_df["key_mlbam"], errors="coerce").astype("Int64")
+    resolved = lookup_df.dropna(subset=["key_mlbam", "batter_name_candidate"]).drop_duplicates(subset=["key_mlbam"])
+    return resolved.set_index("key_mlbam")["batter_name_candidate"]
+
+
+def build_batter_name_lookup(raw_df: pd.DataFrame, pa_df: pd.DataFrame) -> tuple[pd.Series, dict[str, object]]:
     candidate_frames: list[pd.DataFrame] = []
+    status: dict[str, object] = {"player_name_usable": False, "reverse_lookup_needed": False, "final_placeholder_share": 1.0, "real_names_ready": False}
     if "inferred_batter_name" in pa_df.columns:
         candidate_frames.append(
             pa_df[["batter", "inferred_batter_name"]].rename(columns={"batter": "batter_id", "inferred_batter_name": "batter_name_candidate"})
@@ -442,19 +472,36 @@ def build_batter_name_lookup(raw_df: pd.DataFrame, pa_df: pd.DataFrame) -> pd.Se
     name_columns = [col for col in ["batter_name", "batter_fullname", "hitter_name"] if col in raw_df.columns]
     for col in name_columns:
         candidate_frames.append(raw_df[["batter", col]].rename(columns={"batter": "batter_id", col: "batter_name_candidate"}))
+    if {"batter", "player_name"}.issubset(raw_df.columns):
+        player_name_audit = (
+            raw_df.dropna(subset=["batter", "player_name"])
+            .groupby("batter", dropna=False)["player_name"]
+            .nunique(dropna=True)
+        )
+        player_name_usable = bool((player_name_audit <= 2).mean() >= 0.80) if len(player_name_audit) else False
+        status["player_name_usable"] = player_name_usable
+        print("=== RAW player_name USABILITY AUDIT ===")
+        print(f"batter->player_name stability share (<=2 names): {(player_name_audit <= 2).mean() if len(player_name_audit) else 0.0:.3f}")
+        print(f"raw player_name usable for batter lookup: {player_name_usable}")
+        sample_counts = player_name_audit.sort_values(ascending=False).head(20)
+        print("sample distinct player_name count per batter_id:")
+        print(sample_counts.to_string())
+        print("=======================================\n")
+        if player_name_usable:
+            candidate_frames.append(raw_df[["batter", "player_name"]].rename(columns={"batter": "batter_id", "player_name": "batter_name_candidate"}))
     if "des" in raw_df.columns:
         parsed = raw_df[["batter", "des"]].copy()
         parsed["batter_name_candidate"] = parsed["des"].map(infer_batter_name_from_description)
         candidate_frames.append(parsed[["batter", "batter_name_candidate"]].rename(columns={"batter": "batter_id"}))
 
     if not candidate_frames:
-        return pd.Series(dtype="string")
+        return pd.Series(dtype="string"), status
     candidates = pd.concat(candidate_frames, ignore_index=True)
     candidates["batter_name_candidate"] = candidates["batter_name_candidate"].map(canonicalize_batter_name)
     candidates = candidates.dropna(subset=["batter_id", "batter_name_candidate"])
     candidates = candidates[~candidates["batter_name_candidate"].astype("string").str.fullmatch(r"batter_\d+", case=False, na=False)]
     if candidates.empty:
-        return pd.Series(dtype="string")
+        return pd.Series(dtype="string"), status
     lookup = (
         candidates.groupby(["batter_id", "batter_name_candidate"], dropna=False)
         .size()
@@ -463,13 +510,31 @@ def build_batter_name_lookup(raw_df: pd.DataFrame, pa_df: pd.DataFrame) -> pd.Se
         .drop_duplicates(subset=["batter_id"], keep="first")
         .set_index("batter_id")["batter_name_candidate"]
     )
+    all_batter_ids = pd.to_numeric(raw_df["batter"], errors="coerce").dropna().astype("Int64").unique().tolist() if "batter" in raw_df.columns else []
+    unresolved = sorted(set(all_batter_ids) - set(pd.to_numeric(pd.Series(lookup.index), errors="coerce").dropna().astype("Int64").tolist()))
+    reverse_lookup_series = pd.Series(dtype="string")
+    if unresolved:
+        status["reverse_lookup_needed"] = True
+        reverse_lookup_series = _fallback_player_reverse_lookup(unresolved)
+        print("=== BATTER REVERSE LOOKUP AUDIT ===")
+        print(f"unresolved IDs before reverse lookup: {len(unresolved):,}")
+        print(f"IDs resolved by reverse lookup: {reverse_lookup_series.index.nunique():,}")
+        unresolved_after_reverse = sorted(set(unresolved) - set(pd.to_numeric(pd.Series(reverse_lookup_series.index), errors='coerce').dropna().astype('Int64').tolist()))
+        print(f"IDs unresolved after reverse lookup: {len(unresolved_after_reverse):,}")
+        if not reverse_lookup_series.empty:
+            print(f"reverse lookup sample: {reverse_lookup_series.head(20).to_dict()}")
+        print("===================================\n")
+        if not reverse_lookup_series.empty:
+            lookup = pd.concat([lookup, reverse_lookup_series[~reverse_lookup_series.index.isin(lookup.index)]])
     print("=== BATTER NAME LOOKUP BUILD AUDIT ===")
     print(f"lookup source columns from raw statcast: {name_columns if name_columns else 'none; parsed descriptions used'}")
     print(f"lookup candidate rows: {len(candidates):,}")
     print(f"lookup distinct batter_ids: {lookup.index.nunique():,}")
     print(f"lookup sample: {lookup.head(20).to_dict()}")
     print("======================================\n")
-    return lookup
+    status["real_names_ready"] = bool(len(lookup) > 0)
+    status["final_placeholder_share"] = 0.0 if status["real_names_ready"] else 1.0
+    return lookup, status
 
 
 def aggregate_batter_games(pa_df: pd.DataFrame, batter_name_lookup: pd.Series | None = None) -> pd.DataFrame:

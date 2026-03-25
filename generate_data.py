@@ -28,6 +28,26 @@ def generate_mlb_dataset(
     del debug_feature_audit
     statcast_df = fetch_statcast_season(start_date=start_date, end_date=end_date, force_refresh=force_refresh)
     print_source_summary(statcast_df, "pybaseball.statcast pitch-level Statcast")
+    print("=== RAW STATCAST IDENTITY FIELD AUDIT ===")
+    for col in ["player_name", "batter", "pitcher"]:
+        print(f"has_{col}: {col in statcast_df.columns}")
+    non_null_player_name = int(statcast_df["player_name"].notna().sum()) if "player_name" in statcast_df.columns else 0
+    print(f"non_null player_name rows: {non_null_player_name:,}")
+    sample_cols = [col for col in ["player_name", "batter", "pitcher", "game_pk", "game_date", "events"] if col in statcast_df.columns]
+    if sample_cols:
+        print("sample identity rows:")
+        print(statcast_df[sample_cols].head(20).to_string(index=False))
+    if {"batter", "player_name"}.issubset(statcast_df.columns):
+        sample_stability = (
+            statcast_df.dropna(subset=["batter", "player_name"])
+            .groupby("batter", dropna=False)["player_name"]
+            .nunique(dropna=True)
+            .sort_values(ascending=False)
+            .head(20)
+        )
+        print("sample distinct player_name count per batter_id:")
+        print(sample_stability.to_string())
+    print("=========================================\n")
 
     batter_game_df, pitcher_game_df = build_player_game_dataset(statcast_df)
     dataset = add_leakage_safe_features(batter_game_df, pitcher_game_df, statcast_df=statcast_df)
