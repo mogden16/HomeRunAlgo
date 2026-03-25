@@ -6,6 +6,7 @@ import argparse
 from datetime import datetime
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo
 
 import numpy as np
 import pandas as pd
@@ -23,7 +24,8 @@ from sklearn.model_selection import GridSearchCV, TimeSeriesSplit
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
-from config import FINAL_DATA_PATH, RANDOM_STATE, TRAIN_FRACTION, TSCV_N_SPLITS
+from config import FINAL_DATA_PATH, RANDOM_STATE, TRAIN_FRACTION, TSCV_N_SPLITS, park_factor_cache_path
+from data_sources import build_live_weather_table, fetch_confirmed_lineups, fetch_live_schedule, fetch_player_metadata
 from feature_engineering import (
     CONTACT_AUTHORITY_FEATURE_COLUMNS,
     CURRENT_MODEL_CANDIDATE_FEATURE_COLUMNS,
@@ -45,6 +47,9 @@ INITIAL_TIER_RULES = [
 CONFIDENCE_PROFILE_ORDER = ["High", "Medium", "Low"]
 MIN_CONFIDENCE_BUCKET_ROWS = 150
 MIN_CONFIDENCE_RATE_GAP = 0.015
+LIVE_TZ = ZoneInfo("America/New_York")
+LIVE_OUTPUT_DIR = FINAL_DATA_PATH.parent
+LIVE_SLATE_MODES = ("auto", "confirmed", "projected")
 
 FAMILY_REASON_LABELS = {
     "batter_recent_form": "strong recent barrel/hard-hit form",
@@ -92,6 +97,39 @@ FEATURE_FAMILY_MAP = {
         "platoon_advantage",
     ],
 }
+
+BATTER_SNAPSHOT_FEATURE_COLUMNS = [
+    "hr_rate_season_to_date",
+    "barrel_rate_last_50_bbe",
+    "hard_hit_rate_last_50_bbe",
+    "avg_launch_angle_last_50_bbe",
+    "avg_exit_velocity_last_50_bbe",
+    "fly_ball_rate_last_50_bbe",
+    "pull_air_rate_last_50_bbe",
+    "batter_k_rate_season_to_date",
+    "batter_bb_rate_season_to_date",
+    "days_since_last_game",
+    "bbe_count_last_50",
+    "avg_hit_distance_last_50_bbe",
+    "long_contact_rate_last_50_bbe",
+]
+PITCHER_SNAPSHOT_FEATURE_COLUMNS = [
+    "pitcher_hr9_season_to_date",
+    "pitcher_barrel_rate_allowed_last_50_bbe",
+    "pitcher_hard_hit_rate_allowed_last_50_bbe",
+    "pitcher_fb_rate_allowed_last_50_bbe",
+    "pitcher_avg_hit_distance_allowed_last_50_bbe",
+    "pitcher_k_rate_season_to_date",
+    "pitcher_bb_rate_season_to_date",
+    *PITCH_STYLE_FEATURE_COLUMNS,
+]
+WEATHER_FEATURE_COLUMNS = [
+    "temperature_f",
+    "humidity_pct",
+    "wind_speed_mph",
+    "wind_direction_deg",
+    "pressure_hpa",
+]
 
 
 def print_dataset_load_audit(path: Path, df: pd.DataFrame) -> None:
@@ -809,6 +847,8 @@ def build_recommendation_table(
         "confidence_label",
         "confidence_reasons",
     ]
+    if "lineup_status" in recommendation_df.columns:
+        columns.append("lineup_status")
     return recommendation_df[columns]
 
 
@@ -861,6 +901,388 @@ def build_ranked_display(ranking_df: pd.DataFrame) -> pd.DataFrame:
         id_column="opp_pitcher_id",
     )
     return display_df[["batter_id", "batter_name", "pitcher_name", "score"]]
+
+
+def resolve_live_date(today_flag: bool, live_date: str | None) -> pd.Timestamp:
+    if today_flag and live_date:
+        raise ValueError("Use either --today or --live-date, not both.")
+    if today_flag:
+        return pd.Timestamp(datetime.now(LIVE_TZ).date())
+    if live_date:
+        return pd.Timestamp(live_date)
+    raise ValueError("Live mode requires --today or --live-date.")
+
+
+def season_dataset_candidates(season: int) -> list[Path]:
+    return [
+        FINAL_DATA_PATH.parent / f"mlb_player_game_real_{season}_shadow.csv",
+        FINAL_DATA_PATH.parent / f"mlb_player_game_real_{season}.csv",
+        FINAL_DATA_PATH,
+    ]
+
+
+def load_season_history(season: int) -> pd.DataFrame:
+    for candidate in season_dataset_candidates(season):
+        if not candidate.exists():
+            continue
+        df = pd.read_csv(candidate, parse_dates=[DATE_COL], low_memory=False)
+        if DATE_COL not in df.columns or df.empty:
+            continue
+        season_mask = pd.to_datetime(df[DATE_COL]).dt.year == season
+        if season_mask.any():
+            resolved = df.loc[season_mask].copy()
+            resolved[DATE_COL] = pd.to_datetime(resolved[DATE_COL])
+            return resolved.sort_values([DATE_COL, "game_pk", "player_id"]).reset_index(drop=True)
+    return pd.DataFrame()
+
+
+def load_live_training_history(live_ts: pd.Timestamp) -> tuple[pd.DataFrame, dict[str, object]]:
+    prior_season = live_ts.year - 1
+    current_season = live_ts.year
+    prior_df = load_season_history(prior_season)
+    current_df = load_season_history(current_season)
+    if not current_df.empty:
+        current_df = current_df[current_df[DATE_COL] < live_ts].copy()
+    combined_frames = [frame for frame in (prior_df, current_df) if not frame.empty]
+    if not combined_frames:
+        raise RuntimeError(
+            f"No historical training rows found for live date {live_ts.date()}. "
+            f"Expected at least prior-season dataset for {prior_season}."
+        )
+    combined = pd.concat(combined_frames, ignore_index=True)
+    combined = combined.sort_values([DATE_COL, "game_pk", "player_id"]).reset_index(drop=True)
+    return combined, {
+        "prior_season": prior_season,
+        "prior_rows": int(len(prior_df)),
+        "current_season": current_season,
+        "current_rows": int(len(current_df)),
+    }
+
+
+def _latest_row_per_group(df: pd.DataFrame, group_col: str) -> pd.DataFrame:
+    ordered = df.sort_values([group_col, DATE_COL, "game_pk", "player_id"]).copy()
+    return ordered.groupby(group_col, sort=False).tail(1).reset_index(drop=True)
+
+
+def build_batter_snapshot_lookup(history_df: pd.DataFrame, live_ts: pd.Timestamp) -> pd.DataFrame:
+    valid = history_df[history_df[DATE_COL] < live_ts].copy()
+    if valid.empty:
+        return pd.DataFrame(columns=["player_id", "batter_name", "player_name", "bat_side", "team", *BATTER_SNAPSHOT_FEATURE_COLUMNS, "last_batter_game_date"])
+    latest = _latest_row_per_group(valid, "player_id")
+    latest = latest[[
+        "player_id",
+        "batter_name",
+        "player_name",
+        "bat_side",
+        "team",
+        *BATTER_SNAPSHOT_FEATURE_COLUMNS,
+        DATE_COL,
+    ]].rename(columns={DATE_COL: "last_batter_game_date"})
+    latest["last_batter_game_date"] = pd.to_datetime(latest["last_batter_game_date"])
+    return latest
+
+
+def build_pitcher_snapshot_lookup(history_df: pd.DataFrame, live_ts: pd.Timestamp) -> pd.DataFrame:
+    valid = history_df[(history_df[DATE_COL] < live_ts) & history_df["opp_pitcher_id"].notna()].copy()
+    if valid.empty:
+        return pd.DataFrame(columns=["opp_pitcher_id", "pitcher_name", "opp_pitcher_name", "pitch_hand_primary", *PITCHER_SNAPSHOT_FEATURE_COLUMNS, "last_pitcher_game_date"])
+    ordered = valid.sort_values(["opp_pitcher_id", DATE_COL, "game_pk", "player_id"]).copy()
+    latest = ordered.groupby("opp_pitcher_id", sort=False).tail(1).reset_index(drop=True)
+    latest = latest[[
+        "opp_pitcher_id",
+        "pitcher_name",
+        "opp_pitcher_name",
+        "pitch_hand_primary",
+        *PITCHER_SNAPSHOT_FEATURE_COLUMNS,
+        DATE_COL,
+    ]].rename(columns={DATE_COL: "last_pitcher_game_date"})
+    latest["last_pitcher_game_date"] = pd.to_datetime(latest["last_pitcher_game_date"])
+    return latest
+
+
+def build_projected_lineups(history_df: pd.DataFrame, live_ts: pd.Timestamp) -> tuple[pd.DataFrame, pd.DataFrame]:
+    lineup_pool = history_df[
+        (history_df[DATE_COL] < live_ts)
+        & history_df["batting_order"].notna()
+        & history_df["player_id"].notna()
+    ].copy()
+    if lineup_pool.empty:
+        return pd.DataFrame(), pd.DataFrame()
+
+    lineup_pool["batting_order"] = pd.to_numeric(lineup_pool["batting_order"], errors="coerce")
+    latest_game_rows = (
+        lineup_pool.sort_values(["team", DATE_COL, "game_pk", "batting_order"])
+        .groupby("team", sort=False)
+        .tail(20)
+        .copy()
+    )
+    projected_rows: list[dict[str, object]] = []
+    incomplete_rows: list[dict[str, object]] = []
+    for team, team_rows in latest_game_rows.groupby("team", sort=False):
+        most_recent_date = team_rows[DATE_COL].max()
+        latest_day = team_rows[team_rows[DATE_COL] == most_recent_date].copy()
+        latest_game_pk = latest_day["game_pk"].mode().iloc[0]
+        lineup = (
+            latest_day[latest_day["game_pk"] == latest_game_pk]
+            .sort_values("batting_order")
+            .drop_duplicates("player_id", keep="first")
+            .head(9)
+        )
+        if len(lineup) < 9:
+            incomplete_rows.append({"team": team, "reason": "insufficient projected hitters from latest lineup history"})
+            continue
+        for _, row in lineup.iterrows():
+            projected_rows.append(
+                {
+                    "team": team,
+                    "player_id": int(row["player_id"]),
+                    "player_name": row.get("player_name"),
+                    "batter_name": row.get("batter_name"),
+                    "bat_side": row.get("bat_side"),
+                    "batting_order": int(row["batting_order"]),
+                    "source_game_date": most_recent_date,
+                }
+            )
+    return pd.DataFrame(projected_rows), pd.DataFrame(incomplete_rows)
+
+
+def _build_lineup_rows(
+    schedule_df: pd.DataFrame,
+    confirmed_lineups_df: pd.DataFrame,
+    projected_lineups_df: pd.DataFrame,
+    player_meta_df: pd.DataFrame,
+    slate_mode: str,
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    meta_lookup = player_meta_df.drop_duplicates("player_id").set_index("player_id") if not player_meta_df.empty else pd.DataFrame()
+    projected_lookup = projected_lineups_df.copy()
+    if not projected_lookup.empty:
+        projected_lookup["team"] = projected_lookup["team"].astype(str)
+
+    lineup_rows: list[dict[str, object]] = []
+    incomplete_rows: list[dict[str, object]] = []
+    confirmed_lookup = confirmed_lineups_df.copy()
+    if not confirmed_lookup.empty:
+        confirmed_lookup["player_id"] = confirmed_lookup["player_id"].astype(int)
+    else:
+        confirmed_lookup = pd.DataFrame(columns=["game_pk", "team_side", "player_id", "batting_order", "player_name"])
+
+    for _, game_row in schedule_df.iterrows():
+        for team_side, team_col, opp_col, pitcher_id_col, pitcher_name_col in (
+            ("away", "away_team", "home_team", "home_probable_pitcher_id", "home_probable_pitcher_name"),
+            ("home", "home_team", "away_team", "away_probable_pitcher_id", "away_probable_pitcher_name"),
+        ):
+            team = str(game_row[team_col])
+            opponent = str(game_row[opp_col])
+            probable_pitcher_id = game_row[pitcher_id_col]
+            probable_pitcher_name = game_row[pitcher_name_col]
+            if pd.isna(probable_pitcher_id):
+                incomplete_rows.append(
+                    {
+                        "game_pk": int(game_row["game_pk"]),
+                        "game_date": pd.Timestamp(game_row["game_date"]).date(),
+                        "team": team,
+                        "opponent": opponent,
+                        "reason": "missing official probable pitcher",
+                    }
+                )
+                continue
+
+            confirmed_team = confirmed_lookup[
+                (confirmed_lookup["game_pk"] == int(game_row["game_pk"])) & (confirmed_lookup["team_side"] == team_side)
+            ].copy()
+            has_confirmed = len(confirmed_team) >= 9
+
+            use_confirmed = slate_mode == "confirmed" or (slate_mode == "auto" and has_confirmed)
+            use_projected = slate_mode == "projected" or (slate_mode == "auto" and not has_confirmed)
+
+            if use_confirmed and not has_confirmed:
+                incomplete_rows.append(
+                    {
+                        "game_pk": int(game_row["game_pk"]),
+                        "game_date": pd.Timestamp(game_row["game_date"]).date(),
+                        "team": team,
+                        "opponent": opponent,
+                        "reason": "confirmed lineup not available",
+                    }
+                )
+                continue
+
+            if use_confirmed:
+                lineup_frame = confirmed_team.sort_values("batting_order").copy()
+                lineup_status = "confirmed"
+            else:
+                lineup_frame = projected_lookup[projected_lookup["team"] == team].sort_values("batting_order").copy()
+                lineup_status = "projected"
+                if len(lineup_frame) < 9:
+                    incomplete_rows.append(
+                        {
+                            "game_pk": int(game_row["game_pk"]),
+                            "game_date": pd.Timestamp(game_row["game_date"]).date(),
+                            "team": team,
+                            "opponent": opponent,
+                            "reason": "projected lineup unavailable from latest lineup history",
+                        }
+                    )
+                    continue
+
+            for _, lineup_row in lineup_frame.head(9).iterrows():
+                player_id = int(lineup_row["player_id"])
+                meta_row = meta_lookup.loc[player_id] if not meta_lookup.empty and player_id in meta_lookup.index else None
+                batter_name = lineup_row.get("batter_name") or lineup_row.get("player_name")
+                if meta_row is not None:
+                    meta_name = meta_row.get("full_name")
+                    if batter_name in (None, "", np.nan) and pd.notna(meta_name):
+                        batter_name = meta_name
+                lineup_rows.append(
+                    {
+                        "game_pk": int(game_row["game_pk"]),
+                        "game_date": pd.Timestamp(game_row["game_date"]),
+                        "team": team,
+                        "opponent": opponent,
+                        "is_home": int(team_side == "home"),
+                        "player_id": player_id,
+                        "player_name": lineup_row.get("player_name") or batter_name,
+                        "batter_name": batter_name,
+                        "bat_side": meta_row.get("bat_side") if meta_row is not None else lineup_row.get("bat_side"),
+                        "batting_order": int(lineup_row["batting_order"]),
+                        "opp_pitcher_id": int(probable_pitcher_id),
+                        "opp_pitcher_name": probable_pitcher_name,
+                        "pitcher_name": probable_pitcher_name,
+                        "pitch_hand_primary": np.nan,
+                        "lineup_status": lineup_status,
+                        "venue_name": game_row.get("venue_name"),
+                        "status": game_row.get("status"),
+                    }
+                )
+    return pd.DataFrame(lineup_rows), pd.DataFrame(incomplete_rows)
+
+
+def build_live_feature_frame(
+    slate_rows_df: pd.DataFrame,
+    training_history_df: pd.DataFrame,
+    live_ts: pd.Timestamp,
+    weather_df: pd.DataFrame,
+    park_factor_lookup_df: pd.DataFrame,
+) -> pd.DataFrame:
+    if slate_rows_df.empty:
+        return slate_rows_df.copy()
+
+    batter_lookup = build_batter_snapshot_lookup(training_history_df, live_ts)
+    pitcher_lookup = build_pitcher_snapshot_lookup(training_history_df, live_ts)
+
+    live_df = slate_rows_df.copy()
+    live_df = live_df.merge(batter_lookup, on="player_id", how="left", suffixes=("", "_batter_snapshot"))
+    live_df = live_df.merge(
+        pitcher_lookup.rename(columns={"opp_pitcher_id": "opp_pitcher_id"}),
+        on="opp_pitcher_id",
+        how="left",
+        suffixes=("", "_pitcher_snapshot"),
+    )
+    if "pitch_hand_primary_pitcher_snapshot" in live_df.columns:
+        live_df["pitch_hand_primary"] = live_df["pitch_hand_primary"].combine_first(live_df["pitch_hand_primary_pitcher_snapshot"])
+    if "pitcher_name_pitcher_snapshot" in live_df.columns:
+        live_df["pitcher_name"] = live_df["pitcher_name"].combine_first(live_df["pitcher_name_pitcher_snapshot"])
+    if "opp_pitcher_name_pitcher_snapshot" in live_df.columns:
+        live_df["opp_pitcher_name"] = live_df["opp_pitcher_name"].combine_first(live_df["opp_pitcher_name_pitcher_snapshot"])
+    if "batter_name_batter_snapshot" in live_df.columns:
+        live_df["batter_name"] = live_df["batter_name"].combine_first(live_df["batter_name_batter_snapshot"])
+    if "player_name_batter_snapshot" in live_df.columns:
+        live_df["player_name"] = live_df["player_name"].combine_first(live_df["player_name_batter_snapshot"])
+    if "bat_side_batter_snapshot" in live_df.columns:
+        live_df["bat_side"] = live_df["bat_side"].combine_first(live_df["bat_side_batter_snapshot"])
+
+    live_df["days_since_last_game"] = np.where(
+        live_df["last_batter_game_date"].notna(),
+        (pd.Timestamp(live_ts) - pd.to_datetime(live_df["last_batter_game_date"])).dt.days.astype(float),
+        np.nan,
+    )
+    live_df["platoon_advantage"] = np.where(
+        live_df["bat_side"].notna() & live_df["pitch_hand_primary"].notna(),
+        (live_df["bat_side"] != live_df["pitch_hand_primary"]).astype(float),
+        np.nan,
+    )
+
+    weather_ready = weather_df.copy()
+    if not weather_ready.empty:
+        weather_ready["game_date"] = pd.to_datetime(weather_ready["game_date"])
+    live_df["home_team"] = np.where(live_df["is_home"].astype(bool), live_df["team"], live_df["opponent"])
+    live_df = live_df.merge(
+        weather_ready,
+        on=["game_date", "home_team"],
+        how="left",
+        validate="many_to_one",
+    )
+
+    park_lookup = park_factor_lookup_df.copy()
+    park_lookup["home_team"] = park_lookup["home_team"].astype(str)
+    live_df = live_df.merge(
+        park_lookup[["home_team", "park_factor_hr"]].drop_duplicates("home_team"),
+        on="home_team",
+        how="left",
+        suffixes=("", "_live"),
+    )
+    if "park_factor_hr_live" in live_df.columns:
+        live_df["park_factor_hr"] = live_df["park_factor_hr_live"].combine_first(live_df.get("park_factor_hr"))
+        live_df = live_df.drop(columns=["park_factor_hr_live"])
+
+    live_df["starter_or_bullpen_proxy"] = "starter_like"
+    live_df["hit_hr"] = 0
+    live_df["game_pk"] = live_df["game_pk"].astype(int)
+    return live_df.drop(
+        columns=[
+            "home_team",
+            "pitch_hand_meta",
+            "probable_pitcher_full_name",
+            "batter_name_batter_snapshot",
+            "player_name_batter_snapshot",
+            "bat_side_batter_snapshot",
+            "pitcher_name_pitcher_snapshot",
+            "opp_pitcher_name_pitcher_snapshot",
+            "pitch_hand_primary_pitcher_snapshot",
+        ],
+        errors="ignore",
+    )
+
+
+def print_live_slate_audit(
+    live_ts: pd.Timestamp,
+    training_history_df: pd.DataFrame,
+    schedule_df: pd.DataFrame,
+    recommendation_df: pd.DataFrame,
+    incomplete_df: pd.DataFrame,
+) -> None:
+    tier12_count = int(recommendation_df["recommendation_tier"].isin(["Tier 1", "Tier 2"]).sum()) if not recommendation_df.empty else 0
+    tier34_count = int(recommendation_df["recommendation_tier"].isin(["Tier 3", "Tier 4"]).sum()) if not recommendation_df.empty else 0
+    confirmed_count = int((recommendation_df.get("lineup_status", pd.Series(dtype=str)) == "confirmed").sum()) if not recommendation_df.empty else 0
+    projected_count = int((recommendation_df.get("lineup_status", pd.Series(dtype=str)) == "projected").sum()) if not recommendation_df.empty else 0
+    games_scored = 0
+    if not recommendation_df.empty and {"team", "opponent"}.issubset(recommendation_df.columns):
+        game_keys = recommendation_df.apply(lambda row: tuple(sorted([str(row["team"]), str(row["opponent"])])), axis=1)
+        games_scored = int(game_keys.nunique())
+    print("\nLive slate audit")
+    print("-" * 60)
+    print(f"Live date used: {live_ts.date()}")
+    print(
+        f"Training date range and row count: "
+        f"{training_history_df[DATE_COL].min().date()} -> {training_history_df[DATE_COL].max().date()} | {len(training_history_df):,} rows"
+    )
+    print(f"Games found: {len(schedule_df):,}")
+    print(f"Games scored: {games_scored}")
+    print(f"Incomplete games: {len(incomplete_df):,}")
+    print(f"Confirmed-lineup rows scored: {confirmed_count}")
+    print(f"Projected-lineup rows scored: {projected_count}")
+    print(f"Tier 1-2 rows: {tier12_count}")
+    print(f"Tier 3-4 rows: {tier34_count}")
+
+
+def load_live_park_factor_lookup(live_ts: pd.Timestamp) -> pd.DataFrame:
+    for season in (live_ts.year, live_ts.year - 1):
+        cache_path = park_factor_cache_path(season)
+        if cache_path.exists():
+            lookup_df = pd.read_csv(cache_path)
+            if {"home_team", "park_factor_hr"}.issubset(lookup_df.columns):
+                return lookup_df
+    return pd.DataFrame(columns=["home_team", "park_factor_hr"])
 
 
 def run_backtest(data_path: str, model_name: str = "logistic") -> None:
@@ -1063,13 +1485,160 @@ def run_recommendation(data_path: str, recommend_date: str, model_name: str = "l
     print(f"Recommendation rows limited to top {int(TOP_RECOMMENDATION_SHARE * 100)}% of the slate: yes")
 
 
+def run_live_recommendation(live_ts: pd.Timestamp, slate_mode: str = "auto", model_name: str = "logistic") -> None:
+    if slate_mode not in LIVE_SLATE_MODES:
+        raise ValueError(f"slate_mode must be one of {LIVE_SLATE_MODES}, got {slate_mode}.")
+
+    schedule_df = fetch_live_schedule(live_ts.strftime("%Y-%m-%d"))
+    if schedule_df.empty:
+        print("\nLive slate audit")
+        print("-" * 60)
+        print(f"Live date used: {live_ts.date()}")
+        print("No MLB games found for the requested slate date.")
+        return
+
+    training_history_df, training_audit = load_live_training_history(live_ts)
+    present_candidate_features, _ = print_candidate_feature_audit(training_history_df)
+    pruned_feature_columns, pruning_audit_df = prune_sparse_features(training_history_df, CURRENT_MODEL_CANDIDATE_FEATURE_COLUMNS)
+    if not pruned_feature_columns:
+        raise RuntimeError("All candidate features were excluded by missingness threshold for live mode.")
+
+    print("\nFeature-pruning audit")
+    print("-" * 60)
+    print(pruning_audit_df.to_string(index=False))
+    print_contact_feature_status(pruning_audit_df)
+
+    confirmed_frames: list[pd.DataFrame] = []
+    for game_pk in schedule_df["game_pk"].dropna().astype(int).tolist():
+        confirmed_frame = fetch_confirmed_lineups(game_pk)
+        if not confirmed_frame.empty:
+            confirmed_frames.append(confirmed_frame)
+    confirmed_lineups_df = pd.concat(confirmed_frames, ignore_index=True) if confirmed_frames else pd.DataFrame()
+
+    projected_lineups_df, projected_incomplete_df = build_projected_lineups(training_history_df, live_ts)
+    player_ids = (
+        set(confirmed_lineups_df.get("player_id", pd.Series(dtype=int)).dropna().astype(int).tolist())
+        | set(projected_lineups_df.get("player_id", pd.Series(dtype=int)).dropna().astype(int).tolist())
+        | set(schedule_df[["away_probable_pitcher_id", "home_probable_pitcher_id"]].stack().dropna().astype(int).tolist())
+    )
+    player_meta_df = fetch_player_metadata(sorted(player_ids))
+    slate_rows_df, incomplete_df = _build_lineup_rows(
+        schedule_df,
+        confirmed_lineups_df,
+        projected_lineups_df,
+        player_meta_df,
+        slate_mode=slate_mode,
+    )
+    if not projected_incomplete_df.empty:
+        projected_incomplete_df = projected_incomplete_df.copy()
+        projected_incomplete_df["game_pk"] = np.nan
+        projected_incomplete_df["game_date"] = live_ts.date()
+        projected_incomplete_df["opponent"] = np.nan
+        incomplete_df = pd.concat([incomplete_df, projected_incomplete_df], ignore_index=True)
+    if slate_rows_df.empty:
+        print_live_slate_audit(live_ts, training_history_df, schedule_df, pd.DataFrame(), incomplete_df)
+        print("\nIncomplete/skipped games")
+        print("-" * 60)
+        print(incomplete_df.to_string(index=False) if not incomplete_df.empty else "None")
+        incomplete_output_path = LIVE_OUTPUT_DIR / f"live_incomplete_games_{live_ts.date()}.csv"
+        incomplete_df.to_csv(incomplete_output_path, index=False)
+        print(f"Saved incomplete-game audit to {incomplete_output_path}")
+        return
+
+    probable_pitcher_meta = player_meta_df.rename(
+        columns={"player_id": "opp_pitcher_id", "pitch_hand": "pitch_hand_meta", "full_name": "probable_pitcher_full_name"}
+    )
+    slate_rows_df = slate_rows_df.merge(
+        probable_pitcher_meta[["opp_pitcher_id", "pitch_hand_meta", "probable_pitcher_full_name"]],
+        on="opp_pitcher_id",
+        how="left",
+    )
+    slate_rows_df["pitch_hand_primary"] = slate_rows_df["pitch_hand_primary"].combine_first(slate_rows_df["pitch_hand_meta"])
+    slate_rows_df["pitcher_name"] = slate_rows_df["pitcher_name"].combine_first(slate_rows_df["probable_pitcher_full_name"])
+    slate_rows_df["opp_pitcher_name"] = slate_rows_df["opp_pitcher_name"].combine_first(slate_rows_df["pitcher_name"])
+    slate_rows_df["game_date"] = pd.to_datetime(slate_rows_df["game_date"])
+
+    weather_df = build_live_weather_table(schedule_df[["game_date", "home_team"]].copy())
+    park_factor_lookup_df = load_live_park_factor_lookup(live_ts)
+    slate_feature_df = build_live_feature_frame(
+        slate_rows_df,
+        training_history_df,
+        live_ts,
+        weather_df,
+        park_factor_lookup_df,
+    )
+
+    profile_train_df, profile_eval_df = chronological_split(training_history_df)
+    validate_temporal_integrity(profile_train_df, profile_eval_df)
+    profile_model = fit_selected_model(profile_train_df, pruned_feature_columns, model_name=model_name)
+    profile_scored_df = profile_eval_df.copy()
+    profile_scored_df["score"] = score_frame(profile_model, profile_eval_df, pruned_feature_columns)
+    profile_scored_df = add_slate_ranking_columns(profile_scored_df)
+    tier_plan, tier_summary, tier_lift_map = derive_tier_plan(profile_scored_df)
+    profile_scored_df["recommendation_tier"] = profile_scored_df["initial_recommendation_tier"].map(tier_plan)
+    profile_scored_df = compute_confidence_metadata(profile_scored_df, pruned_feature_columns, tier_lift_map)
+    confidence_profile = derive_confidence_profile(profile_scored_df)
+
+    print("\nHistorical recommendation tier profile")
+    print("-" * 60)
+    print(tier_summary.to_string(index=False))
+    print_confidence_profile_audit(confidence_profile)
+
+    final_model = fit_selected_model(training_history_df, pruned_feature_columns, model_name=model_name)
+    slate_scored_df = slate_feature_df.copy()
+    slate_scored_df["score"] = score_frame(final_model, slate_feature_df, pruned_feature_columns)
+    slate_scored_df = add_slate_ranking_columns(slate_scored_df)
+    slate_scored_df["recommendation_tier"] = slate_scored_df["initial_recommendation_tier"].map(tier_plan)
+    slate_scored_df, recommendation_table = prepare_recommendation_results(
+        slate_scored_df,
+        final_model,
+        pruned_feature_columns,
+        tier_lift_map,
+        confidence_profile,
+    )
+
+    recommendation_output_path = LIVE_OUTPUT_DIR / f"live_recommendations_{live_ts.date()}.csv"
+    incomplete_output_path = LIVE_OUTPUT_DIR / f"live_incomplete_games_{live_ts.date()}.csv"
+    recommendation_table.to_csv(recommendation_output_path, index=False)
+    incomplete_df.to_csv(incomplete_output_path, index=False)
+
+    print_live_slate_audit(live_ts, training_history_df, schedule_df, recommendation_table, incomplete_df)
+    print(f"Training season rows: prior={training_audit['prior_rows']:,}, current={training_audit['current_rows']:,}")
+    print(f"Present candidate feature count: {len(present_candidate_features)}")
+    print(f"Modeled feature count: {len(pruned_feature_columns)}")
+
+    strongest_df = recommendation_table[recommendation_table["recommendation_tier"].isin(["Tier 1", "Tier 2"])].copy()
+    longshot_df = recommendation_table[recommendation_table["recommendation_tier"].isin(["Tier 3", "Tier 4"])].copy()
+
+    print("\nStrongest recommendations (Tier 1-2)")
+    print("-" * 60)
+    print(strongest_df.to_string(index=False) if not strongest_df.empty else "None")
+
+    print("\nDeeper longshots (Tier 3-4)")
+    print("-" * 60)
+    print(longshot_df.to_string(index=False) if not longshot_df.empty else "None")
+
+    print("\nIncomplete/skipped games")
+    print("-" * 60)
+    print(incomplete_df.to_string(index=False) if not incomplete_df.empty else "None")
+    print(f"\nSaved live recommendations to {recommendation_output_path}")
+    print(f"Saved incomplete-game audit to {incomplete_output_path}")
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("data_path", nargs="?", default=str(FINAL_DATA_PATH), help="Path to batter-game dataset CSV.")
     parser.add_argument("--model", choices=["logistic", "xgboost"], default="logistic", help="Model family to train.")
     parser.add_argument("--recommend-date", help="Historical slate date to score using only prior rows (YYYY-MM-DD).")
+    parser.add_argument("--today", action="store_true", help="Score today's MLB slate using America/New_York date.")
+    parser.add_argument("--live-date", help="Score a same-day or future MLB slate (YYYY-MM-DD).")
+    parser.add_argument("--slate-mode", choices=list(LIVE_SLATE_MODES), default="auto", help="Lineup sourcing for live slate mode.")
     args = parser.parse_args()
-    if args.recommend_date:
+    if args.recommend_date and (args.today or args.live_date):
+        raise ValueError("Historical recommendation mode cannot be combined with live slate flags.")
+    if args.today or args.live_date:
+        run_live_recommendation(resolve_live_date(args.today, args.live_date), slate_mode=args.slate_mode, model_name=args.model)
+    elif args.recommend_date:
         run_recommendation(args.data_path, args.recommend_date, model_name=args.model)
     else:
         run_backtest(args.data_path, model_name=args.model)

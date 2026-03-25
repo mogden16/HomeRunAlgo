@@ -32,6 +32,9 @@ from config import (
 cache.enable()
 
 _SAVANT_PARK_FACTOR_URL = "https://baseballsavant.mlb.com/leaderboard/statcast-park-factors"
+_MLB_SCHEDULE_URL = "https://statsapi.mlb.com/api/v1/schedule"
+_MLB_GAME_FEED_URL = "https://statsapi.mlb.com/api/v1.1/game/{game_pk}/feed/live"
+_MLB_PEOPLE_URL = "https://statsapi.mlb.com/api/v1/people"
 _RAW_FEATURE_FAMILIES: dict[str, list[str]] = {
     "pitch_type_matchup": ["pitch_type", "pitch_name"],
     "pitch_quality_context": ["release_spin_rate", "spin_axis", "release_extension"],
@@ -262,6 +265,7 @@ def _ballpark_to_home_team_map(season: int) -> dict[str, str]:
 
 
 _OPEN_METEO_URL = "https://archive-api.open-meteo.com/v1/archive"
+_OPEN_METEO_FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
 
 
 def _fetch_open_meteo(lat: float, lon: float, start_date: str, end_date: str, tz: str) -> pd.DataFrame:
@@ -277,6 +281,26 @@ def _fetch_open_meteo(lat: float, lon: float, start_date: str, end_date: str, tz
         "timezone": tz,
     }
     resp = requests.get(_OPEN_METEO_URL, params=params, timeout=60)
+    resp.raise_for_status()
+    data = resp.json()["hourly"]
+    df = pd.DataFrame(data)
+    df.index = pd.to_datetime(df["time"]).dt.tz_localize(tz, ambiguous="infer", nonexistent="shift_forward")
+    df = df.drop(columns=["time"])
+    return df
+
+
+def _fetch_open_meteo_forecast(lat: float, lon: float, start_date: str, end_date: str, tz: str) -> pd.DataFrame:
+    params = {
+        "latitude": lat,
+        "longitude": lon,
+        "start_date": start_date,
+        "end_date": end_date,
+        "hourly": "temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,surface_pressure",
+        "temperature_unit": "fahrenheit",
+        "wind_speed_unit": "mph",
+        "timezone": tz,
+    }
+    resp = requests.get(_OPEN_METEO_FORECAST_URL, params=params, timeout=60)
     resp.raise_for_status()
     data = resp.json()["hourly"]
     df = pd.DataFrame(data)
@@ -345,6 +369,161 @@ def build_weather_table(game_schedule: pd.DataFrame, season: int, force_refresh:
     weather_df = pd.DataFrame(rows)
     weather_df.to_csv(cache_path, index=False)
     return weather_df
+
+
+def fetch_live_schedule(game_date: str) -> pd.DataFrame:
+    params = {
+        "sportId": 1,
+        "date": game_date,
+        "hydrate": "probablePitcher,team,linescore",
+    }
+    resp = requests.get(_MLB_SCHEDULE_URL, params=params, timeout=60)
+    resp.raise_for_status()
+    payload = resp.json()
+    rows: list[dict[str, object]] = []
+    for date_block in payload.get("dates", []):
+        for game in date_block.get("games", []):
+            teams = game.get("teams", {})
+            away = teams.get("away", {})
+            home = teams.get("home", {})
+            away_team = away.get("team", {})
+            home_team = home.get("team", {})
+            away_pitcher = away.get("probablePitcher", {}) or {}
+            home_pitcher = home.get("probablePitcher", {}) or {}
+            rows.append(
+                {
+                    "game_pk": game.get("gamePk"),
+                    "game_date": pd.Timestamp(game.get("officialDate")),
+                    "game_datetime_utc": pd.to_datetime(game.get("gameDate"), utc=True, errors="coerce"),
+                    "status": game.get("status", {}).get("detailedState"),
+                    "venue_name": game.get("venue", {}).get("name"),
+                    "away_team": away_team.get("abbreviation"),
+                    "away_team_name": away_team.get("name"),
+                    "home_team": home_team.get("abbreviation"),
+                    "home_team_name": home_team.get("name"),
+                    "away_probable_pitcher_id": away_pitcher.get("id"),
+                    "away_probable_pitcher_name": away_pitcher.get("fullName"),
+                    "home_probable_pitcher_id": home_pitcher.get("id"),
+                    "home_probable_pitcher_name": home_pitcher.get("fullName"),
+                }
+            )
+    return pd.DataFrame(rows)
+
+
+def fetch_confirmed_lineups(game_pk: int) -> pd.DataFrame:
+    resp = requests.get(_MLB_GAME_FEED_URL.format(game_pk=game_pk), timeout=60)
+    resp.raise_for_status()
+    payload = resp.json()
+    boxscore = payload.get("liveData", {}).get("boxscore", {})
+    rows: list[dict[str, object]] = []
+    for side in ("away", "home"):
+        team_block = boxscore.get("teams", {}).get(side, {})
+        batting_order = list(team_block.get("battingOrder", [])[:9])
+        players = team_block.get("players", {})
+        if len(batting_order) < 9:
+            continue
+        for order_idx, player_id in enumerate(batting_order, start=1):
+            player_key = f"ID{int(player_id)}"
+            player_block = players.get(player_key, {})
+            rows.append(
+                {
+                    "game_pk": int(game_pk),
+                    "team_side": side,
+                    "player_id": int(player_id),
+                    "batting_order": order_idx,
+                    "player_name": player_block.get("person", {}).get("fullName"),
+                }
+            )
+    return pd.DataFrame(rows)
+
+
+def fetch_player_metadata(player_ids: list[int]) -> pd.DataFrame:
+    unique_ids = sorted({int(player_id) for player_id in player_ids if pd.notna(player_id)})
+    if not unique_ids:
+        return pd.DataFrame(columns=["player_id", "full_name", "bat_side", "pitch_hand"])
+
+    rows: list[dict[str, object]] = []
+    chunk_size = 50
+    for start_idx in range(0, len(unique_ids), chunk_size):
+        chunk = unique_ids[start_idx : start_idx + chunk_size]
+        resp = requests.get(_MLB_PEOPLE_URL, params={"personIds": ",".join(map(str, chunk))}, timeout=60)
+        resp.raise_for_status()
+        payload = resp.json()
+        for person in payload.get("people", []):
+            rows.append(
+                {
+                    "player_id": int(person.get("id")),
+                    "full_name": person.get("fullName"),
+                    "bat_side": person.get("batSide", {}).get("code"),
+                    "pitch_hand": person.get("pitchHand", {}).get("code"),
+                }
+            )
+    return pd.DataFrame(rows)
+
+
+def build_live_weather_table(game_schedule: pd.DataFrame) -> pd.DataFrame:
+    required_cols = {"game_date", "home_team"}
+    if not required_cols.issubset(game_schedule.columns):
+        raise ValueError(f"game_schedule must include columns {required_cols}")
+
+    rows: list[WeatherLookupRow] = []
+    for _, schedule_row in game_schedule.drop_duplicates(["game_date", "home_team"]).iterrows():
+        game_date = pd.Timestamp(schedule_row["game_date"]).normalize()
+        home_team = str(schedule_row["home_team"])
+        park = get_park_info(home_team, game_date.year)
+        if not park:
+            rows.append(
+                WeatherLookupRow(
+                    game_date=game_date,
+                    home_team=home_team,
+                    temperature_f=None,
+                    humidity_pct=None,
+                    wind_speed_mph=None,
+                    wind_direction_deg=None,
+                    pressure_hpa=None,
+                )
+            )
+            continue
+        try:
+            fetcher = _fetch_open_meteo if game_date.date() < pd.Timestamp.utcnow().date() else _fetch_open_meteo_forecast
+            weather = fetcher(
+                park["lat"],
+                park["lon"],
+                game_date.strftime("%Y-%m-%d"),
+                game_date.strftime("%Y-%m-%d"),
+                str(park["tz"]),
+            )
+            weather["weather_date"] = weather.index.normalize().tz_localize(None)
+            weather["hour_diff"] = abs(weather.index.hour - DEFAULT_GAME_HOUR_LOCAL)
+            day_weather = weather[weather["weather_date"] == game_date]
+            if day_weather.empty:
+                raise RuntimeError("No forecast rows returned for slate date.")
+            best = day_weather.sort_values("hour_diff").iloc[0]
+            rows.append(
+                WeatherLookupRow(
+                    game_date=game_date,
+                    home_team=home_team,
+                    temperature_f=_safe_float(best.get("temperature_2m")),
+                    humidity_pct=_safe_float(best.get("relative_humidity_2m")),
+                    wind_speed_mph=_safe_float(best.get("wind_speed_10m")),
+                    wind_direction_deg=_safe_float(best.get("wind_direction_10m")),
+                    pressure_hpa=_safe_float(best.get("surface_pressure")),
+                )
+            )
+        except Exception as exc:
+            warnings.warn(f"Open-Meteo forecast fetch failed for {home_team} on {game_date.date()}: {exc}")
+            rows.append(
+                WeatherLookupRow(
+                    game_date=game_date,
+                    home_team=home_team,
+                    temperature_f=None,
+                    humidity_pct=None,
+                    wind_speed_mph=None,
+                    wind_direction_deg=None,
+                    pressure_hpa=None,
+                )
+            )
+    return pd.DataFrame(rows)
 
 
 def _safe_float(value: object) -> float | None:
