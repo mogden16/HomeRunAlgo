@@ -33,6 +33,47 @@ DISPLAY_COLUMNS = [
     "top_reason_3",
     "result_label",
 ]
+CURRENT_PICK_COLUMNS = [
+    "pick_id",
+    "published_at",
+    "game_pk",
+    "game_date",
+    "rank",
+    "batter_id",
+    "batter_name",
+    "team",
+    "opponent_team",
+    "pitcher_id",
+    "pitcher_name",
+    "confidence_tier",
+    "predicted_hr_probability",
+    "predicted_hr_score",
+    "top_reason_1",
+    "top_reason_2",
+    "top_reason_3",
+    "result",
+]
+HISTORY_COLUMNS = [
+    "pick_id",
+    "published_at",
+    "game_pk",
+    "game_date",
+    "rank",
+    "batter_id",
+    "batter_name",
+    "team",
+    "opponent_team",
+    "pitcher_id",
+    "pitcher_name",
+    "confidence_tier",
+    "predicted_hr_probability",
+    "predicted_hr_score",
+    "top_reason_1",
+    "top_reason_2",
+    "top_reason_3",
+    "result_label",
+    "actual_hit_hr",
+]
 
 
 def score_sort_value(row: dict[str, Any]) -> float:
@@ -40,6 +81,19 @@ def score_sort_value(row: dict[str, Any]) -> float:
     if score is None:
         return float("-inf")
     return float(score)
+
+
+def current_pick_sort_key(row: dict[str, Any]) -> tuple[float, int, str]:
+    return (-score_sort_value(row), int(row.get("rank") or 999), str(row.get("batter_name") or ""))
+
+
+def history_sort_key(row: dict[str, Any]) -> tuple[str, float, int, str]:
+    return (
+        str(row.get("game_date") or ""),
+        -score_sort_value(row),
+        int(row.get("rank") or 999),
+        str(row.get("batter_name") or ""),
+    )
 
 
 def parse_args() -> argparse.Namespace:
@@ -153,6 +207,21 @@ def normalize_pick(row: dict[str, Any], tracking_start_date: str) -> dict[str, A
     return normalized
 
 
+def clean_current_pick_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    cleaned: list[dict[str, Any]] = []
+    for row in sorted(rows, key=current_pick_sort_key):
+        cleaned.append({column: serialize_value(row.get(column)) for column in CURRENT_PICK_COLUMNS[:-1]})
+        cleaned[-1]["result"] = str(row.get("result_label") or "Pending")
+    return cleaned
+
+
+def clean_history_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    return [
+        {column: serialize_value(row.get(column)) for column in HISTORY_COLUMNS}
+        for row in sorted(rows, key=history_sort_key)
+    ]
+
+
 def upsert_history(existing_rows: list[dict[str, Any]], current_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     current_dates = {str(row["game_date"]) for row in current_rows}
     retained_existing = [
@@ -171,20 +240,12 @@ def upsert_history(existing_rows: list[dict[str, Any]], current_rows: list[dict[
             by_id[key].update(row)
         else:
             by_id[key] = dict(row)
-    return sorted(
-        by_id.values(),
-        key=lambda row: (
-            row["game_date"],
-            -score_sort_value(row),
-            row["rank"],
-            row["batter_name"],
-        ),
-    )
+    return sorted(by_id.values(), key=history_sort_key)
 
 
 def top_k_by_date(rows: list[dict[str, Any]], k: int) -> list[dict[str, Any]]:
     grouped: dict[str, list[dict[str, Any]]] = {}
-    for row in sorted(rows, key=lambda item: (item["game_date"], -score_sort_value(item), item["rank"], item["batter_name"])):
+    for row in sorted(rows, key=history_sort_key):
         grouped.setdefault(row["game_date"], []).append(row)
     trimmed: list[dict[str, Any]] = []
     for game_date in sorted(grouped):
@@ -287,12 +348,14 @@ def main() -> None:
 
     current_rows = [row for row in (normalize_pick(item, args.tracking_start_date) for item in current_input) if row is not None]
     history_rows = [row for row in (normalize_pick(item, args.tracking_start_date) for item in history_input) if row is not None]
+    current_rows = sorted(current_rows, key=current_pick_sort_key)
     merged_history = upsert_history(history_rows, current_rows)
 
-    history_path.write_text(json.dumps(merged_history, indent=2), encoding="utf-8")
+    current_picks_path.write_text(json.dumps(clean_current_pick_rows(current_rows), indent=2), encoding="utf-8")
+    history_path.write_text(json.dumps(clean_history_rows(merged_history), indent=2), encoding="utf-8")
 
     latest_game_date = max((row["game_date"] for row in current_rows), default=args.tracking_start_date)
-    latest_picks = sorted(current_rows, key=lambda row: (-score_sort_value(row), row["rank"], row["batter_name"]))[: args.latest_count]
+    latest_picks = current_rows[: args.latest_count]
     dashboard_history = list(reversed(top_k_by_date(merged_history, args.history_per_date)))
     settled_rows = [row for row in merged_history if row["actual_hit_hr"] is not None]
     recent_successes = [
@@ -329,8 +392,7 @@ def main() -> None:
         "history": to_records(
             sorted(
                 dashboard_history,
-                key=lambda row: (row["game_date"], score_sort_value(row), -row["rank"]),
-                reverse=True,
+                key=lambda row: (-int(str(row["game_date"]).replace("-", "")), -score_sort_value(row), int(row["rank"]), str(row["batter_name"])),
             )
         ),
         "player_leaderboard": build_player_leaderboard(settled_rows, args.min_player_picks),

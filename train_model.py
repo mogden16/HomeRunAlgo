@@ -34,7 +34,68 @@ from config import FINAL_DATA_PATH, RANDOM_STATE, TRAIN_FRACTION, TSCV_N_SPLITS
 
 DATE_COL = "game_date"
 TARGET_COL = "hit_hr"
-FEATURE_COLUMNS = [
+STABLE_FEATURE_COLUMNS = [
+    "hr_rate_season_to_date",
+    "hr_per_pa_last_30d",
+    "barrel_rate_last_50_bbe",
+    "hard_hit_rate_last_50_bbe",
+    "avg_launch_angle_last_50_bbe",
+    "avg_exit_velocity_last_50_bbe",
+    "fly_ball_rate_last_50_bbe",
+    "pull_air_rate_last_50_bbe",
+    "batter_k_rate_season_to_date",
+    "batter_bb_rate_season_to_date",
+    "recent_form_hr_last_7d",
+    "recent_form_barrels_last_14d",
+    "expected_pa_proxy",
+    "days_since_last_game",
+    "pitch_hand_primary",
+    "pitcher_hr9_season_to_date",
+    "pitcher_barrel_rate_allowed_last_50_bbe",
+    "pitcher_hard_hit_rate_allowed_last_50_bbe",
+    "pitcher_fb_rate_allowed_last_50_bbe",
+    "pitcher_k_rate_season_to_date",
+    "pitcher_bb_rate_season_to_date",
+    "starter_or_bullpen_proxy",
+    "temperature_f",
+    "humidity_pct",
+    "wind_speed_mph",
+    "wind_direction_deg",
+    "pressure_hpa",
+    "platoon_advantage",
+]
+STABLE_AUDIT_COLUMNS = [
+    "hr_rate_season_to_date",
+    "hr_per_pa_last_30d",
+    "barrel_rate_last_50_bbe",
+    "hard_hit_rate_last_50_bbe",
+    "avg_launch_angle_last_50_bbe",
+    "avg_exit_velocity_last_50_bbe",
+    "fly_ball_rate_last_50_bbe",
+    "pull_air_rate_last_50_bbe",
+    "batter_k_rate_season_to_date",
+    "batter_bb_rate_season_to_date",
+    "recent_form_hr_last_7d",
+    "recent_form_barrels_last_14d",
+    "expected_pa_proxy",
+    "days_since_last_game",
+    "opp_pitcher_id",
+    "pitch_hand_primary",
+    "pitcher_hr9_season_to_date",
+    "pitcher_barrel_rate_allowed_last_50_bbe",
+    "pitcher_hard_hit_rate_allowed_last_50_bbe",
+    "pitcher_fb_rate_allowed_last_50_bbe",
+    "pitcher_k_rate_season_to_date",
+    "pitcher_bb_rate_season_to_date",
+    "starter_or_bullpen_proxy",
+    "temperature_f",
+    "humidity_pct",
+    "wind_speed_mph",
+    "wind_direction_deg",
+    "pressure_hpa",
+    "platoon_advantage",
+]
+LIVE_PRODUCTION_FEATURE_COLUMNS = [
     "hr_per_pa_last_30d",
     "hr_per_pa_last_10d",
     "barrels_per_pa_last_30d",
@@ -55,8 +116,8 @@ FEATURE_COLUMNS = [
     "humidity_pct",
     "platoon_advantage",
 ]
-
-OPTIONAL_SECONDARY_FEATURES = [
+EXPERIMENTAL_FEATURE_COLUMNS = [
+    *LIVE_PRODUCTION_FEATURE_COLUMNS,
     "hr_count_last_30d",
     "hr_count_last_10d",
     "pa_last_30d",
@@ -133,6 +194,9 @@ OPTIONAL_SECONDARY_FEATURES = [
     "pressure_hpa",
     "wind_direction_deg",
 ]
+FEATURE_COLUMNS = list(STABLE_FEATURE_COLUMNS)
+OPTIONAL_SECONDARY_FEATURES: list[str] = []
+FEATURE_PROFILE_CHOICES = ["stable", "expanded"]
 BASELINE_FEATURES = [
     "hr_per_pa_last_30d",
     "hr_per_pa_last_10d",
@@ -244,10 +308,65 @@ def run_dataset_sanity_checks(df: pd.DataFrame, train_df: pd.DataFrame, test_df:
     validate_temporal_integrity(train_df, test_df)
 
 
-def available_feature_columns(df: pd.DataFrame) -> list[str]:
-    real_features = [column for column in FEATURE_COLUMNS if column in df.columns]
-    extra_features = [column for column in OPTIONAL_SECONDARY_FEATURES if column in df.columns]
-    return real_features + extra_features
+def feature_columns_for_profile(profile: str) -> list[str]:
+    if profile == "stable":
+        return list(STABLE_FEATURE_COLUMNS)
+    if profile == "expanded":
+        return list(EXPERIMENTAL_FEATURE_COLUMNS)
+    raise ValueError(f"Unknown feature profile: {profile}")
+
+
+def available_feature_columns(df: pd.DataFrame, feature_profile: str = "stable") -> list[str]:
+    return [column for column in feature_columns_for_profile(feature_profile) if column in df.columns]
+
+
+def prepare_feature_matrix(df: pd.DataFrame, feature_columns: list[str]) -> pd.DataFrame:
+    X = df[feature_columns].copy()
+    binary_maps = {
+        "pitch_hand_primary": {"L": 0.0, "R": 1.0},
+        "starter_or_bullpen_proxy": {"bullpen_like": 0.0, "starter_like": 1.0},
+    }
+    for column, value_map in binary_maps.items():
+        if column in X.columns:
+            X[column] = X[column].map(value_map).astype(float)
+    return X
+
+
+def build_stable_feature_audit(df: pd.DataFrame, modeled_features: list[str]) -> pd.DataFrame:
+    modeled_feature_set = set(modeled_features)
+    rows: list[dict[str, object]] = []
+    for feature_name in STABLE_AUDIT_COLUMNS:
+        is_present = feature_name in df.columns
+        missing_pct = float(df[feature_name].isna().mean() * 100.0) if is_present else 100.0
+        included_in_model = feature_name in modeled_feature_set
+        reason = ""
+        if not is_present:
+            reason = "not present in engineered dataset"
+        elif feature_name == "opp_pitcher_id":
+            reason = "identifier retained for context/ranked output; not used as numeric model input"
+        elif not included_in_model:
+            reason = "excluded from modeled feature profile"
+        rows.append(
+            {
+                "feature_name": feature_name,
+                "present_in_engineered_dataset": "yes" if is_present else "no",
+                "missing_pct": missing_pct,
+                "included_in_model": "yes" if included_in_model else "no",
+                "reason": reason,
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def print_stable_feature_audit(audit_df: pd.DataFrame) -> None:
+    print("\nRestored stable feature audit")
+    print("-" * 100)
+    print(f"{'feature_name':<46} {'present':<8} {'missing_pct':>11} {'included':<10} reason")
+    for _, row in audit_df.iterrows():
+        print(
+            f"{row['feature_name']:<46} {row['present_in_engineered_dataset']:<8} "
+            f"{row['missing_pct']:11.2f} {row['included_in_model']:<10} {row['reason']}"
+        )
 
 
 def prune_model_features_by_training_missingness(
@@ -1539,6 +1658,34 @@ def holdout_commentary(model_row: dict[str, float | str], baseline_rows: list[di
     ]
 
 
+def compare_feature_profile_rows(
+    primary_row: dict[str, float | str],
+    comparison_row: dict[str, float | str],
+    *,
+    primary_profile: str,
+    comparison_profile: str,
+) -> str:
+    primary_f05 = float(primary_row["f0.5"])
+    comparison_f05 = float(comparison_row["f0.5"])
+    primary_precision = float(primary_row["precision"])
+    comparison_precision = float(comparison_row["precision"])
+    if primary_f05 > comparison_f05 + 1e-6:
+        verdict = "improved"
+    elif comparison_f05 > primary_f05 + 1e-6:
+        verdict = "worsened"
+    elif primary_precision > comparison_precision + 1e-6:
+        verdict = "improved"
+    elif comparison_precision > primary_precision + 1e-6:
+        verdict = "worsened"
+    else:
+        verdict = "stayed similar"
+    return (
+        f"{primary_profile} vs {comparison_profile}: {verdict} "
+        f"(F0.5 {primary_f05:.4f} vs {comparison_f05:.4f}, "
+        f"precision {primary_precision:.4f} vs {comparison_precision:.4f})."
+    )
+
+
 def evaluate_model_run(
     train_df: pd.DataFrame,
     test_df: pd.DataFrame,
@@ -1552,9 +1699,9 @@ def evaluate_model_run(
     save_ranked_output: bool = False,
     ranked_output_path: str | None = None,
 ) -> dict[str, object] | None:
-    X_train = train_df[feature_columns]
+    X_train = prepare_feature_matrix(train_df, feature_columns)
     y_train = train_df[TARGET_COL].to_numpy()
-    X_test = test_df[feature_columns]
+    X_test = prepare_feature_matrix(test_df, feature_columns)
     y_test = test_df[TARGET_COL].to_numpy()
 
     print("\n" + "=" * 60)
@@ -1713,6 +1860,8 @@ def evaluate_model_run(
 def run_backtest(
     data_path: str,
     model_name: str = "logistic",
+    feature_profile: str = "stable",
+    compare_against: str | None = "expanded",
     threshold_objective: str = "f0.5",
     min_recall: float = 0.15,
     max_positive_rate: float = 0.14,
@@ -1728,7 +1877,7 @@ def run_backtest(
     train_df, test_df = chronological_split(df)
     run_dataset_sanity_checks(df, train_df, test_df)
 
-    initial_feature_columns = available_feature_columns(df)
+    initial_feature_columns = available_feature_columns(df, feature_profile=feature_profile)
     feature_columns, pruning_audit_df, excluded_for_missingness = prune_model_features_by_training_missingness(
         train_df,
         initial_feature_columns,
@@ -1745,6 +1894,7 @@ def run_backtest(
     print(f"Train date range: {train_df[DATE_COL].min().date()} -> {train_df[DATE_COL].max().date()}")
     print(f"Test date range : {test_df[DATE_COL].min().date()} -> {test_df[DATE_COL].max().date()}")
     print(f"Base HR rate train/test: {train_df[TARGET_COL].mean():.4f} / {test_df[TARGET_COL].mean():.4f}")
+    print(f"Feature profile used         : {feature_profile}")
     print(f"Features used ({len(feature_columns)}): {', '.join(feature_columns)}")
     print(f"Features excluded by missingness threshold ({len(excluded_for_missingness)}): {excluded_for_missingness if excluded_for_missingness else 'none'}")
     print(f"Model family requested       : {model_name}")
@@ -1764,6 +1914,9 @@ def run_backtest(
         print(f"Mapped fully-missing feature indices: {feature_index_map}")
     else:
         print("Mapped fully-missing feature indices: none")
+
+    stable_feature_audit_df = build_stable_feature_audit(df, feature_columns if feature_profile == "stable" else [])
+    print_stable_feature_audit(stable_feature_audit_df)
 
     baseline_rows: list[dict[str, float | str | bool]] = []
     print("\nSingle-feature baseline holdout comparison")
@@ -1787,6 +1940,7 @@ def run_backtest(
 
     requested_models = ["logistic", "xgboost"] if model_name == "both" else [model_name]
     model_results: list[dict[str, object]] = []
+    comparison_results: list[dict[str, object]] = []
     for requested_model in requested_models:
         result = evaluate_model_run(
             train_df=train_df,
@@ -1810,6 +1964,38 @@ def run_backtest(
             for line in holdout_commentary(result["summary_row"], baseline_rows):
                 print(f"- {line}")
             model_results.append(result)
+
+        if compare_against and compare_against != feature_profile:
+            comparison_initial_features = available_feature_columns(df, feature_profile=compare_against)
+            comparison_feature_columns, _, comparison_excluded = prune_model_features_by_training_missingness(
+                train_df,
+                comparison_initial_features,
+                threshold=MAX_MODEL_FEATURE_MISSINGNESS,
+            )
+            if comparison_feature_columns:
+                print("\n" + "=" * 60)
+                print(f"FEATURE-PROFILE COMPARISON RUN: {compare_against.upper()} ({requested_model})")
+                print("=" * 60)
+                print(
+                    f"Comparison feature count     : {len(comparison_feature_columns)} "
+                    f"(excluded: {comparison_excluded if comparison_excluded else 'none'})"
+                )
+                comparison_result = evaluate_model_run(
+                    train_df=train_df,
+                    test_df=test_df,
+                    feature_columns=comparison_feature_columns,
+                    model_name=requested_model,
+                    threshold_objective=threshold_objective,
+                    min_recall=min_recall,
+                    max_positive_rate=max_positive_rate,
+                    threshold_tolerance=threshold_tolerance,
+                    calibration=calibration,
+                    save_ranked_output=False,
+                    ranked_output_path=None,
+                )
+                if comparison_result is not None:
+                    comparison_result["feature_profile"] = compare_against
+                    comparison_results.append(comparison_result)
 
     if not model_results:
         print("\nNo model family completed successfully.")
@@ -1860,6 +2046,30 @@ def run_backtest(
     print("-" * 60)
     print(f"Final modeled feature count: {len(feature_columns)}")
     print(f"Excluded due to missingness threshold: {excluded_for_missingness if excluded_for_missingness else 'none'}")
+    print(f"train_model.py default stable feature set active: {'yes' if feature_profile == 'stable' else 'no'}")
+    if comparison_results:
+        print("\nStable vs expanded profile comparison")
+        print("-" * 60)
+        for primary_result in model_results:
+            primary_row = primary_result["summary_row"]
+            matching_comparison = next(
+                (
+                    comparison_result["summary_row"]
+                    for comparison_result in comparison_results
+                    if comparison_result["summary_row"]["model_family"] == primary_row["model_family"]
+                ),
+                None,
+            )
+            if matching_comparison is None:
+                continue
+            print(
+                compare_feature_profile_rows(
+                    primary_row,
+                    matching_comparison,
+                    primary_profile=feature_profile,
+                    comparison_profile=compare_against,
+                )
+            )
     del pruning_audit_df
 
 
@@ -1867,6 +2077,18 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("data_path", nargs="?", default=str(FINAL_DATA_PATH), help="Path to batter-game dataset CSV.")
     parser.add_argument("--model", choices=MODEL_CHOICES, default="logistic", help="Model family to train.")
+    parser.add_argument(
+        "--feature-profile",
+        choices=FEATURE_PROFILE_CHOICES,
+        default="stable",
+        help="Feature profile for the default backtest path.",
+    )
+    parser.add_argument(
+        "--compare-against",
+        choices=[*FEATURE_PROFILE_CHOICES, "none"],
+        default="expanded",
+        help="Optional second feature profile to run on the same split for comparison.",
+    )
     parser.add_argument(
         "--threshold-objective",
         choices=THRESHOLD_OBJECTIVES,
@@ -1923,6 +2145,8 @@ if __name__ == "__main__":
     run_backtest(
         args.data_path,
         model_name=args.model,
+        feature_profile=args.feature_profile,
+        compare_against=None if args.compare_against == "none" else args.compare_against,
         threshold_objective=args.threshold_objective,
         min_recall=args.min_recall,
         max_positive_rate=args.max_positive_rate,

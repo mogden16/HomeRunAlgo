@@ -149,8 +149,68 @@ PITCHER_TRAILING_FEATURE_COLUMNS = [
     "pitcher_avg_ev_allowed_last_30d",
     "pitcher_95plus_ev_allowed_rate_last_30d",
 ]
+STABLE_BATTER_FEATURE_COLUMNS = [
+    "hr_rate_season_to_date",
+    "hr_per_pa_last_30d",
+    "barrel_rate_last_50_bbe",
+    "hard_hit_rate_last_50_bbe",
+    "avg_launch_angle_last_50_bbe",
+    "avg_exit_velocity_last_50_bbe",
+    "fly_ball_rate_last_50_bbe",
+    "pull_air_rate_last_50_bbe",
+    "batter_k_rate_season_to_date",
+    "batter_bb_rate_season_to_date",
+    "recent_form_hr_last_7d",
+    "recent_form_barrels_last_14d",
+    "expected_pa_proxy",
+    "days_since_last_game",
+]
+STABLE_PITCHER_CONTEXT_COLUMNS = [
+    "opp_pitcher_id",
+    "pitch_hand_primary",
+    "pitcher_hr9_season_to_date",
+    "pitcher_barrel_rate_allowed_last_50_bbe",
+    "pitcher_hard_hit_rate_allowed_last_50_bbe",
+    "pitcher_fb_rate_allowed_last_50_bbe",
+    "pitcher_k_rate_season_to_date",
+    "pitcher_bb_rate_season_to_date",
+    "starter_or_bullpen_proxy",
+]
+STABLE_CONTEXT_FEATURE_COLUMNS = [
+    "temperature_f",
+    "humidity_pct",
+    "wind_speed_mph",
+    "wind_direction_deg",
+    "pressure_hpa",
+    "platoon_advantage",
+]
+STABLE_ENGINEERED_FEATURE_COLUMNS = [
+    *STABLE_BATTER_FEATURE_COLUMNS,
+    *STABLE_PITCHER_CONTEXT_COLUMNS,
+    *STABLE_CONTEXT_FEATURE_COLUMNS,
+]
 
 FINAL_FEATURE_SPECS = {
+    "hr_rate_season_to_date": "stable",
+    "hr_per_pa_last_30d": "stable",
+    "barrel_rate_last_50_bbe": "stable",
+    "hard_hit_rate_last_50_bbe": "stable",
+    "avg_launch_angle_last_50_bbe": "stable",
+    "avg_exit_velocity_last_50_bbe": "stable",
+    "fly_ball_rate_last_50_bbe": "stable",
+    "pull_air_rate_last_50_bbe": "stable",
+    "batter_k_rate_season_to_date": "stable",
+    "batter_bb_rate_season_to_date": "stable",
+    "recent_form_hr_last_7d": "stable",
+    "recent_form_barrels_last_14d": "stable",
+    "expected_pa_proxy": "stable",
+    "days_since_last_game": "stable",
+    "pitcher_hr9_season_to_date": "stable",
+    "pitcher_barrel_rate_allowed_last_50_bbe": "stable",
+    "pitcher_hard_hit_rate_allowed_last_50_bbe": "stable",
+    "pitcher_fb_rate_allowed_last_50_bbe": "stable",
+    "pitcher_k_rate_season_to_date": "stable",
+    "pitcher_bb_rate_season_to_date": "stable",
     "hr_per_pa_last_30d": "batter_trailing",
     "hr_per_pa_last_10d": "batter_trailing",
     "hr_count_last_30d": "batter_trailing",
@@ -365,6 +425,23 @@ def build_player_game_dataset(statcast_df: pd.DataFrame, debug_feature_audit: bo
     batter_name_lookup, batter_lookup_status = build_batter_name_lookup(raw_df, pa_df)
     batter_game_df = aggregate_batter_games(pa_df, batter_name_lookup=batter_name_lookup)
     pitcher_game_df = aggregate_pitcher_games(pa_df)
+    primary_pitchers = select_primary_opposing_pitchers(pitcher_game_df)
+    batter_game_df = merge_with_diagnostics(
+        batter_game_df,
+        primary_pitchers,
+        on=["game_pk", "team", "opponent"],
+        how="left",
+        step_name="attach primary opposing pitcher context",
+        validate="many_to_one",
+    )
+    for column in ["opp_pitcher_id", "opp_pitcher_name", "pitch_hand_primary", "opp_pitcher_bf"]:
+        right_column = f"{column}_y"
+        left_column = f"{column}_x"
+        if right_column in batter_game_df.columns and left_column in batter_game_df.columns:
+            batter_game_df[column] = batter_game_df[right_column].combine_first(batter_game_df[left_column])
+    duplicate_merge_columns = [column for column in batter_game_df.columns if column.endswith("_x") or column.endswith("_y")]
+    if duplicate_merge_columns:
+        batter_game_df = batter_game_df.drop(columns=duplicate_merge_columns)
     validate_batter_game_df(batter_game_df)
     validate_pitcher_game_df(pitcher_game_df)
 
@@ -396,6 +473,8 @@ def extract_plate_appearances(statcast_df: pd.DataFrame) -> pd.DataFrame:
     pa_df["pa_count"] = 1
     pa_df["ab_count"] = pa_df["events"].isin(AB_EVENTS).astype(int)
     pa_df["hr_count"] = pa_df["events"].eq("home_run").astype(int)
+    pa_df["is_bb"] = pa_df["events"].isin(["walk", "intent_walk"]).astype(int)
+    pa_df["is_k"] = pa_df["events"].isin(["strikeout", "strikeout_double_play"]).astype(int)
     pa_df["bbe_count"] = pa_df["launch_speed"].notna().astype(int)
     pa_df["barrel_count"] = is_barrel(pa_df["launch_speed"], pa_df["launch_angle"]).astype(int)
     pa_df["hard_hit_bbe_count"] = ((pd.to_numeric(pa_df["launch_speed"], errors="coerce") >= 95) & pa_df["launch_speed"].notna()).astype(int)
@@ -407,6 +486,7 @@ def extract_plate_appearances(statcast_df: pd.DataFrame) -> pd.DataFrame:
     pa_df["swing_event_count"] = pa_df["description"].isin(SWING_DESCRIPTIONS).astype(int)
     pa_df["pitch_type_bucket"] = pa_df["pitch_type"].map(classify_pitch_type_bucket) if "pitch_type" in pa_df.columns else np.nan
     pa_df["inferred_batter_name"] = pa_df["des"].map(infer_batter_name_from_description) if "des" in pa_df.columns else np.nan
+    pa_df["batting_order"] = pa_df.groupby(["game_pk", "batting_team"])["at_bat_number"].rank(method="dense").clip(upper=9)
     return pa_df
 
 
@@ -654,11 +734,16 @@ def aggregate_batter_games(pa_df: pd.DataFrame, batter_name_lookup: pd.Series | 
             is_home=("is_home", "max"),
             bat_side=("stand", "first"),
             pitcher_hand=("p_throws", "first"),
+            batting_order=("batting_order", "min"),
             pa_count=("pa_count", "sum"),
+            ab_count=("ab_count", "sum"),
             hr_count=("hr_count", "sum"),
             bbe_count=("bbe_count", "sum"),
             barrel_count=("barrel_count", "sum"),
             hard_hit_bbe_count=("hard_hit_bbe_count", "sum"),
+            batter_k_count=("is_k", "sum"),
+            batter_bb_count=("is_bb", "sum"),
+            avg_launch_angle=("launch_angle", "mean"),
             avg_exit_velocity=("launch_speed", "mean"),
             max_exit_velocity=("launch_speed", "max"),
             ev_95plus_bbe_count=("ev_95plus_bbe_count", "sum"),
@@ -737,7 +822,7 @@ def aggregate_pitcher_games(pa_df: pd.DataFrame) -> pd.DataFrame:
         pa_enriched[f"hard_hit_bbe_allowed_{side}"] = pa_enriched["hard_hit_bbe_count"] * mask
         pa_enriched[f"ev_95plus_bbe_allowed_{side}"] = pa_enriched["ev_95plus_bbe_count"] * mask
     pitcher_game_df = (
-        pa_enriched.groupby(["game_pk", "game_date", "pitcher"], dropna=False)
+        pa_enriched.groupby(["game_pk", "game_date", "batting_team", "fielding_team", "pitcher"], dropna=False)
         .agg(
             pitcher_name=("player_name", "first"),
             p_throws=("p_throws", "first"),
@@ -746,6 +831,11 @@ def aggregate_pitcher_games(pa_df: pd.DataFrame) -> pd.DataFrame:
             bbe_allowed=("bbe_count", "sum"),
             barrels_allowed=("barrel_count", "sum"),
             hard_hit_bbe_allowed=("hard_hit_bbe_count", "sum"),
+            fb_allowed=("fly_ball_bbe_count", "sum"),
+            pitcher_k_count=("is_k", "sum"),
+            pitcher_bb_count=("is_bb", "sum"),
+            batters_faced=("plate_appearance", "sum"),
+            outs_recorded=("ab_count", "sum"),
             avg_ev_allowed=("launch_speed", "mean"),
             max_ev_allowed=("launch_speed", "max"),
             ev_95plus_bbe_allowed=("ev_95plus_bbe_count", "sum"),
@@ -763,10 +853,27 @@ def aggregate_pitcher_games(pa_df: pd.DataFrame) -> pd.DataFrame:
             ev_95plus_bbe_allowed_lhb=("ev_95plus_bbe_allowed_lhb", "sum"),
         )
         .reset_index()
-        .rename(columns={"pitcher": "pitcher_id"})
+        .rename(columns={"batting_team": "team", "fielding_team": "opponent", "pitcher": "pitcher_id"})
     )
+    pitcher_game_df["innings_pitched_est"] = pitcher_game_df["outs_recorded"] / 3.0
     pitcher_game_df = pitcher_game_df.sort_values(["pitcher_id", "game_date", "game_pk"]).reset_index(drop=True)
     return pitcher_game_df
+
+
+def select_primary_opposing_pitchers(pitcher_game_df: pd.DataFrame) -> pd.DataFrame:
+    primary = (
+        pitcher_game_df.sort_values(["game_pk", "team", "batters_faced", "pitcher_id"], ascending=[True, True, False, True])
+        .drop_duplicates(["game_pk", "team"], keep="first")
+        .rename(
+            columns={
+                "pitcher_id": "opp_pitcher_id",
+                "pitcher_name": "opp_pitcher_name",
+                "p_throws": "pitch_hand_primary",
+                "batters_faced": "opp_pitcher_bf",
+            }
+        )
+    )
+    return primary[["game_pk", "team", "opponent", "opp_pitcher_id", "opp_pitcher_name", "pitch_hand_primary", "opp_pitcher_bf"]]
 
 
 def add_leakage_safe_features(
@@ -787,6 +894,8 @@ def add_leakage_safe_features(
 
     batter_features = compute_batter_trailing_features(batter_df)
     pitcher_features = compute_pitcher_trailing_features(pitcher_df)
+    stable_batter_features = compute_stable_batter_features(batter_df)
+    stable_pitcher_features = compute_stable_pitcher_features(pitcher_df).rename(columns={"pitcher_id": "opp_pitcher_id"})
     batter_hand_features = compute_batter_handedness_split_features(batter_df)
     pitcher_hand_features = compute_pitcher_handedness_split_features(pitcher_df)
 
@@ -828,6 +937,37 @@ def add_leakage_safe_features(
         step_name="merge pitcher trailing features",
         validate="many_to_one",
         tracked_feature_columns=PITCHER_TRAILING_FEATURE_COLUMNS,
+    )
+    dataset = merge_with_diagnostics(
+        dataset,
+        stable_batter_features,
+        on=["batter_id", "game_pk"],
+        how="left",
+        step_name="merge stable batter features",
+        validate="one_to_one",
+        tracked_feature_columns=STABLE_BATTER_FEATURE_COLUMNS + ["bbe_count_last_50"],
+    )
+    for column in ["hr_per_pa_last_30d"]:
+        left_column = f"{column}_x"
+        right_column = f"{column}_y"
+        if left_column in dataset.columns and right_column in dataset.columns:
+            dataset[column] = dataset[right_column].combine_first(dataset[left_column])
+            dataset = dataset.drop(columns=[left_column, right_column])
+    dataset = merge_with_diagnostics(
+        dataset,
+        stable_pitcher_features,
+        on=["opp_pitcher_id", "game_pk"],
+        how="left",
+        step_name="merge stable pitcher features",
+        validate="many_to_one",
+        tracked_feature_columns=[
+            "pitcher_hr9_season_to_date",
+            "pitcher_barrel_rate_allowed_last_50_bbe",
+            "pitcher_hard_hit_rate_allowed_last_50_bbe",
+            "pitcher_fb_rate_allowed_last_50_bbe",
+            "pitcher_k_rate_season_to_date",
+            "pitcher_bb_rate_season_to_date",
+        ],
     )
 
     print_before_after_trailing_report(
@@ -887,7 +1027,7 @@ def add_leakage_safe_features(
         (dataset["bat_side"] != dataset["pitch_hand_primary"]).astype(float),
         np.nan,
     )
-    dataset["starter_or_bullpen_proxy"] = np.where(dataset["pa_count"] >= 3, "starter_like", "bullpen_like")
+    dataset["starter_or_bullpen_proxy"] = np.where(dataset["opp_pitcher_bf"] >= 12, "starter_like", "bullpen_like")
 
     decisions = finalize_feature_export(dataset, missingness_threshold=missingness_threshold)
     model_features = load_model_feature_list()
@@ -1042,6 +1182,217 @@ def compute_pitcher_trailing_features(pitcher_game_df: pd.DataFrame) -> pd.DataF
     print("===========================================\n")
     assert_trailing_feature_table_has_signal(feature_df, PITCHER_TRAILING_FEATURE_COLUMNS, "pitcher")
     return feature_df
+
+
+def shifted_cumulative_rate(numerator: pd.Series, denominator: pd.Series) -> pd.Series:
+    return safe_rate(numerator.cumsum().shift(1), denominator.cumsum().shift(1))
+
+
+def rolling_day_sum(grp: pd.DataFrame, value_col: str, window: str) -> pd.Series:
+    return grp.set_index("game_date")[value_col].rolling(window=window, closed="left", min_periods=1).sum().reset_index(drop=True)
+
+
+def rolling_day_rate(grp: pd.DataFrame, numerator_col: str, denominator_col: str, window: str) -> pd.Series:
+    numerator = rolling_day_sum(grp, numerator_col, window)
+    denominator = rolling_day_sum(grp, denominator_col, window)
+    return safe_rate(numerator, denominator)
+
+
+def expected_pa_fallback(grp: pd.DataFrame) -> pd.Series:
+    prior_batting_order = grp["batting_order"].shift(1)
+    current_batting_order = grp["batting_order"]
+    order = prior_batting_order.where(prior_batting_order.notna(), current_batting_order)
+    proxy = 4.65 - 0.08 * (order.fillna(9) - 1)
+    proxy = proxy.clip(lower=3.6, upper=4.8)
+    proxy = proxy.where(order.notna(), np.nan)
+    return proxy.astype(float)
+
+
+def count_window_features(
+    grp: pd.DataFrame,
+    *,
+    count_col: str,
+    numerators: dict[str, str],
+    weighted_means: dict[str, str],
+    window_size: int,
+) -> pd.DataFrame:
+    counts = pd.to_numeric(grp[count_col], errors="coerce").fillna(0.0).to_numpy(dtype=float)
+    numerator_values = {
+        feature_name: pd.to_numeric(grp[source_col], errors="coerce").fillna(0.0).to_numpy(dtype=float)
+        for feature_name, source_col in numerators.items()
+    }
+    weighted_mean_values = {
+        feature_name: pd.to_numeric(grp[source_col], errors="coerce").fillna(0.0).to_numpy(dtype=float)
+        for feature_name, source_col in weighted_means.items()
+    }
+
+    results = {feature_name: np.full(len(grp), np.nan, dtype=float) for feature_name in [*numerators.keys(), *weighted_means.keys()]}
+    count_history = np.full(len(grp), np.nan, dtype=float)
+
+    for row_idx in range(len(grp)):
+        remaining = float(window_size)
+        denominator = 0.0
+        numerator_sums = {feature_name: 0.0 for feature_name in numerators}
+        weighted_sums = {feature_name: 0.0 for feature_name in weighted_means}
+        history_idx = row_idx - 1
+
+        while history_idx >= 0 and remaining > 0:
+            available = counts[history_idx]
+            if available > 0:
+                take = min(available, remaining)
+                share = take / available
+                denominator += take
+                remaining -= take
+                for feature_name, source_values in numerator_values.items():
+                    numerator_sums[feature_name] += source_values[history_idx] * share
+                for feature_name, source_values in weighted_mean_values.items():
+                    weighted_sums[feature_name] += source_values[history_idx] * share
+            history_idx -= 1
+
+        count_history[row_idx] = denominator if denominator > 0 else np.nan
+        if denominator > 0:
+            for feature_name in numerators:
+                results[feature_name][row_idx] = numerator_sums[feature_name] / denominator
+            for feature_name in weighted_means:
+                results[feature_name][row_idx] = weighted_sums[feature_name] / denominator
+
+    results[count_col.replace("count", f"count_last_{window_size}")] = count_history
+    return pd.DataFrame(results, index=grp.index)
+
+
+def compute_stable_batter_features(batter_game_df: pd.DataFrame) -> pd.DataFrame:
+    feature_frames: list[pd.DataFrame] = []
+    for batter_id, group in batter_game_df.groupby("batter_id", sort=False):
+        grp = group.sort_values(["game_date", "game_pk"]).reset_index(drop=True).copy()
+        if grp[["game_date", "game_pk"]].duplicated().any():
+            raise ValueError(f"Stable batter features require unique batter_id/game_pk rows; found duplicates for batter {batter_id}.")
+
+        grp["avg_exit_velocity_num"] = grp["avg_exit_velocity"].fillna(0.0) * grp["bbe_count"].fillna(0.0)
+        grp["avg_launch_angle_num"] = grp["avg_launch_angle"].fillna(0.0) * grp["bbe_count"].fillna(0.0)
+        grp["hr_rate_season_to_date"] = shifted_cumulative_rate(grp["hr_count"], grp["pa_count"])
+        grp["hr_per_pa_last_30d"] = rolling_day_rate(grp, numerator_col="hr_count", denominator_col="pa_count", window="30D")
+        grp["batter_k_rate_season_to_date"] = shifted_cumulative_rate(grp["batter_k_count"], grp["pa_count"])
+        grp["batter_bb_rate_season_to_date"] = shifted_cumulative_rate(grp["batter_bb_count"], grp["pa_count"])
+        grp["recent_form_hr_last_7d"] = rolling_day_sum(grp, value_col="hr_count", window="7D")
+        grp["recent_form_barrels_last_14d"] = rolling_day_sum(grp, value_col="barrel_count", window="14D")
+        expected_pa_raw = rolling_day_sum(grp, value_col="pa_count", window="14D")
+        grp["expected_pa_proxy"] = expected_pa_raw.where(expected_pa_raw.notna(), expected_pa_fallback(grp))
+        grp["days_since_last_game"] = grp["game_date"].diff().dt.days.astype(float)
+
+        last_50_bbe = count_window_features(
+            grp,
+            count_col="bbe_count",
+            numerators={
+                "barrel_rate_last_50_bbe": "barrel_count",
+                "hard_hit_rate_last_50_bbe": "hard_hit_bbe_count",
+                "fly_ball_rate_last_50_bbe": "fly_ball_bbe_count",
+                "pull_air_rate_last_50_bbe": "pull_air_bbe_count",
+            },
+            weighted_means={
+                "avg_exit_velocity_last_50_bbe": "avg_exit_velocity_num",
+                "avg_launch_angle_last_50_bbe": "avg_launch_angle_num",
+            },
+            window_size=50,
+        ).rename(columns={"bbe_count_last_50": "bbe_count_last_50"})
+        grp = pd.concat([grp, last_50_bbe], axis=1)
+        if "bbe_count_last_50" not in grp.columns:
+            grp["bbe_count_last_50"] = np.nan
+
+        feature_frames.append(
+            grp[
+                [
+                    "batter_id",
+                    "game_pk",
+                    "hr_rate_season_to_date",
+                    "hr_per_pa_last_30d",
+                    "barrel_rate_last_50_bbe",
+                    "hard_hit_rate_last_50_bbe",
+                    "avg_launch_angle_last_50_bbe",
+                    "avg_exit_velocity_last_50_bbe",
+                    "fly_ball_rate_last_50_bbe",
+                    "pull_air_rate_last_50_bbe",
+                    "batter_k_rate_season_to_date",
+                    "batter_bb_rate_season_to_date",
+                    "recent_form_hr_last_7d",
+                    "recent_form_barrels_last_14d",
+                    "expected_pa_proxy",
+                    "days_since_last_game",
+                    "bbe_count_last_50",
+                ]
+            ]
+        )
+    return pd.concat(feature_frames, ignore_index=True) if feature_frames else pd.DataFrame(
+        columns=[
+            "batter_id",
+            "game_pk",
+            "hr_rate_season_to_date",
+            "hr_per_pa_last_30d",
+            "barrel_rate_last_50_bbe",
+            "hard_hit_rate_last_50_bbe",
+            "avg_launch_angle_last_50_bbe",
+            "avg_exit_velocity_last_50_bbe",
+            "fly_ball_rate_last_50_bbe",
+            "pull_air_rate_last_50_bbe",
+            "batter_k_rate_season_to_date",
+            "batter_bb_rate_season_to_date",
+            "recent_form_hr_last_7d",
+            "recent_form_barrels_last_14d",
+            "expected_pa_proxy",
+            "days_since_last_game",
+            "bbe_count_last_50",
+        ]
+    )
+
+
+def compute_stable_pitcher_features(pitcher_game_df: pd.DataFrame) -> pd.DataFrame:
+    feature_frames: list[pd.DataFrame] = []
+    for pitcher_id, group in pitcher_game_df.groupby("pitcher_id", sort=False):
+        grp = group.sort_values(["game_date", "game_pk"]).reset_index(drop=True).copy()
+        grp["pitcher_hr9_season_to_date"] = np.where(
+            grp["innings_pitched_est"].cumsum().shift(1) > 0,
+            grp["hr_allowed"].cumsum().shift(1) * 9.0 / grp["innings_pitched_est"].cumsum().shift(1),
+            np.nan,
+        )
+        grp["pitcher_k_rate_season_to_date"] = shifted_cumulative_rate(grp["pitcher_k_count"], grp["batters_faced"])
+        grp["pitcher_bb_rate_season_to_date"] = shifted_cumulative_rate(grp["pitcher_bb_count"], grp["batters_faced"])
+        last_50_bbe = count_window_features(
+            grp,
+            count_col="bbe_allowed",
+            numerators={
+                "pitcher_barrel_rate_allowed_last_50_bbe": "barrels_allowed",
+                "pitcher_hard_hit_rate_allowed_last_50_bbe": "hard_hit_bbe_allowed",
+                "pitcher_fb_rate_allowed_last_50_bbe": "fb_allowed",
+            },
+            weighted_means={},
+            window_size=50,
+        )
+        grp = pd.concat([grp, last_50_bbe], axis=1)
+        feature_frames.append(
+            grp[
+                [
+                    "pitcher_id",
+                    "game_pk",
+                    "pitcher_hr9_season_to_date",
+                    "pitcher_barrel_rate_allowed_last_50_bbe",
+                    "pitcher_hard_hit_rate_allowed_last_50_bbe",
+                    "pitcher_fb_rate_allowed_last_50_bbe",
+                    "pitcher_k_rate_season_to_date",
+                    "pitcher_bb_rate_season_to_date",
+                ]
+            ]
+        )
+    return pd.concat(feature_frames, ignore_index=True) if feature_frames else pd.DataFrame(
+        columns=[
+            "pitcher_id",
+            "game_pk",
+            "pitcher_hr9_season_to_date",
+            "pitcher_barrel_rate_allowed_last_50_bbe",
+            "pitcher_hard_hit_rate_allowed_last_50_bbe",
+            "pitcher_fb_rate_allowed_last_50_bbe",
+            "pitcher_k_rate_season_to_date",
+            "pitcher_bb_rate_season_to_date",
+        ]
+    )
 
 
 def validate_required_raw_fields(statcast_df: pd.DataFrame | None) -> dict[str, bool]:

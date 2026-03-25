@@ -18,6 +18,11 @@ if (-not (Test-Path $resolvedPython)) {
 }
 
 $env:PYTHONUTF8 = "1"
+$trackedFiles = @(
+    "data/live/current_picks.json",
+    "data/live/pick_history.json",
+    "cloudflare-app/data/dashboard.json"
+)
 
 if ($Mode -eq "settle") {
     & $resolvedPython scripts\train_live_model.py --dataset-path data\live\model_training_dataset.csv
@@ -28,16 +33,20 @@ else {
 }
 
 & $resolvedPython scripts\build_dashboard_artifacts.py --output-dir cloudflare-app\data
+& $resolvedPython scripts\verify_public_live_artifacts.py
 
-$status = git status --porcelain -- data/live cloudflare-app\data
+$status = git status --porcelain -- $trackedFiles
 if (-not $status) {
     Write-Host "No dashboard changes detected."
     exit 0
 }
 
-git add data/live/current_picks.json
-git add data/live/pick_history.json
-git add cloudflare-app/data/dashboard.json
+git add -- $trackedFiles
+git diff --cached --quiet -- $trackedFiles
+if ($LASTEXITCODE -eq 0) {
+    Write-Host "No staged public/live artifact changes detected."
+    exit 0
+}
 git commit -m "$CommitMessage ($Mode)"
 
 if (-not $SkipPush) {

@@ -32,7 +32,7 @@ from data_sources import ensure_directories
 from feature_engineering import compute_batter_trailing_features, compute_pitcher_trailing_features
 from generate_data import generate_mlb_dataset
 from train_model import (
-    FEATURE_COLUMNS,
+    LIVE_PRODUCTION_FEATURE_COLUMNS,
     MAX_MODEL_FEATURE_MISSINGNESS,
     REASON_TEXT_BY_FEATURE,
     extract_logistic_coefficient_map,
@@ -169,7 +169,7 @@ def train_live_model_bundle(
     df = pd.read_csv(dataset_path, parse_dates=["game_date"])
     feature_columns, _, excluded = prune_model_features_by_training_missingness(
         df,
-        [feature for feature in FEATURE_COLUMNS if feature in df.columns],
+        [feature for feature in LIVE_PRODUCTION_FEATURE_COLUMNS if feature in df.columns],
         threshold=MAX_MODEL_FEATURE_MISSINGNESS,
     )
     if not feature_columns:
@@ -615,8 +615,8 @@ def build_live_candidate_frame(
 
 
 LIVE_CONTEXT_FEATURES = {"temperature_f", "wind_speed_mph", "humidity_pct", "platoon_advantage"}
-LIVE_BATTER_FEATURES = [feature for feature in FEATURE_COLUMNS if feature not in LIVE_CONTEXT_FEATURES and not feature.startswith("pitcher_")]
-LIVE_PITCHER_FEATURES = [feature for feature in FEATURE_COLUMNS if feature.startswith("pitcher_")]
+LIVE_BATTER_FEATURES = [feature for feature in LIVE_PRODUCTION_FEATURE_COLUMNS if feature not in LIVE_CONTEXT_FEATURES and not feature.startswith("pitcher_")]
+LIVE_PITCHER_FEATURES = [feature for feature in LIVE_PRODUCTION_FEATURE_COLUMNS if feature.startswith("pitcher_")]
 
 
 def build_latest_feature_snapshot(
@@ -859,7 +859,15 @@ def settle_pick_records(
 
 
 def write_current_picks(rows: list[dict[str, Any]], path: Path = LIVE_CURRENT_PICKS_PATH) -> None:
-    write_json_array(path, rows)
+    ordered = sorted(
+        rows,
+        key=lambda row: (
+            -(float(row.get("predicted_hr_score")) if row.get("predicted_hr_score") is not None else -999.0),
+            int(row.get("rank") or 999),
+            str(row.get("batter_name") or ""),
+        ),
+    )
+    write_json_array(path, ordered)
 
 
 def load_pick_history(path: Path = LIVE_PICK_HISTORY_PATH) -> list[dict[str, Any]]:

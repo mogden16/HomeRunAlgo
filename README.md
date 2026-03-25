@@ -117,6 +117,7 @@ python scripts/build_dashboard_artifacts.py --output-dir cloudflare-app/data
 
 That command writes:
 
+- `data/live/current_picks.json` as the cleaned, latest public slate
 - `cloudflare-app/data/dashboard.json`
 - updates `data/live/pick_history.json` as the forward-only source of truth
 
@@ -177,8 +178,29 @@ The wrapper script then:
 
 - rebuilds `cloudflare-app/data/dashboard.json`
 - merges the latest picks into `data/live/pick_history.json`
+- rewrites `data/live/current_picks.json` into the minimal public contract
 - commits the dashboard data if it changed
 - pushes the commit so Cloudflare Pages redeploys automatically
+
+Verify the repo-side public/live contract with:
+
+```powershell
+.\.venv1\Scripts\python.exe .\scripts\verify_public_live_artifacts.py
+```
+
+That verification confirms:
+
+- only the three public/live artifact files are part of the scheduled commit path
+- the dashboard and live JSON files remain forward-only from `2026-03-25`
+- the live publish flow still uses `LIVE_PRODUCTION_FEATURE_COLUMNS`
+
+Operator checklist for the external pieces the repo cannot prove:
+
+- Cloudflare Pages build command is blank
+- Cloudflare Pages output directory is `cloudflare-app`
+- Cloudflare Pages production branch is `master`
+- Windows Task Scheduler contains `HomeRunAlgoDashboardRefresh-Settle` and `HomeRunAlgoDashboardRefresh-Publish`
+- this machine can `git push` to `origin/master` without interactive auth
 
 To register two local scheduled tasks on Windows:
 
