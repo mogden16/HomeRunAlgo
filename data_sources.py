@@ -9,6 +9,7 @@ from typing import Iterable
 
 import warnings
 
+import numpy as np
 import pandas as pd
 import requests
 from pybaseball import cache, statcast
@@ -16,13 +17,16 @@ from pybaseball import cache, statcast
 from config import (
     DATA_DIR,
     DEFAULT_GAME_HOUR_LOCAL,
-    PARK_FACTOR_CACHE_PATH,
     PARKS,
     RAW_DATA_DIR,
     PA_ENDING_EVENTS,
     STATCAST_CHUNK_DAYS,
     STATCAST_COLUMNS,
-    WEATHER_CACHE_PATH,
+    get_park_info,
+    park_factor_cache_path,
+    raw_statcast_chunk_path,
+    season_from_date_range,
+    weather_cache_path,
 )
 
 cache.enable()
@@ -34,6 +38,7 @@ _RAW_FEATURE_FAMILIES: dict[str, list[str]] = {
     "contact_authority": ["hit_distance_sc"],
     "bat_tracking": ["bat_speed", "attack_angle", "attack_direction", "swing_path_tilt"],
 }
+_IMPLEMENTED_RAW_FEATURE_FAMILIES = {"pitch_type_matchup", "pitch_quality_context", "contact_authority"}
 
 
 @dataclass(frozen=True)
@@ -63,17 +68,21 @@ def _chunk_dates(start_date: str, end_date: str, chunk_days: int = STATCAST_CHUN
         current = chunk_end + pd.Timedelta(days=1)
 
 
-def _raw_chunk_path(start_date: str, end_date: str) -> Path:
-    return RAW_DATA_DIR / f"statcast_2024_{start_date}_{end_date}.csv"
-
-
 def fetch_statcast_range(start_date: str, end_date: str, force_refresh: bool = False) -> pd.DataFrame:
     """Fetch a cached Statcast date window and keep only required columns."""
     ensure_directories()
-    chunk_path = _raw_chunk_path(start_date, end_date)
-    if chunk_path.exists() and not force_refresh:
+    season = season_from_date_range(start_date, end_date)
+    chunk_path = raw_statcast_chunk_path(season, start_date, end_date)
+    should_refresh = force_refresh or not chunk_path.exists()
+    if not should_refresh:
         df = pd.read_csv(chunk_path, low_memory=False)
-    else:
+        missing_cached = [column for column in STATCAST_COLUMNS if column not in df.columns]
+        if missing_cached:
+            print(
+                f"Refreshing cached Statcast chunk {chunk_path.name} because it is missing columns: {missing_cached}"
+            )
+            should_refresh = True
+    if should_refresh:
         df = statcast(start_dt=start_date, end_dt=end_date)
         if df is None or df.empty:
             raise RuntimeError(f"Statcast returned no data for {start_date} to {end_date}.")
@@ -100,8 +109,9 @@ def fetch_statcast_season(start_date: str, end_date: str, force_refresh: bool = 
 def build_hr_park_factor_table(statcast_df: pd.DataFrame, season: int, force_refresh: bool = False) -> pd.DataFrame:
     """Build a park-factor lookup, preferring the official Savant source and falling back to local derivation."""
     ensure_directories()
-    if PARK_FACTOR_CACHE_PATH.exists() and not force_refresh:
-        return pd.read_csv(PARK_FACTOR_CACHE_PATH)
+    cache_path = park_factor_cache_path(season)
+    if cache_path.exists() and not force_refresh:
+        return pd.read_csv(cache_path)
 
     try:
         park_factors = _fetch_savant_hr_park_factors(season)
@@ -112,7 +122,7 @@ def build_hr_park_factor_table(statcast_df: pd.DataFrame, season: int, force_ref
         )
         park_factors = _derive_local_hr_park_factors(statcast_df, season)
 
-    park_factors.to_csv(PARK_FACTOR_CACHE_PATH, index=False)
+    park_factors.to_csv(cache_path, index=False)
     return park_factors
 
 
@@ -151,7 +161,7 @@ def _fetch_savant_hr_park_factors(season: int) -> pd.DataFrame:
     park_factors = park_factors.dropna(subset=["ballpark", "park_factor_hr"]).copy()
     park_factors["season"] = int(season)
     park_factors["source"] = "baseballsavant_official"
-    park_factors["home_team"] = park_factors["ballpark"].map(_ballpark_to_home_team_map())
+    park_factors["home_team"] = park_factors["ballpark"].map(_ballpark_to_home_team_map(season))
     return park_factors[["season", "home_team", "ballpark", "park_factor_hr", "source"]]
 
 
@@ -162,7 +172,10 @@ def _derive_local_hr_park_factors(statcast_df: pd.DataFrame, season: int) -> pd.
         raise RuntimeError("Cannot derive local park factors because no plate-appearance-ending events were found.")
 
     pa_df["home_team"] = pa_df["home_team"].astype(str)
-    pa_df["ballpark"] = pa_df["home_team"].map(lambda team: PARKS.get(team, {}).get("ballpark"))
+    pa_df["ballpark"] = [
+        get_park_info(str(home_team), season).get("ballpark") if pd.notna(home_team) else np.nan
+        for home_team in pa_df["home_team"]
+    ]
     pa_df["is_hr"] = pa_df["events"].eq("home_run").astype(int)
     park_summary = pa_df.groupby(["home_team", "ballpark"], dropna=False).agg(
         plate_appearances=("events", "size"),
@@ -181,9 +194,13 @@ def _derive_local_hr_park_factors(statcast_df: pd.DataFrame, season: int) -> pd.
     return park_summary[["season", "home_team", "ballpark", "park_factor_hr", "source", "plate_appearances", "hr_count"]]
 
 
-def print_raw_feature_opportunity_audit() -> None:
-    """Print a coverage audit for promising unused raw Statcast columns already present in cached files."""
-    raw_paths = sorted(RAW_DATA_DIR.glob("statcast_2024_*.csv"))
+def print_raw_feature_opportunity_audit(start_date: str | None = None, end_date: str | None = None) -> None:
+    """Print a coverage audit for raw Statcast feature families available in cached files."""
+    if start_date and end_date:
+        season = season_from_date_range(start_date, end_date)
+        raw_paths = sorted(RAW_DATA_DIR.glob(f"statcast_{season}_*.csv"))
+    else:
+        raw_paths = sorted(RAW_DATA_DIR.glob("statcast_*_*.csv"))
     if not raw_paths:
         print("\nRaw feature opportunity audit")
         print("-" * 60)
@@ -214,7 +231,9 @@ def print_raw_feature_opportunity_audit() -> None:
         missing = [column for column in columns if column not in present_columns]
         shares = [non_null_counts[column] / total_rows for column in columns if column in present_columns and total_rows > 0]
         avg_non_null_share = float(sum(shares) / len(shares)) if shares else 0.0
-        if missing:
+        if family_name in _IMPLEMENTED_RAW_FEATURE_FAMILIES:
+            recommendation = "implemented in current schema"
+        elif missing:
             recommendation = "low coverage"
         elif avg_non_null_share >= 0.75:
             recommendation = "high-priority next"
@@ -230,9 +249,12 @@ def print_raw_feature_opportunity_audit() -> None:
             print(f"  missing columns: {missing}")
 
 
-def _ballpark_to_home_team_map() -> dict[str, str]:
+def _ballpark_to_home_team_map(season: int) -> dict[str, str]:
     mapping: dict[str, str] = {}
-    for team, details in PARKS.items():
+    teams = set(PARKS)
+    teams.add("ATH")
+    for team in sorted(teams):
+        details = get_park_info(team, season)
         ballpark = details.get("ballpark")
         if ballpark and ballpark not in mapping:
             mapping[ballpark] = team
@@ -263,11 +285,12 @@ def _fetch_open_meteo(lat: float, lon: float, start_date: str, end_date: str, tz
     return df
 
 
-def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False) -> pd.DataFrame:
+def build_weather_table(game_schedule: pd.DataFrame, season: int, force_refresh: bool = False) -> pd.DataFrame:
     """Pull hourly historical weather for each MLB park/date pair used in the dataset."""
     ensure_directories()
-    if WEATHER_CACHE_PATH.exists() and not force_refresh:
-        weather_df = pd.read_csv(WEATHER_CACHE_PATH, parse_dates=["game_date"])
+    cache_path = weather_cache_path(season)
+    if cache_path.exists() and not force_refresh:
+        weather_df = pd.read_csv(cache_path, parse_dates=["game_date"])
         return weather_df
 
     required_cols = {"game_date", "home_team"}
@@ -276,9 +299,9 @@ def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False
 
     rows: list[WeatherLookupRow] = []
     for home_team, park_games in game_schedule.groupby("home_team"):
-        if home_team not in PARKS:
+        park = get_park_info(str(home_team), season)
+        if not park:
             raise KeyError(f"No park mapping configured for home team '{home_team}'.")
-        park = PARKS[home_team]
         tz_name = park["tz"]
         local_dates = pd.to_datetime(park_games["game_date"]).dt.normalize().drop_duplicates().sort_values()
         if local_dates.empty:
@@ -320,7 +343,7 @@ def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False
             )
 
     weather_df = pd.DataFrame(rows)
-    weather_df.to_csv(WEATHER_CACHE_PATH, index=False)
+    weather_df.to_csv(cache_path, index=False)
     return weather_df
 
 

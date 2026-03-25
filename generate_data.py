@@ -1,13 +1,14 @@
-"""Build a real 2024 MLB batter-game home run dataset from Statcast and Meteostat."""
+"""Build a real MLB batter-game home run dataset from Statcast and Meteostat."""
 
 from __future__ import annotations
 
 import argparse
+from pathlib import Path
 
 import pandas as pd
 from pybaseball import playerid_reverse_lookup
 
-from config import FINAL_DATA_PATH, MIN_DATASET_WARNING_ROWS, SEASON_END, SEASON_START
+from config import FINAL_DATA_PATH, MIN_DATASET_WARNING_ROWS, SEASON_END, SEASON_START, season_from_date_range
 from data_sources import (
     build_hr_park_factor_table,
     build_weather_table,
@@ -15,8 +16,10 @@ from data_sources import (
     print_raw_feature_opportunity_audit,
 )
 from feature_engineering import (
+    CONTACT_AUTHORITY_FEATURE_COLUMNS,
     CURRENT_ENGINEERED_FEATURE_COLUMNS,
     LEGACY_ENGINEERED_FEATURE_COLUMNS,
+    PITCH_STYLE_FEATURE_COLUMNS,
     add_leakage_safe_features,
     attach_park_factors,
     build_player_game_dataset,
@@ -48,6 +51,42 @@ def _print_park_factor_audit(audit: dict[str, object]) -> None:
     print(f"park_factor_hr non-null share: {audit['non_null_share']:.2%}")
     print(f"Matched parks ({len(audit['matched_parks'])}): {audit['matched_parks']}")
     print(f"Unmatched parks ({len(audit['unmatched_parks'])}): {audit['unmatched_parks'] if audit['unmatched_parks'] else 'None'}")
+
+
+def _print_pitch_feature_audit(audit: dict[str, object]) -> None:
+    print("\nPitch-style feature audit")
+    print("-" * 60)
+    print(f"Raw pitch rows scanned: {audit['raw_pitch_rows']:,}")
+    print(f"Pitch-family mapped rows: {audit['mapped_pitch_rows']:,}")
+    print(f"Pitch-family mapping coverage: {audit['mapped_pitch_share']:.2%}")
+    print("New pitch-style feature non-null share:")
+    for feature_name in PITCH_STYLE_FEATURE_COLUMNS:
+        print(f"  {feature_name}: {audit['feature_non_null_share'].get(feature_name, 0.0):.2%}")
+    print(
+        "All-null new features: "
+        f"{audit['all_null_features'] if audit['all_null_features'] else 'None'}"
+    )
+    print(
+        "Near-all-null new features (<=5% non-null): "
+        f"{audit['near_all_null_features'] if audit['near_all_null_features'] else 'None'}"
+    )
+
+
+def _print_contact_feature_audit(audit: dict[str, object]) -> None:
+    print("\nContact-authority feature audit")
+    print("-" * 60)
+    print(f"Long-contact threshold (feet): 380")
+    print("New contact-authority feature non-null share:")
+    for feature_name in CONTACT_AUTHORITY_FEATURE_COLUMNS:
+        print(f"  {feature_name}: {audit['contact_feature_non_null_share'].get(feature_name, 0.0):.2%}")
+    print(
+        "All-null new features: "
+        f"{audit['contact_all_null_features'] if audit['contact_all_null_features'] else 'None'}"
+    )
+    print(
+        "Near-all-null new features (<=5% non-null): "
+        f"{audit['contact_near_all_null_features'] if audit['contact_near_all_null_features'] else 'None'}"
+    )
 
 
 def _resolve_batter_name_lookup(statcast_df: pd.DataFrame) -> tuple[dict[int, str], set[int], set[int], set[int]]:
@@ -139,10 +178,11 @@ def generate_mlb_dataset(
     force_refresh: bool = False,
 ) -> pd.DataFrame:
     """Generate a real player-game dataset with leakage-safe historical features."""
+    season = season_from_date_range(start_date, end_date)
     statcast_df = fetch_statcast_season(start_date=start_date, end_date=end_date, force_refresh=force_refresh)
-    print_raw_feature_opportunity_audit()
+    print_raw_feature_opportunity_audit(start_date=start_date, end_date=end_date)
     batter_name_lookup, raw_source_ids, reverse_source_ids, _ = _resolve_batter_name_lookup(statcast_df)
-    park_factor_df = build_hr_park_factor_table(statcast_df, season=pd.Timestamp(end_date).year, force_refresh=force_refresh)
+    park_factor_df = build_hr_park_factor_table(statcast_df, season=season, force_refresh=force_refresh)
 
     player_game_df, pitcher_game_df = build_player_game_dataset(statcast_df)
     player_game_df, park_factor_audit = attach_park_factors(player_game_df, park_factor_df)
@@ -178,11 +218,15 @@ def generate_mlb_dataset(
 
     _, first_share, _ = _print_batter_identity_validation(player_game_df, stage="post batter_name assignment")
 
-    dataset = add_leakage_safe_features(player_game_df, pitcher_game_df)
+    dataset, pitch_feature_audit = add_leakage_safe_features(player_game_df, pitcher_game_df, statcast_df)
 
     schedule = dataset[["game_date", "team", "opponent", "is_home"]].copy()
     schedule["home_team"] = schedule.apply(lambda row: row["team"] if row["is_home"] else row["opponent"], axis=1)
-    weather_df = build_weather_table(schedule[["game_date", "home_team"]].drop_duplicates(), force_refresh=force_refresh)
+    weather_df = build_weather_table(
+        schedule[["game_date", "home_team"]].drop_duplicates(),
+        season=season,
+        force_refresh=force_refresh,
+    )
     dataset["home_team"] = dataset.apply(lambda row: row["team"] if row["is_home"] else row["opponent"], axis=1)
     dataset = dataset.merge(weather_df, on=["game_date", "home_team"], how="left", validate="many_to_one")
     dataset = dataset.drop(columns=["home_team"])
@@ -200,8 +244,9 @@ def generate_mlb_dataset(
     warnings = validate_dataset(dataset)
     dataset = dataset.sort_values(["game_date", "game_pk", "player_id"]).reset_index(drop=True)
     _print_park_factor_audit(park_factor_audit)
+    _print_pitch_feature_audit(pitch_feature_audit)
+    _print_contact_feature_audit(pitch_feature_audit)
     _print_engineered_schema_summary(dataset)
-    from pathlib import Path
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     dataset.to_csv(output_path, index=False)
 
