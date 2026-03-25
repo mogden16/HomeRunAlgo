@@ -16,14 +16,24 @@ from pybaseball import cache, statcast
 from config import (
     DATA_DIR,
     DEFAULT_GAME_HOUR_LOCAL,
+    PARK_FACTOR_CACHE_PATH,
     PARKS,
     RAW_DATA_DIR,
+    PA_ENDING_EVENTS,
     STATCAST_CHUNK_DAYS,
     STATCAST_COLUMNS,
     WEATHER_CACHE_PATH,
 )
 
 cache.enable()
+
+_SAVANT_PARK_FACTOR_URL = "https://baseballsavant.mlb.com/leaderboard/statcast-park-factors"
+_RAW_FEATURE_FAMILIES: dict[str, list[str]] = {
+    "pitch_type_matchup": ["pitch_type", "pitch_name"],
+    "pitch_quality_context": ["release_spin_rate", "spin_axis", "release_extension"],
+    "contact_authority": ["hit_distance_sc"],
+    "bat_tracking": ["bat_speed", "attack_angle", "attack_direction", "swing_path_tilt"],
+}
 
 
 @dataclass(frozen=True)
@@ -85,6 +95,148 @@ def fetch_statcast_season(start_date: str, end_date: str, force_refresh: bool = 
     statcast_df["game_date"] = pd.to_datetime(statcast_df["game_date"])
     statcast_df = statcast_df[statcast_df["game_type"] == "R"].copy()
     return statcast_df
+
+
+def build_hr_park_factor_table(statcast_df: pd.DataFrame, season: int, force_refresh: bool = False) -> pd.DataFrame:
+    """Build a park-factor lookup, preferring the official Savant source and falling back to local derivation."""
+    ensure_directories()
+    if PARK_FACTOR_CACHE_PATH.exists() and not force_refresh:
+        return pd.read_csv(PARK_FACTOR_CACHE_PATH)
+
+    try:
+        park_factors = _fetch_savant_hr_park_factors(season)
+    except Exception as exc:
+        warnings.warn(
+            "Official Savant park factors could not be parsed automatically; "
+            f"falling back to a local Statcast-derived HR park index. Details: {exc}"
+        )
+        park_factors = _derive_local_hr_park_factors(statcast_df, season)
+
+    park_factors.to_csv(PARK_FACTOR_CACHE_PATH, index=False)
+    return park_factors
+
+
+def _fetch_savant_hr_park_factors(season: int) -> pd.DataFrame:
+    """Attempt to parse the official Savant Park Factors page if row data are server-rendered."""
+    params = {
+        "type": "year",
+        "year": str(season),
+        "batSide": "",
+        "stat": "index_HR",
+        "condition": "All",
+        "rolling": "no",
+    }
+    response = requests.get(_SAVANT_PARK_FACTOR_URL, params=params, timeout=60)
+    response.raise_for_status()
+
+    html = response.text
+    if "var data = {}" in html:
+        raise RuntimeError("Savant page returned a client-rendered shell without park-factor row data.")
+
+    tables = pd.read_html(html)
+    if not tables:
+        raise RuntimeError("Savant page did not expose any parseable tables.")
+
+    table = tables[0].copy()
+    renamed_columns = {str(column).strip().lower(): column for column in table.columns}
+    venue_col = renamed_columns.get("venue")
+    factor_col = next((column for key, column in renamed_columns.items() if key in {"hr", "index_hr", "index hr"}), None)
+    if venue_col is None or factor_col is None:
+        raise RuntimeError(f"Could not locate venue/HR columns in Savant table columns: {list(table.columns)}")
+
+    park_factors = table[[venue_col, factor_col]].copy()
+    park_factors = park_factors.rename(columns={venue_col: "ballpark", factor_col: "park_factor_hr"})
+    park_factors["ballpark"] = park_factors["ballpark"].astype(str).str.strip()
+    park_factors["park_factor_hr"] = pd.to_numeric(park_factors["park_factor_hr"], errors="coerce")
+    park_factors = park_factors.dropna(subset=["ballpark", "park_factor_hr"]).copy()
+    park_factors["season"] = int(season)
+    park_factors["source"] = "baseballsavant_official"
+    park_factors["home_team"] = park_factors["ballpark"].map(_ballpark_to_home_team_map())
+    return park_factors[["season", "home_team", "ballpark", "park_factor_hr", "source"]]
+
+
+def _derive_local_hr_park_factors(statcast_df: pd.DataFrame, season: int) -> pd.DataFrame:
+    """Fallback HR park index from current-season Statcast events when Savant rows are unavailable."""
+    pa_df = statcast_df[statcast_df["events"].isin(PA_ENDING_EVENTS)].copy()
+    if pa_df.empty:
+        raise RuntimeError("Cannot derive local park factors because no plate-appearance-ending events were found.")
+
+    pa_df["home_team"] = pa_df["home_team"].astype(str)
+    pa_df["ballpark"] = pa_df["home_team"].map(lambda team: PARKS.get(team, {}).get("ballpark"))
+    pa_df["is_hr"] = pa_df["events"].eq("home_run").astype(int)
+    park_summary = pa_df.groupby(["home_team", "ballpark"], dropna=False).agg(
+        plate_appearances=("events", "size"),
+        hr_count=("is_hr", "sum"),
+    ).reset_index()
+
+    league_hr_rate = float(pa_df["is_hr"].mean())
+    if league_hr_rate <= 0:
+        raise RuntimeError("Cannot derive local park factors because league HR rate is zero.")
+
+    park_summary["park_hr_rate"] = park_summary["hr_count"] / park_summary["plate_appearances"]
+    park_summary["park_factor_hr"] = 100.0 * park_summary["park_hr_rate"] / league_hr_rate
+    park_summary["park_factor_hr"] = park_summary["park_factor_hr"].round(3)
+    park_summary["season"] = int(season)
+    park_summary["source"] = "local_statcast_hr_index_fallback"
+    return park_summary[["season", "home_team", "ballpark", "park_factor_hr", "source", "plate_appearances", "hr_count"]]
+
+
+def print_raw_feature_opportunity_audit() -> None:
+    """Print a coverage audit for promising unused raw Statcast columns already present in cached files."""
+    raw_paths = sorted(RAW_DATA_DIR.glob("statcast_2024_*.csv"))
+    if not raw_paths:
+        print("\nRaw feature opportunity audit")
+        print("-" * 60)
+        print("No raw Statcast cache files found.")
+        return
+
+    selected_columns = sorted({column for columns in _RAW_FEATURE_FAMILIES.values() for column in columns})
+    total_rows = 0
+    present_columns: set[str] = set()
+    non_null_counts = {column: 0 for column in selected_columns}
+
+    for raw_path in raw_paths:
+        header = pd.read_csv(raw_path, nrows=0).columns.tolist()
+        available = [column for column in selected_columns if column in header]
+        if not available:
+            continue
+        present_columns.update(available)
+        chunk = pd.read_csv(raw_path, usecols=available, low_memory=False)
+        total_rows += len(chunk)
+        for column in available:
+            non_null_counts[column] += int(chunk[column].notna().sum())
+
+    print("\nRaw feature opportunity audit")
+    print("-" * 60)
+    print(f"Raw cache files scanned: {len(raw_paths)}")
+    print(f"Approximate raw rows scanned: {total_rows:,}")
+    for family_name, columns in _RAW_FEATURE_FAMILIES.items():
+        missing = [column for column in columns if column not in present_columns]
+        shares = [non_null_counts[column] / total_rows for column in columns if column in present_columns and total_rows > 0]
+        avg_non_null_share = float(sum(shares) / len(shares)) if shares else 0.0
+        if missing:
+            recommendation = "low coverage"
+        elif avg_non_null_share >= 0.75:
+            recommendation = "high-priority next"
+        elif avg_non_null_share >= 0.25:
+            recommendation = "worth testing"
+        else:
+            recommendation = "low coverage"
+        print(
+            f"{family_name}: columns={columns}, present={'yes' if not missing else 'partial'}, "
+            f"approx_non_null_share={avg_non_null_share:.1%}, recommendation={recommendation}"
+        )
+        if missing:
+            print(f"  missing columns: {missing}")
+
+
+def _ballpark_to_home_team_map() -> dict[str, str]:
+    mapping: dict[str, str] = {}
+    for team, details in PARKS.items():
+        ballpark = details.get("ballpark")
+        if ballpark and ballpark not in mapping:
+            mapping[ballpark] = team
+    return mapping
 
 
 _OPEN_METEO_URL = "https://archive-api.open-meteo.com/v1/archive"

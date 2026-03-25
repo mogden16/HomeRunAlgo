@@ -9,6 +9,7 @@ DATA_DIR = ROOT_DIR / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"
 FINAL_DATA_PATH = DATA_DIR / "mlb_player_game_real.csv"
 WEATHER_CACHE_PATH = RAW_DATA_DIR / "weather_2024.csv"
+PARK_FACTOR_CACHE_PATH = RAW_DATA_DIR / "park_factors_2024.csv"
 
 SEASON_START = "2024-03-28"
 SEASON_END = "2024-09-30"

@@ -8,10 +8,46 @@ import pandas as pd
 from pybaseball import playerid_reverse_lookup
 
 from config import FINAL_DATA_PATH, MIN_DATASET_WARNING_ROWS, SEASON_END, SEASON_START
-from data_sources import build_weather_table, fetch_statcast_season
-from feature_engineering import add_leakage_safe_features, build_player_game_dataset, validate_dataset
+from data_sources import (
+    build_hr_park_factor_table,
+    build_weather_table,
+    fetch_statcast_season,
+    print_raw_feature_opportunity_audit,
+)
+from feature_engineering import (
+    CURRENT_ENGINEERED_FEATURE_COLUMNS,
+    LEGACY_ENGINEERED_FEATURE_COLUMNS,
+    add_leakage_safe_features,
+    attach_park_factors,
+    build_player_game_dataset,
+    validate_dataset,
+)
 
 MAX_PLACEHOLDER_SHARE = 0.20
+
+
+def _print_engineered_schema_summary(dataset: pd.DataFrame) -> None:
+    present_current = [column for column in CURRENT_ENGINEERED_FEATURE_COLUMNS if column in dataset.columns]
+    missing_current = [column for column in CURRENT_ENGINEERED_FEATURE_COLUMNS if column not in dataset.columns]
+    legacy_present = [column for column in LEGACY_ENGINEERED_FEATURE_COLUMNS if column in dataset.columns]
+
+    print("\nEngineered schema export audit")
+    print("-" * 60)
+    print(f"Current engineered feature count: {len(CURRENT_ENGINEERED_FEATURE_COLUMNS)}")
+    print(f"Current engineered features present: {len(present_current)}")
+    print(f"Current engineered features missing: {missing_current if missing_current else 'None'}")
+    print(f"Legacy engineered features still present: {legacy_present if legacy_present else 'None'}")
+
+
+def _print_park_factor_audit(audit: dict[str, object]) -> None:
+    print("\nPark-factor audit")
+    print("-" * 60)
+    print(f"Park-factor source used: {audit['source']}")
+    print(f"Matched rows: {audit['matched_rows']:,}")
+    print(f"Unmatched rows: {audit['unmatched_rows']:,}")
+    print(f"park_factor_hr non-null share: {audit['non_null_share']:.2%}")
+    print(f"Matched parks ({len(audit['matched_parks'])}): {audit['matched_parks']}")
+    print(f"Unmatched parks ({len(audit['unmatched_parks'])}): {audit['unmatched_parks'] if audit['unmatched_parks'] else 'None'}")
 
 
 def _resolve_batter_name_lookup(statcast_df: pd.DataFrame) -> tuple[dict[int, str], set[int], set[int], set[int]]:
@@ -104,9 +140,12 @@ def generate_mlb_dataset(
 ) -> pd.DataFrame:
     """Generate a real player-game dataset with leakage-safe historical features."""
     statcast_df = fetch_statcast_season(start_date=start_date, end_date=end_date, force_refresh=force_refresh)
+    print_raw_feature_opportunity_audit()
     batter_name_lookup, raw_source_ids, reverse_source_ids, _ = _resolve_batter_name_lookup(statcast_df)
+    park_factor_df = build_hr_park_factor_table(statcast_df, season=pd.Timestamp(end_date).year, force_refresh=force_refresh)
 
     player_game_df, pitcher_game_df = build_player_game_dataset(statcast_df)
+    player_game_df, park_factor_audit = attach_park_factors(player_game_df, park_factor_df)
     player_game_df["player_id"] = pd.to_numeric(player_game_df["player_id"], errors="coerce").astype("Int64")
     player_game_df["batter_name"] = player_game_df["player_id"].map(batter_name_lookup)
     missing_batter_name = player_game_df["batter_name"].isna() & player_game_df["player_id"].notna()
@@ -160,6 +199,8 @@ def generate_mlb_dataset(
 
     warnings = validate_dataset(dataset)
     dataset = dataset.sort_values(["game_date", "game_pk", "player_id"]).reset_index(drop=True)
+    _print_park_factor_audit(park_factor_audit)
+    _print_engineered_schema_summary(dataset)
     from pathlib import Path
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     dataset.to_csv(output_path, index=False)

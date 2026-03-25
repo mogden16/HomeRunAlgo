@@ -13,6 +13,68 @@ from config import AB_EVENTS, PA_ENDING_EVENTS, PARKS
 SPRAY_CENTER_X = 125.42
 SPRAY_HOME_Y = 198.27
 
+LEGACY_ENGINEERED_FEATURE_COLUMNS = [
+    "hr_per_pa_last_30d",
+    "expected_pa_proxy",
+    "recent_form_hr_last_7d",
+    "recent_form_barrels_last_14d",
+]
+
+CURRENT_ENGINEERED_FEATURE_COLUMNS = [
+    "hr_rate_season_to_date",
+    "barrel_rate_last_50_bbe",
+    "hard_hit_rate_last_50_bbe",
+    "avg_launch_angle_last_50_bbe",
+    "avg_exit_velocity_last_50_bbe",
+    "fly_ball_rate_last_50_bbe",
+    "pull_air_rate_last_50_bbe",
+    "batter_k_rate_season_to_date",
+    "batter_bb_rate_season_to_date",
+    "days_since_last_game",
+    "bbe_count_last_50",
+    "pitcher_hr9_season_to_date",
+    "pitcher_barrel_rate_allowed_last_50_bbe",
+    "pitcher_hard_hit_rate_allowed_last_50_bbe",
+    "pitcher_fb_rate_allowed_last_50_bbe",
+    "pitcher_k_rate_season_to_date",
+    "pitcher_bb_rate_season_to_date",
+    "park_factor_hr",
+    "platoon_advantage",
+    "starter_or_bullpen_proxy",
+    "temperature_f",
+    "humidity_pct",
+    "wind_speed_mph",
+    "wind_direction_deg",
+    "pressure_hpa",
+]
+
+CURRENT_MODEL_CANDIDATE_FEATURE_COLUMNS = [
+    "hr_rate_season_to_date",
+    "barrel_rate_last_50_bbe",
+    "hard_hit_rate_last_50_bbe",
+    "avg_launch_angle_last_50_bbe",
+    "avg_exit_velocity_last_50_bbe",
+    "fly_ball_rate_last_50_bbe",
+    "pull_air_rate_last_50_bbe",
+    "batter_k_rate_season_to_date",
+    "batter_bb_rate_season_to_date",
+    "days_since_last_game",
+    "bbe_count_last_50",
+    "pitcher_hr9_season_to_date",
+    "pitcher_barrel_rate_allowed_last_50_bbe",
+    "pitcher_hard_hit_rate_allowed_last_50_bbe",
+    "pitcher_fb_rate_allowed_last_50_bbe",
+    "pitcher_k_rate_season_to_date",
+    "pitcher_bb_rate_season_to_date",
+    "park_factor_hr",
+    "platoon_advantage",
+    "temperature_f",
+    "humidity_pct",
+    "wind_speed_mph",
+    "wind_direction_deg",
+    "pressure_hpa",
+]
+
 
 def build_player_game_dataset(statcast_df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Aggregate Statcast pitch-level data into one batter-game row."""
@@ -34,9 +96,42 @@ def build_player_game_dataset(statcast_df: pd.DataFrame) -> tuple[pd.DataFrame, 
     dataset["ballpark"] = dataset["opponent"].map(lambda team: PARKS.get(team, {}).get("ballpark"))
     home_mask = dataset["is_home"].astype(bool)
     dataset.loc[home_mask, "ballpark"] = dataset.loc[home_mask, "team"].map(lambda team: PARKS.get(team, {}).get("ballpark"))
-    dataset["park_factor_hr"] = np.nan
     dataset = dataset.sort_values(["game_date", "game_pk", "player_id"]).reset_index(drop=True)
     return dataset, pitcher_game
+
+
+def attach_park_factors(player_game_df: pd.DataFrame, park_factor_df: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, object]]:
+    """Attach season-level park factors to player-game rows using the resolved home park."""
+    dataset = player_game_df.copy()
+    dataset["home_team"] = np.where(dataset["is_home"].astype(bool), dataset["team"], dataset["opponent"])
+    dataset["ballpark"] = dataset["home_team"].map(lambda team: PARKS.get(team, {}).get("ballpark"))
+
+    park_factor_lookup = park_factor_df.copy()
+    if "home_team" not in park_factor_lookup.columns:
+        park_factor_lookup["home_team"] = np.nan
+    park_factor_lookup["park_factor_hr"] = pd.to_numeric(park_factor_lookup["park_factor_hr"], errors="coerce")
+
+    dataset = dataset.merge(
+        park_factor_lookup[["home_team", "park_factor_hr", "source"]].rename(columns={"source": "park_factor_source"}),
+        on="home_team",
+        how="left",
+        validate="many_to_one",
+    )
+
+    matched_rows = int(dataset["park_factor_hr"].notna().sum())
+    unmatched_rows = int(dataset["park_factor_hr"].isna().sum())
+    matched_parks = sorted(dataset.loc[dataset["park_factor_hr"].notna(), "ballpark"].dropna().unique().tolist())
+    unmatched_parks = sorted(dataset.loc[dataset["park_factor_hr"].isna(), "ballpark"].dropna().unique().tolist())
+    source_values = sorted(dataset["park_factor_source"].dropna().astype(str).unique().tolist())
+    audit = {
+        "source": source_values[0] if len(source_values) == 1 else ",".join(source_values) if source_values else "unknown",
+        "matched_rows": matched_rows,
+        "unmatched_rows": unmatched_rows,
+        "non_null_share": float(matched_rows / len(dataset)) if len(dataset) else 0.0,
+        "matched_parks": matched_parks,
+        "unmatched_parks": unmatched_parks,
+    }
+    return dataset.drop(columns=["home_team"]), audit
 
 
 def add_leakage_safe_features(player_game_df: pd.DataFrame, pitcher_game_df: pd.DataFrame) -> pd.DataFrame:
@@ -82,15 +177,14 @@ def validate_dataset(df: pd.DataFrame) -> list[str]:
         raise ValueError(f"Dataset has {duplicate_count} duplicate batter-game rows.")
 
     warnings: list[str] = []
-    # Leakage check: for each player's very first game appearance, the 30-day rolling
-    # window uses closed="left", so it must have seen zero prior games and should be NaN.
-    # If it is non-NaN for any player's first game, same-day data leaked into the window.
+    # Leakage check: shifted season-to-date rates should be NaN for each player's first
+    # appearance, because there is no prior-game history available yet.
     first_game_date_per_player = df.groupby("player_id")["game_date"].transform("min")
     is_first_game = df["game_date"] == first_game_date_per_player
-    if df.loc[is_first_game, "hr_per_pa_last_30d"].notna().any():
+    if df.loc[is_first_game, "hr_rate_season_to_date"].notna().any():
         warnings.append(
-            "hr_per_pa_last_30d is non-NaN for a player's first game appearance; "
-            "the closed='left' rolling window may be including same-day data (leakage)."
+            "hr_rate_season_to_date is non-NaN for a player's first game appearance; "
+            "the shifted cumulative season-to-date calculation may be leaking same-day data."
         )
     return warnings
 
@@ -215,10 +309,6 @@ def _compute_batter_daily_features(daily: pd.DataFrame) -> pd.DataFrame:
         grp["hr_rate_season_to_date"] = _shifted_cumulative_rate(grp["hr_count"], grp["plate_appearances"])
         grp["batter_k_rate_season_to_date"] = _shifted_cumulative_rate(grp["batter_k_count"], grp["plate_appearances"])
         grp["batter_bb_rate_season_to_date"] = _shifted_cumulative_rate(grp["batter_bb_count"], grp["plate_appearances"])
-        grp["hr_per_pa_last_30d"] = _rolling_day_rate(grp, numerator_col="hr_count", denominator_col="plate_appearances", window="30D")
-        grp["recent_form_hr_last_7d"] = _rolling_day_sum(grp, value_col="hr_count", window="7D")
-        grp["recent_form_barrels_last_14d"] = _rolling_day_sum(grp, value_col="barrel_count", window="14D")
-        grp["expected_pa_proxy"] = _rolling_day_rate(grp, numerator_col="plate_appearances", denominator_col=None, window="14D")
         grp["days_since_last_game"] = grp["game_date"].diff().dt.days.astype(float)
         grp[[
             "barrel_rate_last_50_bbe",
@@ -247,7 +337,6 @@ def _compute_batter_daily_features(daily: pd.DataFrame) -> pd.DataFrame:
             "player_id",
             "game_date",
             "hr_rate_season_to_date",
-            "hr_per_pa_last_30d",
             "barrel_rate_last_50_bbe",
             "hard_hit_rate_last_50_bbe",
             "avg_launch_angle_last_50_bbe",
@@ -256,10 +345,7 @@ def _compute_batter_daily_features(daily: pd.DataFrame) -> pd.DataFrame:
             "pull_air_rate_last_50_bbe",
             "batter_k_rate_season_to_date",
             "batter_bb_rate_season_to_date",
-            "expected_pa_proxy",
             "days_since_last_game",
-            "recent_form_hr_last_7d",
-            "recent_form_barrels_last_14d",
             "bbe_count_last_50",
         ]])
     return pd.concat(features, ignore_index=True)
@@ -316,20 +402,6 @@ def _compute_pitcher_daily_features(daily: pd.DataFrame) -> pd.DataFrame:
             "pitcher_bb_rate_season_to_date",
         ]])
     return pd.concat(features, ignore_index=True)
-
-
-def _rolling_day_sum(grp: pd.DataFrame, value_col: str, window: str) -> pd.Series:
-    temp = grp.set_index("game_date")
-    return temp[value_col].rolling(window=window, closed="left").sum().reset_index(drop=True)
-
-
-def _rolling_day_rate(grp: pd.DataFrame, numerator_col: str, denominator_col: str | None, window: str) -> pd.Series:
-    temp = grp.set_index("game_date")
-    numerator = temp[numerator_col].rolling(window=window, closed="left").sum()
-    if denominator_col is None:
-        return numerator.reset_index(drop=True)
-    denominator = temp[denominator_col].rolling(window=window, closed="left").sum()
-    return (numerator / denominator.replace({0: np.nan})).reset_index(drop=True)
 
 
 def _shifted_cumulative_rate(numerator: pd.Series, denominator: pd.Series) -> pd.Series:
@@ -408,3 +480,15 @@ def _is_pull_air(pa_df: pd.DataFrame) -> pd.Series:
     right_pull = pa_df["stand"].eq("R") & pa_df["spray_angle"].lt(-15)
     left_pull = pa_df["stand"].eq("L") & pa_df["spray_angle"].gt(15)
     return (air & (right_pull | left_pull)).fillna(False).astype(int)
+
+
+def print_current_feature_schema() -> None:
+    print("Current engineered feature schema")
+    print("-" * 60)
+    print(f"Engineered features ({len(CURRENT_ENGINEERED_FEATURE_COLUMNS)}): {CURRENT_ENGINEERED_FEATURE_COLUMNS}")
+    print(f"Model candidate features ({len(CURRENT_MODEL_CANDIDATE_FEATURE_COLUMNS)}): {CURRENT_MODEL_CANDIDATE_FEATURE_COLUMNS}")
+    print(f"Legacy engineered features removed ({len(LEGACY_ENGINEERED_FEATURE_COLUMNS)}): {LEGACY_ENGINEERED_FEATURE_COLUMNS}")
+
+
+if __name__ == "__main__":
+    print_current_feature_schema()
