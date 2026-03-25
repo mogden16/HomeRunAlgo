@@ -1,3 +1,10 @@
 __pycache__/
 *.pyc
-# Generated datasets and raw Statcast cache — reproducible via generate_data.py
+
+# Generated local data caches and derived backtest outputs.
+data/raw/
+data/mlb_player_game_real.csv
+data/ranked_predictions_*.csv
+data/live/model_bundle.pkl
+data/live/model_metadata.json
+data/live/model_training_dataset.csv

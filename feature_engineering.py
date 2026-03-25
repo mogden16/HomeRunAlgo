@@ -10,6 +10,7 @@ import pkgutil
 import re
 import string
 import pybaseball
+import requests
 
 import numpy as np
 import pandas as pd
@@ -105,6 +106,8 @@ SWING_DESCRIPTIONS = CONTACT_DESCRIPTIONS | {
     "missed_bunt",
     "foul_pitchout",
 }
+MLB_PEOPLE_LOOKUP_URL = "https://statsapi.mlb.com/api/v1/people"
+MLB_PEOPLE_BATCH_SIZE = 100
 SOURCE_SUMMARY_COLUMNS = [
     "game_pk",
     "batter",
@@ -442,6 +445,34 @@ def canonicalize_batter_name(name: object) -> str | float:
 def _fallback_player_reverse_lookup(player_ids: list[int]) -> pd.Series:
     if not player_ids:
         return pd.Series(dtype="string")
+    resolved_frames: list[pd.DataFrame] = []
+    for start in range(0, len(player_ids), MLB_PEOPLE_BATCH_SIZE):
+        batch = [str(pid) for pid in player_ids[start : start + MLB_PEOPLE_BATCH_SIZE]]
+        try:
+            response = requests.get(
+                MLB_PEOPLE_LOOKUP_URL,
+                params={"personIds": ",".join(batch)},
+                timeout=60,
+            )
+            response.raise_for_status()
+            people = response.json().get("people", [])
+        except Exception as exc:
+            print(f"WARNING: MLB Stats API batter-name fallback failed for batch starting at {start}: {exc}")
+            people = []
+        if not people:
+            continue
+        frame = pd.DataFrame(people)
+        if frame.empty or "id" not in frame.columns or "fullName" not in frame.columns:
+            continue
+        frame = frame.rename(columns={"id": "key_mlbam", "fullName": "batter_name_candidate"})
+        frame["batter_name_candidate"] = frame["batter_name_candidate"].map(canonicalize_batter_name)
+        frame["key_mlbam"] = pd.to_numeric(frame["key_mlbam"], errors="coerce").astype("Int64")
+        frame = frame.dropna(subset=["key_mlbam", "batter_name_candidate"]).drop_duplicates(subset=["key_mlbam"])
+        if not frame.empty:
+            resolved_frames.append(frame[["key_mlbam", "batter_name_candidate"]])
+    if resolved_frames:
+        resolved = pd.concat(resolved_frames, ignore_index=True).drop_duplicates(subset=["key_mlbam"], keep="first")
+        return resolved.set_index("key_mlbam")["batter_name_candidate"]
     try:
         lookup_df = pybaseball.playerid_reverse_lookup([str(pid) for pid in player_ids], key_type="mlbam")
     except Exception as exc:
@@ -462,9 +493,83 @@ def _fallback_player_reverse_lookup(player_ids: list[int]) -> pd.Series:
     return resolved.set_index("key_mlbam")["batter_name_candidate"]
 
 
+def _fallback_existing_dataset_lookup(player_ids: list[int]) -> pd.Series:
+    if not player_ids or not FINAL_DATA_PATH.exists():
+        return pd.Series(dtype="string")
+    try:
+        existing_df = pd.read_csv(FINAL_DATA_PATH, usecols=["batter_id", "batter_name"])
+    except Exception as exc:
+        print(f"WARNING: existing dataset batter-name fallback failed: {exc}")
+        return pd.Series(dtype="string")
+    if existing_df.empty:
+        return pd.Series(dtype="string")
+    existing_df["batter_name"] = existing_df["batter_name"].map(canonicalize_batter_name)
+    existing_df["batter_id"] = pd.to_numeric(existing_df["batter_id"], errors="coerce").astype("Int64")
+    existing_df = existing_df.dropna(subset=["batter_id", "batter_name"])
+    existing_df = existing_df[existing_df["batter_id"].isin(player_ids)]
+    if existing_df.empty:
+        return pd.Series(dtype="string")
+    resolved = (
+        existing_df.groupby(["batter_id", "batter_name"], dropna=False)
+        .size()
+        .reset_index(name="count")
+        .sort_values(["batter_id", "count"], ascending=[True, False])
+        .drop_duplicates(subset=["batter_id"], keep="first")
+    )
+    return resolved.set_index("batter_id")["batter_name"]
+
+
 def build_batter_name_lookup(raw_df: pd.DataFrame, pa_df: pd.DataFrame) -> tuple[pd.Series, dict[str, object]]:
     candidate_frames: list[pd.DataFrame] = []
     status: dict[str, object] = {"player_name_usable": False, "reverse_lookup_needed": False, "final_placeholder_share": 1.0, "real_names_ready": False}
+    all_batter_ids = (
+        pd.to_numeric(raw_df["batter"], errors="coerce").dropna().astype("Int64").unique().tolist()
+        if "batter" in raw_df.columns
+        else []
+    )
+
+    def finalize_lookup(lookup: pd.Series, candidate_rows: int) -> tuple[pd.Series, dict[str, object]]:
+        lookup = lookup.dropna().astype("string")
+        unresolved_local = sorted(
+            set(all_batter_ids) - set(pd.to_numeric(pd.Series(lookup.index), errors="coerce").dropna().astype("Int64").tolist())
+        )
+        if unresolved_local:
+            status["reverse_lookup_needed"] = True
+            reverse_lookup_series = _fallback_player_reverse_lookup(unresolved_local)
+            print("=== BATTER REVERSE LOOKUP AUDIT ===")
+            print(f"unresolved IDs before reverse lookup: {len(unresolved_local):,}")
+            print(f"IDs resolved by reverse lookup: {reverse_lookup_series.index.nunique():,}")
+            unresolved_after_reverse = sorted(
+                set(unresolved_local)
+                - set(pd.to_numeric(pd.Series(reverse_lookup_series.index), errors="coerce").dropna().astype("Int64").tolist())
+            )
+            print(f"IDs unresolved after reverse lookup: {len(unresolved_after_reverse):,}")
+            if not reverse_lookup_series.empty:
+                print(f"reverse lookup sample: {reverse_lookup_series.head(20).to_dict()}")
+                lookup = pd.concat([lookup, reverse_lookup_series[~reverse_lookup_series.index.isin(lookup.index)]])
+            print("===================================\n")
+            unresolved_local = sorted(
+                set(all_batter_ids) - set(pd.to_numeric(pd.Series(lookup.index), errors="coerce").dropna().astype("Int64").tolist())
+            )
+        if unresolved_local:
+            existing_dataset_series = _fallback_existing_dataset_lookup(unresolved_local)
+            print("=== EXISTING DATASET NAME FALLBACK AUDIT ===")
+            print(f"IDs unresolved before dataset fallback: {len(unresolved_local):,}")
+            print(f"IDs resolved from existing engineered dataset: {existing_dataset_series.index.nunique():,}")
+            if not existing_dataset_series.empty:
+                print(f"existing dataset fallback sample: {existing_dataset_series.head(20).to_dict()}")
+                lookup = pd.concat([lookup, existing_dataset_series[~existing_dataset_series.index.isin(lookup.index)]])
+            print("===========================================\n")
+        print("=== BATTER NAME LOOKUP BUILD AUDIT ===")
+        print(f"lookup source columns from raw statcast: {name_columns if name_columns else 'none; parsed descriptions used'}")
+        print(f"lookup candidate rows: {candidate_rows:,}")
+        print(f"lookup distinct batter_ids: {lookup.index.nunique():,}")
+        print(f"lookup sample: {lookup.head(20).to_dict()}")
+        print("======================================\n")
+        status["real_names_ready"] = bool(len(lookup) > 0)
+        status["final_placeholder_share"] = 0.0 if status["real_names_ready"] else 1.0
+        return lookup, status
+
     if "inferred_batter_name" in pa_df.columns:
         candidate_frames.append(
             pa_df[["batter", "inferred_batter_name"]].rename(columns={"batter": "batter_id", "inferred_batter_name": "batter_name_candidate"})
@@ -495,13 +600,13 @@ def build_batter_name_lookup(raw_df: pd.DataFrame, pa_df: pd.DataFrame) -> tuple
         candidate_frames.append(parsed[["batter", "batter_name_candidate"]].rename(columns={"batter": "batter_id"}))
 
     if not candidate_frames:
-        return pd.Series(dtype="string"), status
+        return finalize_lookup(pd.Series(dtype="string"), 0)
     candidates = pd.concat(candidate_frames, ignore_index=True)
     candidates["batter_name_candidate"] = candidates["batter_name_candidate"].map(canonicalize_batter_name)
     candidates = candidates.dropna(subset=["batter_id", "batter_name_candidate"])
     candidates = candidates[~candidates["batter_name_candidate"].astype("string").str.fullmatch(r"batter_\d+", case=False, na=False)]
     if candidates.empty:
-        return pd.Series(dtype="string"), status
+        return finalize_lookup(pd.Series(dtype="string"), 0)
     lookup = (
         candidates.groupby(["batter_id", "batter_name_candidate"], dropna=False)
         .size()
@@ -510,7 +615,6 @@ def build_batter_name_lookup(raw_df: pd.DataFrame, pa_df: pd.DataFrame) -> tuple
         .drop_duplicates(subset=["batter_id"], keep="first")
         .set_index("batter_id")["batter_name_candidate"]
     )
-    all_batter_ids = pd.to_numeric(raw_df["batter"], errors="coerce").dropna().astype("Int64").unique().tolist() if "batter" in raw_df.columns else []
     unresolved = sorted(set(all_batter_ids) - set(pd.to_numeric(pd.Series(lookup.index), errors="coerce").dropna().astype("Int64").tolist()))
     reverse_lookup_series = pd.Series(dtype="string")
     if unresolved:
@@ -526,15 +630,7 @@ def build_batter_name_lookup(raw_df: pd.DataFrame, pa_df: pd.DataFrame) -> tuple
         print("===================================\n")
         if not reverse_lookup_series.empty:
             lookup = pd.concat([lookup, reverse_lookup_series[~reverse_lookup_series.index.isin(lookup.index)]])
-    print("=== BATTER NAME LOOKUP BUILD AUDIT ===")
-    print(f"lookup source columns from raw statcast: {name_columns if name_columns else 'none; parsed descriptions used'}")
-    print(f"lookup candidate rows: {len(candidates):,}")
-    print(f"lookup distinct batter_ids: {lookup.index.nunique():,}")
-    print(f"lookup sample: {lookup.head(20).to_dict()}")
-    print("======================================\n")
-    status["real_names_ready"] = bool(len(lookup) > 0)
-    status["final_placeholder_share"] = 0.0 if status["real_names_ready"] else 1.0
-    return lookup, status
+    return finalize_lookup(lookup, len(candidates))
 
 
 def aggregate_batter_games(pa_df: pd.DataFrame, batter_name_lookup: pd.Series | None = None) -> pd.DataFrame:

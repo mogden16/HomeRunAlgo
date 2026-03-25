@@ -97,6 +97,93 @@ The training script preserves a clean date-boundary split so every test row occu
 
 ## Notes / limitations
 
-- This first version targets the 2024 regular season only.
+- The historical dataset generator defaults to the 2024 season, but the live workflow can refresh through the current date by passing explicit start and end dates.
 - Weather is matched using the nearest available hourly observation to 7 PM local park time when exact game time is not available from the base Statcast pull.
 - If a remote source fails, the pipeline raises an error instead of falling back to synthetic or fabricated data.
+
+## Cloudflare Pages dashboard
+
+This repo now includes a static dashboard app in `cloudflare-app/` for:
+
+- picks generated from March 25, 2026 onward
+- forward-only public performance tracking
+- confidence-tier and player-level results once picks settle
+
+Build the dashboard artifact locally with:
+
+```bash
+python scripts/build_dashboard_artifacts.py --output-dir cloudflare-app/data
+```
+
+That command writes:
+
+- `cloudflare-app/data/dashboard.json`
+- updates `data/live/pick_history.json` as the forward-only source of truth
+
+Public tracking starts on `2026-03-25`. Historical 2024 and 2025 picks are not published in the dashboard.
+
+The dashboard reads its latest picks from:
+
+- `data/live/current_picks.json`
+
+Use `data/live/current_picks.sample.json` as the template for that file.
+
+Local-only live model assets are written to:
+
+- `data/live/model_training_dataset.csv`
+- `data/live/model_bundle.pkl`
+- `data/live/model_metadata.json`
+
+Those files are not part of the public Cloudflare artifact.
+
+## Deploy to Cloudflare Pages
+
+1. Push this repo to GitHub.
+2. In Cloudflare Pages, create a new project from that repo.
+3. Set the Pages build command to blank and the output directory to `cloudflare-app`.
+4. Each time `cloudflare-app/data/dashboard.json` changes and is pushed, Cloudflare Pages will redeploy the site on the free tier.
+
+## Local refresh twice per day
+
+The workflow is split into two modes:
+
+- `settle` at `07:00` ET: refresh historical data through yesterday, retrain the live model bundle, settle prior published picks, rebuild the dashboard, and push updates
+- `publish` at `15:00` ET: fetch today's MLB slate, generate probable-lineup picks from the saved bundle, rebuild the dashboard, and push updates
+
+Use the PowerShell wrapper directly:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\refresh_dashboard.ps1 -PythonPath .\.venv1\Scripts\python.exe -Mode settle
+powershell -ExecutionPolicy Bypass -File .\scripts\refresh_dashboard.ps1 -PythonPath .\.venv1\Scripts\python.exe -Mode publish
+```
+
+Or run the Python entrypoints individually:
+
+```powershell
+.\.venv1\Scripts\python.exe .\scripts\train_live_model.py
+.\.venv1\Scripts\python.exe .\scripts\settle_live_results.py
+.\.venv1\Scripts\python.exe .\scripts\publish_live_picks.py
+.\.venv1\Scripts\python.exe .\scripts\build_dashboard_artifacts.py --output-dir cloudflare-app\data
+```
+
+The publish flow uses:
+
+- `data/live/model_bundle.pkl` from the morning training run
+- the free MLB Stats API for today's schedule and probable pitchers
+- a recent-starter heuristic to approximate probable lineups
+- free Open-Meteo forecasts for same-day weather inputs
+
+The wrapper script then:
+
+- rebuilds `cloudflare-app/data/dashboard.json`
+- merges the latest picks into `data/live/pick_history.json`
+- commits the dashboard data if it changed
+- pushes the commit so Cloudflare Pages redeploys automatically
+
+To register two local scheduled tasks on Windows:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\register_dashboard_tasks.ps1
+```
+
+The default run times are `07:00` and `15:00` local time. Adjust them by passing a two-item `-RunTimes` array.

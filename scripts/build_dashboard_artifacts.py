@@ -1,0 +1,319 @@
+"""Build Cloudflare Pages dashboard artifacts from forward-only published picks."""
+
+from __future__ import annotations
+
+import argparse
+import json
+import math
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+DEFAULT_TRACKING_START_DATE = "2026-03-25"
+DEFAULT_CURRENT_PICKS_PATH = Path("data/live/current_picks.json")
+DEFAULT_HISTORY_PATH = Path("data/live/pick_history.json")
+DEFAULT_OUTPUT_DIR = Path("cloudflare-app/data")
+DEFAULT_MODEL_FAMILY = "forward-only"
+
+DISPLAY_COLUMNS = [
+    "pick_id",
+    "game_pk",
+    "game_date",
+    "rank",
+    "batter_name",
+    "team",
+    "opponent_team",
+    "pitcher_name",
+    "confidence_tier",
+    "predicted_hr_probability",
+    "predicted_hr_score",
+    "actual_hit_hr",
+    "top_reason_1",
+    "top_reason_2",
+    "top_reason_3",
+    "result_label",
+]
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--current-picks-path", default=str(DEFAULT_CURRENT_PICKS_PATH), help="Path to the latest published picks JSON.")
+    parser.add_argument("--history-path", default=str(DEFAULT_HISTORY_PATH), help="Path to the forward-only pick ledger JSON.")
+    parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR), help="Directory where dashboard JSON will be written.")
+    parser.add_argument("--tracking-start-date", default=DEFAULT_TRACKING_START_DATE, help="Only picks on or after this date are published.")
+    parser.add_argument("--latest-count", type=int, default=12, help="Number of latest picks shown on the landing page.")
+    parser.add_argument("--history-per-date", type=int, default=10, help="Number of historical picks preserved per date in the dashboard.")
+    parser.add_argument("--min-player-picks", type=int, default=3, help="Minimum settled picks required for a player leaderboard row.")
+    return parser.parse_args()
+
+
+def load_json_array(path: Path) -> list[dict[str, Any]]:
+    if not path.exists():
+        return []
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, list):
+        raise ValueError(f"{path} must contain a JSON array.")
+    return [row for row in data if isinstance(row, dict)]
+
+
+def serialize_value(value: Any) -> Any:
+    if value is None:
+        return None
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, (int, str)):
+        return value
+    if isinstance(value, float):
+        if math.isnan(value) or math.isinf(value):
+            return None
+        return round(value, 6)
+    return value
+
+
+def parse_float(value: Any) -> float | None:
+    if value in (None, ""):
+        return None
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def parse_int(value: Any) -> int | None:
+    if value in (None, ""):
+        return None
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def normalize_result(value: Any) -> tuple[str, int | None]:
+    token = str(value or "").strip().lower()
+    if token in {"1", "hr", "hit", "home_run", "home run", "success"}:
+        return "HR", 1
+    if token in {"0", "miss", "no hr", "no_hr", "failed", "failure"}:
+        return "No HR", 0
+    return "Pending", None
+
+
+def build_pick_id(row: dict[str, Any]) -> str:
+    game_date = str(row.get("game_date") or row.get("pick_date") or "").strip()
+    game_pk = str(row.get("game_pk") or "").strip()
+    batter_id = str(row.get("batter_id") or "").strip()
+    batter_name = str(row.get("batter_name") or "").strip().lower().replace(" ", "-")
+    pitcher_id = str(row.get("pitcher_id") or "").strip()
+    pitcher_name = str(row.get("pitcher_name") or "").strip().lower().replace(" ", "-")
+    identity = batter_id or batter_name
+    matchup = pitcher_id or pitcher_name
+    if game_pk:
+        return str(row.get("pick_id") or f"{game_date}:{game_pk}:{identity}:{matchup}")
+    return str(row.get("pick_id") or f"{game_date}:{identity}:{matchup}")
+
+
+def normalize_pick(row: dict[str, Any], tracking_start_date: str) -> dict[str, Any] | None:
+    game_date = str(row.get("game_date") or row.get("pick_date") or "").strip()
+    if not game_date or game_date < tracking_start_date:
+        return None
+
+    probability = parse_float(row.get("predicted_hr_probability"))
+    score = parse_float(row.get("predicted_hr_score"))
+    if score is None and probability is not None:
+        score = probability * 100.0
+
+    result_label, actual_hit_hr = normalize_result(row.get("result") or row.get("result_label"))
+    normalized = {
+        "pick_id": build_pick_id(row),
+        "published_at": str(row.get("published_at") or datetime.now(timezone.utc).isoformat()),
+        "game_pk": parse_int(row.get("game_pk")),
+        "game_date": game_date,
+        "rank": parse_int(row.get("rank")) or 999,
+        "batter_id": parse_int(row.get("batter_id")),
+        "batter_name": str(row.get("batter_name") or "Unknown hitter"),
+        "team": str(row.get("team") or ""),
+        "opponent_team": str(row.get("opponent_team") or row.get("opponent") or ""),
+        "pitcher_id": parse_int(row.get("pitcher_id")),
+        "pitcher_name": str(row.get("pitcher_name") or ""),
+        "confidence_tier": str(row.get("confidence_tier") or "watch").lower(),
+        "predicted_hr_probability": probability,
+        "predicted_hr_score": score,
+        "top_reason_1": str(row.get("top_reason_1") or ""),
+        "top_reason_2": str(row.get("top_reason_2") or ""),
+        "top_reason_3": str(row.get("top_reason_3") or ""),
+        "result_label": result_label,
+        "actual_hit_hr": actual_hit_hr,
+    }
+    return normalized
+
+
+def upsert_history(existing_rows: list[dict[str, Any]], current_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    by_id = {str(row["pick_id"]): dict(row) for row in existing_rows}
+    for row in current_rows:
+        key = str(row["pick_id"])
+        previous = by_id.get(key)
+        if previous:
+            if previous.get("result_label") in {"HR", "No HR"} and row.get("result_label") == "Pending":
+                row["result_label"] = previous["result_label"]
+                row["actual_hit_hr"] = previous.get("actual_hit_hr")
+            by_id[key].update(row)
+        else:
+            by_id[key] = dict(row)
+    return sorted(by_id.values(), key=lambda row: (row["game_date"], row["rank"], row["batter_name"]))
+
+
+def top_k_by_date(rows: list[dict[str, Any]], k: int) -> list[dict[str, Any]]:
+    grouped: dict[str, list[dict[str, Any]]] = {}
+    for row in sorted(rows, key=lambda item: (item["game_date"], item["rank"], item["batter_name"])):
+        grouped.setdefault(row["game_date"], []).append(row)
+    trimmed: list[dict[str, Any]] = []
+    for game_date in sorted(grouped):
+        trimmed.extend(grouped[game_date][:k])
+    return trimmed
+
+
+def summarize_top_k(rows: list[dict[str, Any]], k: int) -> dict[str, Any]:
+    subset = top_k_by_date(rows, k)
+    settled = [row for row in subset if row["actual_hit_hr"] is not None]
+    homers = sum(int(row["actual_hit_hr"]) for row in settled)
+    hit_rate = (homers / len(settled)) if settled else None
+    avg_score = (
+        sum(float(row["predicted_hr_score"]) for row in subset if row["predicted_hr_score"] is not None) / len(subset)
+        if subset
+        else None
+    )
+    return {
+        "top_k": k,
+        "dates": len({row["game_date"] for row in subset}),
+        "picks": len(subset),
+        "homers": homers,
+        "hit_rate": serialize_value(hit_rate),
+        "avg_score": serialize_value(avg_score),
+    }
+
+
+def summarize_confidence(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    order = {"elite": 0, "strong": 1, "watch": 2, "longshot": 3}
+    buckets: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        tier = str(row["confidence_tier"] or "watch")
+        bucket = buckets.setdefault(tier, {"confidence_tier": tier, "picks": 0, "homers": 0, "prob_total": 0.0, "prob_count": 0})
+        bucket["picks"] += 1
+        if row["actual_hit_hr"] is not None:
+            bucket["homers"] += int(row["actual_hit_hr"])
+        if row["predicted_hr_probability"] is not None:
+            bucket["prob_total"] += float(row["predicted_hr_probability"])
+            bucket["prob_count"] += 1
+    rows_out: list[dict[str, Any]] = []
+    for tier, bucket in buckets.items():
+        picks = int(bucket["picks"])
+        rows_out.append(
+            {
+                "confidence_tier": tier,
+                "picks": picks,
+                "homers": int(bucket["homers"]),
+                "hit_rate": serialize_value((bucket["homers"] / picks) if picks else None),
+                "avg_probability": serialize_value((bucket["prob_total"] / bucket["prob_count"]) if bucket["prob_count"] else None),
+            }
+        )
+    return sorted(rows_out, key=lambda row: (order.get(row["confidence_tier"], 99), row["confidence_tier"]))
+
+
+def build_player_leaderboard(rows: list[dict[str, Any]], min_player_picks: int) -> list[dict[str, Any]]:
+    stats: dict[tuple[str, str], dict[str, Any]] = {}
+    for row in rows:
+        key = (row["batter_name"], row["team"])
+        bucket = stats.setdefault(
+            key,
+            {"batter_name": row["batter_name"], "team": row["team"], "picks": 0, "homers": 0, "score_total": 0.0, "score_count": 0},
+        )
+        bucket["picks"] += 1
+        bucket["homers"] += int(row["actual_hit_hr"] or 0)
+        if row["predicted_hr_score"] is not None:
+            bucket["score_total"] += float(row["predicted_hr_score"])
+            bucket["score_count"] += 1
+    leaderboard: list[dict[str, Any]] = []
+    for bucket in stats.values():
+        if bucket["picks"] < min_player_picks:
+            continue
+        leaderboard.append(
+            {
+                "batter_name": bucket["batter_name"],
+                "team": bucket["team"],
+                "picks": bucket["picks"],
+                "homers": bucket["homers"],
+                "hit_rate": serialize_value(bucket["homers"] / bucket["picks"]),
+                "avg_score": serialize_value((bucket["score_total"] / bucket["score_count"]) if bucket["score_count"] else None),
+            }
+        )
+    return sorted(leaderboard, key=lambda row: (-row["homers"], -(row["hit_rate"] or 0), -row["picks"]))[:20]
+
+
+def to_records(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    return [{column: serialize_value(row.get(column)) for column in DISPLAY_COLUMNS} for row in rows]
+
+
+def main() -> None:
+    args = parse_args()
+    current_picks_path = Path(args.current_picks_path)
+    history_path = Path(args.history_path)
+    output_dir = Path(args.output_dir)
+
+    current_picks_path.parent.mkdir(parents=True, exist_ok=True)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    current_input = load_json_array(current_picks_path)
+    history_input = load_json_array(history_path)
+
+    current_rows = [row for row in (normalize_pick(item, args.tracking_start_date) for item in current_input) if row is not None]
+    history_rows = [row for row in (normalize_pick(item, args.tracking_start_date) for item in history_input) if row is not None]
+    merged_history = upsert_history(history_rows, current_rows)
+
+    history_path.write_text(json.dumps(merged_history, indent=2), encoding="utf-8")
+
+    latest_game_date = max((row["game_date"] for row in current_rows), default=args.tracking_start_date)
+    latest_picks = sorted(current_rows, key=lambda row: (row["rank"], row["batter_name"]))[: args.latest_count]
+    dashboard_history = list(reversed(top_k_by_date(merged_history, args.history_per_date)))
+    settled_rows = [row for row in merged_history if row["actual_hit_hr"] is not None]
+    recent_successes = [
+        row
+        for row in sorted(settled_rows, key=lambda item: (item["game_date"], item["rank"]), reverse=True)
+        if row["actual_hit_hr"] == 1
+    ][:25]
+
+    settled_count = len(settled_rows)
+    homers = sum(int(row["actual_hit_hr"] or 0) for row in settled_rows)
+    hit_rate = (homers / settled_count) if settled_count else None
+
+    payload = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "tracking_start_date": args.tracking_start_date,
+        "model_family": DEFAULT_MODEL_FAMILY,
+        "latest_available_date": latest_game_date,
+        "data_note": (
+            "Public dashboard tracking begins on March 25, 2026. "
+            "Historical 2024 and 2025 picks are not published here."
+        ),
+        "overview": {
+            "latest_slate_size": len(latest_picks),
+            "tracked_dates": len({row["game_date"] for row in merged_history}),
+            "tracked_picks": len(merged_history),
+            "settled_picks": settled_count,
+            "tracked_homers": homers,
+            "tracked_hit_rate": serialize_value(hit_rate),
+            "open_picks": len([row for row in merged_history if row["actual_hit_hr"] is None]),
+        },
+        "top_k_summary": [summarize_top_k(settled_rows, k) for k in (1, 3, 5, args.history_per_date)],
+        "confidence_summary": summarize_confidence(settled_rows),
+        "latest_picks": to_records(latest_picks),
+        "history": to_records(sorted(dashboard_history, key=lambda row: (row["game_date"], -row["rank"]), reverse=True)),
+        "player_leaderboard": build_player_leaderboard(settled_rows, args.min_player_picks),
+        "recent_successes": to_records(recent_successes),
+    }
+
+    output_path = output_dir / "dashboard.json"
+    output_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    print(f"Wrote forward-only dashboard artifact to {output_path}")
+
+
+if __name__ == "__main__":
+    main()

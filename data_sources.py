@@ -20,7 +20,6 @@ from config import (
     RAW_DATA_DIR,
     STATCAST_CHUNK_DAYS,
     STATCAST_COLUMNS,
-    WEATHER_CACHE_PATH,
 )
 
 cache.enable()
@@ -54,7 +53,20 @@ def _chunk_dates(start_date: str, end_date: str, chunk_days: int = STATCAST_CHUN
 
 
 def _raw_chunk_path(start_date: str, end_date: str) -> Path:
-    return RAW_DATA_DIR / f"statcast_2024_{start_date}_{end_date}.csv"
+    generic = RAW_DATA_DIR / f"statcast_{start_date}_{end_date}.csv"
+    legacy = RAW_DATA_DIR / f"statcast_2024_{start_date}_{end_date}.csv"
+    if legacy.exists() and not generic.exists():
+        return legacy
+    return generic
+
+
+def _weather_cache_path(game_schedule: pd.DataFrame) -> Path:
+    local_dates = pd.to_datetime(game_schedule["game_date"], errors="coerce").dropna()
+    if local_dates.empty:
+        return RAW_DATA_DIR / "weather_empty.csv"
+    start = local_dates.min().strftime("%Y-%m-%d")
+    end = local_dates.max().strftime("%Y-%m-%d")
+    return RAW_DATA_DIR / f"weather_{start}_{end}.csv"
 
 
 def fetch_statcast_range(start_date: str, end_date: str, force_refresh: bool = False) -> pd.DataFrame:
@@ -114,8 +126,9 @@ def _fetch_open_meteo(lat: float, lon: float, start_date: str, end_date: str, tz
 def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False) -> pd.DataFrame:
     """Pull hourly historical weather for each MLB park/date pair used in the dataset."""
     ensure_directories()
-    if WEATHER_CACHE_PATH.exists() and not force_refresh:
-        weather_df = pd.read_csv(WEATHER_CACHE_PATH, parse_dates=["game_date"])
+    weather_cache_path = _weather_cache_path(game_schedule)
+    if weather_cache_path.exists() and not force_refresh:
+        weather_df = pd.read_csv(weather_cache_path, parse_dates=["game_date"])
         return weather_df
 
     required_cols = {"game_date", "home_team"}
@@ -168,7 +181,7 @@ def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False
             )
 
     weather_df = pd.DataFrame(rows)
-    weather_df.to_csv(WEATHER_CACHE_PATH, index=False)
+    weather_df.to_csv(weather_cache_path, index=False)
     return weather_df
 
 

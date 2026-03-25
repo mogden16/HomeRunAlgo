@@ -830,7 +830,7 @@ def summarize_prediction_deciles(y_true: np.ndarray, y_prob: np.ndarray, bins: i
     )
     total_hrs = float(grouped["hrs"].sum())
     grouped["bucket"] = grouped["bucket"].astype(int) + 1
-    grouped["bucket_label"] = grouped["bucket"].apply(lambda x: f"{bins - x + 1}/{bins} (high→low)")
+    grouped["bucket_label"] = grouped["bucket"].apply(lambda x: f"{bins - x + 1}/{bins} (high-to-low)")
     grouped["cumulative_hrs"] = grouped["hrs"].cumsum()
     grouped["cumulative_hr_capture_pct"] = grouped["cumulative_hrs"] / total_hrs if total_hrs > 0 else np.nan
     return grouped
@@ -1548,8 +1548,8 @@ def evaluate_model_run(
     decile_df = summarize_prediction_deciles(y_test, y_prob_test, bins=10)
     ventile_df = summarize_prediction_deciles(y_test, y_prob_test, bins=20)
     print_top_bucket_lift_table(lift_df)
-    print_prediction_bucket_summary(decile_df, label="Holdout prediction deciles (high→low score buckets)")
-    print_prediction_bucket_summary(ventile_df, label="Holdout prediction ventiles (high→low score buckets)")
+    print_prediction_bucket_summary(decile_df, label="Holdout prediction deciles (high-to-low score buckets)")
+    print_prediction_bucket_summary(ventile_df, label="Holdout prediction ventiles (high-to-low score buckets)")
 
     ranked_output = build_ranked_predictions_output(
         source_df=test_df,

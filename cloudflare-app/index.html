@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home Run Board</title>
+  <meta name="description" content="Latest holdout picks, historical picks, and backtest performance for the HomeRunAlgo project.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">HomeRunAlgo Dashboard</p>
+        <h1>Top picks, past picks, and what actually hit.</h1>
+        <p class="hero-text" id="data-note">Loading dashboard data...</p>
+      </div>
+      <aside class="hero-panel">
+        <p class="panel-label">Latest available slate</p>
+        <strong id="latest-date">-</strong>
+        <p id="generated-at">-</p>
+        <div class="status-row">
+          <span class="pill" id="model-family">-</span>
+          <span class="pill" id="usable-status">-</span>
+        </div>
+      </aside>
+    </header>
+
+    <main>
+      <section class="stats-grid" id="overview-cards"></section>
+
+      <section class="two-up">
+        <article class="panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Conversion</p>
+              <h2>Top-k performance</h2>
+            </div>
+          </div>
+          <div class="table-wrap" id="top-k-table"></div>
+        </article>
+
+        <article class="panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Confidence</p>
+              <h2>Tier performance</h2>
+            </div>
+          </div>
+          <div class="table-wrap" id="confidence-table"></div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Latest picks</p>
+            <h2>Best-ranked hitters from the latest available date</h2>
+          </div>
+        </div>
+        <div class="table-wrap" id="latest-picks-table"></div>
+      </section>
+
+      <section class="two-up">
+        <article class="panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Leaderboard</p>
+              <h2>Players who cash most often</h2>
+            </div>
+          </div>
+          <div class="table-wrap" id="leaderboard-table"></div>
+        </article>
+
+        <article class="panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Recent wins</p>
+              <h2>Successful historical picks</h2>
+            </div>
+          </div>
+          <div class="table-wrap" id="success-table"></div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="section-head history-head">
+          <div>
+            <p class="eyebrow">Archive</p>
+            <h2>Historical top picks</h2>
+          </div>
+          <div class="filters">
+            <input id="history-search" type="search" placeholder="Filter by player, team, or pitcher">
+            <select id="confidence-filter">
+              <option value="">All confidence tiers</option>
+              <option value="elite">Elite</option>
+              <option value="strong">Strong</option>
+              <option value="watch">Watch</option>
+              <option value="longshot">Longshot</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-wrap" id="history-table"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
