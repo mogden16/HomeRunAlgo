@@ -25,6 +25,7 @@ from config import FINAL_DATA_PATH, RANDOM_STATE, TRAIN_FRACTION, TSCV_N_SPLITS
 
 DATE_COL = "game_date"
 TARGET_COL = "hit_hr"
+MAX_MODEL_FEATURE_MISSINGNESS = 0.50
 FEATURE_COLUMNS = [
     "hr_per_pa_last_30d",
     "barrel_rate_last_50_bbe",
@@ -98,6 +99,27 @@ def available_feature_columns(df: pd.DataFrame) -> list[str]:
     return real_features + extra_features
 
 
+def prune_sparse_features(train_df: pd.DataFrame, feature_columns: list[str]) -> tuple[list[str], pd.DataFrame]:
+    rows: list[dict[str, object]] = []
+    kept: list[str] = []
+    for feature_name in feature_columns:
+        missing_pct = float(train_df[feature_name].isna().mean())
+        keep_for_model = missing_pct <= MAX_MODEL_FEATURE_MISSINGNESS
+        reason = "kept: train missingness <= threshold" if keep_for_model else "excluded: train missingness > threshold"
+        if keep_for_model:
+            kept.append(feature_name)
+        rows.append(
+            {
+                "feature_name": feature_name,
+                "train_missing_pct": missing_pct,
+                "keep_for_model": "yes" if keep_for_model else "no",
+                "reason": reason,
+            }
+        )
+    audit_df = pd.DataFrame(rows).sort_values(["keep_for_model", "train_missing_pct"], ascending=[False, True])
+    return kept, audit_df
+
+
 def build_logistic_pipeline() -> Pipeline:
     return Pipeline(
         steps=[
@@ -167,6 +189,14 @@ def evaluate_predictions(y_true: np.ndarray, y_prob: np.ndarray) -> dict[str, fl
     return metrics
 
 
+def compare_metric_direction(before: float, after: float, tolerance: float = 1e-4) -> str:
+    if after > before + tolerance:
+        return "improved"
+    if after < before - tolerance:
+        return "worsened"
+    return "stayed similar"
+
+
 def run_backtest(data_path: str, model_name: str = "logistic") -> None:
     if not Path(data_path).exists():
         raise FileNotFoundError(f"Dataset not found: {data_path}. Run python generate_data.py first.")
@@ -176,9 +206,20 @@ def run_backtest(data_path: str, model_name: str = "logistic") -> None:
     run_dataset_sanity_checks(df, train_df, test_df)
 
     feature_columns = available_feature_columns(df)
-    X_train = train_df[feature_columns].to_numpy()
+    pruned_feature_columns, pruning_audit_df = prune_sparse_features(train_df, feature_columns)
+    if not pruned_feature_columns:
+        raise RuntimeError("All candidate features were excluded by missingness threshold.")
+
+    print("\nFeature-pruning audit")
+    print("-" * 60)
+    print(pruning_audit_df.to_string(index=False))
+    excluded_features = pruning_audit_df.loc[pruning_audit_df["keep_for_model"] == "no", "feature_name"].tolist()
+    print(f"\nFinal modeled feature count: {len(pruned_feature_columns)}")
+    print(f"Excluded features ({len(excluded_features)}): {excluded_features if excluded_features else 'None'}")
+
+    X_train = train_df[pruned_feature_columns].to_numpy()
     y_train = train_df[TARGET_COL].to_numpy()
-    X_test = test_df[feature_columns].to_numpy()
+    X_test = test_df[pruned_feature_columns].to_numpy()
     y_test = test_df[TARGET_COL].to_numpy()
 
     print("=" * 60)
@@ -188,7 +229,7 @@ def run_backtest(data_path: str, model_name: str = "logistic") -> None:
     print(f"Train date range: {train_df[DATE_COL].min().date()} -> {train_df[DATE_COL].max().date()}")
     print(f"Test date range : {test_df[DATE_COL].min().date()} -> {test_df[DATE_COL].max().date()}")
     print(f"Base HR rate train/test: {train_df[TARGET_COL].mean():.4f} / {test_df[TARGET_COL].mean():.4f}")
-    print(f"Features used ({len(feature_columns)}): {', '.join(feature_columns)}")
+    print(f"Features used ({len(pruned_feature_columns)}): {', '.join(pruned_feature_columns)}")
 
     if model_name == "xgboost":
         model = build_xgboost_pipeline()
@@ -202,6 +243,20 @@ def run_backtest(data_path: str, model_name: str = "logistic") -> None:
 
     y_prob = model.predict_proba(X_test)[:, 1]
     metrics = evaluate_predictions(y_test, y_prob)
+    baseline_metrics = metrics
+    if excluded_features:
+        X_train_unpruned = train_df[feature_columns].to_numpy()
+        X_test_unpruned = test_df[feature_columns].to_numpy()
+        if model_name == "xgboost":
+            baseline_model = build_xgboost_pipeline()
+            if baseline_model is None:
+                baseline_model = tune_logistic_pipeline(X_train_unpruned, y_train)
+            else:
+                baseline_model.fit(X_train_unpruned, y_train)
+        else:
+            baseline_model = tune_logistic_pipeline(X_train_unpruned, y_train)
+        baseline_prob = baseline_model.predict_proba(X_test_unpruned)[:, 1]
+        baseline_metrics = evaluate_predictions(y_test, baseline_prob)
 
     print("\nHoldout evaluation")
     print("-" * 60)
@@ -210,7 +265,30 @@ def run_backtest(data_path: str, model_name: str = "logistic") -> None:
     print(f"Brier score: {metrics['brier_score']:.4f}")
     print(f"ROC-AUC    : {metrics['roc_auc']:.4f}")
     print(f"PR-AUC     : {metrics['pr_auc']:.4f}")
+    print(
+        "Metric direction vs unpruned feature set: "
+        f"ROC-AUC {compare_metric_direction(baseline_metrics['roc_auc'], metrics['roc_auc'])}, "
+        f"PR-AUC {compare_metric_direction(baseline_metrics['pr_auc'], metrics['pr_auc'])}"
+    )
     print_calibration_summary(y_test, y_prob)
+
+    ranking_df = test_df.copy()
+    ranking_df["score"] = y_prob
+    ranking_df = ranking_df.sort_values("score", ascending=False).reset_index(drop=True)
+    batter_name_col = "batter_name" if "batter_name" in ranking_df.columns else "player_name"
+    pitcher_name_col = "pitcher_name" if "pitcher_name" in ranking_df.columns else "opp_pitcher_name"
+    ranking_df["tier"] = pd.qcut(ranking_df["score"], q=3, labels=["Tier 3", "Tier 2", "Tier 1"], duplicates="drop")
+    ranking_preview = ranking_df.rename(
+        columns={
+            "player_id": "batter_id",
+            batter_name_col: "batter_name",
+            "opp_pitcher_id": "pitcher_id",
+            pitcher_name_col: "pitcher_name",
+        }
+    )[["batter_id", "batter_name", "pitcher_id", "pitcher_name", "score", "tier"]].head(15)
+    print("\nTop-ranked candidates preview")
+    print("-" * 60)
+    print(ranking_preview.to_string(index=False))
 
 
 if __name__ == "__main__":
