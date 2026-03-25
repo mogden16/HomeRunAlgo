@@ -30,6 +30,7 @@ GRANULAR_PITCH_TYPES = {
     "changeup": {"CH", "FS", "FO", "SC"},
 }
 PARK_FACTOR_LOOKUP_PATH = Path("data/park_factors_hr.csv")
+MAX_PLACEHOLDER_BATTER_NAME_SHARE = 0.01
 TEAM_VENUE_KEY_ALIASES = {
     "AZ": "ARI",
     "ARI": "ARI",
@@ -267,7 +268,7 @@ def validate_batter_game_df(df: pd.DataFrame) -> None:
         raise ValueError(f"Batter-game dataframe must be unique on batter_id + game_pk. Offending keys: {duplicates.head(10).to_dict('records')}")
 
 
-def validate_batter_identity(df: pd.DataFrame, *, context: str) -> dict[str, object]:
+def validate_batter_identity(df: pd.DataFrame, *, context: str, fail_on_placeholder_share: bool = False) -> dict[str, object]:
     required = ["batter_id", "batter_name"]
     missing = [column for column in required if column not in df.columns]
     if missing:
@@ -279,7 +280,19 @@ def validate_batter_identity(df: pd.DataFrame, *, context: str) -> dict[str, obj
     grouped = df.dropna(subset=["batter_id", "batter_name"]).groupby("batter_id", dropna=False)["batter_name"].nunique(dropna=True)
     unstable = grouped[grouped > 1].sort_values(ascending=False)
     stable_mapping = unstable.empty
+    name_series = df["batter_name"].astype("string")
+    placeholder_mask = name_series.str.fullmatch(r"batter_\d+", case=False, na=False)
+    null_name_count = int(name_series.isna().sum())
+    placeholder_count = int(placeholder_mask.sum())
+    placeholder_share = float(placeholder_count / len(df)) if len(df) else 0.0
     print(f"batter_id -> batter_name stable one-to-one: {stable_mapping}")
+    print(f"null batter_name rows: {null_name_count:,}")
+    print(f"placeholder batter_<id> rows: {placeholder_count:,} ({placeholder_share:.2%})")
+    if placeholder_count:
+        print("placeholder batter_name sample:")
+        print(df.loc[placeholder_mask, ["batter_id", "batter_name", "game_pk", "game_date"]].head(20).to_string(index=False))
+    print("top batter_id/batter_name pairs:")
+    print(df[["batter_id", "batter_name"]].drop_duplicates().head(20).to_string(index=False))
     if not stable_mapping:
         offenders = unstable.head(20).index.tolist()
         detail = (
@@ -292,7 +305,18 @@ def validate_batter_identity(df: pd.DataFrame, *, context: str) -> dict[str, obj
         print("sample offending rows:")
         print(detail.head(60).to_string(index=False))
     print("==========================================\n")
-    return {"stable": stable_mapping, "unstable_ids": unstable.head(20).index.tolist(), "unstable_count": int(len(unstable))}
+    if fail_on_placeholder_share and placeholder_share > MAX_PLACEHOLDER_BATTER_NAME_SHARE:
+        raise ValueError(
+            f"{context}: placeholder batter_<id> names remain too high ({placeholder_share:.2%} > {MAX_PLACEHOLDER_BATTER_NAME_SHARE:.2%})."
+        )
+    return {
+        "stable": stable_mapping,
+        "unstable_ids": unstable.head(20).index.tolist(),
+        "unstable_count": int(len(unstable)),
+        "placeholder_count": placeholder_count,
+        "placeholder_share": placeholder_share,
+        "null_name_count": null_name_count,
+    }
 
 
 def validate_pitcher_game_df(df: pd.DataFrame) -> None:
@@ -333,7 +357,8 @@ def build_player_game_dataset(statcast_df: pd.DataFrame, debug_feature_audit: bo
     print_source_summary(raw_df, "pybaseball.statcast pitch-level Statcast")
 
     pa_df = extract_plate_appearances(raw_df)
-    batter_game_df = aggregate_batter_games(pa_df)
+    batter_name_lookup = build_batter_name_lookup(raw_df, pa_df)
+    batter_game_df = aggregate_batter_games(pa_df, batter_name_lookup=batter_name_lookup)
     pitcher_game_df = aggregate_pitcher_games(pa_df)
     validate_batter_game_df(batter_game_df)
     validate_pitcher_game_df(pitcher_game_df)
@@ -408,7 +433,46 @@ def canonicalize_batter_name(name: object) -> str | float:
     return cleaned or np.nan
 
 
-def aggregate_batter_games(pa_df: pd.DataFrame) -> pd.DataFrame:
+def build_batter_name_lookup(raw_df: pd.DataFrame, pa_df: pd.DataFrame) -> pd.Series:
+    candidate_frames: list[pd.DataFrame] = []
+    if "inferred_batter_name" in pa_df.columns:
+        candidate_frames.append(
+            pa_df[["batter", "inferred_batter_name"]].rename(columns={"batter": "batter_id", "inferred_batter_name": "batter_name_candidate"})
+        )
+    name_columns = [col for col in ["batter_name", "batter_fullname", "hitter_name"] if col in raw_df.columns]
+    for col in name_columns:
+        candidate_frames.append(raw_df[["batter", col]].rename(columns={"batter": "batter_id", col: "batter_name_candidate"}))
+    if "des" in raw_df.columns:
+        parsed = raw_df[["batter", "des"]].copy()
+        parsed["batter_name_candidate"] = parsed["des"].map(infer_batter_name_from_description)
+        candidate_frames.append(parsed[["batter", "batter_name_candidate"]].rename(columns={"batter": "batter_id"}))
+
+    if not candidate_frames:
+        return pd.Series(dtype="string")
+    candidates = pd.concat(candidate_frames, ignore_index=True)
+    candidates["batter_name_candidate"] = candidates["batter_name_candidate"].map(canonicalize_batter_name)
+    candidates = candidates.dropna(subset=["batter_id", "batter_name_candidate"])
+    candidates = candidates[~candidates["batter_name_candidate"].astype("string").str.fullmatch(r"batter_\d+", case=False, na=False)]
+    if candidates.empty:
+        return pd.Series(dtype="string")
+    lookup = (
+        candidates.groupby(["batter_id", "batter_name_candidate"], dropna=False)
+        .size()
+        .reset_index(name="count")
+        .sort_values(["batter_id", "count"], ascending=[True, False])
+        .drop_duplicates(subset=["batter_id"], keep="first")
+        .set_index("batter_id")["batter_name_candidate"]
+    )
+    print("=== BATTER NAME LOOKUP BUILD AUDIT ===")
+    print(f"lookup source columns from raw statcast: {name_columns if name_columns else 'none; parsed descriptions used'}")
+    print(f"lookup candidate rows: {len(candidates):,}")
+    print(f"lookup distinct batter_ids: {lookup.index.nunique():,}")
+    print(f"lookup sample: {lookup.head(20).to_dict()}")
+    print("======================================\n")
+    return lookup
+
+
+def aggregate_batter_games(pa_df: pd.DataFrame, batter_name_lookup: pd.Series | None = None) -> pd.DataFrame:
     # Assumption: opponent_pitcher_id is the pitcher faced in the batter's terminal PA row.
     # We keep the most frequent pitcher seen by the batter in that game as the opposing pitcher proxy.
     batter_pitcher_map = (
@@ -453,6 +517,17 @@ def aggregate_batter_games(pa_df: pd.DataFrame) -> pd.DataFrame:
         step_name="attach primary opposing pitcher to batter-game table",
         validate="one_to_one",
     )
+    source_from_pa = int(batter_game_df["batter_name"].notna().sum())
+    source_from_lookup = 0
+    source_from_placeholder = 0
+    if batter_name_lookup is not None and not batter_name_lookup.empty:
+        before_lookup_non_null = int(batter_game_df["batter_name"].notna().sum())
+        batter_game_df["batter_name"] = batter_game_df["batter_name"].where(
+            batter_game_df["batter_name"].notna(),
+            batter_game_df["batter_id"].map(batter_name_lookup),
+        )
+        source_from_lookup = int(batter_game_df["batter_name"].notna().sum()) - before_lookup_non_null
+
     missing_batter_names = batter_game_df["batter_name"].isna()
     if missing_batter_names.any():
         preferred_name = (
@@ -466,6 +541,7 @@ def aggregate_batter_games(pa_df: pd.DataFrame) -> pd.DataFrame:
         batter_game_df.loc[missing_batter_names, "batter_name"] = (
             "batter_" + batter_game_df.loc[missing_batter_names, "batter_id"].astype("Int64").astype(str)
         )
+        source_from_placeholder = int(missing_batter_names.sum())
     batter_game_df["batter_name"] = batter_game_df["batter_name"].map(canonicalize_batter_name)
     batter_game_df["player_id"] = batter_game_df["batter_id"]
     batter_game_df["player_name"] = batter_game_df["batter_name"]
@@ -479,7 +555,10 @@ def aggregate_batter_games(pa_df: pd.DataFrame) -> pd.DataFrame:
     )
     batter_game_df["park_factor_hr"] = np.nan
     batter_game_df = batter_game_df.sort_values(["batter_id", "game_date", "game_pk"]).reset_index(drop=True)
-    print("batter_name source in batter-game construction: inferred_batter_name from PA rows (batter-side), then ID fallback.")
+    print("batter_name source in batter-game construction:")
+    print(f"  from PA parsed batter-side text: {source_from_pa:,}")
+    print(f"  from raw-data lookup merge: {source_from_lookup:,}")
+    print(f"  fallback placeholder batter_<id>: {source_from_placeholder:,}")
     validate_batter_identity(batter_game_df, context="aggregate_batter_games output")
     return batter_game_df
 
@@ -638,7 +717,7 @@ def add_leakage_safe_features(
     batter_merge_overwrite_detected = len(identity_suffix_columns) > 0
     print(f"identity suffix columns after feature merges: {identity_suffix_columns if identity_suffix_columns else 'none'}")
     print(f"batter_name merge overwrite detected: {batter_merge_overwrite_detected}")
-    batter_identity_status = validate_batter_identity(dataset, context="post feature merges")
+    batter_identity_status = validate_batter_identity(dataset, context="post feature merges", fail_on_placeholder_share=True)
 
     assert_no_duplicate_batter_game_rows(dataset, context="post feature merges")
 

@@ -154,6 +154,7 @@ METRIC_COLUMNS = [
 TOP_MISSING_FEATURES_TO_PRINT = 8
 TOP_BUCKET_PERCENTS = [0.01, 0.02, 0.05, 0.10, 0.20]
 DEFAULT_TOP_CANDIDATES_TO_PRINT = 20
+MAX_MODEL_FEATURE_MISSINGNESS = 0.50
 RANKING_EXPORT_CORE_COLUMNS = [
     "game_date",
     "game_pk",
@@ -243,6 +244,41 @@ def available_feature_columns(df: pd.DataFrame) -> list[str]:
     real_features = [column for column in FEATURE_COLUMNS if column in df.columns]
     extra_features = [column for column in OPTIONAL_SECONDARY_FEATURES if column in df.columns]
     return real_features + extra_features
+
+
+def prune_model_features_by_training_missingness(
+    train_df: pd.DataFrame,
+    feature_columns: list[str],
+    threshold: float = MAX_MODEL_FEATURE_MISSINGNESS,
+) -> tuple[list[str], pd.DataFrame, list[str]]:
+    rows: list[dict[str, object]] = []
+    kept: list[str] = []
+    excluded: list[str] = []
+    for feature in feature_columns:
+        missing_pct = float(train_df[feature].isna().mean()) if feature in train_df.columns else 1.0
+        keep_for_model = missing_pct <= threshold
+        reason = "kept: training missingness within threshold" if keep_for_model else f"excluded: training missingness > {threshold:.0%}"
+        rows.append(
+            {
+                "feature_name": feature,
+                "training_missing_pct": missing_pct * 100.0,
+                "keep_for_model": "yes" if keep_for_model else "no",
+                "reason": reason,
+            }
+        )
+        if keep_for_model:
+            kept.append(feature)
+        else:
+            excluded.append(feature)
+    audit_df = pd.DataFrame(rows).sort_values(["keep_for_model", "training_missing_pct", "feature_name"], ascending=[True, False, True])
+    print("\nFeature-pruning audit (training missingness)")
+    print("-" * 60)
+    print(audit_df.to_string(index=False, formatters={"training_missing_pct": lambda v: f"{v:.2f}%"}))
+    print(f"Configured MAX_MODEL_FEATURE_MISSINGNESS: {threshold:.0%}")
+    print(f"Model features kept: {len(kept)} | excluded: {len(excluded)}")
+    if excluded:
+        print(f"Excluded feature list: {excluded}")
+    return kept, audit_df, excluded
 
 
 def build_logistic_pipeline() -> Pipeline:
@@ -961,7 +997,7 @@ def validate_ranked_output_identity(ranked: pd.DataFrame) -> pd.DataFrame:
         compare = ranked[["batter_name", "pitcher_name"]].dropna()
         mismatch_share = float((compare["batter_name"] == compare["pitcher_name"]).mean()) if len(compare) else 0.0
         print(f"ranked_output_identity_mismatch_share(batter_name==pitcher_name): {mismatch_share:.3f}")
-        display_cols = [col for col in ["batter_id", "batter_name", "pitcher_id", "pitcher_name"] if col in ranked.columns]
+        display_cols = [col for col in ["batter_id", "batter_name", "pitcher_id", "pitcher_name", "predicted_hr_score"] if col in ranked.columns]
         print("ranked_output_identity_preview_top20:")
         print(ranked[display_cols].head(20).to_string(index=False))
         if mismatch_share > 0.25:
@@ -1569,7 +1605,14 @@ def run_backtest(
     train_df, test_df = chronological_split(df)
     run_dataset_sanity_checks(df, train_df, test_df)
 
-    feature_columns = available_feature_columns(df)
+    initial_feature_columns = available_feature_columns(df)
+    feature_columns, pruning_audit_df, excluded_for_missingness = prune_model_features_by_training_missingness(
+        train_df,
+        initial_feature_columns,
+        threshold=MAX_MODEL_FEATURE_MISSINGNESS,
+    )
+    if not feature_columns:
+        raise ValueError("All candidate model features were excluded by the training missingness threshold.")
     fold_records = fold_missingness_records(train_df[feature_columns])
 
     print("=" * 60)
@@ -1580,6 +1623,7 @@ def run_backtest(
     print(f"Test date range : {test_df[DATE_COL].min().date()} -> {test_df[DATE_COL].max().date()}")
     print(f"Base HR rate train/test: {train_df[TARGET_COL].mean():.4f} / {test_df[TARGET_COL].mean():.4f}")
     print(f"Features used ({len(feature_columns)}): {', '.join(feature_columns)}")
+    print(f"Features excluded by missingness threshold ({len(excluded_for_missingness)}): {excluded_for_missingness if excluded_for_missingness else 'none'}")
     print(f"Model family requested       : {model_name}")
     print(f"Threshold objective used     : {threshold_objective}")
     print(f"Max positive rate used       : {max_positive_rate:.2f}")
@@ -1689,6 +1733,11 @@ def run_backtest(
         )
         print("Missing-data issue severity  : high enough to rethink at least some features before adding more.")
         print(f"Flagged features             : {flagged}")
+    print("\nPost-pruning modeled feature summary")
+    print("-" * 60)
+    print(f"Final modeled feature count: {len(feature_columns)}")
+    print(f"Excluded due to missingness threshold: {excluded_for_missingness if excluded_for_missingness else 'none'}")
+    del pruning_audit_df
 
 
 def parse_args() -> argparse.Namespace:
