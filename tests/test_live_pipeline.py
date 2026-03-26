@@ -289,7 +289,15 @@ class LivePipelineTests(unittest.TestCase):
             bundle_path = base / "bundle.pkl"
             metadata_path = base / "metadata.json"
             output_path = base / "current.json"
+            history_path = base / "pick_history.json"
+            dashboard_dir = base / "dashboard"
             output_path.write_text(json.dumps([{"game_date": "2026-03-25", "batter_name": "Old Pick"}]), encoding="utf-8")
+            history_path.write_text("[]", encoding="utf-8")
+            dashboard_dir.mkdir(parents=True, exist_ok=True)
+            (dashboard_dir / "dashboard.json").write_text(
+                json.dumps({"tracking_start_date": "2026-03-25", "latest_picks": [{"game_date": "2026-03-25", "batter_name": "Old Pick"}]}),
+                encoding="utf-8",
+            )
             pd.DataFrame(
                 {
                     "game_date": pd.to_datetime(["2024-09-29", "2024-09-30"]),
@@ -312,6 +320,10 @@ class LivePipelineTests(unittest.TestCase):
                 str(metadata_path),
                 "--output-path",
                 str(output_path),
+                "--history-path",
+                str(history_path),
+                "--dashboard-output-dir",
+                str(dashboard_dir),
                 "--schedule-date",
                 "2026-03-26",
             ]
@@ -323,6 +335,9 @@ class LivePipelineTests(unittest.TestCase):
             self.assertFalse(mock_schedule.called)
             self.assertFalse(mock_candidates.called)
             self.assertEqual(json.loads(output_path.read_text(encoding="utf-8")), [])
+            dashboard_payload = json.loads((dashboard_dir / "dashboard.json").read_text(encoding="utf-8"))
+            self.assertEqual(dashboard_payload["latest_available_date"], "2026-03-26")
+            self.assertEqual(dashboard_payload["latest_picks"], [])
 
     def test_publish_live_picks_fresh_path_writes_requested_schedule_date(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
@@ -331,10 +346,13 @@ class LivePipelineTests(unittest.TestCase):
             bundle_path = base / "bundle.pkl"
             metadata_path = base / "metadata.json"
             output_path = base / "current.json"
+            history_path = base / "pick_history.json"
+            dashboard_dir = base / "dashboard"
             pd.DataFrame({"game_date": pd.to_datetime(["2026-03-24", "2026-03-25"])}).to_csv(dataset_path, index=False)
             with bundle_path.open("wb") as handle:
                 pickle.dump({"trained_through": "2026-03-25", "model": object(), "feature_columns": [], "reference_df": pd.DataFrame()}, handle)
             metadata_path.write_text(json.dumps({"trained_through": "2026-03-25", "dataset_max_game_date": "2026-03-25"}), encoding="utf-8")
+            history_path.write_text("[]", encoding="utf-8")
 
             picks = [{"game_date": "2026-03-26", "rank": 1, "batter_name": "Alpha"}]
             argv = [
@@ -347,6 +365,10 @@ class LivePipelineTests(unittest.TestCase):
                 str(metadata_path),
                 "--output-path",
                 str(output_path),
+                "--history-path",
+                str(history_path),
+                "--dashboard-output-dir",
+                str(dashboard_dir),
                 "--schedule-date",
                 "2026-03-26",
             ]
@@ -359,6 +381,9 @@ class LivePipelineTests(unittest.TestCase):
                                     publish_live_picks.main()
             written = json.loads(output_path.read_text(encoding="utf-8"))
             self.assertEqual(written[0]["game_date"], "2026-03-26")
+            dashboard_payload = json.loads((dashboard_dir / "dashboard.json").read_text(encoding="utf-8"))
+            self.assertEqual(dashboard_payload["latest_available_date"], "2026-03-26")
+            self.assertEqual(dashboard_payload["latest_picks"][0]["game_date"], "2026-03-26")
 
     def test_failed_publish_does_not_mutate_pick_history(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
@@ -368,6 +393,7 @@ class LivePipelineTests(unittest.TestCase):
             metadata_path = base / "metadata.json"
             output_path = base / "current.json"
             history_path = base / "pick_history.json"
+            dashboard_dir = base / "dashboard"
             history_payload = [{"game_date": "2026-03-25", "batter_name": "Old Pick"}]
             history_path.write_text(json.dumps(history_payload), encoding="utf-8")
             output_path.write_text(json.dumps(history_payload), encoding="utf-8")
@@ -393,6 +419,10 @@ class LivePipelineTests(unittest.TestCase):
                 str(metadata_path),
                 "--output-path",
                 str(output_path),
+                "--history-path",
+                str(history_path),
+                "--dashboard-output-dir",
+                str(dashboard_dir),
                 "--schedule-date",
                 "2026-03-26",
             ]

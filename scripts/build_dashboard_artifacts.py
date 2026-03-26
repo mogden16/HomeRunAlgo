@@ -334,29 +334,36 @@ def to_records(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return [{column: serialize_value(row.get(column)) for column in DISPLAY_COLUMNS} for row in rows]
 
 
-def main() -> None:
-    args = parse_args()
-    current_picks_path = Path(args.current_picks_path)
-    history_path = Path(args.history_path)
-    output_dir = Path(args.output_dir)
-
+def build_dashboard_artifacts(
+    *,
+    current_picks_path: Path = DEFAULT_CURRENT_PICKS_PATH,
+    history_path: Path = DEFAULT_HISTORY_PATH,
+    output_dir: Path = DEFAULT_OUTPUT_DIR,
+    tracking_start_date: str = DEFAULT_TRACKING_START_DATE,
+    latest_count: int = 12,
+    history_per_date: int = 10,
+    min_player_picks: int = 3,
+    persist_history: bool = True,
+    latest_available_date_override: str | None = None,
+) -> Path:
     current_picks_path.parent.mkdir(parents=True, exist_ok=True)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     current_input = load_json_array(current_picks_path)
     history_input = load_json_array(history_path)
 
-    current_rows = [row for row in (normalize_pick(item, args.tracking_start_date) for item in current_input) if row is not None]
-    history_rows = [row for row in (normalize_pick(item, args.tracking_start_date) for item in history_input) if row is not None]
+    current_rows = [row for row in (normalize_pick(item, tracking_start_date) for item in current_input) if row is not None]
+    history_rows = [row for row in (normalize_pick(item, tracking_start_date) for item in history_input) if row is not None]
     current_rows = sorted(current_rows, key=current_pick_sort_key)
     merged_history = upsert_history(history_rows, current_rows)
 
     current_picks_path.write_text(json.dumps(clean_current_pick_rows(current_rows), indent=2), encoding="utf-8")
-    history_path.write_text(json.dumps(clean_history_rows(merged_history), indent=2), encoding="utf-8")
+    if persist_history:
+        history_path.write_text(json.dumps(clean_history_rows(merged_history), indent=2), encoding="utf-8")
 
-    latest_game_date = max((row["game_date"] for row in current_rows), default=args.tracking_start_date)
-    latest_picks = current_rows[: args.latest_count]
-    dashboard_history = list(reversed(top_k_by_date(merged_history, args.history_per_date)))
+    latest_game_date = latest_available_date_override or max((row["game_date"] for row in current_rows), default=tracking_start_date)
+    latest_picks = current_rows[:latest_count]
+    dashboard_history = list(reversed(top_k_by_date(merged_history, history_per_date)))
     settled_rows = [row for row in merged_history if row["actual_hit_hr"] is not None]
     recent_successes = [
         row
@@ -370,7 +377,7 @@ def main() -> None:
 
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "tracking_start_date": args.tracking_start_date,
+        "tracking_start_date": tracking_start_date,
         "model_family": DEFAULT_MODEL_FAMILY,
         "latest_available_date": latest_game_date,
         "data_note": (
@@ -386,7 +393,7 @@ def main() -> None:
             "tracked_hit_rate": serialize_value(hit_rate),
             "open_picks": len([row for row in merged_history if row["actual_hit_hr"] is None]),
         },
-        "top_k_summary": [summarize_top_k(settled_rows, k) for k in (1, 3, 5, args.history_per_date)],
+        "top_k_summary": [summarize_top_k(settled_rows, k) for k in (1, 3, 5, history_per_date)],
         "confidence_summary": summarize_confidence(settled_rows),
         "latest_picks": to_records(latest_picks),
         "history": to_records(
@@ -395,12 +402,26 @@ def main() -> None:
                 key=lambda row: (-int(str(row["game_date"]).replace("-", "")), -score_sort_value(row), int(row["rank"]), str(row["batter_name"])),
             )
         ),
-        "player_leaderboard": build_player_leaderboard(settled_rows, args.min_player_picks),
+        "player_leaderboard": build_player_leaderboard(settled_rows, min_player_picks),
         "recent_successes": to_records(recent_successes),
     }
 
     output_path = output_dir / "dashboard.json"
     output_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    return output_path
+
+
+def main() -> None:
+    args = parse_args()
+    output_path = build_dashboard_artifacts(
+        current_picks_path=Path(args.current_picks_path),
+        history_path=Path(args.history_path),
+        output_dir=Path(args.output_dir),
+        tracking_start_date=args.tracking_start_date,
+        latest_count=args.latest_count,
+        history_per_date=args.history_per_date,
+        min_player_picks=args.min_player_picks,
+    )
     print(f"Wrote forward-only dashboard artifact to {output_path}")
 
 

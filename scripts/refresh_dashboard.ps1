@@ -23,6 +23,7 @@ $trackedFiles = @(
     "data/live/pick_history.json",
     "cloudflare-app/data/dashboard.json"
 )
+$publishFailed = $false
 
 if ($Mode -eq "settle") {
     & $resolvedPython scripts\train_live_model.py --dataset-path data\live\model_training_dataset.csv
@@ -30,6 +31,10 @@ if ($Mode -eq "settle") {
 }
 else {
     & $resolvedPython scripts\publish_live_picks.py
+    if ($LASTEXITCODE -ne 0) {
+        $publishFailed = $true
+        Write-Warning "publish_live_picks.py failed, but tracked public artifacts may have been refreshed. Continuing to rebuild, verify, and push them."
+    }
 }
 
 & $resolvedPython scripts\build_dashboard_artifacts.py --output-dir cloudflare-app\data
@@ -51,4 +56,8 @@ git commit -m "$CommitMessage ($Mode)"
 
 if (-not $SkipPush) {
     git push
+}
+
+if ($publishFailed) {
+    exit 1
 }
