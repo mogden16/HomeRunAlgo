@@ -289,6 +289,7 @@ class LivePipelineTests(unittest.TestCase):
             bundle_path = base / "bundle.pkl"
             metadata_path = base / "metadata.json"
             output_path = base / "current.json"
+            output_path.write_text(json.dumps([{"game_date": "2026-03-25", "batter_name": "Old Pick"}]), encoding="utf-8")
             pd.DataFrame(
                 {
                     "game_date": pd.to_datetime(["2024-09-29", "2024-09-30"]),
@@ -321,6 +322,84 @@ class LivePipelineTests(unittest.TestCase):
                             publish_live_picks.main()
             self.assertFalse(mock_schedule.called)
             self.assertFalse(mock_candidates.called)
+            self.assertEqual(json.loads(output_path.read_text(encoding="utf-8")), [])
+
+    def test_publish_live_picks_fresh_path_writes_requested_schedule_date(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            dataset_path = base / "dataset.csv"
+            bundle_path = base / "bundle.pkl"
+            metadata_path = base / "metadata.json"
+            output_path = base / "current.json"
+            pd.DataFrame({"game_date": pd.to_datetime(["2026-03-24", "2026-03-25"])}).to_csv(dataset_path, index=False)
+            with bundle_path.open("wb") as handle:
+                pickle.dump({"trained_through": "2026-03-25", "model": object(), "feature_columns": [], "reference_df": pd.DataFrame()}, handle)
+            metadata_path.write_text(json.dumps({"trained_through": "2026-03-25", "dataset_max_game_date": "2026-03-25"}), encoding="utf-8")
+
+            picks = [{"game_date": "2026-03-26", "rank": 1, "batter_name": "Alpha"}]
+            argv = [
+                "publish_live_picks.py",
+                "--dataset-path",
+                str(dataset_path),
+                "--bundle-path",
+                str(bundle_path),
+                "--metadata-path",
+                str(metadata_path),
+                "--output-path",
+                str(output_path),
+                "--schedule-date",
+                "2026-03-26",
+            ]
+            with patch.object(sys, "argv", argv):
+                with patch("scripts.publish_live_picks.fetch_schedule_games", return_value=[]):
+                    with patch("scripts.publish_live_picks.build_active_roster_map", return_value={}):
+                        with patch("scripts.publish_live_picks.build_live_candidate_frame", return_value=pd.DataFrame()):
+                            with patch("scripts.publish_live_picks.build_live_feature_frame", return_value=pd.DataFrame()):
+                                with patch("scripts.publish_live_picks.score_live_candidates", return_value=picks):
+                                    publish_live_picks.main()
+            written = json.loads(output_path.read_text(encoding="utf-8"))
+            self.assertEqual(written[0]["game_date"], "2026-03-26")
+
+    def test_failed_publish_does_not_mutate_pick_history(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            dataset_path = base / "dataset.csv"
+            bundle_path = base / "bundle.pkl"
+            metadata_path = base / "metadata.json"
+            output_path = base / "current.json"
+            history_path = base / "pick_history.json"
+            history_payload = [{"game_date": "2026-03-25", "batter_name": "Old Pick"}]
+            history_path.write_text(json.dumps(history_payload), encoding="utf-8")
+            output_path.write_text(json.dumps(history_payload), encoding="utf-8")
+            pd.DataFrame(
+                {
+                    "game_date": pd.to_datetime(["2024-09-29", "2024-09-30"]),
+                    "game_pk": [1, 2],
+                    "batter_id": [10, 11],
+                    "hit_hr": [0, 1],
+                }
+            ).to_csv(dataset_path, index=False)
+            with bundle_path.open("wb") as handle:
+                pickle.dump({"trained_through": "2024-09-30", "model": object(), "feature_columns": [], "reference_df": pd.DataFrame()}, handle)
+            metadata_path.write_text(json.dumps({"trained_through": "2024-09-30", "dataset_max_game_date": "2024-09-30"}), encoding="utf-8")
+
+            argv = [
+                "publish_live_picks.py",
+                "--dataset-path",
+                str(dataset_path),
+                "--bundle-path",
+                str(bundle_path),
+                "--metadata-path",
+                str(metadata_path),
+                "--output-path",
+                str(output_path),
+                "--schedule-date",
+                "2026-03-26",
+            ]
+            with patch.object(sys, "argv", argv):
+                with self.assertRaises(RuntimeError):
+                    publish_live_picks.main()
+            self.assertEqual(json.loads(history_path.read_text(encoding="utf-8")), history_payload)
 
     def test_build_live_feature_frame_backfills_latest_batter_and_pitcher_features(self) -> None:
         dataset_df = pd.DataFrame(

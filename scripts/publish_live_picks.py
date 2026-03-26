@@ -41,14 +41,20 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     schedule_date = args.schedule_date or default_publish_date()
+    output_path = Path(args.output_path)
     dataset_df = load_live_dataset(Path(args.dataset_path))
     bundle = load_model_bundle(Path(args.bundle_path))
     model_metadata = load_model_metadata(Path(args.metadata_path))
-    assert_live_publish_freshness(
-        schedule_date=schedule_date,
-        dataset_df=dataset_df,
-        model_metadata=model_metadata,
-    )
+    try:
+        assert_live_publish_freshness(
+            schedule_date=schedule_date,
+            dataset_df=dataset_df,
+            model_metadata=model_metadata,
+        )
+    except RuntimeError:
+        write_current_picks([], output_path)
+        print(f"Cleared stale picks at {output_path} because publish failed for {schedule_date}")
+        raise
     schedule_games = fetch_schedule_games(schedule_date)
     active_roster_map = build_active_roster_map(schedule_games)
 
@@ -61,7 +67,7 @@ def main() -> None:
     )
     featured = build_live_feature_frame(dataset_df, candidates)
     picks = score_live_candidates(featured, bundle, max_picks=args.max_picks)
-    write_current_picks(picks, Path(args.output_path))
+    write_current_picks(picks, output_path)
     print(f"Published {len(picks)} picks to {args.output_path} for {schedule_date}")
 
 
