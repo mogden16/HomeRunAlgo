@@ -36,13 +36,18 @@ from train_model import (
     LIVE_PRODUCTION_FEATURE_COLUMNS,
     MAX_MODEL_FEATURE_MISSINGNESS,
     REASON_TEXT_BY_FEATURE,
+    build_histgb_pipeline,
+    build_logistic_pipeline,
+    build_xgboost_pipeline,
     choose_logistic_calibration,
     evaluate_model_run,
     evaluate_training_candidate,
     extract_logistic_coefficient_map,
     fit_safely_with_imputer_warning_suppressed,
     generate_reason_strings,
+    maybe_calibrate_logistic,
     prepare_feature_matrix,
+    prune_model_features_by_training_missingness,
     run_backtest,
 )
 
@@ -51,6 +56,7 @@ MLB_PERSON_URL_TEMPLATE = "https://statsapi.mlb.com/api/v1/people/{player_id}"
 MLB_TEAM_ROSTER_URL_TEMPLATE = "https://statsapi.mlb.com/api/v1/teams/{team_id}/roster"
 OPEN_METEO_FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
 LIVE_PUBLISH_FRESHNESS_TOLERANCE_DAYS = 7
+OFFSEASON_LINEUP_FALLBACK_DAYS = 210
 TEAM_CODE_ALIASES = {
     "ARI": "AZ",
     "CHW": "CWS",
@@ -121,6 +127,89 @@ def normalize_game_date(value: Any) -> str:
     return str(timestamp.date())
 
 
+def _coerce_int(value: Any) -> int | None:
+    if value in (None, "") or pd.isna(value):
+        return None
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _coerce_float(value: Any) -> float | None:
+    if value in (None, "") or pd.isna(value):
+        return None
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _resolved_result_label(row: dict[str, Any]) -> str:
+    token = str(row.get("result_label") or row.get("result") or "Pending").strip()
+    if token in {"HR", "No HR", "Pending"}:
+        return token
+    normalized = token.lower()
+    if normalized in {"1", "hr", "hit", "home_run", "home run", "success"}:
+        return "HR"
+    if normalized in {"0", "miss", "no hr", "no_hr", "failed", "failure"}:
+        return "No HR"
+    return "Pending"
+
+
+def _build_pick_record_base(row: dict[str, Any]) -> dict[str, Any]:
+    game_date = normalize_game_date(row.get("game_date"))
+    batter_id = _coerce_int(row.get("batter_id"))
+    pitcher_id = _coerce_int(row.get("pitcher_id"))
+    batter_name = str(row.get("batter_name") or "Unknown hitter")
+    pitcher_name = str(row.get("pitcher_name") or "")
+    game_pk = _coerce_int(row.get("game_pk"))
+    return {
+        "pick_id": str(row.get("pick_id") or build_pick_id(game_date, game_pk, batter_id, batter_name, pitcher_id, pitcher_name)),
+        "published_at": str(row.get("published_at") or datetime.now(timezone.utc).isoformat()),
+        "game_pk": game_pk,
+        "game_date": game_date,
+        "rank": _coerce_int(row.get("rank")) or 999,
+        "batter_id": batter_id,
+        "batter_name": batter_name,
+        "team": str(row.get("team") or ""),
+        "opponent_team": str(row.get("opponent_team") or row.get("opponent") or ""),
+        "pitcher_id": pitcher_id,
+        "pitcher_name": pitcher_name,
+        "confidence_tier": str(row.get("confidence_tier") or "watch"),
+        "predicted_hr_probability": _coerce_float(row.get("predicted_hr_probability")),
+        "predicted_hr_score": _coerce_float(row.get("predicted_hr_score")),
+        "top_reason_1": str(row.get("top_reason_1") or ""),
+        "top_reason_2": str(row.get("top_reason_2") or ""),
+        "top_reason_3": str(row.get("top_reason_3") or ""),
+    }
+
+
+def canonicalize_current_pick_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    canonical_rows: list[dict[str, Any]] = []
+    for row in rows:
+        base = _build_pick_record_base(row)
+        base["result"] = _resolved_result_label(row)
+        canonical_rows.append(base)
+    return canonical_rows
+
+
+def canonicalize_history_pick_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    canonical_rows: list[dict[str, Any]] = []
+    for row in rows:
+        base = _build_pick_record_base(row)
+        result_label = _resolved_result_label(row)
+        actual_hit_hr = row.get("actual_hit_hr")
+        if actual_hit_hr in (None, "") or pd.isna(actual_hit_hr):
+            actual_hit_hr = 1 if result_label == "HR" else 0 if result_label == "No HR" else None
+        else:
+            actual_hit_hr = _coerce_int(actual_hit_hr)
+        base["result_label"] = result_label
+        base["actual_hit_hr"] = actual_hit_hr
+        canonical_rows.append(base)
+    return canonical_rows
+
+
 def build_pick_id(game_date: str, game_pk: int | None, batter_id: int | None, batter_name: str, pitcher_id: int | None, pitcher_name: str) -> str:
     hitter = batter_id if batter_id is not None else batter_name.lower().replace(" ", "-")
     pitcher = pitcher_id if pitcher_id is not None else pitcher_name.lower().replace(" ", "-")
@@ -166,6 +255,33 @@ def refresh_live_dataset(
 
 def _candidate_is_live_compatible(feature_columns: list[str]) -> bool:
     return set(feature_columns).issubset(set(LIVE_PRODUCTION_FEATURE_COLUMNS))
+
+
+def _build_pipeline_for_model_family(model_family: str):
+    if model_family == "logistic":
+        return build_logistic_pipeline()
+    if model_family == "histgb":
+        return build_histgb_pipeline()
+    if model_family == "xgboost":
+        pipeline = build_xgboost_pipeline()
+        if pipeline is None:
+            raise RuntimeError("xgboost is not installed, so the stored live configuration cannot be refit.")
+        return pipeline
+    raise ValueError(f"Unsupported model family for live refit: {model_family}")
+
+
+def _filtered_best_params(estimator, best_params: dict[str, Any] | None) -> dict[str, Any]:
+    if not best_params:
+        return {}
+    valid_keys = set(estimator.get_params().keys())
+    return {key: value for key, value in best_params.items() if key in valid_keys}
+
+
+def _persist_live_bundle(bundle_path: Path, metadata_path: Path, bundle: dict[str, Any], metadata: dict[str, Any]) -> None:
+    bundle_path.parent.mkdir(parents=True, exist_ok=True)
+    with bundle_path.open("wb") as handle:
+        pickle.dump(bundle, handle)
+    metadata_path.write_text(json.dumps(metadata, indent=2), encoding="utf-8")
 
 
 def _fit_full_dataset_bundle_candidate(
@@ -239,6 +355,111 @@ def _fit_full_dataset_bundle_candidate(
     return bundle, full_candidate, calibration_status, calibration_search_summary
 
 
+def _fit_live_bundle_fast_refit(
+    df: pd.DataFrame,
+    *,
+    model_family: str,
+    feature_profile: str,
+    missingness_threshold: float,
+    selection_metric: str,
+    calibration: str,
+    best_params: dict[str, Any] | None,
+    existing_metadata: dict[str, Any],
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    configured_features = [column for column in LIVE_PRODUCTION_FEATURE_COLUMNS if column in df.columns] if feature_profile == "live" else []
+    if not configured_features:
+        from train_model import available_feature_columns
+
+        configured_features = available_feature_columns(df, feature_profile=feature_profile)
+    feature_columns, _, excluded_features = prune_model_features_by_training_missingness(
+        df,
+        configured_features,
+        threshold=missingness_threshold,
+    )
+    if not feature_columns:
+        raise RuntimeError(f"No model features remain after applying missingness threshold {missingness_threshold:.2f}.")
+
+    estimator = _build_pipeline_for_model_family(model_family)
+    resolved_best_params = _filtered_best_params(estimator, best_params)
+    if resolved_best_params:
+        estimator.set_params(**resolved_best_params)
+
+    X_full = prepare_feature_matrix(df, feature_columns)
+    y_full = df["hit_hr"].to_numpy()
+    if model_family == "logistic":
+        if calibration == "disabled":
+            model = clone(estimator)
+            fit_safely_with_imputer_warning_suppressed(model, X_full, y_full)
+            calibration_status = {
+                "requested": calibration,
+                "used": "disabled",
+                "status": "skipped",
+                "message": "Calibration disabled for fast live refit.",
+            }
+        else:
+            model, calibration_status = maybe_calibrate_logistic(
+                clone(estimator),
+                X_full,
+                y_full,
+                calibration,
+                model_family,
+            )
+            if calibration_status.get("used") == "disabled":
+                fit_safely_with_imputer_warning_suppressed(model, X_full, y_full)
+        calibration_search_rows: list[dict[str, Any]] = []
+    else:
+        model = clone(estimator)
+        fit_safely_with_imputer_warning_suppressed(model, X_full, y_full)
+        calibration_status = {
+            "requested": calibration,
+            "used": "not_applicable",
+            "status": "not_applicable",
+            "message": f"Calibration skipped because {model_family} was used.",
+        }
+        calibration_search_rows = []
+
+    reference_columns = sorted(set(feature_columns) | {feature for feature in REASON_TEXT_BY_FEATURE if feature in df.columns})
+    bundle = {
+        "model": model,
+        "feature_columns": feature_columns,
+        "reference_df": df[reference_columns].copy(),
+        "trained_through": str(df["game_date"].max().date()),
+        "dataset_max_game_date": str(df["game_date"].max().date()),
+        "model_family": model_family,
+        "feature_profile": feature_profile,
+        "missingness_threshold": float(missingness_threshold),
+        "selection_metric": selection_metric,
+        "best_params": dict(resolved_best_params),
+        "calibration_status": calibration_status,
+        "calibration_search_rows": calibration_search_rows,
+        "excluded_features": list(excluded_features),
+        "training_cv_summary": dict(existing_metadata.get("training_cv_summary") or {}),
+        "final_holdout_summary": dict(existing_metadata.get("final_holdout_summary") or {}),
+        "promotion_decision": dict(existing_metadata.get("promotion_decision") or {}),
+        "refit_strategy": "fast_refit",
+    }
+    metadata = {
+        "trained_through": bundle["trained_through"],
+        "dataset_max_game_date": bundle["dataset_max_game_date"],
+        "model_family": bundle["model_family"],
+        "feature_profile": bundle["feature_profile"],
+        "missingness_threshold": bundle["missingness_threshold"],
+        "selection_metric": bundle["selection_metric"],
+        "feature_columns": bundle["feature_columns"],
+        "best_params": bundle["best_params"],
+        "calibration_status": calibration_status,
+        "calibration_search_rows": calibration_search_rows,
+        "excluded_features": bundle["excluded_features"],
+        "training_cv_summary": bundle["training_cv_summary"],
+        "final_holdout_summary": bundle["final_holdout_summary"],
+        "promotion_decision": bundle["promotion_decision"],
+        "row_count": int(len(df)),
+        "hr_rate": serialize_for_json(float(df["hit_hr"].mean())),
+        "refit_strategy": "fast_refit",
+    }
+    return bundle, metadata
+
+
 def train_live_model_bundle(
     dataset_path: Path,
     *,
@@ -249,8 +470,39 @@ def train_live_model_bundle(
     feature_profile: str = "live",
     selection_metric: str = "pr_auc",
     missingness_threshold: float | None = None,
+    training_mode: str = "search",
 ) -> dict[str, Any]:
     df = pd.read_csv(dataset_path, parse_dates=["game_date"])
+    if training_mode == "fast_refit":
+        existing_metadata = load_model_metadata(metadata_path) if metadata_path.exists() else {}
+        if not existing_metadata:
+            raise RuntimeError("Fast live refit requires an existing model_metadata.json with the approved live configuration.")
+        resolved_model_family = str(existing_metadata.get("model_family") or model_name)
+        resolved_feature_profile = str(existing_metadata.get("feature_profile") or feature_profile)
+        resolved_missingness_threshold = float(existing_metadata.get("missingness_threshold") if existing_metadata.get("missingness_threshold") is not None else (missingness_threshold if missingness_threshold is not None else MAX_MODEL_FEATURE_MISSINGNESS))
+        resolved_selection_metric = str(existing_metadata.get("selection_metric") or selection_metric)
+        calibration_status = existing_metadata.get("calibration_status") if isinstance(existing_metadata.get("calibration_status"), dict) else {}
+        resolved_calibration = str(calibration_status.get("used") or calibration)
+        print("\nFast live refit")
+        print("-" * 60)
+        print(f"Model family               : {resolved_model_family}")
+        print(f"Feature profile            : {resolved_feature_profile}")
+        print(f"Missingness threshold      : {resolved_missingness_threshold:.2f}")
+        print(f"Selection metric snapshot  : {resolved_selection_metric}")
+        print(f"Calibration mode reused    : {resolved_calibration}")
+        bundle, metadata = _fit_live_bundle_fast_refit(
+            df,
+            model_family=resolved_model_family,
+            feature_profile=resolved_feature_profile,
+            missingness_threshold=resolved_missingness_threshold,
+            selection_metric=resolved_selection_metric,
+            calibration=resolved_calibration,
+            best_params=existing_metadata.get("best_params") if isinstance(existing_metadata.get("best_params"), dict) else {},
+            existing_metadata=existing_metadata,
+        )
+        _persist_live_bundle(bundle_path, metadata_path, bundle, metadata)
+        return bundle
+
     backtest = run_backtest(
         str(dataset_path),
         model_name=model_name,
@@ -333,10 +585,6 @@ def train_live_model_bundle(
         "winner_pr_auc": float(winner_holdout_summary["pr_auc"]),
         "baseline_pr_auc": float(baseline_holdout["summary_row"]["pr_auc"]),
     }
-    bundle_path.parent.mkdir(parents=True, exist_ok=True)
-    with bundle_path.open("wb") as handle:
-        pickle.dump(bundle, handle)
-
     metadata = {
         "trained_through": bundle["trained_through"],
         "dataset_max_game_date": bundle["dataset_max_game_date"],
@@ -355,7 +603,7 @@ def train_live_model_bundle(
         "row_count": int(len(df)),
         "hr_rate": serialize_for_json(float(df["hit_hr"].mean())),
     }
-    metadata_path.write_text(json.dumps(metadata, indent=2), encoding="utf-8")
+    _persist_live_bundle(bundle_path, metadata_path, bundle, metadata)
     return bundle
 
 
@@ -573,6 +821,9 @@ def _print_lineup_selection_diagnostics(
     active_roster_count: int | None,
     active_hitter_history_count: int,
     recent_team_games_count: int,
+    eligibility_mode: str,
+    last_completed_team_game: pd.Timestamp | None,
+    days_since_last_team_game: int | None,
     eligible_count: int,
     selected_count: int,
     hitters_per_team: int,
@@ -585,6 +836,15 @@ def _print_lineup_selection_diagnostics(
     else:
         print(f"Active roster count           : {active_roster_count}")
     print(f"Active roster hitters w/history: {active_hitter_history_count}")
+    print(f"Eligibility mode             : {eligibility_mode}")
+    if last_completed_team_game is None or pd.isna(last_completed_team_game):
+        print("Last completed team game     : n/a")
+    else:
+        print(f"Last completed team game     : {pd.Timestamp(last_completed_team_game).date()}")
+    if days_since_last_team_game is None:
+        print("Days since completed game    : n/a")
+    else:
+        print(f"Days since completed game    : {days_since_last_team_game}")
     print(f"Recent team games considered  : {recent_team_games_count}")
     print(f"Eligible after recent gate    : {eligible_count}")
     print(f"Requested hitters / selected  : {hitters_per_team} / {selected_count}")
@@ -614,6 +874,10 @@ def select_probable_lineup_hitters(
     team_history = historical[historical["team"] == team_code].copy()
     if team_history.empty:
         return []
+    last_completed_team_game = pd.Timestamp(team_history["game_date"].max()) if not team_history.empty else None
+    days_since_last_team_game = None
+    if last_completed_team_game is not None and not pd.isna(last_completed_team_game):
+        days_since_last_team_game = int((target_timestamp.normalize() - last_completed_team_game.normalize()).days)
     recent_cutoff = target_timestamp - pd.Timedelta(days=lookback_days)
     recent_team_rows = team_history[team_history["game_date"] >= recent_cutoff].copy()
     recent_team_games = (
@@ -622,6 +886,21 @@ def select_probable_lineup_hitters(
         .sort_values(["game_date", "game_pk"], ascending=[False, False])
         .head(3)
     )
+    eligibility_mode = "recent_team_games"
+    if recent_team_games.empty:
+        if (
+            days_since_last_team_game is not None
+            and days_since_last_team_game <= OFFSEASON_LINEUP_FALLBACK_DAYS
+        ):
+            recent_team_games = (
+                team_history[["game_date", "game_pk"]]
+                .drop_duplicates()
+                .sort_values(["game_date", "game_pk"], ascending=[False, False])
+                .head(3)
+            )
+            eligibility_mode = "season_opening_fallback"
+        else:
+            eligibility_mode = "stale_team_history"
     active_roster_count = None
     if active_roster is not None:
         active_roster = active_roster.copy()
@@ -635,6 +914,9 @@ def select_probable_lineup_hitters(
                 active_roster_count=active_roster_count,
                 active_hitter_history_count=0,
                 recent_team_games_count=int(len(recent_team_games)),
+                eligibility_mode=eligibility_mode,
+                last_completed_team_game=last_completed_team_game,
+                days_since_last_team_game=days_since_last_team_game,
                 eligible_count=0,
                 selected_count=0,
                 hitters_per_team=hitters_per_team,
@@ -664,6 +946,9 @@ def select_probable_lineup_hitters(
         active_roster_count=active_roster_count,
         active_hitter_history_count=int(team_history["batter_id"].dropna().nunique()),
         recent_team_games_count=int(len(recent_team_games)),
+        eligibility_mode=eligibility_mode,
+        last_completed_team_game=last_completed_team_game,
+        days_since_last_team_game=days_since_last_team_game,
         eligible_count=int(len(ranked_recent)),
         selected_count=int(len(selected)),
         hitters_per_team=hitters_per_team,
@@ -1153,8 +1438,9 @@ def settle_pick_records(
 
 
 def write_current_picks(rows: list[dict[str, Any]], path: Path = LIVE_CURRENT_PICKS_PATH) -> None:
+    canonical_rows = canonicalize_current_pick_rows(rows)
     ordered = sorted(
-        rows,
+        canonical_rows,
         key=lambda row: (
             -(float(row.get("predicted_hr_score")) if row.get("predicted_hr_score") is not None else -999.0),
             int(row.get("rank") or 999),
@@ -1169,8 +1455,9 @@ def load_pick_history(path: Path = LIVE_PICK_HISTORY_PATH) -> list[dict[str, Any
 
 
 def write_pick_history(rows: list[dict[str, Any]], path: Path = LIVE_PICK_HISTORY_PATH) -> None:
+    canonical_rows = canonicalize_history_pick_rows(rows)
     ordered = sorted(
-        rows,
+        canonical_rows,
         key=lambda row: (
             str(row.get("game_date") or ""),
             -(float(row.get("predicted_hr_score")) if row.get("predicted_hr_score") is not None else -999.0),

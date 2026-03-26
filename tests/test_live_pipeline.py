@@ -16,8 +16,12 @@ ROOT_DIR = Path(__file__).resolve().parents[1]
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
+import data_sources
+import feature_engineering
 from scripts import build_dashboard_artifacts
+from scripts import live_pipeline
 from scripts import publish_live_picks
+from scripts import run_daily_live_refresh
 from scripts.live_pipeline import (
     assert_live_publish_freshness,
     build_live_feature_frame,
@@ -33,6 +37,44 @@ from train_model import generate_reason_strings
 
 
 class LivePipelineTests(unittest.TestCase):
+    def test_fetch_statcast_range_returns_empty_frame_for_offseason_chunk(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            chunk_path = Path(tmp_dir) / "statcast_empty.csv"
+            with patch("data_sources._raw_chunk_path", return_value=chunk_path):
+                with patch("data_sources.ensure_directories", side_effect=lambda: None):
+                    with patch("data_sources.statcast", return_value=pd.DataFrame()):
+                        frame = data_sources.fetch_statcast_range("2024-10-31", "2024-11-06", force_refresh=True)
+            self.assertEqual(list(frame.columns), data_sources.STATCAST_COLUMNS)
+            self.assertTrue(frame.empty)
+
+    def test_extract_plate_appearances_computes_spray_angle_from_numeric_arrays(self) -> None:
+        statcast_df = pd.DataFrame(
+            [
+                {
+                    "game_date": "2026-03-25",
+                    "game_pk": 1,
+                    "at_bat_number": 1,
+                    "pitch_number": 3,
+                    "events": "field_out",
+                    "inning_topbot": "Top",
+                    "away_team": "NYY",
+                    "home_team": "BOS",
+                    "launch_speed": 101.2,
+                    "launch_angle": 28.0,
+                    "description": "hit_into_play",
+                    "stand": "R",
+                    "p_throws": "L",
+                    "bb_type": "fly_ball",
+                    "pitch_type": "FF",
+                    "hc_x": "140.0",
+                    "hc_y": "120.0",
+                }
+            ]
+        )
+        pa_df = feature_engineering.extract_plate_appearances(statcast_df)
+        self.assertIn("spray_angle", pa_df.columns)
+        self.assertTrue(pd.notna(pa_df.iloc[0]["spray_angle"]))
+
     def test_build_pick_id_uses_game_pk(self) -> None:
         first = build_pick_id("2026-03-25", 1001, 42, "Sample Hitter", 77, "Sample Pitcher")
         second = build_pick_id("2026-03-25", 1002, 42, "Sample Hitter", 77, "Sample Pitcher")
@@ -154,8 +196,43 @@ class LivePipelineTests(unittest.TestCase):
                 active_roster=active_roster,
             )
         self.assertEqual(hitters, [])
+        self.assertIn("Eligibility mode             : stale_team_history", captured.getvalue())
         self.assertIn("Recent team games considered  : 0", captured.getvalue())
         self.assertIn("Eligible after recent gate    : 0", captured.getvalue())
+
+    def test_select_probable_lineup_hitters_uses_offseason_fallback_for_season_opener(self) -> None:
+        dataset = pd.DataFrame(
+            [
+                {"game_pk": 1, "game_date": "2025-09-26", "batter_id": 10, "batter_name": "Starter", "team": "NYY", "pa_count": 5, "bat_side": "R", "hr_per_pa_last_10d": 0.20, "hr_per_pa_last_30d": 0.15},
+                {"game_pk": 1, "game_date": "2025-09-26", "batter_id": 13, "batter_name": "Depth Bat", "team": "NYY", "pa_count": 2, "bat_side": "L", "hr_per_pa_last_10d": 0.04, "hr_per_pa_last_30d": 0.03},
+                {"game_pk": 2, "game_date": "2025-09-27", "batter_id": 10, "batter_name": "Starter", "team": "NYY", "pa_count": 4, "bat_side": "R", "hr_per_pa_last_10d": 0.20, "hr_per_pa_last_30d": 0.15},
+                {"game_pk": 2, "game_date": "2025-09-27", "batter_id": 12, "batter_name": "Second Starter", "team": "NYY", "pa_count": 4, "bat_side": "L", "hr_per_pa_last_10d": 0.09, "hr_per_pa_last_30d": 0.07},
+                {"game_pk": 3, "game_date": "2025-09-28", "batter_id": 10, "batter_name": "Starter", "team": "NYY", "pa_count": 4, "bat_side": "R", "hr_per_pa_last_10d": 0.20, "hr_per_pa_last_30d": 0.15},
+                {"game_pk": 3, "game_date": "2025-09-28", "batter_id": 11, "batter_name": "Leadoff", "team": "NYY", "pa_count": 4, "bat_side": "L", "hr_per_pa_last_10d": 0.10, "hr_per_pa_last_30d": 0.08},
+            ]
+        )
+        dataset["game_date"] = pd.to_datetime(dataset["game_date"])
+        active_roster = pd.DataFrame(
+            [
+                {"batter_id": 10, "batter_name": "Starter"},
+                {"batter_id": 11, "batter_name": "Leadoff"},
+                {"batter_id": 12, "batter_name": "Second Starter"},
+                {"batter_id": 13, "batter_name": "Depth Bat"},
+            ]
+        )
+        captured = io.StringIO()
+        with redirect_stdout(captured):
+            hitters = select_probable_lineup_hitters(
+                dataset,
+                team_code="NYY",
+                target_date="2026-03-26",
+                hitters_per_team=3,
+                lookback_days=21,
+                active_roster=active_roster,
+            )
+        self.assertEqual([row["batter_id"] for row in hitters], [10, 11, 12])
+        self.assertIn("Eligibility mode             : season_opening_fallback", captured.getvalue())
+        self.assertIn("Recent team games considered  : 3", captured.getvalue())
 
     def test_select_probable_lineup_hitters_keeps_bench_bat_if_he_appeared_within_last_three_team_games(self) -> None:
         dataset = pd.DataFrame(
@@ -385,6 +462,81 @@ class LivePipelineTests(unittest.TestCase):
             self.assertEqual(dashboard_payload["latest_available_date"], "2026-03-26")
             self.assertEqual(dashboard_payload["latest_picks"][0]["game_date"], "2026-03-26")
 
+    def test_train_live_model_bundle_fast_refit_reuses_existing_live_config(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            dataset_path = base / "dataset.csv"
+            bundle_path = base / "bundle.pkl"
+            metadata_path = base / "metadata.json"
+            pd.DataFrame(
+                {
+                    "game_date": pd.to_datetime(["2026-03-24", "2026-03-25", "2026-03-25", "2026-03-25"]),
+                    "game_pk": [1, 2, 3, 4],
+                    "player_id": [10, 11, 12, 13],
+                    "hit_hr": [0, 1, 0, 1],
+                    "hr_per_pa_last_30d": [0.01, 0.02, 0.03, 0.04],
+                    "hr_per_pa_last_10d": [0.02, 0.03, 0.04, 0.05],
+                    "barrels_per_pa_last_30d": [0.01, 0.02, 0.03, 0.04],
+                    "barrels_per_pa_last_10d": [0.01, 0.02, 0.03, 0.04],
+                    "hard_hit_rate_last_30d": [0.3, 0.4, 0.5, 0.6],
+                    "hard_hit_rate_last_10d": [0.3, 0.4, 0.5, 0.6],
+                    "bbe_95plus_ev_rate_last_30d": [0.1, 0.2, 0.1, 0.2],
+                    "bbe_95plus_ev_rate_last_10d": [0.1, 0.2, 0.1, 0.2],
+                    "avg_exit_velocity_last_10d": [90.0, 92.0, 94.0, 96.0],
+                    "max_exit_velocity_last_10d": [104.0, 106.0, 108.0, 110.0],
+                    "pitcher_hr_allowed_per_pa_last_30d": [0.02, 0.03, 0.04, 0.05],
+                    "pitcher_barrels_allowed_per_bbe_last_30d": [0.1, 0.2, 0.1, 0.2],
+                    "pitcher_hard_hit_allowed_rate_last_30d": [0.3, 0.4, 0.5, 0.6],
+                    "pitcher_avg_ev_allowed_last_30d": [88.0, 89.0, 90.0, 91.0],
+                    "pitcher_95plus_ev_allowed_rate_last_30d": [0.1, 0.2, 0.1, 0.2],
+                    "temperature_f": [65.0, 66.0, 67.0, 68.0],
+                    "wind_speed_mph": [8.0, 9.0, 10.0, 11.0],
+                    "humidity_pct": [40.0, 45.0, 50.0, 55.0],
+                    "platoon_advantage": [0.0, 1.0, 0.0, 1.0],
+                }
+            ).to_csv(dataset_path, index=False)
+            metadata_path.write_text(
+                json.dumps(
+                    {
+                        "trained_through": "2024-09-30",
+                        "model_family": "logistic",
+                        "feature_profile": "live",
+                        "missingness_threshold": 0.35,
+                        "selection_metric": "pr_auc",
+                        "best_params": {
+                            "clf__C": 0.05,
+                            "clf__class_weight": None,
+                            "clf__l1_ratio": 1.0,
+                            "clf__solver": "saga",
+                        },
+                        "calibration_status": {"used": "disabled"},
+                        "training_cv_summary": {"mean_cv_pr_auc": 0.12},
+                        "final_holdout_summary": {"pr_auc": 0.15},
+                        "promotion_decision": {"used": "selected_candidate"},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            with patch("scripts.live_pipeline.run_backtest", side_effect=AssertionError("fast_refit should not run backtest")):
+                bundle = live_pipeline.train_live_model_bundle(
+                    dataset_path=dataset_path,
+                    bundle_path=bundle_path,
+                    metadata_path=metadata_path,
+                    training_mode="fast_refit",
+                )
+
+            written_metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+            self.assertEqual(bundle["trained_through"], "2026-03-25")
+            self.assertEqual(written_metadata["trained_through"], "2026-03-25")
+            self.assertEqual(written_metadata["refit_strategy"], "fast_refit")
+            self.assertEqual(written_metadata["model_family"], "logistic")
+            self.assertTrue(bundle_path.exists())
+            reloaded_bundle = live_pipeline.load_model_bundle(bundle_path)
+            probabilities = reloaded_bundle["model"].predict_proba(
+                live_pipeline.prepare_feature_matrix(pd.read_csv(dataset_path), reloaded_bundle["feature_columns"])
+            )[:, 1]
+            self.assertEqual(len(probabilities), 4)
+
     def test_failed_publish_does_not_mutate_pick_history(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
@@ -430,6 +582,216 @@ class LivePipelineTests(unittest.TestCase):
                 with self.assertRaises(RuntimeError):
                     publish_live_picks.main()
             self.assertEqual(json.loads(history_path.read_text(encoding="utf-8")), history_payload)
+
+    def test_run_daily_live_refresh_runs_refresh_train_settle_publish_in_order(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            dataset_path = base / "dataset.csv"
+            bundle_path = base / "bundle.pkl"
+            metadata_path = base / "metadata.json"
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+            dashboard_dir = base / "dashboard"
+            call_order: list[str] = []
+            dataset_df = pd.DataFrame({"game_date": pd.to_datetime(["2026-03-25"]), "batter_id": [10], "hit_hr": [1]})
+
+            def fake_load_json_array(_: Path) -> list[dict[str, object]]:
+                call_order.append("load_json")
+                return []
+
+            def fake_settle_pick_records(records: list[dict[str, object]], _: pd.DataFrame, *, resolved_through_date: str) -> list[dict[str, object]]:
+                call_order.append(f"settle:{resolved_through_date}")
+                return records
+
+            with patch("scripts.run_daily_live_refresh.refresh_live_dataset", side_effect=lambda **_: call_order.append("refresh")):
+                with patch("scripts.run_daily_live_refresh.load_live_dataset", side_effect=lambda _: call_order.append("load_dataset") or dataset_df):
+                    with patch(
+                        "scripts.run_daily_live_refresh.train_live_model_bundle",
+                        side_effect=lambda **kwargs: call_order.append(f"train:{kwargs['training_mode']}") or {"trained_through": "2026-03-25"},
+                    ):
+                        with patch("scripts.run_daily_live_refresh.load_json_array", side_effect=fake_load_json_array):
+                            with patch("scripts.run_daily_live_refresh.settle_pick_records", side_effect=fake_settle_pick_records):
+                                with patch("scripts.run_daily_live_refresh.write_current_picks", side_effect=lambda rows, path: call_order.append(f"write_current:{len(rows)}")):
+                                    with patch("scripts.run_daily_live_refresh.write_pick_history", side_effect=lambda rows, path: call_order.append(f"write_history:{len(rows)}")):
+                                        with patch(
+                                            "scripts.run_daily_live_refresh.publish_live_picks",
+                                            side_effect=lambda **_: call_order.append("publish") or [{"game_date": "2026-03-26"}],
+                                        ):
+                                            picks = run_daily_live_refresh.run_daily_live_refresh(
+                                                dataset_path=dataset_path,
+                                                bundle_path=bundle_path,
+                                                metadata_path=metadata_path,
+                                                current_picks_path=current_path,
+                                                history_path=history_path,
+                                                dashboard_output_dir=dashboard_dir,
+                                                train_end_date="2026-03-25",
+                                                publish_date="2026-03-26",
+                                            )
+
+            self.assertEqual(picks, [{"game_date": "2026-03-26"}])
+            self.assertEqual(
+                call_order,
+                [
+                    "refresh",
+                    "load_dataset",
+                    "train:fast_refit",
+                    "load_json",
+                    "load_json",
+                    "settle:2026-03-25",
+                    "settle:2026-03-25",
+                    "write_current:0",
+                    "write_history:0",
+                    "publish",
+                ],
+            )
+
+    def test_run_daily_live_refresh_refreshes_stale_inputs_before_publish(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            dataset_path = base / "dataset.csv"
+            bundle_path = base / "bundle.pkl"
+            metadata_path = base / "metadata.json"
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+            dashboard_dir = base / "dashboard"
+            pd.DataFrame({"game_date": pd.to_datetime(["2024-09-30"]), "batter_id": [10], "hit_hr": [0]}).to_csv(dataset_path, index=False)
+            current_path.write_text("[]", encoding="utf-8")
+            history_path.write_text("[]", encoding="utf-8")
+            metadata_path.write_text(json.dumps({"trained_through": "2024-09-30"}), encoding="utf-8")
+
+            def fake_refresh_live_dataset(**_: object) -> None:
+                pd.DataFrame({"game_date": pd.to_datetime(["2026-03-25"]), "batter_id": [10], "hit_hr": [1]}).to_csv(dataset_path, index=False)
+
+            def fake_train_live_model_bundle(**_: object) -> dict[str, object]:
+                metadata_path.write_text(json.dumps({"trained_through": "2026-03-25", "dataset_max_game_date": "2026-03-25"}), encoding="utf-8")
+                return {"trained_through": "2026-03-25"}
+
+            def fake_publish_live_picks(**kwargs: object) -> list[dict[str, object]]:
+                refreshed = pd.read_csv(dataset_path)
+                self.assertEqual(str(pd.to_datetime(refreshed["game_date"]).max().date()), "2026-03-25")
+                self.assertEqual(kwargs["schedule_date"], "2026-03-26")
+                picks = [{"game_date": "2026-03-26", "batter_id": 22, "batter_name": "Beta", "rank": 1}]
+                Path(kwargs["output_path"]).write_text(json.dumps(picks), encoding="utf-8")
+                return picks
+
+            with patch("scripts.run_daily_live_refresh.refresh_live_dataset", side_effect=fake_refresh_live_dataset):
+                with patch("scripts.run_daily_live_refresh.train_live_model_bundle", side_effect=fake_train_live_model_bundle):
+                    with patch("scripts.run_daily_live_refresh.publish_live_picks", side_effect=fake_publish_live_picks):
+                        run_daily_live_refresh.run_daily_live_refresh(
+                            dataset_path=dataset_path,
+                            bundle_path=bundle_path,
+                            metadata_path=metadata_path,
+                            current_picks_path=current_path,
+                            history_path=history_path,
+                            dashboard_output_dir=dashboard_dir,
+                            train_end_date="2026-03-25",
+                            publish_date="2026-03-26",
+                        )
+
+            written = json.loads(current_path.read_text(encoding="utf-8"))
+            self.assertEqual(written[0]["game_date"], "2026-03-26")
+
+    def test_run_daily_live_refresh_settles_prior_rows_then_replaces_current_with_today(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            dataset_path = base / "dataset.csv"
+            bundle_path = base / "bundle.pkl"
+            metadata_path = base / "metadata.json"
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+            dashboard_dir = base / "dashboard"
+            pd.DataFrame({"game_date": pd.to_datetime(["2026-03-25"]), "batter_id": [10], "hit_hr": [1]}).to_csv(dataset_path, index=False)
+            pending_row = {
+                "game_date": "2026-03-25",
+                "batter_id": 10,
+                "batter_name": "Alpha",
+                "rank": 1,
+                "predicted_hr_score": 95.0,
+                "result": "Pending",
+            }
+            current_path.write_text(json.dumps([pending_row]), encoding="utf-8")
+            history_path.write_text(json.dumps([dict(pending_row)]), encoding="utf-8")
+
+            def fake_publish_live_picks(**kwargs: object) -> list[dict[str, object]]:
+                picks = [{"game_date": "2026-03-26", "batter_id": 22, "batter_name": "Beta", "rank": 1, "predicted_hr_score": 88.0, "result": "Pending"}]
+                Path(kwargs["output_path"]).write_text(json.dumps(picks), encoding="utf-8")
+                return picks
+
+            with patch("scripts.run_daily_live_refresh.refresh_live_dataset", side_effect=lambda **_: None):
+                with patch("scripts.run_daily_live_refresh.train_live_model_bundle", side_effect=lambda **_: {"trained_through": "2026-03-25"}):
+                    with patch("scripts.run_daily_live_refresh.publish_live_picks", side_effect=fake_publish_live_picks):
+                        run_daily_live_refresh.run_daily_live_refresh(
+                            dataset_path=dataset_path,
+                            bundle_path=bundle_path,
+                            metadata_path=metadata_path,
+                            current_picks_path=current_path,
+                            history_path=history_path,
+                            dashboard_output_dir=dashboard_dir,
+                            train_end_date="2026-03-25",
+                            publish_date="2026-03-26",
+                        )
+
+            history_rows = json.loads(history_path.read_text(encoding="utf-8"))
+            current_rows = json.loads(current_path.read_text(encoding="utf-8"))
+            self.assertEqual(history_rows[0]["result_label"], "HR")
+            self.assertEqual(history_rows[0]["actual_hit_hr"], 1)
+            self.assertEqual(current_rows[0]["game_date"], "2026-03-26")
+
+    def test_run_daily_live_refresh_preserves_settled_history_when_publish_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            dataset_path = base / "dataset.csv"
+            bundle_path = base / "bundle.pkl"
+            metadata_path = base / "metadata.json"
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+            dashboard_dir = base / "dashboard"
+            pd.DataFrame({"game_date": pd.to_datetime(["2026-03-25"]), "batter_id": [10], "hit_hr": [0]}).to_csv(dataset_path, index=False)
+            pending_row = {
+                "game_date": "2026-03-25",
+                "batter_id": 10,
+                "batter_name": "Alpha",
+                "rank": 1,
+                "predicted_hr_score": 95.0,
+                "result": "Pending",
+            }
+            current_path.write_text(json.dumps([pending_row]), encoding="utf-8")
+            history_path.write_text(json.dumps([dict(pending_row)]), encoding="utf-8")
+
+            def fake_publish_live_picks(**kwargs: object) -> list[dict[str, object]]:
+                Path(kwargs["output_path"]).write_text("[]", encoding="utf-8")
+                build_dashboard_artifacts.build_dashboard_artifacts(
+                    current_picks_path=Path(kwargs["output_path"]),
+                    history_path=Path(kwargs["history_path"]),
+                    output_dir=Path(kwargs["dashboard_output_dir"]),
+                    latest_available_date_override=str(kwargs["schedule_date"]),
+                    persist_history=False,
+                )
+                raise RuntimeError("stale publish")
+
+            with patch("scripts.run_daily_live_refresh.refresh_live_dataset", side_effect=lambda **_: None):
+                with patch("scripts.run_daily_live_refresh.train_live_model_bundle", side_effect=lambda **_: {"trained_through": "2026-03-25"}):
+                    with patch("scripts.run_daily_live_refresh.publish_live_picks", side_effect=fake_publish_live_picks):
+                        with self.assertRaisesRegex(RuntimeError, "publish_date=2026-03-26"):
+                            run_daily_live_refresh.run_daily_live_refresh(
+                                dataset_path=dataset_path,
+                                bundle_path=bundle_path,
+                                metadata_path=metadata_path,
+                                current_picks_path=current_path,
+                                history_path=history_path,
+                                dashboard_output_dir=dashboard_dir,
+                                train_end_date="2026-03-25",
+                                publish_date="2026-03-26",
+                            )
+
+            history_rows = json.loads(history_path.read_text(encoding="utf-8"))
+            current_rows = json.loads(current_path.read_text(encoding="utf-8"))
+            dashboard_payload = json.loads((dashboard_dir / "dashboard.json").read_text(encoding="utf-8"))
+            self.assertEqual(history_rows[0]["result_label"], "No HR")
+            self.assertEqual(history_rows[0]["actual_hit_hr"], 0)
+            self.assertEqual(current_rows, [])
+            self.assertEqual(dashboard_payload["latest_available_date"], "2026-03-26")
+            self.assertEqual(dashboard_payload["latest_picks"], [])
 
     def test_build_live_feature_frame_backfills_latest_batter_and_pitcher_features(self) -> None:
         dataset_df = pd.DataFrame(

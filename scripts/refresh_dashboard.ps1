@@ -1,7 +1,7 @@
 param(
     [string]$PythonPath = ".\.venv1\Scripts\python.exe",
-    [ValidateSet("settle", "publish")]
-    [string]$Mode = "publish",
+    [ValidateSet("settle", "publish", "daily")]
+    [string]$Mode = "daily",
     [switch]$SkipPush,
     [string]$CommitMessage = "chore: refresh dashboard data"
 )
@@ -23,16 +23,23 @@ $trackedFiles = @(
     "data/live/pick_history.json",
     "cloudflare-app/data/dashboard.json"
 )
-$publishFailed = $false
+$workflowFailed = $false
 
 if ($Mode -eq "settle") {
     & $resolvedPython scripts\train_live_model.py --dataset-path data\live\model_training_dataset.csv
     & $resolvedPython scripts\settle_live_results.py
 }
+elseif ($Mode -eq "daily") {
+    & $resolvedPython scripts\run_daily_live_refresh.py
+    if ($LASTEXITCODE -ne 0) {
+        $workflowFailed = $true
+        Write-Warning "run_daily_live_refresh.py failed, but tracked public artifacts may have been refreshed. Continuing to rebuild, verify, and push them."
+    }
+}
 else {
     & $resolvedPython scripts\publish_live_picks.py
     if ($LASTEXITCODE -ne 0) {
-        $publishFailed = $true
+        $workflowFailed = $true
         Write-Warning "publish_live_picks.py failed, but tracked public artifacts may have been refreshed. Continuing to rebuild, verify, and push them."
     }
 }
@@ -58,6 +65,6 @@ if (-not $SkipPush) {
     git push
 }
 
-if ($publishFailed) {
+if ($workflowFailed) {
     exit 1
 }

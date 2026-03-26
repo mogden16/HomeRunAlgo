@@ -155,6 +155,8 @@ def verify_refresh_script(path: Path) -> None:
         '"data/live/current_picks.json"',
         '"data/live/pick_history.json"',
         '"cloudflare-app/data/dashboard.json"',
+        '"daily"',
+        "scripts\\run_daily_live_refresh.py",
         "git add -- $trackedFiles",
         "scripts\\verify_public_live_artifacts.py",
         "git push",
@@ -176,7 +178,7 @@ def print_operator_checklist() -> None:
     print("- Cloudflare Pages build command is blank.")
     print("- Cloudflare Pages output directory is cloudflare-app.")
     print("- Cloudflare Pages production branch is master.")
-    print("- Windows Task Scheduler has HomeRunAlgoDashboardRefresh-Settle and HomeRunAlgoDashboardRefresh-Publish.")
+    print("- Windows Task Scheduler should call scripts\\refresh_dashboard.ps1 -Mode daily.")
     print("- This machine can git push to origin/master non-interactively.")
 
 

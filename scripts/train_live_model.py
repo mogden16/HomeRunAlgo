@@ -27,6 +27,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--calibration", default="sigmoid", choices=["disabled", "sigmoid", "isotonic"], help="Calibration mode.")
     parser.add_argument("--selection-metric", default="pr_auc", choices=["pr_auc", "roc_auc", "neg_log_loss", "neg_brier"], help="Primary CV metric for candidate selection.")
     parser.add_argument("--missingness-threshold", type=float, default=None, help="Optional fixed feature-missingness threshold. Defaults to the search set used by train_model.py.")
+    parser.add_argument("--training-mode", default="search", choices=["search", "fast_refit"], help="Use the full search flow or reuse the approved live configuration for a fast refit.")
     return parser.parse_args()
 
 
@@ -52,6 +53,7 @@ def main() -> None:
         feature_profile=args.feature_profile,
         selection_metric=args.selection_metric,
         missingness_threshold=args.missingness_threshold,
+        training_mode=args.training_mode,
     )
     print(f"Live model trained through {bundle['trained_through']} and written to {bundle_path}")
 

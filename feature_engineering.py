@@ -459,6 +459,8 @@ def build_player_game_dataset(statcast_df: pd.DataFrame, debug_feature_audit: bo
 
 
 def extract_plate_appearances(statcast_df: pd.DataFrame) -> pd.DataFrame:
+    import numpy as numpy_module
+
     df = statcast_df.copy()
     df = df.sort_values(["game_date", "game_pk", "at_bat_number", "pitch_number"]).reset_index(drop=True)
     pa_end_mask = df["events"].notna() & df["events"].isin(PA_ENDING_EVENTS)
@@ -480,7 +482,9 @@ def extract_plate_appearances(statcast_df: pd.DataFrame) -> pd.DataFrame:
     pa_df["hard_hit_bbe_count"] = ((pd.to_numeric(pa_df["launch_speed"], errors="coerce") >= 95) & pa_df["launch_speed"].notna()).astype(int)
     pa_df["ev_95plus_bbe_count"] = pa_df["hard_hit_bbe_count"]
     pa_df["fly_ball_bbe_count"] = pa_df["bb_type"].isin(["fly_ball", "popup"]).astype(int)
-    pa_df["spray_angle"] = np.degrees(np.arctan2(pa_df["hc_x"] - SPRAY_CENTER_X, SPRAY_HOME_Y - pa_df["hc_y"]))
+    hc_x = pd.to_numeric(pa_df["hc_x"], errors="coerce").to_numpy(dtype=float)
+    hc_y = pd.to_numeric(pa_df["hc_y"], errors="coerce").to_numpy(dtype=float)
+    pa_df["spray_angle"] = numpy_module.degrees(numpy_module.arctan2(hc_x - SPRAY_CENTER_X, SPRAY_HOME_Y - hc_y))
     pa_df["pull_air_bbe_count"] = is_pull_air(pa_df).astype(int)
     pa_df["contact_event_count"] = pa_df["description"].isin(CONTACT_DESCRIPTIONS).astype(int)
     pa_df["swing_event_count"] = pa_df["description"].isin(SWING_DESCRIPTIONS).astype(int)

@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import sys
 from pathlib import Path
+from typing import Any
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 if str(ROOT_DIR) not in sys.path:
@@ -68,47 +69,70 @@ def refresh_cloudflare_dashboard(
     return dashboard_path
 
 
-def main() -> None:
-    args = parse_args()
-    schedule_date = args.schedule_date or default_publish_date()
-    output_path = Path(args.output_path)
-    history_path = Path(args.history_path)
-    dashboard_output_dir = Path(args.dashboard_output_dir)
-    dataset_df = load_live_dataset(Path(args.dataset_path))
-    bundle = load_model_bundle(Path(args.bundle_path))
-    model_metadata = load_model_metadata(Path(args.metadata_path))
+def publish_live_picks(
+    *,
+    dataset_path: Path = LIVE_MODEL_DATA_PATH,
+    bundle_path: Path = LIVE_MODEL_BUNDLE_PATH,
+    metadata_path: Path = LIVE_MODEL_METADATA_PATH,
+    output_path: Path = LIVE_CURRENT_PICKS_PATH,
+    history_path: Path = LIVE_PICK_HISTORY_PATH,
+    dashboard_output_dir: Path = DEFAULT_OUTPUT_DIR,
+    schedule_date: str | None = None,
+    hitters_per_team: int = 9,
+    max_picks: int = 20,
+) -> list[dict[str, Any]]:
+    resolved_schedule_date = schedule_date or default_publish_date()
+    dataset_df = load_live_dataset(Path(dataset_path))
+    bundle = load_model_bundle(Path(bundle_path))
+    model_metadata = load_model_metadata(Path(metadata_path))
     try:
         assert_live_publish_freshness(
-            schedule_date=schedule_date,
+            schedule_date=resolved_schedule_date,
             dataset_df=dataset_df,
             model_metadata=model_metadata,
         )
     except RuntimeError:
         write_current_picks([], output_path)
-        print(f"Cleared stale picks at {output_path} because publish failed for {schedule_date}")
+        print(f"Cleared stale picks at {output_path} because publish failed for {resolved_schedule_date}")
         refresh_cloudflare_dashboard(
             output_path,
             history_path,
             dashboard_output_dir,
-            schedule_date,
+            resolved_schedule_date,
             persist_history=False,
         )
         raise
-    schedule_games = fetch_schedule_games(schedule_date)
+    schedule_games = fetch_schedule_games(resolved_schedule_date)
     active_roster_map = build_active_roster_map(schedule_games)
 
     candidates = build_live_candidate_frame(
         dataset_df,
         schedule_games,
-        target_date=schedule_date,
-        hitters_per_team=args.hitters_per_team,
+        target_date=resolved_schedule_date,
+        hitters_per_team=hitters_per_team,
         active_roster_map=active_roster_map,
     )
     featured = build_live_feature_frame(dataset_df, candidates)
-    picks = score_live_candidates(featured, bundle, max_picks=args.max_picks)
+    picks = score_live_candidates(featured, bundle, max_picks=max_picks)
     write_current_picks(picks, output_path)
-    refresh_cloudflare_dashboard(output_path, history_path, dashboard_output_dir, schedule_date)
-    print(f"Published {len(picks)} picks to {args.output_path} for {schedule_date}")
+    refresh_cloudflare_dashboard(output_path, history_path, dashboard_output_dir, resolved_schedule_date)
+    print(f"Published {len(picks)} picks to {output_path} for {resolved_schedule_date}")
+    return picks
+
+
+def main() -> None:
+    args = parse_args()
+    publish_live_picks(
+        dataset_path=Path(args.dataset_path),
+        bundle_path=Path(args.bundle_path),
+        metadata_path=Path(args.metadata_path),
+        output_path=Path(args.output_path),
+        history_path=Path(args.history_path),
+        dashboard_output_dir=Path(args.dashboard_output_dir),
+        schedule_date=args.schedule_date,
+        hitters_per_team=args.hitters_per_team,
+        max_picks=args.max_picks,
+    )
 
 
 if __name__ == "__main__":

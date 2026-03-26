@@ -78,7 +78,7 @@ def fetch_statcast_range(start_date: str, end_date: str, force_refresh: bool = F
     else:
         df = statcast(start_dt=start_date, end_dt=end_date)
         if df is None or df.empty:
-            raise RuntimeError(f"Statcast returned no data for {start_date} to {end_date}.")
+            df = pd.DataFrame(columns=STATCAST_COLUMNS)
         df.to_csv(chunk_path, index=False)
 
     missing = [column for column in STATCAST_COLUMNS if column not in df.columns]
