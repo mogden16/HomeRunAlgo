@@ -3,13 +3,16 @@
 from __future__ import annotations
 
 import argparse
+import json
 import warnings
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import pandas as pd
 from sklearn.base import clone
 from sklearn.calibration import CalibratedClassifierCV, calibration_curve
+from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (
@@ -26,7 +29,7 @@ from sklearn.metrics import (
     recall_score,
     roc_auc_score,
 )
-from sklearn.model_selection import GridSearchCV, TimeSeriesSplit
+from sklearn.model_selection import GridSearchCV, RandomizedSearchCV, TimeSeriesSplit
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
@@ -196,7 +199,7 @@ EXPERIMENTAL_FEATURE_COLUMNS = [
 ]
 FEATURE_COLUMNS = list(STABLE_FEATURE_COLUMNS)
 OPTIONAL_SECONDARY_FEATURES: list[str] = []
-FEATURE_PROFILE_CHOICES = ["stable", "expanded"]
+FEATURE_PROFILE_CHOICES = ["stable", "live", "expanded", "all"]
 BASELINE_FEATURES = [
     "hr_per_pa_last_30d",
     "hr_per_pa_last_10d",
@@ -206,7 +209,8 @@ THRESHOLD_GRID = np.arange(0.05, 0.51, 0.01)
 HOLDOUT_SUMMARY_THRESHOLDS = [0.10, 0.12, 0.15, 0.18, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45]
 THRESHOLD_OBJECTIVES = ["f1", "f0.5", "precision_at_min_recall", "balanced_accuracy"]
 CALIBRATION_CHOICES = ["disabled", "sigmoid", "isotonic"]
-MODEL_CHOICES = ["logistic", "xgboost", "both"]
+MODEL_CHOICES = ["logistic", "histgb", "xgboost", "all", "both"]
+SELECTION_METRIC_CHOICES = ["pr_auc", "roc_auc", "neg_log_loss", "neg_brier"]
 METRIC_COLUMNS = [
     "precision",
     "recall",
@@ -219,6 +223,10 @@ TOP_MISSING_FEATURES_TO_PRINT = 8
 TOP_BUCKET_PERCENTS = [0.01, 0.02, 0.05, 0.10, 0.20]
 DEFAULT_TOP_CANDIDATES_TO_PRINT = 20
 MAX_MODEL_FEATURE_MISSINGNESS = 0.50
+DEFAULT_MISSINGNESS_THRESHOLDS = [0.35, 0.50, 0.65]
+MODEL_FAMILY_PRIORITY = {"logistic": 0, "histgb": 1, "xgboost": 2}
+HISTGB_RANDOM_SEARCH_ITERATIONS = 18
+XGBOOST_RANDOM_SEARCH_ITERATIONS = 18
 RANKING_EXPORT_CORE_COLUMNS = [
     "game_date",
     "game_pk",
@@ -311,6 +319,8 @@ def run_dataset_sanity_checks(df: pd.DataFrame, train_df: pd.DataFrame, test_df:
 def feature_columns_for_profile(profile: str) -> list[str]:
     if profile == "stable":
         return list(STABLE_FEATURE_COLUMNS)
+    if profile == "live":
+        return list(LIVE_PRODUCTION_FEATURE_COLUMNS)
     if profile == "expanded":
         return list(EXPERIMENTAL_FEATURE_COLUMNS)
     raise ValueError(f"Unknown feature profile: {profile}")
@@ -409,7 +419,16 @@ def build_logistic_pipeline() -> Pipeline:
         steps=[
             ("imputer", SimpleImputer(strategy="median")),
             ("scaler", StandardScaler()),
-            ("clf", LogisticRegression(max_iter=1000, random_state=RANDOM_STATE)),
+            ("clf", LogisticRegression(max_iter=3000, random_state=RANDOM_STATE)),
+        ]
+    )
+
+
+def build_histgb_pipeline() -> Pipeline:
+    return Pipeline(
+        steps=[
+            ("imputer", SimpleImputer(strategy="median")),
+            ("clf", HistGradientBoostingClassifier(random_state=RANDOM_STATE)),
         ]
     )
 
@@ -429,23 +448,93 @@ def build_xgboost_pipeline() -> Pipeline | None:
                     eval_metric="logloss",
                     random_state=RANDOM_STATE,
                     n_jobs=1,
+                    verbosity=0,
                 ),
             ),
         ]
     )
 
 
-def get_classification_scorer():
+def get_threshold_classification_scorer():
     return make_scorer(fbeta_score, beta=0.5, zero_division=0)
 
 
-def tune_logistic_pipeline(X_train: pd.DataFrame, y_train: np.ndarray) -> GridSearchCV:
+def get_selection_scorer(selection_metric: str):
+    if selection_metric == "pr_auc":
+        return make_scorer(average_precision_score, response_method="predict_proba")
+    if selection_metric == "roc_auc":
+        return make_scorer(roc_auc_score, response_method="predict_proba")
+    if selection_metric == "neg_log_loss":
+        return make_scorer(log_loss, response_method="predict_proba", greater_is_better=False, labels=[0, 1])
+    if selection_metric == "neg_brier":
+        return make_scorer(brier_score_loss, response_method="predict_proba", greater_is_better=False)
+    raise ValueError(f"Unsupported selection metric: {selection_metric}")
+
+
+def selection_score_from_cv_summary(summary: dict[str, Any], selection_metric: str) -> float:
+    if selection_metric == "pr_auc":
+        return float(summary["mean_cv_pr_auc"])
+    if selection_metric == "roc_auc":
+        return float(summary["mean_cv_roc_auc"])
+    if selection_metric == "neg_log_loss":
+        return -float(summary["mean_cv_log_loss"])
+    if selection_metric == "neg_brier":
+        return -float(summary["mean_cv_brier_score"])
+    raise ValueError(f"Unsupported selection metric: {selection_metric}")
+
+
+def resolve_model_families(model_name: str) -> list[str]:
+    if model_name == "all":
+        return ["logistic", "histgb", "xgboost"]
+    if model_name == "both":
+        return ["logistic", "xgboost"]
+    return [model_name]
+
+
+def resolve_feature_profiles(feature_profile: str, compare_against: str | None = None) -> list[str]:
+    if feature_profile == "all":
+        return ["stable", "live", "expanded"]
+    profiles = [feature_profile]
+    if compare_against and compare_against not in {"none", feature_profile, "all"}:
+        profiles.append(compare_against)
+    return profiles
+
+
+def resolve_missingness_thresholds(missingness_threshold: float | None) -> list[float]:
+    if missingness_threshold is None:
+        return list(DEFAULT_MISSINGNESS_THRESHOLDS)
+    return [float(missingness_threshold)]
+
+
+def tune_logistic_pipeline(
+    X_train: pd.DataFrame,
+    y_train: np.ndarray,
+    selection_metric: str = "pr_auc",
+) -> GridSearchCV:
     splitter = TimeSeriesSplit(n_splits=TSCV_N_SPLITS)
     grid = GridSearchCV(
         estimator=build_logistic_pipeline(),
-        param_grid={"clf__C": [0.01, 0.05, 0.1, 0.5, 1.0, 2.0, 5.0]},
+        param_grid=[
+            {
+                "clf__C": [0.001, 0.01, 0.05, 0.1, 0.5, 1.0, 2.0, 5.0, 10.0],
+                "clf__solver": ["lbfgs"],
+                "clf__class_weight": [None, "balanced"],
+            },
+            {
+                "clf__C": [0.001, 0.01, 0.05, 0.1, 0.5, 1.0, 2.0, 5.0],
+                "clf__solver": ["saga"],
+                "clf__l1_ratio": [1.0],
+                "clf__class_weight": [None, "balanced"],
+            },
+            {
+                "clf__C": [0.01, 0.05, 0.1, 0.5, 1.0, 2.0],
+                "clf__solver": ["saga"],
+                "clf__l1_ratio": [0.1, 0.5, 0.9],
+                "clf__class_weight": [None, "balanced"],
+            },
+        ],
         cv=splitter,
-        scoring=get_classification_scorer(),
+        scoring=get_selection_scorer(selection_metric),
         n_jobs=-1,
         refit=True,
         error_score=0.0,
@@ -454,31 +543,65 @@ def tune_logistic_pipeline(X_train: pd.DataFrame, y_train: np.ndarray) -> GridSe
     return grid
 
 
-def tune_xgboost_pipeline(X_train: pd.DataFrame, y_train: np.ndarray) -> GridSearchCV | None:
+def tune_histgb_pipeline(
+    X_train: pd.DataFrame,
+    y_train: np.ndarray,
+    selection_metric: str = "pr_auc",
+) -> RandomizedSearchCV:
+    splitter = TimeSeriesSplit(n_splits=TSCV_N_SPLITS)
+    search = RandomizedSearchCV(
+        estimator=build_histgb_pipeline(),
+        param_distributions={
+            "clf__learning_rate": [0.02, 0.03, 0.05, 0.08, 0.1],
+            "clf__max_iter": [100, 150, 200, 300, 400],
+            "clf__max_depth": [None, 3, 5, 7],
+            "clf__max_leaf_nodes": [15, 31, 63, 127],
+            "clf__min_samples_leaf": [10, 20, 50, 100],
+            "clf__l2_regularization": [0.0, 0.01, 0.1, 1.0],
+        },
+        n_iter=HISTGB_RANDOM_SEARCH_ITERATIONS,
+        cv=splitter,
+        scoring=get_selection_scorer(selection_metric),
+        n_jobs=-1,
+        refit=True,
+        random_state=RANDOM_STATE,
+        error_score=0.0,
+    )
+    fit_safely_with_imputer_warning_suppressed(search, X_train, y_train)
+    return search
+
+
+def tune_xgboost_pipeline(
+    X_train: pd.DataFrame,
+    y_train: np.ndarray,
+    selection_metric: str = "pr_auc",
+) -> RandomizedSearchCV | None:
     pipeline = build_xgboost_pipeline()
     if pipeline is None:
         return None
     splitter = TimeSeriesSplit(n_splits=TSCV_N_SPLITS)
-    grid = GridSearchCV(
+    search = RandomizedSearchCV(
         estimator=pipeline,
-        param_grid=[
-            {
-                "clf__n_estimators": [150, 300],
-                "clf__max_depth": [3, 5],
-                "clf__learning_rate": [0.03, 0.08],
-                "clf__min_child_weight": [1, 3],
-                "clf__subsample": [0.8],
-                "clf__colsample_bytree": [0.8],
-            }
-        ],
+        param_distributions={
+            "clf__n_estimators": [100, 150, 200, 300, 400, 500],
+            "clf__max_depth": [2, 3, 4, 5, 6],
+            "clf__learning_rate": [0.02, 0.03, 0.05, 0.08, 0.1],
+            "clf__min_child_weight": [1, 2, 3, 5, 8],
+            "clf__subsample": [0.65, 0.8, 1.0],
+            "clf__colsample_bytree": [0.65, 0.8, 1.0],
+            "clf__reg_lambda": [0.5, 1.0, 2.0, 5.0],
+            "clf__gamma": [0.0, 0.1, 0.3, 0.5],
+        },
+        n_iter=XGBOOST_RANDOM_SEARCH_ITERATIONS,
         cv=splitter,
-        scoring=get_classification_scorer(),
+        scoring=get_selection_scorer(selection_metric),
         n_jobs=-1,
         refit=True,
+        random_state=RANDOM_STATE,
         error_score=0.0,
     )
-    fit_safely_with_imputer_warning_suppressed(grid, X_train, y_train)
-    return grid
+    fit_safely_with_imputer_warning_suppressed(search, X_train, y_train)
+    return search
 
 
 def calibration_cv_supported(y_train: np.ndarray, n_splits: int) -> tuple[bool, str]:
@@ -710,6 +833,68 @@ def get_oof_probabilities_time_series(
     if not valid_mask.any():
         raise ValueError("No OOF probabilities were generated from TimeSeriesSplit.")
     return y_train[valid_mask], oof_prob[valid_mask]
+
+
+def cross_validate_probability_metrics_time_series(
+    estimator: Pipeline | CalibratedClassifierCV,
+    X_train: pd.DataFrame,
+    y_train: np.ndarray,
+    feature_columns: list[str],
+    n_splits: int = TSCV_N_SPLITS,
+) -> dict[str, Any]:
+    splitter = TimeSeriesSplit(n_splits=n_splits)
+    oof_prob = np.full(shape=len(y_train), fill_value=np.nan, dtype=float)
+    fold_metrics: list[dict[str, float | int]] = []
+
+    for fold_number, (fit_idx, valid_idx) in enumerate(splitter.split(X_train), start=1):
+        fit_df = X_train.iloc[fit_idx]
+        valid_df = X_train.iloc[valid_idx]
+        y_fit = y_train[fit_idx]
+        y_valid = y_train[valid_idx]
+        if np.unique(y_fit).size < 2:
+            continue
+
+        all_missing = fully_missing_feature_names(fit_df)
+        if all_missing:
+            feature_index_map = ", ".join(
+                f"{feature_columns.index(feature)}={feature}" for feature in all_missing
+            )
+            print(
+                f"  CV fold {fold_number}/{n_splits}: fully-missing training features -> {feature_index_map}. "
+                "Median imputation will drop these columns for this fold."
+            )
+
+        fold_model = clone(estimator)
+        fit_safely_with_imputer_warning_suppressed(fold_model, fit_df, y_fit)
+        fold_prob = fold_model.predict_proba(valid_df)[:, 1]
+        oof_prob[valid_idx] = fold_prob
+        fold_metrics.append(
+            {
+                "fold": int(fold_number),
+                "train_rows": int(len(fit_idx)),
+                "valid_rows": int(len(valid_idx)),
+                "valid_hr_rate": float(y_valid.mean()),
+                "pr_auc": safe_probability_metric(average_precision_score, y_valid, fold_prob),
+                "roc_auc": safe_probability_metric(roc_auc_score, y_valid, fold_prob),
+                "log_loss": float(log_loss(y_valid, fold_prob, labels=[0, 1])),
+                "brier_score": float(brier_score_loss(y_valid, fold_prob)),
+            }
+        )
+
+    valid_mask = ~np.isnan(oof_prob)
+    if not valid_mask.any():
+        raise ValueError("No OOF probabilities were generated from TimeSeriesSplit.")
+
+    fold_df = pd.DataFrame(fold_metrics)
+    return {
+        "fold_metrics": fold_metrics,
+        "oof_y_true": y_train[valid_mask],
+        "oof_y_prob": oof_prob[valid_mask],
+        "mean_cv_pr_auc": float(fold_df["pr_auc"].mean()) if not fold_df.empty else float("nan"),
+        "mean_cv_roc_auc": float(fold_df["roc_auc"].mean()) if not fold_df.empty else float("nan"),
+        "mean_cv_log_loss": float(fold_df["log_loss"].mean()) if not fold_df.empty else float("nan"),
+        "mean_cv_brier_score": float(fold_df["brier_score"].mean()) if not fold_df.empty else float("nan"),
+    }
 
 
 def safe_probability_metric(metric_fn, y_true: np.ndarray, y_prob: np.ndarray) -> float:
@@ -1478,6 +1663,198 @@ def print_calibration_summary(y_true: np.ndarray, y_prob: np.ndarray, n_bins: in
         print(f"  {predicted:0.3f} -> {observed:0.3f}")
 
 
+def tune_model_family(
+    X_train: pd.DataFrame,
+    y_train: np.ndarray,
+    model_name: str,
+    selection_metric: str = "pr_auc",
+) -> GridSearchCV | RandomizedSearchCV | None:
+    if model_name == "logistic":
+        return tune_logistic_pipeline(X_train, y_train, selection_metric=selection_metric)
+    if model_name == "histgb":
+        return tune_histgb_pipeline(X_train, y_train, selection_metric=selection_metric)
+    if model_name == "xgboost":
+        return tune_xgboost_pipeline(X_train, y_train, selection_metric=selection_metric)
+    raise ValueError(f"Unsupported model family: {model_name}")
+
+
+def evaluate_training_candidate(
+    train_df: pd.DataFrame,
+    *,
+    feature_profile: str,
+    model_name: str,
+    missingness_threshold: float,
+    selection_metric: str = "pr_auc",
+) -> dict[str, Any] | None:
+    initial_feature_columns = available_feature_columns(train_df, feature_profile=feature_profile)
+    feature_columns, pruning_audit_df, excluded_for_missingness = prune_model_features_by_training_missingness(
+        train_df,
+        initial_feature_columns,
+        threshold=missingness_threshold,
+    )
+    if not feature_columns:
+        return None
+
+    X_train = prepare_feature_matrix(train_df, feature_columns)
+    y_train = train_df[TARGET_COL].to_numpy()
+    search = tune_model_family(X_train, y_train, model_name, selection_metric=selection_metric)
+    if search is None:
+        return None
+
+    cv_summary = cross_validate_probability_metrics_time_series(
+        search.best_estimator_,
+        X_train,
+        y_train,
+        feature_columns=feature_columns,
+    )
+    summary_row = {
+        "model_family": model_name,
+        "feature_profile": feature_profile,
+        "missingness_threshold": float(missingness_threshold),
+        "feature_count": int(len(feature_columns)),
+        "excluded_feature_count": int(len(excluded_for_missingness)),
+        "selection_metric": selection_metric,
+        "selection_score": float(selection_score_from_cv_summary(cv_summary, selection_metric)),
+        "mean_cv_pr_auc": float(cv_summary["mean_cv_pr_auc"]),
+        "mean_cv_roc_auc": float(cv_summary["mean_cv_roc_auc"]),
+        "mean_cv_log_loss": float(cv_summary["mean_cv_log_loss"]),
+        "mean_cv_brier_score": float(cv_summary["mean_cv_brier_score"]),
+        "search_best_score": float(search.best_score_) if np.isfinite(search.best_score_) else float("nan"),
+        "model_priority": int(MODEL_FAMILY_PRIORITY[model_name]),
+        "best_params": dict(search.best_params_),
+    }
+    return {
+        "summary_row": summary_row,
+        "feature_columns": feature_columns,
+        "excluded_features": excluded_for_missingness,
+        "pruning_audit_df": pruning_audit_df,
+        "search": search,
+        "cv_summary": cv_summary,
+    }
+
+
+def rank_candidate_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    return sorted(
+        rows,
+        key=lambda row: (
+            -float(row["selection_score"]),
+            float(row["mean_cv_log_loss"]),
+            float(row["mean_cv_brier_score"]),
+            int(row["model_priority"]),
+        ),
+    )
+
+
+def print_candidate_search_summary(candidate_rows: list[dict[str, Any]]) -> None:
+    print("\nTraining-only candidate search leaderboard")
+    print("-" * 96)
+    header = (
+        f"{'model':<10} {'profile':<9} {'miss':>6} {'feat':>5} {'pr_auc':>8} "
+        f"{'roc_auc':>8} {'logloss':>9} {'brier':>8}"
+    )
+    print(header)
+    for row in candidate_rows:
+        print(
+            f"{row['model_family']:<10} {row['feature_profile']:<9} {row['missingness_threshold']:6.2f} "
+            f"{int(row['feature_count']):5d} {row['mean_cv_pr_auc']:8.4f} "
+            f"{row['mean_cv_roc_auc']:8.4f} {row['mean_cv_log_loss']:9.4f} "
+            f"{row['mean_cv_brier_score']:8.4f}"
+        )
+
+
+def search_training_candidates(
+    train_df: pd.DataFrame,
+    *,
+    model_name: str,
+    feature_profile: str,
+    compare_against: str | None,
+    missingness_threshold: float | None,
+    selection_metric: str = "pr_auc",
+) -> list[dict[str, Any]]:
+    candidate_results: list[dict[str, Any]] = []
+    for requested_profile in resolve_feature_profiles(feature_profile, compare_against):
+        for requested_model in resolve_model_families(model_name):
+            for requested_threshold in resolve_missingness_thresholds(missingness_threshold):
+                print("\n" + "=" * 60)
+                print(
+                    "TRAINING SEARCH CANDIDATE: "
+                    f"model={requested_model}, profile={requested_profile}, missingness={requested_threshold:.2f}"
+                )
+                print("=" * 60)
+                candidate_result = evaluate_training_candidate(
+                    train_df,
+                    feature_profile=requested_profile,
+                    model_name=requested_model,
+                    missingness_threshold=requested_threshold,
+                    selection_metric=selection_metric,
+                )
+                if candidate_result is None:
+                    print("Candidate skipped: no usable features or model unavailable.")
+                    continue
+                candidate_results.append(candidate_result)
+    return candidate_results
+
+
+def choose_logistic_calibration(
+    estimator: Pipeline,
+    X_train: pd.DataFrame,
+    y_train: np.ndarray,
+    feature_columns: list[str],
+    requested_mode: str,
+) -> tuple[Pipeline | CalibratedClassifierCV, dict[str, str], list[dict[str, Any]]]:
+    mode_candidates = ["disabled"] if requested_mode == "disabled" else ["disabled", "sigmoid", "isotonic"]
+    evaluations: list[dict[str, Any]] = []
+
+    for mode in mode_candidates:
+        if mode == "disabled":
+            model = clone(estimator)
+            fit_safely_with_imputer_warning_suppressed(model, X_train, y_train)
+            status = {
+                "requested": requested_mode,
+                "used": "disabled",
+                "status": "skipped",
+                "message": "Calibration disabled for final model fit.",
+            }
+        else:
+            model, status = maybe_calibrate_logistic(clone(estimator), X_train, y_train, mode, "logistic")
+
+        cv_summary = cross_validate_probability_metrics_time_series(
+            model,
+            X_train,
+            y_train,
+            feature_columns=feature_columns,
+        )
+        evaluations.append(
+            {
+                "mode": mode,
+                "status": status,
+                "model": model,
+                "mean_cv_pr_auc": float(cv_summary["mean_cv_pr_auc"]),
+                "mean_cv_roc_auc": float(cv_summary["mean_cv_roc_auc"]),
+                "mean_cv_log_loss": float(cv_summary["mean_cv_log_loss"]),
+                "mean_cv_brier_score": float(cv_summary["mean_cv_brier_score"]),
+            }
+        )
+
+    baseline_pr_auc = next(item["mean_cv_pr_auc"] for item in evaluations if item["mode"] == "disabled")
+    viable = [item for item in evaluations if item["mean_cv_pr_auc"] >= baseline_pr_auc - 1e-12]
+    chosen = max(
+        viable,
+        key=lambda item: (
+            float(item["mean_cv_pr_auc"]),
+            -float(item["mean_cv_log_loss"]),
+            -float(item["mean_cv_brier_score"]),
+        ),
+    )
+    chosen_status = dict(chosen["status"])
+    chosen_status["requested"] = requested_mode
+    if chosen["mode"] == "disabled" and requested_mode != "disabled":
+        chosen_status["message"] = (
+            "Calibration search kept disabled because sigmoid/isotonic did not improve training CV PR-AUC."
+        )
+    return chosen["model"], chosen_status, evaluations
+
+
 def fit_selected_model(
     X_train: pd.DataFrame,
     y_train: np.ndarray,
@@ -1490,33 +1867,37 @@ def fit_selected_model(
         "status": "not_applicable",
         "message": "Calibration not applicable.",
     }
-    if model_name == "xgboost":
-        grid = tune_xgboost_pipeline(X_train, y_train)
-        if grid is None:
-            calibration_status.update(
-                {
-                    "requested": calibration_mode,
-                    "used": "not_applicable",
-                    "status": "skipped",
-                    "message": "XGBoost is unavailable in this environment.",
-                }
-            )
-            return None, "xgboost", {}, calibration_status
+    search = tune_model_family(X_train, y_train, model_name, selection_metric="pr_auc")
+    if search is None:
+        calibration_status.update(
+            {
+                "requested": calibration_mode,
+                "used": "not_applicable",
+                "status": "skipped",
+                "message": f"{model_name} is unavailable in this environment.",
+            }
+        )
+        return None, model_name, {}, calibration_status
+
+    if model_name != "logistic":
         calibration_status.update(
             {
                 "requested": calibration_mode,
                 "used": "not_applicable",
                 "status": "not_applicable",
-                "message": "Calibration skipped because XGBoost was used.",
+                "message": f"Calibration skipped because {model_name} was used.",
             }
         )
-        return grid.best_estimator_, "xgboost", grid.best_params_, calibration_status
+        return search.best_estimator_, model_name, dict(search.best_params_), calibration_status
 
-    grid = tune_logistic_pipeline(X_train, y_train)
-    model, calibration_status = maybe_calibrate_logistic(
-        grid.best_estimator_, X_train, y_train, calibration_mode, "logistic"
+    model, calibration_status, _ = choose_logistic_calibration(
+        search.best_estimator_,
+        X_train,
+        y_train,
+        list(X_train.columns),
+        calibration_mode,
     )
-    return model, "logistic", grid.best_params_, calibration_status
+    return model, "logistic", dict(search.best_params_), calibration_status
 
 
 def evaluate_baseline_feature(
@@ -1686,11 +2067,43 @@ def compare_feature_profile_rows(
     )
 
 
+def serialize_report_value(value: Any) -> Any:
+    if isinstance(value, (np.floating, float)):
+        if not np.isfinite(value):
+            return None
+        return float(value)
+    if isinstance(value, (np.integer, int)):
+        return int(value)
+    if isinstance(value, (np.bool_, bool)):
+        return bool(value)
+    if isinstance(value, dict):
+        return {str(key): serialize_report_value(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [serialize_report_value(item) for item in value]
+    return value
+
+
+def print_candidate_leaderboard(candidate_rows: list[dict[str, Any]]) -> None:
+    print("\nTraining-only candidate search leaderboard")
+    print("-" * 96)
+    header = (
+        f"{'model':<10} {'profile':<9} {'miss':>6} {'feat':>5} {'pr_auc':>8} "
+        f"{'roc_auc':>8} {'logloss':>9} {'brier':>8}"
+    )
+    print(header)
+    for row in candidate_rows:
+        print(
+            f"{row['model_family']:<10} {row['feature_profile']:<9} {row['missingness_threshold']:6.2f} "
+            f"{int(row['feature_count']):5d} {row['mean_cv_pr_auc']:8.4f} "
+            f"{row['mean_cv_roc_auc']:8.4f} {row['mean_cv_log_loss']:9.4f} "
+            f"{row['mean_cv_brier_score']:8.4f}"
+        )
+
+
 def evaluate_model_run(
     train_df: pd.DataFrame,
     test_df: pd.DataFrame,
-    feature_columns: list[str],
-    model_name: str,
+    candidate_result: dict[str, Any],
     threshold_objective: str,
     min_recall: float,
     max_positive_rate: float,
@@ -1698,37 +2111,70 @@ def evaluate_model_run(
     calibration: str,
     save_ranked_output: bool = False,
     ranked_output_path: str | None = None,
-) -> dict[str, object] | None:
+) -> dict[str, Any]:
+    summary_row = dict(candidate_result["summary_row"])
+    feature_columns = list(candidate_result["feature_columns"])
     X_train = prepare_feature_matrix(train_df, feature_columns)
     y_train = train_df[TARGET_COL].to_numpy()
     X_test = prepare_feature_matrix(test_df, feature_columns)
     y_test = test_df[TARGET_COL].to_numpy()
+    base_estimator = clone(candidate_result["search"].best_estimator_)
+
+    if summary_row["model_family"] == "logistic":
+        model, calibration_status, calibration_search_rows = choose_logistic_calibration(
+            base_estimator,
+            X_train,
+            y_train,
+            feature_columns,
+            calibration,
+        )
+    else:
+        model = clone(base_estimator)
+        fit_safely_with_imputer_warning_suppressed(model, X_train, y_train)
+        calibration_status = {
+            "requested": calibration,
+            "used": "not_applicable",
+            "status": "not_applicable",
+            "message": f"Calibration skipped because {summary_row['model_family']} was used.",
+        }
+        calibration_search_rows = []
 
     print("\n" + "=" * 60)
-    print(f"MODEL RUN: {model_name.upper()}")
+    print("SELECTED MODEL EVALUATION")
     print("=" * 60)
-
-    model, resolved_model_name, best_params, calibration_status = fit_selected_model(
-        X_train, y_train, model_name, calibration
-    )
-    if model is None:
-        print(f"Skipping {model_name}: {calibration_status['message']}")
-        return None
-
-    print(f"Model family used            : {resolved_model_name}")
-    print(f"Best hyperparameters         : {best_params if best_params else 'fixed default configuration'}")
+    print(f"Selected model family        : {summary_row['model_family']}")
+    print(f"Selected feature profile     : {summary_row['feature_profile']}")
+    print(f"Selected missingness cutoff  : {summary_row['missingness_threshold']:.2f}")
+    print(f"Selected feature count       : {len(feature_columns)}")
+    print(f"Best hyperparameters         : {summary_row['best_params'] if summary_row['best_params'] else 'fixed default configuration'}")
+    print(f"Selection metric             : {summary_row['selection_metric']}")
+    print(f"Training CV PR-AUC           : {summary_row['mean_cv_pr_auc']:.4f}")
+    print(f"Training CV log loss         : {summary_row['mean_cv_log_loss']:.4f}")
+    print(f"Training CV Brier            : {summary_row['mean_cv_brier_score']:.4f}")
     print(f"Calibration mode requested   : {calibration_status['requested']}")
     print(f"Calibration mode actually used: {calibration_status['used']}")
     print(f"Calibration status           : {calibration_status['status']}")
     print(f"Calibration note             : {calibration_status['message']}")
+    if calibration_search_rows:
+        print("\nPost-selection calibration search")
+        print("-" * 60)
+        header = f"{'mode':<10} {'pr_auc':>8} {'roc_auc':>8} {'logloss':>9} {'brier':>8}"
+        print(header)
+        for row in calibration_search_rows:
+            print(
+                f"{row['mode']:<10} {row['mean_cv_pr_auc']:8.4f} {row['mean_cv_roc_auc']:8.4f} "
+                f"{row['mean_cv_log_loss']:9.4f} {row['mean_cv_brier_score']:8.4f}"
+            )
 
     print("\nGenerating training OOF probabilities for threshold tuning...")
-    y_train_oof, y_prob_oof = get_oof_probabilities_time_series(
+    train_cv_summary = cross_validate_probability_metrics_time_series(
         model,
         X_train,
         y_train,
         feature_columns=feature_columns,
     )
+    y_train_oof = train_cv_summary["oof_y_true"]
+    y_prob_oof = train_cv_summary["oof_y_prob"]
     train_threshold_summary = summarize_thresholds(y_train_oof, y_prob_oof, THRESHOLD_GRID)
     threshold_info = find_best_threshold(
         train_threshold_summary,
@@ -1781,12 +2227,15 @@ def evaluate_model_run(
     actual_holdout_rate = float(y_test.mean())
     operationally_usable = is_operationally_usable(metrics, actual_holdout_rate)
     model_row: dict[str, float | str] = {
-        "model": f"{resolved_model_name} full model",
-        "model_family": resolved_model_name,
+        **summary_row,
+        "model": f"{summary_row['model_family']}::{summary_row['feature_profile']}",
         "threshold": chosen_threshold,
         **{metric: float(metrics[metric]) for metric in METRIC_COLUMNS},
         "roc_auc": float(metrics["roc_auc"]),
         "pr_auc": float(metrics["pr_auc"]),
+        "log_loss": float(metrics["log_loss"]),
+        "brier_score": float(metrics["brier_score"]),
+        "calibration_used": calibration_status["used"],
         "actual_hr_rate": actual_holdout_rate,
         "prediction_to_actual_rate_ratio": prediction_rate_ratio(
             metrics["positive_prediction_rate"], actual_holdout_rate
@@ -1836,15 +2285,16 @@ def evaluate_model_run(
         if ranked_output_path:
             output_path = ranked_output_path
         else:
-            output_path = f"ranked_predictions_{resolved_model_name}.csv"
+            output_path = f"ranked_predictions_{summary_row['model_family']}_{summary_row['feature_profile']}.csv"
         ranked_output.to_csv(output_path, index=False)
         print(f"\nRanked output CSV saved       : {output_path}")
 
     return {
-        "model_name": resolved_model_name,
+        "model_name": summary_row["model_family"],
         "fitted_model": model,
-        "best_params": best_params,
+        "best_params": summary_row["best_params"],
         "calibration_status": calibration_status,
+        "calibration_search_rows": calibration_search_rows,
         "threshold_info": threshold_info,
         "threshold_result": threshold_result,
         "holdout_metrics": metrics,
@@ -1854,38 +2304,34 @@ def evaluate_model_run(
         "ventile_df": ventile_df,
         "ranked_output": ranked_output,
         "ranked_output_path": output_path,
+        "feature_columns": feature_columns,
+        "cv_summary": train_cv_summary,
+        "excluded_features": list(candidate_result["excluded_features"]),
     }
 
 
 def run_backtest(
     data_path: str,
-    model_name: str = "logistic",
-    feature_profile: str = "stable",
-    compare_against: str | None = "expanded",
+    model_name: str = "all",
+    feature_profile: str = "all",
+    compare_against: str | None = None,
     threshold_objective: str = "f0.5",
     min_recall: float = 0.15,
     max_positive_rate: float = 0.14,
     threshold_tolerance: float = 0.001,
     calibration: str = "sigmoid",
+    selection_metric: str = "pr_auc",
+    missingness_threshold: float | None = None,
     save_ranked_output: bool = False,
     ranked_output_path: str | None = None,
-) -> None:
+    report_path: str | None = None,
+) -> dict[str, Any]:
     if not Path(data_path).exists():
         raise FileNotFoundError(f"Dataset not found: {data_path}. Run python generate_data.py first.")
 
     df = load_data(data_path)
     train_df, test_df = chronological_split(df)
     run_dataset_sanity_checks(df, train_df, test_df)
-
-    initial_feature_columns = available_feature_columns(df, feature_profile=feature_profile)
-    feature_columns, pruning_audit_df, excluded_for_missingness = prune_model_features_by_training_missingness(
-        train_df,
-        initial_feature_columns,
-        threshold=MAX_MODEL_FEATURE_MISSINGNESS,
-    )
-    if not feature_columns:
-        raise ValueError("All candidate model features were excluded by the training missingness threshold.")
-    fold_records = fold_missingness_records(train_df[feature_columns])
 
     print("=" * 60)
     print("TIME-AWARE BACKTEST SUMMARY")
@@ -1894,29 +2340,17 @@ def run_backtest(
     print(f"Train date range: {train_df[DATE_COL].min().date()} -> {train_df[DATE_COL].max().date()}")
     print(f"Test date range : {test_df[DATE_COL].min().date()} -> {test_df[DATE_COL].max().date()}")
     print(f"Base HR rate train/test: {train_df[TARGET_COL].mean():.4f} / {test_df[TARGET_COL].mean():.4f}")
-    print(f"Feature profile used         : {feature_profile}")
-    print(f"Features used ({len(feature_columns)}): {', '.join(feature_columns)}")
-    print(f"Features excluded by missingness threshold ({len(excluded_for_missingness)}): {excluded_for_missingness if excluded_for_missingness else 'none'}")
     print(f"Model family requested       : {model_name}")
+    print(f"Feature profile requested    : {feature_profile}")
+    print(f"Selection metric used        : {selection_metric}")
+    print(
+        "Missingness thresholds used : "
+        f"{', '.join(f'{threshold:.2f}' for threshold in resolve_missingness_thresholds(missingness_threshold))}"
+    )
     print(f"Threshold objective used     : {threshold_objective}")
     print(f"Max positive rate used       : {max_positive_rate:.2f}")
     print(f"Threshold tolerance used     : {threshold_tolerance:.4f}")
     print(f"Calibration mode requested   : {calibration}")
-    print("Missing-value handling       : SimpleImputer(strategy='median') inside each model pipeline.")
-    print("Fully-missing fold behavior  : if a feature is 100% missing in a training fold, sklearn's median imputer drops that column for that fold; diagnostics below map the feature names explicitly.")
-
-    missingness_summary = print_missingness_summary(train_df, test_df, feature_columns, fold_records)
-    fully_missing_features = print_fold_missingness_diagnostics(fold_records)
-    if fully_missing_features:
-        feature_index_map = ", ".join(
-            f"{feature_columns.index(feature)}={feature}" for feature in fully_missing_features
-        )
-        print(f"Mapped fully-missing feature indices: {feature_index_map}")
-    else:
-        print("Mapped fully-missing feature indices: none")
-
-    stable_feature_audit_df = build_stable_feature_audit(df, feature_columns if feature_profile == "stable" else [])
-    print_stable_feature_audit(stable_feature_audit_df)
 
     baseline_rows: list[dict[str, float | str | bool]] = []
     print("\nSingle-feature baseline holdout comparison")
@@ -1938,156 +2372,113 @@ def run_backtest(
         if "warning" not in row:
             print(f"  - {row['model']}: operationally_usable={row['operationally_usable']} ({row['operational_usability_reason']})")
 
-    requested_models = ["logistic", "xgboost"] if model_name == "both" else [model_name]
-    model_results: list[dict[str, object]] = []
-    comparison_results: list[dict[str, object]] = []
-    for requested_model in requested_models:
-        result = evaluate_model_run(
-            train_df=train_df,
-            test_df=test_df,
-            feature_columns=feature_columns,
-            model_name=requested_model,
-            threshold_objective=threshold_objective,
-            min_recall=min_recall,
-            max_positive_rate=max_positive_rate,
-            threshold_tolerance=threshold_tolerance,
-            calibration=calibration,
-            save_ranked_output=save_ranked_output,
-            ranked_output_path=ranked_output_path,
-        )
-        if result is not None:
-            comparison_rows: list[dict[str, float | str]] = [result["summary_row"]]
-            comparison_rows.extend(baseline_rows)
-            print_comparison_table(comparison_rows, title=f"Compact model comparison summary ({requested_model})")
-            print("\nHoldout text summary")
-            print("-" * 60)
-            for line in holdout_commentary(result["summary_row"], baseline_rows):
-                print(f"- {line}")
-            model_results.append(result)
+    candidate_results = search_training_candidates(
+        train_df,
+        model_name=model_name,
+        feature_profile=feature_profile,
+        compare_against=compare_against,
+        missingness_threshold=missingness_threshold,
+        selection_metric=selection_metric,
+    )
+    if not candidate_results:
+        raise ValueError("No model candidates completed successfully.")
 
-        if compare_against and compare_against != feature_profile:
-            comparison_initial_features = available_feature_columns(df, feature_profile=compare_against)
-            comparison_feature_columns, _, comparison_excluded = prune_model_features_by_training_missingness(
-                train_df,
-                comparison_initial_features,
-                threshold=MAX_MODEL_FEATURE_MISSINGNESS,
-            )
-            if comparison_feature_columns:
-                print("\n" + "=" * 60)
-                print(f"FEATURE-PROFILE COMPARISON RUN: {compare_against.upper()} ({requested_model})")
-                print("=" * 60)
-                print(
-                    f"Comparison feature count     : {len(comparison_feature_columns)} "
-                    f"(excluded: {comparison_excluded if comparison_excluded else 'none'})"
-                )
-                comparison_result = evaluate_model_run(
-                    train_df=train_df,
-                    test_df=test_df,
-                    feature_columns=comparison_feature_columns,
-                    model_name=requested_model,
-                    threshold_objective=threshold_objective,
-                    min_recall=min_recall,
-                    max_positive_rate=max_positive_rate,
-                    threshold_tolerance=threshold_tolerance,
-                    calibration=calibration,
-                    save_ranked_output=False,
-                    ranked_output_path=None,
-                )
-                if comparison_result is not None:
-                    comparison_result["feature_profile"] = compare_against
-                    comparison_results.append(comparison_result)
+    candidate_rows = rank_candidate_rows([dict(result["summary_row"]) for result in candidate_results])
+    print_candidate_leaderboard(candidate_rows)
+    selected_row = candidate_rows[0]
+    selected_candidate = next(
+        result
+        for result in candidate_results
+        if result["summary_row"]["model_family"] == selected_row["model_family"]
+        and result["summary_row"]["feature_profile"] == selected_row["feature_profile"]
+        and np.isclose(result["summary_row"]["missingness_threshold"], selected_row["missingness_threshold"])
+    )
+    final_result = evaluate_model_run(
+        train_df=train_df,
+        test_df=test_df,
+        candidate_result=selected_candidate,
+        threshold_objective=threshold_objective,
+        min_recall=min_recall,
+        max_positive_rate=max_positive_rate,
+        threshold_tolerance=threshold_tolerance,
+        calibration=calibration,
+        save_ranked_output=save_ranked_output,
+        ranked_output_path=ranked_output_path,
+    )
 
-    if not model_results:
-        print("\nNo model family completed successfully.")
-        return
-
-    print("\nOperational usability summary")
+    comparison_rows: list[dict[str, float | str]] = [final_result["summary_row"]]
+    comparison_rows.extend(baseline_rows)
+    print_comparison_table(comparison_rows, title="Compact model comparison summary (selected winner)")
+    print("\nHoldout text summary")
     print("-" * 60)
-    actual_holdout_rate = float(test_df[TARGET_COL].mean())
-    print(f"Actual holdout HR rate       : {actual_holdout_rate:.4f}")
-    for result in model_results:
-        row = result["summary_row"]
-        print(f"{row['model']}: {row['operationally_usable']} ({row['operational_usability_reason']})")
-    for row in baseline_rows:
-        if "warning" in row:
-            print(f"{row['model']}: no ({row['warning']})")
+    for line in holdout_commentary(final_result["summary_row"], baseline_rows):
+        print(f"- {line}")
+
+    report = {
+        "selection_metric": selection_metric,
+        "candidate_leaderboard": candidate_rows,
+        "selected_candidate": selected_row,
+        "final_holdout_summary": final_result["summary_row"],
+        "baseline_rows": baseline_rows,
+    }
+    if report_path is not None:
+        output_path = Path(report_path)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        if output_path.suffix.lower() == ".csv":
+            pd.DataFrame(report["candidate_leaderboard"]).to_csv(output_path, index=False)
         else:
-            print(f"{row['model']}: {row['operationally_usable']} ({row['operational_usability_reason']})")
+            output_path.write_text(json.dumps(serialize_report_value(report), indent=2), encoding="utf-8")
+        print(f"\nSearch report written         : {report_path}")
 
-    if len(model_results) > 1:
-        print_model_family_comparison([result["summary_row"] for result in model_results])
-        logistic_row = next((result["summary_row"] for result in model_results if result["summary_row"]["model_family"] == "logistic"), None)
-        xgboost_row = next((result["summary_row"] for result in model_results if result["summary_row"]["model_family"] == "xgboost"), None)
-        if logistic_row is not None and xgboost_row is not None:
-            xgb_beats_logistic = (float(xgboost_row["f0.5"]) > float(logistic_row["f0.5"])) or (
-                np.isclose(float(xgboost_row["f0.5"]), float(logistic_row["f0.5"]))
-                and float(xgboost_row["precision"]) > float(logistic_row["precision"])
-            )
-            print(
-                f"\nDirect model-family verdict: XGBoost {'beats' if xgb_beats_logistic else 'does not beat'} logistic on holdout using the F0.5/precision ranking."
-            )
-
-    severe_missingness = missingness_summary[
-        (missingness_summary["train_missing_pct"] >= 50.0)
-        | (missingness_summary["ever_fully_missing_in_train_fold"])
-    ]
-    print("\nMissing-data verdict")
+    print("\nBacktest complete.")
     print("-" * 60)
-    if severe_missingness.empty:
-        print("Missing-data issue severity  : manageable; no selected feature is fully missing in any training fold and no train feature exceeds 50% missingness.")
-    else:
-        flagged = ", ".join(
-            f"{row.feature} (train_missing={row.train_missing_pct:.1f}%, full_missing_fold={bool(row.ever_fully_missing_in_train_fold)})"
-            for row in severe_missingness.itertuples()
-        )
-        print("Missing-data issue severity  : high enough to rethink at least some features before adding more.")
-        print(f"Flagged features             : {flagged}")
-    print("\nPost-pruning modeled feature summary")
-    print("-" * 60)
-    print(f"Final modeled feature count: {len(feature_columns)}")
-    print(f"Excluded due to missingness threshold: {excluded_for_missingness if excluded_for_missingness else 'none'}")
-    print(f"train_model.py default stable feature set active: {'yes' if feature_profile == 'stable' else 'no'}")
-    if comparison_results:
-        print("\nStable vs expanded profile comparison")
-        print("-" * 60)
-        for primary_result in model_results:
-            primary_row = primary_result["summary_row"]
-            matching_comparison = next(
-                (
-                    comparison_result["summary_row"]
-                    for comparison_result in comparison_results
-                    if comparison_result["summary_row"]["model_family"] == primary_row["model_family"]
-                ),
-                None,
-            )
-            if matching_comparison is None:
-                continue
-            print(
-                compare_feature_profile_rows(
-                    primary_row,
-                    matching_comparison,
-                    primary_profile=feature_profile,
-                    comparison_profile=compare_against,
-                )
-            )
-    del pruning_audit_df
+    print(
+        "Selected final model         : "
+        f"{final_result['summary_row']['model_family']} / {final_result['summary_row']['feature_profile']}"
+    )
+    print(f"Final holdout PR-AUC         : {final_result['summary_row']['pr_auc']:.4f}")
+    print(f"Final holdout ROC-AUC        : {final_result['summary_row']['roc_auc']:.4f}")
+    print(f"Final holdout log loss       : {final_result['summary_row']['log_loss']:.4f}")
+    print(f"Final holdout Brier          : {final_result['summary_row']['brier_score']:.4f}")
+    return {
+        "train_df": train_df,
+        "test_df": test_df,
+        "candidate_results": candidate_results,
+        "candidate_rows": candidate_rows,
+        "selected_candidate": selected_candidate,
+        "final_result": final_result,
+        "baseline_rows": baseline_rows,
+        "report": report,
+    }
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("data_path", nargs="?", default=str(FINAL_DATA_PATH), help="Path to batter-game dataset CSV.")
-    parser.add_argument("--model", choices=MODEL_CHOICES, default="logistic", help="Model family to train.")
+    parser.add_argument("--model", choices=MODEL_CHOICES, default="all", help="Model family to search.")
     parser.add_argument(
         "--feature-profile",
         choices=FEATURE_PROFILE_CHOICES,
-        default="stable",
-        help="Feature profile for the default backtest path.",
+        default="all",
+        help="Feature profile or search space for the backtest.",
     )
     parser.add_argument(
         "--compare-against",
         choices=[*FEATURE_PROFILE_CHOICES, "none"],
-        default="expanded",
-        help="Optional second feature profile to run on the same split for comparison.",
+        default="none",
+        help="Optional second feature profile to include in the training-only search.",
+    )
+    parser.add_argument(
+        "--selection-metric",
+        choices=SELECTION_METRIC_CHOICES,
+        default="pr_auc",
+        help="Primary training-only CV metric used to rank candidate configurations.",
+    )
+    parser.add_argument(
+        "--missingness-threshold",
+        type=float,
+        default=None,
+        help="Optional fixed feature-missingness pruning threshold. Defaults to searching 0.35, 0.50, and 0.65.",
     )
     parser.add_argument(
         "--threshold-objective",
@@ -2134,6 +2525,11 @@ def parse_args() -> argparse.Namespace:
         default=None,
         help="Optional output path for ranked prediction CSV.",
     )
+    parser.add_argument(
+        "--report-path",
+        default=None,
+        help="Optional path to write the candidate-search report as JSON or CSV.",
+    )
     args = parser.parse_args()
     if args.calibrate_logistic and args.calibration == "disabled":
         args.calibration = "sigmoid"
@@ -2147,6 +2543,8 @@ if __name__ == "__main__":
         model_name=args.model,
         feature_profile=args.feature_profile,
         compare_against=None if args.compare_against == "none" else args.compare_against,
+        selection_metric=args.selection_metric,
+        missingness_threshold=args.missingness_threshold,
         threshold_objective=args.threshold_objective,
         min_recall=args.min_recall,
         max_positive_rate=args.max_positive_rate,
@@ -2154,4 +2552,5 @@ if __name__ == "__main__":
         calibration=args.calibration,
         save_ranked_output=args.save_ranked_output,
         ranked_output_path=args.ranked_output_path,
+        report_path=args.report_path,
     )

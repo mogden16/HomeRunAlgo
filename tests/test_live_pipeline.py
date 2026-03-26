@@ -1,8 +1,12 @@
 from __future__ import annotations
 
+import io
+import json
+import pickle
 import sys
 import tempfile
 import unittest
+from contextlib import redirect_stdout
 from pathlib import Path
 from unittest.mock import patch
 
@@ -13,9 +17,14 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 from scripts import build_dashboard_artifacts
+from scripts import publish_live_picks
 from scripts.live_pipeline import (
+    assert_live_publish_freshness,
     build_live_feature_frame,
     build_pick_id,
+    evaluate_live_publish_freshness,
+    fetch_forecast_weather,
+    load_model_metadata,
     score_live_candidates,
     select_probable_lineup_hitters,
     settle_pick_records,
@@ -67,6 +76,112 @@ class LivePipelineTests(unittest.TestCase):
         )
         self.assertEqual([row["batter_id"] for row in hitters], [10, 12])
         self.assertEqual([row["batter_name"] for row in hitters], ["Alpha Current", "Charlie Current"])
+
+    def test_select_probable_lineup_hitters_excludes_active_roster_hitter_without_recent_team_game(self) -> None:
+        dataset = pd.DataFrame(
+            [
+                {"game_pk": 1, "game_date": "2026-03-20", "batter_id": 10, "batter_name": "Alpha", "team": "NYY", "pa_count": 5, "bat_side": "R", "hr_per_pa_last_10d": 0.2, "hr_per_pa_last_30d": 0.15},
+                {"game_pk": 2, "game_date": "2026-03-21", "batter_id": 10, "batter_name": "Alpha", "team": "NYY", "pa_count": 4, "bat_side": "R", "hr_per_pa_last_10d": 0.2, "hr_per_pa_last_30d": 0.15},
+                {"game_pk": 3, "game_date": "2026-03-22", "batter_id": 10, "batter_name": "Alpha", "team": "NYY", "pa_count": 4, "bat_side": "R", "hr_per_pa_last_10d": 0.2, "hr_per_pa_last_30d": 0.15},
+                {"game_pk": 0, "game_date": "2026-03-10", "batter_id": 11, "batter_name": "Bravo", "team": "NYY", "pa_count": 4, "bat_side": "L", "hr_per_pa_last_10d": 0.1, "hr_per_pa_last_30d": 0.08},
+            ]
+        )
+        dataset["game_date"] = pd.to_datetime(dataset["game_date"])
+        active_roster = pd.DataFrame(
+            [
+                {"batter_id": 10, "batter_name": "Alpha Current"},
+                {"batter_id": 11, "batter_name": "Bravo Current"},
+            ]
+        )
+        captured = io.StringIO()
+        with redirect_stdout(captured):
+            hitters = select_probable_lineup_hitters(
+                dataset,
+                team_code="NYY",
+                target_date="2026-03-25",
+                hitters_per_team=3,
+                lookback_days=21,
+                active_roster=active_roster,
+            )
+        self.assertEqual([row["batter_id"] for row in hitters], [10])
+        self.assertIn("inactive_recent_games", captured.getvalue())
+        self.assertIn("Underfilled team              : yes", captured.getvalue())
+
+    def test_select_probable_lineup_hitters_does_not_backfill_when_underfilled(self) -> None:
+        dataset = pd.DataFrame(
+            [
+                {"game_pk": 11, "game_date": "2026-03-20", "batter_id": 10, "batter_name": "Alpha", "team": "NYY", "pa_count": 5, "bat_side": "R", "hr_per_pa_last_10d": 0.2, "hr_per_pa_last_30d": 0.15},
+                {"game_pk": 12, "game_date": "2026-03-21", "batter_id": 11, "batter_name": "Bravo", "team": "NYY", "pa_count": 4, "bat_side": "L", "hr_per_pa_last_10d": 0.1, "hr_per_pa_last_30d": 0.08},
+                {"game_pk": 13, "game_date": "2026-03-22", "batter_id": 12, "batter_name": "Charlie", "team": "NYY", "pa_count": 2, "bat_side": "R", "hr_per_pa_last_10d": 0.3, "hr_per_pa_last_30d": 0.12},
+                {"game_pk": 5, "game_date": "2026-03-01", "batter_id": 13, "batter_name": "Delta", "team": "NYY", "pa_count": 5, "bat_side": "L", "hr_per_pa_last_10d": 0.4, "hr_per_pa_last_30d": 0.2},
+            ]
+        )
+        dataset["game_date"] = pd.to_datetime(dataset["game_date"])
+        active_roster = pd.DataFrame(
+            [
+                {"batter_id": 10, "batter_name": "Alpha"},
+                {"batter_id": 11, "batter_name": "Bravo"},
+                {"batter_id": 13, "batter_name": "Delta"},
+            ]
+        )
+        hitters = select_probable_lineup_hitters(
+            dataset,
+            team_code="NYY",
+            target_date="2026-03-25",
+            hitters_per_team=3,
+            lookback_days=21,
+            active_roster=active_roster,
+        )
+        self.assertEqual([row["batter_id"] for row in hitters], [10, 11])
+
+    def test_select_probable_lineup_hitters_excludes_stale_active_roster_when_target_is_after_dataset_end(self) -> None:
+        dataset = pd.DataFrame(
+            [
+                {"game_pk": 100, "game_date": "2024-09-28", "batter_id": 666464, "batter_name": "Jerar Encarnacion", "team": "SF", "pa_count": 4, "bat_side": "R", "hr_per_pa_last_10d": 0.05, "hr_per_pa_last_30d": 0.05},
+                {"game_pk": 101, "game_date": "2024-09-29", "batter_id": 666464, "batter_name": "Jerar Encarnacion", "team": "SF", "pa_count": 3, "bat_side": "R", "hr_per_pa_last_10d": 0.05, "hr_per_pa_last_30d": 0.05},
+            ]
+        )
+        dataset["game_date"] = pd.to_datetime(dataset["game_date"])
+        active_roster = pd.DataFrame([{"batter_id": 666464, "batter_name": "Jerar Encarnacion"}])
+        captured = io.StringIO()
+        with redirect_stdout(captured):
+            hitters = select_probable_lineup_hitters(
+                dataset,
+                team_code="SF",
+                target_date="2026-03-25",
+                hitters_per_team=9,
+                lookback_days=21,
+                active_roster=active_roster,
+            )
+        self.assertEqual(hitters, [])
+        self.assertIn("Recent team games considered  : 0", captured.getvalue())
+        self.assertIn("Eligible after recent gate    : 0", captured.getvalue())
+
+    def test_select_probable_lineup_hitters_keeps_bench_bat_if_he_appeared_within_last_three_team_games(self) -> None:
+        dataset = pd.DataFrame(
+            [
+                {"game_pk": 1, "game_date": "2026-03-20", "batter_id": 10, "batter_name": "Starter", "team": "NYY", "pa_count": 5, "bat_side": "R", "hr_per_pa_last_10d": 0.2, "hr_per_pa_last_30d": 0.15},
+                {"game_pk": 2, "game_date": "2026-03-21", "batter_id": 20, "batter_name": "Bench Bat", "team": "NYY", "pa_count": 1, "bat_side": "L", "hr_per_pa_last_10d": 0.08, "hr_per_pa_last_30d": 0.05},
+                {"game_pk": 3, "game_date": "2026-03-22", "batter_id": 10, "batter_name": "Starter", "team": "NYY", "pa_count": 4, "bat_side": "R", "hr_per_pa_last_10d": 0.2, "hr_per_pa_last_30d": 0.15},
+                {"game_pk": 4, "game_date": "2026-03-23", "batter_id": 10, "batter_name": "Starter", "team": "NYY", "pa_count": 4, "bat_side": "R", "hr_per_pa_last_10d": 0.2, "hr_per_pa_last_30d": 0.15},
+            ]
+        )
+        dataset["game_date"] = pd.to_datetime(dataset["game_date"])
+        active_roster = pd.DataFrame(
+            [
+                {"batter_id": 10, "batter_name": "Starter"},
+                {"batter_id": 20, "batter_name": "Bench Bat"},
+            ]
+        )
+        hitters = select_probable_lineup_hitters(
+            dataset,
+            team_code="NYY",
+            target_date="2026-03-25",
+            hitters_per_team=2,
+            lookback_days=21,
+            active_roster=active_roster,
+        )
+        self.assertEqual([row["batter_id"] for row in hitters], [10, 20])
 
     def test_settle_pick_records_marks_hits_and_non_hits(self) -> None:
         picks = [
@@ -124,6 +239,88 @@ class LivePipelineTests(unittest.TestCase):
         picks = score_live_candidates(candidate_df, bundle, max_picks=3, published_at="2026-03-25T12:00:00+00:00")
         self.assertEqual([row["batter_name"] for row in picks], ["Bravo", "Charlie", "Alpha"])
         self.assertEqual([row["rank"] for row in picks], [1, 2, 3])
+
+    def test_fetch_forecast_weather_skips_api_for_historical_dates(self) -> None:
+        with patch("scripts.live_pipeline.requests.get") as mock_get:
+            weather = fetch_forecast_weather(["ATL"], "2024-09-29")
+        self.assertFalse(mock_get.called)
+        self.assertEqual(weather.to_dict(orient="records"), [{"game_date": "2024-09-29", "home_team": "ATL"}])
+
+    def test_evaluate_live_publish_freshness_accepts_fresh_metadata_and_dataset(self) -> None:
+        dataset_df = pd.DataFrame({"game_date": pd.to_datetime(["2026-03-24", "2026-03-25"])})
+        diagnostics = evaluate_live_publish_freshness(
+            schedule_date="2026-03-26",
+            dataset_df=dataset_df,
+            model_metadata={"trained_through": "2026-03-25"},
+        )
+        self.assertTrue(diagnostics["passed"])
+        self.assertEqual(diagnostics["metadata_lag_days"], 1)
+        self.assertEqual(diagnostics["dataset_lag_days"], 1)
+
+    def test_assert_live_publish_freshness_rejects_stale_metadata(self) -> None:
+        dataset_df = pd.DataFrame({"game_date": pd.to_datetime(["2026-03-24", "2026-03-25"])})
+        with self.assertRaisesRegex(RuntimeError, "schedule_date=2026-03-26"):
+            assert_live_publish_freshness(
+                schedule_date="2026-03-26",
+                dataset_df=dataset_df,
+                model_metadata={"trained_through": "2026-03-10"},
+            )
+
+    def test_assert_live_publish_freshness_rejects_stale_dataset(self) -> None:
+        dataset_df = pd.DataFrame({"game_date": pd.to_datetime(["2026-03-10", "2026-03-11"])})
+        with self.assertRaisesRegex(RuntimeError, "dataset_max_game_date=2026-03-11"):
+            assert_live_publish_freshness(
+                schedule_date="2026-03-26",
+                dataset_df=dataset_df,
+                model_metadata={"trained_through": "2026-03-25"},
+            )
+
+    def test_load_model_metadata_reads_json_object(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            metadata_path = Path(tmp_dir) / "model_metadata.json"
+            metadata_path.write_text(json.dumps({"trained_through": "2026-03-25"}), encoding="utf-8")
+            metadata = load_model_metadata(metadata_path)
+        self.assertEqual(metadata["trained_through"], "2026-03-25")
+
+    def test_publish_live_picks_aborts_on_stale_training_data_before_lineup_generation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            dataset_path = base / "dataset.csv"
+            bundle_path = base / "bundle.pkl"
+            metadata_path = base / "metadata.json"
+            output_path = base / "current.json"
+            pd.DataFrame(
+                {
+                    "game_date": pd.to_datetime(["2024-09-29", "2024-09-30"]),
+                    "game_pk": [1, 2],
+                    "batter_id": [10, 11],
+                    "hit_hr": [0, 1],
+                }
+            ).to_csv(dataset_path, index=False)
+            with bundle_path.open("wb") as handle:
+                pickle.dump({"trained_through": "2024-09-30", "model": object(), "feature_columns": [], "reference_df": pd.DataFrame()}, handle)
+            metadata_path.write_text(json.dumps({"trained_through": "2024-09-30", "dataset_max_game_date": "2024-09-30"}), encoding="utf-8")
+
+            argv = [
+                "publish_live_picks.py",
+                "--dataset-path",
+                str(dataset_path),
+                "--bundle-path",
+                str(bundle_path),
+                "--metadata-path",
+                str(metadata_path),
+                "--output-path",
+                str(output_path),
+                "--schedule-date",
+                "2026-03-26",
+            ]
+            with patch.object(sys, "argv", argv):
+                with patch("scripts.publish_live_picks.fetch_schedule_games") as mock_schedule:
+                    with patch("scripts.publish_live_picks.build_live_candidate_frame") as mock_candidates:
+                        with self.assertRaisesRegex(RuntimeError, "trained_through=2024-09-30"):
+                            publish_live_picks.main()
+            self.assertFalse(mock_schedule.called)
+            self.assertFalse(mock_candidates.called)
 
     def test_build_live_feature_frame_backfills_latest_batter_and_pitcher_features(self) -> None:
         dataset_df = pd.DataFrame(

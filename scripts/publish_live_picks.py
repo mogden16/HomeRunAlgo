@@ -10,8 +10,9 @@ ROOT_DIR = Path(__file__).resolve().parents[1]
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
-from config import LIVE_CURRENT_PICKS_PATH, LIVE_MODEL_BUNDLE_PATH, LIVE_MODEL_DATA_PATH
+from config import LIVE_CURRENT_PICKS_PATH, LIVE_MODEL_BUNDLE_PATH, LIVE_MODEL_DATA_PATH, LIVE_MODEL_METADATA_PATH
 from scripts.live_pipeline import (
+    assert_live_publish_freshness,
     build_active_roster_map,
     build_live_candidate_frame,
     build_live_feature_frame,
@@ -19,6 +20,7 @@ from scripts.live_pipeline import (
     fetch_schedule_games,
     load_live_dataset,
     load_model_bundle,
+    load_model_metadata,
     score_live_candidates,
     write_current_picks,
 )
@@ -28,6 +30,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset-path", default=str(LIVE_MODEL_DATA_PATH), help="Path to the refreshed engineered dataset.")
     parser.add_argument("--bundle-path", default=str(LIVE_MODEL_BUNDLE_PATH), help="Path to the trained model bundle.")
+    parser.add_argument("--metadata-path", default=str(LIVE_MODEL_METADATA_PATH), help="Path to the trained model metadata.")
     parser.add_argument("--output-path", default=str(LIVE_CURRENT_PICKS_PATH), help="Path to write the current published picks.")
     parser.add_argument("--schedule-date", default=None, help="Official MLB date to publish. Defaults to today in ET.")
     parser.add_argument("--hitters-per-team", type=int, default=9, help="How many likely starters to consider for each team.")
@@ -40,6 +43,12 @@ def main() -> None:
     schedule_date = args.schedule_date or default_publish_date()
     dataset_df = load_live_dataset(Path(args.dataset_path))
     bundle = load_model_bundle(Path(args.bundle_path))
+    model_metadata = load_model_metadata(Path(args.metadata_path))
+    assert_live_publish_freshness(
+        schedule_date=schedule_date,
+        dataset_df=dataset_df,
+        model_metadata=model_metadata,
+    )
     schedule_games = fetch_schedule_games(schedule_date)
     active_roster_map = build_active_roster_map(schedule_games)
 

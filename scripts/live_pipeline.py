@@ -12,6 +12,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 import requests
+from sklearn.base import clone
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 if str(ROOT_DIR) not in sys.path:
@@ -35,16 +36,21 @@ from train_model import (
     LIVE_PRODUCTION_FEATURE_COLUMNS,
     MAX_MODEL_FEATURE_MISSINGNESS,
     REASON_TEXT_BY_FEATURE,
+    choose_logistic_calibration,
+    evaluate_model_run,
+    evaluate_training_candidate,
     extract_logistic_coefficient_map,
-    fit_selected_model,
+    fit_safely_with_imputer_warning_suppressed,
     generate_reason_strings,
-    prune_model_features_by_training_missingness,
+    prepare_feature_matrix,
+    run_backtest,
 )
 
 MLB_SCHEDULE_URL = "https://statsapi.mlb.com/api/v1/schedule"
 MLB_PERSON_URL_TEMPLATE = "https://statsapi.mlb.com/api/v1/people/{player_id}"
 MLB_TEAM_ROSTER_URL_TEMPLATE = "https://statsapi.mlb.com/api/v1/teams/{team_id}/roster"
 OPEN_METEO_FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
+LIVE_PUBLISH_FRESHNESS_TOLERANCE_DAYS = 7
 TEAM_CODE_ALIASES = {
     "ARI": "AZ",
     "CHW": "CWS",
@@ -158,28 +164,55 @@ def refresh_live_dataset(
     return output_path
 
 
-def train_live_model_bundle(
-    dataset_path: Path,
-    *,
-    bundle_path: Path = LIVE_MODEL_BUNDLE_PATH,
-    metadata_path: Path = LIVE_MODEL_METADATA_PATH,
-    model_name: str = "logistic",
-    calibration: str = "sigmoid",
-) -> dict[str, Any]:
-    df = pd.read_csv(dataset_path, parse_dates=["game_date"])
-    feature_columns, _, excluded = prune_model_features_by_training_missingness(
-        df,
-        [feature for feature in LIVE_PRODUCTION_FEATURE_COLUMNS if feature in df.columns],
-        threshold=MAX_MODEL_FEATURE_MISSINGNESS,
-    )
-    if not feature_columns:
-        raise ValueError("No live-model features were available after pruning.")
+def _candidate_is_live_compatible(feature_columns: list[str]) -> bool:
+    return set(feature_columns).issubset(set(LIVE_PRODUCTION_FEATURE_COLUMNS))
 
-    X_train = df[feature_columns]
-    y_train = df["hit_hr"].to_numpy()
-    model, resolved_model_name, best_params, calibration_status = fit_selected_model(X_train, y_train, model_name, calibration)
-    if model is None:
-        raise RuntimeError(f"Unable to fit live model: {calibration_status['message']}")
+
+def _fit_full_dataset_bundle_candidate(
+    df: pd.DataFrame,
+    *,
+    model_family: str,
+    feature_profile: str,
+    missingness_threshold: float,
+    selection_metric: str,
+    calibration: str,
+) -> tuple[dict[str, Any], dict[str, Any], dict[str, str], list[dict[str, Any]]]:
+    full_candidate = evaluate_training_candidate(
+        df,
+        feature_profile=feature_profile,
+        model_name=model_family,
+        missingness_threshold=missingness_threshold,
+        selection_metric=selection_metric,
+    )
+    if full_candidate is None:
+        raise RuntimeError("Unable to fit the promoted live candidate on the full training dataset.")
+
+    feature_columns = list(full_candidate["feature_columns"])
+    X_full = prepare_feature_matrix(df, feature_columns)
+    y_full = df["hit_hr"].to_numpy()
+    base_estimator = full_candidate["search"].best_estimator_
+    if model_family == "logistic":
+        model, calibration_status, calibration_search_rows = choose_logistic_calibration(
+            base_estimator,
+            X_full,
+            y_full,
+            feature_columns,
+            calibration,
+        )
+    else:
+        model = clone(base_estimator)
+        fit_safely_with_imputer_warning_suppressed(model, X_full, y_full)
+        calibration_status = {
+            "requested": calibration,
+            "used": "not_applicable",
+            "status": "not_applicable",
+            "message": f"Calibration skipped because {model_family} was used.",
+        }
+        calibration_search_rows = []
+    calibration_search_summary = [
+        {key: value for key, value in row.items() if key != "model"}
+        for row in calibration_search_rows
+    ]
 
     reference_columns = sorted(set(feature_columns) | {feature for feature in REASON_TEXT_BY_FEATURE if feature in df.columns})
     bundle = {
@@ -187,10 +220,118 @@ def train_live_model_bundle(
         "feature_columns": feature_columns,
         "reference_df": df[reference_columns].copy(),
         "trained_through": str(df["game_date"].max().date()),
-        "model_family": resolved_model_name,
-        "best_params": best_params,
+        "dataset_max_game_date": str(df["game_date"].max().date()),
+        "model_family": model_family,
+        "feature_profile": feature_profile,
+        "missingness_threshold": float(missingness_threshold),
+        "selection_metric": selection_metric,
+        "best_params": dict(full_candidate["summary_row"]["best_params"]),
         "calibration_status": calibration_status,
-        "excluded_features": excluded,
+        "calibration_search_rows": calibration_search_summary,
+        "excluded_features": list(full_candidate["excluded_features"]),
+        "training_cv_summary": {
+            "mean_cv_pr_auc": float(full_candidate["summary_row"]["mean_cv_pr_auc"]),
+            "mean_cv_roc_auc": float(full_candidate["summary_row"]["mean_cv_roc_auc"]),
+            "mean_cv_log_loss": float(full_candidate["summary_row"]["mean_cv_log_loss"]),
+            "mean_cv_brier_score": float(full_candidate["summary_row"]["mean_cv_brier_score"]),
+        },
+    }
+    return bundle, full_candidate, calibration_status, calibration_search_summary
+
+
+def train_live_model_bundle(
+    dataset_path: Path,
+    *,
+    bundle_path: Path = LIVE_MODEL_BUNDLE_PATH,
+    metadata_path: Path = LIVE_MODEL_METADATA_PATH,
+    model_name: str = "logistic",
+    calibration: str = "sigmoid",
+    feature_profile: str = "live",
+    selection_metric: str = "pr_auc",
+    missingness_threshold: float | None = None,
+) -> dict[str, Any]:
+    df = pd.read_csv(dataset_path, parse_dates=["game_date"])
+    backtest = run_backtest(
+        str(dataset_path),
+        model_name=model_name,
+        feature_profile=feature_profile,
+        compare_against=None,
+        selection_metric=selection_metric,
+        missingness_threshold=missingness_threshold,
+        calibration=calibration,
+    )
+    selected_candidate = backtest["selected_candidate"]
+    winner_holdout_summary = backtest["final_result"]["summary_row"]
+    candidate_results = backtest["candidate_results"]
+    train_df = backtest["train_df"]
+    test_df = backtest["test_df"]
+
+    baseline_candidate = next(
+        (
+            result
+            for result in candidate_results
+            if result["summary_row"]["model_family"] == "logistic"
+            and result["summary_row"]["feature_profile"] == "live"
+            and np.isclose(result["summary_row"]["missingness_threshold"], MAX_MODEL_FEATURE_MISSINGNESS)
+        ),
+        None,
+    )
+    if baseline_candidate is None:
+        baseline_candidate = evaluate_training_candidate(
+            train_df,
+            feature_profile="live",
+            model_name="logistic",
+            missingness_threshold=MAX_MODEL_FEATURE_MISSINGNESS,
+            selection_metric=selection_metric,
+        )
+        if baseline_candidate is None:
+            raise RuntimeError("Unable to evaluate the live baseline candidate.")
+    if (
+        selected_candidate["summary_row"]["model_family"] == "logistic"
+        and selected_candidate["summary_row"]["feature_profile"] == "live"
+        and np.isclose(selected_candidate["summary_row"]["missingness_threshold"], MAX_MODEL_FEATURE_MISSINGNESS)
+    ):
+        baseline_holdout = backtest["final_result"]
+    else:
+        baseline_holdout = evaluate_model_run(
+            train_df=train_df,
+            test_df=test_df,
+            candidate_result=baseline_candidate,
+            threshold_objective="f0.5",
+            min_recall=0.15,
+            max_positive_rate=0.14,
+            threshold_tolerance=0.001,
+            calibration=calibration,
+            save_ranked_output=False,
+            ranked_output_path=None,
+        )
+
+    winner_is_compatible = _candidate_is_live_compatible(list(selected_candidate["feature_columns"]))
+    winner_beats_baseline = float(winner_holdout_summary["pr_auc"]) >= float(baseline_holdout["summary_row"]["pr_auc"])
+    if winner_is_compatible and winner_beats_baseline:
+        promoted_candidate = selected_candidate
+        promoted_holdout = backtest["final_result"]
+        promotion_reason = "selected_candidate"
+    else:
+        promoted_candidate = baseline_candidate
+        promoted_holdout = baseline_holdout
+        promotion_reason = "baseline_fallback"
+
+    bundle, full_candidate, calibration_status, calibration_search_rows = _fit_full_dataset_bundle_candidate(
+        df,
+        model_family=str(promoted_candidate["summary_row"]["model_family"]),
+        feature_profile=str(promoted_candidate["summary_row"]["feature_profile"]),
+        missingness_threshold=float(promoted_candidate["summary_row"]["missingness_threshold"]),
+        selection_metric=selection_metric,
+        calibration=calibration,
+    )
+    bundle["final_holdout_summary"] = dict(promoted_holdout["summary_row"])
+    bundle["promotion_decision"] = {
+        "used": promotion_reason,
+        "winner_live_compatible": winner_is_compatible,
+        "winner_beats_baseline": winner_beats_baseline,
+        "winner_pr_auc": float(winner_holdout_summary["pr_auc"]),
+        "baseline_pr_auc": float(baseline_holdout["summary_row"]["pr_auc"]),
     }
     bundle_path.parent.mkdir(parents=True, exist_ok=True)
     with bundle_path.open("wb") as handle:
@@ -198,11 +339,19 @@ def train_live_model_bundle(
 
     metadata = {
         "trained_through": bundle["trained_through"],
-        "model_family": resolved_model_name,
-        "feature_columns": feature_columns,
-        "best_params": best_params,
+        "dataset_max_game_date": bundle["dataset_max_game_date"],
+        "model_family": bundle["model_family"],
+        "feature_profile": bundle["feature_profile"],
+        "missingness_threshold": bundle["missingness_threshold"],
+        "selection_metric": bundle["selection_metric"],
+        "feature_columns": bundle["feature_columns"],
+        "best_params": bundle["best_params"],
         "calibration_status": calibration_status,
-        "excluded_features": excluded,
+        "calibration_search_rows": calibration_search_rows,
+        "excluded_features": bundle["excluded_features"],
+        "training_cv_summary": bundle["training_cv_summary"],
+        "final_holdout_summary": bundle["final_holdout_summary"],
+        "promotion_decision": bundle["promotion_decision"],
         "row_count": int(len(df)),
         "hr_rate": serialize_for_json(float(df["hit_hr"].mean())),
     }
@@ -213,6 +362,81 @@ def train_live_model_bundle(
 def load_model_bundle(bundle_path: Path = LIVE_MODEL_BUNDLE_PATH) -> dict[str, Any]:
     with bundle_path.open("rb") as handle:
         return pickle.load(handle)
+
+
+def load_model_metadata(metadata_path: Path = LIVE_MODEL_METADATA_PATH) -> dict[str, Any]:
+    with metadata_path.open("r", encoding="utf-8") as handle:
+        payload = json.load(handle)
+    if not isinstance(payload, dict):
+        raise ValueError(f"Expected a JSON object in {metadata_path}.")
+    return payload
+
+
+def evaluate_live_publish_freshness(
+    *,
+    schedule_date: str,
+    dataset_df: pd.DataFrame,
+    model_metadata: dict[str, Any],
+    tolerance_days: int = LIVE_PUBLISH_FRESHNESS_TOLERANCE_DAYS,
+) -> dict[str, Any]:
+    schedule_timestamp = pd.Timestamp(schedule_date).normalize()
+    metadata_trained_through = pd.to_datetime(model_metadata.get("trained_through"), errors="coerce")
+    dataset_max_game_date = pd.to_datetime(dataset_df["game_date"].max(), errors="coerce")
+    if pd.notna(metadata_trained_through):
+        metadata_trained_through = metadata_trained_through.normalize()
+    if pd.notna(dataset_max_game_date):
+        dataset_max_game_date = dataset_max_game_date.normalize()
+
+    metadata_lag_days = None if pd.isna(metadata_trained_through) else int((schedule_timestamp - metadata_trained_through).days)
+    dataset_lag_days = None if pd.isna(dataset_max_game_date) else int((schedule_timestamp - dataset_max_game_date).days)
+    metadata_stale = metadata_lag_days is None or metadata_lag_days > tolerance_days
+    dataset_stale = dataset_lag_days is None or dataset_lag_days > tolerance_days
+
+    return {
+        "schedule_date": str(schedule_timestamp.date()),
+        "metadata_trained_through": None if pd.isna(metadata_trained_through) else str(metadata_trained_through.date()),
+        "dataset_max_game_date": None if pd.isna(dataset_max_game_date) else str(dataset_max_game_date.date()),
+        "metadata_lag_days": metadata_lag_days,
+        "dataset_lag_days": dataset_lag_days,
+        "tolerance_days": int(tolerance_days),
+        "metadata_stale": bool(metadata_stale),
+        "dataset_stale": bool(dataset_stale),
+        "passed": bool(not metadata_stale and not dataset_stale),
+    }
+
+
+def assert_live_publish_freshness(
+    *,
+    schedule_date: str,
+    dataset_df: pd.DataFrame,
+    model_metadata: dict[str, Any],
+    tolerance_days: int = LIVE_PUBLISH_FRESHNESS_TOLERANCE_DAYS,
+) -> dict[str, Any]:
+    diagnostics = evaluate_live_publish_freshness(
+        schedule_date=schedule_date,
+        dataset_df=dataset_df,
+        model_metadata=model_metadata,
+        tolerance_days=tolerance_days,
+    )
+    print("\nLive publish freshness check")
+    print("-" * 60)
+    print(f"Schedule date                 : {diagnostics['schedule_date']}")
+    print(f"Model metadata trained_through: {diagnostics['metadata_trained_through']}")
+    print(f"Dataset max game_date         : {diagnostics['dataset_max_game_date']}")
+    print(f"Freshness tolerance (days)    : {diagnostics['tolerance_days']}")
+    print(f"Metadata lag days             : {diagnostics['metadata_lag_days']}")
+    print(f"Dataset lag days              : {diagnostics['dataset_lag_days']}")
+    print(f"Freshness status              : {'passed' if diagnostics['passed'] else 'failed'}")
+    if not diagnostics["passed"]:
+        raise RuntimeError(
+            "Live publish aborted because the training data is stale for "
+            f"schedule_date={diagnostics['schedule_date']}. "
+            f"model_metadata.trained_through={diagnostics['metadata_trained_through']} "
+            f"and dataset_max_game_date={diagnostics['dataset_max_game_date']} "
+            f"with tolerance_days={diagnostics['tolerance_days']}. "
+            "Run scripts/train_live_model.py before publishing."
+        )
+    return diagnostics
 
 
 def fetch_schedule_games(target_date: str) -> list[dict[str, Any]]:
@@ -343,6 +567,39 @@ def _summarize_hitter_pool(team_rows: pd.DataFrame) -> pd.DataFrame:
     )
 
 
+def _print_lineup_selection_diagnostics(
+    *,
+    team_code: str,
+    active_roster_count: int | None,
+    active_hitter_history_count: int,
+    recent_team_games_count: int,
+    eligible_count: int,
+    selected_count: int,
+    hitters_per_team: int,
+    excluded_rows: pd.DataFrame,
+) -> None:
+    print(f"\nLive hitter eligibility diagnostics [{team_code}]")
+    print("-" * 60)
+    if active_roster_count is None:
+        print("Active roster count           : n/a")
+    else:
+        print(f"Active roster count           : {active_roster_count}")
+    print(f"Active roster hitters w/history: {active_hitter_history_count}")
+    print(f"Recent team games considered  : {recent_team_games_count}")
+    print(f"Eligible after recent gate    : {eligible_count}")
+    print(f"Requested hitters / selected  : {hitters_per_team} / {selected_count}")
+    print(f"Underfilled team              : {'yes' if selected_count < hitters_per_team else 'no'}")
+    if excluded_rows.empty:
+        print("Excluded hitters              : none")
+        return
+    for row in excluded_rows.sort_values(["last_game_date", "batter_name"], ascending=[False, True]).itertuples(index=False):
+        last_game = "" if pd.isna(row.last_game_date) else pd.Timestamp(row.last_game_date).date()
+        print(
+            f"  excluded {row.batter_name} ({int(row.batter_id)}): "
+            f"inactive_recent_games (last_game_date={last_game})"
+        )
+
+
 def select_probable_lineup_hitters(
     dataset_df: pd.DataFrame,
     *,
@@ -352,34 +609,66 @@ def select_probable_lineup_hitters(
     lookback_days: int = 21,
     active_roster: pd.DataFrame | None = None,
 ) -> list[dict[str, Any]]:
-    historical = dataset_df[dataset_df["game_date"] < pd.Timestamp(target_date)].copy()
-    team_rows = historical[historical["team"] == team_code].copy()
-    if team_rows.empty:
+    target_timestamp = pd.Timestamp(target_date)
+    historical = dataset_df[dataset_df["game_date"] < target_timestamp].copy()
+    team_history = historical[historical["team"] == team_code].copy()
+    if team_history.empty:
         return []
+    recent_cutoff = target_timestamp - pd.Timedelta(days=lookback_days)
+    recent_team_rows = team_history[team_history["game_date"] >= recent_cutoff].copy()
+    recent_team_games = (
+        recent_team_rows[["game_date", "game_pk"]]
+        .drop_duplicates()
+        .sort_values(["game_date", "game_pk"], ascending=[False, False])
+        .head(3)
+    )
+    active_roster_count = None
     if active_roster is not None:
         active_roster = active_roster.copy()
         active_roster["batter_id"] = pd.to_numeric(active_roster["batter_id"], errors="coerce").astype("Int64")
-        team_rows["batter_id"] = pd.to_numeric(team_rows["batter_id"], errors="coerce").astype("Int64")
-        team_rows = team_rows[team_rows["batter_id"].isin(active_roster["batter_id"])].copy()
-        if team_rows.empty:
+        active_roster_count = int(active_roster["batter_id"].dropna().nunique())
+        team_history["batter_id"] = pd.to_numeric(team_history["batter_id"], errors="coerce").astype("Int64")
+        team_history = team_history[team_history["batter_id"].isin(active_roster["batter_id"])].copy()
+        if team_history.empty:
+            _print_lineup_selection_diagnostics(
+                team_code=team_code,
+                active_roster_count=active_roster_count,
+                active_hitter_history_count=0,
+                recent_team_games_count=int(len(recent_team_games)),
+                eligible_count=0,
+                selected_count=0,
+                hitters_per_team=hitters_per_team,
+                excluded_rows=pd.DataFrame(columns=["batter_id", "batter_name", "last_game_date"]),
+            )
             return []
 
-    recent_cutoff = pd.Timestamp(target_date) - pd.Timedelta(days=lookback_days)
-    recent_rows = team_rows[team_rows["game_date"] >= recent_cutoff].copy()
-    ranked_recent = _summarize_hitter_pool(recent_rows) if not recent_rows.empty else pd.DataFrame()
+    if recent_team_games.empty:
+        eligible_rows = team_history.iloc[0:0].copy()
+    else:
+        eligible_rows = team_history.merge(
+            recent_team_games,
+            on=["game_date", "game_pk"],
+            how="inner",
+        )
+    ranked_recent = _summarize_hitter_pool(eligible_rows) if not eligible_rows.empty else pd.DataFrame()
     selected = ranked_recent.head(hitters_per_team).to_dict(orient="records") if not ranked_recent.empty else []
-    selected_ids = {int(row["batter_id"]) for row in selected if pd.notna(row.get("batter_id"))}
 
-    if len(selected) < hitters_per_team:
-        fallback = _summarize_hitter_pool(team_rows)
-        for row in fallback.to_dict(orient="records"):
-            batter_id = int(row["batter_id"])
-            if batter_id in selected_ids:
-                continue
-            selected.append(row)
-            selected_ids.add(batter_id)
-            if len(selected) >= hitters_per_team:
-                break
+    ranked_full_history = _summarize_hitter_pool(team_history)
+    eligible_ids = set(ranked_recent["batter_id"].dropna().astype(int).tolist()) if not ranked_recent.empty else set()
+    excluded_rows = ranked_full_history[
+        ~ranked_full_history["batter_id"].dropna().astype(int).isin(eligible_ids)
+    ].copy()
+
+    _print_lineup_selection_diagnostics(
+        team_code=team_code,
+        active_roster_count=active_roster_count,
+        active_hitter_history_count=int(team_history["batter_id"].dropna().nunique()),
+        recent_team_games_count=int(len(recent_team_games)),
+        eligible_count=int(len(ranked_recent)),
+        selected_count=int(len(selected)),
+        hitters_per_team=hitters_per_team,
+        excluded_rows=excluded_rows,
+    )
     if active_roster is not None and selected:
         roster_name_lookup = {
             int(row.batter_id): str(row.batter_name)
@@ -480,9 +769,14 @@ def build_pitcher_history_table(dataset_df: pd.DataFrame) -> pd.DataFrame:
 
 def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFrame:
     rows: list[dict[str, Any]] = []
+    target_timestamp = pd.to_datetime(target_date, errors="coerce")
+    historical_target = pd.notna(target_timestamp) and target_timestamp.date() < eastern_today().date()
     for home_team in sorted({normalize_team_code(team) for team in home_teams if team}):
         park = PARKS.get(home_team)
         if park is None:
+            rows.append({"game_date": target_date, "home_team": home_team})
+            continue
+        if historical_target:
             rows.append({"game_date": target_date, "home_team": home_team})
             continue
         response = requests.get(
