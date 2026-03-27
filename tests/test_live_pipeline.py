@@ -1024,7 +1024,7 @@ class LivePipelineTests(unittest.TestCase):
     "predicted_hr_probability": 0.22,
     "predicted_hr_score": 99.1,
     "top_reason_1": "strong recent HR form",
-    "result": "Pending"
+    "result": "HR"
   }
 ]
                 """.strip(),
@@ -1044,8 +1044,20 @@ class LivePipelineTests(unittest.TestCase):
             with patch.object(sys, "argv", argv):
                 build_dashboard_artifacts.main()
 
-            payload = (output_dir / "dashboard.json").read_text(encoding="utf-8")
-            self.assertIn("Alpha", payload)
+            payload = json.loads((output_dir / "dashboard.json").read_text(encoding="utf-8"))
+            payload_text = json.dumps(payload)
+            self.assertIn("Alpha", payload_text)
+            self.assertEqual(
+                payload["data_note"],
+                "Public dashboard tracking begins on Opening Night, March 25, 2026. Trained on 2024 and 2025 season data.",
+            )
+            self.assertEqual(payload["model_family"], "2024-25 trained")
+            self.assertEqual(payload["refresh_schedule"]["runs"][0]["time_et"], "2:00 AM ET")
+            self.assertEqual(payload["refresh_schedule"]["runs"][0]["type"], "daily")
+            self.assertEqual(payload["refresh_schedule"]["runs"][1]["time_et"], "11:00 AM ET")
+            elite_row = payload["confidence_summary"][0]
+            self.assertEqual(elite_row["confidence_tier"], "elite")
+            self.assertNotIn("forward-only", payload_text)
             history_payload = history_path.read_text(encoding="utf-8")
             self.assertIn("2026-03-25", history_payload)
 

@@ -1,4 +1,4 @@
-"""Build Cloudflare Pages dashboard artifacts from forward-only published picks."""
+"""Build Cloudflare Pages dashboard artifacts from published public picks."""
 
 from __future__ import annotations
 
@@ -13,7 +13,43 @@ DEFAULT_TRACKING_START_DATE = "2026-03-25"
 DEFAULT_CURRENT_PICKS_PATH = Path("data/live/current_picks.json")
 DEFAULT_HISTORY_PATH = Path("data/live/pick_history.json")
 DEFAULT_OUTPUT_DIR = Path("cloudflare-app/data")
-DEFAULT_MODEL_FAMILY = "forward-only"
+DEFAULT_MODEL_FAMILY = "2024-25 trained"
+DEFAULT_DATA_NOTE = "Public dashboard tracking begins on Opening Night, March 25, 2026. Trained on 2024 and 2025 season data."
+DEFAULT_REFRESH_SCHEDULE = {
+    "timezone": "ET",
+    "runs": [
+        {
+            "time_et": "2:00 AM ET",
+            "type": "daily",
+            "label": "Daily refresh",
+            "description": "Refreshes data, retrains, settles yesterday, and rolls the slate forward.",
+        },
+        {
+            "time_et": "11:00 AM ET",
+            "type": "publish",
+            "label": "Publish",
+            "description": "Updates the public picks for the current slate.",
+        },
+        {
+            "time_et": "1:00 PM ET",
+            "type": "publish",
+            "label": "Publish",
+            "description": "Updates the public picks for the current slate.",
+        },
+        {
+            "time_et": "3:00 PM ET",
+            "type": "publish",
+            "label": "Publish",
+            "description": "Updates the public picks for the current slate.",
+        },
+        {
+            "time_et": "6:00 PM ET",
+            "type": "publish",
+            "label": "Publish",
+            "description": "Updates the public picks for the current slate.",
+        },
+    ],
+}
 
 DISPLAY_COLUMNS = [
     "pick_id",
@@ -99,7 +135,7 @@ def history_sort_key(row: dict[str, Any]) -> tuple[str, float, int, str]:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--current-picks-path", default=str(DEFAULT_CURRENT_PICKS_PATH), help="Path to the latest published picks JSON.")
-    parser.add_argument("--history-path", default=str(DEFAULT_HISTORY_PATH), help="Path to the forward-only pick ledger JSON.")
+    parser.add_argument("--history-path", default=str(DEFAULT_HISTORY_PATH), help="Path to the public pick ledger JSON.")
     parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR), help="Directory where dashboard JSON will be written.")
     parser.add_argument("--tracking-start-date", default=DEFAULT_TRACKING_START_DATE, help="Only picks on or after this date are published.")
     parser.add_argument("--latest-count", type=int, default=12, help="Number of latest picks shown on the landing page.")
@@ -334,6 +370,13 @@ def to_records(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return [{column: serialize_value(row.get(column)) for column in DISPLAY_COLUMNS} for row in rows]
 
 
+def build_refresh_schedule() -> dict[str, Any]:
+    return {
+        "timezone": str(DEFAULT_REFRESH_SCHEDULE["timezone"]),
+        "runs": [dict(run) for run in DEFAULT_REFRESH_SCHEDULE["runs"]],
+    }
+
+
 def build_dashboard_artifacts(
     *,
     current_picks_path: Path = DEFAULT_CURRENT_PICKS_PATH,
@@ -380,10 +423,8 @@ def build_dashboard_artifacts(
         "tracking_start_date": tracking_start_date,
         "model_family": DEFAULT_MODEL_FAMILY,
         "latest_available_date": latest_game_date,
-        "data_note": (
-            "Public dashboard tracking begins on March 25, 2026. "
-            "Historical 2024 and 2025 picks are not published here."
-        ),
+        "data_note": DEFAULT_DATA_NOTE,
+        "refresh_schedule": build_refresh_schedule(),
         "overview": {
             "latest_slate_size": len(latest_picks),
             "tracked_dates": len({row["game_date"] for row in merged_history}),
@@ -422,7 +463,7 @@ def main() -> None:
         history_per_date=args.history_per_date,
         min_player_picks=args.min_player_picks,
     )
-    print(f"Wrote forward-only dashboard artifact to {output_path}")
+    print(f"Wrote dashboard artifact to {output_path}")
 
 
 if __name__ == "__main__":

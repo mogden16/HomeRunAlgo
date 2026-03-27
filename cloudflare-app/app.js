@@ -3,6 +3,9 @@ const state = {
   filteredHistory: [],
 };
 
+const DEFAULT_LATEST_PICKS_EMPTY_MESSAGE =
+  "Today's public picks have not been posted yet. Next publish windows are 11:00 AM, 1:00 PM, 3:00 PM, and 6:00 PM ET.";
+
 function formatPercent(value, digits = 1) {
   if (value === null || value === undefined || Number.isNaN(Number(value))) {
     return "-";
@@ -64,12 +67,44 @@ function resultClass(value) {
   return "result-miss";
 }
 
-function renderOverviewCards(overview) {
+function findConfidenceSummary(rows, tier) {
+  return (rows || []).find((row) => String(row.confidence_tier || "").toLowerCase() === tier) || null;
+}
+
+function formatWholeNumber(value) {
+  if (value === null || value === undefined || Number.isNaN(Number(value))) {
+    return "-";
+  }
+  return Number(value).toLocaleString();
+}
+
+function buildRefreshScheduleSummary(schedule) {
+  const runs = Array.isArray(schedule?.runs) ? schedule.runs : [];
+  const dailyRun = runs.find((run) => run.type === "daily");
+  const publishRuns = runs.filter((run) => run.type === "publish");
+  const publishTimes = publishRuns.map((run) => run.time_et).filter(Boolean);
+
+  if (!dailyRun && !publishTimes.length) {
+    return "Schedule unavailable.";
+  }
+
+  const publishText = publishTimes.length ? `Publish runs at ${publishTimes.join(", ")}.` : "";
+  const dailyText = dailyRun?.time_et ? `Daily refresh at ${dailyRun.time_et}.` : "";
+  return [dailyText, publishText].filter(Boolean).join(" ");
+}
+
+function renderOverviewCards(overview, confidenceSummary, refreshSchedule) {
+  const eliteSummary = findConfidenceSummary(confidenceSummary, "elite");
+  const elitePicks = eliteSummary?.picks ?? null;
+  const eliteHomers = eliteSummary?.homers ?? null;
   const cards = [
     {
-      label: "Tracked hit rate",
-      value: formatPercent(overview.tracked_hit_rate),
-      subtext: `${overview.tracked_homers} home runs across ${overview.settled_picks.toLocaleString()} settled picks.`,
+      label: "Elite hit rate",
+      value: formatPercent(eliteSummary?.hit_rate),
+      subtext:
+        elitePicks && eliteHomers !== null
+          ? `${formatWholeNumber(eliteHomers)} home runs across ${formatWholeNumber(elitePicks)} elite picks.`
+          : "No settled elite picks yet.",
     },
     {
       label: "Published picks",
@@ -92,9 +127,9 @@ function renderOverviewCards(overview) {
       subtext: "Current published picks for the latest tracked date.",
     },
     {
-      label: "Tracking mode",
-      value: "Forward only",
-      subtext: "Public performance starts on March 25, 2026 and excludes 2024 and 2025 picks.",
+      label: "Refresh schedule",
+      value: `${Array.isArray(refreshSchedule?.runs) ? refreshSchedule.runs.length : 0} runs/day`,
+      subtext: buildRefreshScheduleSummary(refreshSchedule),
     },
   ];
 
@@ -111,10 +146,10 @@ function renderOverviewCards(overview) {
     .join("");
 }
 
-function renderSimpleTable(targetId, columns, rows) {
+function renderSimpleTable(targetId, columns, rows, emptyMessage = "No rows available.") {
   const target = document.getElementById(targetId);
   if (!rows.length) {
-    target.innerHTML = '<p class="empty-state">No rows available.</p>';
+    target.innerHTML = `<p class="empty-state">${escapeHtml(emptyMessage)}</p>`;
     return;
   }
 
@@ -161,7 +196,7 @@ function renderConfidenceTable(rows) {
   );
 }
 
-function renderPicksTable(targetId, rows) {
+function renderPicksTable(targetId, rows, emptyMessage) {
   renderSimpleTable(
     targetId,
     [
@@ -198,6 +233,7 @@ function renderPicksTable(targetId, rows) {
       },
     ],
     rows,
+    emptyMessage,
   );
 }
 
@@ -238,6 +274,35 @@ function renderSuccesses(rows) {
   );
 }
 
+function renderRefreshSchedule(schedule) {
+  const target = document.getElementById("refresh-schedule");
+  const runs = Array.isArray(schedule?.runs) ? schedule.runs : [];
+
+  if (!runs.length) {
+    target.innerHTML = "";
+    return;
+  }
+
+  target.innerHTML = `
+    <p class="panel-label">Refresh schedule</p>
+    <div class="schedule-list">
+      ${runs
+        .map(
+          (run) => `
+            <div class="schedule-item">
+              <p class="schedule-time">${escapeHtml(run.time_et)}</p>
+              <p class="schedule-copy">
+                <strong>${escapeHtml(run.label)}</strong>
+                <span>${escapeHtml(run.description || "")}</span>
+              </p>
+            </div>
+          `,
+        )
+        .join("")}
+    </div>
+  `;
+}
+
 function applyHistoryFilters() {
   if (!state.dashboard) {
     return;
@@ -262,7 +327,7 @@ function applyHistoryFilters() {
     return matchesSearch && matchesTier;
   });
 
-  renderPicksTable("history-table", state.filteredHistory);
+  renderPicksTable("history-table", state.filteredHistory, "No published picks match those filters.");
 }
 
 async function loadDashboard() {
@@ -277,14 +342,15 @@ async function loadDashboard() {
   document.getElementById("latest-date").textContent = formatDate(state.dashboard.latest_available_date);
   document.getElementById("generated-at").textContent = `Refreshed ${formatDateTime(state.dashboard.generated_at)}`;
   document.getElementById("model-family").textContent = state.dashboard.model_family;
-  document.getElementById("usable-status").textContent = `Tracking since ${state.dashboard.tracking_start_date}`;
+  document.getElementById("usable-status").textContent = `Tracking since ${formatDate(state.dashboard.tracking_start_date)}`;
 
-  renderOverviewCards(state.dashboard.overview);
+  renderOverviewCards(state.dashboard.overview, state.dashboard.confidence_summary, state.dashboard.refresh_schedule);
   renderTopKTable(state.dashboard.top_k_summary);
   renderConfidenceTable(state.dashboard.confidence_summary);
-  renderPicksTable("latest-picks-table", state.dashboard.latest_picks);
+  renderPicksTable("latest-picks-table", state.dashboard.latest_picks, DEFAULT_LATEST_PICKS_EMPTY_MESSAGE);
   renderLeaderboard(state.dashboard.player_leaderboard);
   renderSuccesses(state.dashboard.recent_successes);
+  renderRefreshSchedule(state.dashboard.refresh_schedule);
   applyHistoryFilters();
 }
 

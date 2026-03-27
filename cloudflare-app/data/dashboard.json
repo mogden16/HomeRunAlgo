@@ -1,9 +1,44 @@
 {
-  "generated_at": "2026-03-27T12:30:47.239170+00:00",
+  "generated_at": "2026-03-27T14:23:53.701391+00:00",
   "tracking_start_date": "2026-03-25",
-  "model_family": "forward-only",
+  "model_family": "2024-25 trained",
   "latest_available_date": "2026-03-25",
-  "data_note": "Public dashboard tracking begins on March 25, 2026. Historical 2024 and 2025 picks are not published here.",
+  "data_note": "Public dashboard tracking begins on Opening Night, March 25, 2026. Trained on 2024 and 2025 season data.",
+  "refresh_schedule": {
+    "timezone": "ET",
+    "runs": [
+      {
+        "time_et": "2:00 AM ET",
+        "type": "daily",
+        "label": "Daily refresh",
+        "description": "Refreshes data, retrains, settles yesterday, and rolls the slate forward."
+      },
+      {
+        "time_et": "11:00 AM ET",
+        "type": "publish",
+        "label": "Publish",
+        "description": "Updates the public picks for the current slate."
+      },
+      {
+        "time_et": "1:00 PM ET",
+        "type": "publish",
+        "label": "Publish",
+        "description": "Updates the public picks for the current slate."
+      },
+      {
+        "time_et": "3:00 PM ET",
+        "type": "publish",
+        "label": "Publish",
+        "description": "Updates the public picks for the current slate."
+      },
+      {
+        "time_et": "6:00 PM ET",
+        "type": "publish",
+        "label": "Publish",
+        "description": "Updates the public picks for the current slate."
+      }
+    ]
+  },
   "overview": {
     "latest_slate_size": 0,
     "tracked_dates": 2,

@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Home Run Board</title>
-  <meta name="description" content="Latest holdout picks, historical picks, and backtest performance for the HomeRunAlgo project.">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home Run Board</title>
+    <meta name="description" content="Public HomeRunAlgo picks, tracked results, and refresh timing for the current MLB slate.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
     <header class="hero">
       <div class="hero-copy">
         <p class="eyebrow">HomeRunAlgo Dashboard</p>
-        <h1>Top picks, past picks, and what actually hit.</h1>
+        <h1>Public picks, tracked results, and what actually hit.</h1>
         <p class="hero-text" id="data-note">Loading dashboard data...</p>
       </div>
       <aside class="hero-panel">
@@ -26,6 +26,7 @@
           <span class="pill" id="model-family">-</span>
           <span class="pill" id="usable-status">-</span>
         </div>
+        <div class="schedule-block" id="refresh-schedule"></div>
       </aside>
     </header>
 
@@ -58,7 +59,7 @@
         <div class="section-head">
           <div>
             <p class="eyebrow">Latest picks</p>
-            <h2>Best-ranked hitters from the latest available date</h2>
+            <h2>Best-ranked hitters from the latest published slate</h2>
           </div>
         </div>
         <div class="table-wrap" id="latest-picks-table"></div>
@@ -78,8 +79,8 @@
         <article class="panel">
           <div class="section-head">
             <div>
-              <p class="eyebrow">Recent wins</p>
-              <h2>Successful historical picks</h2>
+              <p class="eyebrow">Tracked wins</p>
+              <h2>Published picks that homered</h2>
             </div>
           </div>
           <div class="table-wrap" id="success-table"></div>
@@ -89,8 +90,8 @@
       <section class="panel">
         <div class="section-head history-head">
           <div>
-            <p class="eyebrow">Archive</p>
-            <h2>Historical top picks</h2>
+            <p class="eyebrow">Public archive</p>
+            <h2>Public picks since Mar 25, 2026</h2>
           </div>
           <div class="filters">
             <input id="history-search" type="search" placeholder="Filter by player, team, or pitcher">
