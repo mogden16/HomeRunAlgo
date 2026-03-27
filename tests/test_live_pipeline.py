@@ -24,6 +24,7 @@ from scripts import publish_live_picks
 from scripts import run_daily_live_refresh
 from scripts.live_pipeline import (
     assert_live_publish_freshness,
+    build_live_candidate_frame,
     build_live_feature_frame,
     build_pick_id,
     evaluate_live_publish_freshness,
@@ -118,6 +119,43 @@ class LivePipelineTests(unittest.TestCase):
         )
         self.assertEqual([row["batter_id"] for row in hitters], [10, 12])
         self.assertEqual([row["batter_name"] for row in hitters], ["Alpha Current", "Charlie Current"])
+
+    def test_select_probable_lineup_hitters_filters_to_projected_lineup(self) -> None:
+        dataset = pd.DataFrame(
+            [
+                {"game_pk": 1, "game_date": "2026-03-20", "batter_id": 10, "batter_name": "Alpha Old", "team": "NYY", "pa_count": 5, "bat_side": "R", "hr_per_pa_last_10d": 0.2, "hr_per_pa_last_30d": 0.15},
+                {"game_pk": 2, "game_date": "2026-03-21", "batter_id": 11, "batter_name": "Bravo Old", "team": "NYY", "pa_count": 4, "bat_side": "L", "hr_per_pa_last_10d": 0.1, "hr_per_pa_last_30d": 0.08},
+                {"game_pk": 3, "game_date": "2026-03-22", "batter_id": 12, "batter_name": "Charlie Old", "team": "NYY", "pa_count": 4, "bat_side": "R", "hr_per_pa_last_10d": 0.3, "hr_per_pa_last_30d": 0.12},
+            ]
+        )
+        dataset["game_date"] = pd.to_datetime(dataset["game_date"])
+        active_roster = pd.DataFrame(
+            [
+                {"batter_id": 10, "batter_name": "Alpha Current"},
+                {"batter_id": 11, "batter_name": "Bravo Current"},
+                {"batter_id": 12, "batter_name": "Charlie Current"},
+            ]
+        )
+        projected_lineup = pd.DataFrame(
+            [
+                {"batter_id": 10, "batter_name": "Alpha Projected"},
+                {"batter_id": 12, "batter_name": "Charlie Projected"},
+            ]
+        )
+        captured = io.StringIO()
+        with redirect_stdout(captured):
+            hitters = select_probable_lineup_hitters(
+                dataset,
+                team_code="NYY",
+                target_date="2026-03-25",
+                hitters_per_team=3,
+                lookback_days=10,
+                projected_lineup=projected_lineup,
+                active_roster=active_roster,
+            )
+        self.assertEqual([row["batter_id"] for row in hitters], [10, 12])
+        self.assertEqual([row["batter_name"] for row in hitters], ["Alpha Projected", "Charlie Projected"])
+        self.assertIn("Projected lineup count       : 2", captured.getvalue())
 
     def test_select_probable_lineup_hitters_excludes_active_roster_hitter_without_recent_team_game(self) -> None:
         dataset = pd.DataFrame(
@@ -259,6 +297,66 @@ class LivePipelineTests(unittest.TestCase):
             active_roster=active_roster,
         )
         self.assertEqual([row["batter_id"] for row in hitters], [10, 20])
+
+    def test_build_live_candidate_frame_uses_projected_lineups_not_full_roster(self) -> None:
+        dataset = pd.DataFrame(
+            [
+                {"game_pk": 1, "game_date": "2026-03-20", "batter_id": 10, "batter_name": "Alpha", "team": "NYY", "pa_count": 5, "bat_side": "R", "hr_per_pa_last_10d": 0.2, "hr_per_pa_last_30d": 0.15},
+                {"game_pk": 2, "game_date": "2026-03-21", "batter_id": 11, "batter_name": "Bench Bat", "team": "NYY", "pa_count": 4, "bat_side": "L", "hr_per_pa_last_10d": 0.1, "hr_per_pa_last_30d": 0.08},
+                {"game_pk": 3, "game_date": "2026-03-22", "batter_id": 12, "batter_name": "Charlie", "team": "NYY", "pa_count": 4, "bat_side": "R", "hr_per_pa_last_10d": 0.3, "hr_per_pa_last_30d": 0.12},
+            ]
+        )
+        dataset["game_date"] = pd.to_datetime(dataset["game_date"])
+        schedule_games = [
+            {
+                "game_pk": 999,
+                "home_team": "BOS",
+                "away_team": "NYY",
+                "home_pitcher_id": 200,
+                "home_pitcher_name": "Home Pitcher",
+                "away_pitcher_id": 201,
+                "away_pitcher_name": "Away Pitcher",
+                "home_projected_lineup": [],
+                "away_projected_lineup": [
+                    {"batter_id": 10, "batter_name": "Alpha Projected"},
+                    {"batter_id": 12, "batter_name": "Charlie Projected"},
+                ],
+            }
+        ]
+        active_roster_map = {
+            "NYY": pd.DataFrame(
+                [
+                    {"batter_id": 10, "batter_name": "Alpha"},
+                    {"batter_id": 11, "batter_name": "Bench Bat"},
+                    {"batter_id": 12, "batter_name": "Charlie"},
+                ]
+            )
+        }
+        with patch(
+            "scripts.live_pipeline.fetch_forecast_weather",
+            return_value=pd.DataFrame(
+                [
+                    {
+                        "game_date": "2026-03-26",
+                        "home_team": "BOS",
+                        "temperature_f": 60.0,
+                        "wind_speed_mph": 8.0,
+                        "humidity_pct": 45.0,
+                    }
+                ]
+            ),
+        ):
+            with patch("scripts.live_pipeline.latest_pitcher_hand", return_value="R"):
+                with patch("scripts.live_pipeline.fetch_player_handedness", return_value="R"):
+                    frame = build_live_candidate_frame(
+                        dataset,
+                        schedule_games,
+                        target_date="2026-03-26",
+                        hitters_per_team=3,
+                        active_roster_map=active_roster_map,
+                    )
+        self.assertEqual(frame["batter_id"].tolist(), [10, 12])
+        self.assertEqual(frame["batter_name"].tolist(), ["Alpha Projected", "Charlie Projected"])
 
     def test_settle_pick_records_marks_hits_and_non_hits(self) -> None:
         picks = [

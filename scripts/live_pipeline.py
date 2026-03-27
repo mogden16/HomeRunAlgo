@@ -688,9 +688,27 @@ def assert_live_publish_freshness(
 
 
 def fetch_schedule_games(target_date: str) -> list[dict[str, Any]]:
+    def _projected_lineup_rows(lineups_payload: dict[str, Any], side: str) -> list[dict[str, Any]]:
+        side_key = f"{side}Players"
+        players = lineups_payload.get(side_key)
+        if not isinstance(players, list):
+            return []
+        rows: list[dict[str, Any]] = []
+        for player in players:
+            player_id = player.get("id")
+            if not player_id:
+                continue
+            rows.append(
+                {
+                    "batter_id": int(player_id),
+                    "batter_name": str(player.get("fullName") or ""),
+                }
+            )
+        return rows
+
     response = requests.get(
         MLB_SCHEDULE_URL,
-        params={"sportId": 1, "date": target_date, "hydrate": "probablePitcher,team"},
+        params={"sportId": 1, "date": target_date, "hydrate": "probablePitcher,team,lineups"},
         timeout=60,
     )
     response.raise_for_status()
@@ -700,6 +718,7 @@ def fetch_schedule_games(target_date: str) -> list[dict[str, Any]]:
         for game in date_block.get("games", []):
             away = game.get("teams", {}).get("away", {})
             home = game.get("teams", {}).get("home", {})
+            lineups_payload = game.get("lineups", {}) if isinstance(game.get("lineups"), dict) else {}
             games.append(
                 {
                     "game_pk": int(game["gamePk"]),
@@ -716,6 +735,8 @@ def fetch_schedule_games(target_date: str) -> list[dict[str, Any]]:
                     "away_pitcher_id": int(away["probablePitcher"]["id"]) if away.get("probablePitcher", {}).get("id") else None,
                     "home_pitcher_name": str(home.get("probablePitcher", {}).get("fullName") or ""),
                     "away_pitcher_name": str(away.get("probablePitcher", {}).get("fullName") or ""),
+                    "home_projected_lineup": _projected_lineup_rows(lineups_payload, "home"),
+                    "away_projected_lineup": _projected_lineup_rows(lineups_payload, "away"),
                 }
             )
     return games
@@ -819,6 +840,7 @@ def _print_lineup_selection_diagnostics(
     *,
     team_code: str,
     active_roster_count: int | None,
+    projected_lineup_count: int | None,
     active_hitter_history_count: int,
     recent_team_games_count: int,
     eligibility_mode: str,
@@ -835,6 +857,10 @@ def _print_lineup_selection_diagnostics(
         print("Active roster count           : n/a")
     else:
         print(f"Active roster count           : {active_roster_count}")
+    if projected_lineup_count is None:
+        print("Projected lineup count       : n/a")
+    else:
+        print(f"Projected lineup count       : {projected_lineup_count}")
     print(f"Active roster hitters w/history: {active_hitter_history_count}")
     print(f"Eligibility mode             : {eligibility_mode}")
     if last_completed_team_game is None or pd.isna(last_completed_team_game):
@@ -867,6 +893,7 @@ def select_probable_lineup_hitters(
     target_date: str,
     hitters_per_team: int = 9,
     lookback_days: int = 21,
+    projected_lineup: pd.DataFrame | None = None,
     active_roster: pd.DataFrame | None = None,
 ) -> list[dict[str, Any]]:
     target_timestamp = pd.Timestamp(target_date)
@@ -902,16 +929,39 @@ def select_probable_lineup_hitters(
         else:
             eligibility_mode = "stale_team_history"
     active_roster_count = None
+    projected_lineup_count = None
+    team_history["batter_id"] = pd.to_numeric(team_history["batter_id"], errors="coerce").astype("Int64")
+    if projected_lineup is not None:
+        projected_lineup = projected_lineup.copy()
+        projected_lineup["batter_id"] = pd.to_numeric(projected_lineup["batter_id"], errors="coerce").astype("Int64")
+        projected_lineup_count = int(projected_lineup["batter_id"].dropna().nunique())
+        team_history = team_history[team_history["batter_id"].isin(projected_lineup["batter_id"])].copy()
+        if team_history.empty:
+            _print_lineup_selection_diagnostics(
+                team_code=team_code,
+                active_roster_count=active_roster_count,
+                projected_lineup_count=projected_lineup_count,
+                active_hitter_history_count=0,
+                recent_team_games_count=int(len(recent_team_games)),
+                eligibility_mode=eligibility_mode,
+                last_completed_team_game=last_completed_team_game,
+                days_since_last_team_game=days_since_last_team_game,
+                eligible_count=0,
+                selected_count=0,
+                hitters_per_team=hitters_per_team,
+                excluded_rows=pd.DataFrame(columns=["batter_id", "batter_name", "last_game_date"]),
+            )
+            return []
     if active_roster is not None:
         active_roster = active_roster.copy()
         active_roster["batter_id"] = pd.to_numeric(active_roster["batter_id"], errors="coerce").astype("Int64")
         active_roster_count = int(active_roster["batter_id"].dropna().nunique())
-        team_history["batter_id"] = pd.to_numeric(team_history["batter_id"], errors="coerce").astype("Int64")
         team_history = team_history[team_history["batter_id"].isin(active_roster["batter_id"])].copy()
         if team_history.empty:
             _print_lineup_selection_diagnostics(
                 team_code=team_code,
                 active_roster_count=active_roster_count,
+                projected_lineup_count=projected_lineup_count,
                 active_hitter_history_count=0,
                 recent_team_games_count=int(len(recent_team_games)),
                 eligibility_mode=eligibility_mode,
@@ -944,6 +994,7 @@ def select_probable_lineup_hitters(
     _print_lineup_selection_diagnostics(
         team_code=team_code,
         active_roster_count=active_roster_count,
+        projected_lineup_count=projected_lineup_count,
         active_hitter_history_count=int(team_history["batter_id"].dropna().nunique()),
         recent_team_games_count=int(len(recent_team_games)),
         eligibility_mode=eligibility_mode,
@@ -954,10 +1005,11 @@ def select_probable_lineup_hitters(
         hitters_per_team=hitters_per_team,
         excluded_rows=excluded_rows,
     )
-    if active_roster is not None and selected:
+    selected_name_source = projected_lineup if projected_lineup is not None else active_roster
+    if selected_name_source is not None and selected:
         roster_name_lookup = {
             int(row.batter_id): str(row.batter_name)
-            for row in active_roster[["batter_id", "batter_name"]].drop_duplicates().itertuples(index=False)
+            for row in selected_name_source[["batter_id", "batter_name"]].drop_duplicates().itertuples(index=False)
             if pd.notna(row.batter_id)
         }
         for row in selected:
@@ -1122,6 +1174,10 @@ def build_live_candidate_frame(
                 "is_home": 0,
                 "pitcher_id": game["home_pitcher_id"],
                 "pitcher_name": game["home_pitcher_name"],
+                "projected_lineup": pd.DataFrame(
+                    game.get("away_projected_lineup") or [],
+                    columns=["batter_id", "batter_name"],
+                ),
             },
             {
                 "batting_team": game["home_team"],
@@ -1129,6 +1185,10 @@ def build_live_candidate_frame(
                 "is_home": 1,
                 "pitcher_id": game["away_pitcher_id"],
                 "pitcher_name": game["away_pitcher_name"],
+                "projected_lineup": pd.DataFrame(
+                    game.get("home_projected_lineup") or [],
+                    columns=["batter_id", "batter_name"],
+                ),
             },
         ]
         for spec in matchup_specs:
@@ -1137,6 +1197,7 @@ def build_live_candidate_frame(
                 team_code=spec["batting_team"],
                 target_date=target_date,
                 hitters_per_team=hitters_per_team,
+                projected_lineup=spec["projected_lineup"],
                 active_roster=active_roster_map.get(spec["batting_team"]) if active_roster_map else None,
             )
             pitcher_hand = latest_pitcher_hand(dataset_df, spec["pitcher_id"]) or fetch_player_handedness(spec["pitcher_id"])
