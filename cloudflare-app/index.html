@@ -17,6 +17,7 @@
         <p class="eyebrow">HomeRunAlgo Dashboard</p>
         <h1>Public picks, tracked results, and what actually hit.</h1>
         <p class="hero-text" id="data-note">Loading dashboard data...</p>
+        <p class="hero-text hero-schedule" id="refresh-schedule-inline"></p>
       </div>
       <aside class="hero-panel">
         <p class="panel-label">Latest available slate</p>
@@ -26,7 +27,6 @@
           <span class="pill" id="model-family">-</span>
           <span class="pill" id="usable-status">-</span>
         </div>
-        <div class="schedule-block" id="refresh-schedule"></div>
       </aside>
     </header>
 
@@ -58,8 +58,8 @@
       <section class="panel">
         <div class="section-head">
           <div>
-            <p class="eyebrow">Latest picks</p>
-            <h2>Best-ranked hitters from the latest published slate</h2>
+            <p class="eyebrow">Today</p>
+            <h2>Picks for Today</h2>
           </div>
         </div>
         <div class="table-wrap" id="latest-picks-table"></div>
@@ -90,8 +90,8 @@
       <section class="panel">
         <div class="section-head history-head">
           <div>
-            <p class="eyebrow">Public archive</p>
-            <h2>Public picks since Mar 25, 2026</h2>
+            <p class="eyebrow">History</p>
+            <h2>Historical Picks since Mar 25, 2026</h2>
           </div>
           <div class="filters">
             <input id="history-search" type="search" placeholder="Filter by player, team, or pitcher">
@@ -104,7 +104,7 @@
             </select>
           </div>
         </div>
-        <div class="table-wrap" id="history-table"></div>
+        <div class="table-wrap history-scroll" id="history-table"></div>
       </section>
     </main>
   </div>

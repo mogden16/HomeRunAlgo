@@ -406,7 +406,10 @@ def build_dashboard_artifacts(
 
     latest_game_date = latest_available_date_override or max((row["game_date"] for row in current_rows), default=tracking_start_date)
     latest_picks = current_rows[:latest_count]
-    dashboard_history = list(reversed(top_k_by_date(merged_history, history_per_date)))
+    dashboard_history = sorted(
+        merged_history,
+        key=lambda row: (-int(str(row["game_date"]).replace("-", "")), -score_sort_value(row), int(row["rank"]), str(row["batter_name"])),
+    )
     settled_rows = [row for row in merged_history if row["actual_hit_hr"] is not None]
     recent_successes = [
         row
@@ -437,12 +440,7 @@ def build_dashboard_artifacts(
         "top_k_summary": [summarize_top_k(settled_rows, k) for k in (1, 3, 5, history_per_date)],
         "confidence_summary": summarize_confidence(settled_rows),
         "latest_picks": to_records(latest_picks),
-        "history": to_records(
-            sorted(
-                dashboard_history,
-                key=lambda row: (-int(str(row["game_date"]).replace("-", "")), -score_sort_value(row), int(row["rank"]), str(row["batter_name"])),
-            )
-        ),
+        "history": to_records(dashboard_history),
         "player_leaderboard": build_player_leaderboard(settled_rows, min_player_picks),
         "recent_successes": to_records(recent_successes),
     }

@@ -1057,9 +1057,52 @@ class LivePipelineTests(unittest.TestCase):
             self.assertEqual(payload["refresh_schedule"]["runs"][1]["time_et"], "11:00 AM ET")
             elite_row = payload["confidence_summary"][0]
             self.assertEqual(elite_row["confidence_tier"], "elite")
+            self.assertEqual(len(payload["history"]), 1)
+            self.assertEqual(payload["history"][0]["batter_name"], "Alpha")
             self.assertNotIn("forward-only", payload_text)
             history_payload = history_path.read_text(encoding="utf-8")
             self.assertIn("2026-03-25", history_payload)
+
+    def test_dashboard_builder_history_is_not_truncated_per_date(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+            output_dir = base / "out"
+            current_path.write_text("[]", encoding="utf-8")
+            history_rows = [
+                {
+                    "pick_id": f"pick-{index}",
+                    "game_pk": 1000 + index,
+                    "game_date": "2026-03-25",
+                    "rank": index + 1,
+                    "batter_id": 10 + index,
+                    "batter_name": f"Player {index + 1}",
+                    "team": "NYY",
+                    "opponent_team": "BOS",
+                    "pitcher_id": 20,
+                    "pitcher_name": "Pitcher",
+                    "confidence_tier": "watch",
+                    "predicted_hr_probability": 0.10,
+                    "predicted_hr_score": 99.0 - index,
+                    "top_reason_1": "reason",
+                    "result_label": "No HR",
+                    "actual_hit_hr": 0,
+                }
+                for index in range(12)
+            ]
+            history_path.write_text(json.dumps(history_rows), encoding="utf-8")
+
+            build_dashboard_artifacts.build_dashboard_artifacts(
+                current_picks_path=current_path,
+                history_path=history_path,
+                output_dir=output_dir,
+            )
+
+            payload = json.loads((output_dir / "dashboard.json").read_text(encoding="utf-8"))
+            self.assertEqual(len(payload["history"]), 12)
+            self.assertEqual(payload["history"][0]["batter_name"], "Player 1")
+            self.assertEqual(payload["history"][-1]["batter_name"], "Player 12")
 
     def test_dashboard_builder_replaces_pending_same_day_rows(self) -> None:
         existing_rows = [

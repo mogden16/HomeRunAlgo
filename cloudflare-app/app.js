@@ -93,6 +93,26 @@ function buildRefreshScheduleSummary(schedule) {
   return [dailyText, publishText].filter(Boolean).join(" ");
 }
 
+function buildRefreshScheduleInlineText(schedule) {
+  const runs = Array.isArray(schedule?.runs) ? schedule.runs : [];
+  const dailyRun = runs.find((run) => run.type === "daily");
+  const publishRuns = runs.filter((run) => run.type === "publish");
+  const publishTimes = publishRuns.map((run) => run.time_et).filter(Boolean);
+
+  if (!dailyRun && !publishTimes.length) {
+    return "";
+  }
+
+  const parts = ["Refresh schedule:"];
+  if (dailyRun?.time_et) {
+    parts.push(`${dailyRun.time_et} daily refresh.`);
+  }
+  if (publishTimes.length) {
+    parts.push(`Publish runs at ${publishTimes.join(", ")}.`);
+  }
+  return parts.join(" ");
+}
+
 function renderOverviewCards(overview, confidenceSummary, refreshSchedule) {
   const eliteSummary = findConfidenceSummary(confidenceSummary, "elite");
   const elitePicks = eliteSummary?.picks ?? null;
@@ -274,33 +294,9 @@ function renderSuccesses(rows) {
   );
 }
 
-function renderRefreshSchedule(schedule) {
-  const target = document.getElementById("refresh-schedule");
-  const runs = Array.isArray(schedule?.runs) ? schedule.runs : [];
-
-  if (!runs.length) {
-    target.innerHTML = "";
-    return;
-  }
-
-  target.innerHTML = `
-    <p class="panel-label">Refresh schedule</p>
-    <div class="schedule-list">
-      ${runs
-        .map(
-          (run) => `
-            <div class="schedule-item">
-              <p class="schedule-time">${escapeHtml(run.time_et)}</p>
-              <p class="schedule-copy">
-                <strong>${escapeHtml(run.label)}</strong>
-                <span>${escapeHtml(run.description || "")}</span>
-              </p>
-            </div>
-          `,
-        )
-        .join("")}
-    </div>
-  `;
+function renderRefreshScheduleInline(schedule) {
+  const target = document.getElementById("refresh-schedule-inline");
+  target.textContent = buildRefreshScheduleInlineText(schedule);
 }
 
 function applyHistoryFilters() {
@@ -350,7 +346,7 @@ async function loadDashboard() {
   renderPicksTable("latest-picks-table", state.dashboard.latest_picks, DEFAULT_LATEST_PICKS_EMPTY_MESSAGE);
   renderLeaderboard(state.dashboard.player_leaderboard);
   renderSuccesses(state.dashboard.recent_successes);
-  renderRefreshSchedule(state.dashboard.refresh_schedule);
+  renderRefreshScheduleInline(state.dashboard.refresh_schedule);
   applyHistoryFilters();
 }
 
