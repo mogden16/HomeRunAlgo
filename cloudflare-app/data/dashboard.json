@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-27T00:19:19.225377+00:00",
+  "generated_at": "2026-03-27T12:06:51.102929+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "forward-only",
   "latest_available_date": "2026-03-26",
@@ -8,59 +8,66 @@
     "latest_slate_size": 12,
     "tracked_dates": 2,
     "tracked_picks": 32,
-    "settled_picks": 12,
-    "tracked_homers": 0,
-    "tracked_hit_rate": 0.0,
-    "open_picks": 20
+    "settled_picks": 32,
+    "tracked_homers": 4,
+    "tracked_hit_rate": 0.125,
+    "open_picks": 0
   },
   "top_k_summary": [
     {
       "top_k": 1,
-      "dates": 1,
-      "picks": 1,
-      "homers": 0,
-      "hit_rate": 0.0,
+      "dates": 2,
+      "picks": 2,
+      "homers": 1,
+      "hit_rate": 0.5,
       "avg_score": 100.0
     },
     {
       "top_k": 3,
-      "dates": 1,
-      "picks": 3,
-      "homers": 0,
-      "hit_rate": 0.0,
-      "avg_score": 91.666667
+      "dates": 2,
+      "picks": 6,
+      "homers": 2,
+      "hit_rate": 0.333333,
+      "avg_score": 95.466667
     },
     {
       "top_k": 5,
-      "dates": 1,
-      "picks": 5,
-      "homers": 0,
-      "hit_rate": 0.0,
-      "avg_score": 83.34
+      "dates": 2,
+      "picks": 10,
+      "homers": 2,
+      "hit_rate": 0.2,
+      "avg_score": 90.93
     },
     {
       "top_k": 10,
-      "dates": 1,
-      "picks": 10,
-      "homers": 0,
-      "hit_rate": 0.0,
-      "avg_score": 62.5
+      "dates": 2,
+      "picks": 20,
+      "homers": 3,
+      "hit_rate": 0.15,
+      "avg_score": 79.575
     }
   ],
   "confidence_summary": [
     {
       "confidence_tier": "elite",
-      "picks": 1,
-      "homers": 0,
-      "hit_rate": 0.0,
-      "avg_probability": 0.229585
+      "picks": 3,
+      "homers": 1,
+      "hit_rate": 0.333333,
+      "avg_probability": 0.228337
+    },
+    {
+      "confidence_tier": "strong",
+      "picks": 5,
+      "homers": 1,
+      "hit_rate": 0.2,
+      "avg_probability": 0.175866
     },
     {
       "confidence_tier": "watch",
-      "picks": 2,
-      "homers": 0,
-      "hit_rate": 0.0,
-      "avg_probability": 0.193553
+      "picks": 15,
+      "homers": 2,
+      "hit_rate": 0.133333,
+      "avg_probability": 0.160584
     },
     {
       "confidence_tier": "longshot",
@@ -83,11 +90,11 @@
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.245168,
       "predicted_hr_score": 100.0,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 1,
       "top_reason_1": "HR rate over the last 30 days is 25.0%, which keeps the recent power trend elevated.",
       "top_reason_2": "Matthew Liberatore has allowed homers in 5.6% of plate appearances over the last 30 days.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 75.0%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-03-26:823081:691406:669461",
@@ -101,11 +108,11 @@
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.210257,
       "predicted_hr_score": 99.3,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Peak exit velocity over the last 10 days is 116.2 mph, which points to top-end HR juice.",
       "top_reason_2": "Matthew Liberatore has allowed homers in 5.6% of plate appearances over the last 30 days.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-26:823486:656941:543135",
@@ -119,11 +126,11 @@
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.196365,
       "predicted_hr_score": 98.5,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 1,
       "top_reason_1": "Peak exit velocity over the last 10 days is 116.5 mph, which points to top-end HR juice.",
       "top_reason_2": "Nathan Eovaldi has allowed homers in 4.1% of plate appearances over the last 30 days.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-03-26:823325:665487:669373",
@@ -137,11 +144,11 @@
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.175408,
       "predicted_hr_score": 97.8,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Peak exit velocity over the last 10 days is 113.4 mph, which points to top-end HR juice.",
       "top_reason_2": "Tarik Skubal has allowed homers in 4.2% of plate appearances over the last 30 days.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-26:823081:650490:669461",
@@ -155,11 +162,11 @@
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.173602,
       "predicted_hr_score": 97.0,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Peak exit velocity over the last 10 days is 113.6 mph, which points to top-end HR juice.",
       "top_reason_2": "Matthew Liberatore has allowed homers in 5.6% of plate appearances over the last 30 days.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-26:824704:683737:676917",
@@ -173,11 +180,11 @@
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.168377,
       "predicted_hr_score": 96.3,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "HR rate over the last 30 days is 8.5%, which keeps the recent power trend elevated.",
       "top_reason_2": "Cade Cavalli has allowed homers in 4.0% of plate appearances over the last 30 days.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-26:823163:677594:676440",
@@ -191,11 +198,11 @@
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.16558,
       "predicted_hr_score": 95.5,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Peak exit velocity over the last 10 days is 115.8 mph, which points to top-end HR juice.",
       "top_reason_2": "Hard-hit rate over the last 30 days is 57.5%, showing consistent quality contact.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 57.5%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-26:824704:695578:571510",
@@ -209,11 +216,11 @@
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.164868,
       "predicted_hr_score": 94.8,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Peak exit velocity over the last 10 days is 112.3 mph, which points to top-end HR juice.",
       "top_reason_2": "Matthew Boyd has allowed homers in 4.3% of plate appearances over the last 30 days.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 66.7%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-26:824218:545361:686613",
@@ -227,11 +234,11 @@
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.163665,
       "predicted_hr_score": 94.0,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 1,
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Hunter Brown has allowed homers in 4.0% of plate appearances over the last 30 days.",
       "top_reason_3": "Average exit velocity over the last 10 days is 101.8 mph, a top-decile recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-03-26:823081:691023:656876",
@@ -245,11 +252,11 @@
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.15754,
       "predicted_hr_score": 93.3,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Peak exit velocity over the last 10 days is 117.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Drew Rasmussen has allowed homers in 5.2% of plate appearances over the last 30 days.",
       "top_reason_3": "Average exit velocity over the last 10 days is 93.0 mph, a top-quartile recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-26:823163:686527:676440",
@@ -263,11 +270,11 @@
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.157478,
       "predicted_hr_score": 92.5,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 1,
       "top_reason_1": "Average exit velocity over the last 10 days is 98.0 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "Barrel rate over the last 30 days is 7.9%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-03-26:823974:660271:668678",
@@ -281,11 +288,11 @@
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.157336,
       "predicted_hr_score": 91.8,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "HR rate over the last 30 days is 7.6%, which keeps the recent power trend elevated.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "Barrel rate over the last 30 days is 10.1%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     }
   ],
   "history": [
@@ -301,11 +308,11 @@
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.245168,
       "predicted_hr_score": 100.0,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 1,
       "top_reason_1": "HR rate over the last 30 days is 25.0%, which keeps the recent power trend elevated.",
       "top_reason_2": "Matthew Liberatore has allowed homers in 5.6% of plate appearances over the last 30 days.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 75.0%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-03-26:823081:691406:669461",
@@ -319,11 +326,11 @@
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.210257,
       "predicted_hr_score": 99.3,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Peak exit velocity over the last 10 days is 116.2 mph, which points to top-end HR juice.",
       "top_reason_2": "Matthew Liberatore has allowed homers in 5.6% of plate appearances over the last 30 days.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-26:823486:656941:543135",
@@ -337,11 +344,11 @@
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.196365,
       "predicted_hr_score": 98.5,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 1,
       "top_reason_1": "Peak exit velocity over the last 10 days is 116.5 mph, which points to top-end HR juice.",
       "top_reason_2": "Nathan Eovaldi has allowed homers in 4.1% of plate appearances over the last 30 days.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-03-26:823325:665487:669373",
@@ -355,11 +362,11 @@
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.175408,
       "predicted_hr_score": 97.8,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Peak exit velocity over the last 10 days is 113.4 mph, which points to top-end HR juice.",
       "top_reason_2": "Tarik Skubal has allowed homers in 4.2% of plate appearances over the last 30 days.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-26:823081:650490:669461",
@@ -373,11 +380,11 @@
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.173602,
       "predicted_hr_score": 97.0,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Peak exit velocity over the last 10 days is 113.6 mph, which points to top-end HR juice.",
       "top_reason_2": "Matthew Liberatore has allowed homers in 5.6% of plate appearances over the last 30 days.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-26:824704:683737:676917",
@@ -391,11 +398,11 @@
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.168377,
       "predicted_hr_score": 96.3,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "HR rate over the last 30 days is 8.5%, which keeps the recent power trend elevated.",
       "top_reason_2": "Cade Cavalli has allowed homers in 4.0% of plate appearances over the last 30 days.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-26:823163:677594:676440",
@@ -409,11 +416,11 @@
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.16558,
       "predicted_hr_score": 95.5,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Peak exit velocity over the last 10 days is 115.8 mph, which points to top-end HR juice.",
       "top_reason_2": "Hard-hit rate over the last 30 days is 57.5%, showing consistent quality contact.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 57.5%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-26:824704:695578:571510",
@@ -427,11 +434,11 @@
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.164868,
       "predicted_hr_score": 94.8,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Peak exit velocity over the last 10 days is 112.3 mph, which points to top-end HR juice.",
       "top_reason_2": "Matthew Boyd has allowed homers in 4.3% of plate appearances over the last 30 days.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 66.7%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-26:824218:545361:686613",
@@ -445,11 +452,11 @@
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.163665,
       "predicted_hr_score": 94.0,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 1,
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Hunter Brown has allowed homers in 4.0% of plate appearances over the last 30 days.",
       "top_reason_3": "Average exit velocity over the last 10 days is 101.8 mph, a top-decile recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-03-26:823081:691023:656876",
@@ -463,11 +470,11 @@
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.15754,
       "predicted_hr_score": 93.3,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Peak exit velocity over the last 10 days is 117.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Drew Rasmussen has allowed homers in 5.2% of plate appearances over the last 30 days.",
       "top_reason_3": "Average exit velocity over the last 10 days is 93.0 mph, a top-quartile recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-25:823244:592450:657277",
@@ -651,5 +658,78 @@
     }
   ],
   "player_leaderboard": [],
-  "recent_successes": []
+  "recent_successes": [
+    {
+      "pick_id": "2026-03-26:823081:666018:669461",
+      "game_pk": 823081,
+      "game_date": "2026-03-26",
+      "rank": 1,
+      "batter_name": "Jonathan Aranda",
+      "team": "TB",
+      "opponent_team": "STL",
+      "pitcher_name": "Matthew Liberatore",
+      "confidence_tier": "elite",
+      "predicted_hr_probability": 0.245168,
+      "predicted_hr_score": 100.0,
+      "actual_hit_hr": 1,
+      "top_reason_1": "HR rate over the last 30 days is 25.0%, which keeps the recent power trend elevated.",
+      "top_reason_2": "Matthew Liberatore has allowed homers in 5.6% of plate appearances over the last 30 days.",
+      "top_reason_3": "Hard-hit rate over the last 30 days is 75.0%, showing consistent quality contact.",
+      "result_label": "HR"
+    },
+    {
+      "pick_id": "2026-03-26:823486:656941:543135",
+      "game_pk": 823486,
+      "game_date": "2026-03-26",
+      "rank": 3,
+      "batter_name": "Kyle Schwarber",
+      "team": "PHI",
+      "opponent_team": "TEX",
+      "pitcher_name": "Nathan Eovaldi",
+      "confidence_tier": "strong",
+      "predicted_hr_probability": 0.196365,
+      "predicted_hr_score": 98.5,
+      "actual_hit_hr": 1,
+      "top_reason_1": "Peak exit velocity over the last 10 days is 116.5 mph, which points to top-end HR juice.",
+      "top_reason_2": "Nathan Eovaldi has allowed homers in 4.1% of plate appearances over the last 30 days.",
+      "top_reason_3": "The hitter has the platoon advantage in this matchup.",
+      "result_label": "HR"
+    },
+    {
+      "pick_id": "2026-03-26:824218:545361:686613",
+      "game_pk": 824218,
+      "game_date": "2026-03-26",
+      "rank": 9,
+      "batter_name": "Mike Trout",
+      "team": "LAA",
+      "opponent_team": "HOU",
+      "pitcher_name": "Hunter Brown",
+      "confidence_tier": "watch",
+      "predicted_hr_probability": 0.163665,
+      "predicted_hr_score": 94.0,
+      "actual_hit_hr": 1,
+      "top_reason_1": "Peak exit velocity over the last 10 days is 114.9 mph, which points to top-end HR juice.",
+      "top_reason_2": "Hunter Brown has allowed homers in 4.0% of plate appearances over the last 30 days.",
+      "top_reason_3": "Average exit velocity over the last 10 days is 101.8 mph, a top-decile recent batted-ball quality marker.",
+      "result_label": "HR"
+    },
+    {
+      "pick_id": "2026-03-26:823163:686527:676440",
+      "game_pk": 823163,
+      "game_date": "2026-03-26",
+      "rank": 11,
+      "batter_name": "Dominic Canzone",
+      "team": "SEA",
+      "opponent_team": "CLE",
+      "pitcher_name": "Tanner Bibee",
+      "confidence_tier": "watch",
+      "predicted_hr_probability": 0.157478,
+      "predicted_hr_score": 92.5,
+      "actual_hit_hr": 1,
+      "top_reason_1": "Average exit velocity over the last 10 days is 98.0 mph, a top-decile recent batted-ball quality marker.",
+      "top_reason_2": "The hitter has the platoon advantage in this matchup.",
+      "top_reason_3": "Barrel rate over the last 30 days is 7.9%, which the model treats as sustained power quality.",
+      "result_label": "HR"
+    }
+  ]
 }
