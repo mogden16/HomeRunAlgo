@@ -1507,6 +1507,87 @@ class LivePipelineTests(unittest.TestCase):
             self.assertNotIn("forward-only", payload_text)
             history_payload = history_path.read_text(encoding="utf-8")
             self.assertIn("2026-03-25", history_payload)
+            self.assertEqual(json.loads(current_path.read_text(encoding="utf-8")), [])
+
+    def test_dashboard_builder_keeps_only_latest_pending_slate_in_current(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+            output_dir = base / "out"
+            current_path.write_text(
+                json.dumps(
+                    [
+                        {
+                            "pick_id": "settled-old",
+                            "game_pk": 1001,
+                            "game_date": "2026-03-27",
+                            "rank": 1,
+                            "batter_id": 10,
+                            "batter_name": "Settled Old",
+                            "team": "NYY",
+                            "opponent_team": "BOS",
+                            "pitcher_id": 20,
+                            "pitcher_name": "Pitcher A",
+                            "confidence_tier": "elite",
+                            "predicted_hr_probability": 0.22,
+                            "predicted_hr_score": 99.1,
+                            "top_reason_1": "reason",
+                            "result": "HR",
+                        },
+                        {
+                            "pick_id": "pending-old",
+                            "game_pk": 1002,
+                            "game_date": "2026-03-27",
+                            "rank": 2,
+                            "batter_id": 11,
+                            "batter_name": "Pending Old",
+                            "team": "NYY",
+                            "opponent_team": "BOS",
+                            "pitcher_id": 21,
+                            "pitcher_name": "Pitcher B",
+                            "confidence_tier": "strong",
+                            "predicted_hr_probability": 0.18,
+                            "predicted_hr_score": 88.0,
+                            "top_reason_1": "reason",
+                            "result": "Pending",
+                        },
+                        {
+                            "pick_id": "pending-new",
+                            "game_pk": 1003,
+                            "game_date": "2026-03-28",
+                            "rank": 1,
+                            "batter_id": 12,
+                            "batter_name": "Pending New",
+                            "team": "LAD",
+                            "opponent_team": "SD",
+                            "pitcher_id": 22,
+                            "pitcher_name": "Pitcher C",
+                            "confidence_tier": "elite",
+                            "predicted_hr_probability": 0.25,
+                            "predicted_hr_score": 97.5,
+                            "top_reason_1": "reason",
+                            "result": "Pending",
+                        },
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            history_path.write_text("[]", encoding="utf-8")
+
+            build_dashboard_artifacts.build_dashboard_artifacts(
+                current_picks_path=current_path,
+                history_path=history_path,
+                output_dir=output_dir,
+            )
+
+            current_rows = json.loads(current_path.read_text(encoding="utf-8"))
+            history_rows = json.loads(history_path.read_text(encoding="utf-8"))
+            payload = json.loads((output_dir / "dashboard.json").read_text(encoding="utf-8"))
+
+            self.assertEqual([row["pick_id"] for row in current_rows], ["pending-new"])
+            self.assertEqual([row["pick_id"] for row in payload["latest_picks"]], ["pending-new"])
+            self.assertEqual({row["pick_id"] for row in history_rows}, {"settled-old", "pending-old", "pending-new"})
 
     def test_dashboard_builder_history_is_not_truncated_per_date(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:

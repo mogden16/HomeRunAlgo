@@ -264,6 +264,14 @@ def clean_history_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     ]
 
 
+def select_active_current_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    pending_rows = [row for row in rows if row.get("result_label") == "Pending"]
+    if not pending_rows:
+        return []
+    latest_pending_date = max(str(row["game_date"]) for row in pending_rows)
+    return [row for row in pending_rows if str(row["game_date"]) == latest_pending_date]
+
+
 def upsert_history(existing_rows: list[dict[str, Any]], current_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     current_dates = {str(row["game_date"]) for row in current_rows}
     retained_existing = [
@@ -405,13 +413,17 @@ def build_dashboard_artifacts(
     history_rows = [row for row in (normalize_pick(item, tracking_start_date) for item in history_input) if row is not None]
     current_rows = sorted(current_rows, key=current_pick_sort_key)
     merged_history = upsert_history(history_rows, current_rows)
+    active_current_rows = sorted(select_active_current_rows(current_rows), key=current_pick_sort_key)
 
-    current_picks_path.write_text(json.dumps(clean_current_pick_rows(current_rows), indent=2), encoding="utf-8")
+    current_picks_path.write_text(json.dumps(clean_current_pick_rows(active_current_rows), indent=2), encoding="utf-8")
     if persist_history:
         history_path.write_text(json.dumps(clean_history_rows(merged_history), indent=2), encoding="utf-8")
 
-    latest_game_date = latest_available_date_override or max((row["game_date"] for row in current_rows), default=tracking_start_date)
-    latest_picks = current_rows[:latest_count]
+    latest_game_date = latest_available_date_override or max(
+        (row["game_date"] for row in ([*active_current_rows, *merged_history])),
+        default=tracking_start_date,
+    )
+    latest_picks = active_current_rows[:latest_count]
     dashboard_history = sorted(
         merged_history,
         key=lambda row: (-int(str(row["game_date"]).replace("-", "")), -score_sort_value(row), int(row["rank"]), str(row["batter_name"])),
