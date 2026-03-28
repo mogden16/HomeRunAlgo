@@ -144,6 +144,23 @@ Those files are not part of the public Cloudflare artifact.
 3. Set the Pages build command to blank and the output directory to `cloudflare-app`.
 4. Each time `cloudflare-app/data/dashboard.json` changes and is pushed, Cloudflare Pages will redeploy the site on the free tier.
 
+### Manual refresh buttons
+
+The dashboard can expose manual `settle` and `prepare` buttons through a Pages Function that dispatches a GitHub Actions workflow.
+
+Required Cloudflare Pages environment variables:
+
+- `MANUAL_REFRESH_KEY`: shared admin key entered into the dashboard UI before pressing a manual refresh button
+- `GITHUB_WORKFLOW_TOKEN`: GitHub token with permission to dispatch workflows for this repo
+- `GITHUB_REPOSITORY` (optional): defaults to `mogden16/HomeRunAlgo`
+- `GITHUB_WORKFLOW_FILE` (optional): defaults to `manual-live-refresh.yml`
+- `GITHUB_WORKFLOW_REF` (optional): defaults to `master`
+
+The workflow lives at `.github/workflows/manual-live-refresh.yml` and supports:
+
+- `settle`: refreshes yesterday's data, settles prior picks, rebuilds the dashboard, and pushes public artifacts
+- `prepare`: refreshes yesterday's data again, retrains the model, settles late results, writes `data/live/draft_picks.json`, rebuilds the dashboard, and pushes public plus model artifacts
+
 ## Local refresh and publish schedule
 
 The workflow is split into an early settlement pass, a critical morning prepare run, and same-day publish reruns:

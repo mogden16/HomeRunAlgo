@@ -1,0 +1,101 @@
+name: Manual Live Refresh
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Refresh mode to run
+        required: true
+        type: choice
+        options:
+          - settle
+          - prepare
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip && pip install -r requirements.txt
+
+      - name: Run settle refresh
+        if: ${{ github.event.inputs.mode == 'settle' }}
+        run: |
+          python scripts/refresh_live_results.py --dataset-path data/live/model_training_dataset.csv
+          python scripts/settle_live_results.py
+
+      - name: Run prepare refresh
+        if: ${{ github.event.inputs.mode == 'prepare' }}
+        run: python scripts/prepare_live_board.py
+
+      - name: Rebuild dashboard artifact
+        run: python scripts/build_dashboard_artifacts.py --output-dir cloudflare-app/data
+
+      - name: Verify public artifacts
+        run: python scripts/verify_public_live_artifacts.py
+
+      - name: Commit and push changes
+        env:
+          REFRESH_MODE: ${{ github.event.inputs.mode }}
+        run: |
+          python - <<'PY'
+          import os
+          import subprocess
+          import sys
+
+          mode = os.environ["REFRESH_MODE"]
+          tracked = [
+              "data/live/current_picks.json",
+              "data/live/pick_history.json",
+              "cloudflare-app/data/dashboard.json",
+          ]
+          if mode == "prepare":
+              tracked.extend(
+                  [
+                      "data/live/model_training_dataset.csv",
+                      "data/live/model_bundle.pkl",
+                      "data/live/model_metadata.json",
+                      "data/live/draft_picks.json",
+                  ]
+              )
+
+          status = subprocess.run(
+              ["git", "status", "--porcelain", "--", *tracked],
+              check=True,
+              capture_output=True,
+              text=True,
+          )
+          if not status.stdout.strip():
+              print("No tracked refresh changes detected.")
+              sys.exit(0)
+
+          subprocess.run(["git", "config", "user.name", "github-actions[bot]"], check=True)
+          subprocess.run(["git", "config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com"], check=True)
+          subprocess.run(["git", "add", "--", *tracked], check=True)
+
+          diff = subprocess.run(
+              ["git", "diff", "--cached", "--quiet", "--", *tracked],
+              check=False,
+          )
+          if diff.returncode == 0:
+              print("No staged refresh changes detected.")
+              sys.exit(0)
+
+          subprocess.run(["git", "commit", "-m", f"chore: manual {mode} refresh"], check=True)
+          subprocess.run(["git", "push", "origin", "master"], check=True)
+          PY

@@ -225,6 +225,74 @@ input {
   min-width: 260px;
 }
 
+.admin-panel {
+  margin-top: 18px;
+}
+
+.admin-controls {
+  display: grid;
+  gap: 14px;
+}
+
+.admin-field {
+  display: grid;
+  gap: 8px;
+  max-width: 360px;
+}
+
+.admin-field span {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.admin-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-buttons button {
+  appearance: none;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, var(--accent), #ef7d4d);
+  color: #fff9f3;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(209, 79, 43, 0.2);
+  transition: transform 140ms ease, opacity 140ms ease;
+}
+
+.admin-buttons button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.admin-buttons button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.admin-status {
+  margin: 0;
+  color: var(--muted);
+}
+
+.admin-status[data-kind="success"] {
+  color: var(--hit);
+}
+
+.admin-status[data-kind="error"] {
+  color: var(--miss);
+}
+
+.admin-status[data-kind="pending"] {
+  color: #9a6700;
+}
+
 .table-wrap {
   overflow-x: auto;
 }

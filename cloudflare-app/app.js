@@ -5,6 +5,7 @@ const state = {
 
 const DEFAULT_LATEST_PICKS_EMPTY_MESSAGE =
   "Today's public picks have not been posted yet. Next publish windows are 11:00 AM, 1:00 PM, 3:00 PM, and 6:00 PM ET.";
+const MANUAL_REFRESH_KEY_STORAGE = "manualRefreshKey";
 
 function formatPercent(value, digits = 1) {
   if (value === null || value === undefined || Number.isNaN(Number(value))) {
@@ -80,32 +81,38 @@ function formatWholeNumber(value) {
 
 function buildRefreshScheduleSummary(schedule) {
   const runs = Array.isArray(schedule?.runs) ? schedule.runs : [];
-  const dailyRun = runs.find((run) => run.type === "daily");
+  const settleRun = runs.find((run) => run.type === "settle");
+  const prepareRun = runs.find((run) => run.type === "prepare");
   const publishRuns = runs.filter((run) => run.type === "publish");
   const publishTimes = publishRuns.map((run) => run.time_et).filter(Boolean);
 
-  if (!dailyRun && !publishTimes.length) {
+  if (!settleRun && !prepareRun && !publishTimes.length) {
     return "Schedule unavailable.";
   }
 
   const publishText = publishTimes.length ? `Publish runs at ${publishTimes.join(", ")}.` : "";
-  const dailyText = dailyRun?.time_et ? `Daily refresh at ${dailyRun.time_et}.` : "";
-  return [dailyText, publishText].filter(Boolean).join(" ");
+  const settleText = settleRun?.time_et ? `Settle run at ${settleRun.time_et}.` : "";
+  const prepareText = prepareRun?.time_et ? `Prepare run at ${prepareRun.time_et}.` : "";
+  return [settleText, prepareText, publishText].filter(Boolean).join(" ");
 }
 
 function buildRefreshScheduleInlineText(schedule) {
   const runs = Array.isArray(schedule?.runs) ? schedule.runs : [];
-  const dailyRun = runs.find((run) => run.type === "daily");
+  const settleRun = runs.find((run) => run.type === "settle");
+  const prepareRun = runs.find((run) => run.type === "prepare");
   const publishRuns = runs.filter((run) => run.type === "publish");
   const publishTimes = publishRuns.map((run) => run.time_et).filter(Boolean);
 
-  if (!dailyRun && !publishTimes.length) {
+  if (!settleRun && !prepareRun && !publishTimes.length) {
     return "";
   }
 
   const parts = ["Refresh schedule:"];
-  if (dailyRun?.time_et) {
-    parts.push(`${dailyRun.time_et} daily refresh.`);
+  if (settleRun?.time_et) {
+    parts.push(`${settleRun.time_et} settle.`);
+  }
+  if (prepareRun?.time_et) {
+    parts.push(`${prepareRun.time_et} prepare.`);
   }
   if (publishTimes.length) {
     parts.push(`Publish runs at ${publishTimes.join(", ")}.`);
@@ -361,8 +368,64 @@ function handleLoadError(error) {
   `;
 }
 
+function setManualRefreshStatus(message, kind = "neutral") {
+  const target = document.getElementById("manual-refresh-status");
+  target.textContent = message;
+  target.dataset.kind = kind;
+}
+
+function setManualButtonsDisabled(disabled) {
+  document.getElementById("manual-settle-button").disabled = disabled;
+  document.getElementById("manual-prepare-button").disabled = disabled;
+}
+
+async function triggerManualRefresh(mode) {
+  const keyInput = document.getElementById("manual-refresh-key");
+  const adminKey = keyInput.value.trim();
+  if (!adminKey) {
+    setManualRefreshStatus("Enter the admin key before triggering a manual refresh.", "error");
+    keyInput.focus();
+    return;
+  }
+
+  localStorage.setItem(MANUAL_REFRESH_KEY_STORAGE, adminKey);
+  setManualButtonsDisabled(true);
+  setManualRefreshStatus(`Triggering ${mode} refresh...`, "pending");
+
+  try {
+    const response = await fetch("/api/manual-refresh", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ mode, adminKey }),
+    });
+    const payload = await response.json();
+    if (!response.ok || !payload.ok) {
+      throw new Error(payload.error || `Manual ${mode} refresh failed.`);
+    }
+
+    const workflowText = payload.workflowUrl ? ` Track it at ${payload.workflowUrl}` : "";
+    setManualRefreshStatus(`${payload.message}${workflowText}`, "success");
+  } catch (error) {
+    setManualRefreshStatus(error.message || `Manual ${mode} refresh failed.`, "error");
+  } finally {
+    setManualButtonsDisabled(false);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("history-search").addEventListener("input", applyHistoryFilters);
   document.getElementById("confidence-filter").addEventListener("change", applyHistoryFilters);
+  const savedKey = localStorage.getItem(MANUAL_REFRESH_KEY_STORAGE);
+  if (savedKey) {
+    document.getElementById("manual-refresh-key").value = savedKey;
+  }
+  document.getElementById("manual-settle-button").addEventListener("click", () => {
+    triggerManualRefresh("settle");
+  });
+  document.getElementById("manual-prepare-button").addEventListener("click", () => {
+    triggerManualRefresh("prepare");
+  });
   loadDashboard().catch(handleLoadError);
 });

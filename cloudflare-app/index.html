@@ -33,6 +33,26 @@
     <main>
       <section class="stats-grid" id="overview-cards"></section>
 
+      <section class="panel admin-panel">
+        <div class="section-head admin-head">
+          <div>
+            <p class="eyebrow">Admin</p>
+            <h2>Manual Refresh</h2>
+          </div>
+        </div>
+        <div class="admin-controls">
+          <label class="admin-field" for="manual-refresh-key">
+            <span>Admin key</span>
+            <input id="manual-refresh-key" type="password" placeholder="Enter manual refresh key">
+          </label>
+          <div class="admin-buttons">
+            <button id="manual-settle-button" type="button">Run Settle</button>
+            <button id="manual-prepare-button" type="button">Run Prepare</button>
+          </div>
+          <p class="admin-status" id="manual-refresh-status">Manual refresh triggers the GitHub workflow and does not run instantly.</p>
+        </div>
+      </section>
+
       <section class="two-up">
         <article class="panel">
           <div class="section-head">
