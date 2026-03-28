@@ -12,3 +12,10 @@ data/live/backtest_baseline_report.json
 data/live/backtest_search_report.json
 data/live/current_picks_smoke.json
 data/live/current_picks_smoke_publish.json
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
