@@ -7,6 +7,7 @@ import sys
 import tempfile
 import unittest
 from contextlib import redirect_stdout
+from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
 
@@ -768,6 +769,230 @@ class LivePipelineTests(unittest.TestCase):
             self.assertEqual(dashboard_payload["latest_available_date"], "2026-03-26")
             self.assertEqual(dashboard_payload["latest_picks"][0]["game_date"], "2026-03-26")
 
+    def test_publish_live_picks_preserves_started_same_day_rows_and_replaces_unstarted_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            dataset_path = base / "dataset.csv"
+            bundle_path = base / "bundle.pkl"
+            metadata_path = base / "metadata.json"
+            output_path = base / "current.json"
+            history_path = base / "pick_history.json"
+            dashboard_dir = base / "dashboard"
+            pd.DataFrame({"game_date": pd.to_datetime(["2026-03-25"])}).to_csv(dataset_path, index=False)
+            with bundle_path.open("wb") as handle:
+                pickle.dump({"trained_through": "2026-03-25", "model": object(), "feature_columns": [], "reference_df": pd.DataFrame()}, handle)
+            metadata_path.write_text(json.dumps({"trained_through": "2026-03-25", "dataset_max_game_date": "2026-03-25"}), encoding="utf-8")
+            history_path.write_text("[]", encoding="utf-8")
+            existing_rows = [
+                {
+                    "pick_id": "started-pick",
+                    "published_at": "2026-03-26T17:00:00+00:00",
+                    "game_pk": 1,
+                    "game_date": "2026-03-26",
+                    "game_datetime": "2026-03-26T18:00:00Z",
+                    "rank": 2,
+                    "batter_id": 10,
+                    "batter_name": "Started Batter",
+                    "team": "NYY",
+                    "opponent_team": "BOS",
+                    "pitcher_id": 20,
+                    "pitcher_name": "Pitcher A",
+                    "confidence_tier": "elite",
+                    "predicted_hr_probability": 0.88,
+                    "predicted_hr_score": 98.0,
+                    "top_reason_1": "keep me",
+                    "top_reason_2": "still live",
+                    "top_reason_3": "",
+                    "result": "Pending",
+                },
+                {
+                    "pick_id": "future-pick",
+                    "published_at": "2026-03-26T17:00:00+00:00",
+                    "game_pk": 2,
+                    "game_date": "2026-03-26",
+                    "game_datetime": "2026-03-26T23:00:00Z",
+                    "rank": 1,
+                    "batter_id": 11,
+                    "batter_name": "Replace Me",
+                    "team": "LAD",
+                    "opponent_team": "SF",
+                    "pitcher_id": 21,
+                    "pitcher_name": "Pitcher B",
+                    "confidence_tier": "strong",
+                    "predicted_hr_probability": 0.77,
+                    "predicted_hr_score": 95.0,
+                    "top_reason_1": "old future",
+                    "top_reason_2": "",
+                    "top_reason_3": "",
+                    "result": "Pending",
+                },
+            ]
+            output_path.write_text(json.dumps(existing_rows), encoding="utf-8")
+            refreshed_rows = [
+                {
+                    "pick_id": "replacement-future",
+                    "published_at": "2026-03-26T20:00:00+00:00",
+                    "game_pk": 2,
+                    "game_date": "2026-03-26",
+                    "game_datetime": "2026-03-26T23:00:00Z",
+                    "rank": 1,
+                    "batter_id": 12,
+                    "batter_name": "Future Refresh",
+                    "team": "LAD",
+                    "opponent_team": "SF",
+                    "pitcher_id": 22,
+                    "pitcher_name": "Pitcher C",
+                    "confidence_tier": "elite",
+                    "predicted_hr_probability": 0.91,
+                    "predicted_hr_score": 99.0,
+                    "top_reason_1": "new future",
+                    "top_reason_2": "",
+                    "top_reason_3": "",
+                    "result": "Pending",
+                },
+                {
+                    "pick_id": "replacement-later",
+                    "published_at": "2026-03-26T20:00:00+00:00",
+                    "game_pk": 3,
+                    "game_date": "2026-03-26",
+                    "game_datetime": "2026-03-26T23:30:00Z",
+                    "rank": 2,
+                    "batter_id": 13,
+                    "batter_name": "Later Refresh",
+                    "team": "SEA",
+                    "opponent_team": "HOU",
+                    "pitcher_id": 23,
+                    "pitcher_name": "Pitcher D",
+                    "confidence_tier": "strong",
+                    "predicted_hr_probability": 0.83,
+                    "predicted_hr_score": 96.0,
+                    "top_reason_1": "later game",
+                    "top_reason_2": "",
+                    "top_reason_3": "",
+                    "result": "Pending",
+                },
+            ]
+            schedule_games = [
+                {"game_pk": 1, "game_datetime": "2026-03-26T18:00:00Z", "status": "Scheduled"},
+                {"game_pk": 2, "game_datetime": "2026-03-26T23:00:00Z", "status": "Scheduled"},
+                {"game_pk": 3, "game_datetime": "2026-03-26T23:30:00Z", "status": "Scheduled"},
+            ]
+
+            with patch("scripts.publish_live_picks._publish_reference_now", return_value=datetime(2026, 3, 26, 20, 0, tzinfo=timezone.utc)):
+                with patch("scripts.publish_live_picks.fetch_schedule_games", return_value=schedule_games):
+                    with patch("scripts.publish_live_picks.build_active_roster_map", return_value={}):
+                        with patch("scripts.publish_live_picks.build_live_candidate_frame", return_value=pd.DataFrame()):
+                            with patch("scripts.publish_live_picks.build_live_feature_frame", return_value=pd.DataFrame()):
+                                with patch("scripts.publish_live_picks.score_live_candidates", return_value=refreshed_rows):
+                                    with patch("scripts.publish_live_picks.refresh_cloudflare_dashboard", return_value=dashboard_dir / "dashboard.json"):
+                                        published = publish_live_picks.publish_live_picks(
+                                            dataset_path=dataset_path,
+                                            bundle_path=bundle_path,
+                                            metadata_path=metadata_path,
+                                            output_path=output_path,
+                                            history_path=history_path,
+                                            dashboard_output_dir=dashboard_dir,
+                                            schedule_date="2026-03-26",
+                                        )
+
+            written = json.loads(output_path.read_text(encoding="utf-8"))
+            self.assertEqual([row["rank"] for row in written], [1, 2, 3])
+            self.assertEqual([row["batter_name"] for row in written], ["Future Refresh", "Started Batter", "Later Refresh"])
+            locked_row = written[1]
+            self.assertEqual(locked_row["pick_id"], "started-pick")
+            self.assertEqual(locked_row["published_at"], "2026-03-26T17:00:00+00:00")
+            self.assertEqual(locked_row["top_reason_1"], "keep me")
+            self.assertEqual(locked_row["predicted_hr_score"], 98.0)
+            self.assertEqual(locked_row["game_datetime"], "2026-03-26T18:00:00Z")
+            self.assertEqual([row["pick_id"] for row in published], ["replacement-future", "started-pick", "replacement-later"])
+
+    def test_publish_live_picks_locks_in_progress_game_even_before_scheduled_first_pitch(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            dataset_path = base / "dataset.csv"
+            bundle_path = base / "bundle.pkl"
+            metadata_path = base / "metadata.json"
+            output_path = base / "current.json"
+            history_path = base / "pick_history.json"
+            dashboard_dir = base / "dashboard"
+            pd.DataFrame({"game_date": pd.to_datetime(["2026-03-25"])}).to_csv(dataset_path, index=False)
+            with bundle_path.open("wb") as handle:
+                pickle.dump({"trained_through": "2026-03-25", "model": object(), "feature_columns": [], "reference_df": pd.DataFrame()}, handle)
+            metadata_path.write_text(json.dumps({"trained_through": "2026-03-25", "dataset_max_game_date": "2026-03-25"}), encoding="utf-8")
+            history_path.write_text("[]", encoding="utf-8")
+            existing_rows = [
+                {
+                    "pick_id": "live-pick",
+                    "published_at": "2026-03-26T17:00:00+00:00",
+                    "game_pk": 10,
+                    "game_date": "2026-03-26",
+                    "game_datetime": "2026-03-26T23:00:00Z",
+                    "rank": 1,
+                    "batter_id": 30,
+                    "batter_name": "Do Not Replace",
+                    "team": "ATL",
+                    "opponent_team": "PHI",
+                    "pitcher_id": 40,
+                    "pitcher_name": "Pitcher E",
+                    "confidence_tier": "elite",
+                    "predicted_hr_probability": 0.93,
+                    "predicted_hr_score": 99.0,
+                    "top_reason_1": "already live",
+                    "top_reason_2": "",
+                    "top_reason_3": "",
+                    "result": "Pending",
+                }
+            ]
+            output_path.write_text(json.dumps(existing_rows), encoding="utf-8")
+            refreshed_rows = [
+                {
+                    "pick_id": "replacement-live",
+                    "published_at": "2026-03-26T20:00:00+00:00",
+                    "game_pk": 10,
+                    "game_date": "2026-03-26",
+                    "game_datetime": "2026-03-26T23:00:00Z",
+                    "rank": 1,
+                    "batter_id": 31,
+                    "batter_name": "Should Not Appear",
+                    "team": "ATL",
+                    "opponent_team": "PHI",
+                    "pitcher_id": 41,
+                    "pitcher_name": "Pitcher F",
+                    "confidence_tier": "strong",
+                    "predicted_hr_probability": 0.81,
+                    "predicted_hr_score": 97.0,
+                    "top_reason_1": "replacement",
+                    "top_reason_2": "",
+                    "top_reason_3": "",
+                    "result": "Pending",
+                }
+            ]
+            schedule_games = [
+                {"game_pk": 10, "game_datetime": "2026-03-26T23:00:00Z", "status": "In Progress"}
+            ]
+
+            with patch("scripts.publish_live_picks._publish_reference_now", return_value=datetime(2026, 3, 26, 20, 0, tzinfo=timezone.utc)):
+                with patch("scripts.publish_live_picks.fetch_schedule_games", return_value=schedule_games):
+                    with patch("scripts.publish_live_picks.build_active_roster_map", return_value={}):
+                        with patch("scripts.publish_live_picks.build_live_candidate_frame", return_value=pd.DataFrame()):
+                            with patch("scripts.publish_live_picks.build_live_feature_frame", return_value=pd.DataFrame()):
+                                with patch("scripts.publish_live_picks.score_live_candidates", return_value=refreshed_rows):
+                                    with patch("scripts.publish_live_picks.refresh_cloudflare_dashboard", return_value=dashboard_dir / "dashboard.json"):
+                                        publish_live_picks.publish_live_picks(
+                                            dataset_path=dataset_path,
+                                            bundle_path=bundle_path,
+                                            metadata_path=metadata_path,
+                                            output_path=output_path,
+                                            history_path=history_path,
+                                            dashboard_output_dir=dashboard_dir,
+                                            schedule_date="2026-03-26",
+                                        )
+
+            written = json.loads(output_path.read_text(encoding="utf-8"))
+            self.assertEqual(len(written), 1)
+            self.assertEqual(written[0]["pick_id"], "live-pick")
+            self.assertEqual(written[0]["batter_name"], "Do Not Replace")
+
     def test_train_live_model_bundle_fast_refit_reuses_existing_live_config(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
@@ -1271,8 +1496,10 @@ class LivePipelineTests(unittest.TestCase):
             )
             self.assertEqual(payload["model_family"], "2024-25 trained")
             self.assertEqual(payload["refresh_schedule"]["runs"][0]["time_et"], "2:00 AM ET")
-            self.assertEqual(payload["refresh_schedule"]["runs"][0]["type"], "daily")
-            self.assertEqual(payload["refresh_schedule"]["runs"][1]["time_et"], "11:00 AM ET")
+            self.assertEqual(payload["refresh_schedule"]["runs"][0]["type"], "settle")
+            self.assertEqual(payload["refresh_schedule"]["runs"][1]["time_et"], "4:00 AM ET")
+            self.assertEqual(payload["refresh_schedule"]["runs"][1]["type"], "prepare")
+            self.assertEqual(payload["refresh_schedule"]["runs"][2]["time_et"], "11:00 AM ET")
             elite_row = payload["confidence_summary"][0]
             self.assertEqual(elite_row["confidence_tier"], "elite")
             self.assertEqual(len(payload["history"]), 1)

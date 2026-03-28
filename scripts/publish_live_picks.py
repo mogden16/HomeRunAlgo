@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -28,9 +29,11 @@ from scripts.live_pipeline import (
     CONFIDENCE_TIER_ORDER,
     default_publish_date,
     fetch_schedule_games,
+    load_json_array,
     load_live_dataset,
     load_model_bundle,
     load_model_metadata,
+    normalize_game_date,
     score_live_candidates,
     write_current_picks,
 )
@@ -38,6 +41,15 @@ from scripts.live_pipeline import (
 DEFAULT_MIN_CONFIDENCE_TIER = "strong"
 DEFAULT_MAX_PICKS_PER_TEAM = None
 DEFAULT_MAX_PICKS_PER_GAME = None
+
+STARTED_GAME_STATUS_TOKENS = (
+    "in progress",
+    "manager challenge",
+    "review",
+    "game over",
+    "final",
+    "completed early",
+)
 
 
 def parse_args() -> argparse.Namespace:
@@ -92,6 +104,97 @@ def refresh_cloudflare_dashboard(
     return dashboard_path
 
 
+def _publish_reference_now() -> datetime:
+    return datetime.now(timezone.utc)
+
+
+def _parse_game_datetime(value: object) -> datetime | None:
+    if value in (None, ""):
+        return None
+    try:
+        timestamp = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if timestamp.tzinfo is None:
+        return timestamp.replace(tzinfo=timezone.utc)
+    return timestamp.astimezone(timezone.utc)
+
+
+def _game_is_locked(game_like: dict[str, Any], publish_reference: datetime) -> bool:
+    status_token = str(game_like.get("status") or "").strip().lower()
+    if any(token in status_token for token in STARTED_GAME_STATUS_TOKENS):
+        return True
+    game_datetime = _parse_game_datetime(game_like.get("game_datetime"))
+    if game_datetime is None:
+        return False
+    return game_datetime <= publish_reference
+
+
+def _merge_same_day_picks(
+    existing_rows: list[dict[str, Any]],
+    refreshed_rows: list[dict[str, Any]],
+    schedule_games: list[dict[str, Any]],
+    *,
+    schedule_date: str,
+    publish_reference: datetime,
+    max_picks: int,
+) -> list[dict[str, Any]]:
+    other_dates = [dict(row) for row in existing_rows if normalize_game_date(row.get("game_date")) != schedule_date]
+    same_day_rows = [dict(row) for row in existing_rows if normalize_game_date(row.get("game_date")) == schedule_date]
+    if not same_day_rows:
+        return [*other_dates, *refreshed_rows]
+
+    schedule_by_game_pk = {
+        int(game["game_pk"]): game
+        for game in schedule_games
+        if game.get("game_pk") is not None
+    }
+    locked_rows: list[dict[str, Any]] = []
+    locked_game_pks: set[int] = set()
+    for row in same_day_rows:
+        game_pk = row.get("game_pk")
+        schedule_game = schedule_by_game_pk.get(int(game_pk)) if game_pk not in (None, "") else None
+        if _game_is_locked(schedule_game or row, publish_reference):
+            locked_rows.append(dict(row))
+            if game_pk not in (None, ""):
+                locked_game_pks.add(int(game_pk))
+
+    unlocked_refreshed = [
+        dict(row)
+        for row in refreshed_rows
+        if row.get("game_pk") in (None, "") or int(row["game_pk"]) not in locked_game_pks
+    ]
+    if not locked_rows:
+        return [*other_dates, *unlocked_refreshed]
+
+    slot_ceiling = max(
+        max_picks,
+        max(
+            (
+                int(row.get("rank"))
+                for row in locked_rows
+                if row.get("rank") not in (None, "") and str(row.get("rank")).isdigit()
+            ),
+            default=0,
+        ),
+    )
+    locked_rank_values = {
+        int(row["rank"])
+        for row in locked_rows
+        if row.get("rank") not in (None, "") and str(row.get("rank")).isdigit() and 1 <= int(row["rank"]) <= slot_ceiling
+    }
+    available_ranks = [rank for rank in range(1, slot_ceiling + 1) if rank not in locked_rank_values]
+
+    refreshed_reassigned: list[dict[str, Any]] = []
+    for refreshed_row, rank in zip(unlocked_refreshed, available_ranks):
+        updated = dict(refreshed_row)
+        updated["rank"] = rank
+        refreshed_reassigned.append(updated)
+
+    merged_same_day = [*locked_rows, *refreshed_reassigned]
+    return [*other_dates, *merged_same_day]
+
+
 def publish_live_picks(
     *,
     dataset_path: Path = LIVE_MODEL_DATA_PATH,
@@ -108,14 +211,19 @@ def publish_live_picks(
     max_picks_per_game: int | None = DEFAULT_MAX_PICKS_PER_GAME,
 ) -> list[dict[str, Any]]:
     resolved_schedule_date = schedule_date or default_publish_date()
-    dataset_df = load_live_dataset(Path(dataset_path))
-    bundle = load_model_bundle(Path(bundle_path))
-    model_metadata = load_model_metadata(Path(metadata_path))
+    publish_reference = _publish_reference_now()
     try:
-        assert_live_publish_freshness(
+        picks = generate_live_picks(
+            dataset_path=dataset_path,
+            bundle_path=bundle_path,
+            metadata_path=metadata_path,
             schedule_date=resolved_schedule_date,
-            dataset_df=dataset_df,
-            model_metadata=model_metadata,
+            hitters_per_team=hitters_per_team,
+            max_picks=max_picks,
+            min_confidence_tier=min_confidence_tier,
+            max_picks_per_team=max_picks_per_team,
+            max_picks_per_game=max_picks_per_game,
+            published_at=publish_reference.isoformat(),
         )
     except RuntimeError:
         write_current_picks([], output_path)
@@ -129,8 +237,49 @@ def publish_live_picks(
         )
         raise
     schedule_games = fetch_schedule_games(resolved_schedule_date)
-    active_roster_map = build_active_roster_map(schedule_games)
+    existing_rows = load_json_array(output_path)
+    merged_picks = _merge_same_day_picks(
+        existing_rows,
+        picks,
+        schedule_games,
+        schedule_date=resolved_schedule_date,
+        publish_reference=publish_reference,
+        max_picks=max_picks,
+    )
+    write_current_picks(merged_picks, output_path)
+    published_rows = load_json_array(output_path)
+    refresh_cloudflare_dashboard(output_path, history_path, dashboard_output_dir, resolved_schedule_date)
+    print(f"Published {len(published_rows)} picks to {output_path} for {resolved_schedule_date}")
+    return published_rows
 
+
+def generate_live_picks(
+    *,
+    dataset_path: Path = LIVE_MODEL_DATA_PATH,
+    bundle_path: Path = LIVE_MODEL_BUNDLE_PATH,
+    metadata_path: Path = LIVE_MODEL_METADATA_PATH,
+    schedule_date: str | None = None,
+    hitters_per_team: int = 9,
+    max_picks: int = 20,
+    min_confidence_tier: str | None = DEFAULT_MIN_CONFIDENCE_TIER,
+    max_picks_per_team: int | None = DEFAULT_MAX_PICKS_PER_TEAM,
+    max_picks_per_game: int | None = DEFAULT_MAX_PICKS_PER_GAME,
+    published_at: str | None = None,
+) -> list[dict[str, Any]]:
+    resolved_schedule_date = schedule_date or default_publish_date()
+    publish_reference = _parse_game_datetime(published_at) if published_at else _publish_reference_now()
+    if publish_reference is None:
+        publish_reference = _publish_reference_now()
+    dataset_df = load_live_dataset(Path(dataset_path))
+    bundle = load_model_bundle(Path(bundle_path))
+    model_metadata = load_model_metadata(Path(metadata_path))
+    assert_live_publish_freshness(
+        schedule_date=resolved_schedule_date,
+        dataset_df=dataset_df,
+        model_metadata=model_metadata,
+    )
+    schedule_games = fetch_schedule_games(resolved_schedule_date)
+    active_roster_map = build_active_roster_map(schedule_games)
     candidates = build_live_candidate_frame(
         dataset_df,
         schedule_games,
@@ -139,18 +288,15 @@ def publish_live_picks(
         active_roster_map=active_roster_map,
     )
     featured = build_live_feature_frame(dataset_df, candidates)
-    picks = score_live_candidates(
+    return score_live_candidates(
         featured,
         bundle,
         max_picks=max_picks,
         min_confidence_tier=min_confidence_tier,
         max_picks_per_team=max_picks_per_team,
         max_picks_per_game=max_picks_per_game,
+        published_at=publish_reference.isoformat(),
     )
-    write_current_picks(picks, output_path)
-    refresh_cloudflare_dashboard(output_path, history_path, dashboard_output_dir, resolved_schedule_date)
-    print(f"Published {len(picks)} picks to {output_path} for {resolved_schedule_date}")
-    return picks
 
 
 def main() -> None:

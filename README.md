@@ -144,24 +144,27 @@ Those files are not part of the public Cloudflare artifact.
 3. Set the Pages build command to blank and the output directory to `cloudflare-app`.
 4. Each time `cloudflare-app/data/dashboard.json` changes and is pushed, Cloudflare Pages will redeploy the site on the free tier.
 
-## Local refresh twice per day
+## Local refresh and publish schedule
 
-The workflow is split into two modes:
+The workflow is split into an early settlement pass, a critical morning prepare run, and same-day publish reruns:
 
-- `settle` at `07:00` ET: refresh historical data through yesterday, retrain the live model bundle, settle prior published picks, rebuild the dashboard, and push updates
-- `publish` at `15:00` ET: fetch today's MLB slate, generate probable-lineup picks from the saved bundle, rebuild the dashboard, and push updates
+- `settle` at `02:00` ET: refresh historical data through yesterday, settle prior published picks based on the latest Statcast results, rebuild the dashboard, and push updates
+- `prepare` at `04:00` ET: refresh historical data through yesterday again, retrain the live model bundle, settle any remaining late results, generate a private draft slate for today, rebuild the dashboard, and push updates without releasing today's picks
+- `publish` at `11:00` ET, `13:00` ET, `15:00` ET, and `18:00` ET: fetch today's MLB slate, generate lineup-aware picks from the saved bundle, rebuild the dashboard, and push updates
 
 Use the PowerShell wrapper directly:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\refresh_dashboard.ps1 -PythonPath .\.venv1\Scripts\python.exe -Mode settle
+powershell -ExecutionPolicy Bypass -File .\scripts\refresh_dashboard.ps1 -PythonPath .\.venv1\Scripts\python.exe -Mode prepare
 powershell -ExecutionPolicy Bypass -File .\scripts\refresh_dashboard.ps1 -PythonPath .\.venv1\Scripts\python.exe -Mode publish
 ```
 
 Or run the Python entrypoints individually:
 
 ```powershell
-.\.venv1\Scripts\python.exe .\scripts\train_live_model.py
+.\.venv1\Scripts\python.exe .\scripts\refresh_live_results.py
+.\.venv1\Scripts\python.exe .\scripts\prepare_live_board.py
 .\.venv1\Scripts\python.exe .\scripts\settle_live_results.py
 .\.venv1\Scripts\python.exe .\scripts\publish_live_picks.py
 .\.venv1\Scripts\python.exe .\scripts\build_dashboard_artifacts.py --output-dir cloudflare-app\data
@@ -182,10 +185,18 @@ The wrapper script then:
 - commits the dashboard data if it changed
 - pushes the commit so Cloudflare Pages redeploys automatically
 
+The `settle` wrapper mode refreshes the live dataset and settles prior picks only. It does not retrain the model bundle or republish the current slate. The `prepare` wrapper mode handles the critical morning retrain and stores today's draft slate in the local-only `data/live/draft_picks.json`.
+
 Verify the repo-side public/live contract with:
 
 ```powershell
 .\.venv1\Scripts\python.exe .\scripts\verify_public_live_artifacts.py
+```
+
+Verify that the public Cloudflare dashboard payload matches the local artifact with:
+
+```powershell
+.\.venv1\Scripts\python.exe .\scripts\check_cloudflare_dashboard_freshness.py --dashboard-url https://<your-pages-domain>/data/dashboard.json
 ```
 
 That verification confirms:
@@ -208,4 +219,4 @@ To register two local scheduled tasks on Windows:
 powershell -ExecutionPolicy Bypass -File .\scripts\register_dashboard_tasks.ps1
 ```
 
-The default run times are `07:00` and `15:00` local time. Adjust them by passing a two-item `-RunTimes` array.
+The default run times are a `02:00` local settle pass, a `04:00` local prepare run, plus publish reruns at `11:00`, `13:00`, `15:00`, and `18:00` local time. Adjust them with `-SettleRunTime`, `-PrepareRunTime`, and `-PublishRunTimes`.

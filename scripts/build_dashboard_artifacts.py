@@ -20,9 +20,15 @@ DEFAULT_REFRESH_SCHEDULE = {
     "runs": [
         {
             "time_et": "2:00 AM ET",
-            "type": "daily",
-            "label": "Daily refresh",
-            "description": "Refreshes data, retrains, settles yesterday, and rolls the slate forward.",
+            "type": "settle",
+            "label": "Settle",
+            "description": "Checks Statcast for yesterday's results and settles prior published picks.",
+        },
+        {
+            "time_et": "4:00 AM ET",
+            "type": "prepare",
+            "label": "Prepare",
+            "description": "Refreshes data, retrains the model, settles any remaining results, and saves a private draft slate.",
         },
         {
             "time_et": "11:00 AM ET",

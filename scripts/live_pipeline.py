@@ -205,6 +205,7 @@ def _build_pick_record_base(row: dict[str, Any]) -> dict[str, Any]:
         "published_at": str(row.get("published_at") or datetime.now(timezone.utc).isoformat()),
         "game_pk": game_pk,
         "game_date": game_date,
+        "game_datetime": str(row.get("game_datetime") or ""),
         "rank": _coerce_int(row.get("rank")) or 999,
         "batter_id": batter_id,
         "batter_name": batter_name,
@@ -1342,6 +1343,7 @@ def build_live_candidate_frame(
                     {
                         "game_pk": int(game["game_pk"]),
                         "game_date": target_date,
+                        "game_datetime": str(game.get("game_datetime") or ""),
                         "batter_id": int(hitter["batter_id"]),
                         "player_id": int(hitter["batter_id"]),
                         "batter_name": str(hitter["batter_name"]),
@@ -1717,6 +1719,7 @@ def score_live_candidates(
                 "published_at": publish_time,
                 "game_pk": int(row["game_pk"]),
                 "game_date": game_date,
+                "game_datetime": str(row.get("game_datetime") or ""),
                 "rank": int(row["rank"]),
                 "batter_id": int(row["batter_id"]),
                 "batter_name": str(row["batter_name"]),
@@ -1775,8 +1778,8 @@ def write_current_picks(rows: list[dict[str, Any]], path: Path = LIVE_CURRENT_PI
     ordered = sorted(
         canonical_rows,
         key=lambda row: (
-            -(float(row.get("predicted_hr_score")) if row.get("predicted_hr_score") is not None else -999.0),
             int(row.get("rank") or 999),
+            -(float(row.get("predicted_hr_score")) if row.get("predicted_hr_score") is not None else -999.0),
             str(row.get("batter_name") or ""),
         ),
     )

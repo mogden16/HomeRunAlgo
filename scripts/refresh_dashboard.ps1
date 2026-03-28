@@ -1,7 +1,7 @@
 param(
     [string]$PythonPath = ".\.venv1\Scripts\python.exe",
-    [ValidateSet("settle", "publish", "daily")]
-    [string]$Mode = "daily",
+    [ValidateSet("settle", "prepare", "publish")]
+    [string]$Mode = "prepare",
     [switch]$SkipPush,
     [string]$CommitMessage = "chore: refresh dashboard data"
 )
@@ -26,14 +26,14 @@ $trackedFiles = @(
 $workflowFailed = $false
 
 if ($Mode -eq "settle") {
-    & $resolvedPython scripts\train_live_model.py --dataset-path data\live\model_training_dataset.csv
+    & $resolvedPython scripts\refresh_live_results.py --dataset-path data\live\model_training_dataset.csv
     & $resolvedPython scripts\settle_live_results.py
 }
-elseif ($Mode -eq "daily") {
-    & $resolvedPython scripts\run_daily_live_refresh.py
+elseif ($Mode -eq "prepare") {
+    & $resolvedPython scripts\prepare_live_board.py
     if ($LASTEXITCODE -ne 0) {
         $workflowFailed = $true
-        Write-Warning "run_daily_live_refresh.py failed, but tracked public artifacts may have been refreshed. Continuing to rebuild, verify, and push them."
+        Write-Warning "prepare_live_board.py failed, but tracked public artifacts may have been refreshed. Continuing to rebuild, verify, and push them."
     }
 }
 else {

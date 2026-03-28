@@ -155,8 +155,10 @@ def verify_refresh_script(path: Path) -> None:
         '"data/live/current_picks.json"',
         '"data/live/pick_history.json"',
         '"cloudflare-app/data/dashboard.json"',
-        '"daily"',
-        "scripts\\run_daily_live_refresh.py",
+        '"settle"',
+        '"prepare"',
+        "scripts\\refresh_live_results.py",
+        "scripts\\prepare_live_board.py",
         "git add -- $trackedFiles",
         "scripts\\verify_public_live_artifacts.py",
         "git push",
@@ -169,7 +171,7 @@ def verify_refresh_script(path: Path) -> None:
 def verify_live_pipeline(path: Path) -> None:
     text = path.read_text(encoding="utf-8")
     assert_true("LIVE_PRODUCTION_FEATURE_COLUMNS" in text, f"{path} no longer references LIVE_PRODUCTION_FEATURE_COLUMNS.")
-    assert_true("from train_model import (\n    LIVE_PRODUCTION_FEATURE_COLUMNS," in text, f"{path} import block drifted from the live production feature contract.")
+    assert_true("from train_model import (" in text and "LIVE_PRODUCTION_FEATURE_COLUMNS," in text, f"{path} import block drifted from the live production feature contract.")
     assert_true("from train_model import (\n    FEATURE_COLUMNS," not in text, f"{path} still imports offline FEATURE_COLUMNS into the live publish flow.")
 
 
@@ -178,7 +180,9 @@ def print_operator_checklist() -> None:
     print("- Cloudflare Pages build command is blank.")
     print("- Cloudflare Pages output directory is cloudflare-app.")
     print("- Cloudflare Pages production branch is master.")
-    print("- Windows Task Scheduler should call scripts\\refresh_dashboard.ps1 -Mode daily.")
+    print("- Windows Task Scheduler should have a 2:00 AM ET settle task using scripts\\refresh_dashboard.ps1 -Mode settle.")
+    print("- Windows Task Scheduler should have a 4:00 AM ET prepare task using scripts\\refresh_dashboard.ps1 -Mode prepare.")
+    print("- Windows Task Scheduler should have publish reruns at 11:00 AM, 1:00 PM, 3:00 PM, and 6:00 PM ET using scripts\\refresh_dashboard.ps1 -Mode publish.")
     print("- This machine can git push to origin/master non-interactively.")
 
 
