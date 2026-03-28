@@ -30,9 +30,16 @@ from config import (
     PARKS,
 )
 from data_sources import ensure_directories
-from feature_engineering import compute_batter_trailing_features, compute_pitcher_trailing_features
+from feature_engineering import (
+    build_matchup_selected_handedness_features,
+    compute_batter_handedness_split_features,
+    compute_batter_trailing_features,
+    compute_pitcher_handedness_split_features,
+    compute_pitcher_trailing_features,
+)
 from generate_data import generate_mlb_dataset
 from train_model import (
+    LIVE_PLUS_FEATURE_COLUMNS,
     LIVE_PRODUCTION_FEATURE_COLUMNS,
     MAX_MODEL_FEATURE_MISSINGNESS,
     REASON_TEXT_BY_FEATURE,
@@ -49,6 +56,12 @@ from train_model import (
     prepare_feature_matrix,
     prune_model_features_by_training_missingness,
     run_backtest,
+)
+from weather_audit import (
+    PRIMARY_WEATHER_FEATURE_COLUMNS,
+    audit_weather_feature_coverage,
+    print_weather_join_contract,
+    weather_join_contract,
 )
 
 MLB_SCHEDULE_URL = "https://statsapi.mlb.com/api/v1/schedule"
@@ -67,6 +80,29 @@ TEAM_CODE_ALIASES = {
     "WSN": "WSH",
     "ATH": "OAK",
 }
+LIVE_PLUS_ONLY_FEATURE_COLUMNS = [
+    feature for feature in LIVE_PLUS_FEATURE_COLUMNS if feature not in LIVE_PRODUCTION_FEATURE_COLUMNS
+]
+LIVE_BATTER_SPLIT_SOURCE_COLUMNS = [
+    "batter_hr_per_pa_vs_rhp",
+    "batter_hr_per_pa_vs_lhp",
+    "batter_barrels_per_pa_vs_rhp",
+    "batter_barrels_per_pa_vs_lhp",
+    "batter_hard_hit_rate_vs_rhp",
+    "batter_hard_hit_rate_vs_lhp",
+]
+LIVE_PITCHER_SPLIT_SOURCE_COLUMNS = [
+    "pitcher_hr_allowed_per_pa_vs_rhb",
+    "pitcher_hr_allowed_per_pa_vs_lhb",
+    "pitcher_barrels_allowed_per_bbe_vs_rhb",
+    "pitcher_barrels_allowed_per_bbe_vs_lhb",
+    "pitcher_hard_hit_allowed_rate_vs_rhb",
+    "pitcher_hard_hit_allowed_rate_vs_lhb",
+]
+LIVE_PARK_FACTOR_SOURCE_COLUMNS = [
+    "park_factor_hr_vs_lhb",
+    "park_factor_hr_vs_rhb",
+]
 
 
 def eastern_today() -> pd.Timestamp:
@@ -228,6 +264,18 @@ def confidence_tier_from_percentile(percentile: float) -> str:
     return "longshot"
 
 
+CONFIDENCE_TIER_ORDER = {
+    "longshot": 0,
+    "watch": 1,
+    "strong": 2,
+    "elite": 3,
+}
+
+
+def _confidence_tier_value(tier: str | None) -> int:
+    return CONFIDENCE_TIER_ORDER.get(str(tier or "").strip().lower(), -1)
+
+
 def latest_non_null(series: pd.Series, default: Any = None) -> Any:
     non_null = series.dropna()
     if non_null.empty:
@@ -254,7 +302,58 @@ def refresh_live_dataset(
 
 
 def _candidate_is_live_compatible(feature_columns: list[str]) -> bool:
-    return set(feature_columns).issubset(set(LIVE_PRODUCTION_FEATURE_COLUMNS))
+    return set(feature_columns).issubset(set(LIVE_PLUS_FEATURE_COLUMNS))
+
+
+def _live_publish_weather_contract_label() -> str:
+    contract = weather_join_contract()
+    return (
+        f"{' + '.join(contract['join_keys'])}; "
+        f"{contract['park_lookup']}; "
+        f"{contract['selection_rule']}"
+    )
+
+
+def _weather_coverage_summary_payload(audit_payload: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "warning_null_rate_threshold": float(audit_payload["warning_null_rate_threshold"]),
+        "high_missing_features": list(audit_payload["high_missing_features"]),
+        "missing_columns": list(audit_payload["missing_columns"]),
+        "all_null_features": list(audit_payload["all_null_features"]),
+        "summary": {
+            feature: {
+                "row_count": int(stats["row_count"]),
+                "non_null_count": int(stats["non_null_count"]),
+                "null_rate": serialize_for_json(float(stats["null_rate"])) if stats["null_rate"] is not None else None,
+                "present": bool(stats["present"]),
+            }
+            for feature, stats in audit_payload["summary"].items()
+        },
+        "contract": dict(audit_payload["contract"]),
+    }
+
+
+def _audit_feature_frame_columns(
+    frame: pd.DataFrame,
+    *,
+    feature_columns: list[str],
+    context: str,
+) -> dict[str, list[str]]:
+    missing_columns = [feature for feature in feature_columns if feature not in frame.columns]
+    all_null_columns = [
+        feature
+        for feature in feature_columns
+        if feature in frame.columns and int(frame[feature].notna().sum()) == 0
+    ]
+    print(f"\nFeature-frame readiness ({context})")
+    print("-" * 60)
+    print(f"Required feature count        : {len(feature_columns)}")
+    print(f"Missing feature columns       : {missing_columns if missing_columns else 'none'}")
+    print(f"All-null feature columns      : {all_null_columns if all_null_columns else 'none'}")
+    return {
+        "missing_columns": missing_columns,
+        "all_null_columns": all_null_columns,
+    }
 
 
 def _build_pipeline_for_model_family(model_family: str):
@@ -366,7 +465,13 @@ def _fit_live_bundle_fast_refit(
     best_params: dict[str, Any] | None,
     existing_metadata: dict[str, Any],
 ) -> tuple[dict[str, Any], dict[str, Any]]:
-    configured_features = [column for column in LIVE_PRODUCTION_FEATURE_COLUMNS if column in df.columns] if feature_profile == "live" else []
+    configured_feature_map = {
+        "live": LIVE_PRODUCTION_FEATURE_COLUMNS,
+        "live_plus": LIVE_PLUS_FEATURE_COLUMNS,
+    }
+    configured_features = [
+        column for column in configured_feature_map.get(feature_profile, []) if column in df.columns
+    ]
     if not configured_features:
         from train_model import available_feature_columns
 
@@ -467,12 +572,20 @@ def train_live_model_bundle(
     metadata_path: Path = LIVE_MODEL_METADATA_PATH,
     model_name: str = "logistic",
     calibration: str = "sigmoid",
-    feature_profile: str = "live",
+    feature_profile: str = "live_plus",
     selection_metric: str = "pr_auc",
     missingness_threshold: float | None = None,
     training_mode: str = "search",
 ) -> dict[str, Any]:
     df = pd.read_csv(dataset_path, parse_dates=["game_date"])
+    print_weather_join_contract("live training dataset")
+    weather_coverage = audit_weather_feature_coverage(
+        df,
+        context="live training dataset",
+        feature_columns=list(PRIMARY_WEATHER_FEATURE_COLUMNS),
+        fail_on_missing_columns=True,
+        fail_on_all_null=False,
+    )
     if training_mode == "fast_refit":
         existing_metadata = load_model_metadata(metadata_path) if metadata_path.exists() else {}
         if not existing_metadata:
@@ -500,6 +613,10 @@ def train_live_model_bundle(
             best_params=existing_metadata.get("best_params") if isinstance(existing_metadata.get("best_params"), dict) else {},
             existing_metadata=existing_metadata,
         )
+        bundle["weather_feature_coverage"] = _weather_coverage_summary_payload(weather_coverage)
+        bundle["weather_join_contract"] = _live_publish_weather_contract_label()
+        metadata["weather_feature_coverage"] = _weather_coverage_summary_payload(weather_coverage)
+        metadata["weather_join_contract"] = _live_publish_weather_contract_label()
         _persist_live_bundle(bundle_path, metadata_path, bundle, metadata)
         return bundle
 
@@ -507,7 +624,7 @@ def train_live_model_bundle(
         str(dataset_path),
         model_name=model_name,
         feature_profile=feature_profile,
-        compare_against=None,
+        compare_against="live" if feature_profile == "live_plus" else None,
         selection_metric=selection_metric,
         missingness_threshold=missingness_threshold,
         calibration=calibration,
@@ -585,6 +702,8 @@ def train_live_model_bundle(
         "winner_pr_auc": float(winner_holdout_summary["pr_auc"]),
         "baseline_pr_auc": float(baseline_holdout["summary_row"]["pr_auc"]),
     }
+    bundle["weather_feature_coverage"] = _weather_coverage_summary_payload(weather_coverage)
+    bundle["weather_join_contract"] = _live_publish_weather_contract_label()
     metadata = {
         "trained_through": bundle["trained_through"],
         "dataset_max_game_date": bundle["dataset_max_game_date"],
@@ -600,6 +719,8 @@ def train_live_model_bundle(
         "training_cv_summary": bundle["training_cv_summary"],
         "final_holdout_summary": bundle["final_holdout_summary"],
         "promotion_decision": bundle["promotion_decision"],
+        "weather_feature_coverage": bundle["weather_feature_coverage"],
+        "weather_join_contract": bundle["weather_join_contract"],
         "row_count": int(len(df)),
         "hr_rate": serialize_for_json(float(df["hit_hr"].mean())),
     }
@@ -1164,9 +1285,17 @@ def build_live_candidate_frame(
     hitters_per_team: int = 9,
     active_roster_map: dict[str, pd.DataFrame] | None = None,
 ) -> pd.DataFrame:
+    print_weather_join_contract("live publish forecast merge")
     forecast_weather = fetch_forecast_weather(
         [game["home_team"] for game in schedule_games],
         target_date=target_date,
+    )
+    audit_weather_feature_coverage(
+        forecast_weather,
+        context="live forecast lookup table",
+        feature_columns=list(PRIMARY_WEATHER_FEATURE_COLUMNS),
+        fail_on_missing_columns=False,
+        fail_on_all_null=False,
     )
     rows: list[dict[str, Any]] = []
     for game in schedule_games:
@@ -1258,11 +1387,32 @@ def build_live_candidate_frame(
         (candidate_df["bat_side"] != candidate_df["pitch_hand_primary"]).astype(float),
         np.nan,
     )
+    audit_weather_feature_coverage(
+        candidate_df,
+        context="live candidate frame after forecast merge",
+        feature_columns=list(PRIMARY_WEATHER_FEATURE_COLUMNS),
+        fail_on_missing_columns=True,
+        fail_on_all_null=False,
+    )
     return candidate_df
 
 
 LIVE_CONTEXT_FEATURES = {"temperature_f", "wind_speed_mph", "humidity_pct", "platoon_advantage"}
-LIVE_BATTER_FEATURES = [feature for feature in LIVE_PRODUCTION_FEATURE_COLUMNS if feature not in LIVE_CONTEXT_FEATURES and not feature.startswith("pitcher_")]
+LIVE_DERIVED_FEATURES = {
+    "park_factor_hr_vs_batter_hand",
+    "batter_hr_per_pa_vs_pitcher_hand",
+    "batter_barrels_per_pa_vs_pitcher_hand",
+    "pitcher_hr_allowed_per_pa_vs_batter_hand",
+    "pitcher_barrels_allowed_per_bbe_vs_batter_hand",
+    "split_matchup_hr",
+    "split_matchup_barrel",
+    "split_matchup_hard_hit",
+}
+LIVE_BATTER_FEATURES = [
+    feature
+    for feature in LIVE_PRODUCTION_FEATURE_COLUMNS
+    if feature not in LIVE_CONTEXT_FEATURES and not feature.startswith("pitcher_")
+]
 LIVE_PITCHER_FEATURES = [feature for feature in LIVE_PRODUCTION_FEATURE_COLUMNS if feature.startswith("pitcher_")]
 
 
@@ -1282,6 +1432,26 @@ def build_latest_feature_snapshot(
     rows: list[dict[str, Any]] = []
     for entity_value, group in snapshot.groupby(entity_key, dropna=True):
         row: dict[str, Any] = {entity_key: int(entity_value)}
+        for feature in available_features:
+            row[feature] = latest_non_null(group[feature], default=np.nan)
+        rows.append(row)
+    return pd.DataFrame(rows)
+
+
+def build_latest_ballpark_snapshot(
+    dataset_df: pd.DataFrame,
+    *,
+    feature_columns: list[str],
+) -> pd.DataFrame:
+    available_features = [feature for feature in feature_columns if feature in dataset_df.columns]
+    if "ballpark" not in dataset_df.columns or not available_features:
+        return pd.DataFrame(columns=["ballpark", *available_features])
+    snapshot = dataset_df[["ballpark", "game_date", "game_pk", *available_features]].copy()
+    snapshot["game_date"] = pd.to_datetime(snapshot["game_date"])
+    snapshot = snapshot.dropna(subset=["ballpark"]).sort_values(["ballpark", "game_date", "game_pk"])
+    rows: list[dict[str, Any]] = []
+    for ballpark, group in snapshot.groupby("ballpark", dropna=True):
+        row: dict[str, Any] = {"ballpark": ballpark}
         for feature in available_features:
             row[feature] = latest_non_null(group[feature], default=np.nan)
         rows.append(row)
@@ -1357,6 +1527,8 @@ def build_live_feature_frame(dataset_df: pd.DataFrame, candidate_df: pd.DataFram
 
     batter_features = compute_batter_trailing_features(batter_augmented)
     pitcher_features = compute_pitcher_trailing_features(pitcher_augmented)
+    batter_split_features = compute_batter_handedness_split_features(batter_augmented)
+    pitcher_split_features = compute_pitcher_handedness_split_features(pitcher_augmented)
     featured = candidate_df.merge(
         batter_features,
         on=["batter_id", "game_pk"],
@@ -1369,31 +1541,73 @@ def build_live_feature_frame(dataset_df: pd.DataFrame, candidate_df: pd.DataFram
         how="left",
         validate="many_to_one",
     )
+    featured = featured.merge(
+        batter_split_features,
+        on=["batter_id", "game_pk"],
+        how="left",
+        validate="one_to_one",
+    )
+    featured = featured.merge(
+        pitcher_split_features,
+        on=["pitcher_id", "game_pk"],
+        how="left",
+        validate="many_to_one",
+    )
     batter_snapshot = build_latest_feature_snapshot(
         dataset_df,
         entity_key="batter_id",
-        feature_columns=LIVE_BATTER_FEATURES,
+        feature_columns=[*LIVE_BATTER_FEATURES, *LIVE_BATTER_SPLIT_SOURCE_COLUMNS],
     )
     featured = fill_missing_features_from_snapshot(
         featured,
         snapshot_df=batter_snapshot,
         entity_key="batter_id",
-        feature_columns=LIVE_BATTER_FEATURES,
+        feature_columns=[*LIVE_BATTER_FEATURES, *LIVE_BATTER_SPLIT_SOURCE_COLUMNS],
         suffix="latest_batter",
     )
     pitcher_snapshot = build_latest_feature_snapshot(
         dataset_df,
         entity_key="pitcher_id",
-        feature_columns=LIVE_PITCHER_FEATURES,
+        feature_columns=[*LIVE_PITCHER_FEATURES, *LIVE_PITCHER_SPLIT_SOURCE_COLUMNS],
     )
     featured = fill_missing_features_from_snapshot(
         featured,
         snapshot_df=pitcher_snapshot,
         entity_key="pitcher_id",
-        feature_columns=LIVE_PITCHER_FEATURES,
+        feature_columns=[*LIVE_PITCHER_FEATURES, *LIVE_PITCHER_SPLIT_SOURCE_COLUMNS],
         suffix="latest_pitcher",
     )
+    ballpark_snapshot = build_latest_ballpark_snapshot(
+        dataset_df,
+        feature_columns=list(LIVE_PARK_FACTOR_SOURCE_COLUMNS),
+    )
+    featured = fill_missing_features_from_snapshot(
+        featured,
+        snapshot_df=ballpark_snapshot,
+        entity_key="ballpark",
+        feature_columns=list(LIVE_PARK_FACTOR_SOURCE_COLUMNS),
+        suffix="latest_ballpark",
+    )
+    featured = build_matchup_selected_handedness_features(featured)
+    if "park_factor_hr_vs_lhb" not in featured.columns:
+        featured["park_factor_hr_vs_lhb"] = np.nan
+    if "park_factor_hr_vs_rhb" not in featured.columns:
+        featured["park_factor_hr_vs_rhb"] = np.nan
+    featured["park_factor_hr_vs_batter_hand"] = np.where(
+        featured["bat_side"].eq("L"),
+        featured["park_factor_hr_vs_lhb"],
+        featured["park_factor_hr_vs_rhb"],
+    )
     featured["opponent_team"] = featured["opponent"]
+    live_plus_audit = _audit_feature_frame_columns(
+        featured,
+        feature_columns=list(LIVE_PLUS_FEATURE_COLUMNS),
+        context="live feature frame",
+    )
+    for feature in LIVE_PLUS_FEATURE_COLUMNS:
+        if feature not in featured.columns:
+            featured[feature] = np.nan
+    featured.attrs["live_plus_feature_audit"] = live_plus_audit
     return featured
 
 
@@ -1402,6 +1616,9 @@ def score_live_candidates(
     bundle: dict[str, Any],
     *,
     max_picks: int = 20,
+    min_confidence_tier: str | None = None,
+    max_picks_per_team: int | None = None,
+    max_picks_per_game: int | None = None,
     published_at: str | None = None,
 ) -> list[dict[str, Any]]:
     if candidate_df.empty:
@@ -1415,6 +1632,21 @@ def score_live_candidates(
     for feature in feature_columns:
         if feature not in scored.columns:
             scored[feature] = np.nan
+
+    if str(bundle.get("feature_profile") or "") == "live_plus":
+        required_live_plus_features = [
+            feature for feature in feature_columns if feature in LIVE_PLUS_ONLY_FEATURE_COLUMNS
+        ]
+        readiness = _audit_feature_frame_columns(
+            scored,
+            feature_columns=required_live_plus_features,
+            context="live_plus scoring frame",
+        )
+        if readiness["missing_columns"] or readiness["all_null_columns"]:
+            raise RuntimeError(
+                "live_plus candidate frame is not ready for scoring; "
+                f"missing={readiness['missing_columns']}, all_null={readiness['all_null_columns']}"
+            )
 
     probabilities = model.predict_proba(scored[feature_columns])[:, 1]
     scored["predicted_hr_probability"] = probabilities
@@ -1432,7 +1664,40 @@ def score_live_candidates(
     scored["top_reason_2"] = reasons.apply(lambda items: items[1] if len(items) > 1 else "")
     scored["top_reason_3"] = reasons.apply(lambda items: items[2] if len(items) > 2 else "")
 
-    ranked = scored.sort_values(["predicted_hr_score", "predicted_hr_probability", "batter_name"], ascending=[False, False, True]).head(max_picks).copy()
+    ranked_source = scored.sort_values(
+        ["predicted_hr_score", "predicted_hr_probability", "batter_name"],
+        ascending=[False, False, True],
+    ).copy()
+
+    min_tier_value = _confidence_tier_value(min_confidence_tier) if min_confidence_tier else -1
+    selected_indices: list[int] = []
+    team_counts: dict[str, int] = {}
+    game_counts: dict[int, int] = {}
+
+    for row in ranked_source.itertuples():
+        if min_tier_value >= 0 and _confidence_tier_value(getattr(row, "confidence_tier", None)) < min_tier_value:
+            continue
+
+        team_key = str(getattr(row, "team", "") or "")
+        if max_picks_per_team is not None and team_key:
+            if team_counts.get(team_key, 0) >= max_picks_per_team:
+                continue
+
+        game_pk = getattr(row, "game_pk", None)
+        game_key = int(game_pk) if game_pk is not None and not pd.isna(game_pk) else None
+        if max_picks_per_game is not None and game_key is not None:
+            if game_counts.get(game_key, 0) >= max_picks_per_game:
+                continue
+
+        selected_indices.append(int(row.Index))
+        if team_key:
+            team_counts[team_key] = team_counts.get(team_key, 0) + 1
+        if game_key is not None:
+            game_counts[game_key] = game_counts.get(game_key, 0) + 1
+        if len(selected_indices) >= max_picks:
+            break
+
+    ranked = ranked_source.loc[selected_indices].copy()
     ranked["rank"] = np.arange(1, len(ranked) + 1)
     publish_time = published_at or datetime.now(timezone.utc).isoformat()
 

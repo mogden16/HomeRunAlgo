@@ -34,7 +34,7 @@ from scripts.live_pipeline import (
     select_probable_lineup_hitters,
     settle_pick_records,
 )
-from train_model import generate_reason_strings
+from train_model import LIVE_PLUS_FEATURE_COLUMNS, generate_reason_strings
 
 
 class LivePipelineTests(unittest.TestCase):
@@ -47,6 +47,79 @@ class LivePipelineTests(unittest.TestCase):
                         frame = data_sources.fetch_statcast_range("2024-10-31", "2024-11-06", force_refresh=True)
             self.assertEqual(list(frame.columns), data_sources.STATCAST_COLUMNS)
             self.assertTrue(frame.empty)
+
+    def test_build_weather_table_rebuilds_sparse_cache_and_normalizes_aliases(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_path = Path(tmp_dir)
+            raw_dir = tmp_path / "raw"
+            raw_dir.mkdir(parents=True, exist_ok=True)
+            stale_cache = raw_dir / "weather_2024-03-28_2024-03-28.csv"
+            pd.DataFrame(
+                [
+                    {
+                        "game_date": "2024-03-28",
+                        "home_team": "AZ",
+                        "temperature_f": None,
+                        "humidity_pct": None,
+                        "wind_speed_mph": None,
+                        "wind_direction_deg": None,
+                        "pressure_hpa": None,
+                    }
+                ]
+            ).to_csv(stale_cache, index=False)
+
+            schedule = pd.DataFrame([{"game_date": "2024-03-28", "home_team": "ARI"}])
+
+            def fake_fetch_open_meteo(lat: float, lon: float, start_date: str, end_date: str, tz: str) -> pd.DataFrame:
+                hours = pd.date_range("2024-03-28 00:00", periods=24, freq="h", tz=tz)
+                return pd.DataFrame(
+                    {
+                        "temperature_2m": [68.0] * len(hours),
+                        "relative_humidity_2m": [55.0] * len(hours),
+                        "wind_speed_10m": [9.0] * len(hours),
+                        "wind_direction_10m": [180.0] * len(hours),
+                        "surface_pressure": [1015.0] * len(hours),
+                    },
+                    index=hours,
+                )
+
+            with patch.object(data_sources, "DATA_DIR", tmp_path):
+                with patch.object(data_sources, "RAW_DATA_DIR", raw_dir):
+                    with patch.object(data_sources, "_fetch_open_meteo", side_effect=fake_fetch_open_meteo) as mock_fetch:
+                        weather = data_sources.build_weather_table(schedule, force_refresh=False)
+
+            self.assertEqual(mock_fetch.call_count, 1)
+            self.assertEqual(len(weather), 1)
+            self.assertEqual(weather.iloc[0]["home_team"], "AZ")
+            self.assertAlmostEqual(float(weather.iloc[0]["temperature_f"]), 68.0)
+            refreshed_cache = pd.read_csv(stale_cache, parse_dates=["game_date"])
+            self.assertEqual(int(refreshed_cache["temperature_f"].notna().sum()), 1)
+
+    def test_fetch_open_meteo_handles_dst_fall_back_day(self) -> None:
+        class FakeResponse:
+            def raise_for_status(self) -> None:
+                return None
+
+            def json(self) -> dict[str, dict[str, list[float | str]]]:
+                times = [f"2024-11-03T{hour:02d}:00" for hour in range(24)]
+                values = [float(hour) for hour in range(24)]
+                return {
+                    "hourly": {
+                        "time": times,
+                        "temperature_2m": values,
+                        "relative_humidity_2m": values,
+                        "wind_speed_10m": values,
+                        "wind_direction_10m": values,
+                        "surface_pressure": values,
+                    }
+                }
+
+        with patch("data_sources.requests.get", return_value=FakeResponse()):
+            weather = data_sources._fetch_open_meteo(40.8296, -73.9262, "2024-11-03", "2024-11-03", "America/New_York")
+
+        self.assertEqual(len(weather), 24)
+        self.assertEqual(str(weather.index.tz), "America/New_York")
+        self.assertEqual(float(weather.iloc[0]["temperature_2m"]), 0.0)
 
     def test_extract_plate_appearances_computes_spray_angle_from_numeric_arrays(self) -> None:
         statcast_df = pd.DataFrame(
@@ -502,6 +575,53 @@ class LivePipelineTests(unittest.TestCase):
         picks = score_live_candidates(candidate_df, bundle, max_picks=3, published_at="2026-03-25T12:00:00+00:00")
         self.assertEqual([row["batter_name"] for row in picks], ["Bravo", "Charlie", "Alpha"])
         self.assertEqual([row["rank"] for row in picks], [1, 2, 3])
+
+    def test_score_live_candidates_applies_confidence_and_team_filters(self) -> None:
+        class FakeModel:
+            def predict_proba(self, features: pd.DataFrame) -> list[list[float]]:
+                probabilities = []
+                for value in features["feature_a"].tolist():
+                    probabilities.append([1.0 - float(value), float(value)])
+                return pd.DataFrame(probabilities).to_numpy()
+
+        candidate_rows = []
+        probability_map = {
+            1: 0.99,
+            2: 0.97,
+            3: 0.98,
+        }
+        for batter_id in range(1, 21):
+            candidate_rows.append(
+                {
+                    "game_pk": 100 + ((batter_id - 1) // 2),
+                    "game_date": pd.Timestamp("2026-03-25"),
+                    "batter_id": batter_id,
+                    "batter_name": f"Batter {batter_id}",
+                    "team": "NYY" if batter_id in {1, 2} else ("BOS" if batter_id == 3 else f"TEAM{batter_id}"),
+                    "opponent_team": "OPP",
+                    "pitcher_id": 200 + batter_id,
+                    "pitcher_name": "Pitcher",
+                    "feature_a": probability_map.get(batter_id, max(0.01, 0.50 - (batter_id * 0.01))),
+                }
+            )
+        candidate_df = pd.DataFrame(candidate_rows)
+        bundle = {
+            "model": FakeModel(),
+            "feature_columns": ["feature_a"],
+            "reference_df": pd.DataFrame({"feature_a": [row["feature_a"] for row in candidate_rows]}),
+        }
+
+        picks = score_live_candidates(
+            candidate_df,
+            bundle,
+            max_picks=20,
+            min_confidence_tier="strong",
+            max_picks_per_team=1,
+            published_at="2026-03-25T12:00:00+00:00",
+        )
+
+        self.assertEqual([row["batter_name"] for row in picks], ["Batter 1", "Batter 3"])
+        self.assertEqual([row["confidence_tier"] for row in picks], ["elite", "strong"])
 
     def test_fetch_forecast_weather_skips_api_for_historical_dates(self) -> None:
         with patch("scripts.live_pipeline.requests.get") as mock_get:
@@ -1007,6 +1127,8 @@ class LivePipelineTests(unittest.TestCase):
                     "fly_ball_bbe_count": 1,
                     "pull_air_bbe_count": 0,
                     "ballpark": "Rogers Centre",
+                    "park_factor_hr_vs_lhb": 96.0,
+                    "park_factor_hr_vs_rhb": 103.0,
                     "hard_hit_rate_last_10d": 0.41,
                     "max_exit_velocity_last_10d": 108.0,
                     "pitcher_hard_hit_allowed_rate_last_30d": 0.37,
@@ -1037,6 +1159,8 @@ class LivePipelineTests(unittest.TestCase):
                     "fly_ball_bbe_count": 1,
                     "pull_air_bbe_count": 1,
                     "ballpark": "Yankee Stadium",
+                    "park_factor_hr_vs_lhb": 98.0,
+                    "park_factor_hr_vs_rhb": 110.0,
                     "hard_hit_rate_last_10d": 0.58,
                     "max_exit_velocity_last_10d": 112.0,
                     "pitcher_hard_hit_allowed_rate_last_30d": 0.44,
@@ -1088,6 +1212,12 @@ class LivePipelineTests(unittest.TestCase):
         self.assertEqual(float(featured.iloc[0]["max_exit_velocity_last_10d"]), 112.0)
         self.assertEqual(float(featured.iloc[0]["pitcher_hard_hit_allowed_rate_last_30d"]), 0.44)
         self.assertEqual(float(featured.iloc[0]["pitcher_hr_allowed_per_pa_last_30d"]), 0.07)
+        self.assertEqual(float(featured.iloc[0]["park_factor_hr_vs_batter_hand"]), 110.0)
+        for feature in LIVE_PLUS_FEATURE_COLUMNS:
+            self.assertIn(feature, featured.columns)
+        self.assertTrue(pd.notna(featured.iloc[0]["batter_hr_per_pa_vs_pitcher_hand"]))
+        self.assertTrue(pd.notna(featured.iloc[0]["pitcher_hr_allowed_per_pa_vs_batter_hand"]))
+        self.assertTrue(pd.notna(featured.iloc[0]["split_matchup_hr"]))
 
     def test_dashboard_builder_merges_current_into_history(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
@@ -1191,6 +1321,81 @@ class LivePipelineTests(unittest.TestCase):
             self.assertEqual(len(payload["history"]), 12)
             self.assertEqual(payload["history"][0]["batter_name"], "Player 1")
             self.assertEqual(payload["history"][-1]["batter_name"], "Player 12")
+
+    def test_dashboard_builder_keeps_empty_player_leaderboard_when_no_settled_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+            output_dir = base / "out"
+            current_path.write_text("[]", encoding="utf-8")
+            history_path.write_text("[]", encoding="utf-8")
+
+            build_dashboard_artifacts.build_dashboard_artifacts(
+                current_picks_path=current_path,
+                history_path=history_path,
+                output_dir=output_dir,
+            )
+
+            payload = json.loads((output_dir / "dashboard.json").read_text(encoding="utf-8"))
+            self.assertEqual(payload["player_leaderboard"], [])
+
+    def test_dashboard_builder_bootstraps_player_leaderboard_at_two_picks(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+            output_dir = base / "out"
+            current_path.write_text("[]", encoding="utf-8")
+            history_rows = [
+                {
+                    "pick_id": "pick-1",
+                    "game_pk": 1001,
+                    "game_date": "2026-03-25",
+                    "rank": 1,
+                    "batter_id": 10,
+                    "batter_name": "Alpha",
+                    "team": "NYY",
+                    "opponent_team": "BOS",
+                    "pitcher_id": 20,
+                    "pitcher_name": "Pitcher A",
+                    "confidence_tier": "elite",
+                    "predicted_hr_probability": 0.22,
+                    "predicted_hr_score": 98.0,
+                    "top_reason_1": "reason",
+                    "result_label": "HR",
+                    "actual_hit_hr": 1,
+                },
+                {
+                    "pick_id": "pick-2",
+                    "game_pk": 1002,
+                    "game_date": "2026-03-26",
+                    "rank": 1,
+                    "batter_id": 10,
+                    "batter_name": "Alpha",
+                    "team": "NYY",
+                    "opponent_team": "TOR",
+                    "pitcher_id": 21,
+                    "pitcher_name": "Pitcher B",
+                    "confidence_tier": "strong",
+                    "predicted_hr_probability": 0.20,
+                    "predicted_hr_score": 95.0,
+                    "top_reason_1": "reason",
+                    "result_label": "No HR",
+                    "actual_hit_hr": 0,
+                },
+            ]
+            history_path.write_text(json.dumps(history_rows), encoding="utf-8")
+
+            build_dashboard_artifacts.build_dashboard_artifacts(
+                current_picks_path=current_path,
+                history_path=history_path,
+                output_dir=output_dir,
+            )
+
+            payload = json.loads((output_dir / "dashboard.json").read_text(encoding="utf-8"))
+            self.assertEqual(payload["player_leaderboard"][0]["batter_name"], "Alpha")
+            self.assertEqual(payload["player_leaderboard"][0]["picks"], 2)
 
     def test_dashboard_builder_replaces_pending_same_day_rows(self) -> None:
         existing_rows = [

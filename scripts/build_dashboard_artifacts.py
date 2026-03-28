@@ -140,7 +140,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--tracking-start-date", default=DEFAULT_TRACKING_START_DATE, help="Only picks on or after this date are published.")
     parser.add_argument("--latest-count", type=int, default=12, help="Number of latest picks shown on the landing page.")
     parser.add_argument("--history-per-date", type=int, default=10, help="Number of historical picks preserved per date in the dashboard.")
-    parser.add_argument("--min-player-picks", type=int, default=3, help="Minimum settled picks required for a player leaderboard row.")
+    parser.add_argument("--min-player-picks", type=int, default=2, help="Minimum settled picks required for a player leaderboard row.")
     return parser.parse_args()
 
 
@@ -385,7 +385,7 @@ def build_dashboard_artifacts(
     tracking_start_date: str = DEFAULT_TRACKING_START_DATE,
     latest_count: int = 12,
     history_per_date: int = 10,
-    min_player_picks: int = 3,
+    min_player_picks: int = 2,
     persist_history: bool = True,
     latest_available_date_override: str | None = None,
 ) -> Path:

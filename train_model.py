@@ -119,8 +119,19 @@ LIVE_PRODUCTION_FEATURE_COLUMNS = [
     "humidity_pct",
     "platoon_advantage",
 ]
-EXPERIMENTAL_FEATURE_COLUMNS = [
+LIVE_PLUS_FEATURE_COLUMNS = [
     *LIVE_PRODUCTION_FEATURE_COLUMNS,
+    "park_factor_hr_vs_batter_hand",
+    "batter_hr_per_pa_vs_pitcher_hand",
+    "batter_barrels_per_pa_vs_pitcher_hand",
+    "pitcher_hr_allowed_per_pa_vs_batter_hand",
+    "pitcher_barrels_allowed_per_bbe_vs_batter_hand",
+    "split_matchup_hr",
+    "split_matchup_barrel",
+    "split_matchup_hard_hit",
+]
+EXPERIMENTAL_FEATURE_COLUMNS = [
+    *LIVE_PLUS_FEATURE_COLUMNS,
     "hr_count_last_30d",
     "hr_count_last_10d",
     "pa_last_30d",
@@ -199,7 +210,7 @@ EXPERIMENTAL_FEATURE_COLUMNS = [
 ]
 FEATURE_COLUMNS = list(STABLE_FEATURE_COLUMNS)
 OPTIONAL_SECONDARY_FEATURES: list[str] = []
-FEATURE_PROFILE_CHOICES = ["stable", "live", "expanded", "all"]
+FEATURE_PROFILE_CHOICES = ["stable", "live", "live_plus", "expanded", "all"]
 BASELINE_FEATURES = [
     "hr_per_pa_last_30d",
     "hr_per_pa_last_10d",
@@ -257,6 +268,14 @@ REASON_TEXT_BY_FEATURE = {
     "wind_speed_mph": "wind_speed",
     "humidity_pct": "humidity",
     "platoon_advantage": "platoon_advantage",
+    "park_factor_hr_vs_batter_hand": "park_factor_hr_vs_batter_hand",
+    "batter_hr_per_pa_vs_pitcher_hand": "batter_hr_per_pa_vs_pitcher_hand",
+    "batter_barrels_per_pa_vs_pitcher_hand": "batter_barrels_per_pa_vs_pitcher_hand",
+    "pitcher_hr_allowed_per_pa_vs_batter_hand": "pitcher_hr_allowed_per_pa_vs_batter_hand",
+    "pitcher_barrels_allowed_per_bbe_vs_batter_hand": "pitcher_barrels_allowed_per_bbe_vs_batter_hand",
+    "split_matchup_hr": "split_matchup_hr",
+    "split_matchup_barrel": "split_matchup_barrel",
+    "split_matchup_hard_hit": "split_matchup_hard_hit",
 }
 
 warnings.filterwarnings(
@@ -321,6 +340,8 @@ def feature_columns_for_profile(profile: str) -> list[str]:
         return list(STABLE_FEATURE_COLUMNS)
     if profile == "live":
         return list(LIVE_PRODUCTION_FEATURE_COLUMNS)
+    if profile == "live_plus":
+        return list(LIVE_PLUS_FEATURE_COLUMNS)
     if profile == "expanded":
         return list(EXPERIMENTAL_FEATURE_COLUMNS)
     raise ValueError(f"Unknown feature profile: {profile}")
@@ -493,7 +514,7 @@ def resolve_model_families(model_name: str) -> list[str]:
 
 def resolve_feature_profiles(feature_profile: str, compare_against: str | None = None) -> list[str]:
     if feature_profile == "all":
-        return ["stable", "live", "expanded"]
+        return ["stable", "live", "live_plus", "expanded"]
     profiles = [feature_profile]
     if compare_against and compare_against not in {"none", feature_profile, "all"}:
         profiles.append(compare_against)
@@ -1206,7 +1227,13 @@ def _strength_label(percentile: float) -> str:
 def _feature_reason_bucket(feature: str) -> str:
     if feature.startswith("pitcher_"):
         return "pitcher"
-    if feature in {"temperature_f", "wind_speed_mph", "humidity_pct", "platoon_advantage"}:
+    if feature in {
+        "temperature_f",
+        "wind_speed_mph",
+        "humidity_pct",
+        "platoon_advantage",
+        "park_factor_hr_vs_batter_hand",
+    }:
         return "context"
     return "batter"
 
@@ -1252,6 +1279,22 @@ def _build_feature_reason(feature: str, value: float, percentile: float, row: pd
         return f"Projected humidity is {value:.0f}%, a modest positive weather input in the live model."
     if feature == "platoon_advantage":
         return "The hitter has the platoon advantage in this matchup."
+    if feature == "park_factor_hr_vs_batter_hand":
+        return f"Park factor for the hitter's handedness is {value:.1f}, which adds venue lift to the matchup."
+    if feature == "batter_hr_per_pa_vs_pitcher_hand":
+        return f"Against this pitcher handedness, the hitter owns a {_format_pct(value)} HR-per-PA split."
+    if feature == "batter_barrels_per_pa_vs_pitcher_hand":
+        return f"Against this pitcher handedness, the hitter has a {_format_pct(value)} barrel-per-PA split."
+    if feature == "pitcher_hr_allowed_per_pa_vs_batter_hand":
+        return f"{pitcher_name} has allowed homers in {_format_pct(value)} of plate appearances to this batter side."
+    if feature == "pitcher_barrels_allowed_per_bbe_vs_batter_hand":
+        return f"{pitcher_name} has allowed barrels on {_format_pct(value)} of batted balls to this batter side."
+    if feature == "split_matchup_hr":
+        return f"The handedness-specific HR matchup score is {value:.4f}, combining the hitter split and pitcher split."
+    if feature == "split_matchup_barrel":
+        return f"The handedness-specific barrel matchup score is {value:.4f}, reinforcing the power-contact fit."
+    if feature == "split_matchup_hard_hit":
+        return f"The handedness-specific hard-hit matchup score is {value:.4f}, supporting loud-contact upside."
     return ""
 
 

@@ -14,6 +14,7 @@ from sklearn.model_selection import TimeSeriesSplit as SklearnTimeSeriesSplit
 
 import train_model
 from scripts.live_pipeline import score_live_candidates, train_live_model_bundle
+from weather_audit import summarize_weather_feature_coverage
 
 
 def make_live_dataset(rows: int = 24) -> pd.DataFrame:
@@ -46,6 +47,14 @@ def make_live_dataset(rows: int = 24) -> pd.DataFrame:
                 "pitcher_hard_hit_allowed_rate_last_30d": 0.34 + idx * 0.001,
                 "pitcher_avg_ev_allowed_last_30d": 89.0 + idx * 0.1,
                 "pitcher_95plus_ev_allowed_rate_last_30d": 0.22 + idx * 0.001,
+                "park_factor_hr_vs_batter_hand": 101.0 + (idx % 4),
+                "batter_hr_per_pa_vs_pitcher_hand": 0.015 + idx * 0.001,
+                "batter_barrels_per_pa_vs_pitcher_hand": 0.025 + idx * 0.001,
+                "pitcher_hr_allowed_per_pa_vs_batter_hand": 0.02 + idx * 0.001,
+                "pitcher_barrels_allowed_per_bbe_vs_batter_hand": 0.06 + idx * 0.001,
+                "split_matchup_hr": 0.0003 + idx * 0.00001,
+                "split_matchup_barrel": 0.0015 + idx * 0.00005,
+                "split_matchup_hard_hit": 0.08 + idx * 0.001,
                 "temperature_f": 60.0 + (idx % 5),
                 "wind_speed_mph": 10.0 + (idx % 4),
                 "humidity_pct": 50.0 + (idx % 6),
@@ -67,6 +76,12 @@ class RecordingTimeSeriesSplit:
 
 
 class ModelSearchTests(unittest.TestCase):
+    def test_representative_training_slice_has_material_weather_population(self) -> None:
+        df = make_live_dataset()
+        coverage = summarize_weather_feature_coverage(df)
+        for feature, stats in coverage.items():
+            self.assertLess(float(stats["null_rate"]), 0.35, feature)
+
     def test_cross_validate_probability_metrics_uses_time_series_split(self) -> None:
         df = make_live_dataset()
         X = train_model.prepare_feature_matrix(df, ["hr_per_pa_last_30d", "temperature_f"])
@@ -257,6 +272,82 @@ class ModelSearchTests(unittest.TestCase):
             self.assertIn("training_cv_summary", metadata)
             self.assertIn("final_holdout_summary", metadata)
             self.assertIn("promotion_decision", metadata)
+            self.assertIn("weather_feature_coverage", metadata)
+
+    def test_train_live_model_bundle_live_plus_search_compares_against_live_and_serializes_profile(self) -> None:
+        df = make_live_dataset()
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_path = Path(tmp_dir)
+            dataset_path = tmp_path / "dataset.csv"
+            bundle_path = tmp_path / "bundle.pkl"
+            metadata_path = tmp_path / "metadata.json"
+            df.to_csv(dataset_path, index=False)
+
+            live_plus_summary = {
+                "model_family": "logistic",
+                "feature_profile": "live_plus",
+                "missingness_threshold": 0.5,
+                "feature_count": len(train_model.LIVE_PLUS_FEATURE_COLUMNS),
+                "excluded_feature_count": 0,
+                "selection_metric": "pr_auc",
+                "selection_score": 0.31,
+                "mean_cv_pr_auc": 0.31,
+                "mean_cv_roc_auc": 0.62,
+                "mean_cv_log_loss": 0.49,
+                "mean_cv_brier_score": 0.19,
+                "search_best_score": 0.31,
+                "model_priority": 0,
+                "best_params": {},
+            }
+            live_summary = {
+                **live_plus_summary,
+                "feature_profile": "live",
+                "feature_count": len(train_model.LIVE_PRODUCTION_FEATURE_COLUMNS),
+                "selection_score": 0.29,
+                "mean_cv_pr_auc": 0.29,
+            }
+            live_plus_candidate = {
+                "summary_row": live_plus_summary,
+                "feature_columns": list(train_model.LIVE_PLUS_FEATURE_COLUMNS),
+                "excluded_features": [],
+                "search": SimpleNamespace(best_estimator_=train_model.build_logistic_pipeline()),
+            }
+            live_candidate = {
+                "summary_row": live_summary,
+                "feature_columns": list(train_model.LIVE_PRODUCTION_FEATURE_COLUMNS),
+                "excluded_features": [],
+                "search": SimpleNamespace(best_estimator_=train_model.build_logistic_pipeline()),
+            }
+            fake_backtest = {
+                "selected_candidate": live_plus_candidate,
+                "final_result": {"summary_row": {**live_plus_summary, "pr_auc": 0.32}},
+                "candidate_results": [live_plus_candidate, live_candidate],
+                "train_df": df.iloc[:16].copy(),
+                "test_df": df.iloc[16:].copy(),
+            }
+
+            def fake_evaluate_training_candidate(train_df: pd.DataFrame, *, feature_profile: str, **_: object):
+                return live_candidate if feature_profile == "live" else live_plus_candidate
+
+            with patch("scripts.live_pipeline.run_backtest", return_value=fake_backtest) as mock_backtest:
+                with patch("scripts.live_pipeline.evaluate_training_candidate", side_effect=fake_evaluate_training_candidate):
+                    with patch(
+                        "scripts.live_pipeline.evaluate_model_run",
+                        return_value={"summary_row": {**live_summary, "pr_auc": 0.30}},
+                    ):
+                        bundle = train_live_model_bundle(
+                            dataset_path,
+                            bundle_path=bundle_path,
+                            metadata_path=metadata_path,
+                            calibration="disabled",
+                            feature_profile="live_plus",
+                        )
+
+            self.assertEqual(mock_backtest.call_args.kwargs["compare_against"], "live")
+            metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+            self.assertEqual(bundle["feature_profile"], "live_plus")
+            self.assertEqual(metadata["feature_profile"], "live_plus")
+            self.assertEqual(metadata["promotion_decision"]["used"], "selected_candidate")
 
 
 if __name__ == "__main__":

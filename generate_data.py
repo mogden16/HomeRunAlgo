@@ -16,6 +16,7 @@ from feature_engineering import (
     validate_dataset,
     validate_final_model_df,
 )
+from weather_audit import audit_weather_feature_coverage, print_weather_join_contract
 
 
 def generate_mlb_dataset(
@@ -54,10 +55,21 @@ def generate_mlb_dataset(
 
     schedule = dataset[["game_date", "team", "opponent", "is_home"]].copy()
     schedule["home_team"] = schedule.apply(lambda row: row["team"] if row["is_home"] else row["opponent"], axis=1)
+    print_weather_join_contract("historical dataset generation")
     weather_df = build_weather_table(schedule[["game_date", "home_team"]].drop_duplicates(), force_refresh=force_refresh)
+    audit_weather_feature_coverage(
+        weather_df,
+        context="historical weather lookup table",
+        fail_on_missing_columns=True,
+    )
     dataset["home_team"] = dataset.apply(lambda row: row["team"] if row["is_home"] else row["opponent"], axis=1)
     dataset = dataset.merge(weather_df, on=["game_date", "home_team"], how="left", validate="many_to_one")
     dataset = dataset.drop(columns=["home_team"])
+    audit_weather_feature_coverage(
+        dataset,
+        context="engineered dataset after weather merge",
+        fail_on_missing_columns=True,
+    )
 
     validate_final_model_df(dataset)
     warnings = validate_dataset(dataset)

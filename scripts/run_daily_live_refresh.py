@@ -47,7 +47,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--publish-date", default=None, help="Publish date. Defaults to today in ET.")
     parser.add_argument("--force-refresh", action="store_true", help="Ignore caches and re-fetch remote data.")
     parser.add_argument("--model", default="logistic", choices=["logistic", "histgb", "xgboost", "all"], help="Model family search space.")
-    parser.add_argument("--feature-profile", default="live", choices=["stable", "live", "expanded", "all"], help="Feature profile search space.")
+    parser.add_argument("--feature-profile", default="live_plus", choices=["stable", "live", "live_plus", "expanded", "all"], help="Feature profile search space.")
     parser.add_argument("--calibration", default="sigmoid", choices=["disabled", "sigmoid", "isotonic"], help="Calibration mode.")
     parser.add_argument("--selection-metric", default="pr_auc", choices=["pr_auc", "roc_auc", "neg_log_loss", "neg_brier"], help="Primary CV metric for candidate selection.")
     parser.add_argument("--missingness-threshold", type=float, default=None, help="Optional fixed feature-missingness threshold.")
@@ -78,7 +78,7 @@ def run_daily_live_refresh(
     publish_date: str | None = None,
     force_refresh: bool = False,
     model: str = "logistic",
-    feature_profile: str = "live",
+    feature_profile: str = "live_plus",
     calibration: str = "sigmoid",
     selection_metric: str = "pr_auc",
     missingness_threshold: float | None = None,

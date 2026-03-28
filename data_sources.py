@@ -21,6 +21,7 @@ from config import (
     STATCAST_CHUNK_DAYS,
     STATCAST_COLUMNS,
 )
+from weather_audit import PRIMARY_WEATHER_FEATURE_COLUMNS, WEATHER_WARNING_NULL_RATE, summarize_weather_feature_coverage
 
 cache.enable()
 
@@ -69,6 +70,50 @@ def _weather_cache_path(game_schedule: pd.DataFrame) -> Path:
     return RAW_DATA_DIR / f"weather_{start}_{end}.csv"
 
 
+def _normalize_home_team_code(home_team: object) -> str:
+    if pd.isna(home_team):
+        return ""
+    code = str(home_team).strip().upper()
+    return _HOME_TEAM_ALIASES.get(code, code)
+
+
+def _normalize_weather_schedule(game_schedule: pd.DataFrame) -> pd.DataFrame:
+    required_cols = {"game_date", "home_team"}
+    if not required_cols.issubset(game_schedule.columns):
+        raise ValueError(f"game_schedule must include columns {required_cols}")
+    normalized = game_schedule.loc[:, ["game_date", "home_team"]].copy()
+    normalized["game_date"] = pd.to_datetime(normalized["game_date"], errors="coerce").dt.normalize()
+    normalized["home_team"] = normalized["home_team"].map(_normalize_home_team_code)
+    normalized = normalized.dropna(subset=["game_date"])
+    normalized = normalized[normalized["home_team"] != ""].copy()
+    return normalized
+
+
+def _weather_cache_is_healthy(weather_df: pd.DataFrame, normalized_schedule: pd.DataFrame) -> bool:
+    required_cols = {"game_date", "home_team", *PRIMARY_WEATHER_FEATURE_COLUMNS}
+    if not required_cols.issubset(weather_df.columns):
+        return False
+
+    cache_keys = weather_df.loc[:, ["game_date", "home_team"]].drop_duplicates()
+    expected_keys = normalized_schedule.drop_duplicates()
+    if len(cache_keys) != len(expected_keys):
+        return False
+
+    merged = expected_keys.merge(cache_keys, on=["game_date", "home_team"], how="left", indicator=True)
+    if not (merged["_merge"] == "both").all():
+        return False
+
+    coverage = summarize_weather_feature_coverage(weather_df, feature_columns=list(PRIMARY_WEATHER_FEATURE_COLUMNS))
+    if any(not stats["present"] for stats in coverage.values()):
+        return False
+    if any(
+        stats["null_rate"] is not None and float(stats["null_rate"]) > WEATHER_WARNING_NULL_RATE
+        for stats in coverage.values()
+    ):
+        return False
+    return True
+
+
 def fetch_statcast_range(start_date: str, end_date: str, force_refresh: bool = False) -> pd.DataFrame:
     """Fetch a cached Statcast date window and keep only required columns."""
     ensure_directories()
@@ -100,6 +145,16 @@ def fetch_statcast_season(start_date: str, end_date: str, force_refresh: bool = 
 
 
 _OPEN_METEO_URL = "https://archive-api.open-meteo.com/v1/archive"
+_HOME_TEAM_ALIASES = {
+    "ARI": "AZ",
+    "CHW": "CWS",
+    "KCR": "KC",
+    "OAK": "ATH",
+    "SDP": "SD",
+    "SFG": "SF",
+    "TBR": "TB",
+    "WSN": "WSH",
+}
 
 
 def _fetch_open_meteo(lat: float, lon: float, start_date: str, end_date: str, tz: str) -> pd.DataFrame:
@@ -118,7 +173,10 @@ def _fetch_open_meteo(lat: float, lon: float, start_date: str, end_date: str, tz
     resp.raise_for_status()
     data = resp.json()["hourly"]
     df = pd.DataFrame(data)
-    df.index = pd.to_datetime(df["time"]).dt.tz_localize(tz, ambiguous="infer", nonexistent="shift_forward")
+    # Open-Meteo returns naive local timestamps; use a deterministic DST policy so
+    # fall-back windows do not fail when the hourly series contains only one copy
+    # of the ambiguous local hour.
+    df.index = pd.to_datetime(df["time"]).dt.tz_localize(tz, ambiguous=False, nonexistent="shift_forward")
     df = df.drop(columns=["time"])
     return df
 
@@ -126,17 +184,20 @@ def _fetch_open_meteo(lat: float, lon: float, start_date: str, end_date: str, tz
 def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False) -> pd.DataFrame:
     """Pull hourly historical weather for each MLB park/date pair used in the dataset."""
     ensure_directories()
-    weather_cache_path = _weather_cache_path(game_schedule)
+    normalized_schedule = _normalize_weather_schedule(game_schedule)
+    weather_cache_path = _weather_cache_path(normalized_schedule)
     if weather_cache_path.exists() and not force_refresh:
         weather_df = pd.read_csv(weather_cache_path, parse_dates=["game_date"])
-        return weather_df
-
-    required_cols = {"game_date", "home_team"}
-    if not required_cols.issubset(game_schedule.columns):
-        raise ValueError(f"game_schedule must include columns {required_cols}")
+        weather_df["game_date"] = pd.to_datetime(weather_df["game_date"], errors="coerce").dt.normalize()
+        weather_df["home_team"] = weather_df["home_team"].map(_normalize_home_team_code)
+        if _weather_cache_is_healthy(weather_df, normalized_schedule):
+            return weather_df
+        warnings.warn(
+            f"Cached weather table at {weather_cache_path} is incomplete or sparse; rebuilding from source."
+        )
 
     rows: list[WeatherLookupRow] = []
-    for home_team, park_games in game_schedule.groupby("home_team"):
+    for home_team, park_games in normalized_schedule.groupby("home_team"):
         if home_team not in PARKS:
             raise KeyError(f"No park mapping configured for home team '{home_team}'.")
         park = PARKS[home_team]

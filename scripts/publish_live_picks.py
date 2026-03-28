@@ -25,6 +25,7 @@ from scripts.live_pipeline import (
     build_active_roster_map,
     build_live_candidate_frame,
     build_live_feature_frame,
+    CONFIDENCE_TIER_ORDER,
     default_publish_date,
     fetch_schedule_games,
     load_live_dataset,
@@ -33,6 +34,10 @@ from scripts.live_pipeline import (
     score_live_candidates,
     write_current_picks,
 )
+
+DEFAULT_MIN_CONFIDENCE_TIER = "strong"
+DEFAULT_MAX_PICKS_PER_TEAM = None
+DEFAULT_MAX_PICKS_PER_GAME = None
 
 
 def parse_args() -> argparse.Namespace:
@@ -46,6 +51,24 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--schedule-date", default=None, help="Official MLB date to publish. Defaults to today in ET.")
     parser.add_argument("--hitters-per-team", type=int, default=9, help="How many likely starters to consider for each team.")
     parser.add_argument("--max-picks", type=int, default=20, help="Maximum published picks across the slate.")
+    parser.add_argument(
+        "--min-confidence-tier",
+        choices=tuple(CONFIDENCE_TIER_ORDER.keys()),
+        default=DEFAULT_MIN_CONFIDENCE_TIER,
+        help="Minimum confidence tier required for publication.",
+    )
+    parser.add_argument(
+        "--max-picks-per-team",
+        type=int,
+        default=DEFAULT_MAX_PICKS_PER_TEAM,
+        help="Maximum published picks allowed from the same team. Disabled by default.",
+    )
+    parser.add_argument(
+        "--max-picks-per-game",
+        type=int,
+        default=DEFAULT_MAX_PICKS_PER_GAME,
+        help="Maximum published picks allowed from the same game. Disabled by default.",
+    )
     return parser.parse_args()
 
 
@@ -80,6 +103,9 @@ def publish_live_picks(
     schedule_date: str | None = None,
     hitters_per_team: int = 9,
     max_picks: int = 20,
+    min_confidence_tier: str | None = DEFAULT_MIN_CONFIDENCE_TIER,
+    max_picks_per_team: int | None = DEFAULT_MAX_PICKS_PER_TEAM,
+    max_picks_per_game: int | None = DEFAULT_MAX_PICKS_PER_GAME,
 ) -> list[dict[str, Any]]:
     resolved_schedule_date = schedule_date or default_publish_date()
     dataset_df = load_live_dataset(Path(dataset_path))
@@ -113,7 +139,14 @@ def publish_live_picks(
         active_roster_map=active_roster_map,
     )
     featured = build_live_feature_frame(dataset_df, candidates)
-    picks = score_live_candidates(featured, bundle, max_picks=max_picks)
+    picks = score_live_candidates(
+        featured,
+        bundle,
+        max_picks=max_picks,
+        min_confidence_tier=min_confidence_tier,
+        max_picks_per_team=max_picks_per_team,
+        max_picks_per_game=max_picks_per_game,
+    )
     write_current_picks(picks, output_path)
     refresh_cloudflare_dashboard(output_path, history_path, dashboard_output_dir, resolved_schedule_date)
     print(f"Published {len(picks)} picks to {output_path} for {resolved_schedule_date}")
@@ -132,6 +165,9 @@ def main() -> None:
         schedule_date=args.schedule_date,
         hitters_per_team=args.hitters_per_team,
         max_picks=args.max_picks,
+        min_confidence_tier=args.min_confidence_tier,
+        max_picks_per_team=args.max_picks_per_team,
+        max_picks_per_game=args.max_picks_per_game,
     )
 
 
