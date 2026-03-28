@@ -12,6 +12,7 @@ import pandas as pd
 from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.model_selection import TimeSeriesSplit as SklearnTimeSeriesSplit
 
+import feature_engineering
 import train_model
 from scripts.live_pipeline import score_live_candidates, train_live_model_bundle
 from weather_audit import summarize_weather_feature_coverage
@@ -32,6 +33,13 @@ def make_live_dataset(rows: int = 24) -> pd.DataFrame:
                 "pitcher_id": 4000 + idx,
                 "pitcher_name": f"Pitcher {idx}",
                 "hit_hr": int(idx % 5 == 0),
+                "pa_count": 4 + (idx % 2),
+                "hr_count": int(idx % 5 == 0),
+                "pitcher_hand": "L" if idx % 3 == 0 else "R",
+                "hr_count_last_30d": 1 + (idx % 3),
+                "hr_count_last_10d": idx % 2,
+                "pa_last_30d": 24 + idx,
+                "pa_last_10d": 8 + (idx % 5),
                 "hr_per_pa_last_30d": 0.02 + idx * 0.001,
                 "hr_per_pa_last_10d": 0.01 + idx * 0.001,
                 "barrels_per_pa_last_30d": 0.03 + idx * 0.001,
@@ -193,6 +201,35 @@ class ModelSearchTests(unittest.TestCase):
                 )
         self.assertNotIn("barrels_per_pa_last_30d", strict_result["feature_columns"])
         self.assertIn("barrels_per_pa_last_30d", loose_result["feature_columns"])
+
+    def test_live_shrunk_profile_picks_up_reliability_adjusted_columns(self) -> None:
+        df = feature_engineering.add_reliability_adjusted_batter_features(make_live_dataset())
+        available = train_model.available_feature_columns(df, feature_profile="live_shrunk")
+        self.assertIn("hr_per_pa_last_10d_shrunk", available)
+        self.assertIn("batter_pa_total_to_date", available)
+        self.assertIn("batter_hr_per_pa_vs_pitcher_hand_shrunk", available)
+
+    def test_live_shrunk_precise_profile_uses_shrunk_rates_without_pa_count_inputs(self) -> None:
+        df = feature_engineering.add_reliability_adjusted_batter_features(make_live_dataset())
+        available = train_model.available_feature_columns(df, feature_profile="live_shrunk_precise")
+        self.assertIn("hr_per_pa_last_10d_shrunk", available)
+        self.assertIn("batter_hr_per_pa_vs_pitcher_hand_shrunk", available)
+        self.assertNotIn("batter_pa_total_to_date", available)
+        self.assertNotIn("pa_last_10d", available)
+        self.assertNotIn("batter_pa_vs_pitcher_hand_to_date", available)
+
+    def test_low_pa_holdout_summary_partitions_rows(self) -> None:
+        df = pd.DataFrame(
+            {
+                "batter_pa_total_to_date": [5.0, 20.0, 30.0, 45.0, 75.0, 140.0],
+            }
+        )
+        y_true = pd.Series([1, 0, 1, 0, 1, 0]).to_numpy()
+        y_prob = pd.Series([0.30, 0.12, 0.28, 0.11, 0.19, 0.08]).to_numpy()
+        summary = train_model.summarize_low_pa_holdout_subgroups(df, y_true, y_prob, threshold=0.15)
+        self.assertEqual(int(summary["rows"].sum()), len(df))
+        self.assertIn("rookie_proxy_lt_25_pa", set(summary["segment"]))
+        self.assertIn("established_100plus_pa", set(summary["segment"]))
 
     def test_non_logistic_bundle_round_trip_scores_live_candidates(self) -> None:
         model = HistGradientBoostingClassifier(random_state=42)

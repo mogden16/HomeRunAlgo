@@ -122,7 +122,9 @@ SOURCE_SUMMARY_COLUMNS = [
 ]
 BATTER_TRAILING_FEATURE_COLUMNS = [
     "hr_per_pa_last_30d",
+    "hr_per_pa_last_30d_shrunk",
     "hr_per_pa_last_10d",
+    "hr_per_pa_last_10d_shrunk",
     "hr_count_last_30d",
     "hr_count_last_10d",
     "pa_last_30d",
@@ -149,9 +151,15 @@ PITCHER_TRAILING_FEATURE_COLUMNS = [
     "pitcher_avg_ev_allowed_last_30d",
     "pitcher_95plus_ev_allowed_rate_last_30d",
 ]
+DEFAULT_LEAGUE_HR_PER_PA = 0.03
+OVERALL_HR_PRIOR_PA = 75.0
+RECENT_HR_PRIOR_PA = 40.0
+SPLIT_HR_PRIOR_PA = 60.0
 STABLE_BATTER_FEATURE_COLUMNS = [
     "hr_rate_season_to_date",
+    "hr_rate_season_to_date_shrunk",
     "hr_per_pa_last_30d",
+    "hr_per_pa_last_30d_shrunk",
     "barrel_rate_last_50_bbe",
     "hard_hit_rate_last_50_bbe",
     "avg_launch_angle_last_50_bbe",
@@ -163,6 +171,7 @@ STABLE_BATTER_FEATURE_COLUMNS = [
     "recent_form_hr_last_7d",
     "recent_form_barrels_last_14d",
     "expected_pa_proxy",
+    "batter_pa_total_to_date",
     "days_since_last_game",
 ]
 STABLE_PITCHER_CONTEXT_COLUMNS = [
@@ -192,7 +201,9 @@ STABLE_ENGINEERED_FEATURE_COLUMNS = [
 
 FINAL_FEATURE_SPECS = {
     "hr_rate_season_to_date": "stable",
+    "hr_rate_season_to_date_shrunk": "stable",
     "hr_per_pa_last_30d": "stable",
+    "hr_per_pa_last_30d_shrunk": "stable",
     "barrel_rate_last_50_bbe": "stable",
     "hard_hit_rate_last_50_bbe": "stable",
     "avg_launch_angle_last_50_bbe": "stable",
@@ -204,6 +215,7 @@ FINAL_FEATURE_SPECS = {
     "recent_form_hr_last_7d": "stable",
     "recent_form_barrels_last_14d": "stable",
     "expected_pa_proxy": "stable",
+    "batter_pa_total_to_date": "stable",
     "days_since_last_game": "stable",
     "pitcher_hr9_season_to_date": "stable",
     "pitcher_barrel_rate_allowed_last_50_bbe": "stable",
@@ -212,7 +224,9 @@ FINAL_FEATURE_SPECS = {
     "pitcher_k_rate_season_to_date": "stable",
     "pitcher_bb_rate_season_to_date": "stable",
     "hr_per_pa_last_30d": "batter_trailing",
+    "hr_per_pa_last_30d_shrunk": "batter_trailing",
     "hr_per_pa_last_10d": "batter_trailing",
+    "hr_per_pa_last_10d_shrunk": "batter_trailing",
     "hr_count_last_30d": "batter_trailing",
     "hr_count_last_10d": "batter_trailing",
     "pa_last_30d": "batter_trailing",
@@ -256,7 +270,11 @@ FINAL_FEATURE_SPECS = {
     "batter_hard_hit_rate_vs_lhp": "handedness_split",
     "batter_95plus_ev_rate_vs_rhp": "handedness_split",
     "batter_95plus_ev_rate_vs_lhp": "handedness_split",
+    "batter_pa_vs_rhp_to_date": "handedness_split",
+    "batter_pa_vs_lhp_to_date": "handedness_split",
     "batter_hr_per_pa_vs_pitcher_hand": "handedness_split",
+    "batter_pa_vs_pitcher_hand_to_date": "handedness_split",
+    "batter_hr_per_pa_vs_pitcher_hand_shrunk": "handedness_split",
     "batter_barrels_per_pa_vs_pitcher_hand": "handedness_split",
     "batter_hard_hit_rate_vs_pitcher_hand": "handedness_split",
     "batter_95plus_ev_rate_vs_pitcher_hand": "handedness_split",
@@ -273,6 +291,7 @@ FINAL_FEATURE_SPECS = {
     "pitcher_hard_hit_allowed_rate_vs_batter_hand": "handedness_split",
     "pitcher_95plus_ev_allowed_rate_vs_batter_hand": "handedness_split",
     "split_matchup_hr": "handedness_split",
+    "split_matchup_hr_shrunk": "handedness_split",
     "split_matchup_barrel": "handedness_split",
     "split_matchup_hard_hit": "handedness_split",
     "pitcher_four_seam_pct": "pitch_type",
@@ -1095,6 +1114,7 @@ def compute_batter_trailing_features(batter_game_df: pd.DataFrame) -> pd.DataFra
             entity_label="batter",
             configs=[("30D", "30d"), ("10D", "10d")],
         )
+        grp = add_reliability_adjusted_batter_features(grp)
         feature_frames.append(grp[["batter_id", "game_pk"] + BATTER_TRAILING_FEATURE_COLUMNS])
 
         if sample_idx <= 3:
@@ -1301,6 +1321,7 @@ def compute_stable_batter_features(batter_game_df: pd.DataFrame) -> pd.DataFrame
         grp = pd.concat([grp, last_50_bbe], axis=1)
         if "bbe_count_last_50" not in grp.columns:
             grp["bbe_count_last_50"] = np.nan
+        grp = add_reliability_adjusted_batter_features(grp)
 
         feature_frames.append(
             grp[
@@ -1308,7 +1329,9 @@ def compute_stable_batter_features(batter_game_df: pd.DataFrame) -> pd.DataFrame
                     "batter_id",
                     "game_pk",
                     "hr_rate_season_to_date",
+                    "hr_rate_season_to_date_shrunk",
                     "hr_per_pa_last_30d",
+                    "hr_per_pa_last_30d_shrunk",
                     "barrel_rate_last_50_bbe",
                     "hard_hit_rate_last_50_bbe",
                     "avg_launch_angle_last_50_bbe",
@@ -1320,6 +1343,7 @@ def compute_stable_batter_features(batter_game_df: pd.DataFrame) -> pd.DataFrame
                     "recent_form_hr_last_7d",
                     "recent_form_barrels_last_14d",
                     "expected_pa_proxy",
+                    "batter_pa_total_to_date",
                     "days_since_last_game",
                     "bbe_count_last_50",
                 ]
@@ -1330,7 +1354,9 @@ def compute_stable_batter_features(batter_game_df: pd.DataFrame) -> pd.DataFrame
             "batter_id",
             "game_pk",
             "hr_rate_season_to_date",
+            "hr_rate_season_to_date_shrunk",
             "hr_per_pa_last_30d",
+            "hr_per_pa_last_30d_shrunk",
             "barrel_rate_last_50_bbe",
             "hard_hit_rate_last_50_bbe",
             "avg_launch_angle_last_50_bbe",
@@ -1342,6 +1368,7 @@ def compute_stable_batter_features(batter_game_df: pd.DataFrame) -> pd.DataFrame
             "recent_form_hr_last_7d",
             "recent_form_barrels_last_14d",
             "expected_pa_proxy",
+            "batter_pa_total_to_date",
             "days_since_last_game",
             "bbe_count_last_50",
         ]
@@ -1627,6 +1654,17 @@ def _split_causal_rate(
     return numerator.cumsum().shift(1) / denominator.cumsum().shift(1).replace({0.0: np.nan})
 
 
+def _split_causal_total(
+    grp: pd.DataFrame,
+    split_col: str,
+    split_value: str,
+    value_col: str,
+) -> pd.Series:
+    mask = grp[split_col].eq(split_value).astype(float)
+    values = grp[value_col].fillna(0.0) * mask
+    return values.cumsum().shift(1)
+
+
 def compute_batter_handedness_split_features(batter_game_df: pd.DataFrame) -> pd.DataFrame:
     records: list[pd.DataFrame] = []
     for _, group in batter_game_df.groupby("batter_id", sort=False):
@@ -1636,10 +1674,11 @@ def compute_batter_handedness_split_features(batter_game_df: pd.DataFrame) -> pd
             grp[f"batter_barrels_per_pa_vs_{suffix}"] = _split_causal_rate(grp, "pitcher_hand", hand, "barrel_count", "pa_count")
             grp[f"batter_hard_hit_rate_vs_{suffix}"] = _split_causal_rate(grp, "pitcher_hand", hand, "hard_hit_bbe_count", "bbe_count")
             grp[f"batter_95plus_ev_rate_vs_{suffix}"] = _split_causal_rate(grp, "pitcher_hand", hand, "ev_95plus_bbe_count", "bbe_count")
+            grp[f"batter_pa_vs_{suffix}_to_date"] = _split_causal_total(grp, "pitcher_hand", hand, "pa_count")
         records.append(grp[[
             "batter_id", "game_pk", "batter_hr_per_pa_vs_rhp", "batter_hr_per_pa_vs_lhp", "batter_barrels_per_pa_vs_rhp",
             "batter_barrels_per_pa_vs_lhp", "batter_hard_hit_rate_vs_rhp", "batter_hard_hit_rate_vs_lhp",
-            "batter_95plus_ev_rate_vs_rhp", "batter_95plus_ev_rate_vs_lhp",
+            "batter_95plus_ev_rate_vs_rhp", "batter_95plus_ev_rate_vs_lhp", "batter_pa_vs_rhp_to_date", "batter_pa_vs_lhp_to_date",
         ]])
     return pd.concat(records, ignore_index=True) if records else pd.DataFrame(columns=["batter_id", "game_pk"])
 
@@ -1678,6 +1717,11 @@ def compute_pitcher_handedness_split_features(pitcher_game_df: pd.DataFrame) -> 
 def build_matchup_selected_handedness_features(df: pd.DataFrame) -> pd.DataFrame:
     dataset = df.copy()
     dataset["batter_hr_per_pa_vs_pitcher_hand"] = np.where(dataset["pitcher_hand"].eq("L"), dataset.get("batter_hr_per_pa_vs_lhp"), dataset.get("batter_hr_per_pa_vs_rhp"))
+    dataset["batter_pa_vs_pitcher_hand_to_date"] = np.where(
+        dataset["pitcher_hand"].eq("L"),
+        dataset.get("batter_pa_vs_lhp_to_date"),
+        dataset.get("batter_pa_vs_rhp_to_date"),
+    )
     dataset["batter_barrels_per_pa_vs_pitcher_hand"] = np.where(dataset["pitcher_hand"].eq("L"), dataset.get("batter_barrels_per_pa_vs_lhp"), dataset.get("batter_barrels_per_pa_vs_rhp"))
     dataset["batter_hard_hit_rate_vs_pitcher_hand"] = np.where(dataset["pitcher_hand"].eq("L"), dataset.get("batter_hard_hit_rate_vs_lhp"), dataset.get("batter_hard_hit_rate_vs_rhp"))
     dataset["batter_95plus_ev_rate_vs_pitcher_hand"] = np.where(dataset["pitcher_hand"].eq("L"), dataset.get("batter_95plus_ev_rate_vs_lhp"), dataset.get("batter_95plus_ev_rate_vs_rhp"))
@@ -1690,7 +1734,7 @@ def build_matchup_selected_handedness_features(df: pd.DataFrame) -> pd.DataFrame
     dataset["split_matchup_hr"] = dataset["batter_hr_per_pa_vs_pitcher_hand"] * dataset["pitcher_hr_allowed_per_pa_vs_batter_hand"]
     dataset["split_matchup_barrel"] = dataset["batter_barrels_per_pa_vs_pitcher_hand"] * dataset["pitcher_barrels_allowed_per_bbe_vs_batter_hand"]
     dataset["split_matchup_hard_hit"] = dataset["batter_hard_hit_rate_vs_pitcher_hand"] * dataset["pitcher_hard_hit_allowed_rate_vs_batter_hand"]
-    return dataset
+    return add_reliability_adjusted_batter_features(dataset)
 
 
 def compute_expanded_pitch_mix_features(raw_df: pd.DataFrame) -> pd.DataFrame:
@@ -2196,6 +2240,107 @@ def safe_scalar_rate(numerator: float, denominator: float) -> float:
     if denominator in (0, 0.0) or pd.isna(denominator):
         return np.nan
     return float(numerator) / float(denominator)
+
+
+def empirical_bayes_rate(
+    numerator: pd.Series | np.ndarray | float,
+    denominator: pd.Series | np.ndarray | float,
+    prior_rate: pd.Series | np.ndarray | float,
+    prior_weight: float,
+) -> pd.Series:
+    numerator_series = pd.to_numeric(pd.Series(numerator), errors="coerce").fillna(0.0)
+    denominator_series = pd.to_numeric(pd.Series(denominator), errors="coerce").fillna(0.0)
+    if isinstance(prior_rate, pd.Series):
+        prior_series = pd.to_numeric(prior_rate, errors="coerce").reindex(numerator_series.index)
+    elif np.isscalar(prior_rate):
+        prior_series = pd.Series(float(prior_rate), index=numerator_series.index, dtype=float)
+    else:
+        prior_series = pd.to_numeric(pd.Series(prior_rate), errors="coerce").reindex(numerator_series.index)
+    prior_series = prior_series.fillna(DEFAULT_LEAGUE_HR_PER_PA)
+    return (numerator_series + (prior_series * float(prior_weight))) / (denominator_series + float(prior_weight))
+
+
+def add_reliability_adjusted_batter_features(df: pd.DataFrame) -> pd.DataFrame:
+    dataset = df.copy()
+    required_batter_history = {"batter_id", "game_date", "game_pk", "pa_count", "hr_count"}
+    if required_batter_history.issubset(dataset.columns):
+        original_index = dataset.index
+        ordered = dataset.sort_values(["batter_id", "game_date", "game_pk"]).copy()
+        pa_count = pd.to_numeric(ordered["pa_count"], errors="coerce").fillna(0.0)
+        hr_count = pd.to_numeric(ordered["hr_count"], errors="coerce").fillna(0.0)
+        batter_groups = ordered.groupby("batter_id", sort=False)
+        batter_pa_total = batter_groups["pa_count"].cumsum().astype(float) - pa_count
+        batter_hr_total = batter_groups["hr_count"].cumsum().astype(float) - hr_count
+        ordered["batter_pa_total_to_date"] = batter_pa_total
+        if "hr_rate_season_to_date" not in ordered.columns:
+            ordered["hr_rate_season_to_date"] = safe_rate(batter_hr_total, batter_pa_total)
+        ordered["hr_rate_season_to_date_shrunk"] = empirical_bayes_rate(
+            batter_hr_total,
+            batter_pa_total,
+            DEFAULT_LEAGUE_HR_PER_PA,
+            OVERALL_HR_PRIOR_PA,
+        )
+
+        if {"pitcher_hand"}.issubset(ordered.columns):
+            for hand, suffix in [("R", "rhp"), ("L", "lhp")]:
+                split_pa = pa_count * ordered["pitcher_hand"].eq(hand).astype(float)
+                ordered[f"batter_pa_vs_{suffix}_to_date"] = split_pa.groupby(ordered["batter_id"], sort=False).cumsum() - split_pa
+
+        dataset = ordered.sort_index().reindex(original_index)
+
+    if "hr_rate_season_to_date_shrunk" not in dataset.columns:
+        dataset["hr_rate_season_to_date_shrunk"] = np.nan
+    overall_prior_rate = pd.to_numeric(dataset.get("hr_rate_season_to_date_shrunk"), errors="coerce").fillna(DEFAULT_LEAGUE_HR_PER_PA)
+
+    if {"hr_count_last_10d", "pa_last_10d"}.issubset(dataset.columns):
+        dataset["hr_per_pa_last_10d_shrunk"] = empirical_bayes_rate(
+            dataset["hr_count_last_10d"],
+            dataset["pa_last_10d"],
+            overall_prior_rate,
+            RECENT_HR_PRIOR_PA,
+        )
+    else:
+        dataset["hr_per_pa_last_10d_shrunk"] = np.nan
+
+    if {"hr_count_last_30d", "pa_last_30d"}.issubset(dataset.columns):
+        dataset["hr_per_pa_last_30d_shrunk"] = empirical_bayes_rate(
+            dataset["hr_count_last_30d"],
+            dataset["pa_last_30d"],
+            overall_prior_rate,
+            RECENT_HR_PRIOR_PA,
+        )
+    else:
+        dataset["hr_per_pa_last_30d_shrunk"] = np.nan
+
+    if "batter_pa_vs_pitcher_hand_to_date" not in dataset.columns and {"pitcher_hand", "batter_pa_vs_rhp_to_date", "batter_pa_vs_lhp_to_date"}.issubset(dataset.columns):
+        dataset["batter_pa_vs_pitcher_hand_to_date"] = np.where(
+            dataset["pitcher_hand"].eq("L"),
+            dataset["batter_pa_vs_lhp_to_date"],
+            dataset["batter_pa_vs_rhp_to_date"],
+        )
+
+    if {"batter_hr_per_pa_vs_pitcher_hand", "batter_pa_vs_pitcher_hand_to_date"}.issubset(dataset.columns):
+        split_rate = pd.to_numeric(dataset["batter_hr_per_pa_vs_pitcher_hand"], errors="coerce")
+        split_pa = pd.to_numeric(dataset["batter_pa_vs_pitcher_hand_to_date"], errors="coerce").fillna(0.0)
+        split_hr = split_rate.fillna(0.0) * split_pa
+        dataset["batter_hr_per_pa_vs_pitcher_hand_shrunk"] = empirical_bayes_rate(
+            split_hr,
+            split_pa,
+            overall_prior_rate,
+            SPLIT_HR_PRIOR_PA,
+        )
+    else:
+        dataset["batter_hr_per_pa_vs_pitcher_hand_shrunk"] = np.nan
+
+    if {"batter_hr_per_pa_vs_pitcher_hand_shrunk", "pitcher_hr_allowed_per_pa_vs_batter_hand"}.issubset(dataset.columns):
+        dataset["split_matchup_hr_shrunk"] = (
+            pd.to_numeric(dataset["batter_hr_per_pa_vs_pitcher_hand_shrunk"], errors="coerce")
+            * pd.to_numeric(dataset["pitcher_hr_allowed_per_pa_vs_batter_hand"], errors="coerce")
+        )
+    else:
+        dataset["split_matchup_hr_shrunk"] = np.nan
+
+    return dataset
 
 
 def is_barrel(launch_speed: pd.Series, launch_angle: pd.Series) -> pd.Series:

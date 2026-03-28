@@ -34,6 +34,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
 from config import FINAL_DATA_PATH, RANDOM_STATE, TRAIN_FRACTION, TSCV_N_SPLITS
+from feature_engineering import add_reliability_adjusted_batter_features
 
 DATE_COL = "game_date"
 TARGET_COL = "hit_hr"
@@ -130,8 +131,78 @@ LIVE_PLUS_FEATURE_COLUMNS = [
     "split_matchup_barrel",
     "split_matchup_hard_hit",
 ]
+LIVE_SHRUNK_FEATURE_COLUMNS = [
+    "hr_rate_season_to_date_shrunk",
+    "batter_pa_total_to_date",
+    "hr_per_pa_last_30d_shrunk",
+    "hr_per_pa_last_10d_shrunk",
+    "pa_last_30d",
+    "pa_last_10d",
+    "barrels_per_pa_last_30d",
+    "barrels_per_pa_last_10d",
+    "hard_hit_rate_last_30d",
+    "hard_hit_rate_last_10d",
+    "bbe_95plus_ev_rate_last_30d",
+    "bbe_95plus_ev_rate_last_10d",
+    "avg_exit_velocity_last_10d",
+    "max_exit_velocity_last_10d",
+    "pitcher_hr_allowed_per_pa_last_30d",
+    "pitcher_barrels_allowed_per_bbe_last_30d",
+    "pitcher_hard_hit_allowed_rate_last_30d",
+    "pitcher_avg_ev_allowed_last_30d",
+    "pitcher_95plus_ev_allowed_rate_last_30d",
+    "temperature_f",
+    "wind_speed_mph",
+    "humidity_pct",
+    "platoon_advantage",
+    "park_factor_hr_vs_batter_hand",
+    "batter_hr_per_pa_vs_pitcher_hand_shrunk",
+    "batter_pa_vs_pitcher_hand_to_date",
+    "batter_barrels_per_pa_vs_pitcher_hand",
+    "pitcher_hr_allowed_per_pa_vs_batter_hand",
+    "pitcher_barrels_allowed_per_bbe_vs_batter_hand",
+    "split_matchup_hr_shrunk",
+    "split_matchup_barrel",
+    "split_matchup_hard_hit",
+]
+LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS = [
+    "hr_rate_season_to_date_shrunk",
+    "hr_per_pa_last_30d_shrunk",
+    "hr_per_pa_last_10d_shrunk",
+    "barrels_per_pa_last_30d",
+    "barrels_per_pa_last_10d",
+    "hard_hit_rate_last_30d",
+    "hard_hit_rate_last_10d",
+    "bbe_95plus_ev_rate_last_30d",
+    "bbe_95plus_ev_rate_last_10d",
+    "avg_exit_velocity_last_10d",
+    "max_exit_velocity_last_10d",
+    "pitcher_hr_allowed_per_pa_last_30d",
+    "pitcher_barrels_allowed_per_bbe_last_30d",
+    "pitcher_hard_hit_allowed_rate_last_30d",
+    "pitcher_avg_ev_allowed_last_30d",
+    "pitcher_95plus_ev_allowed_rate_last_30d",
+    "temperature_f",
+    "wind_speed_mph",
+    "humidity_pct",
+    "platoon_advantage",
+    "park_factor_hr_vs_batter_hand",
+    "batter_hr_per_pa_vs_pitcher_hand_shrunk",
+    "batter_barrels_per_pa_vs_pitcher_hand",
+    "pitcher_hr_allowed_per_pa_vs_batter_hand",
+    "pitcher_barrels_allowed_per_bbe_vs_batter_hand",
+    "split_matchup_hr_shrunk",
+    "split_matchup_barrel",
+    "split_matchup_hard_hit",
+]
 EXPERIMENTAL_FEATURE_COLUMNS = [
-    *LIVE_PLUS_FEATURE_COLUMNS,
+    *LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS,
+    *LIVE_SHRUNK_FEATURE_COLUMNS,
+    "hr_rate_season_to_date",
+    "hr_per_pa_last_30d",
+    "hr_per_pa_last_10d",
+    "batter_hr_per_pa_vs_pitcher_hand",
+    "split_matchup_hr",
     "hr_count_last_30d",
     "hr_count_last_10d",
     "pa_last_30d",
@@ -210,7 +281,7 @@ EXPERIMENTAL_FEATURE_COLUMNS = [
 ]
 FEATURE_COLUMNS = list(STABLE_FEATURE_COLUMNS)
 OPTIONAL_SECONDARY_FEATURES: list[str] = []
-FEATURE_PROFILE_CHOICES = ["stable", "live", "live_plus", "expanded", "all"]
+FEATURE_PROFILE_CHOICES = ["stable", "live", "live_plus", "live_shrunk", "live_shrunk_precise", "expanded", "all"]
 BASELINE_FEATURES = [
     "hr_per_pa_last_30d",
     "hr_per_pa_last_10d",
@@ -235,6 +306,13 @@ TOP_BUCKET_PERCENTS = [0.01, 0.02, 0.05, 0.10, 0.20]
 DEFAULT_TOP_CANDIDATES_TO_PRINT = 20
 MAX_MODEL_FEATURE_MISSINGNESS = 0.50
 DEFAULT_MISSINGNESS_THRESHOLDS = [0.35, 0.50, 0.65]
+LOW_PA_BUCKET_SPECS = [
+    ("rookie_proxy_lt_25_pa", 0.0, 25.0),
+    ("low_history_25_to_49_pa", 25.0, 50.0),
+    ("building_history_50_to_99_pa", 50.0, 100.0),
+    ("established_100plus_pa", 100.0, float("inf")),
+]
+LOW_PA_SUBGROUP_HISTORY_COLUMN = "batter_pa_total_to_date"
 MODEL_FAMILY_PRIORITY = {"logistic": 0, "histgb": 1, "xgboost": 2}
 HISTGB_RANDOM_SEARCH_ITERATIONS = 18
 XGBOOST_RANDOM_SEARCH_ITERATIONS = 18
@@ -249,6 +327,9 @@ RANKING_EXPORT_CORE_COLUMNS = [
     "pitcher_name",
 ]
 REASON_TEXT_BY_FEATURE = {
+    "hr_rate_season_to_date_shrunk": "season_hr_rate_shrunk",
+    "hr_per_pa_last_10d_shrunk": "recent_hr_rate_10d_shrunk",
+    "hr_per_pa_last_30d_shrunk": "recent_hr_rate_30d_shrunk",
     "hr_per_pa_last_10d": "recent_hr_rate_10d",
     "hr_per_pa_last_30d": "recent_hr_rate_30d",
     "barrels_per_pa_last_10d": "recent_barrel_rate_10d",
@@ -270,10 +351,12 @@ REASON_TEXT_BY_FEATURE = {
     "platoon_advantage": "platoon_advantage",
     "park_factor_hr_vs_batter_hand": "park_factor_hr_vs_batter_hand",
     "batter_hr_per_pa_vs_pitcher_hand": "batter_hr_per_pa_vs_pitcher_hand",
+    "batter_hr_per_pa_vs_pitcher_hand_shrunk": "batter_hr_per_pa_vs_pitcher_hand_shrunk",
     "batter_barrels_per_pa_vs_pitcher_hand": "batter_barrels_per_pa_vs_pitcher_hand",
     "pitcher_hr_allowed_per_pa_vs_batter_hand": "pitcher_hr_allowed_per_pa_vs_batter_hand",
     "pitcher_barrels_allowed_per_bbe_vs_batter_hand": "pitcher_barrels_allowed_per_bbe_vs_batter_hand",
     "split_matchup_hr": "split_matchup_hr",
+    "split_matchup_hr_shrunk": "split_matchup_hr_shrunk",
     "split_matchup_barrel": "split_matchup_barrel",
     "split_matchup_hard_hit": "split_matchup_hard_hit",
 }
@@ -298,6 +381,7 @@ def fit_safely_with_imputer_warning_suppressed(estimator, X, y):
 
 def load_data(path: str) -> pd.DataFrame:
     df = pd.read_csv(path, parse_dates=[DATE_COL])
+    df = add_reliability_adjusted_batter_features(df)
     required_columns = [DATE_COL, TARGET_COL, "game_pk", "player_id"]
     missing_required = [col for col in required_columns if col not in df.columns]
     if missing_required:
@@ -342,8 +426,12 @@ def feature_columns_for_profile(profile: str) -> list[str]:
         return list(LIVE_PRODUCTION_FEATURE_COLUMNS)
     if profile == "live_plus":
         return list(LIVE_PLUS_FEATURE_COLUMNS)
+    if profile == "live_shrunk":
+        return list(LIVE_SHRUNK_FEATURE_COLUMNS)
+    if profile == "live_shrunk_precise":
+        return list(LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS)
     if profile == "expanded":
-        return list(EXPERIMENTAL_FEATURE_COLUMNS)
+        return list(dict.fromkeys(EXPERIMENTAL_FEATURE_COLUMNS))
     raise ValueError(f"Unknown feature profile: {profile}")
 
 
@@ -514,7 +602,7 @@ def resolve_model_families(model_name: str) -> list[str]:
 
 def resolve_feature_profiles(feature_profile: str, compare_against: str | None = None) -> list[str]:
     if feature_profile == "all":
-        return ["stable", "live", "live_plus", "expanded"]
+        return ["stable", "live", "live_plus", "live_shrunk", "live_shrunk_precise", "expanded"]
     profiles = [feature_profile]
     if compare_against and compare_against not in {"none", feature_profile, "all"}:
         profiles.append(compare_against)
@@ -1113,6 +1201,65 @@ def evaluate_predictions(y_true: np.ndarray, y_prob: np.ndarray, threshold: floa
     return metrics
 
 
+def summarize_low_pa_holdout_subgroups(
+    source_df: pd.DataFrame,
+    y_true: np.ndarray,
+    y_prob: np.ndarray,
+    threshold: float,
+    history_col: str = LOW_PA_SUBGROUP_HISTORY_COLUMN,
+) -> pd.DataFrame:
+    if history_col not in source_df.columns:
+        return pd.DataFrame()
+
+    prior_pa = pd.to_numeric(source_df[history_col], errors="coerce")
+    rows: list[dict[str, float | int | str]] = []
+    for bucket_label, lower_bound, upper_bound in LOW_PA_BUCKET_SPECS:
+        mask = prior_pa.ge(lower_bound)
+        if np.isfinite(upper_bound):
+            mask &= prior_pa.lt(upper_bound)
+        bucket_idx = np.flatnonzero(mask.to_numpy())
+        if len(bucket_idx) == 0:
+            continue
+        bucket_y_true = y_true[bucket_idx]
+        bucket_y_prob = y_prob[bucket_idx]
+        metrics = evaluate_predictions(bucket_y_true, bucket_y_prob, threshold)
+        rows.append(
+            {
+                "segment": bucket_label,
+                "rows": int(len(bucket_idx)),
+                "avg_prior_pa": float(prior_pa.iloc[bucket_idx].mean()),
+                "actual_hr_rate": float(np.mean(bucket_y_true)),
+                "avg_predicted_probability": float(np.mean(bucket_y_prob)),
+                "precision": float(metrics["precision"]),
+                "recall": float(metrics["recall"]),
+                "f0.5": float(metrics["f0.5"]),
+                "positive_prediction_rate": float(metrics["positive_prediction_rate"]),
+                "pr_auc": float(metrics["pr_auc"]) if np.isfinite(metrics["pr_auc"]) else float("nan"),
+                "roc_auc": float(metrics["roc_auc"]) if np.isfinite(metrics["roc_auc"]) else float("nan"),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def print_low_pa_holdout_summary(low_pa_df: pd.DataFrame, label: str) -> None:
+    print(f"\n{label}")
+    print("-" * len(label))
+    if low_pa_df.empty:
+        print("Low-PA subgroup report unavailable because the history column was missing.")
+        return
+    header = (
+        f"{'segment':<28} {'rows':>7} {'avg_pa':>8} {'actual':>8} {'avg_prob':>9} "
+        f"{'prec':>7} {'rec':>7} {'f0.5':>7} {'pos_rate':>9} {'pr_auc':>8}"
+    )
+    print(header)
+    for _, row in low_pa_df.iterrows():
+        print(
+            f"{str(row['segment']):<28} {int(row['rows']):7d} {row['avg_prior_pa']:8.1f} {row['actual_hr_rate']:8.4f} "
+            f"{row['avg_predicted_probability']:9.4f} {row['precision']:7.4f} {row['recall']:7.4f} "
+            f"{row['f0.5']:7.4f} {row['positive_prediction_rate']:9.4f} {row['pr_auc']:8.4f}"
+        )
+
+
 def summarize_top_bucket_lift(
     y_true: np.ndarray,
     y_prob: np.ndarray,
@@ -1241,6 +1388,12 @@ def _feature_reason_bucket(feature: str) -> str:
 def _build_feature_reason(feature: str, value: float, percentile: float, row: pd.Series) -> str:
     pitcher_name = str(row.get("pitcher_name") or "the opposing pitcher")
     strength = _strength_label(percentile)
+    if feature == "hr_rate_season_to_date_shrunk":
+        return f"Smoothed season HR rate is {_format_pct(value)}, which keeps small-sample noise in check while preserving power signal."
+    if feature == "hr_per_pa_last_10d_shrunk":
+        return f"Smoothed HR rate over the last 10 days is {_format_pct(value)}, a {strength} recent-power signal with low-PA damping."
+    if feature == "hr_per_pa_last_30d_shrunk":
+        return f"Smoothed HR rate over the last 30 days is {_format_pct(value)}, balancing recent pop with a broader prior."
     if feature == "hr_per_pa_last_10d":
         return f"HR rate over the last 10 days is {_format_pct(value)}, a {strength} live-model signal."
     if feature == "hr_per_pa_last_30d":
@@ -1283,6 +1436,8 @@ def _build_feature_reason(feature: str, value: float, percentile: float, row: pd
         return f"Park factor for the hitter's handedness is {value:.1f}, which adds venue lift to the matchup."
     if feature == "batter_hr_per_pa_vs_pitcher_hand":
         return f"Against this pitcher handedness, the hitter owns a {_format_pct(value)} HR-per-PA split."
+    if feature == "batter_hr_per_pa_vs_pitcher_hand_shrunk":
+        return f"Against this pitcher handedness, the hitter's smoothed HR-per-PA split is {_format_pct(value)}, reducing small-sample volatility."
     if feature == "batter_barrels_per_pa_vs_pitcher_hand":
         return f"Against this pitcher handedness, the hitter has a {_format_pct(value)} barrel-per-PA split."
     if feature == "pitcher_hr_allowed_per_pa_vs_batter_hand":
@@ -1291,6 +1446,8 @@ def _build_feature_reason(feature: str, value: float, percentile: float, row: pd
         return f"{pitcher_name} has allowed barrels on {_format_pct(value)} of batted balls to this batter side."
     if feature == "split_matchup_hr":
         return f"The handedness-specific HR matchup score is {value:.4f}, combining the hitter split and pitcher split."
+    if feature == "split_matchup_hr_shrunk":
+        return f"The smoothed handedness-specific HR matchup score is {value:.4f}, blending split power with reliability-adjusted history."
     if feature == "split_matchup_barrel":
         return f"The handedness-specific barrel matchup score is {value:.4f}, reinforcing the power-contact fit."
     if feature == "split_matchup_hard_hit":
@@ -2154,6 +2311,7 @@ def evaluate_model_run(
     calibration: str,
     save_ranked_output: bool = False,
     ranked_output_path: str | None = None,
+    evaluation_label: str = "Selected",
 ) -> dict[str, Any]:
     summary_row = dict(candidate_result["summary_row"])
     feature_columns = list(candidate_result["feature_columns"])
@@ -2183,12 +2341,12 @@ def evaluate_model_run(
         calibration_search_rows = []
 
     print("\n" + "=" * 60)
-    print("SELECTED MODEL EVALUATION")
+    print(f"{evaluation_label.upper()} MODEL EVALUATION")
     print("=" * 60)
-    print(f"Selected model family        : {summary_row['model_family']}")
-    print(f"Selected feature profile     : {summary_row['feature_profile']}")
-    print(f"Selected missingness cutoff  : {summary_row['missingness_threshold']:.2f}")
-    print(f"Selected feature count       : {len(feature_columns)}")
+    print(f"{evaluation_label} model family        : {summary_row['model_family']}")
+    print(f"{evaluation_label} feature profile     : {summary_row['feature_profile']}")
+    print(f"{evaluation_label} missingness cutoff  : {summary_row['missingness_threshold']:.2f}")
+    print(f"{evaluation_label} feature count       : {len(feature_columns)}")
     print(f"Best hyperparameters         : {summary_row['best_params'] if summary_row['best_params'] else 'fixed default configuration'}")
     print(f"Selection metric             : {summary_row['selection_metric']}")
     print(f"Training CV PR-AUC           : {summary_row['mean_cv_pr_auc']:.4f}")
@@ -2312,6 +2470,13 @@ def evaluate_model_run(
     print_top_bucket_lift_table(lift_df)
     print_prediction_bucket_summary(decile_df, label="Holdout prediction deciles (high-to-low score buckets)")
     print_prediction_bucket_summary(ventile_df, label="Holdout prediction ventiles (high-to-low score buckets)")
+    low_pa_holdout_df = summarize_low_pa_holdout_subgroups(
+        test_df,
+        y_true=y_test,
+        y_prob=y_prob_test,
+        threshold=chosen_threshold,
+    )
+    print_low_pa_holdout_summary(low_pa_holdout_df, label=f"{evaluation_label} low-PA / rookie-proxy holdout")
 
     ranked_output = build_ranked_predictions_output(
         source_df=test_df,
@@ -2345,6 +2510,7 @@ def evaluate_model_run(
         "lift_df": lift_df,
         "decile_df": decile_df,
         "ventile_df": ventile_df,
+        "low_pa_holdout_df": low_pa_holdout_df,
         "ranked_output": ranked_output,
         "ranked_output_path": output_path,
         "feature_columns": feature_columns,
@@ -2447,21 +2613,72 @@ def run_backtest(
         calibration=calibration,
         save_ranked_output=save_ranked_output,
         ranked_output_path=ranked_output_path,
+        evaluation_label="Selected",
     )
+    comparison_candidate_result: dict[str, Any] | None = None
+    if compare_against and compare_against not in {"none", selected_row["feature_profile"]}:
+        comparison_candidate_row = next(
+            (row for row in candidate_rows if row["feature_profile"] == compare_against),
+            None,
+        )
+        if comparison_candidate_row is not None:
+            comparison_candidate = next(
+                result
+                for result in candidate_results
+                if result["summary_row"]["model_family"] == comparison_candidate_row["model_family"]
+                and result["summary_row"]["feature_profile"] == comparison_candidate_row["feature_profile"]
+                and np.isclose(result["summary_row"]["missingness_threshold"], comparison_candidate_row["missingness_threshold"])
+            )
+            comparison_candidate_result = evaluate_model_run(
+                train_df=train_df,
+                test_df=test_df,
+                candidate_result=comparison_candidate,
+                threshold_objective=threshold_objective,
+                min_recall=min_recall,
+                max_positive_rate=max_positive_rate,
+                threshold_tolerance=threshold_tolerance,
+                calibration=calibration,
+                save_ranked_output=False,
+                ranked_output_path=None,
+                evaluation_label=f"Comparison ({compare_against})",
+            )
 
     comparison_rows: list[dict[str, float | str]] = [final_result["summary_row"]]
+    if comparison_candidate_result is not None:
+        comparison_rows.append(comparison_candidate_result["summary_row"])
     comparison_rows.extend(baseline_rows)
     print_comparison_table(comparison_rows, title="Compact model comparison summary (selected winner)")
     print("\nHoldout text summary")
     print("-" * 60)
     for line in holdout_commentary(final_result["summary_row"], baseline_rows):
         print(f"- {line}")
+    if comparison_candidate_result is not None:
+        print(
+            "- "
+            + compare_feature_profile_rows(
+                final_result["summary_row"],
+                comparison_candidate_result["summary_row"],
+                primary_profile=str(final_result["summary_row"]["feature_profile"]),
+                comparison_profile=str(comparison_candidate_result["summary_row"]["feature_profile"]),
+            )
+        )
 
     report = {
         "selection_metric": selection_metric,
         "candidate_leaderboard": candidate_rows,
         "selected_candidate": selected_row,
         "final_holdout_summary": final_result["summary_row"],
+        "selected_low_pa_holdout": (
+            final_result["low_pa_holdout_df"].to_dict(orient="records")
+            if isinstance(final_result.get("low_pa_holdout_df"), pd.DataFrame)
+            else []
+        ),
+        "comparison_candidate": comparison_candidate_result["summary_row"] if comparison_candidate_result is not None else None,
+        "comparison_low_pa_holdout": (
+            comparison_candidate_result["low_pa_holdout_df"].to_dict(orient="records")
+            if comparison_candidate_result is not None and isinstance(comparison_candidate_result.get("low_pa_holdout_df"), pd.DataFrame)
+            else []
+        ),
         "baseline_rows": baseline_rows,
     }
     if report_path is not None:
@@ -2490,6 +2707,7 @@ def run_backtest(
         "candidate_rows": candidate_rows,
         "selected_candidate": selected_candidate,
         "final_result": final_result,
+        "comparison_candidate_result": comparison_candidate_result,
         "baseline_rows": baseline_rows,
         "report": report,
     }

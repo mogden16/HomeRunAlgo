@@ -31,6 +31,7 @@ from config import (
 )
 from data_sources import ensure_directories
 from feature_engineering import (
+    add_reliability_adjusted_batter_features,
     build_matchup_selected_handedness_features,
     compute_batter_handedness_split_features,
     compute_batter_trailing_features,
@@ -41,6 +42,8 @@ from generate_data import generate_mlb_dataset
 from train_model import (
     LIVE_PLUS_FEATURE_COLUMNS,
     LIVE_PRODUCTION_FEATURE_COLUMNS,
+    LIVE_SHRUNK_FEATURE_COLUMNS,
+    LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS,
     MAX_MODEL_FEATURE_MISSINGNESS,
     REASON_TEXT_BY_FEATURE,
     build_histgb_pipeline,
@@ -83,6 +86,15 @@ TEAM_CODE_ALIASES = {
 LIVE_PLUS_ONLY_FEATURE_COLUMNS = [
     feature for feature in LIVE_PLUS_FEATURE_COLUMNS if feature not in LIVE_PRODUCTION_FEATURE_COLUMNS
 ]
+LIVE_SHRUNK_ONLY_FEATURE_COLUMNS = [
+    feature for feature in LIVE_SHRUNK_FEATURE_COLUMNS if feature not in LIVE_PLUS_FEATURE_COLUMNS
+]
+LIVE_SHRUNK_PRECISE_ONLY_FEATURE_COLUMNS = [
+    feature for feature in LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS if feature not in LIVE_PLUS_FEATURE_COLUMNS
+]
+LIVE_COMPATIBLE_FEATURE_COLUMNS = list(
+    dict.fromkeys([*LIVE_PLUS_FEATURE_COLUMNS, *LIVE_SHRUNK_FEATURE_COLUMNS, *LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS])
+)
 LIVE_BATTER_SPLIT_SOURCE_COLUMNS = [
     "batter_hr_per_pa_vs_rhp",
     "batter_hr_per_pa_vs_lhp",
@@ -102,6 +114,12 @@ LIVE_PITCHER_SPLIT_SOURCE_COLUMNS = [
 LIVE_PARK_FACTOR_SOURCE_COLUMNS = [
     "park_factor_hr_vs_lhb",
     "park_factor_hr_vs_rhb",
+]
+LIVE_SHRUNK_SNAPSHOT_COLUMNS = [
+    "hr_rate_season_to_date_shrunk",
+    "batter_pa_total_to_date",
+    "batter_pa_vs_rhp_to_date",
+    "batter_pa_vs_lhp_to_date",
 ]
 
 
@@ -303,7 +321,7 @@ def refresh_live_dataset(
 
 
 def _candidate_is_live_compatible(feature_columns: list[str]) -> bool:
-    return set(feature_columns).issubset(set(LIVE_PLUS_FEATURE_COLUMNS))
+    return set(feature_columns).issubset(set(LIVE_COMPATIBLE_FEATURE_COLUMNS))
 
 
 def _live_publish_weather_contract_label() -> str:
@@ -469,6 +487,8 @@ def _fit_live_bundle_fast_refit(
     configured_feature_map = {
         "live": LIVE_PRODUCTION_FEATURE_COLUMNS,
         "live_plus": LIVE_PLUS_FEATURE_COLUMNS,
+        "live_shrunk": LIVE_SHRUNK_FEATURE_COLUMNS,
+        "live_shrunk_precise": LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS,
     }
     configured_features = [
         column for column in configured_feature_map.get(feature_profile, []) if column in df.columns
@@ -573,12 +593,13 @@ def train_live_model_bundle(
     metadata_path: Path = LIVE_MODEL_METADATA_PATH,
     model_name: str = "logistic",
     calibration: str = "sigmoid",
-    feature_profile: str = "live_plus",
+    feature_profile: str = "live_shrunk_precise",
     selection_metric: str = "pr_auc",
     missingness_threshold: float | None = None,
     training_mode: str = "search",
 ) -> dict[str, Any]:
     df = pd.read_csv(dataset_path, parse_dates=["game_date"])
+    df = add_reliability_adjusted_batter_features(df)
     print_weather_join_contract("live training dataset")
     weather_coverage = audit_weather_feature_coverage(
         df,
@@ -625,7 +646,11 @@ def train_live_model_bundle(
         str(dataset_path),
         model_name=model_name,
         feature_profile=feature_profile,
-        compare_against="live" if feature_profile == "live_plus" else None,
+        compare_against=(
+            "live_plus"
+            if feature_profile in {"live_shrunk", "live_shrunk_precise"}
+            else ("live" if feature_profile == "live_plus" else None)
+        ),
         selection_metric=selection_metric,
         missingness_threshold=missingness_threshold,
         calibration=calibration,
@@ -923,7 +948,8 @@ def build_active_roster_map(schedule_games: list[dict[str, Any]]) -> dict[str, p
 
 
 def load_live_dataset(dataset_path: Path = LIVE_MODEL_DATA_PATH) -> pd.DataFrame:
-    return pd.read_csv(dataset_path, parse_dates=["game_date"])
+    df = pd.read_csv(dataset_path, parse_dates=["game_date"])
+    return add_reliability_adjusted_batter_features(df)
 
 
 def latest_pitcher_hand(dataset_df: pd.DataFrame, pitcher_id: int | None) -> str | None:
@@ -1490,6 +1516,7 @@ def fill_missing_features_from_snapshot(
 def build_live_feature_frame(dataset_df: pd.DataFrame, candidate_df: pd.DataFrame) -> pd.DataFrame:
     if candidate_df.empty:
         return candidate_df.copy()
+    dataset_df = add_reliability_adjusted_batter_features(dataset_df)
     candidate_df = candidate_df.copy()
     candidate_df["game_date"] = pd.to_datetime(candidate_df["game_date"])
     batter_history = build_batter_history_table(dataset_df)
@@ -1558,13 +1585,13 @@ def build_live_feature_frame(dataset_df: pd.DataFrame, candidate_df: pd.DataFram
     batter_snapshot = build_latest_feature_snapshot(
         dataset_df,
         entity_key="batter_id",
-        feature_columns=[*LIVE_BATTER_FEATURES, *LIVE_BATTER_SPLIT_SOURCE_COLUMNS],
+        feature_columns=[*LIVE_BATTER_FEATURES, *LIVE_BATTER_SPLIT_SOURCE_COLUMNS, *LIVE_SHRUNK_SNAPSHOT_COLUMNS],
     )
     featured = fill_missing_features_from_snapshot(
         featured,
         snapshot_df=batter_snapshot,
         entity_key="batter_id",
-        feature_columns=[*LIVE_BATTER_FEATURES, *LIVE_BATTER_SPLIT_SOURCE_COLUMNS],
+        feature_columns=[*LIVE_BATTER_FEATURES, *LIVE_BATTER_SPLIT_SOURCE_COLUMNS, *LIVE_SHRUNK_SNAPSHOT_COLUMNS],
         suffix="latest_batter",
     )
     pitcher_snapshot = build_latest_feature_snapshot(
@@ -1601,15 +1628,15 @@ def build_live_feature_frame(dataset_df: pd.DataFrame, candidate_df: pd.DataFram
         featured["park_factor_hr_vs_rhb"],
     )
     featured["opponent_team"] = featured["opponent"]
-    live_plus_audit = _audit_feature_frame_columns(
+    live_feature_audit = _audit_feature_frame_columns(
         featured,
-        feature_columns=list(LIVE_PLUS_FEATURE_COLUMNS),
+        feature_columns=list(LIVE_COMPATIBLE_FEATURE_COLUMNS),
         context="live feature frame",
     )
-    for feature in LIVE_PLUS_FEATURE_COLUMNS:
+    for feature in LIVE_COMPATIBLE_FEATURE_COLUMNS:
         if feature not in featured.columns:
             featured[feature] = np.nan
-    featured.attrs["live_plus_feature_audit"] = live_plus_audit
+    featured.attrs["live_plus_feature_audit"] = live_feature_audit
     return featured
 
 
@@ -1635,18 +1662,30 @@ def score_live_candidates(
         if feature not in scored.columns:
             scored[feature] = np.nan
 
-    if str(bundle.get("feature_profile") or "") == "live_plus":
-        required_live_plus_features = [
+    feature_profile = str(bundle.get("feature_profile") or "")
+    if feature_profile == "live_plus":
+        required_live_features = [
             feature for feature in feature_columns if feature in LIVE_PLUS_ONLY_FEATURE_COLUMNS
         ]
+    elif feature_profile == "live_shrunk":
+        required_live_features = [
+            feature for feature in feature_columns if feature in LIVE_SHRUNK_ONLY_FEATURE_COLUMNS
+        ]
+    elif feature_profile == "live_shrunk_precise":
+        required_live_features = [
+            feature for feature in feature_columns if feature in LIVE_SHRUNK_PRECISE_ONLY_FEATURE_COLUMNS
+        ]
+    else:
+        required_live_features = []
+    if required_live_features:
         readiness = _audit_feature_frame_columns(
             scored,
-            feature_columns=required_live_plus_features,
-            context="live_plus scoring frame",
+            feature_columns=required_live_features,
+            context=f"{feature_profile} scoring frame",
         )
         if readiness["missing_columns"] or readiness["all_null_columns"]:
             raise RuntimeError(
-                "live_plus candidate frame is not ready for scoring; "
+                f"{feature_profile} candidate frame is not ready for scoring; "
                 f"missing={readiness['missing_columns']}, all_null={readiness['all_null_columns']}"
             )
 
