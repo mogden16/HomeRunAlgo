@@ -213,10 +213,14 @@ class ModelSearchTests(unittest.TestCase):
         df = feature_engineering.add_reliability_adjusted_batter_features(make_live_dataset())
         available = train_model.available_feature_columns(df, feature_profile="live_shrunk_precise")
         self.assertIn("hr_per_pa_last_10d_shrunk", available)
+        self.assertIn("batter_hr_per_pa_vs_pitcher_hand", available)
         self.assertIn("batter_hr_per_pa_vs_pitcher_hand_shrunk", available)
+        self.assertIn("split_matchup_hr", available)
+        self.assertIn("split_matchup_hr_shrunk", available)
         self.assertNotIn("batter_pa_total_to_date", available)
         self.assertNotIn("pa_last_10d", available)
         self.assertNotIn("batter_pa_vs_pitcher_hand_to_date", available)
+        self.assertNotIn("platoon_advantage", available)
 
     def test_low_pa_holdout_summary_partitions_rows(self) -> None:
         df = pd.DataFrame(
