@@ -274,12 +274,20 @@ def build_pick_id(game_date: str, game_pk: int | None, batter_id: int | None, ba
     return f"{game_date}:{hitter}:{pitcher}"
 
 
-def confidence_tier_from_percentile(percentile: float) -> str:
-    if percentile >= 0.99:
+ABSOLUTE_CONFIDENCE_TIER_THRESHOLDS = {
+    "elite": 0.145,
+    "strong": 0.130,
+    "watch": 0.115,
+    "longshot": 0.0,
+}
+
+
+def confidence_tier_from_probability(probability: float) -> str:
+    if probability >= ABSOLUTE_CONFIDENCE_TIER_THRESHOLDS["elite"]:
         return "elite"
-    if percentile >= 0.95:
+    if probability >= ABSOLUTE_CONFIDENCE_TIER_THRESHOLDS["strong"]:
         return "strong"
-    if percentile >= 0.80:
+    if probability >= ABSOLUTE_CONFIDENCE_TIER_THRESHOLDS["watch"]:
         return "watch"
     return "longshot"
 
@@ -1694,7 +1702,7 @@ def score_live_candidates(
     scored["predicted_hr_probability"] = probabilities
     scored["predicted_hr_percentile"] = scored["predicted_hr_probability"].rank(method="first", pct=True)
     scored["predicted_hr_score"] = (scored["predicted_hr_percentile"] * 100.0).round(1)
-    scored["confidence_tier"] = scored["predicted_hr_percentile"].apply(confidence_tier_from_percentile)
+    scored["confidence_tier"] = scored["predicted_hr_probability"].apply(confidence_tier_from_probability)
 
     coef_map = extract_logistic_coefficient_map(model, feature_columns)
     positive_coef_map = {feature: value for feature, value in coef_map.items() if value > 0}

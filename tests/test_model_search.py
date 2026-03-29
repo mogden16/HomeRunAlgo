@@ -14,7 +14,12 @@ from sklearn.model_selection import TimeSeriesSplit as SklearnTimeSeriesSplit
 
 import feature_engineering
 import train_model
-from scripts.live_pipeline import score_live_candidates, train_live_model_bundle
+from scripts.live_pipeline import (
+    ABSOLUTE_CONFIDENCE_TIER_THRESHOLDS,
+    confidence_tier_from_probability,
+    score_live_candidates,
+    train_live_model_bundle,
+)
 from weather_audit import summarize_weather_feature_coverage
 
 
@@ -225,6 +230,14 @@ class ModelSearchTests(unittest.TestCase):
         self.assertNotIn("pa_last_10d", available)
         self.assertNotIn("batter_pa_vs_pitcher_hand_to_date", available)
         self.assertNotIn("platoon_advantage", available)
+
+    def test_confidence_tiers_use_absolute_probability_cutoffs(self) -> None:
+        self.assertEqual(confidence_tier_from_probability(ABSOLUTE_CONFIDENCE_TIER_THRESHOLDS["elite"]), "elite")
+        self.assertEqual(confidence_tier_from_probability(0.1449), "strong")
+        self.assertEqual(confidence_tier_from_probability(ABSOLUTE_CONFIDENCE_TIER_THRESHOLDS["strong"]), "strong")
+        self.assertEqual(confidence_tier_from_probability(0.1299), "watch")
+        self.assertEqual(confidence_tier_from_probability(ABSOLUTE_CONFIDENCE_TIER_THRESHOLDS["watch"]), "watch")
+        self.assertEqual(confidence_tier_from_probability(0.1149), "longshot")
 
     def test_low_pa_holdout_summary_partitions_rows(self) -> None:
         df = pd.DataFrame(
