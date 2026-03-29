@@ -81,6 +81,7 @@
             <p class="eyebrow">Today</p>
             <h2>Picks for Today</h2>
           </div>
+          <div class="filters tier-filter-row" id="latest-confidence-filters" aria-label="Latest picks confidence filters"></div>
         </div>
         <div class="table-wrap" id="latest-picks-table"></div>
       </section>
@@ -115,13 +116,7 @@
           </div>
           <div class="filters">
             <input id="history-search" type="search" placeholder="Filter by player, team, or pitcher">
-            <select id="confidence-filter">
-              <option value="">All confidence tiers</option>
-              <option value="elite">Elite</option>
-              <option value="strong">Strong</option>
-              <option value="watch">Watch</option>
-              <option value="longshot">Longshot</option>
-            </select>
+            <div class="tier-filter-row" id="history-confidence-filters" aria-label="History confidence filters"></div>
           </div>
         </div>
         <div class="table-wrap history-scroll" id="history-table"></div>

@@ -1,11 +1,15 @@
 const state = {
   dashboard: null,
   filteredHistory: [],
+  filteredLatestPicks: [],
+  latestTierFilters: new Set(["elite", "strong"]),
+  historyTierFilters: new Set(["elite", "strong"]),
 };
 
 const DEFAULT_LATEST_PICKS_EMPTY_MESSAGE =
   "Today's public picks have not been posted yet. Next publish windows are 11:00 AM, 1:00 PM, 3:00 PM, and 6:00 PM ET.";
 const MANUAL_REFRESH_KEY_STORAGE = "manualRefreshKey";
+const CONFIDENCE_TIERS = ["elite", "strong", "watch", "longshot"];
 
 function formatPercent(value, digits = 1) {
   if (value === null || value === undefined || Number.isNaN(Number(value))) {
@@ -70,6 +74,17 @@ function resultClass(value) {
 
 function findConfidenceSummary(rows, tier) {
   return (rows || []).find((row) => String(row.confidence_tier || "").toLowerCase() === tier) || null;
+}
+
+function normalizeTier(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+function filterRowsByTierSelection(rows, selectedTiers) {
+  if (!(selectedTiers instanceof Set) || !selectedTiers.size) {
+    return [];
+  }
+  return (rows || []).filter((row) => selectedTiers.has(normalizeTier(row.confidence_tier)));
 }
 
 function formatWholeNumber(value) {
@@ -264,6 +279,31 @@ function renderPicksTable(targetId, rows, emptyMessage) {
   );
 }
 
+function renderTierFilterControls(targetId, selectedTiers) {
+  const target = document.getElementById(targetId);
+  target.innerHTML = CONFIDENCE_TIERS.map((tier) => {
+    const active = selectedTiers.has(tier);
+    return `
+      <button
+        class="tier-filter-chip ${active ? "is-active" : ""}"
+        type="button"
+        data-tier-filter="${escapeHtml(tier)}"
+        aria-pressed="${active ? "true" : "false"}"
+      >
+        <span class="${tierClass(tier)}">${escapeHtml(tier)}</span>
+      </button>
+    `;
+  }).join("");
+}
+
+function applyLatestPicksFilters() {
+  if (!state.dashboard) {
+    return;
+  }
+  state.filteredLatestPicks = filterRowsByTierSelection(state.dashboard.latest_picks, state.latestTierFilters);
+  renderPicksTable("latest-picks-table", state.filteredLatestPicks, "No published picks match the selected confidence tiers.");
+}
+
 function renderLeaderboard(rows) {
   renderSimpleTable(
     "leaderboard-table",
@@ -312,9 +352,8 @@ function applyHistoryFilters() {
   }
 
   const searchValue = document.getElementById("history-search").value.trim().toLowerCase();
-  const tierValue = document.getElementById("confidence-filter").value.trim().toLowerCase();
 
-  state.filteredHistory = state.dashboard.history.filter((row) => {
+  state.filteredHistory = filterRowsByTierSelection(state.dashboard.history, state.historyTierFilters).filter((row) => {
     const haystack = [
       row.batter_name,
       row.team,
@@ -326,11 +365,37 @@ function applyHistoryFilters() {
       .toLowerCase();
 
     const matchesSearch = !searchValue || haystack.includes(searchValue);
-    const matchesTier = !tierValue || String(row.confidence_tier).toLowerCase() === tierValue;
-    return matchesSearch && matchesTier;
+    return matchesSearch;
   });
 
   renderPicksTable("history-table", state.filteredHistory, "No published picks match those filters.");
+}
+
+function handleTierFilterToggle(event) {
+  const button = event.target.closest("[data-tier-filter]");
+  if (!button) {
+    return;
+  }
+
+  const tier = normalizeTier(button.dataset.tierFilter);
+  const group = button.closest(".tier-filter-row");
+  if (!group || !CONFIDENCE_TIERS.includes(tier)) {
+    return;
+  }
+
+  const selectedTiers = group.id === "latest-confidence-filters" ? state.latestTierFilters : state.historyTierFilters;
+  if (selectedTiers.has(tier)) {
+    selectedTiers.delete(tier);
+  } else {
+    selectedTiers.add(tier);
+  }
+
+  renderTierFilterControls(group.id, selectedTiers);
+  if (group.id === "latest-confidence-filters") {
+    applyLatestPicksFilters();
+  } else {
+    applyHistoryFilters();
+  }
 }
 
 async function loadDashboard() {
@@ -350,7 +415,9 @@ async function loadDashboard() {
   renderOverviewCards(state.dashboard.overview, state.dashboard.confidence_summary, state.dashboard.refresh_schedule);
   renderTopKTable(state.dashboard.top_k_summary);
   renderConfidenceTable(state.dashboard.confidence_summary);
-  renderPicksTable("latest-picks-table", state.dashboard.latest_picks, DEFAULT_LATEST_PICKS_EMPTY_MESSAGE);
+  renderTierFilterControls("latest-confidence-filters", state.latestTierFilters);
+  renderTierFilterControls("history-confidence-filters", state.historyTierFilters);
+  applyLatestPicksFilters();
   renderLeaderboard(state.dashboard.player_leaderboard);
   renderSuccesses(state.dashboard.recent_successes);
   renderRefreshScheduleInline(state.dashboard.refresh_schedule);
@@ -416,7 +483,8 @@ async function triggerManualRefresh(mode) {
 
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("history-search").addEventListener("input", applyHistoryFilters);
-  document.getElementById("confidence-filter").addEventListener("change", applyHistoryFilters);
+  document.getElementById("latest-confidence-filters").addEventListener("click", handleTierFilterToggle);
+  document.getElementById("history-confidence-filters").addEventListener("click", handleTierFilterToggle);
   const savedKey = localStorage.getItem(MANUAL_REFRESH_KEY_STORAGE);
   if (savedKey) {
     document.getElementById("manual-refresh-key").value = savedKey;

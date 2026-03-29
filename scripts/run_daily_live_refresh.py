@@ -22,7 +22,7 @@ from config import (
 from scripts.build_dashboard_artifacts import DEFAULT_OUTPUT_DIR
 from scripts.publish_live_picks import publish_live_picks
 
-DEFAULT_MIN_CONFIDENCE_TIER = "elite"
+DEFAULT_MIN_CONFIDENCE_TIER = "longshot"
 from scripts.live_pipeline import (
     CONFIDENCE_TIER_ORDER,
     default_publish_date,

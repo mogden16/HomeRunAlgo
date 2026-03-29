@@ -211,6 +211,36 @@ select {
   gap: 10px;
 }
 
+.tier-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tier-filter-chip {
+  appearance: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 3px;
+  cursor: pointer;
+  transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+
+.tier-filter-chip:hover {
+  transform: translateY(-1px);
+  border-color: rgba(20, 32, 51, 0.25);
+}
+
+.tier-filter-chip.is-active {
+  background: rgba(20, 32, 51, 0.06);
+  border-color: rgba(20, 32, 51, 0.22);
+}
+
+.tier-filter-chip:not(.is-active) .tier-tag {
+  opacity: 0.48;
+}
+
 input,
 select {
   appearance: none;
