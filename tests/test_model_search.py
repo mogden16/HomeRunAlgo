@@ -42,6 +42,8 @@ def make_live_dataset(rows: int = 24) -> pd.DataFrame:
                 "pa_last_10d": 8 + (idx % 5),
                 "hr_per_pa_last_30d": 0.02 + idx * 0.001,
                 "hr_per_pa_last_10d": 0.01 + idx * 0.001,
+                "avg_launch_angle_last_50_bbe": 8.0 + idx * 0.2,
+                "fly_ball_rate_last_50_bbe": 0.30 + idx * 0.003,
                 "barrels_per_pa_last_30d": 0.03 + idx * 0.001,
                 "barrels_per_pa_last_10d": 0.02 + idx * 0.001,
                 "hard_hit_rate_last_30d": 0.30 + idx * 0.002,
@@ -213,6 +215,8 @@ class ModelSearchTests(unittest.TestCase):
         df = feature_engineering.add_reliability_adjusted_batter_features(make_live_dataset())
         available = train_model.available_feature_columns(df, feature_profile="live_shrunk_precise")
         self.assertIn("hr_per_pa_last_10d_shrunk", available)
+        self.assertIn("avg_launch_angle_last_50_bbe", available)
+        self.assertNotIn("fly_ball_rate_last_50_bbe", available)
         self.assertIn("batter_hr_per_pa_vs_pitcher_hand", available)
         self.assertIn("batter_hr_per_pa_vs_pitcher_hand_shrunk", available)
         self.assertIn("split_matchup_hr", available)

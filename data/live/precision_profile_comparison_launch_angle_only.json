@@ -1,0 +1,543 @@
+{
+  "generated_at": "2026-03-29 09:59:24.457010",
+  "data_path": "C:\\Users\\Mogde\\PycharmProjects\\HomeRunAlgo\\data\\live\\model_training_dataset.csv",
+  "comparison_type": "fixed_params_fast_eval",
+  "fixed_best_params": {
+    "clf__C": 0.01,
+    "clf__solver": "saga",
+    "clf__penalty": "elasticnet",
+    "clf__l1_ratio": 0.5,
+    "clf__class_weight": null
+  },
+  "results": [
+    {
+      "profile": "live_plus",
+      "feature_count": 27,
+      "feature_columns": [
+        "hr_per_pa_last_30d",
+        "hr_per_pa_last_10d",
+        "barrels_per_pa_last_30d",
+        "barrels_per_pa_last_10d",
+        "hard_hit_rate_last_30d",
+        "hard_hit_rate_last_10d",
+        "bbe_95plus_ev_rate_last_30d",
+        "bbe_95plus_ev_rate_last_10d",
+        "avg_exit_velocity_last_10d",
+        "max_exit_velocity_last_10d",
+        "pitcher_hr_allowed_per_pa_last_30d",
+        "pitcher_barrels_allowed_per_bbe_last_30d",
+        "pitcher_hard_hit_allowed_rate_last_30d",
+        "pitcher_avg_ev_allowed_last_30d",
+        "pitcher_95plus_ev_allowed_rate_last_30d",
+        "temperature_f",
+        "wind_speed_mph",
+        "humidity_pct",
+        "platoon_advantage",
+        "park_factor_hr_vs_batter_hand",
+        "batter_hr_per_pa_vs_pitcher_hand",
+        "batter_barrels_per_pa_vs_pitcher_hand",
+        "pitcher_hr_allowed_per_pa_vs_batter_hand",
+        "pitcher_barrels_allowed_per_bbe_vs_batter_hand",
+        "split_matchup_hr",
+        "split_matchup_barrel",
+        "split_matchup_hard_hit"
+      ],
+      "best_params": {
+        "clf__C": 0.01,
+        "clf__solver": "saga",
+        "clf__penalty": "elasticnet",
+        "clf__l1_ratio": 0.5,
+        "clf__class_weight": null
+      },
+      "calibration_used": "disabled",
+      "threshold_objective": "precision_at_min_recall",
+      "min_recall": 0.1,
+      "max_positive_rate": 0.12,
+      "threshold": 0.14,
+      "threshold_info": {
+        "selected_row": {
+          "threshold": 0.14,
+          "precision": 0.17040951122853368,
+          "recall": 0.13442167419242793,
+          "f1": 0.15029126213592234,
+          "f0.5": 0.16174872523614478,
+          "balanced_accuracy": 0.5286374781019058,
+          "positive_prediction_rate": 0.08318681318681319,
+          "tp": 774.0,
+          "fp": 3768.0,
+          "tn": 45074.0,
+          "fn": 4984.0,
+          "objective_score": 0.17040951122853368
+        },
+        "threshold": 0.14,
+        "objective_score": 0.17040951122853368,
+        "used_fallback": false,
+        "fallback_stage": "requested_constraints",
+        "applied_min_recall": 0.1,
+        "applied_max_positive_rate": 0.12,
+        "threshold_tolerance": 0.001,
+        "warning": ""
+      },
+      "metrics": {
+        "threshold": 0.14,
+        "precision": 0.17061042524005487,
+        "recall": 0.27327657237022795,
+        "f1": 0.21007072733030718,
+        "f0.5": 0.1844710593644555,
+        "balanced_accuracy": 0.5527994121254197,
+        "positive_prediction_rate": 0.1795124353607486,
+        "tp": 995.0,
+        "fp": 4837.0,
+        "tn": 24010.0,
+        "fn": 2646.0,
+        "accuracy": 0.7696688007879833,
+        "log_loss": 0.3441313339601717,
+        "brier_score": 0.09818490439389033,
+        "roc_auc": 0.608916801078971,
+        "pr_auc": 0.15662423735715725
+      },
+      "training_cv_summary": {
+        "mean_cv_pr_auc": 0.15412319497911825,
+        "mean_cv_roc_auc": 0.6145699156003337,
+        "mean_cv_log_loss": 0.33070485446925113,
+        "mean_cv_brier_score": 0.09316863753555041
+      },
+      "low_pa_holdout": [
+        {
+          "segment": "rookie_proxy_lt_25_pa",
+          "rows": 650,
+          "avg_prior_pa": 11.452307692307693,
+          "actual_hr_rate": 0.07384615384615385,
+          "avg_predicted_probability": 0.09848745055228308,
+          "precision": 0.09230769230769231,
+          "recall": 0.125,
+          "f0.5": 0.09740259740259741,
+          "positive_prediction_rate": 0.1,
+          "pr_auc": 0.10756541757475224,
+          "roc_auc": 0.5881782945736435
+        },
+        {
+          "segment": "low_history_25_to_49_pa",
+          "rows": 654,
+          "avg_prior_pa": 37.20030581039755,
+          "actual_hr_rate": 0.0779816513761468,
+          "avg_predicted_probability": 0.1031268239790929,
+          "precision": 0.07407407407407407,
+          "recall": 0.11764705882352941,
+          "f0.5": 0.08,
+          "positive_prediction_rate": 0.12385321100917432,
+          "pr_auc": 0.08919574181234677,
+          "roc_auc": 0.5173479010177869
+        },
+        {
+          "segment": "building_history_50_to_99_pa",
+          "rows": 1251,
+          "avg_prior_pa": 73.97122302158273,
+          "actual_hr_rate": 0.07434052757793765,
+          "avg_predicted_probability": 0.09945781105285845,
+          "precision": 0.0975609756097561,
+          "recall": 0.12903225806451613,
+          "f0.5": 0.10256410256410256,
+          "positive_prediction_rate": 0.09832134292565947,
+          "pr_auc": 0.09921712209893814,
+          "roc_auc": 0.5909057143387747
+        },
+        {
+          "segment": "established_100plus_pa",
+          "rows": 29933,
+          "avg_prior_pa": 691.9940533858952,
+          "actual_hr_rate": 0.11522400026726355,
+          "avg_predicted_probability": 0.11294447607571338,
+          "precision": 0.17454610821499192,
+          "recall": 0.28153087851551173,
+          "f0.5": 0.1889031555192405,
+          "positive_prediction_rate": 0.18584839474827114,
+          "pr_auc": 0.16068552474576525,
+          "roc_auc": 0.6082749721939151
+        }
+      ],
+      "top_positive_coefficients": [
+        {
+          "feature": "max_exit_velocity_last_10d",
+          "coef": 0.2233416097510165,
+          "abs_coef": 0.2233416097510165
+        },
+        {
+          "feature": "temperature_f",
+          "coef": 0.07697678810922169,
+          "abs_coef": 0.07697678810922169
+        },
+        {
+          "feature": "platoon_advantage",
+          "coef": 0.07209881253318251,
+          "abs_coef": 0.07209881253318251
+        },
+        {
+          "feature": "split_matchup_hard_hit",
+          "coef": 0.06460231013861457,
+          "abs_coef": 0.06460231013861457
+        },
+        {
+          "feature": "hr_per_pa_last_30d",
+          "coef": 0.05764043253272139,
+          "abs_coef": 0.05764043253272139
+        },
+        {
+          "feature": "avg_exit_velocity_last_10d",
+          "coef": 0.05134510529010463,
+          "abs_coef": 0.05134510529010463
+        },
+        {
+          "feature": "hard_hit_rate_last_30d",
+          "coef": 0.049830945663614484,
+          "abs_coef": 0.049830945663614484
+        },
+        {
+          "feature": "bbe_95plus_ev_rate_last_30d",
+          "coef": 0.049830945663614484,
+          "abs_coef": 0.049830945663614484
+        },
+        {
+          "feature": "batter_barrels_per_pa_vs_pitcher_hand",
+          "coef": 0.042081947500306714,
+          "abs_coef": 0.042081947500306714
+        },
+        {
+          "feature": "park_factor_hr_vs_batter_hand",
+          "coef": 0.03196178938100046,
+          "abs_coef": 0.03196178938100046
+        }
+      ],
+      "top_negative_coefficients": [
+        {
+          "feature": "hard_hit_rate_last_10d",
+          "coef": -0.0270433063297642,
+          "abs_coef": 0.0270433063297642
+        },
+        {
+          "feature": "bbe_95plus_ev_rate_last_10d",
+          "coef": -0.0270433063297642,
+          "abs_coef": 0.0270433063297642
+        },
+        {
+          "feature": "pitcher_barrels_allowed_per_bbe_last_30d",
+          "coef": -0.013779889664416716,
+          "abs_coef": 0.013779889664416716
+        },
+        {
+          "feature": "hr_per_pa_last_10d",
+          "coef": 0.0,
+          "abs_coef": 0.0
+        },
+        {
+          "feature": "barrels_per_pa_last_30d",
+          "coef": 0.0,
+          "abs_coef": 0.0
+        },
+        {
+          "feature": "barrels_per_pa_last_10d",
+          "coef": 0.0,
+          "abs_coef": 0.0
+        },
+        {
+          "feature": "pitcher_hard_hit_allowed_rate_last_30d",
+          "coef": 0.0,
+          "abs_coef": 0.0
+        },
+        {
+          "feature": "pitcher_95plus_ev_allowed_rate_last_30d",
+          "coef": 0.0,
+          "abs_coef": 0.0
+        },
+        {
+          "feature": "wind_speed_mph",
+          "coef": 0.0,
+          "abs_coef": 0.0
+        },
+        {
+          "feature": "pitcher_barrels_allowed_per_bbe_vs_batter_hand",
+          "coef": 0.0,
+          "abs_coef": 0.0
+        }
+      ]
+    },
+    {
+      "profile": "live_shrunk_precise",
+      "feature_count": 30,
+      "feature_columns": [
+        "hr_rate_season_to_date_shrunk",
+        "hr_per_pa_last_30d_shrunk",
+        "hr_per_pa_last_10d_shrunk",
+        "avg_launch_angle_last_50_bbe",
+        "barrels_per_pa_last_30d",
+        "barrels_per_pa_last_10d",
+        "hard_hit_rate_last_30d",
+        "hard_hit_rate_last_10d",
+        "bbe_95plus_ev_rate_last_30d",
+        "bbe_95plus_ev_rate_last_10d",
+        "avg_exit_velocity_last_10d",
+        "max_exit_velocity_last_10d",
+        "pitcher_hr_allowed_per_pa_last_30d",
+        "pitcher_barrels_allowed_per_bbe_last_30d",
+        "pitcher_hard_hit_allowed_rate_last_30d",
+        "pitcher_avg_ev_allowed_last_30d",
+        "pitcher_95plus_ev_allowed_rate_last_30d",
+        "temperature_f",
+        "wind_speed_mph",
+        "humidity_pct",
+        "park_factor_hr_vs_batter_hand",
+        "batter_hr_per_pa_vs_pitcher_hand",
+        "batter_hr_per_pa_vs_pitcher_hand_shrunk",
+        "batter_barrels_per_pa_vs_pitcher_hand",
+        "pitcher_hr_allowed_per_pa_vs_batter_hand",
+        "pitcher_barrels_allowed_per_bbe_vs_batter_hand",
+        "split_matchup_hr",
+        "split_matchup_hr_shrunk",
+        "split_matchup_barrel",
+        "split_matchup_hard_hit"
+      ],
+      "best_params": {
+        "clf__C": 0.01,
+        "clf__solver": "saga",
+        "clf__penalty": "elasticnet",
+        "clf__l1_ratio": 0.5,
+        "clf__class_weight": null
+      },
+      "calibration_used": "disabled",
+      "threshold_objective": "precision_at_min_recall",
+      "min_recall": 0.1,
+      "max_positive_rate": 0.12,
+      "threshold": 0.16000000000000003,
+      "threshold_info": {
+        "selected_row": {
+          "threshold": 0.16000000000000003,
+          "precision": 0.18968279397628965,
+          "recall": 0.10281347690170198,
+          "f1": 0.13334835003941886,
+          "f0.5": 0.16226290976866573,
+          "balanced_accuracy": 0.5255171352404993,
+          "positive_prediction_rate": 0.05716117216117216,
+          "tp": 592.0,
+          "fp": 2529.0,
+          "tn": 46313.0,
+          "fn": 5166.0,
+          "objective_score": 0.18968279397628965
+        },
+        "threshold": 0.16000000000000003,
+        "objective_score": 0.18968279397628965,
+        "used_fallback": false,
+        "fallback_stage": "requested_constraints",
+        "applied_min_recall": 0.1,
+        "applied_max_positive_rate": 0.12,
+        "threshold_tolerance": 0.001,
+        "warning": ""
+      },
+      "metrics": {
+        "threshold": 0.16000000000000003,
+        "precision": 0.2008953553441522,
+        "recall": 0.19719857182092831,
+        "f1": 0.19902979902979903,
+        "f0.5": 0.20014495177565925,
+        "balanced_accuracy": 0.5490967379852033,
+        "positive_prediction_rate": 0.11000984979069195,
+        "tp": 718.0,
+        "fp": 2856.0,
+        "tn": 25991.0,
+        "fn": 2923.0,
+        "accuracy": 0.8221189362226052,
+        "log_loss": 0.34085303067626593,
+        "brier_score": 0.09745063451872674,
+        "roc_auc": 0.626987563505333,
+        "pr_auc": 0.17140004933922887
+      },
+      "training_cv_summary": {
+        "mean_cv_pr_auc": 0.1586794886473814,
+        "mean_cv_roc_auc": 0.6210593679463337,
+        "mean_cv_log_loss": 0.32887350579388464,
+        "mean_cv_brier_score": 0.0927893552183167
+      },
+      "low_pa_holdout": [
+        {
+          "segment": "rookie_proxy_lt_25_pa",
+          "rows": 650,
+          "avg_prior_pa": 11.452307692307693,
+          "actual_hr_rate": 0.07384615384615385,
+          "avg_predicted_probability": 0.09393295559677188,
+          "precision": 0.18518518518518517,
+          "recall": 0.10416666666666667,
+          "f0.5": 0.16025641025641027,
+          "positive_prediction_rate": 0.04153846153846154,
+          "pr_auc": 0.0956978021480544,
+          "roc_auc": 0.5453349944629015
+        },
+        {
+          "segment": "low_history_25_to_49_pa",
+          "rows": 654,
+          "avg_prior_pa": 37.20030581039755,
+          "actual_hr_rate": 0.0779816513761468,
+          "avg_predicted_probability": 0.09749145081351765,
+          "precision": 0.14814814814814814,
+          "recall": 0.0784313725490196,
+          "f0.5": 0.12578616352201258,
+          "positive_prediction_rate": 0.04128440366972477,
+          "pr_auc": 0.09089583484912024,
+          "roc_auc": 0.5183559327545281
+        },
+        {
+          "segment": "building_history_50_to_99_pa",
+          "rows": 1251,
+          "avg_prior_pa": 73.97122302158273,
+          "actual_hr_rate": 0.07434052757793765,
+          "avg_predicted_probability": 0.09267773015019173,
+          "precision": 0.08571428571428572,
+          "recall": 0.03225806451612903,
+          "f0.5": 0.06437768240343347,
+          "positive_prediction_rate": 0.027977617905675458,
+          "pr_auc": 0.09432521279700622,
+          "roc_auc": 0.5857707950303639
+        },
+        {
+          "segment": "established_100plus_pa",
+          "rows": 29933,
+          "avg_prior_pa": 691.9940533858952,
+          "actual_hr_rate": 0.11522400026726355,
+          "avg_predicted_probability": 0.11382742313815634,
+          "precision": 0.20258249641319942,
+          "recall": 0.2046970136271383,
+          "f0.5": 0.20300189775145205,
+          "positive_prediction_rate": 0.11642668626599405,
+          "pr_auc": 0.17539939793375128,
+          "roc_auc": 0.6277366041758325
+        }
+      ],
+      "top_positive_coefficients": [
+        {
+          "feature": "max_exit_velocity_last_10d",
+          "coef": 0.18955105678006096,
+          "abs_coef": 0.18955105678006096
+        },
+        {
+          "feature": "hr_rate_season_to_date_shrunk",
+          "coef": 0.17334715095161057,
+          "abs_coef": 0.17334715095161057
+        },
+        {
+          "feature": "avg_launch_angle_last_50_bbe",
+          "coef": 0.10223893339948156,
+          "abs_coef": 0.10223893339948156
+        },
+        {
+          "feature": "temperature_f",
+          "coef": 0.07628631347985645,
+          "abs_coef": 0.07628631347985645
+        },
+        {
+          "feature": "split_matchup_hard_hit",
+          "coef": 0.051735678325162876,
+          "abs_coef": 0.051735678325162876
+        },
+        {
+          "feature": "hard_hit_rate_last_30d",
+          "coef": 0.03826416961289755,
+          "abs_coef": 0.03826416961289755
+        },
+        {
+          "feature": "bbe_95plus_ev_rate_last_30d",
+          "coef": 0.03826416961289755,
+          "abs_coef": 0.03826416961289755
+        },
+        {
+          "feature": "park_factor_hr_vs_batter_hand",
+          "coef": 0.02568892626518565,
+          "abs_coef": 0.02568892626518565
+        },
+        {
+          "feature": "pitcher_hr_allowed_per_pa_vs_batter_hand",
+          "coef": 0.024219560851380547,
+          "abs_coef": 0.024219560851380547
+        },
+        {
+          "feature": "batter_barrels_per_pa_vs_pitcher_hand",
+          "coef": 0.018491997387356088,
+          "abs_coef": 0.018491997387356088
+        }
+      ],
+      "top_negative_coefficients": [
+        {
+          "feature": "batter_hr_per_pa_vs_pitcher_hand",
+          "coef": -0.014279927466281123,
+          "abs_coef": 0.014279927466281123
+        },
+        {
+          "feature": "pitcher_barrels_allowed_per_bbe_last_30d",
+          "coef": -0.012957959241134801,
+          "abs_coef": 0.012957959241134801
+        },
+        {
+          "feature": "hard_hit_rate_last_10d",
+          "coef": -0.011326012848331238,
+          "abs_coef": 0.011326012848331238
+        },
+        {
+          "feature": "bbe_95plus_ev_rate_last_10d",
+          "coef": -0.011326012848331238,
+          "abs_coef": 0.011326012848331238
+        },
+        {
+          "feature": "hr_per_pa_last_10d_shrunk",
+          "coef": 0.0,
+          "abs_coef": 0.0
+        },
+        {
+          "feature": "barrels_per_pa_last_30d",
+          "coef": 0.0,
+          "abs_coef": 0.0
+        },
+        {
+          "feature": "barrels_per_pa_last_10d",
+          "coef": 0.0,
+          "abs_coef": 0.0
+        },
+        {
+          "feature": "pitcher_hr_allowed_per_pa_last_30d",
+          "coef": 0.0,
+          "abs_coef": 0.0
+        },
+        {
+          "feature": "pitcher_hard_hit_allowed_rate_last_30d",
+          "coef": 0.0,
+          "abs_coef": 0.0
+        },
+        {
+          "feature": "pitcher_95plus_ev_allowed_rate_last_30d",
+          "coef": 0.0,
+          "abs_coef": 0.0
+        }
+      ]
+    }
+  ],
+  "delta_vs_live_plus": {
+    "precision": 0.030285,
+    "recall": -0.076078,
+    "f1": -0.011041,
+    "f0.5": 0.015674,
+    "positive_prediction_rate": -0.069503,
+    "accuracy": 0.05245,
+    "pr_auc": 0.014776,
+    "roc_auc": 0.018071,
+    "log_loss": -0.003278,
+    "brier_score": -0.000734
+  },
+  "delta_vs_previous_live_shrunk_precise": {
+    "precision": 0.027784,
+    "recall": -0.082591,
+    "f1": -0.014857,
+    "f0.5": 0.012743,
+    "positive_prediction_rate": -0.061662,
+    "accuracy": 0.04057,
+    "pr_auc": 0.009007,
+    "roc_auc": 0.002251,
+    "log_loss": 0.01131,
+    "brier_score": 0.004301
+  }
+}

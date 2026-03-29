@@ -38,7 +38,7 @@ from scripts.live_pipeline import (
     write_current_picks,
 )
 
-DEFAULT_MIN_CONFIDENCE_TIER = "strong"
+DEFAULT_MIN_CONFIDENCE_TIER = "elite"
 DEFAULT_MAX_PICKS_PER_TEAM = None
 DEFAULT_MAX_PICKS_PER_GAME = None
 

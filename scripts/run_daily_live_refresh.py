@@ -21,7 +21,10 @@ from config import (
 )
 from scripts.build_dashboard_artifacts import DEFAULT_OUTPUT_DIR
 from scripts.publish_live_picks import publish_live_picks
+
+DEFAULT_MIN_CONFIDENCE_TIER = "elite"
 from scripts.live_pipeline import (
+    CONFIDENCE_TIER_ORDER,
     default_publish_date,
     default_training_end_date,
     load_json_array,
@@ -54,6 +57,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--training-mode", default="fast_refit", choices=["search", "fast_refit"], help="Use fast_refit for daily production or search for slower full candidate selection.")
     parser.add_argument("--hitters-per-team", type=int, default=9, help="How many likely starters to consider for each team.")
     parser.add_argument("--max-picks", type=int, default=10, help="Maximum published picks across the slate.")
+    parser.add_argument("--min-confidence-tier", choices=tuple(CONFIDENCE_TIER_ORDER.keys()), default=DEFAULT_MIN_CONFIDENCE_TIER, help="Minimum confidence tier required for publication.")
     return parser.parse_args()
 
 
@@ -85,6 +89,7 @@ def run_daily_live_refresh(
     training_mode: str = "fast_refit",
     hitters_per_team: int = 9,
     max_picks: int = 10,
+    min_confidence_tier: str | None = DEFAULT_MIN_CONFIDENCE_TIER,
 ) -> list[dict[str, Any]]:
     resolved_train_end_date = train_end_date or default_training_end_date()
     resolved_publish_date = publish_date or default_publish_date()
@@ -139,12 +144,13 @@ def run_daily_live_refresh(
             dataset_path=dataset_path,
             bundle_path=bundle_path,
             metadata_path=metadata_path,
-        output_path=current_picks_path,
-        history_path=history_path,
-        dashboard_output_dir=dashboard_output_dir,
-        schedule_date=resolved_publish_date,
-        hitters_per_team=hitters_per_team,
-        max_picks=max_picks,
+            output_path=current_picks_path,
+            history_path=history_path,
+            dashboard_output_dir=dashboard_output_dir,
+            schedule_date=resolved_publish_date,
+            hitters_per_team=hitters_per_team,
+            max_picks=max_picks,
+            min_confidence_tier=min_confidence_tier,
         )
     except Exception as exc:
         print(f"Publish stage failed       : {exc}")
@@ -179,6 +185,7 @@ def main() -> None:
         training_mode=args.training_mode,
         hitters_per_team=args.hitters_per_team,
         max_picks=args.max_picks,
+        min_confidence_tier=args.min_confidence_tier,
     )
 
 

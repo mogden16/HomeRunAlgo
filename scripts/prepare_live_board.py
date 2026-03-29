@@ -21,6 +21,7 @@ from config import (
     LIVE_PICK_HISTORY_PATH,
 )
 from scripts.live_pipeline import (
+    CONFIDENCE_TIER_ORDER,
     default_publish_date,
     default_training_end_date,
     load_json_array,
@@ -32,6 +33,8 @@ from scripts.live_pipeline import (
     write_pick_history,
 )
 from scripts.publish_live_picks import generate_live_picks
+
+DEFAULT_MIN_CONFIDENCE_TIER = "elite"
 
 
 def parse_args() -> argparse.Namespace:
@@ -54,6 +57,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--training-mode", default="fast_refit", choices=["search", "fast_refit"], help="Use fast_refit for morning production or search for slower full candidate selection.")
     parser.add_argument("--hitters-per-team", type=int, default=9, help="How many likely starters to consider for each team.")
     parser.add_argument("--max-picks", type=int, default=10, help="Maximum draft picks across the slate.")
+    parser.add_argument("--min-confidence-tier", choices=tuple(CONFIDENCE_TIER_ORDER.keys()), default=DEFAULT_MIN_CONFIDENCE_TIER, help="Minimum confidence tier required for draft inclusion.")
     return parser.parse_args()
 
 
@@ -85,6 +89,7 @@ def run_prepare_live_board(
     training_mode: str = "fast_refit",
     hitters_per_team: int = 9,
     max_picks: int = 10,
+    min_confidence_tier: str | None = DEFAULT_MIN_CONFIDENCE_TIER,
 ) -> list[dict[str, Any]]:
     resolved_train_end_date = train_end_date or default_training_end_date()
     resolved_publish_date = publish_date or default_publish_date()
@@ -141,6 +146,7 @@ def run_prepare_live_board(
         schedule_date=resolved_publish_date,
         hitters_per_team=hitters_per_team,
         max_picks=max_picks,
+        min_confidence_tier=min_confidence_tier,
     )
     write_current_picks(draft_picks, draft_output_path)
     print(f"Saved {len(draft_picks)} draft picks to {draft_output_path}")
@@ -170,6 +176,7 @@ def main() -> None:
         training_mode=args.training_mode,
         hitters_per_team=args.hitters_per_team,
         max_picks=args.max_picks,
+        min_confidence_tier=args.min_confidence_tier,
     )
 
 

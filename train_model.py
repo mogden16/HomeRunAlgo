@@ -169,6 +169,7 @@ LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS = [
     "hr_rate_season_to_date_shrunk",
     "hr_per_pa_last_30d_shrunk",
     "hr_per_pa_last_10d_shrunk",
+    "avg_launch_angle_last_50_bbe",
     "barrels_per_pa_last_30d",
     "barrels_per_pa_last_10d",
     "hard_hit_rate_last_30d",
@@ -333,6 +334,7 @@ REASON_TEXT_BY_FEATURE = {
     "hr_per_pa_last_30d_shrunk": "recent_hr_rate_30d_shrunk",
     "hr_per_pa_last_10d": "recent_hr_rate_10d",
     "hr_per_pa_last_30d": "recent_hr_rate_30d",
+    "avg_launch_angle_last_50_bbe": "avg_launch_angle_last_50_bbe",
     "barrels_per_pa_last_10d": "recent_barrel_rate_10d",
     "barrels_per_pa_last_30d": "recent_barrel_rate_30d",
     "hard_hit_rate_last_10d": "recent_hard_hit_rate_10d",
@@ -1399,6 +1401,8 @@ def _build_feature_reason(feature: str, value: float, percentile: float, row: pd
         return f"HR rate over the last 10 days is {_format_pct(value)}, a {strength} live-model signal."
     if feature == "hr_per_pa_last_30d":
         return f"HR rate over the last 30 days is {_format_pct(value)}, which keeps the recent power trend elevated."
+    if feature == "avg_launch_angle_last_50_bbe":
+        return f"Average launch angle over the last 50 batted balls is {value:.1f} degrees, which supports playable HR lift."
     if feature == "barrels_per_pa_last_10d":
         return f"Barrel rate over the last 10 days is {_format_pct(value)}, a {strength} indicator of current lift-and-damage contact."
     if feature == "barrels_per_pa_last_30d":

@@ -117,6 +117,7 @@ LIVE_PARK_FACTOR_SOURCE_COLUMNS = [
 ]
 LIVE_SHRUNK_SNAPSHOT_COLUMNS = [
     "hr_rate_season_to_date_shrunk",
+    "avg_launch_angle_last_50_bbe",
     "batter_pa_total_to_date",
     "batter_pa_vs_rhp_to_date",
     "batter_pa_vs_lhp_to_date",
