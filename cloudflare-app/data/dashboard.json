@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-28T15:38:20.735195+00:00",
+  "generated_at": "2026-03-29T11:19:06.665601+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "2024-25 trained",
   "latest_available_date": "2026-03-28",
@@ -46,62 +46,62 @@
     ]
   },
   "overview": {
-    "latest_slate_size": 12,
+    "latest_slate_size": 0,
     "tracked_dates": 4,
     "tracked_picks": 65,
-    "settled_picks": 52,
-    "tracked_homers": 8,
-    "tracked_hit_rate": 0.153846,
-    "open_picks": 13
+    "settled_picks": 65,
+    "tracked_homers": 11,
+    "tracked_hit_rate": 0.169231,
+    "open_picks": 0
   },
   "top_k_summary": [
     {
       "top_k": 1,
-      "dates": 3,
-      "picks": 3,
-      "homers": 1,
-      "hit_rate": 0.333333,
+      "dates": 4,
+      "picks": 4,
+      "homers": 2,
+      "hit_rate": 0.5,
       "avg_score": 100.0
     },
     {
       "top_k": 3,
-      "dates": 3,
-      "picks": 9,
-      "homers": 4,
-      "hit_rate": 0.444444,
-      "avg_score": 96.688889
+      "dates": 4,
+      "picks": 12,
+      "homers": 6,
+      "hit_rate": 0.5,
+      "avg_score": 97.416667
     },
     {
       "top_k": 5,
-      "dates": 3,
-      "picks": 15,
-      "homers": 5,
-      "hit_rate": 0.333333,
-      "avg_score": 93.38
+      "dates": 4,
+      "picks": 20,
+      "homers": 7,
+      "hit_rate": 0.35,
+      "avg_score": 94.835
     },
     {
       "top_k": 10,
-      "dates": 3,
-      "picks": 30,
-      "homers": 6,
-      "hit_rate": 0.2,
-      "avg_score": 85.09
+      "dates": 4,
+      "picks": 40,
+      "homers": 9,
+      "hit_rate": 0.225,
+      "avg_score": 88.3675
     }
   ],
   "confidence_summary": [
     {
       "confidence_tier": "elite",
-      "picks": 5,
-      "homers": 2,
-      "hit_rate": 0.4,
-      "avg_probability": 0.306749
+      "picks": 8,
+      "homers": 4,
+      "hit_rate": 0.5,
+      "avg_probability": 0.530309
     },
     {
       "confidence_tier": "strong",
-      "picks": 9,
-      "homers": 3,
-      "hit_rate": 0.333333,
-      "avg_probability": 0.2062
+      "picks": 19,
+      "homers": 4,
+      "hit_rate": 0.210526,
+      "avg_probability": 0.46781
     },
     {
       "confidence_tier": "watch",
@@ -118,224 +118,7 @@
       "avg_probability": 0.108165
     }
   ],
-  "latest_picks": [
-    {
-      "pick_id": "2026-03-28:823161:800050:693433",
-      "game_pk": 823161,
-      "game_date": "2026-03-28",
-      "rank": 1,
-      "batter_name": "Chase DeLauter",
-      "team": "CLE",
-      "opponent_team": "SEA",
-      "pitcher_name": "Bryan Woo",
-      "confidence_tier": "elite",
-      "predicted_hr_probability": 0.940549,
-      "predicted_hr_score": 100.0,
-      "actual_hit_hr": null,
-      "top_reason_1": "Against this pitcher handedness, the hitter owns a 40.0% HR-per-PA split.",
-      "top_reason_2": "Bryan Woo has allowed homers in 3.5% of plate appearances to this batter side.",
-      "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-28:823811:808959:694477",
-      "game_pk": 823811,
-      "game_date": "2026-03-28",
-      "rank": 2,
-      "batter_name": "Munetaka Murakami",
-      "team": "CWS",
-      "opponent_team": "MIL",
-      "pitcher_name": "Chad Patrick",
-      "confidence_tier": "elite",
-      "predicted_hr_probability": 0.900272,
-      "predicted_hr_score": 99.6,
-      "actual_hit_hr": null,
-      "top_reason_1": "Against this pitcher handedness, the hitter owns a 25.0% HR-per-PA split.",
-      "top_reason_2": "The hitter has the platoon advantage in this matchup.",
-      "top_reason_3": "HR rate over the last 30 days is 25.0%, which keeps the recent power trend elevated.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-28:823651:701807:656605",
-      "game_pk": 823651,
-      "game_date": "2026-03-28",
-      "rank": 3,
-      "batter_name": "Carson Benge",
-      "team": "NYM",
-      "opponent_team": "PIT",
-      "pitcher_name": "Mitch Keller",
-      "confidence_tier": "elite",
-      "predicted_hr_probability": 0.867905,
-      "predicted_hr_score": 99.2,
-      "actual_hit_hr": null,
-      "top_reason_1": "Against this pitcher handedness, the hitter owns a 20.0% HR-per-PA split.",
-      "top_reason_2": "Mitch Keller has allowed homers in 5.8% of plate appearances over the last 30 days.",
-      "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-28:823082:802139:671212",
-      "game_pk": 823082,
-      "game_date": "2026-03-28",
-      "rank": 4,
-      "batter_name": "JJ Wetherholt",
-      "team": "STL",
-      "opponent_team": "TB",
-      "pitcher_name": "Joe Boyle",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.850061,
-      "predicted_hr_score": 98.8,
-      "actual_hit_hr": null,
-      "top_reason_1": "Against this pitcher handedness, the hitter owns a 20.0% HR-per-PA split.",
-      "top_reason_2": "The hitter has the platoon advantage in this matchup.",
-      "top_reason_3": "HR rate over the last 30 days is 20.0%, which keeps the recent power trend elevated.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-28:823161:686527:676282",
-      "game_pk": 823161,
-      "game_date": "2026-03-28",
-      "rank": 5,
-      "batter_name": "Dominic Canzone",
-      "team": "SEA",
-      "opponent_team": "CLE",
-      "pitcher_name": "Joey Cantillo",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.77307,
-      "predicted_hr_score": 98.4,
-      "actual_hit_hr": null,
-      "top_reason_1": "HR rate over the last 30 days is 50.0%, which keeps the recent power trend elevated.",
-      "top_reason_2": "Average exit velocity over the last 10 days is 105.0 mph, a top-decile recent batted-ball quality marker.",
-      "top_reason_3": "Hard-hit rate over the last 30 days is 100.0%, showing consistent quality contact.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-28:824213:545361:664299",
-      "game_pk": 824213,
-      "game_date": "2026-03-28",
-      "rank": 6,
-      "batter_name": "Mike Trout",
-      "team": "LAA",
-      "opponent_team": "HOU",
-      "pitcher_name": "Cristian Javier",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.726384,
-      "predicted_hr_score": 98.0,
-      "actual_hit_hr": null,
-      "top_reason_1": "HR rate over the last 30 days is 20.0%, which keeps the recent power trend elevated.",
-      "top_reason_2": "Average exit velocity over the last 10 days is 108.5 mph, a top-decile recent batted-ball quality marker.",
-      "top_reason_3": "Hard-hit rate over the last 30 days is 100.0%, showing consistent quality contact.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-28:823651:664040:656849",
-      "game_pk": 823651,
-      "game_date": "2026-03-28",
-      "rank": 7,
-      "batter_name": "Brandon Lowe",
-      "team": "PIT",
-      "opponent_team": "NYM",
-      "pitcher_name": "David Peterson",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.715182,
-      "predicted_hr_score": 97.6,
-      "actual_hit_hr": null,
-      "top_reason_1": "HR rate over the last 30 days is 50.0%, which keeps the recent power trend elevated.",
-      "top_reason_2": "Hard-hit rate over the last 30 days is 75.0%, showing consistent quality contact.",
-      "top_reason_3": "95+ EV contact rate over the last 30 days is 75.0%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-28:823082:666018:700241",
-      "game_pk": 823082,
-      "game_date": "2026-03-28",
-      "rank": 8,
-      "batter_name": "Jonathan Aranda",
-      "team": "TB",
-      "opponent_team": "STL",
-      "pitcher_name": "Michael McGreevy",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.670879,
-      "predicted_hr_score": 97.2,
-      "actual_hit_hr": null,
-      "top_reason_1": "HR rate over the last 30 days is 16.7%, which keeps the recent power trend elevated.",
-      "top_reason_2": "Michael McGreevy has allowed 91.3 mph average exit velocity recently, which the model flags as hittable contact.",
-      "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-28:823488:669394:605400",
-      "game_pk": 823488,
-      "game_date": "2026-03-28",
-      "rank": 9,
-      "batter_name": "Jake Burger",
-      "team": "TEX",
-      "opponent_team": "PHI",
-      "pitcher_name": "Aaron Nola",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.667119,
-      "predicted_hr_score": 96.8,
-      "actual_hit_hr": null,
-      "top_reason_1": "HR rate over the last 30 days is 25.0%, which keeps the recent power trend elevated.",
-      "top_reason_2": "Aaron Nola has allowed homers in 3.4% of plate appearances over the last 30 days.",
-      "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-28:823323:693307:681190",
-      "game_pk": 823323,
-      "game_date": "2026-03-28",
-      "rank": 10,
-      "batter_name": "Dillon Dingler",
-      "team": "DET",
-      "opponent_team": "SD",
-      "pitcher_name": "Randy V\u00e1squez",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.662012,
-      "predicted_hr_score": 96.4,
-      "actual_hit_hr": null,
-      "top_reason_1": "HR rate over the last 30 days is 20.0%, which keeps the recent power trend elevated.",
-      "top_reason_2": "The hitter has the platoon advantage in this matchup.",
-      "top_reason_3": "Hard-hit rate over the last 30 days is 100.0%, showing consistent quality contact.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-28:824701:686894:690990",
-      "game_pk": 824701,
-      "game_date": "2026-03-28",
-      "rank": 11,
-      "batter_name": "Joey Wiemer",
-      "team": "WSH",
-      "opponent_team": "CHC",
-      "pitcher_name": "Cade Horton",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.657578,
-      "predicted_hr_score": 96.0,
-      "actual_hit_hr": null,
-      "top_reason_1": "HR rate over the last 30 days is 25.0%, which keeps the recent power trend elevated.",
-      "top_reason_2": "Cade Horton has allowed 90.0 mph average exit velocity recently, which the model flags as hittable contact.",
-      "top_reason_3": "Average exit velocity over the last 10 days is 98.3 mph, a top-decile recent batted-ball quality marker.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-28:823488:656941:594798",
-      "game_pk": 823488,
-      "game_date": "2026-03-28",
-      "rank": 12,
-      "batter_name": "Kyle Schwarber",
-      "team": "PHI",
-      "opponent_team": "TEX",
-      "pitcher_name": "Jacob deGrom",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.655493,
-      "predicted_hr_score": 95.6,
-      "actual_hit_hr": null,
-      "top_reason_1": "HR rate over the last 30 days is 25.0%, which keeps the recent power trend elevated.",
-      "top_reason_2": "Jacob deGrom has allowed homers in 5.5% of plate appearances over the last 30 days.",
-      "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
-    }
-  ],
+  "latest_picks": [],
   "history": [
     {
       "pick_id": "2026-03-28:823161:800050:693433",
@@ -349,11 +132,11 @@
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.940549,
       "predicted_hr_score": 100.0,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 1,
       "top_reason_1": "Against this pitcher handedness, the hitter owns a 40.0% HR-per-PA split.",
       "top_reason_2": "Bryan Woo has allowed homers in 3.5% of plate appearances to this batter side.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-03-28:823811:808959:694477",
@@ -367,11 +150,11 @@
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.900272,
       "predicted_hr_score": 99.6,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 1,
       "top_reason_1": "Against this pitcher handedness, the hitter owns a 25.0% HR-per-PA split.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "HR rate over the last 30 days is 25.0%, which keeps the recent power trend elevated.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-03-28:823651:701807:656605",
@@ -385,11 +168,11 @@
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.867905,
       "predicted_hr_score": 99.2,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Against this pitcher handedness, the hitter owns a 20.0% HR-per-PA split.",
       "top_reason_2": "Mitch Keller has allowed homers in 5.8% of plate appearances over the last 30 days.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-28:823082:802139:671212",
@@ -403,11 +186,11 @@
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.850061,
       "predicted_hr_score": 98.8,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Against this pitcher handedness, the hitter owns a 20.0% HR-per-PA split.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "HR rate over the last 30 days is 20.0%, which keeps the recent power trend elevated.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-28:823161:686527:676282",
@@ -421,11 +204,11 @@
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.77307,
       "predicted_hr_score": 98.4,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "HR rate over the last 30 days is 50.0%, which keeps the recent power trend elevated.",
       "top_reason_2": "Average exit velocity over the last 10 days is 105.0 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 100.0%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-28:824213:545361:664299",
@@ -439,11 +222,11 @@
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.726384,
       "predicted_hr_score": 98.0,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "HR rate over the last 30 days is 20.0%, which keeps the recent power trend elevated.",
       "top_reason_2": "Average exit velocity over the last 10 days is 108.5 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 100.0%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-28:823651:664040:656849",
@@ -457,11 +240,11 @@
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.715182,
       "predicted_hr_score": 97.6,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "HR rate over the last 30 days is 50.0%, which keeps the recent power trend elevated.",
       "top_reason_2": "Hard-hit rate over the last 30 days is 75.0%, showing consistent quality contact.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 75.0%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-28:823082:666018:700241",
@@ -475,11 +258,11 @@
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.670879,
       "predicted_hr_score": 97.2,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "HR rate over the last 30 days is 16.7%, which keeps the recent power trend elevated.",
       "top_reason_2": "Michael McGreevy has allowed 91.3 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-28:823488:669394:605400",
@@ -493,11 +276,11 @@
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.667119,
       "predicted_hr_score": 96.8,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 1,
       "top_reason_1": "HR rate over the last 30 days is 25.0%, which keeps the recent power trend elevated.",
       "top_reason_2": "Aaron Nola has allowed homers in 3.4% of plate appearances over the last 30 days.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-03-28:823323:693307:681190",
@@ -511,11 +294,11 @@
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.662012,
       "predicted_hr_score": 96.4,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "HR rate over the last 30 days is 20.0%, which keeps the recent power trend elevated.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 100.0%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-28:824701:686894:690990",
@@ -529,11 +312,11 @@
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.657578,
       "predicted_hr_score": 96.0,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "HR rate over the last 30 days is 25.0%, which keeps the recent power trend elevated.",
       "top_reason_2": "Cade Horton has allowed 90.0 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Average exit velocity over the last 10 days is 98.3 mph, a top-decile recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-28:823488:656941:594798",
@@ -547,11 +330,11 @@
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.655493,
       "predicted_hr_score": 95.6,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "HR rate over the last 30 days is 25.0%, which keeps the recent power trend elevated.",
       "top_reason_2": "Jacob deGrom has allowed homers in 5.5% of plate appearances over the last 30 days.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-28:823082:676475:671212",
@@ -565,11 +348,11 @@
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.654817,
       "predicted_hr_score": 95.2,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "HR rate over the last 30 days is 20.0%, which keeps the recent power trend elevated.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 75.0%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-03-27:823162:686527:668909",
@@ -1510,12 +1293,20 @@
   ],
   "player_leaderboard": [
     {
-      "batter_name": "Mike Trout",
-      "team": "LAA",
+      "batter_name": "Chase DeLauter",
+      "team": "CLE",
       "picks": 2,
       "homers": 2,
       "hit_rate": 1.0,
-      "avg_score": 95.7
+      "avg_score": 99.55
+    },
+    {
+      "batter_name": "Mike Trout",
+      "team": "LAA",
+      "picks": 3,
+      "homers": 2,
+      "hit_rate": 0.666667,
+      "avg_score": 96.466667
     },
     {
       "batter_name": "Giancarlo Stanton",
@@ -1526,12 +1317,28 @@
       "avg_score": 88.5
     },
     {
-      "batter_name": "Dominic Canzone",
-      "team": "SEA",
+      "batter_name": "Jonathan Aranda",
+      "team": "TB",
       "picks": 2,
       "homers": 1,
       "hit_rate": 0.5,
-      "avg_score": 96.25
+      "avg_score": 98.6
+    },
+    {
+      "batter_name": "Kyle Schwarber",
+      "team": "PHI",
+      "picks": 2,
+      "homers": 1,
+      "hit_rate": 0.5,
+      "avg_score": 97.05
+    },
+    {
+      "batter_name": "Dominic Canzone",
+      "team": "SEA",
+      "picks": 3,
+      "homers": 1,
+      "hit_rate": 0.333333,
+      "avg_score": 96.966667
     },
     {
       "batter_name": "Shohei Ohtani",
@@ -1540,9 +1347,71 @@
       "homers": 0,
       "hit_rate": 0.0,
       "avg_score": 93.3
+    },
+    {
+      "batter_name": "Dillon Dingler",
+      "team": "DET",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0,
+      "avg_score": 96.5
     }
   ],
   "recent_successes": [
+    {
+      "pick_id": "2026-03-28:823161:800050:693433",
+      "game_pk": 823161,
+      "game_date": "2026-03-28",
+      "rank": 1,
+      "batter_name": "Chase DeLauter",
+      "team": "CLE",
+      "opponent_team": "SEA",
+      "pitcher_name": "Bryan Woo",
+      "confidence_tier": "elite",
+      "predicted_hr_probability": 0.940549,
+      "predicted_hr_score": 100.0,
+      "actual_hit_hr": 1,
+      "top_reason_1": "Against this pitcher handedness, the hitter owns a 40.0% HR-per-PA split.",
+      "top_reason_2": "Bryan Woo has allowed homers in 3.5% of plate appearances to this batter side.",
+      "top_reason_3": "The hitter has the platoon advantage in this matchup.",
+      "result_label": "HR"
+    },
+    {
+      "pick_id": "2026-03-28:823811:808959:694477",
+      "game_pk": 823811,
+      "game_date": "2026-03-28",
+      "rank": 2,
+      "batter_name": "Munetaka Murakami",
+      "team": "CWS",
+      "opponent_team": "MIL",
+      "pitcher_name": "Chad Patrick",
+      "confidence_tier": "elite",
+      "predicted_hr_probability": 0.900272,
+      "predicted_hr_score": 99.6,
+      "actual_hit_hr": 1,
+      "top_reason_1": "Against this pitcher handedness, the hitter owns a 25.0% HR-per-PA split.",
+      "top_reason_2": "The hitter has the platoon advantage in this matchup.",
+      "top_reason_3": "HR rate over the last 30 days is 25.0%, which keeps the recent power trend elevated.",
+      "result_label": "HR"
+    },
+    {
+      "pick_id": "2026-03-28:823488:669394:605400",
+      "game_pk": 823488,
+      "game_date": "2026-03-28",
+      "rank": 9,
+      "batter_name": "Jake Burger",
+      "team": "TEX",
+      "opponent_team": "PHI",
+      "pitcher_name": "Aaron Nola",
+      "confidence_tier": "strong",
+      "predicted_hr_probability": 0.667119,
+      "predicted_hr_score": 96.8,
+      "actual_hit_hr": 1,
+      "top_reason_1": "HR rate over the last 30 days is 25.0%, which keeps the recent power trend elevated.",
+      "top_reason_2": "Aaron Nola has allowed homers in 3.4% of plate appearances over the last 30 days.",
+      "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
+      "result_label": "HR"
+    },
     {
       "pick_id": "2026-03-27:823162:800050:669923",
       "game_pk": 823162,
