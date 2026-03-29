@@ -102,6 +102,9 @@ jobs:
 
           subprocess.run(["git", "commit", "-m", f"chore: manual {mode} refresh"], check=True)
           subprocess.run(["git", "fetch", "origin", target_branch], check=True)
-          subprocess.run(["git", "rebase", f"origin/{target_branch}"], check=True)
+          subprocess.run(
+              ["git", "rebase", "-X", "theirs", f"origin/{target_branch}"],
+              check=True,
+          )
           subprocess.run(["git", "push", "origin", f"HEAD:{target_branch}"], check=True)
           PY

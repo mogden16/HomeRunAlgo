@@ -1151,7 +1151,7 @@ class LivePipelineTests(unittest.TestCase):
             self.assertEqual(bundle["feature_profile"], "live_shrunk_precise")
             self.assertEqual(bundle["feature_columns"], feature_columns)
 
-    def test_train_live_model_bundle_fast_refit_bootstraps_with_search_when_metadata_missing(self) -> None:
+    def test_train_live_model_bundle_fast_refit_bootstraps_without_search_when_metadata_missing(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
             dataset_path = base / "dataset.csv"
