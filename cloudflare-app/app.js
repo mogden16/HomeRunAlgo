@@ -6,6 +6,7 @@ const state = {
 const DEFAULT_LATEST_PICKS_EMPTY_MESSAGE =
   "Today's public picks have not been posted yet. Next publish windows are 11:00 AM, 1:00 PM, 3:00 PM, and 6:00 PM ET.";
 const MANUAL_REFRESH_KEY_STORAGE = "manualRefreshKey";
+const DEFAULT_MODEL_EXPLAINER_MESSAGE = "Metric details are not available for the current dashboard build.";
 
 function formatPercent(value, digits = 1) {
   if (value === null || value === undefined || Number.isNaN(Number(value))) {
@@ -77,6 +78,11 @@ function formatWholeNumber(value) {
     return "-";
   }
   return Number(value).toLocaleString();
+}
+
+function formatModelValue(value) {
+  const text = String(value ?? "").trim();
+  return text || "Not available";
 }
 
 function buildRefreshScheduleSummary(schedule) {
@@ -306,6 +312,49 @@ function renderRefreshScheduleInline(schedule) {
   target.textContent = buildRefreshScheduleInlineText(schedule);
 }
 
+function renderModelExplainer(explainer) {
+  const button = document.getElementById("model-explainer-button");
+  const title = document.getElementById("model-explainer-title");
+  const summary = document.getElementById("model-explainer-summary");
+  const list = document.getElementById("model-explainer-list");
+  const features = Array.isArray(explainer?.features) ? explainer.features : [];
+
+  title.textContent = explainer?.title || "Metric guide";
+  summary.textContent = explainer?.summary || DEFAULT_MODEL_EXPLAINER_MESSAGE;
+
+  if (!explainer?.available || !features.length) {
+    button.hidden = true;
+    list.innerHTML = `<p class="empty-state">${escapeHtml(DEFAULT_MODEL_EXPLAINER_MESSAGE)}</p>`;
+    return;
+  }
+
+  button.hidden = false;
+  list.innerHTML = features
+    .map((feature) => {
+      const strengthScore = feature.strength_score === null || feature.strength_score === undefined
+        ? 0.25
+        : Math.max(0.08, Math.min(1, Number(feature.strength_score)));
+      return `
+        <article class="model-metric-card">
+          <div class="model-metric-top">
+            <div>
+              <strong>${escapeHtml(feature.label)}</strong>
+              <p>${escapeHtml(feature.description || "")}</p>
+            </div>
+            <div class="model-metric-meta">
+              <span class="metric-strength">${escapeHtml(feature.strength || "Included")}</span>
+            </div>
+          </div>
+          <div class="metric-strength-bar" aria-hidden="true">
+            <span style="width:${Math.round(strengthScore * 100)}%"></span>
+          </div>
+          <p class="metric-direction">${escapeHtml(feature.direction || "")}</p>
+        </article>
+      `;
+    })
+    .join("");
+}
+
 function applyHistoryFilters() {
   if (!state.dashboard) {
     return;
@@ -344,7 +393,12 @@ async function loadDashboard() {
   document.getElementById("data-note").textContent = state.dashboard.data_note;
   document.getElementById("latest-date").textContent = formatDate(state.dashboard.latest_available_date);
   document.getElementById("generated-at").textContent = `Refreshed ${formatDateTime(state.dashboard.generated_at)}`;
-  document.getElementById("model-family").textContent = state.dashboard.model_family;
+  document.getElementById("model-family").textContent = formatModelValue(
+    state.dashboard.model_family || state.dashboard.model_explainer?.model_family,
+  );
+  document.getElementById("feature-profile").textContent = formatModelValue(
+    state.dashboard.feature_profile || state.dashboard.model_explainer?.feature_profile,
+  );
   document.getElementById("usable-status").textContent = `Tracking since ${formatDate(state.dashboard.tracking_start_date)}`;
 
   renderOverviewCards(state.dashboard.overview, state.dashboard.confidence_summary, state.dashboard.refresh_schedule);
@@ -354,6 +408,7 @@ async function loadDashboard() {
   renderLeaderboard(state.dashboard.player_leaderboard);
   renderSuccesses(state.dashboard.recent_successes);
   renderRefreshScheduleInline(state.dashboard.refresh_schedule);
+  renderModelExplainer(state.dashboard.model_explainer);
   applyHistoryFilters();
 }
 
@@ -424,6 +479,13 @@ async function triggerManualRefresh(mode) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  const modelExplainerDialog = document.getElementById("model-explainer-dialog");
+  document.getElementById("model-explainer-button").addEventListener("click", () => {
+    modelExplainerDialog.showModal();
+  });
+  document.getElementById("model-explainer-close").addEventListener("click", () => {
+    modelExplainerDialog.close();
+  });
   document.getElementById("history-search").addEventListener("input", applyHistoryFilters);
   document.getElementById("confidence-filter").addEventListener("change", applyHistoryFilters);
   const savedKey = localStorage.getItem(MANUAL_REFRESH_KEY_STORAGE);

@@ -5,15 +5,26 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import pickle
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+ROOT_DIR = Path(__file__).resolve().parents[1]
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
+from train_model import extract_logistic_coefficient_map
 
 DEFAULT_TRACKING_START_DATE = "2026-03-25"
 DEFAULT_CURRENT_PICKS_PATH = Path("data/live/current_picks.json")
 DEFAULT_HISTORY_PATH = Path("data/live/pick_history.json")
 DEFAULT_OUTPUT_DIR = Path("cloudflare-app/data")
-DEFAULT_MODEL_FAMILY = "2024-25 trained"
+DEFAULT_MODEL_BUNDLE_PATH = Path("data/live/model_bundle.pkl")
+DEFAULT_MODEL_METADATA_PATH = Path("data/live/model_metadata.json")
+DEFAULT_MODEL_FAMILY = "not available"
+DEFAULT_FEATURE_PROFILE = "not available"
 DEFAULT_DATA_NOTE = "Public dashboard tracking begins on Opening Night, March 25, 2026. Trained on 2024 and 2025 season data."
 DEFAULT_REFRESH_SCHEDULE = {
     "timezone": "ET",
@@ -116,6 +127,120 @@ HISTORY_COLUMNS = [
     "result_label",
     "actual_hit_hr",
 ]
+MODEL_FEATURE_DETAILS = {
+    "hr_per_pa_last_10d": {
+        "label": "HR Rate, Last 10 Days",
+        "description": "Recent home-run rate over the last 10 days. This is the shortest-term power trend input.",
+    },
+    "hr_per_pa_last_30d": {
+        "label": "HR Rate, Last 30 Days",
+        "description": "Home-run rate over the last 30 days. It captures whether the hitter has been sustaining power recently.",
+    },
+    "barrels_per_pa_last_10d": {
+        "label": "Barrel Rate, Last 10 Days",
+        "description": "Recent barrel frequency, measuring how often the hitter is producing ideal home-run quality contact right now.",
+    },
+    "barrels_per_pa_last_30d": {
+        "label": "Barrel Rate, Last 30 Days",
+        "description": "Longer recent barrel trend, used as a sustained power-quality signal.",
+    },
+    "hard_hit_rate_last_10d": {
+        "label": "Hard-Hit Rate, Last 10 Days",
+        "description": "Share of recent batted balls hit hard. This helps the model separate live contact quality from raw outcomes.",
+    },
+    "hard_hit_rate_last_30d": {
+        "label": "Hard-Hit Rate, Last 30 Days",
+        "description": "30-day hard-hit trend, used as a broader measure of how consistently loud the hitter's contact has been.",
+    },
+    "bbe_95plus_ev_rate_last_10d": {
+        "label": "95+ EV Rate, Last 10 Days",
+        "description": "How often recent contact has cleared 95 mph. It is a compact proxy for current dangerous contact.",
+    },
+    "bbe_95plus_ev_rate_last_30d": {
+        "label": "95+ EV Rate, Last 30 Days",
+        "description": "30-day loud-contact rate, used to stabilize recent quality-of-contact signals.",
+    },
+    "avg_exit_velocity_last_10d": {
+        "label": "Average Exit Velocity, Last 10 Days",
+        "description": "Average recent exit velocity. It measures how hard the hitter is striking the ball lately.",
+    },
+    "max_exit_velocity_last_10d": {
+        "label": "Peak Exit Velocity, Last 10 Days",
+        "description": "Recent top-end exit velocity. This is used as a ceiling signal for raw home-run juice.",
+    },
+    "pitcher_hr_allowed_per_pa_last_30d": {
+        "label": "Pitcher HR Allowed Rate, Last 30 Days",
+        "description": "How often the opposing pitcher has allowed homers recently. It measures matchup vulnerability.",
+    },
+    "pitcher_barrels_allowed_per_bbe_last_30d": {
+        "label": "Pitcher Barrel Rate Allowed, Last 30 Days",
+        "description": "How often recent contact against the pitcher has been barreled.",
+    },
+    "pitcher_hard_hit_allowed_rate_last_30d": {
+        "label": "Pitcher Hard-Hit Rate Allowed, Last 30 Days",
+        "description": "Recent hard contact allowed by the opposing pitcher.",
+    },
+    "pitcher_avg_ev_allowed_last_30d": {
+        "label": "Pitcher Avg Exit Velocity Allowed, Last 30 Days",
+        "description": "Average exit velocity allowed by the opposing pitcher recently.",
+    },
+    "pitcher_95plus_ev_allowed_rate_last_30d": {
+        "label": "Pitcher 95+ EV Rate Allowed, Last 30 Days",
+        "description": "Rate of very hard recent contact allowed by the pitcher.",
+    },
+    "temperature_f": {
+        "label": "Temperature",
+        "description": "Forecast game-time temperature. The live model uses weather as context, not as a primary driver.",
+    },
+    "wind_speed_mph": {
+        "label": "Wind Speed",
+        "description": "Projected wind speed at the park. This gives the model weather context for carry conditions.",
+    },
+    "humidity_pct": {
+        "label": "Humidity",
+        "description": "Projected humidity at the park. It is a lighter weather-context feature.",
+    },
+    "platoon_advantage": {
+        "label": "Platoon Advantage",
+        "description": "Whether the hitter has the handedness advantage against the pitcher.",
+    },
+    "park_factor_hr_vs_batter_hand": {
+        "label": "Park Factor vs Batter Hand",
+        "description": "Home-run environment of the park for the hitter's handedness.",
+    },
+    "batter_hr_per_pa_vs_pitcher_hand": {
+        "label": "Hitter HR Split vs Pitcher Hand",
+        "description": "The hitter's historical home-run rate against pitchers of this handedness.",
+    },
+    "batter_barrels_per_pa_vs_pitcher_hand": {
+        "label": "Hitter Barrel Split vs Pitcher Hand",
+        "description": "The hitter's barrel rate against pitchers of this handedness.",
+    },
+    "pitcher_hr_allowed_per_pa_vs_batter_hand": {
+        "label": "Pitcher HR Split Allowed vs Batter Hand",
+        "description": "The pitcher's home-run susceptibility against hitters of this handedness.",
+    },
+    "pitcher_barrels_allowed_per_bbe_vs_batter_hand": {
+        "label": "Pitcher Barrel Split Allowed vs Batter Hand",
+        "description": "The pitcher's barrel susceptibility against hitters of this handedness.",
+    },
+    "split_matchup_hr": {
+        "label": "Handedness HR Matchup Blend",
+        "description": "Combined hitter split and pitcher split for home-run rate by handedness.",
+    },
+    "split_matchup_barrel": {
+        "label": "Handedness Barrel Matchup Blend",
+        "description": "Combined hitter and pitcher handedness split for barrel quality.",
+    },
+    "split_matchup_hard_hit": {
+        "label": "Handedness Hard-Hit Matchup Blend",
+        "description": "Combined hitter and pitcher handedness split for hard-contact tendency.",
+    },
+    "avg_launch_angle_last_50_bbe": {
+        "label": "Avg Launch Angle, Last 50 BBE",
+        "description": "Average launch angle over the last 50 batted-ball events. It helps distinguish fly-ball lift from pure hard contact.",
+    },
+}
 
 
 def score_sort_value(row: dict[str, Any]) -> float:
@@ -391,11 +516,131 @@ def build_refresh_schedule() -> dict[str, Any]:
     }
 
 
+def _humanize_feature_name(feature_name: str) -> str:
+    return feature_name.replace("_", " ").title()
+
+
+def _feature_detail(feature_name: str) -> dict[str, str]:
+    detail = MODEL_FEATURE_DETAILS.get(feature_name)
+    if detail:
+        return dict(detail)
+    return {
+        "label": _humanize_feature_name(feature_name),
+        "description": "This feature is included in the current model configuration.",
+    }
+
+
+def _coefficient_strength_band(relative_weight: float | None) -> str:
+    if relative_weight is None:
+        return "Included"
+    if relative_weight >= 0.75:
+        return "Very strong"
+    if relative_weight >= 0.45:
+        return "Strong"
+    if relative_weight >= 0.2:
+        return "Moderate"
+    return "Light"
+
+
+def _coefficient_direction_label(weight: float | None) -> str:
+    if weight is None:
+        return "No coefficient detail"
+    if weight > 0:
+        return "Higher values generally boost the score"
+    if weight < 0:
+        return "Higher values generally lower the score"
+    return "Neutral effect in the fitted model"
+
+
+def _load_json_object(path: Path) -> dict[str, Any]:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return payload if isinstance(payload, dict) else {}
+
+
+def _model_identity_from_metadata(metadata: dict[str, Any]) -> dict[str, str]:
+    return {
+        "model_family": str(metadata.get("model_family") or DEFAULT_MODEL_FAMILY),
+        "feature_profile": str(metadata.get("feature_profile") or DEFAULT_FEATURE_PROFILE),
+    }
+
+
+def build_model_explainer(
+    *,
+    model_bundle_path: Path = DEFAULT_MODEL_BUNDLE_PATH,
+    model_metadata_path: Path = DEFAULT_MODEL_METADATA_PATH,
+) -> dict[str, Any]:
+    metadata = _load_json_object(model_metadata_path) if model_metadata_path.exists() else {}
+    model_identity = _model_identity_from_metadata(metadata)
+    feature_columns = [str(feature) for feature in metadata.get("feature_columns", []) if isinstance(feature, str)]
+    if not feature_columns:
+        return {
+            "available": False,
+            "title": "Model metric guide",
+            "summary": "Model feature details are not available for this build.",
+            "model_family": model_identity["model_family"],
+            "feature_profile": model_identity["feature_profile"],
+            "features": [],
+            "strength_source": None,
+        }
+
+    coefficient_map: dict[str, float] = {}
+    strength_source = "configuration"
+    if model_bundle_path.exists():
+        try:
+            with model_bundle_path.open("rb") as handle:
+                bundle = pickle.load(handle)
+            coefficient_map = extract_logistic_coefficient_map(bundle.get("model"), feature_columns) if isinstance(bundle, dict) else {}
+            if coefficient_map:
+                strength_source = "logistic_coefficient"
+        except Exception:
+            coefficient_map = {}
+
+    max_abs_weight = max((abs(weight) for weight in coefficient_map.values()), default=0.0)
+    features: list[dict[str, Any]] = []
+    for feature_name in feature_columns:
+        detail = _feature_detail(feature_name)
+        coefficient_weight = coefficient_map.get(feature_name)
+        relative_weight = (abs(coefficient_weight) / max_abs_weight) if coefficient_weight is not None and max_abs_weight > 0 else None
+        features.append(
+            {
+                "feature": feature_name,
+                "label": detail["label"],
+                "description": detail["description"],
+                "strength": _coefficient_strength_band(relative_weight),
+                "strength_score": serialize_value(relative_weight),
+                "direction": _coefficient_direction_label(coefficient_weight),
+                "coefficient_weight": serialize_value(coefficient_weight),
+            }
+        )
+
+    if strength_source == "logistic_coefficient":
+        features.sort(
+            key=lambda item: (
+                -(float(item["strength_score"]) if item["strength_score"] is not None else -1.0),
+                str(item["label"]),
+            )
+        )
+
+    return {
+        "available": True,
+        "title": "Model metric guide",
+        "summary": f"{len(features)} metrics are active in the current model.",
+        "model_family": model_identity["model_family"],
+        "feature_profile": model_identity["feature_profile"],
+        "trained_through": metadata.get("trained_through"),
+        "feature_count": len(features),
+        "strength_source": strength_source,
+        "features": features,
+    }
+
+
 def build_dashboard_artifacts(
     *,
     current_picks_path: Path = DEFAULT_CURRENT_PICKS_PATH,
     history_path: Path = DEFAULT_HISTORY_PATH,
     output_dir: Path = DEFAULT_OUTPUT_DIR,
+    model_bundle_path: Path = DEFAULT_MODEL_BUNDLE_PATH,
+    model_metadata_path: Path = DEFAULT_MODEL_METADATA_PATH,
     tracking_start_date: str = DEFAULT_TRACKING_START_DATE,
     latest_count: int = 12,
     history_per_date: int = 10,
@@ -438,11 +683,18 @@ def build_dashboard_artifacts(
     settled_count = len(settled_rows)
     homers = sum(int(row["actual_hit_hr"] or 0) for row in settled_rows)
     hit_rate = (homers / settled_count) if settled_count else None
+    model_explainer = build_model_explainer(
+        model_bundle_path=model_bundle_path,
+        model_metadata_path=model_metadata_path,
+    )
+    model_family = str(model_explainer.get("model_family") or DEFAULT_MODEL_FAMILY)
+    feature_profile = str(model_explainer.get("feature_profile") or DEFAULT_FEATURE_PROFILE)
 
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "tracking_start_date": tracking_start_date,
-        "model_family": DEFAULT_MODEL_FAMILY,
+        "model_family": model_family,
+        "feature_profile": feature_profile,
         "latest_available_date": latest_game_date,
         "data_note": DEFAULT_DATA_NOTE,
         "refresh_schedule": build_refresh_schedule(),
@@ -457,6 +709,7 @@ def build_dashboard_artifacts(
         },
         "top_k_summary": [summarize_top_k(settled_rows, k) for k in (1, 3, 5, history_per_date)],
         "confidence_summary": summarize_confidence(settled_rows),
+        "model_explainer": model_explainer,
         "latest_picks": to_records(latest_picks),
         "history": to_records(dashboard_history),
         "player_leaderboard": build_player_leaderboard(settled_rows, min_player_picks),
@@ -474,6 +727,8 @@ def main() -> None:
         current_picks_path=Path(args.current_picks_path),
         history_path=Path(args.history_path),
         output_dir=Path(args.output_dir),
+        model_bundle_path=DEFAULT_MODEL_BUNDLE_PATH,
+        model_metadata_path=DEFAULT_MODEL_METADATA_PATH,
         tracking_start_date=args.tracking_start_date,
         latest_count=args.latest_count,
         history_per_date=args.history_per_date,
