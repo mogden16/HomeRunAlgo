@@ -57,6 +57,7 @@ jobs:
       - name: Commit and push changes
         env:
           REFRESH_MODE: ${{ github.event.inputs.mode }}
+          TARGET_BRANCH: ${{ github.ref_name }}
         run: |
           python - <<'PY'
           import os
@@ -64,6 +65,7 @@ jobs:
           import sys
 
           mode = os.environ["REFRESH_MODE"]
+          target_branch = os.environ.get("TARGET_BRANCH") or "master"
           tracked = [
               "data/live/current_picks.json",
               "data/live/pick_history.json",
@@ -96,5 +98,7 @@ jobs:
               sys.exit(0)
 
           subprocess.run(["git", "commit", "-m", f"chore: manual {mode} refresh"], check=True)
-          subprocess.run(["git", "push", "origin", "master"], check=True)
+          subprocess.run(["git", "fetch", "origin", target_branch], check=True)
+          subprocess.run(["git", "rebase", f"origin/{target_branch}"], check=True)
+          subprocess.run(["git", "push", "origin", f"HEAD:{target_branch}"], check=True)
           PY
