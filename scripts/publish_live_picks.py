@@ -51,6 +51,12 @@ STARTED_GAME_STATUS_TOKENS = (
     "completed early",
 )
 
+REQUIRED_PUBLISH_ARTIFACT_LABELS = {
+    "dataset": "refreshed live training dataset",
+    "bundle": "trained live model bundle",
+    "metadata": "trained live model metadata",
+}
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
@@ -270,6 +276,23 @@ def generate_live_picks(
     publish_reference = _parse_game_datetime(published_at) if published_at else _publish_reference_now()
     if publish_reference is None:
         publish_reference = _publish_reference_now()
+    required_paths = {
+        "dataset": Path(dataset_path),
+        "bundle": Path(bundle_path),
+        "metadata": Path(metadata_path),
+    }
+    missing_artifacts = [
+        f"{REQUIRED_PUBLISH_ARTIFACT_LABELS[key]} ({path})"
+        for key, path in required_paths.items()
+        if not path.exists()
+    ]
+    if missing_artifacts:
+        missing_summary = "; ".join(missing_artifacts)
+        raise RuntimeError(
+            "Live publish cannot run because required prepare artifacts are missing: "
+            f"{missing_summary}. Run the prepare refresh successfully first so it can generate and push "
+            "the live dataset, bundle, and metadata artifacts."
+        )
     dataset_df = load_live_dataset(Path(dataset_path))
     bundle = load_model_bundle(Path(bundle_path))
     model_metadata = load_model_metadata(Path(metadata_path))
