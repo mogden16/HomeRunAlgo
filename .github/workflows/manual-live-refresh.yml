@@ -64,8 +64,9 @@ jobs:
               "data/live/pick_history.json",
               "cloudflare-app/data/dashboard.json",
           ]
+          force_add = []
           if mode == "prepare":
-              tracked.extend(
+              force_add.extend(
                   [
                       "data/live/model_training_dataset.csv",
                       "data/live/model_bundle.pkl",
@@ -74,22 +75,15 @@ jobs:
                   ]
               )
 
-          status = subprocess.run(
-              ["git", "status", "--porcelain", "--", *tracked],
-              check=True,
-              capture_output=True,
-              text=True,
-          )
-          if not status.stdout.strip():
-              print("No tracked refresh changes detected.")
-              sys.exit(0)
-
           subprocess.run(["git", "config", "user.name", "github-actions[bot]"], check=True)
           subprocess.run(["git", "config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com"], check=True)
           subprocess.run(["git", "add", "--", *tracked], check=True)
+          for path in force_add:
+              if os.path.exists(path):
+                  subprocess.run(["git", "add", "-f", "--", path], check=True)
 
           diff = subprocess.run(
-              ["git", "diff", "--cached", "--quiet", "--", *tracked],
+              ["git", "diff", "--cached", "--quiet"],
               check=False,
           )
           if diff.returncode == 0:

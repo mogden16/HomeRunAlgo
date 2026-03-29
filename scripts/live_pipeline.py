@@ -597,37 +597,40 @@ def train_live_model_bundle(
     )
     if training_mode == "fast_refit":
         existing_metadata = load_model_metadata(metadata_path) if metadata_path.exists() else {}
-        if not existing_metadata:
-            raise RuntimeError("Fast live refit requires an existing model_metadata.json with the approved live configuration.")
-        resolved_model_family = str(existing_metadata.get("model_family") or model_name)
-        resolved_feature_profile = str(existing_metadata.get("feature_profile") or feature_profile)
-        resolved_missingness_threshold = float(existing_metadata.get("missingness_threshold") if existing_metadata.get("missingness_threshold") is not None else (missingness_threshold if missingness_threshold is not None else MAX_MODEL_FEATURE_MISSINGNESS))
-        resolved_selection_metric = str(existing_metadata.get("selection_metric") or selection_metric)
-        calibration_status = existing_metadata.get("calibration_status") if isinstance(existing_metadata.get("calibration_status"), dict) else {}
-        resolved_calibration = str(calibration_status.get("used") or calibration)
-        print("\nFast live refit")
+        if existing_metadata:
+            resolved_model_family = str(existing_metadata.get("model_family") or model_name)
+            resolved_feature_profile = str(existing_metadata.get("feature_profile") or feature_profile)
+            resolved_missingness_threshold = float(existing_metadata.get("missingness_threshold") if existing_metadata.get("missingness_threshold") is not None else (missingness_threshold if missingness_threshold is not None else MAX_MODEL_FEATURE_MISSINGNESS))
+            resolved_selection_metric = str(existing_metadata.get("selection_metric") or selection_metric)
+            calibration_status = existing_metadata.get("calibration_status") if isinstance(existing_metadata.get("calibration_status"), dict) else {}
+            resolved_calibration = str(calibration_status.get("used") or calibration)
+            print("\nFast live refit")
+            print("-" * 60)
+            print(f"Model family               : {resolved_model_family}")
+            print(f"Feature profile            : {resolved_feature_profile}")
+            print(f"Missingness threshold      : {resolved_missingness_threshold:.2f}")
+            print(f"Selection metric snapshot  : {resolved_selection_metric}")
+            print(f"Calibration mode reused    : {resolved_calibration}")
+            bundle, metadata = _fit_live_bundle_fast_refit(
+                df,
+                model_family=resolved_model_family,
+                feature_profile=resolved_feature_profile,
+                missingness_threshold=resolved_missingness_threshold,
+                selection_metric=resolved_selection_metric,
+                calibration=resolved_calibration,
+                best_params=existing_metadata.get("best_params") if isinstance(existing_metadata.get("best_params"), dict) else {},
+                existing_metadata=existing_metadata,
+            )
+            bundle["weather_feature_coverage"] = _weather_coverage_summary_payload(weather_coverage)
+            bundle["weather_join_contract"] = _live_publish_weather_contract_label()
+            metadata["weather_feature_coverage"] = _weather_coverage_summary_payload(weather_coverage)
+            metadata["weather_join_contract"] = _live_publish_weather_contract_label()
+            _persist_live_bundle(bundle_path, metadata_path, bundle, metadata)
+            return bundle
+
+        print("\nFast live refit bootstrap")
         print("-" * 60)
-        print(f"Model family               : {resolved_model_family}")
-        print(f"Feature profile            : {resolved_feature_profile}")
-        print(f"Missingness threshold      : {resolved_missingness_threshold:.2f}")
-        print(f"Selection metric snapshot  : {resolved_selection_metric}")
-        print(f"Calibration mode reused    : {resolved_calibration}")
-        bundle, metadata = _fit_live_bundle_fast_refit(
-            df,
-            model_family=resolved_model_family,
-            feature_profile=resolved_feature_profile,
-            missingness_threshold=resolved_missingness_threshold,
-            selection_metric=resolved_selection_metric,
-            calibration=resolved_calibration,
-            best_params=existing_metadata.get("best_params") if isinstance(existing_metadata.get("best_params"), dict) else {},
-            existing_metadata=existing_metadata,
-        )
-        bundle["weather_feature_coverage"] = _weather_coverage_summary_payload(weather_coverage)
-        bundle["weather_join_contract"] = _live_publish_weather_contract_label()
-        metadata["weather_feature_coverage"] = _weather_coverage_summary_payload(weather_coverage)
-        metadata["weather_join_contract"] = _live_publish_weather_contract_label()
-        _persist_live_bundle(bundle_path, metadata_path, bundle, metadata)
-        return bundle
+        print("No existing model metadata found; falling back to full search to seed the live configuration.")
 
     backtest = run_backtest(
         str(dataset_path),

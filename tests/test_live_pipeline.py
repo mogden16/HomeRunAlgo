@@ -1151,6 +1151,76 @@ class LivePipelineTests(unittest.TestCase):
             self.assertEqual(bundle["feature_profile"], "live_shrunk_precise")
             self.assertEqual(bundle["feature_columns"], feature_columns)
 
+    def test_train_live_model_bundle_fast_refit_bootstraps_with_search_when_metadata_missing(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            dataset_path = base / "dataset.csv"
+            bundle_path = base / "bundle.pkl"
+            metadata_path = base / "metadata.json"
+            pd.DataFrame(
+                {
+                    "game_date": pd.to_datetime(["2026-03-24", "2026-03-25"]),
+                    "game_pk": [1, 2],
+                    "player_id": [10, 11],
+                    "hit_hr": [0, 1],
+                    "hr_per_pa_last_30d": [0.01, 0.02],
+                    "temperature_f": [65.0, 66.0],
+                    "wind_speed_mph": [8.0, 9.0],
+                    "humidity_pct": [40.0, 45.0],
+                }
+            ).to_csv(dataset_path, index=False)
+
+            selected_candidate = {
+                "summary_row": {
+                    "model_family": "logistic",
+                    "feature_profile": "live",
+                    "missingness_threshold": live_pipeline.MAX_MODEL_FEATURE_MISSINGNESS,
+                    "pr_auc": 0.2,
+                },
+                "feature_columns": ["hr_per_pa_last_30d"],
+            }
+            fake_backtest = {
+                "selected_candidate": selected_candidate,
+                "final_result": {"summary_row": dict(selected_candidate["summary_row"])},
+                "candidate_results": [selected_candidate],
+                "train_df": pd.DataFrame({"game_date": pd.to_datetime(["2026-03-24"]), "hit_hr": [0]}),
+                "test_df": pd.DataFrame({"game_date": pd.to_datetime(["2026-03-25"]), "hit_hr": [1]}),
+            }
+            fake_bundle = {
+                "trained_through": "2026-03-25",
+                "dataset_max_game_date": "2026-03-25",
+                "model_family": "logistic",
+                "feature_profile": "live",
+                "missingness_threshold": live_pipeline.MAX_MODEL_FEATURE_MISSINGNESS,
+                "selection_metric": "pr_auc",
+                "feature_columns": ["hr_per_pa_last_30d"],
+                "best_params": {},
+                "excluded_features": [],
+                "training_cv_summary": {"mean_cv_pr_auc": 0.2},
+            }
+
+            def fake_persist(_: Path, target_metadata_path: Path, __: dict[str, object], metadata: dict[str, object]) -> None:
+                target_metadata_path.write_text(json.dumps(metadata), encoding="utf-8")
+
+            with patch("scripts.live_pipeline.run_backtest", return_value=fake_backtest) as run_backtest_mock:
+                with patch(
+                    "scripts.live_pipeline._fit_full_dataset_bundle_candidate",
+                    return_value=(fake_bundle, {}, {"used": "disabled"}, []),
+                ):
+                    with patch("scripts.live_pipeline._persist_live_bundle", side_effect=fake_persist):
+                        bundle = live_pipeline.train_live_model_bundle(
+                            dataset_path=dataset_path,
+                            bundle_path=bundle_path,
+                            metadata_path=metadata_path,
+                            training_mode="fast_refit",
+                        )
+
+            self.assertEqual(bundle["trained_through"], "2026-03-25")
+            self.assertTrue(run_backtest_mock.called)
+            written_metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+            self.assertEqual(written_metadata["feature_profile"], "live")
+            self.assertEqual(written_metadata["trained_through"], "2026-03-25")
+
     def test_failed_publish_does_not_mutate_pick_history(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
