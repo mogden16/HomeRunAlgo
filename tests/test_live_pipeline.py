@@ -1068,6 +1068,89 @@ class LivePipelineTests(unittest.TestCase):
             )[:, 1]
             self.assertEqual(len(probabilities), 4)
 
+    def test_train_live_model_bundle_fast_refit_accepts_legacy_metadata_feature_profile(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            dataset_path = base / "dataset.csv"
+            bundle_path = base / "bundle.pkl"
+            metadata_path = base / "metadata.json"
+            feature_columns = [
+                "hr_per_pa_last_30d",
+                "hr_per_pa_last_10d",
+                "barrels_per_pa_last_30d",
+                "barrels_per_pa_last_10d",
+                "hard_hit_rate_last_30d",
+                "hard_hit_rate_last_10d",
+                "bbe_95plus_ev_rate_last_30d",
+                "bbe_95plus_ev_rate_last_10d",
+                "avg_exit_velocity_last_10d",
+                "max_exit_velocity_last_10d",
+                "pitcher_hr_allowed_per_pa_last_30d",
+                "pitcher_barrels_allowed_per_bbe_last_30d",
+                "pitcher_hard_hit_allowed_rate_last_30d",
+                "pitcher_avg_ev_allowed_last_30d",
+                "pitcher_95plus_ev_allowed_rate_last_30d",
+                "temperature_f",
+                "wind_speed_mph",
+                "humidity_pct",
+            ]
+            pd.DataFrame(
+                {
+                    "game_date": pd.to_datetime(["2026-03-24", "2026-03-25", "2026-03-25", "2026-03-25"]),
+                    "game_pk": [1, 2, 3, 4],
+                    "player_id": [10, 11, 12, 13],
+                    "hit_hr": [0, 1, 0, 1],
+                    "hr_per_pa_last_30d": [0.01, 0.02, 0.03, 0.04],
+                    "hr_per_pa_last_10d": [0.02, 0.03, 0.04, 0.05],
+                    "barrels_per_pa_last_30d": [0.01, 0.02, 0.03, 0.04],
+                    "barrels_per_pa_last_10d": [0.01, 0.02, 0.03, 0.04],
+                    "hard_hit_rate_last_30d": [0.3, 0.4, 0.5, 0.6],
+                    "hard_hit_rate_last_10d": [0.3, 0.4, 0.5, 0.6],
+                    "bbe_95plus_ev_rate_last_30d": [0.1, 0.2, 0.1, 0.2],
+                    "bbe_95plus_ev_rate_last_10d": [0.1, 0.2, 0.1, 0.2],
+                    "avg_exit_velocity_last_10d": [90.0, 92.0, 94.0, 96.0],
+                    "max_exit_velocity_last_10d": [104.0, 106.0, 108.0, 110.0],
+                    "pitcher_hr_allowed_per_pa_last_30d": [0.02, 0.03, 0.04, 0.05],
+                    "pitcher_barrels_allowed_per_bbe_last_30d": [0.1, 0.2, 0.1, 0.2],
+                    "pitcher_hard_hit_allowed_rate_last_30d": [0.3, 0.4, 0.5, 0.6],
+                    "pitcher_avg_ev_allowed_last_30d": [88.0, 89.0, 90.0, 91.0],
+                    "pitcher_95plus_ev_allowed_rate_last_30d": [0.1, 0.2, 0.1, 0.2],
+                    "temperature_f": [65.0, 66.0, 67.0, 68.0],
+                    "wind_speed_mph": [8.0, 9.0, 10.0, 11.0],
+                    "humidity_pct": [40.0, 45.0, 50.0, 55.0],
+                }
+            ).to_csv(dataset_path, index=False)
+            metadata_path.write_text(
+                json.dumps(
+                    {
+                        "trained_through": "2024-09-30",
+                        "model_family": "logistic",
+                        "feature_profile": "live_shrunk_precise",
+                        "feature_columns": feature_columns,
+                        "missingness_threshold": 0.35,
+                        "selection_metric": "pr_auc",
+                        "best_params": {
+                            "clf__C": 0.05,
+                            "clf__class_weight": None,
+                            "clf__l1_ratio": 1.0,
+                            "clf__solver": "saga",
+                        },
+                        "calibration_status": {"used": "disabled"},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            with patch("scripts.live_pipeline.run_backtest", side_effect=AssertionError("fast_refit should not run backtest")):
+                bundle = live_pipeline.train_live_model_bundle(
+                    dataset_path=dataset_path,
+                    bundle_path=bundle_path,
+                    metadata_path=metadata_path,
+                    training_mode="fast_refit",
+                )
+
+            self.assertEqual(bundle["feature_profile"], "live_shrunk_precise")
+            self.assertEqual(bundle["feature_columns"], feature_columns)
+
     def test_failed_publish_does_not_mutate_pick_history(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)

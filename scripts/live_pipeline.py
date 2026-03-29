@@ -474,6 +474,14 @@ def _fit_live_bundle_fast_refit(
         column for column in configured_feature_map.get(feature_profile, []) if column in df.columns
     ]
     if not configured_features:
+        metadata_feature_columns = existing_metadata.get("feature_columns")
+        if isinstance(metadata_feature_columns, list):
+            configured_features = [
+                str(column)
+                for column in metadata_feature_columns
+                if isinstance(column, str) and column in df.columns
+            ]
+    if not configured_features:
         from train_model import available_feature_columns
 
         configured_features = available_feature_columns(df, feature_profile=feature_profile)
