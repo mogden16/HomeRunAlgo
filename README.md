@@ -146,7 +146,7 @@ Those files are not part of the public Cloudflare artifact.
 
 ### Manual refresh buttons
 
-The dashboard can expose manual `settle` and `prepare` buttons through a Pages Function that dispatches a GitHub Actions workflow.
+The dashboard can expose manual `settle`, `prepare`, and `Run Prediction` buttons through a Pages Function that dispatches a GitHub Actions workflow.
 
 Required Cloudflare Pages environment variables:
 
@@ -160,6 +160,7 @@ The workflow lives at `.github/workflows/manual-live-refresh.yml` and supports:
 
 - `settle`: refreshes yesterday's data, settles prior picks, rebuilds the dashboard, and pushes public artifacts
 - `prepare`: refreshes yesterday's data again, retrains the model, settles late results, writes `data/live/draft_picks.json`, rebuilds the dashboard, and pushes public plus model artifacts
+- `publish`: sets today's public table using the saved live bundle, checks active lineups, rebuilds the dashboard, and pushes refreshed public artifacts
 
 ## Local refresh and publish schedule
 

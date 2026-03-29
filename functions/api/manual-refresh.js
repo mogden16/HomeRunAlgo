@@ -1,6 +1,6 @@
 const DEFAULT_REPO = "mogden16/HomeRunAlgo";
 const DEFAULT_WORKFLOW = "manual-live-refresh.yml";
-const ALLOWED_MODES = new Set(["settle", "prepare"]);
+const ALLOWED_MODES = new Set(["settle", "prepare", "publish"]);
 
 function jsonResponse(body, status = 200) {
   return new Response(JSON.stringify(body), {
@@ -83,7 +83,7 @@ export async function onRequestPost(context) {
       ok: true,
       mode,
       workflowUrl: `https://github.com/${repository}/actions/workflows/${workflow}`,
-      message: `Triggered ${mode} refresh workflow.`,
+      message: `Triggered ${mode === "publish" ? "prediction" : mode} refresh workflow.`,
     },
     202,
   );

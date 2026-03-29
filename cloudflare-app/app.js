@@ -377,11 +377,20 @@ function setManualRefreshStatus(message, kind = "neutral") {
 function setManualButtonsDisabled(disabled) {
   document.getElementById("manual-settle-button").disabled = disabled;
   document.getElementById("manual-prepare-button").disabled = disabled;
+  document.getElementById("manual-publish-button").disabled = disabled;
+}
+
+function manualModeLabel(mode) {
+  if (mode === "publish") {
+    return "prediction";
+  }
+  return mode;
 }
 
 async function triggerManualRefresh(mode) {
   const keyInput = document.getElementById("manual-refresh-key");
   const adminKey = keyInput.value.trim();
+  const modeLabel = manualModeLabel(mode);
   if (!adminKey) {
     setManualRefreshStatus("Enter the admin key before triggering a manual refresh.", "error");
     keyInput.focus();
@@ -390,7 +399,7 @@ async function triggerManualRefresh(mode) {
 
   localStorage.setItem(MANUAL_REFRESH_KEY_STORAGE, adminKey);
   setManualButtonsDisabled(true);
-  setManualRefreshStatus(`Triggering ${mode} refresh...`, "pending");
+  setManualRefreshStatus(`Triggering ${modeLabel} refresh...`, "pending");
 
   try {
     const response = await fetch("/api/manual-refresh", {
@@ -402,13 +411,13 @@ async function triggerManualRefresh(mode) {
     });
     const payload = await response.json();
     if (!response.ok || !payload.ok) {
-      throw new Error(payload.error || `Manual ${mode} refresh failed.`);
+      throw new Error(payload.error || `Manual ${modeLabel} refresh failed.`);
     }
 
     const workflowText = payload.workflowUrl ? ` Track it at ${payload.workflowUrl}` : "";
     setManualRefreshStatus(`${payload.message}${workflowText}`, "success");
   } catch (error) {
-    setManualRefreshStatus(error.message || `Manual ${mode} refresh failed.`, "error");
+    setManualRefreshStatus(error.message || `Manual ${modeLabel} refresh failed.`, "error");
   } finally {
     setManualButtonsDisabled(false);
   }
@@ -426,6 +435,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   document.getElementById("manual-prepare-button").addEventListener("click", () => {
     triggerManualRefresh("prepare");
+  });
+  document.getElementById("manual-publish-button").addEventListener("click", () => {
+    triggerManualRefresh("publish");
   });
   loadDashboard().catch(handleLoadError);
 });

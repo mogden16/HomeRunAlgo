@@ -10,6 +10,7 @@ on:
         options:
           - settle
           - prepare
+          - publish
 
 permissions:
   contents: write
@@ -42,6 +43,10 @@ jobs:
       - name: Run prepare refresh
         if: ${{ github.event.inputs.mode == 'prepare' }}
         run: python scripts/prepare_live_board.py
+
+      - name: Run publish refresh
+        if: ${{ github.event.inputs.mode == 'publish' }}
+        run: python scripts/publish_live_picks.py
 
       - name: Rebuild dashboard artifact
         run: python scripts/build_dashboard_artifacts.py --output-dir cloudflare-app/data
