@@ -49,7 +49,9 @@ jobs:
 
       - name: Run publish refresh
         if: ${{ github.event.inputs.mode == 'publish' }}
-        run: python scripts/publish_live_picks.py
+        run: |
+          python scripts/refresh_live_results.py --dataset-path data/live/model_training_dataset.csv
+          python scripts/publish_live_picks.py
 
       - name: Rebuild dashboard artifact
         run: python scripts/build_dashboard_artifacts.py --output-dir cloudflare-app/data
@@ -78,7 +80,6 @@ jobs:
           if mode == "prepare":
               force_add.extend(
                   [
-                      "data/live/model_training_dataset.csv",
                       "data/live/model_bundle.pkl",
                       "data/live/model_metadata.json",
                       "data/live/draft_picks.json",

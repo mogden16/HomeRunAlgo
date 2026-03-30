@@ -290,8 +290,8 @@ def generate_live_picks(
         missing_summary = "; ".join(missing_artifacts)
         raise RuntimeError(
             "Live publish cannot run because required prepare artifacts are missing: "
-            f"{missing_summary}. Run the prepare refresh successfully first so it can generate and push "
-            "the live dataset, bundle, and metadata artifacts."
+            f"{missing_summary}. Run the prepare refresh successfully first so it can generate the "
+            "live model bundle and metadata, and refresh the live dataset in this workspace before publishing."
         )
     dataset_df = load_live_dataset(Path(dataset_path))
     bundle = load_model_bundle(Path(bundle_path))
