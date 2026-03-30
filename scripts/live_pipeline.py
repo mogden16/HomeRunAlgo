@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import pickle
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -68,6 +69,9 @@ MLB_SCHEDULE_URL = "https://statsapi.mlb.com/api/v1/schedule"
 MLB_PERSON_URL_TEMPLATE = "https://statsapi.mlb.com/api/v1/people/{player_id}"
 MLB_TEAM_ROSTER_URL_TEMPLATE = "https://statsapi.mlb.com/api/v1/teams/{team_id}/roster"
 OPEN_METEO_FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
+OPEN_METEO_FORECAST_TIMEOUT_SECONDS = 20
+OPEN_METEO_FORECAST_MAX_ATTEMPTS = 3
+OPEN_METEO_FORECAST_RETRY_BACKOFF_SECONDS = 2
 LIVE_PUBLISH_FRESHNESS_TOLERANCE_DAYS = 7
 OFFSEASON_LINEUP_FALLBACK_DAYS = 210
 TEAM_CODE_ALIASES = {
@@ -1247,6 +1251,17 @@ def build_pitcher_history_table(dataset_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFrame:
+    def _empty_weather_row(home_team: str) -> dict[str, Any]:
+        return {
+            "game_date": target_date,
+            "home_team": home_team,
+            "temperature_f": None,
+            "humidity_pct": None,
+            "wind_speed_mph": None,
+            "wind_direction_deg": None,
+            "pressure_hpa": None,
+        }
+
     rows: list[dict[str, Any]] = []
     target_timestamp = pd.to_datetime(target_date, errors="coerce")
     historical_target = pd.notna(target_timestamp) and target_timestamp.date() < eastern_today().date()
@@ -1258,25 +1273,41 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
         if historical_target:
             rows.append({"game_date": target_date, "home_team": home_team})
             continue
-        response = requests.get(
-            OPEN_METEO_FORECAST_URL,
-            params={
-                "latitude": park["lat"],
-                "longitude": park["lon"],
-                "hourly": "temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,surface_pressure",
-                "temperature_unit": "fahrenheit",
-                "wind_speed_unit": "mph",
-                "timezone": park["tz"],
-                "start_date": target_date,
-                "end_date": target_date,
-            },
-            timeout=60,
-        )
-        response.raise_for_status()
+        response = None
+        for attempt in range(1, OPEN_METEO_FORECAST_MAX_ATTEMPTS + 1):
+            try:
+                response = requests.get(
+                    OPEN_METEO_FORECAST_URL,
+                    params={
+                        "latitude": park["lat"],
+                        "longitude": park["lon"],
+                        "hourly": "temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,surface_pressure",
+                        "temperature_unit": "fahrenheit",
+                        "wind_speed_unit": "mph",
+                        "timezone": park["tz"],
+                        "start_date": target_date,
+                        "end_date": target_date,
+                    },
+                    timeout=OPEN_METEO_FORECAST_TIMEOUT_SECONDS,
+                )
+                response.raise_for_status()
+                break
+            except requests.RequestException as exc:
+                if attempt == OPEN_METEO_FORECAST_MAX_ATTEMPTS:
+                    print(
+                        "Open-Meteo forecast lookup failed "
+                        f"for {home_team} on {target_date} after {attempt} attempts: {exc}. "
+                        "Falling back to null weather values."
+                    )
+                else:
+                    time.sleep(OPEN_METEO_FORECAST_RETRY_BACKOFF_SECONDS * attempt)
+        if response is None:
+            rows.append(_empty_weather_row(home_team))
+            continue
         hourly = response.json().get("hourly", {})
         weather = pd.DataFrame(hourly)
         if weather.empty:
-            rows.append({"game_date": target_date, "home_team": home_team})
+            rows.append(_empty_weather_row(home_team))
             continue
         weather["timestamp"] = pd.to_datetime(weather["time"])
         weather["hour_diff"] = (weather["timestamp"].dt.hour - DEFAULT_GAME_HOUR_LOCAL).abs()
