@@ -1,0 +1,87 @@
+{
+  "trained_through": "2026-03-28",
+  "dataset_max_game_date": "2026-03-28",
+  "model_family": "logistic",
+  "feature_profile": "live_plus",
+  "missingness_threshold": 0.5,
+  "selection_metric": "pr_auc",
+  "feature_columns": [
+    "hr_per_pa_last_30d",
+    "hr_per_pa_last_10d",
+    "barrels_per_pa_last_30d",
+    "barrels_per_pa_last_10d",
+    "hard_hit_rate_last_30d",
+    "hard_hit_rate_last_10d",
+    "bbe_95plus_ev_rate_last_30d",
+    "bbe_95plus_ev_rate_last_10d",
+    "avg_exit_velocity_last_10d",
+    "max_exit_velocity_last_10d",
+    "pitcher_hr_allowed_per_pa_last_30d",
+    "pitcher_barrels_allowed_per_bbe_last_30d",
+    "pitcher_hard_hit_allowed_rate_last_30d",
+    "pitcher_avg_ev_allowed_last_30d",
+    "pitcher_95plus_ev_allowed_rate_last_30d",
+    "temperature_f",
+    "wind_speed_mph",
+    "humidity_pct",
+    "platoon_advantage",
+    "park_factor_hr_vs_batter_hand",
+    "batter_hr_per_pa_vs_pitcher_hand",
+    "batter_barrels_per_pa_vs_pitcher_hand",
+    "pitcher_hr_allowed_per_pa_vs_batter_hand",
+    "pitcher_barrels_allowed_per_bbe_vs_batter_hand",
+    "split_matchup_hr",
+    "split_matchup_barrel",
+    "split_matchup_hard_hit"
+  ],
+  "best_params": {},
+  "calibration_status": {
+    "requested": "sigmoid",
+    "used": "sigmoid",
+    "status": "applied",
+    "message": "Calibration applied with sigmoid using time-aware CV on training data only."
+  },
+  "calibration_search_rows": [],
+  "excluded_features": [],
+  "training_cv_summary": {},
+  "final_holdout_summary": {},
+  "promotion_decision": {},
+  "row_count": 98317,
+  "hr_rate": 0.106513,
+  "refit_strategy": "fast_refit",
+  "weather_feature_coverage": {
+    "warning_null_rate_threshold": 0.35,
+    "high_missing_features": [],
+    "missing_columns": [],
+    "all_null_features": [],
+    "summary": {
+      "temperature_f": {
+        "row_count": 98317,
+        "non_null_count": 75424,
+        "null_rate": 0.232849,
+        "present": true
+      },
+      "wind_speed_mph": {
+        "row_count": 98317,
+        "non_null_count": 75424,
+        "null_rate": 0.232849,
+        "present": true
+      },
+      "humidity_pct": {
+        "row_count": 98317,
+        "non_null_count": 75424,
+        "null_rate": 0.232849,
+        "present": true
+      }
+    },
+    "contract": {
+      "join_keys": [
+        "game_date",
+        "home_team"
+      ],
+      "park_lookup": "PARKS[home_team]",
+      "selection_rule": "nearest available hour to 19:00 local park time"
+    }
+  },
+  "weather_join_contract": "game_date + home_team; PARKS[home_team]; nearest available hour to 19:00 local park time"
+}
