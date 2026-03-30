@@ -73,6 +73,14 @@ body::before {
   letter-spacing: -0.04em;
 }
 
+.section-note {
+  margin: 10px 0 0;
+  max-width: 62ch;
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
 .hero-copy h1 {
   font-size: clamp(2.2rem, 3.8vw, 4.2rem);
   line-height: 0.96;
@@ -286,6 +294,36 @@ select {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.tier-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tier-filter-chip {
+  appearance: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 3px;
+  cursor: pointer;
+  transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+
+.tier-filter-chip:hover {
+  transform: translateY(-1px);
+  border-color: rgba(20, 32, 51, 0.25);
+}
+
+.tier-filter-chip.is-active {
+  background: rgba(20, 32, 51, 0.06);
+  border-color: rgba(20, 32, 51, 0.22);
+}
+
+.tier-filter-chip:not(.is-active) .tier-tag {
+  opacity: 0.48;
 }
 
 input,
@@ -624,6 +662,11 @@ td {
 
   .hero-meta-grid {
     grid-template-columns: 1fr;
+  }
+
+  .filters,
+  .tier-filter-row {
+    width: 100%;
   }
 
   input,

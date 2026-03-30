@@ -1,12 +1,20 @@
 const state = {
   dashboard: null,
   filteredHistory: [],
+  filteredLatestPicks: [],
+  latestTierFilters: new Set(["elite", "strong"]),
+  historyTierFilters: new Set(["elite", "strong"]),
+  selectedHistoryDate: "",
 };
 
 const DEFAULT_LATEST_PICKS_EMPTY_MESSAGE =
   "Today's public picks have not been posted yet. Next publish windows are 11:00 AM, 1:00 PM, 3:00 PM, and 6:00 PM ET.";
-const MANUAL_REFRESH_KEY_STORAGE = "manualRefreshKey";
+const DEFAULT_HISTORY_EMPTY_MESSAGE = "No published picks match those filters.";
+const DEFAULT_YESTERDAY_SUCCESSES_EMPTY_MESSAGE = "No published picks homered yesterday.";
 const DEFAULT_MODEL_EXPLAINER_MESSAGE = "Metric details are not available for the current dashboard build.";
+const MANUAL_REFRESH_KEY_STORAGE = "manualRefreshKey";
+const CONFIDENCE_TIERS = ["elite", "strong", "watch", "longshot"];
+const ALL_DATES_FILTER_VALUE = "__all_dates__";
 
 function formatPercent(value, digits = 1) {
   if (value === null || value === undefined || Number.isNaN(Number(value))) {
@@ -55,8 +63,12 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
+function normalizeTier(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
 function tierClass(value) {
-  return `tier-tag tier-${String(value || "").toLowerCase()}`;
+  return `tier-tag tier-${normalizeTier(value)}`;
 }
 
 function resultClass(value) {
@@ -70,7 +82,14 @@ function resultClass(value) {
 }
 
 function findConfidenceSummary(rows, tier) {
-  return (rows || []).find((row) => String(row.confidence_tier || "").toLowerCase() === tier) || null;
+  return (rows || []).find((row) => normalizeTier(row.confidence_tier) === tier) || null;
+}
+
+function filterRowsByTierSelection(rows, selectedTiers) {
+  if (!(selectedTiers instanceof Set) || !selectedTiers.size) {
+    return [];
+  }
+  return (rows || []).filter((row) => selectedTiers.has(normalizeTier(row.confidence_tier)));
 }
 
 function formatWholeNumber(value) {
@@ -163,22 +182,22 @@ function renderOverviewCards(overview, confidenceSummary, refreshSchedule) {
     },
     {
       label: "Published picks",
-      value: overview.tracked_picks.toLocaleString(),
-      subtext: `${overview.tracked_dates.toLocaleString()} tracked slate dates since public tracking started.`,
+      value: formatWholeNumber(overview.tracked_picks),
+      subtext: `${formatWholeNumber(overview.tracked_dates)} tracked slate dates since public tracking started.`,
     },
     {
       label: "Settled picks",
-      value: overview.settled_picks.toLocaleString(),
+      value: formatWholeNumber(overview.settled_picks),
       subtext: "Only settled picks count toward the public hit-rate tracker.",
     },
     {
       label: "Open picks",
-      value: overview.open_picks.toLocaleString(),
+      value: formatWholeNumber(overview.open_picks),
       subtext: "These picks have been published but do not have a recorded result yet.",
     },
     {
       label: "Latest slate",
-      value: overview.latest_slate_size.toLocaleString(),
+      value: formatWholeNumber(overview.latest_slate_size),
       subtext: "Current published picks for the latest tracked date.",
     },
     {
@@ -217,21 +236,6 @@ function renderSimpleTable(targetId, columns, rows, emptyMessage = "No rows avai
     .join("");
 
   target.innerHTML = `<table><thead><tr>${headers}</tr></thead><tbody>${body}</tbody></table>`;
-}
-
-function renderTopKTable(rows) {
-  renderSimpleTable(
-    "top-k-table",
-    [
-      { label: "Slice", render: (row) => `<strong>Top ${escapeHtml(row.top_k)}</strong>` },
-      { label: "Dates", render: (row) => escapeHtml(row.dates) },
-      { label: "Picks", render: (row) => escapeHtml(row.picks) },
-      { label: "Homers", render: (row) => escapeHtml(row.homers) },
-      { label: "Hit rate", render: (row) => escapeHtml(formatPercent(row.hit_rate)) },
-      { label: "Avg score", render: (row) => escapeHtml(formatScore(row.avg_score)) },
-    ],
-    rows,
-  );
 }
 
 function renderConfidenceTable(rows) {
@@ -292,7 +296,44 @@ function renderPicksTable(targetId, rows, emptyMessage) {
   );
 }
 
-function renderLeaderboard(rows) {
+function renderTierFilterControls(targetId, selectedTiers) {
+  const target = document.getElementById(targetId);
+  target.innerHTML = CONFIDENCE_TIERS.map((tier) => {
+    const active = selectedTiers.has(tier);
+    return `
+      <button
+        class="tier-filter-chip ${active ? "is-active" : ""}"
+        type="button"
+        data-tier-filter="${escapeHtml(tier)}"
+        aria-pressed="${active ? "true" : "false"}"
+      >
+        <span class="${tierClass(tier)}">${escapeHtml(tier)}</span>
+      </button>
+    `;
+  }).join("");
+}
+
+function renderHistoryDateOptions(historyDates, defaultDate) {
+  const target = document.getElementById("history-date-filter");
+  const rows = Array.isArray(historyDates) ? historyDates : [];
+  const resolvedDefault = rows.includes(defaultDate) ? defaultDate : (rows[0] || ALL_DATES_FILTER_VALUE);
+  state.selectedHistoryDate = resolvedDefault;
+  target.innerHTML = [
+    `<option value="${ALL_DATES_FILTER_VALUE}">All dates</option>`,
+    ...rows.map((value) => `<option value="${escapeHtml(value)}">${escapeHtml(formatDate(value))}</option>`),
+  ].join("");
+  target.value = resolvedDefault || ALL_DATES_FILTER_VALUE;
+}
+
+function applyLatestPicksFilters() {
+  if (!state.dashboard) {
+    return;
+  }
+  state.filteredLatestPicks = filterRowsByTierSelection(state.dashboard.latest_picks, state.latestTierFilters);
+  renderPicksTable("latest-picks-table", state.filteredLatestPicks, "No published picks match the selected confidence tiers.");
+}
+
+function renderSeasonLeaders(rows) {
   renderSimpleTable(
     "leaderboard-table",
     [
@@ -301,16 +342,16 @@ function renderLeaderboard(rows) {
         render: (row) => `
           <div class="name-block">
             <strong>${escapeHtml(row.batter_name)}</strong>
-            <span>${escapeHtml(row.team)}</span>
+            <span>${escapeHtml(row.team || "-")}</span>
           </div>
         `,
       },
-      { label: "Picks", render: (row) => escapeHtml(row.picks) },
-      { label: "Homers", render: (row) => escapeHtml(row.homers) },
-      { label: "Hit rate", render: (row) => escapeHtml(formatPercent(row.hit_rate)) },
-      { label: "Avg score", render: (row) => escapeHtml(formatScore(row.avg_score)) },
+      { label: "2026 HR", render: (row) => `<strong>${escapeHtml(formatWholeNumber(row.home_runs_2026))}</strong>` },
+      { label: "PA", render: (row) => escapeHtml(formatWholeNumber(row.plate_appearances_2026)) },
+      { label: "Games", render: (row) => escapeHtml(formatWholeNumber(row.games_2026)) },
     ],
     rows,
+    "No 2026 season leaders are available yet.",
   );
 }
 
@@ -326,6 +367,7 @@ function renderSuccesses(rows) {
       { label: "Score", render: (row) => escapeHtml(formatScore(row.predicted_hr_score)) },
     ],
     rows,
+    DEFAULT_YESTERDAY_SUCCESSES_EMPTY_MESSAGE,
   );
 }
 
@@ -383,9 +425,11 @@ function applyHistoryFilters() {
   }
 
   const searchValue = document.getElementById("history-search").value.trim().toLowerCase();
-  const tierValue = document.getElementById("confidence-filter").value.trim().toLowerCase();
+  const selectedDate = state.selectedHistoryDate || state.dashboard.history_default_date || ALL_DATES_FILTER_VALUE;
+  const tierFilteredRows = filterRowsByTierSelection(state.dashboard.history, state.historyTierFilters);
 
-  state.filteredHistory = state.dashboard.history.filter((row) => {
+  state.filteredHistory = tierFilteredRows.filter((row) => {
+    const matchesDate = selectedDate === ALL_DATES_FILTER_VALUE || row.game_date === selectedDate;
     const haystack = [
       row.batter_name,
       row.team,
@@ -395,13 +439,38 @@ function applyHistoryFilters() {
     ]
       .join(" ")
       .toLowerCase();
-
     const matchesSearch = !searchValue || haystack.includes(searchValue);
-    const matchesTier = !tierValue || String(row.confidence_tier).toLowerCase() === tierValue;
-    return matchesSearch && matchesTier;
+    return matchesDate && matchesSearch;
   });
 
-  renderPicksTable("history-table", state.filteredHistory, "No published picks match those filters.");
+  renderPicksTable("history-table", state.filteredHistory, DEFAULT_HISTORY_EMPTY_MESSAGE);
+}
+
+function handleTierFilterToggle(event) {
+  const button = event.target.closest("[data-tier-filter]");
+  if (!button) {
+    return;
+  }
+
+  const tier = normalizeTier(button.dataset.tierFilter);
+  const group = button.closest(".tier-filter-row");
+  if (!group || !CONFIDENCE_TIERS.includes(tier)) {
+    return;
+  }
+
+  const selectedTiers = group.id === "latest-confidence-filters" ? state.latestTierFilters : state.historyTierFilters;
+  if (selectedTiers.has(tier)) {
+    selectedTiers.delete(tier);
+  } else {
+    selectedTiers.add(tier);
+  }
+
+  renderTierFilterControls(group.id, selectedTiers);
+  if (group.id === "latest-confidence-filters") {
+    applyLatestPicksFilters();
+  } else {
+    applyHistoryFilters();
+  }
 }
 
 async function loadDashboard() {
@@ -425,11 +494,13 @@ async function loadDashboard() {
 
   renderDashboardAlerts(state.dashboard.operational_alerts);
   renderOverviewCards(state.dashboard.overview, state.dashboard.confidence_summary, state.dashboard.refresh_schedule);
-  renderTopKTable(state.dashboard.top_k_summary);
   renderConfidenceTable(state.dashboard.confidence_summary);
-  renderPicksTable("latest-picks-table", state.dashboard.latest_picks, DEFAULT_LATEST_PICKS_EMPTY_MESSAGE);
-  renderLeaderboard(state.dashboard.player_leaderboard);
-  renderSuccesses(state.dashboard.recent_successes);
+  renderTierFilterControls("latest-confidence-filters", state.latestTierFilters);
+  renderTierFilterControls("history-confidence-filters", state.historyTierFilters);
+  renderHistoryDateOptions(state.dashboard.history_dates, state.dashboard.history_default_date);
+  applyLatestPicksFilters();
+  renderSeasonLeaders(state.dashboard.season_hr_leaders_2026 || []);
+  renderSuccesses(state.dashboard.recent_successes || []);
   renderRefreshScheduleInline(state.dashboard.refresh_schedule);
   renderModelExplainer(state.dashboard.model_explainer);
   applyHistoryFilters();
@@ -510,7 +581,12 @@ document.addEventListener("DOMContentLoaded", () => {
     modelExplainerDialog.close();
   });
   document.getElementById("history-search").addEventListener("input", applyHistoryFilters);
-  document.getElementById("confidence-filter").addEventListener("change", applyHistoryFilters);
+  document.getElementById("history-date-filter").addEventListener("change", (event) => {
+    state.selectedHistoryDate = event.target.value;
+    applyHistoryFilters();
+  });
+  document.getElementById("latest-confidence-filters").addEventListener("click", handleTierFilterToggle);
+  document.getElementById("history-confidence-filters").addEventListener("click", handleTierFilterToggle);
   const savedKey = localStorage.getItem(MANUAL_REFRESH_KEY_STORAGE);
   if (savedKey) {
     document.getElementById("manual-refresh-key").value = savedKey;

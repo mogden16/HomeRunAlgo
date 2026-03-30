@@ -7,14 +7,18 @@ import json
 import math
 import pickle
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo
+
+import pandas as pd
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
+from config import LIVE_MODEL_DATA_PATH
 from train_model import extract_logistic_coefficient_map
 
 DEFAULT_TRACKING_START_DATE = "2026-03-25"
@@ -22,6 +26,7 @@ DEFAULT_CURRENT_PICKS_PATH = Path("data/live/current_picks.json")
 DEFAULT_HISTORY_PATH = Path("data/live/pick_history.json")
 DEFAULT_OUTPUT_DIR = Path("cloudflare-app/data")
 DEFAULT_MODEL_BUNDLE_PATH = Path("data/live/model_bundle.pkl")
+DEFAULT_MODEL_DATA_PATH = LIVE_MODEL_DATA_PATH
 DEFAULT_MODEL_METADATA_PATH = Path("data/live/model_metadata.json")
 DEFAULT_MODEL_FAMILY = "not available"
 DEFAULT_FEATURE_PROFILE = "not available"
@@ -428,26 +433,6 @@ def top_k_by_date(rows: list[dict[str, Any]], k: int) -> list[dict[str, Any]]:
     return trimmed
 
 
-def summarize_top_k(rows: list[dict[str, Any]], k: int) -> dict[str, Any]:
-    subset = top_k_by_date(rows, k)
-    settled = [row for row in subset if row["actual_hit_hr"] is not None]
-    homers = sum(int(row["actual_hit_hr"]) for row in settled)
-    hit_rate = (homers / len(settled)) if settled else None
-    avg_score = (
-        sum(float(row["predicted_hr_score"]) for row in subset if row["predicted_hr_score"] is not None) / len(subset)
-        if subset
-        else None
-    )
-    return {
-        "top_k": k,
-        "dates": len({row["game_date"] for row in subset}),
-        "picks": len(subset),
-        "homers": homers,
-        "hit_rate": serialize_value(hit_rate),
-        "avg_score": serialize_value(avg_score),
-    }
-
-
 def summarize_confidence(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     order = {"elite": 0, "strong": 1, "watch": 2, "longshot": 3}
     buckets: dict[str, dict[str, Any]] = {}
@@ -475,34 +460,85 @@ def summarize_confidence(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return sorted(rows_out, key=lambda row: (order.get(row["confidence_tier"], 99), row["confidence_tier"]))
 
 
-def build_player_leaderboard(rows: list[dict[str, Any]], min_player_picks: int) -> list[dict[str, Any]]:
-    stats: dict[tuple[str, str], dict[str, Any]] = {}
-    for row in rows:
-        key = (row["batter_name"], row["team"])
-        bucket = stats.setdefault(
-            key,
-            {"batter_name": row["batter_name"], "team": row["team"], "picks": 0, "homers": 0, "score_total": 0.0, "score_count": 0},
-        )
-        bucket["picks"] += 1
-        bucket["homers"] += int(row["actual_hit_hr"] or 0)
-        if row["predicted_hr_score"] is not None:
-            bucket["score_total"] += float(row["predicted_hr_score"])
-            bucket["score_count"] += 1
-    leaderboard: list[dict[str, Any]] = []
-    for bucket in stats.values():
-        if bucket["picks"] < min_player_picks:
-            continue
-        leaderboard.append(
-            {
-                "batter_name": bucket["batter_name"],
-                "team": bucket["team"],
-                "picks": bucket["picks"],
-                "homers": bucket["homers"],
-                "hit_rate": serialize_value(bucket["homers"] / bucket["picks"]),
-                "avg_score": serialize_value((bucket["score_total"] / bucket["score_count"]) if bucket["score_count"] else None),
-            }
-        )
-    return sorted(leaderboard, key=lambda row: (-row["homers"], -(row["hit_rate"] or 0), -row["picks"]))[:20]
+def eastern_yesterday() -> str:
+    return (datetime.now(ZoneInfo("America/New_York")) - timedelta(days=1)).date().isoformat()
+
+
+def build_history_date_options(rows: list[dict[str, Any]]) -> list[str]:
+    return sorted({str(row["game_date"]) for row in rows if row.get("game_date")}, reverse=True)
+
+
+def resolve_default_history_date(history_dates: list[str]) -> str:
+    if not history_dates:
+        return ""
+    yesterday = eastern_yesterday()
+    if yesterday in history_dates:
+        return yesterday
+    return history_dates[0]
+
+
+def build_season_hr_leaders_2026(
+    dataset_path: Path = DEFAULT_MODEL_DATA_PATH,
+    *,
+    limit: int = 5,
+) -> list[dict[str, Any]]:
+    if not dataset_path.exists():
+        return []
+
+    dataset_df = pd.read_csv(dataset_path, parse_dates=["game_date"])
+    if dataset_df.empty:
+        return []
+
+    player_id_column = "batter_id" if "batter_id" in dataset_df.columns else ("player_id" if "player_id" in dataset_df.columns else None)
+    player_name_column = "batter_name" if "batter_name" in dataset_df.columns else ("player_name" if "player_name" in dataset_df.columns else None)
+    if player_id_column is None or player_name_column is None:
+        return []
+
+    season_df = dataset_df[pd.to_datetime(dataset_df["game_date"], errors="coerce").dt.year.eq(2026)].copy()
+    if season_df.empty:
+        return []
+
+    season_df[player_id_column] = pd.to_numeric(season_df[player_id_column], errors="coerce")
+    sort_columns = ["game_date"]
+    if "game_pk" in season_df.columns:
+        sort_columns.append("game_pk")
+    season_df = season_df.dropna(subset=[player_id_column]).sort_values(sort_columns)
+    if season_df.empty:
+        return []
+
+    hr_source_column = "hr_count" if "hr_count" in season_df.columns else "hit_hr"
+    season_df["season_hr_total"] = pd.to_numeric(season_df.get(hr_source_column), errors="coerce").fillna(0.0)
+    season_df["season_pa_total"] = pd.to_numeric(season_df.get("pa_count"), errors="coerce").fillna(0.0)
+    agg_kwargs: dict[str, tuple[str, str]] = {
+        "batter_name": (player_name_column, "last"),
+        "home_runs_2026": ("season_hr_total", "sum"),
+        "plate_appearances_2026": ("season_pa_total", "sum"),
+    }
+    if "team" in season_df.columns:
+        agg_kwargs["team"] = ("team", "last")
+    if "game_pk" in season_df.columns:
+        agg_kwargs["games_2026"] = ("game_pk", "nunique")
+    else:
+        agg_kwargs["games_2026"] = ("game_date", "nunique")
+
+    grouped = season_df.groupby(player_id_column, dropna=False).agg(**agg_kwargs).reset_index()
+    grouped["home_runs_2026"] = grouped["home_runs_2026"].astype(int)
+    grouped["plate_appearances_2026"] = grouped["plate_appearances_2026"].astype(int)
+    grouped["games_2026"] = grouped["games_2026"].astype(int)
+    grouped = grouped.sort_values(
+        ["home_runs_2026", "plate_appearances_2026", "games_2026", "batter_name"],
+        ascending=[False, False, False, True],
+    )
+    return [
+        {
+            "batter_name": str(row["batter_name"] or "Unknown hitter"),
+            "team": str(row.get("team") or ""),
+            "home_runs_2026": int(row["home_runs_2026"]),
+            "plate_appearances_2026": int(row["plate_appearances_2026"]),
+            "games_2026": int(row["games_2026"]),
+        }
+        for row in grouped.head(limit).to_dict(orient="records")
+    ]
 
 
 def to_records(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -647,6 +683,7 @@ def build_dashboard_artifacts(
     history_path: Path = DEFAULT_HISTORY_PATH,
     output_dir: Path = DEFAULT_OUTPUT_DIR,
     model_bundle_path: Path = DEFAULT_MODEL_BUNDLE_PATH,
+    model_data_path: Path = DEFAULT_MODEL_DATA_PATH,
     model_metadata_path: Path = DEFAULT_MODEL_METADATA_PATH,
     tracking_start_date: str = DEFAULT_TRACKING_START_DATE,
     latest_count: int = 12,
@@ -675,17 +712,25 @@ def build_dashboard_artifacts(
         (row["game_date"] for row in ([*active_current_rows, *merged_history])),
         default=tracking_start_date,
     )
-    latest_picks = active_current_rows[:latest_count]
+    latest_picks = list(active_current_rows)
     dashboard_history = sorted(
         merged_history,
         key=lambda row: (-int(str(row["game_date"]).replace("-", "")), -score_sort_value(row), int(row["rank"]), str(row["batter_name"])),
     )
     settled_rows = [row for row in merged_history if row["actual_hit_hr"] is not None]
+    history_dates = build_history_date_options(dashboard_history)
+    default_history_date = resolve_default_history_date(history_dates)
+    yesterday_value = eastern_yesterday()
     recent_successes = [
         row
-        for row in sorted(settled_rows, key=lambda item: (item["game_date"], score_sort_value(item), -item["rank"]), reverse=True)
-        if row["actual_hit_hr"] == 1
+        for row in sorted(
+            settled_rows,
+            key=lambda item: (item["game_date"], score_sort_value(item), -item["rank"]),
+            reverse=True,
+        )
+        if row["actual_hit_hr"] == 1 and str(row["game_date"]) == yesterday_value
     ][:25]
+    season_hr_leaders_2026 = build_season_hr_leaders_2026(model_data_path)
 
     settled_count = len(settled_rows)
     homers = sum(int(row["actual_hit_hr"] or 0) for row in settled_rows)
@@ -707,6 +752,9 @@ def build_dashboard_artifacts(
         "latest_available_date": latest_game_date,
         "data_note": DEFAULT_DATA_NOTE,
         "operational_alerts": operational_alerts,
+        "history_dates": history_dates,
+        "history_default_date": default_history_date,
+        "yesterday_homer_date": yesterday_value,
         "refresh_schedule": build_refresh_schedule(),
         "overview": {
             "latest_slate_size": len(latest_picks),
@@ -717,12 +765,11 @@ def build_dashboard_artifacts(
             "tracked_hit_rate": serialize_value(hit_rate),
             "open_picks": len([row for row in merged_history if row["actual_hit_hr"] is None]),
         },
-        "top_k_summary": [summarize_top_k(settled_rows, k) for k in (1, 3, 5, history_per_date)],
         "confidence_summary": summarize_confidence(settled_rows),
         "model_explainer": model_explainer,
         "latest_picks": to_records(latest_picks),
         "history": to_records(dashboard_history),
-        "player_leaderboard": build_player_leaderboard(settled_rows, min_player_picks),
+        "season_hr_leaders_2026": season_hr_leaders_2026,
         "recent_successes": to_records(recent_successes),
     }
 
@@ -738,6 +785,7 @@ def main() -> None:
         history_path=Path(args.history_path),
         output_dir=Path(args.output_dir),
         model_bundle_path=DEFAULT_MODEL_BUNDLE_PATH,
+        model_data_path=DEFAULT_MODEL_DATA_PATH,
         model_metadata_path=DEFAULT_MODEL_METADATA_PATH,
         tracking_start_date=args.tracking_start_date,
         latest_count=args.latest_count,

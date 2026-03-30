@@ -65,26 +65,14 @@
         </div>
       </section>
 
-      <section class="two-up">
-        <article class="panel">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">Conversion</p>
-              <h2>Top-k performance</h2>
-            </div>
+      <section class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Confidence</p>
+            <h2>Tier performance</h2>
           </div>
-          <div class="table-wrap" id="top-k-table"></div>
-        </article>
-
-        <article class="panel">
-          <div class="section-head">
-            <div>
-              <p class="eyebrow">Confidence</p>
-              <h2>Tier performance</h2>
-            </div>
-          </div>
-          <div class="table-wrap" id="confidence-table"></div>
-        </article>
+        </div>
+        <div class="table-wrap" id="confidence-table"></div>
       </section>
 
       <section class="panel">
@@ -92,7 +80,9 @@
           <div>
             <p class="eyebrow">Today</p>
             <h2>Picks for Today</h2>
+            <p class="section-note">The default view shows elite and strong picks. Turn on all four tiers to see the full slate.</p>
           </div>
+          <div class="filters tier-filter-row" id="latest-confidence-filters" aria-label="Latest picks confidence filters"></div>
         </div>
         <div class="table-wrap" id="latest-picks-table"></div>
       </section>
@@ -101,8 +91,8 @@
         <article class="panel">
           <div class="section-head">
             <div>
-              <p class="eyebrow">Leaderboard</p>
-              <h2>Players who cash most often</h2>
+              <p class="eyebrow">2026 season</p>
+              <h2>Top 5 home run leaders</h2>
             </div>
           </div>
           <div class="table-wrap" id="leaderboard-table"></div>
@@ -111,8 +101,8 @@
         <article class="panel">
           <div class="section-head">
             <div>
-              <p class="eyebrow">Tracked wins</p>
-              <h2>Published picks that homered</h2>
+              <p class="eyebrow">Yesterday</p>
+              <h2>Published Picks that Homered Yesterday</h2>
             </div>
           </div>
           <div class="table-wrap" id="success-table"></div>
@@ -126,14 +116,9 @@
             <h2>Historical Picks since Mar 25, 2026</h2>
           </div>
           <div class="filters">
+            <select id="history-date-filter" aria-label="Filter history by date"></select>
             <input id="history-search" type="search" placeholder="Filter by player, team, or pitcher">
-            <select id="confidence-filter">
-              <option value="">All confidence tiers</option>
-              <option value="elite">Elite</option>
-              <option value="strong">Strong</option>
-              <option value="watch">Watch</option>
-              <option value="longshot">Longshot</option>
-            </select>
+            <div class="tier-filter-row" id="history-confidence-filters" aria-label="History confidence filters"></div>
           </div>
         </div>
         <div class="table-wrap history-scroll" id="history-table"></div>

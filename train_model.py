@@ -130,7 +130,75 @@ LIVE_PLUS_FEATURE_COLUMNS = [
     "split_matchup_barrel",
     "split_matchup_hard_hit",
 ]
+LIVE_SHRUNK_FEATURE_COLUMNS = [
+    "hr_rate_season_to_date_shrunk",
+    "batter_pa_total_to_date",
+    "hr_per_pa_last_30d_shrunk",
+    "hr_per_pa_last_10d_shrunk",
+    "pa_last_30d",
+    "pa_last_10d",
+    "barrels_per_pa_last_30d",
+    "barrels_per_pa_last_10d",
+    "hard_hit_rate_last_30d",
+    "hard_hit_rate_last_10d",
+    "bbe_95plus_ev_rate_last_30d",
+    "bbe_95plus_ev_rate_last_10d",
+    "avg_exit_velocity_last_10d",
+    "max_exit_velocity_last_10d",
+    "pitcher_hr_allowed_per_pa_last_30d",
+    "pitcher_barrels_allowed_per_bbe_last_30d",
+    "pitcher_hard_hit_allowed_rate_last_30d",
+    "pitcher_avg_ev_allowed_last_30d",
+    "pitcher_95plus_ev_allowed_rate_last_30d",
+    "temperature_f",
+    "wind_speed_mph",
+    "humidity_pct",
+    "platoon_advantage",
+    "park_factor_hr_vs_batter_hand",
+    "batter_hr_per_pa_vs_pitcher_hand_shrunk",
+    "batter_pa_vs_pitcher_hand_to_date",
+    "batter_barrels_per_pa_vs_pitcher_hand",
+    "pitcher_hr_allowed_per_pa_vs_batter_hand",
+    "pitcher_barrels_allowed_per_bbe_vs_batter_hand",
+    "split_matchup_hr_shrunk",
+    "split_matchup_barrel",
+    "split_matchup_hard_hit",
+]
+LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS = [
+    "hr_rate_season_to_date_shrunk",
+    "hr_per_pa_last_30d_shrunk",
+    "hr_per_pa_last_10d_shrunk",
+    "avg_launch_angle_last_50_bbe",
+    "barrels_per_pa_last_30d",
+    "barrels_per_pa_last_10d",
+    "hard_hit_rate_last_30d",
+    "hard_hit_rate_last_10d",
+    "bbe_95plus_ev_rate_last_30d",
+    "bbe_95plus_ev_rate_last_10d",
+    "avg_exit_velocity_last_10d",
+    "max_exit_velocity_last_10d",
+    "pitcher_hr_allowed_per_pa_last_30d",
+    "pitcher_barrels_allowed_per_bbe_last_30d",
+    "pitcher_hard_hit_allowed_rate_last_30d",
+    "pitcher_avg_ev_allowed_last_30d",
+    "pitcher_95plus_ev_allowed_rate_last_30d",
+    "temperature_f",
+    "wind_speed_mph",
+    "humidity_pct",
+    "park_factor_hr_vs_batter_hand",
+    "batter_hr_per_pa_vs_pitcher_hand",
+    "batter_hr_per_pa_vs_pitcher_hand_shrunk",
+    "batter_barrels_per_pa_vs_pitcher_hand",
+    "pitcher_hr_allowed_per_pa_vs_batter_hand",
+    "pitcher_barrels_allowed_per_bbe_vs_batter_hand",
+    "split_matchup_hr",
+    "split_matchup_hr_shrunk",
+    "split_matchup_barrel",
+    "split_matchup_hard_hit",
+]
 EXPERIMENTAL_FEATURE_COLUMNS = [
+    *LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS,
+    *LIVE_SHRUNK_FEATURE_COLUMNS,
     *LIVE_PLUS_FEATURE_COLUMNS,
     "hr_count_last_30d",
     "hr_count_last_10d",
@@ -210,7 +278,7 @@ EXPERIMENTAL_FEATURE_COLUMNS = [
 ]
 FEATURE_COLUMNS = list(STABLE_FEATURE_COLUMNS)
 OPTIONAL_SECONDARY_FEATURES: list[str] = []
-FEATURE_PROFILE_CHOICES = ["stable", "live", "live_plus", "expanded", "all"]
+FEATURE_PROFILE_CHOICES = ["stable", "live", "live_plus", "live_shrunk", "live_shrunk_precise", "expanded", "all"]
 BASELINE_FEATURES = [
     "hr_per_pa_last_30d",
     "hr_per_pa_last_10d",
@@ -342,8 +410,12 @@ def feature_columns_for_profile(profile: str) -> list[str]:
         return list(LIVE_PRODUCTION_FEATURE_COLUMNS)
     if profile == "live_plus":
         return list(LIVE_PLUS_FEATURE_COLUMNS)
+    if profile == "live_shrunk":
+        return list(LIVE_SHRUNK_FEATURE_COLUMNS)
+    if profile == "live_shrunk_precise":
+        return list(LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS)
     if profile == "expanded":
-        return list(EXPERIMENTAL_FEATURE_COLUMNS)
+        return list(dict.fromkeys(EXPERIMENTAL_FEATURE_COLUMNS))
     raise ValueError(f"Unknown feature profile: {profile}")
 
 
@@ -514,7 +586,7 @@ def resolve_model_families(model_name: str) -> list[str]:
 
 def resolve_feature_profiles(feature_profile: str, compare_against: str | None = None) -> list[str]:
     if feature_profile == "all":
-        return ["stable", "live", "live_plus", "expanded"]
+        return ["stable", "live", "live_plus", "live_shrunk", "live_shrunk_precise", "expanded"]
     profiles = [feature_profile]
     if compare_against and compare_against not in {"none", feature_profile, "all"}:
         profiles.append(compare_against)
