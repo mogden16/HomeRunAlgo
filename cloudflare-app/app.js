@@ -126,6 +126,28 @@ function buildRefreshScheduleInlineText(schedule) {
   return parts.join(" ");
 }
 
+function renderDashboardAlerts(alerts) {
+  const target = document.getElementById("dashboard-alerts");
+  const rows = Array.isArray(alerts) ? alerts : [];
+  if (!rows.length) {
+    target.hidden = true;
+    target.innerHTML = "";
+    return;
+  }
+
+  target.hidden = false;
+  target.innerHTML = rows
+    .map(
+      (alert) => `
+        <article class="dashboard-alert dashboard-alert-${escapeHtml(alert.kind || "warning")}">
+          <strong>${escapeHtml(alert.title || "Operational note")}</strong>
+          <p>${escapeHtml(alert.message || "")}</p>
+        </article>
+      `,
+    )
+    .join("");
+}
+
 function renderOverviewCards(overview, confidenceSummary, refreshSchedule) {
   const eliteSummary = findConfidenceSummary(confidenceSummary, "elite");
   const elitePicks = eliteSummary?.picks ?? null;
@@ -401,6 +423,7 @@ async function loadDashboard() {
   );
   document.getElementById("usable-status").textContent = `Tracking since ${formatDate(state.dashboard.tracking_start_date)}`;
 
+  renderDashboardAlerts(state.dashboard.operational_alerts);
   renderOverviewCards(state.dashboard.overview, state.dashboard.confidence_summary, state.dashboard.refresh_schedule);
   renderTopKTable(state.dashboard.top_k_summary);
   renderConfidenceTable(state.dashboard.confidence_summary);

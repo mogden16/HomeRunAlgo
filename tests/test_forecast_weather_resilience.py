@@ -26,6 +26,8 @@ class ForecastWeatherResilienceTests(unittest.TestCase):
                 }
             ],
         )
+        self.assertEqual(len(weather.attrs.get("operational_alerts", [])), 1)
+        self.assertEqual(weather.attrs["operational_alerts"][0]["code"], "weather_forecast_unavailable")
 
 
 if __name__ == "__main__":

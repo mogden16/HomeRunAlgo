@@ -1263,6 +1263,7 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
         }
 
     rows: list[dict[str, Any]] = []
+    fallback_home_teams: list[str] = []
     target_timestamp = pd.to_datetime(target_date, errors="coerce")
     historical_target = pd.notna(target_timestamp) and target_timestamp.date() < eastern_today().date()
     for home_team in sorted({normalize_team_code(team) for team in home_teams if team}):
@@ -1299,6 +1300,7 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
                         f"for {home_team} on {target_date} after {attempt} attempts: {exc}. "
                         "Falling back to null weather values."
                     )
+                    fallback_home_teams.append(home_team)
                 else:
                     time.sleep(OPEN_METEO_FORECAST_RETRY_BACKOFF_SECONDS * attempt)
         if response is None:
@@ -1323,7 +1325,22 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
                 "pressure_hpa": serialize_for_json(float(best.get("surface_pressure"))) if pd.notna(best.get("surface_pressure")) else None,
             }
         )
-    return pd.DataFrame(rows)
+    forecast_df = pd.DataFrame(rows)
+    if fallback_home_teams:
+        forecast_df.attrs["operational_alerts"] = [
+            {
+                "kind": "warning",
+                "code": "weather_forecast_unavailable",
+                "title": "Weather data incomplete",
+                "message": (
+                    f"Weather forecast data was unavailable for {', '.join(sorted(set(fallback_home_teams)))} on {target_date}. "
+                    "This slate was generated with null weather inputs for those parks. Rerun later for a weather-refreshed draft."
+                ),
+                "target_date": target_date,
+                "teams": sorted(set(fallback_home_teams)),
+            }
+        ]
+    return forecast_df
 
 
 def build_live_candidate_frame(
@@ -1437,6 +1454,7 @@ def build_live_candidate_frame(
         (candidate_df["bat_side"] != candidate_df["pitch_hand_primary"]).astype(float),
         np.nan,
     )
+    candidate_df.attrs["operational_alerts"] = list(forecast_weather.attrs.get("operational_alerts") or [])
     audit_weather_feature_coverage(
         candidate_df,
         context="live candidate frame after forecast merge",

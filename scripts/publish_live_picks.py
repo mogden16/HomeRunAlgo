@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -108,6 +109,17 @@ def refresh_cloudflare_dashboard(
     )
     print(f"Refreshed Cloudflare dashboard artifact at {dashboard_path}")
     return dashboard_path
+
+
+def persist_operational_alerts(
+    metadata_path: Path,
+    model_metadata: dict[str, Any],
+    alerts: list[dict[str, Any]] | None,
+) -> dict[str, Any]:
+    updated_metadata = dict(model_metadata)
+    updated_metadata["operational_alerts"] = [dict(alert) for alert in (alerts or []) if isinstance(alert, dict)]
+    metadata_path.write_text(json.dumps(updated_metadata, indent=2), encoding="utf-8")
+    return updated_metadata
 
 
 def _publish_reference_now() -> datetime:
@@ -310,6 +322,11 @@ def generate_live_picks(
         hitters_per_team=hitters_per_team,
         active_roster_map=active_roster_map,
     )
+    operational_alerts = [dict(alert) for alert in (candidates.attrs.get("operational_alerts") or []) if isinstance(alert, dict)]
+    if operational_alerts:
+        for alert in operational_alerts:
+            print(f"Operational alert [{alert.get('code', 'unknown')}]: {alert.get('message', '')}")
+    model_metadata = persist_operational_alerts(Path(metadata_path), model_metadata, operational_alerts)
     featured = build_live_feature_frame(dataset_df, candidates)
     return score_live_candidates(
         featured,

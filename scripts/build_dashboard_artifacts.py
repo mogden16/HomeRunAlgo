@@ -564,6 +564,13 @@ def _model_identity_from_metadata(metadata: dict[str, Any]) -> dict[str, str]:
     }
 
 
+def _operational_alerts_from_metadata(metadata: dict[str, Any]) -> list[dict[str, Any]]:
+    alerts = metadata.get("operational_alerts")
+    if not isinstance(alerts, list):
+        return []
+    return [dict(alert) for alert in alerts if isinstance(alert, dict)]
+
+
 def build_model_explainer(
     *,
     model_bundle_path: Path = DEFAULT_MODEL_BUNDLE_PATH,
@@ -683,6 +690,8 @@ def build_dashboard_artifacts(
     settled_count = len(settled_rows)
     homers = sum(int(row["actual_hit_hr"] or 0) for row in settled_rows)
     hit_rate = (homers / settled_count) if settled_count else None
+    metadata = _load_json_object(model_metadata_path) if model_metadata_path.exists() else {}
+    operational_alerts = _operational_alerts_from_metadata(metadata)
     model_explainer = build_model_explainer(
         model_bundle_path=model_bundle_path,
         model_metadata_path=model_metadata_path,
@@ -697,6 +706,7 @@ def build_dashboard_artifacts(
         "feature_profile": feature_profile,
         "latest_available_date": latest_game_date,
         "data_note": DEFAULT_DATA_NOTE,
+        "operational_alerts": operational_alerts,
         "refresh_schedule": build_refresh_schedule(),
         "overview": {
             "latest_slate_size": len(latest_picks),
