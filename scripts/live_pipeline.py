@@ -621,8 +621,8 @@ def train_live_model_bundle(
     )
     if training_mode == "fast_refit":
         existing_metadata = load_model_metadata(metadata_path) if metadata_path.exists() else {}
-        resolved_model_family = str(existing_metadata.get("model_family") or model_name)
-        resolved_feature_profile = str(existing_metadata.get("feature_profile") or feature_profile)
+        resolved_model_family = str(model_name or existing_metadata.get("model_family") or "logistic")
+        resolved_feature_profile = str(feature_profile or existing_metadata.get("feature_profile") or "live_shrunk")
         resolved_missingness_threshold = float(
             existing_metadata.get("missingness_threshold")
             if existing_metadata.get("missingness_threshold") is not None
