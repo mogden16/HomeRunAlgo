@@ -196,6 +196,28 @@ def _fill_missing_game_meta(
     return updated
 
 
+def _pick_score_sort_key(row: dict[str, Any]) -> tuple[float, float, str]:
+    score = row.get("predicted_hr_score")
+    probability = row.get("predicted_hr_probability")
+    try:
+        resolved_score = float(score) if score not in (None, "") else float("-inf")
+    except (TypeError, ValueError):
+        resolved_score = float("-inf")
+    try:
+        resolved_probability = float(probability) if probability not in (None, "") else float("-inf")
+    except (TypeError, ValueError):
+        resolved_probability = float("-inf")
+    return (-resolved_score, -resolved_probability, str(row.get("batter_name") or ""))
+
+
+def _rerank_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    reranked: list[dict[str, Any]] = []
+    for index, row in enumerate(sorted((dict(item) for item in rows), key=_pick_score_sort_key), start=1):
+        row["rank"] = index
+        reranked.append(row)
+    return reranked
+
+
 def _merge_same_day_picks(
     existing_rows: list[dict[str, Any]],
     refreshed_rows: list[dict[str, Any]],
@@ -208,7 +230,7 @@ def _merge_same_day_picks(
     other_dates = [dict(row) for row in existing_rows if normalize_game_date(row.get("game_date")) != schedule_date]
     same_day_rows = [dict(row) for row in existing_rows if normalize_game_date(row.get("game_date")) == schedule_date]
     if not same_day_rows:
-        return [*other_dates, *refreshed_rows]
+        return [*other_dates, *_rerank_rows(refreshed_rows)]
 
     slate_state = build_slate_state(schedule_games, reference_time=publish_reference)
     schedule_by_game_pk = slate_state["games_by_pk"]
@@ -240,33 +262,9 @@ def _merge_same_day_picks(
         if row.get("game_pk") in (None, "") or int(row["game_pk"]) not in locked_game_pks
     ]
     if not locked_rows:
-        return [*other_dates, *unlocked_refreshed]
+        return [*other_dates, *_rerank_rows(unlocked_refreshed)]
 
-    slot_ceiling = max(
-        max_picks,
-        max(
-            (
-                int(row.get("rank"))
-                for row in locked_rows
-                if row.get("rank") not in (None, "") and str(row.get("rank")).isdigit()
-            ),
-            default=0,
-        ),
-    )
-    locked_rank_values = {
-        int(row["rank"])
-        for row in locked_rows
-        if row.get("rank") not in (None, "") and str(row.get("rank")).isdigit() and 1 <= int(row["rank"]) <= slot_ceiling
-    }
-    available_ranks = [rank for rank in range(1, slot_ceiling + 1) if rank not in locked_rank_values]
-
-    refreshed_reassigned: list[dict[str, Any]] = []
-    for refreshed_row, rank in zip(unlocked_refreshed, available_ranks):
-        updated = dict(refreshed_row)
-        updated["rank"] = rank
-        refreshed_reassigned.append(updated)
-
-    merged_same_day = [*locked_rows, *refreshed_reassigned]
+    merged_same_day = _rerank_rows([*locked_rows, *unlocked_refreshed])[:max_picks]
     return [*other_dates, *merged_same_day]
 
 

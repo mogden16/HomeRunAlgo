@@ -203,6 +203,57 @@ class DashboardArtifactTests(unittest.TestCase):
             self.assertEqual(latest["wind_direction_deg"], 210.0)
             self.assertEqual(latest["field_bearing_deg"], 30.0)
 
+    def test_dashboard_payload_resequences_latest_ranks_and_keeps_morning_baseline(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+            draft_path = base / "draft.json"
+            output_dir = base / "dashboard"
+            metadata_path = base / "model_metadata.json"
+            model_data_path = base / "dataset.csv"
+
+            current_rows = [
+                self._pending_pick("2026-04-01", 4, "Charlie", "strong", 92.0),
+                self._pending_pick("2026-04-01", 2, "Alpha", "elite", 98.0),
+                self._pending_pick("2026-04-01", 7, "Bravo", "elite", 95.0),
+            ]
+            draft_rows = [
+                self._pending_pick("2026-04-01", 1, "Bravo", "elite", 95.0),
+                self._pending_pick("2026-04-01", 2, "Alpha", "elite", 98.0),
+                self._pending_pick("2026-04-01", 3, "Charlie", "strong", 92.0),
+            ]
+            draft_rows[0]["game_pk"] = current_rows[2]["game_pk"]
+            draft_rows[0]["batter_id"] = current_rows[2]["batter_id"]
+            draft_rows[0]["pitcher_id"] = current_rows[2]["pitcher_id"]
+            draft_rows[1]["game_pk"] = current_rows[1]["game_pk"]
+            draft_rows[1]["batter_id"] = current_rows[1]["batter_id"]
+            draft_rows[1]["pitcher_id"] = current_rows[1]["pitcher_id"]
+            draft_rows[2]["game_pk"] = current_rows[0]["game_pk"]
+            draft_rows[2]["batter_id"] = current_rows[0]["batter_id"]
+            draft_rows[2]["pitcher_id"] = current_rows[0]["pitcher_id"]
+            current_path.write_text(json.dumps(current_rows, indent=2), encoding="utf-8")
+            history_path.write_text(json.dumps([], indent=2), encoding="utf-8")
+            draft_path.write_text(json.dumps(draft_rows, indent=2), encoding="utf-8")
+            metadata_path.write_text(json.dumps({}, indent=2), encoding="utf-8")
+            pd.DataFrame([self._season_row("Slugger A", "NYY", 1, "2026-03-27", 1, 4, 1)]).to_csv(model_data_path, index=False)
+
+            output_path = build_dashboard_artifacts.build_dashboard_artifacts(
+                current_picks_path=current_path,
+                history_path=history_path,
+                draft_picks_path=draft_path,
+                output_dir=output_dir,
+                model_data_path=model_data_path,
+                model_metadata_path=metadata_path,
+                persist_history=False,
+            )
+
+            payload = json.loads(output_path.read_text(encoding="utf-8"))
+            latest = payload["latest_picks"]
+            self.assertEqual([row["batter_name"] for row in latest], ["Alpha", "Bravo", "Charlie"])
+            self.assertEqual([row["rank"] for row in latest], [1, 2, 3])
+            self.assertEqual([row["morning_rank"] for row in latest], [2, 1, 3])
+
     def test_history_default_date_falls_back_to_latest_when_yesterday_missing(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)

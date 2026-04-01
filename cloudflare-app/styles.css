@@ -617,6 +617,53 @@ td {
   display: block;
 }
 
+.rank-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rank-trend {
+  display: inline-flex;
+  align-items: center;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+}
+
+.rank-trend-up {
+  color: var(--hit);
+}
+
+.rank-trend-down {
+  color: var(--miss);
+}
+
+.lineup-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.lineup-badge-confirmed {
+  color: var(--hit);
+  background: rgba(31, 143, 99, 0.12);
+}
+
+.lineup-badge-projected {
+  color: var(--muted);
+  background: rgba(20, 32, 51, 0.08);
+}
+
+.lineup-order,
+.lineup-separator {
+  color: var(--muted);
+}
+
 .name-block span,
 .reason-list,
 .empty-state {

@@ -664,6 +664,67 @@ class LivePipelineTests(unittest.TestCase):
         self.assertEqual(picks[0]["wind_direction_deg"], 210.0)
         self.assertEqual(picks[0]["field_bearing_deg"], 30.0)
 
+    def test_merge_same_day_picks_reranks_by_current_score(self) -> None:
+        existing_rows = [
+            {
+                "game_date": "2026-04-01",
+                "game_pk": 1,
+                "batter_id": 101,
+                "batter_name": "Locked Lower",
+                "rank": 1,
+                "predicted_hr_score": 90.0,
+                "predicted_hr_probability": 0.09,
+                "lineup_source": "confirmed",
+            },
+            {
+                "game_date": "2026-04-01",
+                "game_pk": 2,
+                "batter_id": 202,
+                "batter_name": "Old Unlocked",
+                "rank": 2,
+                "predicted_hr_score": 88.0,
+                "predicted_hr_probability": 0.08,
+                "lineup_source": "projected",
+            },
+        ]
+        refreshed_rows = [
+            {
+                "game_date": "2026-04-01",
+                "game_pk": 1,
+                "batter_id": 101,
+                "batter_name": "Locked Lower",
+                "rank": 1,
+                "predicted_hr_score": 90.0,
+                "predicted_hr_probability": 0.09,
+                "lineup_source": "confirmed",
+            },
+            {
+                "game_date": "2026-04-01",
+                "game_pk": 2,
+                "batter_id": 303,
+                "batter_name": "Fresh Higher",
+                "rank": 2,
+                "predicted_hr_score": 95.0,
+                "predicted_hr_probability": 0.1,
+                "lineup_source": "confirmed",
+            },
+        ]
+        schedule_games = [{"game_pk": 1}, {"game_pk": 2}]
+
+        with patch("scripts.publish_live_picks.build_slate_state", return_value={"games_by_pk": {1: {"game_pk": 1}, 2: {"game_pk": 2}}}):
+            with patch("scripts.publish_live_picks._game_is_locked", side_effect=lambda game_like, *_: int(game_like.get("game_pk")) == 1):
+                merged = publish_live_picks._merge_same_day_picks(
+                    existing_rows,
+                    refreshed_rows,
+                    schedule_games,
+                    schedule_date="2026-04-01",
+                    publish_reference=pd.Timestamp("2026-04-01T15:00:00Z").to_pydatetime(),
+                    max_picks=20,
+                )
+
+        self.assertEqual([row["batter_name"] for row in merged], ["Fresh Higher", "Locked Lower"])
+        self.assertEqual([row["rank"] for row in merged], [1, 2])
+
     def test_score_live_candidates_applies_confidence_and_team_filters(self) -> None:
         class FakeModel:
             def predict_proba(self, features: pd.DataFrame) -> list[list[float]]:

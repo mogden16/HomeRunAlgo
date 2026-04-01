@@ -95,6 +95,14 @@ function formatLineupSource(value) {
   return String(value || "").trim().toLowerCase() === "confirmed" ? "Confirmed lineup" : "Projected lineup";
 }
 
+function lineupSourceClass(value) {
+  return String(value || "").trim().toLowerCase() === "confirmed" ? "lineup-badge-confirmed" : "lineup-badge-projected";
+}
+
+function renderLineupBadge(value) {
+  return `<span class="lineup-badge ${lineupSourceClass(value)}">${escapeHtml(formatLineupSource(value))}</span>`;
+}
+
 function formatGameState(value) {
   const token = String(value || "").trim().toLowerCase();
   if (token === "final") {
@@ -225,6 +233,39 @@ function formatWholeNumber(value) {
     return "-";
   }
   return Number(value).toLocaleString();
+}
+
+function enrichLatestRanks(rows) {
+  const list = Array.isArray(rows) ? rows.map((row) => ({ ...row })) : [];
+  const morningOrdered = list
+    .filter((row) => Number.isFinite(Number(row.morning_rank)))
+    .sort((left, right) => Number(left.morning_rank) - Number(right.morning_rank));
+  const morningDisplayRankById = new Map(morningOrdered.map((row, index) => [String(row.pick_id || `${index}`), index + 1]));
+  return list.map((row, index) => ({
+    ...row,
+    display_rank: index + 1,
+    morning_display_rank: morningDisplayRankById.get(String(row.pick_id || `${index}`)) ?? null,
+  }));
+}
+
+function renderRankTrend(row) {
+  const currentRank = Number(row.display_rank);
+  const morningRank = Number(row.morning_display_rank);
+  if (!Number.isFinite(currentRank) || !Number.isFinite(morningRank) || currentRank === morningRank) {
+    return "";
+  }
+  const movedUp = currentRank < morningRank;
+  const delta = Math.abs(morningRank - currentRank);
+  const symbol = movedUp ? "▲" : "▼";
+  const title = movedUp
+    ? `Up ${delta} spot${delta === 1 ? "" : "s"} since morning`
+    : `Down ${delta} spot${delta === 1 ? "" : "s"} since morning`;
+  return `<span class="rank-trend ${movedUp ? "rank-trend-up" : "rank-trend-down"}" title="${escapeHtml(title)}">${symbol}${escapeHtml(delta)}</span>`;
+}
+
+function renderRankCell(row) {
+  const rankValue = row.display_rank ?? row.rank;
+  return `<div class="rank-cell"><strong>${escapeHtml(formatWholeNumber(rankValue))}</strong>${renderRankTrend(row)}</div>`;
 }
 
 function formatModelValue(value) {
@@ -400,16 +441,17 @@ function renderConfidenceTable(rows) {
 }
 
 function renderPicksTable(targetId, rows, emptyMessage, { includeGameMeta = false } = {}) {
+  const displayRows = includeGameMeta ? enrichLatestRanks(rows) : rows;
   const columns = [
     { label: "Date", render: (row) => escapeHtml(formatDate(row.game_date)) },
-    { label: "Rank", render: (row) => `<strong>${escapeHtml(row.rank)}</strong>` },
+    { label: "Rank", render: (row) => renderRankCell(row) },
     {
       label: "Hitter",
       render: (row) => `
         <div class="name-block">
           <strong>${escapeHtml(row.batter_name)}</strong>
           <span>${escapeHtml(row.team)} vs ${escapeHtml(row.opponent_team || "-")}</span>
-          <span>${escapeHtml(formatLineupSource(row.lineup_source))}${row.batting_order ? `, batting ${escapeHtml(row.batting_order)}` : ""} | ${escapeHtml(formatGameState(row.game_state))}</span>
+          <span>${renderLineupBadge(row.lineup_source)}${row.batting_order ? ` <span class="lineup-order">batting ${escapeHtml(row.batting_order)}</span>` : ""} <span class="lineup-separator">|</span> ${escapeHtml(formatGameState(row.game_state))}</span>
         </div>
       `,
     },
@@ -442,7 +484,7 @@ function renderPicksTable(targetId, rows, emptyMessage, { includeGameMeta = fals
       },
     },
   );
-  renderSimpleTable(targetId, columns, rows, emptyMessage);
+  renderSimpleTable(targetId, columns, displayRows, emptyMessage);
 }
 
 function renderLineupPanels(rows) {

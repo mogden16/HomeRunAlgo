@@ -25,6 +25,7 @@ from train_model import extract_logistic_coefficient_map
 DEFAULT_TRACKING_START_DATE = "2026-03-25"
 DEFAULT_CURRENT_PICKS_PATH = Path("data/live/current_picks.json")
 DEFAULT_HISTORY_PATH = Path("data/live/pick_history.json")
+DEFAULT_DRAFT_PICKS_PATH = Path("data/live/draft_picks.json")
 DEFAULT_OUTPUT_DIR = Path("cloudflare-app/data")
 DEFAULT_MODEL_BUNDLE_PATH = Path("data/live/model_bundle.pkl")
 DEFAULT_MODEL_DATA_PATH = LIVE_MODEL_DATA_PATH
@@ -63,6 +64,7 @@ DISPLAY_COLUMNS = [
     "game_datetime",
     "game_state",
     "rank",
+    "morning_rank",
     "batter_name",
     "team",
     "opponent_team",
@@ -280,6 +282,22 @@ def current_pick_sort_key(row: dict[str, Any]) -> tuple[float, int, str]:
     return (-score_sort_value(row), int(row.get("rank") or 999), str(row.get("batter_name") or ""))
 
 
+def resequence_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    resequenced: list[dict[str, Any]] = []
+    for index, row in enumerate(sorted((dict(item) for item in rows), key=current_pick_sort_key), start=1):
+        row["rank"] = index
+        resequenced.append(row)
+    return resequenced
+
+
+def rank_movement_key(row: dict[str, Any]) -> tuple[int | None, int | None, str]:
+    return (
+        parse_int(row.get("game_pk")),
+        parse_int(row.get("batter_id")),
+        str(row.get("batter_name") or "").strip().lower(),
+    )
+
+
 def history_sort_key(row: dict[str, Any]) -> tuple[str, float, int, str]:
     return (
         str(row.get("game_date") or ""),
@@ -293,6 +311,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--current-picks-path", default=str(DEFAULT_CURRENT_PICKS_PATH), help="Path to the latest published picks JSON.")
     parser.add_argument("--history-path", default=str(DEFAULT_HISTORY_PATH), help="Path to the public pick ledger JSON.")
+    parser.add_argument("--draft-picks-path", default=str(DEFAULT_DRAFT_PICKS_PATH), help="Path to the private morning draft JSON used for rank movement context.")
     parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR), help="Directory where dashboard JSON will be written.")
     parser.add_argument("--tracking-start-date", default=DEFAULT_TRACKING_START_DATE, help="Only picks on or after this date are published.")
     parser.add_argument("--latest-count", type=int, default=12, help="Number of latest picks shown on the landing page.")
@@ -385,6 +404,7 @@ def normalize_pick(row: dict[str, Any], tracking_start_date: str) -> dict[str, A
         "game_status": str(row.get("game_status") or row.get("status") or ""),
         "game_state": str(row.get("game_state") or "pregame"),
         "rank": parse_int(row.get("rank")) or 999,
+        "morning_rank": parse_int(row.get("morning_rank")),
         "batter_id": parse_int(row.get("batter_id")),
         "batter_name": str(row.get("batter_name") or "Unknown hitter"),
         "team": str(row.get("team") or ""),
@@ -775,6 +795,7 @@ def build_dashboard_artifacts(
     *,
     current_picks_path: Path = DEFAULT_CURRENT_PICKS_PATH,
     history_path: Path = DEFAULT_HISTORY_PATH,
+    draft_picks_path: Path = DEFAULT_DRAFT_PICKS_PATH,
     output_dir: Path = DEFAULT_OUTPUT_DIR,
     model_bundle_path: Path = DEFAULT_MODEL_BUNDLE_PATH,
     model_data_path: Path = DEFAULT_MODEL_DATA_PATH,
@@ -791,13 +812,23 @@ def build_dashboard_artifacts(
 
     current_input = load_json_array(current_picks_path)
     history_input = load_json_array(history_path)
+    draft_input = load_json_array(draft_picks_path)
 
     current_rows = [row for row in (normalize_pick(item, tracking_start_date) for item in current_input) if row is not None]
     history_rows = [row for row in (normalize_pick(item, tracking_start_date) for item in history_input) if row is not None]
+    draft_rows = [row for row in (normalize_pick(item, tracking_start_date) for item in draft_input) if row is not None]
     current_rows = sorted(current_rows, key=current_pick_sort_key)
     current_rows, history_rows = recover_pending_history_rows(current_rows, history_rows)
-    active_current_rows = sorted(select_active_current_rows(current_rows), key=current_pick_sort_key)
+    active_current_rows = resequence_rows(select_active_current_rows(current_rows))
     active_current_dates = {str(row["game_date"]) for row in active_current_rows if row.get("game_date")}
+    if active_current_dates:
+        morning_rows = sorted(
+            [row for row in draft_rows if str(row.get("game_date") or "") in active_current_dates],
+            key=lambda row: (int(row.get("rank") or 999), -score_sort_value(row), str(row.get("batter_name") or "")),
+        )
+        morning_rank_by_key = {rank_movement_key(row): index for index, row in enumerate(morning_rows, start=1)}
+        for row in active_current_rows:
+            row["morning_rank"] = morning_rank_by_key.get(rank_movement_key(row))
     dashboard_history = sorted(
         [row for row in history_rows if str(row.get("game_date") or "") not in active_current_dates],
         key=lambda row: (-int(str(row["game_date"]).replace("-", "")), -score_sort_value(row), int(row["rank"]), str(row["batter_name"])),
@@ -895,6 +926,7 @@ def main() -> None:
     output_path = build_dashboard_artifacts(
         current_picks_path=Path(args.current_picks_path),
         history_path=Path(args.history_path),
+        draft_picks_path=Path(args.draft_picks_path),
         output_dir=Path(args.output_dir),
         model_bundle_path=DEFAULT_MODEL_BUNDLE_PATH,
         model_data_path=DEFAULT_MODEL_DATA_PATH,

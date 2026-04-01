@@ -82,6 +82,7 @@ DISPLAY_COLUMNS = [
     "game_datetime",
     "game_state",
     "rank",
+    "morning_rank",
     "batter_name",
     "team",
     "opponent_team",
