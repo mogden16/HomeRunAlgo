@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-31T19:50:20.254037+00:00",
+  "generated_at": "2026-04-01T04:42:43.575403+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "logistic",
   "feature_profile": "live_shrunk",
@@ -7,7 +7,6 @@
   "data_note": "Public dashboard tracking begins on Opening Night, March 25, 2026. Trained on 2024 and 2025 season data.",
   "operational_alerts": [],
   "history_dates": [
-    "2026-03-31",
     "2026-03-30",
     "2026-03-29",
     "2026-03-28",
@@ -16,45 +15,27 @@
     "2026-03-25"
   ],
   "history_default_date": "2026-03-30",
-  "yesterday_homer_date": "2026-03-30",
+  "yesterday_homer_date": "2026-03-31",
   "refresh_schedule": {
     "timezone": "ET",
     "runs": [
       {
-        "time_et": "2:00 AM ET",
-        "type": "settle",
-        "label": "Settle",
-        "description": "Checks Statcast for yesterday's results and settles prior published picks."
-      },
-      {
-        "time_et": "4:00 AM ET",
+        "time_et": "Early morning ET",
         "type": "prepare",
         "label": "Prepare",
-        "description": "Refreshes data, retrains the model, settles any remaining results, and saves a private draft slate."
+        "description": "Refreshes data, retrains the model once for the day, settles any remaining prior results, and saves a private draft slate."
       },
       {
-        "time_et": "11:00 AM ET",
+        "time_et": "Every 15 minutes pregame",
         "type": "publish",
         "label": "Publish",
-        "description": "Updates the public picks for the current slate."
+        "description": "Re-runs before games lock, using projected lineups early and upgrading to confirmed lineups once MLB posts them."
       },
       {
-        "time_et": "1:00 PM ET",
-        "type": "publish",
-        "label": "Publish",
-        "description": "Updates the public picks for the current slate."
-      },
-      {
-        "time_et": "3:00 PM ET",
-        "type": "publish",
-        "label": "Publish",
-        "description": "Updates the public picks for the current slate."
-      },
-      {
-        "time_et": "6:00 PM ET",
-        "type": "publish",
-        "label": "Publish",
-        "description": "Updates the public picks for the current slate."
+        "time_et": "Every 15 minutes in-game",
+        "type": "settle",
+        "label": "Settle",
+        "description": "Checks today\u2019s picks from first pitch through final, marks HR or No HR, and archives the slate when every game is complete."
       }
     ]
   },
@@ -95,6 +76,127 @@
       "homers": 0,
       "hit_rate": 0.0,
       "avg_probability": 0.108165
+    }
+  ],
+  "player_leaderboard": [
+    {
+      "batter_name": "Chase DeLauter",
+      "team": "CLE",
+      "picks": 4,
+      "homers": 2,
+      "hit_rate": 0.5
+    },
+    {
+      "batter_name": "Mike Trout",
+      "team": "LAA",
+      "picks": 4,
+      "homers": 2,
+      "hit_rate": 0.5
+    },
+    {
+      "batter_name": "Munetaka Murakami",
+      "team": "CWS",
+      "picks": 3,
+      "homers": 2,
+      "hit_rate": 0.666667
+    },
+    {
+      "batter_name": "Dominic Canzone",
+      "team": "SEA",
+      "picks": 5,
+      "homers": 1,
+      "hit_rate": 0.2
+    },
+    {
+      "batter_name": "Jake Burger",
+      "team": "TEX",
+      "picks": 3,
+      "homers": 1,
+      "hit_rate": 0.333333
+    },
+    {
+      "batter_name": "Joey Wiemer",
+      "team": "WSH",
+      "picks": 3,
+      "homers": 1,
+      "hit_rate": 0.333333
+    },
+    {
+      "batter_name": "Luke Raley",
+      "team": "SEA",
+      "picks": 3,
+      "homers": 1,
+      "hit_rate": 0.333333
+    },
+    {
+      "batter_name": "Giancarlo Stanton",
+      "team": "NYY",
+      "picks": 2,
+      "homers": 1,
+      "hit_rate": 0.5
+    },
+    {
+      "batter_name": "Jonathan Aranda",
+      "team": "TB",
+      "picks": 2,
+      "homers": 1,
+      "hit_rate": 0.5
+    },
+    {
+      "batter_name": "Kyle Schwarber",
+      "team": "PHI",
+      "picks": 2,
+      "homers": 1,
+      "hit_rate": 0.5
+    },
+    {
+      "batter_name": "Yandy D\u00edaz",
+      "team": "TB",
+      "picks": 2,
+      "homers": 1,
+      "hit_rate": 0.5
+    },
+    {
+      "batter_name": "Yordan Alvarez",
+      "team": "HOU",
+      "picks": 2,
+      "homers": 1,
+      "hit_rate": 0.5
+    },
+    {
+      "batter_name": "Sal Stewart",
+      "team": "CIN",
+      "picks": 3,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Alec Burleson",
+      "team": "STL",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Dillon Dingler",
+      "team": "DET",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Roman Anthony",
+      "team": "BOS",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Shohei Ohtani",
+      "team": "LAD",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0
     }
   ],
   "model_explainer": {
@@ -339,11 +441,14 @@
       "pick_id": "2026-03-31:824212:670541:678394",
       "game_pk": 824212,
       "game_date": "2026-03-31",
+      "game_state": "final",
       "rank": 1,
       "batter_name": "Yordan Alvarez",
       "team": "HOU",
       "opponent_team": "BOS",
       "pitcher_name": "Brayan Bello",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.154651,
       "predicted_hr_score": 100.0,
@@ -357,11 +462,14 @@
       "pick_id": "2026-03-31:824942:686948:650644",
       "game_pk": 824942,
       "game_date": "2026-03-31",
+      "game_state": "final",
       "rank": 2,
       "batter_name": "Drake Baldwin",
       "team": "ATL",
       "opponent_team": "OAK",
       "pitcher_name": "Aaron Civale",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.152034,
       "predicted_hr_score": 99.6,
@@ -375,11 +483,14 @@
       "pick_id": "2026-03-31:823077:691023:673540",
       "game_pk": 823077,
       "game_date": "2026-03-31",
+      "game_state": "final",
       "rank": 3,
       "batter_name": "Jordan Walker",
       "team": "STL",
       "opponent_team": "NYM",
       "pitcher_name": "Kodai Senga",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.151155,
       "predicted_hr_score": 99.2,
@@ -393,11 +504,14 @@
       "pick_id": "2026-03-31:824212:701350:686613",
       "game_pk": 824212,
       "game_date": "2026-03-31",
+      "game_state": "final",
       "rank": 4,
       "batter_name": "Roman Anthony",
       "team": "BOS",
       "opponent_team": "HOU",
       "pitcher_name": "Hunter Brown",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.149793,
       "predicted_hr_score": 98.8,
@@ -411,11 +525,14 @@
       "pick_id": "2026-03-31:823077:701807:669467",
       "game_pk": 823077,
       "game_date": "2026-03-31",
+      "game_state": "final",
       "rank": 5,
       "batter_name": "Carson Benge",
       "team": "NYM",
       "opponent_team": "STL",
       "pitcher_name": "Andre Pallante",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.146043,
       "predicted_hr_score": 98.4,
@@ -429,11 +546,14 @@
       "pick_id": "2026-03-31:824537:701398:696149",
       "game_pk": 824537,
       "game_date": "2026-03-31",
+      "game_state": "final",
       "rank": 6,
       "batter_name": "Sal Stewart",
       "team": "CIN",
       "opponent_team": "PIT",
       "pitcher_name": "Bubba Chandler",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.14365,
       "predicted_hr_score": 97.9,
@@ -447,11 +567,14 @@
       "pick_id": "2026-03-31:823969:800050:660271",
       "game_pk": 823969,
       "game_date": "2026-03-31",
+      "game_state": "live",
       "rank": 7,
       "batter_name": "Chase DeLauter",
       "team": "CLE",
       "opponent_team": "LAD",
       "pitcher_name": "Shohei Ohtani",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.14288,
       "predicted_hr_score": 97.5,
@@ -465,11 +588,14 @@
       "pick_id": "2026-03-31:825107:805808:694297",
       "game_pk": 825107,
       "game_date": "2026-03-31",
+      "game_state": "final",
       "rank": 8,
       "batter_name": "Kevin McGonigle",
       "team": "DET",
       "opponent_team": "AZ",
       "pitcher_name": "Brandon Pfaadt",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.142359,
       "predicted_hr_score": 97.1,
@@ -483,11 +609,14 @@
       "pick_id": "2026-03-31:824699:664023:667755",
       "game_pk": 824699,
       "game_date": "2026-03-31",
+      "game_state": "final",
       "rank": 9,
       "batter_name": "Ian Happ",
       "team": "CHC",
       "opponent_team": "LAA",
       "pitcher_name": "Jos\u00e9 Soriano",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.141723,
       "predicted_hr_score": 96.7,
@@ -501,11 +630,14 @@
       "pick_id": "2026-03-31:823485:656941:676571",
       "game_pk": 823485,
       "game_date": "2026-03-31",
+      "game_state": "final",
       "rank": 10,
       "batter_name": "Kyle Schwarber",
       "team": "PHI",
       "opponent_team": "WSH",
       "pitcher_name": "PJ Poulin",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.140925,
       "predicted_hr_score": 96.3,
@@ -519,11 +651,14 @@
       "pick_id": "2026-03-31:823077:802139:673540",
       "game_pk": 823077,
       "game_date": "2026-03-31",
+      "game_state": "final",
       "rank": 11,
       "batter_name": "JJ Wetherholt",
       "team": "STL",
       "opponent_team": "NYM",
       "pitcher_name": "Kodai Senga",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.131179,
       "predicted_hr_score": 95.9,
@@ -537,11 +672,14 @@
       "pick_id": "2026-03-31:825107:693307:694297",
       "game_pk": 825107,
       "game_date": "2026-03-31",
+      "game_state": "final",
       "rank": 12,
       "batter_name": "Dillon Dingler",
       "team": "DET",
       "opponent_team": "AZ",
       "pitcher_name": "Brandon Pfaadt",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.127836,
       "predicted_hr_score": 95.5,
@@ -555,11 +693,14 @@
       "pick_id": "2026-03-31:824942:671739:650644",
       "game_pk": 824942,
       "game_date": "2026-03-31",
+      "game_state": "final",
       "rank": 13,
       "batter_name": "Michael Harris II",
       "team": "ATL",
       "opponent_team": "OAK",
       "pitcher_name": "Aaron Civale",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.12708,
       "predicted_hr_score": 95.1,
@@ -572,248 +713,17 @@
   ],
   "history": [
     {
-      "pick_id": "2026-03-31:824212:670541:678394",
-      "game_pk": 824212,
-      "game_date": "2026-03-31",
-      "rank": 1,
-      "batter_name": "Yordan Alvarez",
-      "team": "HOU",
-      "opponent_team": "BOS",
-      "pitcher_name": "Brayan Bello",
-      "confidence_tier": "elite",
-      "predicted_hr_probability": 0.154651,
-      "predicted_hr_score": 100.0,
-      "actual_hit_hr": null,
-      "top_reason_1": "Peak exit velocity over the last 10 days is 113.0 mph, which points to top-end HR juice.",
-      "top_reason_2": "Brayan Bello has allowed a 43.0% hard-hit rate over the last 30 days.",
-      "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-31:824942:686948:650644",
-      "game_pk": 824942,
-      "game_date": "2026-03-31",
-      "rank": 2,
-      "batter_name": "Drake Baldwin",
-      "team": "ATL",
-      "opponent_team": "OAK",
-      "pitcher_name": "Aaron Civale",
-      "confidence_tier": "elite",
-      "predicted_hr_probability": 0.152034,
-      "predicted_hr_score": 99.6,
-      "actual_hit_hr": null,
-      "top_reason_1": "Hard-hit rate over the last 30 days is 69.2%, showing consistent quality contact.",
-      "top_reason_2": "Aaron Civale has allowed homers in 4.0% of plate appearances over the last 30 days.",
-      "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-31:823077:691023:673540",
-      "game_pk": 823077,
-      "game_date": "2026-03-31",
-      "rank": 3,
-      "batter_name": "Jordan Walker",
-      "team": "STL",
-      "opponent_team": "NYM",
-      "pitcher_name": "Kodai Senga",
-      "confidence_tier": "elite",
-      "predicted_hr_probability": 0.151155,
-      "predicted_hr_score": 99.2,
-      "actual_hit_hr": null,
-      "top_reason_1": "Peak exit velocity over the last 10 days is 114.9 mph, which points to top-end HR juice.",
-      "top_reason_2": "Kodai Senga has allowed homers in 3.7% of plate appearances over the last 30 days.",
-      "top_reason_3": "Projected humidity is 87%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-31:824212:701350:686613",
-      "game_pk": 824212,
-      "game_date": "2026-03-31",
-      "rank": 4,
-      "batter_name": "Roman Anthony",
-      "team": "BOS",
-      "opponent_team": "HOU",
-      "pitcher_name": "Hunter Brown",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.149793,
-      "predicted_hr_score": 98.8,
-      "actual_hit_hr": null,
-      "top_reason_1": "Hard-hit rate over the last 30 days is 77.8%, showing consistent quality contact.",
-      "top_reason_2": "Hunter Brown has allowed homers in 4.8% of plate appearances over the last 30 days.",
-      "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-31:823077:701807:669467",
-      "game_pk": 823077,
-      "game_date": "2026-03-31",
-      "rank": 5,
-      "batter_name": "Carson Benge",
-      "team": "NYM",
-      "opponent_team": "STL",
-      "pitcher_name": "Andre Pallante",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.146043,
-      "predicted_hr_score": 98.4,
-      "actual_hit_hr": null,
-      "top_reason_1": "Hard-hit rate over the last 30 days is 66.7%, showing consistent quality contact.",
-      "top_reason_2": "The hitter has the platoon advantage in this matchup.",
-      "top_reason_3": "95+ EV contact rate over the last 30 days is 66.7%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-31:824537:701398:696149",
-      "game_pk": 824537,
-      "game_date": "2026-03-31",
-      "rank": 6,
-      "batter_name": "Sal Stewart",
-      "team": "CIN",
-      "opponent_team": "PIT",
-      "pitcher_name": "Bubba Chandler",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.14365,
-      "predicted_hr_score": 97.9,
-      "actual_hit_hr": null,
-      "top_reason_1": "Hard-hit rate over the last 30 days is 80.0%, showing consistent quality contact.",
-      "top_reason_2": "Bubba Chandler has allowed a 48.0% hard-hit rate over the last 30 days.",
-      "top_reason_3": "Projected wind speed is 14.4 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-31:823969:800050:660271",
-      "game_pk": 823969,
-      "game_date": "2026-03-31",
-      "rank": 7,
-      "batter_name": "Chase DeLauter",
-      "team": "CLE",
-      "opponent_team": "LAD",
-      "pitcher_name": "Shohei Ohtani",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.14288,
-      "predicted_hr_score": 97.5,
-      "actual_hit_hr": null,
-      "top_reason_1": "Barrel rate over the last 30 days is 9.1%, which the model treats as sustained power quality.",
-      "top_reason_2": "The hitter has the platoon advantage in this matchup.",
-      "top_reason_3": "Hard-hit rate over the last 30 days is 57.1%, showing consistent quality contact.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-31:825107:805808:694297",
-      "game_pk": 825107,
-      "game_date": "2026-03-31",
-      "rank": 8,
-      "batter_name": "Kevin McGonigle",
-      "team": "DET",
-      "opponent_team": "AZ",
-      "pitcher_name": "Brandon Pfaadt",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.142359,
-      "predicted_hr_score": 97.1,
-      "actual_hit_hr": null,
-      "top_reason_1": "Barrel rate over the last 30 days is 17.6%, which the model treats as sustained power quality.",
-      "top_reason_2": "Brandon Pfaadt has allowed a 45.6% hard-hit rate over the last 30 days.",
-      "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-31:824699:664023:667755",
-      "game_pk": 824699,
-      "game_date": "2026-03-31",
-      "rank": 9,
-      "batter_name": "Ian Happ",
-      "team": "CHC",
-      "opponent_team": "LAA",
-      "pitcher_name": "Jos\u00e9 Soriano",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.141723,
-      "predicted_hr_score": 96.7,
-      "actual_hit_hr": null,
-      "top_reason_1": "Barrel rate over the last 30 days is 15.8%, which the model treats as sustained power quality.",
-      "top_reason_2": "The hitter has the platoon advantage in this matchup.",
-      "top_reason_3": "Hard-hit rate over the last 30 days is 54.5%, showing consistent quality contact.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-31:823485:656941:676571",
-      "game_pk": 823485,
-      "game_date": "2026-03-31",
-      "rank": 10,
-      "batter_name": "Kyle Schwarber",
-      "team": "PHI",
-      "opponent_team": "WSH",
-      "pitcher_name": "PJ Poulin",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.140925,
-      "predicted_hr_score": 96.3,
-      "actual_hit_hr": null,
-      "top_reason_1": "Against this pitcher handedness, the hitter has a 6.5% barrel-per-PA split.",
-      "top_reason_2": "The hitter has the platoon advantage in this matchup.",
-      "top_reason_3": "Peak exit velocity over the last 10 days is 110.1 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-31:823077:802139:673540",
-      "game_pk": 823077,
-      "game_date": "2026-03-31",
-      "rank": 11,
-      "batter_name": "JJ Wetherholt",
-      "team": "STL",
-      "opponent_team": "NYM",
-      "pitcher_name": "Kodai Senga",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.131179,
-      "predicted_hr_score": 95.9,
-      "actual_hit_hr": null,
-      "top_reason_1": "Barrel rate over the last 30 days is 10.5%, which the model treats as sustained power quality.",
-      "top_reason_2": "Kodai Senga has allowed barrels on 5.4% of batted balls to this batter side.",
-      "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-31:825107:693307:694297",
-      "game_pk": 825107,
-      "game_date": "2026-03-31",
-      "rank": 12,
-      "batter_name": "Dillon Dingler",
-      "team": "DET",
-      "opponent_team": "AZ",
-      "pitcher_name": "Brandon Pfaadt",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.127836,
-      "predicted_hr_score": 95.5,
-      "actual_hit_hr": null,
-      "top_reason_1": "Hard-hit rate over the last 30 days is 75.0%, showing consistent quality contact.",
-      "top_reason_2": "Brandon Pfaadt has allowed a 45.6% hard-hit rate over the last 30 days.",
-      "top_reason_3": "95+ EV contact rate over the last 30 days is 75.0%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
-    },
-    {
-      "pick_id": "2026-03-31:824942:671739:650644",
-      "game_pk": 824942,
-      "game_date": "2026-03-31",
-      "rank": 13,
-      "batter_name": "Michael Harris II",
-      "team": "ATL",
-      "opponent_team": "OAK",
-      "pitcher_name": "Aaron Civale",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.12708,
-      "predicted_hr_score": 95.1,
-      "actual_hit_hr": null,
-      "top_reason_1": "Peak exit velocity over the last 10 days is 111.0 mph, which points to top-end HR juice.",
-      "top_reason_2": "Aaron Civale has allowed homers in 4.0% of plate appearances over the last 30 days.",
-      "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
-    },
-    {
       "pick_id": "2026-03-30:823972:800050:808963",
       "game_pk": 823972,
       "game_date": "2026-03-30",
+      "game_state": "pregame",
       "rank": 1,
       "batter_name": "Chase DeLauter",
       "team": "CLE",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.296925,
       "predicted_hr_score": 100.0,
@@ -827,11 +737,14 @@
       "pick_id": "2026-03-30:823890:808959:663978",
       "game_pk": 823890,
       "game_date": "2026-03-30",
+      "game_state": "pregame",
       "rank": 2,
       "batter_name": "Munetaka Murakami",
       "team": "CWS",
       "opponent_team": "MIA",
       "pitcher_name": "Chris Paddack",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.279906,
       "predicted_hr_score": 99.6,
@@ -845,11 +758,14 @@
       "pick_id": "2026-03-30:823484:686894:592836",
       "game_pk": 823484,
       "game_date": "2026-03-30",
+      "game_state": "pregame",
       "rank": 3,
       "batter_name": "Joey Wiemer",
       "team": "WSH",
       "opponent_team": "PHI",
       "pitcher_name": "Taijuan Walker",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.263212,
       "predicted_hr_score": 99.2,
@@ -863,11 +779,14 @@
       "pick_id": "2026-03-30:823159:670042:677960",
       "game_pk": 823159,
       "game_date": "2026-03-30",
+      "game_state": "pregame",
       "rank": 4,
       "batter_name": "Luke Raley",
       "team": "SEA",
       "opponent_team": "NYY",
       "pitcher_name": "Ryan Weathers",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.223699,
       "predicted_hr_score": 98.9,
@@ -881,11 +800,14 @@
       "pick_id": "2026-03-30:823484:691781:592836",
       "game_pk": 823484,
       "game_date": "2026-03-30",
+      "game_state": "pregame",
       "rank": 5,
       "batter_name": "Brady House",
       "team": "WSH",
       "opponent_team": "PHI",
       "pitcher_name": "Taijuan Walker",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.208314,
       "predicted_hr_score": 98.5,
@@ -899,11 +821,14 @@
       "pick_id": "2026-03-30:824539:701398:677952",
       "game_pk": 824539,
       "game_date": "2026-03-30",
+      "game_state": "pregame",
       "rank": 6,
       "batter_name": "Sal Stewart",
       "team": "CIN",
       "opponent_team": "PIT",
       "pitcher_name": "Braxton Ashcraft",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.192375,
       "predicted_hr_score": 98.1,
@@ -917,11 +842,14 @@
       "pick_id": "2026-03-30:824863:608369:605135",
       "game_pk": 824863,
       "game_date": "2026-03-30",
+      "game_state": "pregame",
       "rank": 7,
       "batter_name": "Corey Seager",
       "team": "TEX",
       "opponent_team": "BAL",
       "pitcher_name": "Chris Bassitt",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.185111,
       "predicted_hr_score": 97.7,
@@ -935,11 +863,14 @@
       "pick_id": "2026-03-30:824863:669394:605135",
       "game_pk": 824863,
       "game_date": "2026-03-30",
+      "game_state": "pregame",
       "rank": 8,
       "batter_name": "Jake Burger",
       "team": "TEX",
       "opponent_team": "BAL",
       "pitcher_name": "Chris Bassitt",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.180478,
       "predicted_hr_score": 97.3,
@@ -953,11 +884,14 @@
       "pick_id": "2026-03-30:823159:686527:677960",
       "game_pk": 823159,
       "game_date": "2026-03-30",
+      "game_state": "pregame",
       "rank": 9,
       "batter_name": "Dominic Canzone",
       "team": "SEA",
       "opponent_team": "NYY",
       "pitcher_name": "Ryan Weathers",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.180165,
       "predicted_hr_score": 96.9,
@@ -971,11 +905,14 @@
       "pick_id": "2026-03-30:823809:650490:690986",
       "game_pk": 823809,
       "game_date": "2026-03-30",
+      "game_state": "pregame",
       "rank": 10,
       "batter_name": "Yandy D\u00edaz",
       "team": "TB",
       "opponent_team": "MIL",
       "pitcher_name": "Kyle Harrison",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.177362,
       "predicted_hr_score": 96.6,
@@ -989,11 +926,14 @@
       "pick_id": "2026-03-30:823080:676475:605280",
       "game_pk": 823080,
       "game_date": "2026-03-30",
+      "game_state": "pregame",
       "rank": 11,
       "batter_name": "Alec Burleson",
       "team": "STL",
       "opponent_team": "NYM",
       "pitcher_name": "Clay Holmes",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.172447,
       "predicted_hr_score": 96.2,
@@ -1007,11 +947,14 @@
       "pick_id": "2026-03-30:824702:545361:665795",
       "game_pk": 824702,
       "game_date": "2026-03-30",
+      "game_state": "pregame",
       "rank": 12,
       "batter_name": "Mike Trout",
       "team": "LAA",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.167133,
       "predicted_hr_score": 95.8,
@@ -1025,11 +968,14 @@
       "pick_id": "2026-03-30:824214:701350:621121",
       "game_pk": 824214,
       "game_date": "2026-03-30",
+      "game_state": "pregame",
       "rank": 13,
       "batter_name": "Roman Anthony",
       "team": "BOS",
       "opponent_team": "HOU",
       "pitcher_name": "Lance McCullers Jr.",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.166521,
       "predicted_hr_score": 95.4,
@@ -1043,11 +989,14 @@
       "pick_id": "2026-03-30:824214:670541:624133",
       "game_pk": 824214,
       "game_date": "2026-03-30",
+      "game_state": "pregame",
       "rank": 14,
       "batter_name": "Yordan Alvarez",
       "team": "HOU",
       "opponent_team": "BOS",
       "pitcher_name": "Ranger Suarez",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.166443,
       "predicted_hr_score": 95.0,
@@ -1061,11 +1010,14 @@
       "pick_id": "2026-03-29:823160:670042:677944",
       "game_pk": 823160,
       "game_date": "2026-03-29",
+      "game_state": "pregame",
       "rank": 1,
       "batter_name": "Luke Raley",
       "team": "SEA",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.265575,
       "predicted_hr_score": 100.0,
@@ -1079,11 +1031,14 @@
       "pick_id": "2026-03-29:823160:800050:676106",
       "game_pk": 823160,
       "game_date": "2026-03-29",
+      "game_state": "pregame",
       "rank": 2,
       "batter_name": "Chase DeLauter",
       "team": "CLE",
       "opponent_team": "SEA",
       "pitcher_name": "Emerson Hancock",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.264043,
       "predicted_hr_score": 99.5,
@@ -1097,11 +1052,14 @@
       "pick_id": "2026-03-29:824538:701398:813349",
       "game_pk": 824538,
       "game_date": "2026-03-29",
+      "game_state": "pregame",
       "rank": 3,
       "batter_name": "Sal Stewart",
       "team": "CIN",
       "opponent_team": "BOS",
       "pitcher_name": "Connelly Early",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.237397,
       "predicted_hr_score": 99.0,
@@ -1115,11 +1073,14 @@
       "pick_id": "2026-03-29:823810:808959:687075",
       "game_pk": 823810,
       "game_date": "2026-03-29",
+      "game_state": "pregame",
       "rank": 4,
       "batter_name": "Munetaka Murakami",
       "team": "CWS",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Sproat",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.229061,
       "predicted_hr_score": 98.5,
@@ -1133,11 +1094,14 @@
       "pick_id": "2026-03-29:824700:686894:684007",
       "game_pk": 824700,
       "game_date": "2026-03-29",
+      "game_state": "pregame",
       "rank": 5,
       "batter_name": "Joey Wiemer",
       "team": "WSH",
       "opponent_team": "CHC",
       "pitcher_name": "Shota Imanaga",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.228293,
       "predicted_hr_score": 97.9,
@@ -1151,11 +1115,14 @@
       "pick_id": "2026-03-29:823160:686527:677944",
       "game_pk": 823160,
       "game_date": "2026-03-29",
+      "game_state": "pregame",
       "rank": 6,
       "batter_name": "Dominic Canzone",
       "team": "SEA",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.206673,
       "predicted_hr_score": 97.4,
@@ -1169,11 +1136,14 @@
       "pick_id": "2026-03-29:824215:670541:686799",
       "game_pk": 824215,
       "game_date": "2026-03-29",
+      "game_state": "pregame",
       "rank": 7,
       "batter_name": "Yordan Alvarez",
       "team": "HOU",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.205228,
       "predicted_hr_score": 96.9,
@@ -1187,11 +1157,14 @@
       "pick_id": "2026-03-29:824538:701350:695076",
       "game_pk": 824538,
       "game_date": "2026-03-29",
+      "game_state": "pregame",
       "rank": 8,
       "batter_name": "Roman Anthony",
       "team": "BOS",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.200855,
       "predicted_hr_score": 96.4,
@@ -1205,11 +1178,14 @@
       "pick_id": "2026-03-29:823487:669394:666200",
       "game_pk": 823487,
       "game_date": "2026-03-29",
+      "game_state": "pregame",
       "rank": 9,
       "batter_name": "Jake Burger",
       "team": "TEX",
       "opponent_team": "PHI",
       "pitcher_name": "Jes\u00fas Luzardo",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.199351,
       "predicted_hr_score": 95.9,
@@ -1223,11 +1199,14 @@
       "pick_id": "2026-03-29:824944:671739:607625",
       "game_pk": 824944,
       "game_date": "2026-03-29",
+      "game_state": "pregame",
       "rank": 10,
       "batter_name": "Michael Harris II",
       "team": "ATL",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.185473,
       "predicted_hr_score": 95.4,
@@ -1241,11 +1220,14 @@
       "pick_id": "2026-03-28:823161:800050:693433",
       "game_pk": 823161,
       "game_date": "2026-03-28",
+      "game_state": "pregame",
       "rank": 1,
       "batter_name": "Chase DeLauter",
       "team": "CLE",
       "opponent_team": "SEA",
       "pitcher_name": "Bryan Woo",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.940549,
       "predicted_hr_score": 100.0,
@@ -1259,11 +1241,14 @@
       "pick_id": "2026-03-28:823811:808959:694477",
       "game_pk": 823811,
       "game_date": "2026-03-28",
+      "game_state": "pregame",
       "rank": 2,
       "batter_name": "Munetaka Murakami",
       "team": "CWS",
       "opponent_team": "MIL",
       "pitcher_name": "Chad Patrick",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.900272,
       "predicted_hr_score": 99.6,
@@ -1277,11 +1262,14 @@
       "pick_id": "2026-03-28:823651:701807:656605",
       "game_pk": 823651,
       "game_date": "2026-03-28",
+      "game_state": "pregame",
       "rank": 3,
       "batter_name": "Carson Benge",
       "team": "NYM",
       "opponent_team": "PIT",
       "pitcher_name": "Mitch Keller",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.867905,
       "predicted_hr_score": 99.2,
@@ -1295,11 +1283,14 @@
       "pick_id": "2026-03-28:823082:802139:671212",
       "game_pk": 823082,
       "game_date": "2026-03-28",
+      "game_state": "pregame",
       "rank": 4,
       "batter_name": "JJ Wetherholt",
       "team": "STL",
       "opponent_team": "TB",
       "pitcher_name": "Joe Boyle",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.850061,
       "predicted_hr_score": 98.8,
@@ -1313,11 +1304,14 @@
       "pick_id": "2026-03-28:823161:686527:676282",
       "game_pk": 823161,
       "game_date": "2026-03-28",
+      "game_state": "pregame",
       "rank": 5,
       "batter_name": "Dominic Canzone",
       "team": "SEA",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.77307,
       "predicted_hr_score": 98.4,
@@ -1331,11 +1325,14 @@
       "pick_id": "2026-03-28:824213:545361:664299",
       "game_pk": 824213,
       "game_date": "2026-03-28",
+      "game_state": "pregame",
       "rank": 6,
       "batter_name": "Mike Trout",
       "team": "LAA",
       "opponent_team": "HOU",
       "pitcher_name": "Cristian Javier",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.726384,
       "predicted_hr_score": 98.0,
@@ -1349,11 +1346,14 @@
       "pick_id": "2026-03-28:823651:664040:656849",
       "game_pk": 823651,
       "game_date": "2026-03-28",
+      "game_state": "pregame",
       "rank": 7,
       "batter_name": "Brandon Lowe",
       "team": "PIT",
       "opponent_team": "NYM",
       "pitcher_name": "David Peterson",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.715182,
       "predicted_hr_score": 97.6,
@@ -1367,11 +1367,14 @@
       "pick_id": "2026-03-28:823082:666018:700241",
       "game_pk": 823082,
       "game_date": "2026-03-28",
+      "game_state": "pregame",
       "rank": 8,
       "batter_name": "Jonathan Aranda",
       "team": "TB",
       "opponent_team": "STL",
       "pitcher_name": "Michael McGreevy",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.670879,
       "predicted_hr_score": 97.2,
@@ -1385,11 +1388,14 @@
       "pick_id": "2026-03-28:823488:669394:605400",
       "game_pk": 823488,
       "game_date": "2026-03-28",
+      "game_state": "pregame",
       "rank": 9,
       "batter_name": "Jake Burger",
       "team": "TEX",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.667119,
       "predicted_hr_score": 96.8,
@@ -1403,11 +1409,14 @@
       "pick_id": "2026-03-28:823323:693307:681190",
       "game_pk": 823323,
       "game_date": "2026-03-28",
+      "game_state": "pregame",
       "rank": 10,
       "batter_name": "Dillon Dingler",
       "team": "DET",
       "opponent_team": "SD",
       "pitcher_name": "Randy V\u00e1squez",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.662012,
       "predicted_hr_score": 96.4,
@@ -1421,11 +1430,14 @@
       "pick_id": "2026-03-28:824701:686894:690990",
       "game_pk": 824701,
       "game_date": "2026-03-28",
+      "game_state": "pregame",
       "rank": 11,
       "batter_name": "Joey Wiemer",
       "team": "WSH",
       "opponent_team": "CHC",
       "pitcher_name": "Cade Horton",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.657578,
       "predicted_hr_score": 96.0,
@@ -1439,11 +1451,14 @@
       "pick_id": "2026-03-28:823488:656941:594798",
       "game_pk": 823488,
       "game_date": "2026-03-28",
+      "game_state": "pregame",
       "rank": 12,
       "batter_name": "Kyle Schwarber",
       "team": "PHI",
       "opponent_team": "TEX",
       "pitcher_name": "Jacob deGrom",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.655493,
       "predicted_hr_score": 95.6,
@@ -1457,11 +1472,14 @@
       "pick_id": "2026-03-28:823082:676475:671212",
       "game_pk": 823082,
       "game_date": "2026-03-28",
+      "game_state": "pregame",
       "rank": 13,
       "batter_name": "Alec Burleson",
       "team": "STL",
       "opponent_team": "TB",
       "pitcher_name": "Joe Boyle",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.654817,
       "predicted_hr_score": 95.2,
@@ -1475,11 +1493,14 @@
       "pick_id": "2026-03-27:823162:686527:668909",
       "game_pk": 823162,
       "game_date": "2026-03-27",
+      "game_state": "pregame",
       "rank": 1,
       "batter_name": "Dominic Canzone",
       "team": "SEA",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.517867,
       "predicted_hr_score": 100.0,
@@ -1493,11 +1514,14 @@
       "pick_id": "2026-03-27:823162:800050:669923",
       "game_pk": 823162,
       "game_date": "2026-03-27",
+      "game_state": "pregame",
       "rank": 2,
       "batter_name": "Chase DeLauter",
       "team": "CLE",
       "opponent_team": "SEA",
       "pitcher_name": "George Kirby",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.330867,
       "predicted_hr_score": 99.1,
@@ -1511,11 +1535,14 @@
       "pick_id": "2026-03-27:823162:670042:668909",
       "game_pk": 823162,
       "game_date": "2026-03-27",
+      "game_state": "pregame",
       "rank": 3,
       "batter_name": "Luke Raley",
       "team": "SEA",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.280379,
       "predicted_hr_score": 98.3,
@@ -1529,11 +1556,14 @@
       "pick_id": "2026-03-27:824216:545361:681347",
       "game_pk": 824216,
       "game_date": "2026-03-27",
+      "game_state": "pregame",
       "rank": 4,
       "batter_name": "Mike Trout",
       "team": "LAA",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.251474,
       "predicted_hr_score": 97.4,
@@ -1547,11 +1577,14 @@
       "pick_id": "2026-03-27:823324:693307:650633",
       "game_pk": 823324,
       "game_date": "2026-03-27",
+      "game_state": "pregame",
       "rank": 5,
       "batter_name": "Dillon Dingler",
       "team": "DET",
       "opponent_team": "SD",
       "pitcher_name": "Michael King",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.223733,
       "predicted_hr_score": 96.6,
@@ -1565,11 +1598,14 @@
       "pick_id": "2026-03-27:824946:642201:666142",
       "game_pk": 824946,
       "game_date": "2026-03-27",
+      "game_state": "pregame",
       "rank": 6,
       "batter_name": "Eli White",
       "team": "ATL",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.220881,
       "predicted_hr_score": 95.7,
@@ -1583,11 +1619,14 @@
       "pick_id": "2026-03-27:823971:660271:669194",
       "game_pk": 823971,
       "game_date": "2026-03-27",
+      "game_state": "pregame",
       "rank": 7,
       "batter_name": "Shohei Ohtani",
       "team": "LAD",
       "opponent_team": "AZ",
       "pitcher_name": "Ryne Nelson",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.220739,
       "predicted_hr_score": 94.8,
@@ -1601,11 +1640,14 @@
       "pick_id": "2026-03-27:823971:672695:686218",
       "game_pk": 823971,
       "game_date": "2026-03-27",
+      "game_state": "pregame",
       "rank": 8,
       "batter_name": "Geraldo Perdomo",
       "team": "AZ",
       "opponent_team": "LAD",
       "pitcher_name": "Emmet Sheehan",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.205417,
       "predicted_hr_score": 94.0,
@@ -1619,11 +1661,14 @@
       "pick_id": "2026-03-27:823324:657656:664285",
       "game_pk": 823324,
       "game_date": "2026-03-27",
+      "game_state": "pregame",
       "rank": 9,
       "batter_name": "Ram\u00f3n Laureano",
       "team": "SD",
       "opponent_team": "DET",
       "pitcher_name": "Framber Valdez",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.204903,
       "predicted_hr_score": 93.1,
@@ -1637,11 +1682,14 @@
       "pick_id": "2026-03-27:823162:680977:668909",
       "game_pk": 823162,
       "game_date": "2026-03-27",
+      "game_state": "pregame",
       "rank": 10,
       "batter_name": "Brendan Donovan",
       "team": "SEA",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.192537,
       "predicted_hr_score": 92.2,
@@ -1655,11 +1703,14 @@
       "pick_id": "2026-03-27:823324:593428:664285",
       "game_pk": 823324,
       "game_date": "2026-03-27",
+      "game_state": "pregame",
       "rank": 11,
       "batter_name": "Xander Bogaerts",
       "team": "SD",
       "opponent_team": "DET",
       "pitcher_name": "Framber Valdez",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.174059,
       "predicted_hr_score": 91.4,
@@ -1673,11 +1724,14 @@
       "pick_id": "2026-03-27:823971:669257:669194",
       "game_pk": 823971,
       "game_date": "2026-03-27",
+      "game_state": "pregame",
       "rank": 12,
       "batter_name": "Will Smith",
       "team": "LAD",
       "opponent_team": "AZ",
       "pitcher_name": "Ryne Nelson",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.170471,
       "predicted_hr_score": 90.5,
@@ -1691,11 +1745,14 @@
       "pick_id": "2026-03-27:824216:694384:681347",
       "game_pk": 824216,
       "game_date": "2026-03-27",
+      "game_state": "pregame",
       "rank": 13,
       "batter_name": "Nolan Schanuel",
       "team": "LAA",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.167306,
       "predicted_hr_score": 89.7,
@@ -1709,11 +1766,14 @@
       "pick_id": "2026-03-27:824946:677951:519242",
       "game_pk": 824946,
       "game_date": "2026-03-27",
+      "game_state": "pregame",
       "rank": 14,
       "batter_name": "Bobby Witt Jr.",
       "team": "KC",
       "opponent_team": "ATL",
       "pitcher_name": "Chris Sale",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.164698,
       "predicted_hr_score": 88.8,
@@ -1727,11 +1787,14 @@
       "pick_id": "2026-03-27:824946:660670:666142",
       "game_pk": 824946,
       "game_date": "2026-03-27",
+      "game_state": "pregame",
       "rank": 15,
       "batter_name": "Ronald Acu\u00f1a Jr.",
       "team": "ATL",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.163811,
       "predicted_hr_score": 87.9,
@@ -1745,11 +1808,14 @@
       "pick_id": "2026-03-27:824946:621566:666142",
       "game_pk": 824946,
       "game_date": "2026-03-27",
+      "game_state": "pregame",
       "rank": 16,
       "batter_name": "Matt Olson",
       "team": "ATL",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.155365,
       "predicted_hr_score": 87.1,
@@ -1763,11 +1829,14 @@
       "pick_id": "2026-03-27:823893:682663:607536",
       "game_pk": 823893,
       "game_date": "2026-03-27",
+      "game_state": "pregame",
       "rank": 17,
       "batter_name": "Agust\u00edn Ram\u00edrez",
       "team": "MIA",
       "opponent_team": "COL",
       "pitcher_name": "Kyle Freeland",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.149586,
       "predicted_hr_score": 86.2,
@@ -1781,11 +1850,14 @@
       "pick_id": "2026-03-27:823243:519317:592662",
       "game_pk": 823243,
       "game_date": "2026-03-27",
+      "game_state": "pregame",
       "rank": 18,
       "batter_name": "Giancarlo Stanton",
       "team": "NYY",
       "opponent_team": "SF",
       "pitcher_name": "Robbie Ray",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.146239,
       "predicted_hr_score": 85.3,
@@ -1799,11 +1871,14 @@
       "pick_id": "2026-03-27:824946:521692:519242",
       "game_pk": 824946,
       "game_date": "2026-03-27",
+      "game_state": "pregame",
       "rank": 19,
       "batter_name": "Salvador Perez",
       "team": "KC",
       "opponent_team": "ATL",
       "pitcher_name": "Chris Sale",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.145437,
       "predicted_hr_score": 84.5,
@@ -1817,11 +1892,14 @@
       "pick_id": "2026-03-27:824946:686469:519242",
       "game_pk": 824946,
       "game_date": "2026-03-27",
+      "game_state": "pregame",
       "rank": 20,
       "batter_name": "Vinnie Pasquantino",
       "team": "KC",
       "opponent_team": "ATL",
       "pitcher_name": "Chris Sale",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.144524,
       "predicted_hr_score": 83.6,
@@ -1835,11 +1913,14 @@
       "pick_id": "2026-03-26:823081:666018:669461",
       "game_pk": 823081,
       "game_date": "2026-03-26",
+      "game_state": "pregame",
       "rank": 1,
       "batter_name": "Jonathan Aranda",
       "team": "TB",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.245168,
       "predicted_hr_score": 100.0,
@@ -1853,11 +1934,14 @@
       "pick_id": "2026-03-26:823081:691406:669461",
       "game_pk": 823081,
       "game_date": "2026-03-26",
+      "game_state": "pregame",
       "rank": 2,
       "batter_name": "Junior Caminero",
       "team": "TB",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.210257,
       "predicted_hr_score": 99.3,
@@ -1871,11 +1955,14 @@
       "pick_id": "2026-03-26:823486:656941:543135",
       "game_pk": 823486,
       "game_date": "2026-03-26",
+      "game_state": "pregame",
       "rank": 3,
       "batter_name": "Kyle Schwarber",
       "team": "PHI",
       "opponent_team": "TEX",
       "pitcher_name": "Nathan Eovaldi",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.196365,
       "predicted_hr_score": 98.5,
@@ -1889,11 +1976,14 @@
       "pick_id": "2026-03-26:823325:665487:669373",
       "game_pk": 823325,
       "game_date": "2026-03-26",
+      "game_state": "pregame",
       "rank": 4,
       "batter_name": "Fernando Tatis Jr.",
       "team": "SD",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.175408,
       "predicted_hr_score": 97.8,
@@ -1907,11 +1997,14 @@
       "pick_id": "2026-03-26:823081:650490:669461",
       "game_pk": 823081,
       "game_date": "2026-03-26",
+      "game_state": "pregame",
       "rank": 5,
       "batter_name": "Yandy D\u00edaz",
       "team": "TB",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.173602,
       "predicted_hr_score": 97.0,
@@ -1925,11 +2018,14 @@
       "pick_id": "2026-03-26:824704:683737:676917",
       "game_pk": 824704,
       "game_date": "2026-03-26",
+      "game_state": "pregame",
       "rank": 6,
       "batter_name": "Michael Busch",
       "team": "CHC",
       "opponent_team": "WSH",
       "pitcher_name": "Cade Cavalli",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.168377,
       "predicted_hr_score": 96.3,
@@ -1943,11 +2039,14 @@
       "pick_id": "2026-03-26:823163:677594:676440",
       "game_pk": 823163,
       "game_date": "2026-03-26",
+      "game_state": "pregame",
       "rank": 7,
       "batter_name": "Julio Rodr\u00edguez",
       "team": "SEA",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "strong",
       "predicted_hr_probability": 0.16558,
       "predicted_hr_score": 95.5,
@@ -1961,11 +2060,14 @@
       "pick_id": "2026-03-26:824704:695578:571510",
       "game_pk": 824704,
       "game_date": "2026-03-26",
+      "game_state": "pregame",
       "rank": 8,
       "batter_name": "James Wood",
       "team": "WSH",
       "opponent_team": "CHC",
       "pitcher_name": "Matthew Boyd",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.164868,
       "predicted_hr_score": 94.8,
@@ -1979,11 +2081,14 @@
       "pick_id": "2026-03-26:824218:545361:686613",
       "game_pk": 824218,
       "game_date": "2026-03-26",
+      "game_state": "pregame",
       "rank": 9,
       "batter_name": "Mike Trout",
       "team": "LAA",
       "opponent_team": "HOU",
       "pitcher_name": "Hunter Brown",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.163665,
       "predicted_hr_score": 94.0,
@@ -1997,11 +2102,14 @@
       "pick_id": "2026-03-26:823081:691023:656876",
       "game_pk": 823081,
       "game_date": "2026-03-26",
+      "game_state": "pregame",
       "rank": 10,
       "batter_name": "Jordan Walker",
       "team": "STL",
       "opponent_team": "TB",
       "pitcher_name": "Drew Rasmussen",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.15754,
       "predicted_hr_score": 93.3,
@@ -2015,11 +2123,14 @@
       "pick_id": "2026-03-26:823163:686527:676440",
       "game_pk": 823163,
       "game_date": "2026-03-26",
+      "game_state": "pregame",
       "rank": 11,
       "batter_name": "Dominic Canzone",
       "team": "SEA",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.157478,
       "predicted_hr_score": 92.5,
@@ -2033,11 +2144,14 @@
       "pick_id": "2026-03-26:823974:660271:668678",
       "game_pk": 823974,
       "game_date": "2026-03-26",
+      "game_state": "pregame",
       "rank": 12,
       "batter_name": "Shohei Ohtani",
       "team": "LAD",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.157336,
       "predicted_hr_score": 91.8,
@@ -2051,11 +2165,14 @@
       "pick_id": "2026-03-26:824218:666176:686613",
       "game_pk": 824218,
       "game_date": "2026-03-26",
+      "game_state": "pregame",
       "rank": 13,
       "batter_name": "Jo Adell",
       "team": "LAA",
       "opponent_team": "HOU",
       "pitcher_name": "Hunter Brown",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.154401,
       "predicted_hr_score": 91.0,
@@ -2069,11 +2186,14 @@
       "pick_id": "2026-03-26:824865:621439:669432",
       "game_pk": 824865,
       "game_date": "2026-03-26",
+      "game_state": "pregame",
       "rank": 14,
       "batter_name": "Byron Buxton",
       "team": "MIN",
       "opponent_team": "BAL",
       "pitcher_name": "Trevor Rogers",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.154354,
       "predicted_hr_score": 90.3,
@@ -2087,11 +2207,14 @@
       "pick_id": "2026-03-26:823812:592885:681343",
       "game_pk": 823812,
       "game_date": "2026-03-26",
+      "game_state": "pregame",
       "rank": 15,
       "batter_name": "Christian Yelich",
       "team": "MIL",
       "opponent_team": "CWS",
       "pitcher_name": "Shane Smith",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.154276,
       "predicted_hr_score": 89.6,
@@ -2105,11 +2228,14 @@
       "pick_id": "2026-03-26:824541:701398:676979",
       "game_pk": 824541,
       "game_date": "2026-03-26",
+      "game_state": "pregame",
       "rank": 16,
       "batter_name": "Sal Stewart",
       "team": "CIN",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.154051,
       "predicted_hr_score": 88.8,
@@ -2123,11 +2249,14 @@
       "pick_id": "2026-03-26:823081:671056:656876",
       "game_pk": 823081,
       "game_date": "2026-03-26",
+      "game_state": "pregame",
       "rank": 17,
       "batter_name": "Iv\u00e1n Herrera",
       "team": "STL",
       "opponent_team": "TB",
       "pitcher_name": "Drew Rasmussen",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.15285,
       "predicted_hr_score": 88.1,
@@ -2141,11 +2270,14 @@
       "pick_id": "2026-03-26:823649:665833:642547",
       "game_pk": 823649,
       "game_date": "2026-03-26",
+      "game_state": "pregame",
       "rank": 18,
       "batter_name": "Oneil Cruz",
       "team": "PIT",
       "opponent_team": "NYM",
       "pitcher_name": "Freddy Peralta",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.151408,
       "predicted_hr_score": 87.3,
@@ -2159,11 +2291,14 @@
       "pick_id": "2026-03-26:823812:695657:694819",
       "game_pk": 823812,
       "game_date": "2026-03-26",
+      "game_state": "pregame",
       "rank": 19,
       "batter_name": "Colson Montgomery",
       "team": "CWS",
       "opponent_team": "MIL",
       "pitcher_name": "Jacob Misiorowski",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.151033,
       "predicted_hr_score": 86.6,
@@ -2177,11 +2312,14 @@
       "pick_id": "2026-03-26:824704:664023:676917",
       "game_pk": 824704,
       "game_date": "2026-03-26",
+      "game_state": "pregame",
       "rank": 20,
       "batter_name": "Ian Happ",
       "team": "CHC",
       "opponent_team": "WSH",
       "pitcher_name": "Cade Cavalli",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.148396,
       "predicted_hr_score": 85.8,
@@ -2195,11 +2333,14 @@
       "pick_id": "2026-03-25:823244:592450:657277",
       "game_pk": 823244,
       "game_date": "2026-03-25",
+      "game_state": "pregame",
       "rank": 1,
       "batter_name": "Aaron Judge",
       "team": "NYY",
       "opponent_team": "SF",
       "pitcher_name": "Logan Webb",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "elite",
       "predicted_hr_probability": 0.229585,
       "predicted_hr_score": 100.0,
@@ -2213,11 +2354,14 @@
       "pick_id": "2026-03-25:823244:519317:657277",
       "game_pk": 823244,
       "game_date": "2026-03-25",
+      "game_state": "pregame",
       "rank": 2,
       "batter_name": "Giancarlo Stanton",
       "team": "NYY",
       "opponent_team": "SF",
       "pitcher_name": "Logan Webb",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.207309,
       "predicted_hr_score": 91.7,
@@ -2231,11 +2375,14 @@
       "pick_id": "2026-03-25:823244:666464:608331",
       "game_pk": 823244,
       "game_date": "2026-03-25",
+      "game_state": "pregame",
       "rank": 3,
       "batter_name": "Jerar Encarnacion",
       "team": "SF",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "watch",
       "predicted_hr_probability": 0.179796,
       "predicted_hr_score": 83.3,
@@ -2249,11 +2396,14 @@
       "pick_id": "2026-03-25:823244:656305:608331",
       "game_pk": 823244,
       "game_date": "2026-03-25",
+      "game_state": "pregame",
       "rank": 4,
       "batter_name": "Matt Chapman",
       "team": "SF",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "longshot",
       "predicted_hr_probability": 0.139438,
       "predicted_hr_score": 75.0,
@@ -2267,11 +2417,14 @@
       "pick_id": "2026-03-25:823244:700250:657277",
       "game_pk": 823244,
       "game_date": "2026-03-25",
+      "game_state": "pregame",
       "rank": 5,
       "batter_name": "Ben Rice",
       "team": "NYY",
       "opponent_team": "SF",
       "pitcher_name": "Logan Webb",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "longshot",
       "predicted_hr_probability": 0.130479,
       "predicted_hr_score": 66.7,
@@ -2285,11 +2438,14 @@
       "pick_id": "2026-03-25:823244:671218:608331",
       "game_pk": 823244,
       "game_date": "2026-03-25",
+      "game_state": "pregame",
       "rank": 6,
       "batter_name": "Heliot Ramos",
       "team": "SF",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "longshot",
       "predicted_hr_probability": 0.115177,
       "predicted_hr_score": 58.3,
@@ -2303,11 +2459,14 @@
       "pick_id": "2026-03-25:823244:672275:608331",
       "game_pk": 823244,
       "game_date": "2026-03-25",
+      "game_state": "pregame",
       "rank": 7,
       "batter_name": "Patrick Bailey",
       "team": "SF",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "longshot",
       "predicted_hr_probability": 0.109745,
       "predicted_hr_score": 50.0,
@@ -2321,11 +2480,14 @@
       "pick_id": "2026-03-25:823244:663757:657277",
       "game_pk": 823244,
       "game_date": "2026-03-25",
+      "game_state": "pregame",
       "rank": 8,
       "batter_name": "Trent Grisham",
       "team": "NYY",
       "opponent_team": "SF",
       "pitcher_name": "Logan Webb",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "longshot",
       "predicted_hr_probability": 0.10385,
       "predicted_hr_score": 41.7,
@@ -2339,11 +2501,14 @@
       "pick_id": "2026-03-25:823244:665862:657277",
       "game_pk": 823244,
       "game_date": "2026-03-25",
+      "game_state": "pregame",
       "rank": 9,
       "batter_name": "Jazz Chisholm Jr.",
       "team": "NYY",
       "opponent_team": "SF",
       "pitcher_name": "Logan Webb",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "longshot",
       "predicted_hr_probability": 0.098696,
       "predicted_hr_score": 33.3,
@@ -2357,11 +2522,14 @@
       "pick_id": "2026-03-25:823244:669477:608331",
       "game_pk": 823244,
       "game_date": "2026-03-25",
+      "game_state": "pregame",
       "rank": 10,
       "batter_name": "Casey Schmitt",
       "team": "SF",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "longshot",
       "predicted_hr_probability": 0.094914,
       "predicted_hr_score": 25.0,
@@ -2375,11 +2543,14 @@
       "pick_id": "2026-03-25:823244:669224:657277",
       "game_pk": 823244,
       "game_date": "2026-03-25",
+      "game_state": "pregame",
       "rank": 11,
       "batter_name": "Austin Wells",
       "team": "NYY",
       "opponent_team": "SF",
       "pitcher_name": "Logan Webb",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "longshot",
       "predicted_hr_probability": 0.091197,
       "predicted_hr_score": 16.7,
@@ -2393,11 +2564,14 @@
       "pick_id": "2026-03-25:823244:808982:608331",
       "game_pk": 823244,
       "game_date": "2026-03-25",
+      "game_state": "pregame",
       "rank": 12,
       "batter_name": "Jung Hoo Lee",
       "team": "SF",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
+      "lineup_source": "projected",
+      "batting_order": null,
       "confidence_tier": "longshot",
       "predicted_hr_probability": 0.089986,
       "predicted_hr_score": 8.3,
@@ -2406,6 +2580,1789 @@
       "top_reason_2": "",
       "top_reason_3": "",
       "result_label": "No HR"
+    }
+  ],
+  "lineup_panels": [
+    {
+      "game_pk": 824861,
+      "game_date": "2026-03-31",
+      "game_datetime": "2026-03-31T22:35:00Z",
+      "game_status": "Final",
+      "game_state": "final",
+      "matchup": "TEX @ BAL",
+      "teams": [
+        {
+          "team": "TEX",
+          "opponent_team": "BAL",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 607043,
+              "batter_name": "Brandon Nimmo",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 608369,
+              "batter_name": "Corey Seager",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 643376,
+              "batter_name": "Danny Jansen",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 694497,
+              "batter_name": "Evan Carter",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 677649,
+              "batter_name": "Ezequiel Duran",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 669394,
+              "batter_name": "Jake Burger",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 592626,
+              "batter_name": "Joc Pederson",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 669701,
+              "batter_name": "Josh Smith",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 694671,
+              "batter_name": "Wyatt Langford",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        },
+        {
+          "team": "BAL",
+          "opponent_team": "TEX",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 668939,
+              "batter_name": "Adley Rutschman",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 677942,
+              "batter_name": "Blaze Alexander",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 681297,
+              "batter_name": "Colton Cowser",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 683002,
+              "batter_name": "Gunnar Henderson",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 669236,
+              "batter_name": "Jeremiah Jackson",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 624413,
+              "batter_name": "Pete Alonso",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 694212,
+              "batter_name": "Samuel Basallo",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 621493,
+              "batter_name": "Taylor Ward",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 641933,
+              "batter_name": "Tyler O'Neill",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game_pk": 824537,
+      "game_date": "2026-03-31",
+      "game_datetime": "2026-03-31T22:40:00Z",
+      "game_status": "Final",
+      "game_state": "final",
+      "matchup": "PIT @ CIN",
+      "teams": [
+        {
+          "team": "PIT",
+          "opponent_team": "CIN",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 664040,
+              "batter_name": "Brandon Lowe",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 668804,
+              "batter_name": "Bryan Reynolds",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 663968,
+              "batter_name": "Jake Mangum",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 663698,
+              "batter_name": "Joey Bart",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 542303,
+              "batter_name": "Marcell Ozuna",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 693304,
+              "batter_name": "Nick Gonzales",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 694377,
+              "batter_name": "Nick Yorke",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 665833,
+              "batter_name": "Oneil Cruz",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 656811,
+              "batter_name": "Ryan O'Hearn",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        },
+        {
+          "team": "CIN",
+          "opponent_team": "PIT",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 682829,
+              "batter_name": "Elly De La Cruz",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 553993,
+              "batter_name": "Eugenio Su\u00e1rez",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 624431,
+              "batter_name": "Jose Trevino",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 663647,
+              "batter_name": "Ke'Bryan Hayes",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 680574,
+              "batter_name": "Matt McLain",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 682622,
+              "batter_name": "Noelvi Marte",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 701398,
+              "batter_name": "Sal Stewart",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 670770,
+              "batter_name": "TJ Friedl",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 666181,
+              "batter_name": "Will Benson",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game_pk": 823485,
+      "game_date": "2026-03-31",
+      "game_datetime": "2026-03-31T22:40:00Z",
+      "game_status": "Final",
+      "game_state": "final",
+      "matchup": "WSH @ PHI",
+      "teams": [
+        {
+          "team": "WSH",
+          "opponent_team": "PHI",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 682928,
+              "batter_name": "CJ Abrams",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 695734,
+              "batter_name": "Daylen Lile",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 695578,
+              "batter_name": "James Wood",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 686894,
+              "batter_name": "Joey Wiemer",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 678391,
+              "batter_name": "Jorbit Vivas",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 677588,
+              "batter_name": "Jos\u00e9 Tena",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 660688,
+              "batter_name": "Keibert Ruiz",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 671277,
+              "batter_name": "Luis Garc\u00eda Jr.",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 683083,
+              "batter_name": "Nasim Nu\u00f1ez",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        },
+        {
+          "team": "PHI",
+          "opponent_team": "WSH",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 666969,
+              "batter_name": "Adolis Garc\u00eda",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 664761,
+              "batter_name": "Alec Bohm",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 669016,
+              "batter_name": "Brandon Marsh",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 547180,
+              "batter_name": "Bryce Harper",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 681082,
+              "batter_name": "Bryson Stott",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 592663,
+              "batter_name": "J.T. Realmuto",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 702222,
+              "batter_name": "Justin Crawford",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 656941,
+              "batter_name": "Kyle Schwarber",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 607208,
+              "batter_name": "Trea Turner",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game_pk": 823888,
+      "game_date": "2026-03-31",
+      "game_datetime": "2026-03-31T22:40:00Z",
+      "game_status": "Final",
+      "game_state": "final",
+      "matchup": "CWS @ MIA",
+      "teams": [
+        {
+          "team": "CWS",
+          "opponent_team": "MIA",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 643217,
+              "batter_name": "Andrew Benintendi",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 669720,
+              "batter_name": "Austin Hays",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 805367,
+              "batter_name": "Chase Meidroth",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 695657,
+              "batter_name": "Colson Montgomery",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 700337,
+              "batter_name": "Edgar Quero",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 682668,
+              "batter_name": "Luisangel Acu\u00f1a",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 678246,
+              "batter_name": "Miguel Vargas",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 808959,
+              "batter_name": "Munetaka Murakami",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 671976,
+              "batter_name": "Tristan Peters",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        },
+        {
+          "team": "MIA",
+          "opponent_team": "CWS",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 682663,
+              "batter_name": "Agust\u00edn Ram\u00edrez",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 688363,
+              "batter_name": "Graham Pauley",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 665052,
+              "batter_name": "Griffin Conine",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 681715,
+              "batter_name": "Heriberto Hern\u00e1ndez",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 805300,
+              "batter_name": "Jakob Marsee",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 689414,
+              "batter_name": "Liam Hicks",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 672640,
+              "batter_name": "Otto Lopez",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 683357,
+              "batter_name": "Owen Caissie",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 669364,
+              "batter_name": "Xavier Edwards",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game_pk": 822836,
+      "game_date": "2026-03-31",
+      "game_datetime": "2026-03-31T23:07:00Z",
+      "game_status": "Final",
+      "game_state": "final",
+      "matchup": "COL @ TOR",
+      "teams": [
+        {
+          "team": "COL",
+          "opponent_team": "TOR",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 686668,
+              "batter_name": "Brenton Doyle",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 678662,
+              "batter_name": "Ezequiel Tovar",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 696100,
+              "batter_name": "Hunter Goodman",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 664983,
+              "batter_name": "Jake McCarthy",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 691720,
+              "batter_name": "Kyle Karros",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 690022,
+              "batter_name": "Ryan Ritter",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 681198,
+              "batter_name": "TJ Rumfield",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 687859,
+              "batter_name": "Troy Johnston",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 650489,
+              "batter_name": "Willi Castro",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        },
+        {
+          "team": "TOR",
+          "opponent_team": "COL",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 665926,
+              "batter_name": "Andr\u00e9s Gim\u00e9nez",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 662139,
+              "batter_name": "Daulton Varsho",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 676391,
+              "batter_name": "Ernie Clement",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 543807,
+              "batter_name": "George Springer",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 660821,
+              "batter_name": "Jes\u00fas S\u00e1nchez",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 672960,
+              "batter_name": "Kazuma Okamoto",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 664770,
+              "batter_name": "Nathan Lukes",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 623168,
+              "batter_name": "Tyler Heineman",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 665489,
+              "batter_name": "Vladimir Guerrero Jr.",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game_pk": 824942,
+      "game_date": "2026-03-31",
+      "game_datetime": "2026-03-31T23:15:00Z",
+      "game_status": "Final",
+      "game_state": "final",
+      "matchup": "OAK @ ATL",
+      "teams": [
+        {
+          "team": "OAK",
+          "opponent_team": "ATL",
+          "lineup_source": "confirmed",
+          "hitters": []
+        },
+        {
+          "team": "ATL",
+          "opponent_team": "OAK",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 663586,
+              "batter_name": "Austin Riley",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 642086,
+              "batter_name": "Dominic Smith",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 686948,
+              "batter_name": "Drake Baldwin",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 621566,
+              "batter_name": "Matt Olson",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 643289,
+              "batter_name": "Mauricio Dub\u00f3n",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 671739,
+              "batter_name": "Michael Harris II",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 573262,
+              "batter_name": "Mike Yastrzemski",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 645277,
+              "batter_name": "Ozzie Albies",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 660670,
+              "batter_name": "Ronald Acu\u00f1a Jr.",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game_pk": 824699,
+      "game_date": "2026-03-31",
+      "game_datetime": "2026-03-31T23:40:00Z",
+      "game_status": "Final",
+      "game_state": "final",
+      "matchup": "LAA @ CHC",
+      "teams": [
+        {
+          "team": "LAA",
+          "opponent_team": "CHC",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 600869,
+              "batter_name": "Jeimer Candelario",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 666176,
+              "batter_name": "Jo Adell",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 624585,
+              "batter_name": "Jorge Soler",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 666139,
+              "batter_name": "Josh Lowe",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 681351,
+              "batter_name": "Logan O'Hoppe",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 545361,
+              "batter_name": "Mike Trout",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 694384,
+              "batter_name": "Nolan Schanuel",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 672724,
+              "batter_name": "Oswald Peraza",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 687263,
+              "batter_name": "Zach Neto",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        },
+        {
+          "team": "CHC",
+          "opponent_team": "LAA",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 608324,
+              "batter_name": "Alex Bregman",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 621020,
+              "batter_name": "Dansby Swanson",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 664023,
+              "batter_name": "Ian Happ",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 807713,
+              "batter_name": "Matt Shaw",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 683737,
+              "batter_name": "Michael Busch",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 665804,
+              "batter_name": "Miguel Amaya",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 694208,
+              "batter_name": "Mois\u00e9s Ballesteros",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 663538,
+              "batter_name": "Nico Hoerner",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 691718,
+              "batter_name": "Pete Crow-Armstrong",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game_pk": 823807,
+      "game_date": "2026-03-31",
+      "game_datetime": "2026-03-31T23:40:00Z",
+      "game_status": "Final",
+      "game_state": "final",
+      "matchup": "TB @ MIL",
+      "teams": [
+        {
+          "team": "TB",
+          "opponent_team": "MIL",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 810938,
+              "batter_name": "Ben Williamson",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 700246,
+              "batter_name": "Carson Williams",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 656775,
+              "batter_name": "Cedric Mullins",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 802415,
+              "batter_name": "Chandler Simpson",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 641584,
+              "batter_name": "Jake Fraley",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 666018,
+              "batter_name": "Jonathan Aranda",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 691406,
+              "batter_name": "Junior Caminero",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 663743,
+              "batter_name": "Nick Fortes",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 650490,
+              "batter_name": "Yandy D\u00edaz",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        },
+        {
+          "team": "MIL",
+          "opponent_team": "TB",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 663604,
+              "batter_name": "Brandon Lockridge",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 668930,
+              "batter_name": "Brice Turang",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 592885,
+              "batter_name": "Christian Yelich",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 596142,
+              "batter_name": "Gary S\u00e1nchez",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 641343,
+              "batter_name": "Jake Bauers",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 687401,
+              "batter_name": "Joey Ortiz",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 650859,
+              "batter_name": "Luis Rengifo",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 686217,
+              "batter_name": "Sal Frelick",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 661388,
+              "batter_name": "William Contreras",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game_pk": 823077,
+      "game_date": "2026-03-31",
+      "game_datetime": "2026-03-31T23:45:00Z",
+      "game_status": "Final",
+      "game_state": "final",
+      "matchup": "NYM @ STL",
+      "teams": [
+        {
+          "team": "NYM",
+          "opponent_team": "STL",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 666182,
+              "batter_name": "Bo Bichette",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 701807,
+              "batter_name": "Carson Benge",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 596019,
+              "batter_name": "Francisco Lindor",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 676724,
+              "batter_name": "Jared Young",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 665742,
+              "batter_name": "Juan Soto",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 673357,
+              "batter_name": "Luis Robert Jr.",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 620443,
+              "batter_name": "Luis Torrens",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 543760,
+              "batter_name": "Marcus Semien",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 668901,
+              "batter_name": "Mark Vientos",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        },
+        {
+          "team": "STL",
+          "opponent_team": "NYM",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 676475,
+              "batter_name": "Alec Burleson",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 671056,
+              "batter_name": "Iv\u00e1n Herrera",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 802139,
+              "batter_name": "JJ Wetherholt",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 691023,
+              "batter_name": "Jordan Walker",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 691026,
+              "batter_name": "Masyn Winn",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 701675,
+              "batter_name": "Nathan Church",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 669357,
+              "batter_name": "Nolan Gorman",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 602104,
+              "batter_name": "Ram\u00f3n Ur\u00edas",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 687363,
+              "batter_name": "Victor Scott II",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game_pk": 824212,
+      "game_date": "2026-03-31",
+      "game_datetime": "2026-04-01T00:10:00Z",
+      "game_status": "Final",
+      "game_state": "final",
+      "matchup": "BOS @ HOU",
+      "teams": [
+        {
+          "team": "BOS",
+          "opponent_team": "HOU",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 655316,
+              "batter_name": "Andruw Monasterio",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 678882,
+              "batter_name": "Ceddanne Rafaela",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 657136,
+              "batter_name": "Connor Wong",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 691785,
+              "batter_name": "Marcelo Mayer",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 807799,
+              "batter_name": "Masataka Yoshida",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 701350,
+              "batter_name": "Roman Anthony",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 596115,
+              "batter_name": "Trevor Story",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 575929,
+              "batter_name": "Willson Contreras",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 677800,
+              "batter_name": "Wilyer Abreu",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        },
+        {
+          "team": "HOU",
+          "opponent_team": "BOS",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 701358,
+              "batter_name": "Cam Smith",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 621043,
+              "batter_name": "Carlos Correa",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 572233,
+              "batter_name": "Christian Walker",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 676694,
+              "batter_name": "Jake Meyers",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 665161,
+              "batter_name": "Jeremy Pe\u00f1a",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 694388,
+              "batter_name": "Joey Loperfido",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 514888,
+              "batter_name": "Jose Altuve",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 673237,
+              "batter_name": "Yainer Diaz",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 670541,
+              "batter_name": "Yordan Alvarez",
+              "batting_order": null,
+              "selected_for_pick": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game_pk": 825107,
+      "game_date": "2026-03-31",
+      "game_datetime": "2026-04-01T01:40:00Z",
+      "game_status": "Final",
+      "game_state": "final",
+      "matchup": "DET @ AZ",
+      "teams": [
+        {
+          "team": "DET",
+          "opponent_team": "AZ",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 690993,
+              "batter_name": "Colt Keith",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 650402,
+              "batter_name": "Gleyber Torres",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 668670,
+              "batter_name": "Jake Rogers",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 681481,
+              "batter_name": "Kerry Carpenter",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 805808,
+              "batter_name": "Kevin McGonigle",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 678009,
+              "batter_name": "Parker Meadows",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 682985,
+              "batter_name": "Riley Greene",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 679529,
+              "batter_name": "Spencer Torkelson",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 656716,
+              "batter_name": "Zach McKinstry",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        },
+        {
+          "team": "AZ",
+          "opponent_team": "DET",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 677950,
+              "batter_name": "Alek Thomas",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 467793,
+              "batter_name": "Carlos Santana",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 682998,
+              "batter_name": "Corbin Carroll",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 672515,
+              "batter_name": "Gabriel Moreno",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 672695,
+              "batter_name": "Geraldo Perdomo",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 543510,
+              "batter_name": "James McCann",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 691783,
+              "batter_name": "Jordan Lawlar",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 606466,
+              "batter_name": "Ketel Marte",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game_pk": 823322,
+      "game_date": "2026-03-31",
+      "game_datetime": "2026-04-01T01:40:00Z",
+      "game_status": "Final",
+      "game_state": "final",
+      "matchup": "SF @ SD",
+      "teams": [
+        {
+          "team": "SF",
+          "opponent_team": "SD",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 669477,
+              "batter_name": "Casey Schmitt",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 664056,
+              "batter_name": "Harrison Bader",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 671218,
+              "batter_name": "Heliot Ramos",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 808982,
+              "batter_name": "Jung Hoo Lee",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 650333,
+              "batter_name": "Luis Arraez",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 656305,
+              "batter_name": "Matt Chapman",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 672275,
+              "batter_name": "Patrick Bailey",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 646240,
+              "batter_name": "Rafael Devers",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 642715,
+              "batter_name": "Willy Adames",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        },
+        {
+          "team": "SD",
+          "opponent_team": "SF",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 665487,
+              "batter_name": "Fernando Tatis Jr.",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 666023,
+              "batter_name": "Freddy Fermin",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 657757,
+              "batter_name": "Gavin Sheets",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 701538,
+              "batter_name": "Jackson Merrill",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 630105,
+              "batter_name": "Jake Cronenworth",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 592518,
+              "batter_name": "Manny Machado",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 609280,
+              "batter_name": "Miguel Andujar",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 592206,
+              "batter_name": "Nick Castellanos",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 593428,
+              "batter_name": "Xander Bogaerts",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game_pk": 823158,
+      "game_date": "2026-03-31",
+      "game_datetime": "2026-04-01T01:40:00Z",
+      "game_status": "Final",
+      "game_state": "final",
+      "matchup": "NYY @ SEA",
+      "teams": [
+        {
+          "team": "NYY",
+          "opponent_team": "SEA",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 592450,
+              "batter_name": "Aaron Judge",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 700250,
+              "batter_name": "Ben Rice",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 641355,
+              "batter_name": "Cody Bellinger",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 519317,
+              "batter_name": "Giancarlo Stanton",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 665862,
+              "batter_name": "Jazz Chisholm Jr.",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 676609,
+              "batter_name": "Jos\u00e9 Caballero",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 641857,
+              "batter_name": "Ryan McMahon",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 663757,
+              "batter_name": "Trent Grisham",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        },
+        {
+          "team": "SEA",
+          "opponent_team": "NYY",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 680977,
+              "batter_name": "Brendan Donovan",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 663728,
+              "batter_name": "Cal Raleigh",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 702284,
+              "batter_name": "Cole Young",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 647304,
+              "batter_name": "Josh Naylor",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 677594,
+              "batter_name": "Julio Rodr\u00edguez",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 660844,
+              "batter_name": "Leo Rivas",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 668227,
+              "batter_name": "Randy Arozarena",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 608701,
+              "batter_name": "Rob Refsnyder",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 645302,
+              "batter_name": "Victor Robles",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game_pk": 823969,
+      "game_date": "2026-03-31",
+      "game_datetime": "2026-04-01T02:10:00Z",
+      "game_status": "In Progress",
+      "game_state": "live",
+      "matchup": "CLE @ LAD",
+      "teams": [
+        {
+          "team": "CLE",
+          "opponent_team": "LAD",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 682657,
+              "batter_name": "Angel Mart\u00ednez",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 666310,
+              "batter_name": "Bo Naylor",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 677587,
+              "batter_name": "Brayan Rocchio",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 800050,
+              "batter_name": "Chase DeLauter",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 672356,
+              "batter_name": "Gabriel Arias",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 608070,
+              "batter_name": "Jos\u00e9 Ram\u00edrez",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 700932,
+              "batter_name": "Kyle Manzardo",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 656555,
+              "batter_name": "Rhys Hoskins",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 680757,
+              "batter_name": "Steven Kwan",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        },
+        {
+          "team": "LAD",
+          "opponent_team": "CLE",
+          "lineup_source": "confirmed",
+          "hitters": [
+            {
+              "batter_id": 690976,
+              "batter_name": "Alex Freeland",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 681624,
+              "batter_name": "Andy Pages",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 518692,
+              "batter_name": "Freddie Freeman",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 663656,
+              "batter_name": "Kyle Tucker",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 571970,
+              "batter_name": "Max Muncy",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 605141,
+              "batter_name": "Mookie Betts",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 660271,
+              "batter_name": "Shohei Ohtani",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 606192,
+              "batter_name": "Teoscar Hern\u00e1ndez",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 669257,
+              "batter_name": "Will Smith",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        }
+      ]
     }
   ],
   "season_hr_leaders_2026": [
@@ -2445,42 +4402,5 @@
       "games_2026": 4
     }
   ],
-  "recent_successes": [
-    {
-      "pick_id": "2026-03-30:823809:650490:690986",
-      "game_pk": 823809,
-      "game_date": "2026-03-30",
-      "rank": 10,
-      "batter_name": "Yandy D\u00edaz",
-      "team": "TB",
-      "opponent_team": "MIL",
-      "pitcher_name": "Kyle Harrison",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.177362,
-      "predicted_hr_score": 96.6,
-      "actual_hit_hr": 1,
-      "top_reason_1": "Peak exit velocity over the last 10 days is 112.8 mph, which points to top-end HR juice.",
-      "top_reason_2": "The hitter has the platoon advantage in this matchup.",
-      "top_reason_3": "Hard-hit rate over the last 30 days is 66.7%, showing consistent quality contact.",
-      "result_label": "HR"
-    },
-    {
-      "pick_id": "2026-03-30:824214:670541:624133",
-      "game_pk": 824214,
-      "game_date": "2026-03-30",
-      "rank": 14,
-      "batter_name": "Yordan Alvarez",
-      "team": "HOU",
-      "opponent_team": "BOS",
-      "pitcher_name": "Ranger Suarez",
-      "confidence_tier": "strong",
-      "predicted_hr_probability": 0.166443,
-      "predicted_hr_score": 95.0,
-      "actual_hit_hr": 1,
-      "top_reason_1": "Peak exit velocity over the last 10 days is 113.0 mph, which points to top-end HR juice.",
-      "top_reason_2": "Barrel rate over the last 30 days is 7.1%, which the model treats as sustained power quality.",
-      "top_reason_3": "HR rate over the last 30 days is 7.1%, which keeps the recent power trend elevated.",
-      "result_label": "HR"
-    }
-  ]
+  "recent_successes": []
 }
