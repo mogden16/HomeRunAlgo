@@ -164,11 +164,12 @@ The workflow lives at `.github/workflows/manual-live-refresh.yml` and supports:
 
 ## Local refresh and publish schedule
 
-The workflow is split into an early settlement pass, a critical morning prepare run, and same-day publish reruns:
+The GitHub Actions workflow now runs every 15 minutes and resolves the right mode automatically:
 
-- `settle` at `02:00` ET: refresh historical data through yesterday, settle prior published picks based on the latest Statcast results, rebuild the dashboard, and push updates
-- `prepare` at `04:00` ET: refresh historical data through yesterday again, retrain the live model bundle, settle any remaining late results, generate a private draft slate for today, rebuild the dashboard, and push updates without releasing today's picks
-- `publish` at `11:00` ET, `13:00` ET, `15:00` ET, and `18:00` ET: fetch today's MLB slate, generate lineup-aware picks from the saved bundle, rebuild the dashboard, and push updates
+- Before `06:00` ET: only settle a prior active slate if late games are still unresolved; otherwise the workflow stays idle
+- `prepare` after `06:00` ET: runs once for the new day, refreshes historical data through yesterday, retrains the live model bundle, settles any remaining late results, and saves both a private draft slate and the fixed morning movement baseline
+- Mixed auto refresh every 15 minutes until the last scheduled first pitch: refresh today's data, update live results for started games, and keep reranking only the games that have not started yet
+- `settle` every 15 minutes after the last scheduled first pitch: keep updating results until the full slate is final, then archive the completed day into history
 
 Use the PowerShell wrapper directly:
 
@@ -237,4 +238,4 @@ To register two local scheduled tasks on Windows:
 powershell -ExecutionPolicy Bypass -File .\scripts\register_dashboard_tasks.ps1
 ```
 
-The default run times are a `02:00` local settle pass, a `04:00` local prepare run, plus publish reruns at `11:00`, `13:00`, `15:00`, and `18:00` local time. Adjust them with `-SettleRunTime`, `-PrepareRunTime`, and `-PublishRunTimes`.
+The legacy Windows task helper still supports explicit local run times, but the GitHub-hosted automation now uses the 15-minute auto scheduler described above rather than fixed `02:00/04:00/11:00/13:00/15:00/18:00` slots.

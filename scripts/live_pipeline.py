@@ -188,11 +188,14 @@ def build_slate_state(
     reference = reference_time or datetime.now(timezone.utc)
     games: list[dict[str, Any]] = []
     first_game_datetime: datetime | None = None
+    last_game_datetime: datetime | None = None
     for game in schedule_games:
         game_state = classify_game_state(game, reference)
         game_datetime = parse_game_datetime(game.get("game_datetime"))
         if game_datetime is not None and (first_game_datetime is None or game_datetime < first_game_datetime):
             first_game_datetime = game_datetime
+        if game_datetime is not None and (last_game_datetime is None or game_datetime > last_game_datetime):
+            last_game_datetime = game_datetime
         games.append(
             {
                 **dict(game),
@@ -204,6 +207,7 @@ def build_slate_state(
     return {
         "reference_time": reference,
         "first_game_datetime": first_game_datetime.isoformat() if first_game_datetime is not None else None,
+        "last_game_datetime": last_game_datetime.isoformat() if last_game_datetime is not None else None,
         "games": games,
         "games_by_pk": {
             int(game["game_pk"]): game

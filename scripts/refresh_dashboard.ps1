@@ -21,6 +21,7 @@ $env:PYTHONUTF8 = "1"
 $trackedFiles = @(
     "data/live/current_picks.json",
     "data/live/pick_history.json",
+    "data/live/morning_baseline_picks.json",
     "cloudflare-app/data/dashboard.json"
 )
 $workflowFailed = $false

@@ -13,6 +13,7 @@ if str(ROOT_DIR) not in sys.path:
 from config import (
     LIVE_CURRENT_PICKS_PATH,
     LIVE_DRAFT_PICKS_PATH,
+    LIVE_MORNING_BASELINE_PICKS_PATH,
     LIVE_MODEL_BUNDLE_PATH,
     LIVE_MODEL_DATA_PATH,
     LIVE_MODEL_METADATA_PATH,
@@ -32,6 +33,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--current-picks-path", default=str(LIVE_CURRENT_PICKS_PATH), help="Path to the latest published picks.")
     parser.add_argument("--history-path", default=str(LIVE_PICK_HISTORY_PATH), help="Path to the forward-only pick ledger.")
     parser.add_argument("--draft-output-path", default=str(LIVE_DRAFT_PICKS_PATH), help="Path to the private draft slate.")
+    parser.add_argument("--morning-baseline-path", default=str(LIVE_MORNING_BASELINE_PICKS_PATH), help="Path to the fixed post-6AM baseline slate used for rank-movement comparisons.")
     parser.add_argument("--dashboard-output-dir", default=str(DEFAULT_OUTPUT_DIR), help="Directory where dashboard JSON will be written.")
     parser.add_argument("--start-date", default=LIVE_MODEL_START_DATE, help="Inclusive historical start date for settle and prepare.")
     parser.add_argument("--end-date", default=None, help="Inclusive historical end date for settle. Defaults to yesterday in ET.")
@@ -66,6 +68,7 @@ def main() -> int:
         current_picks_path=Path(args.current_picks_path),
         history_path=Path(args.history_path),
         draft_output_path=Path(args.draft_output_path),
+        morning_baseline_path=Path(args.morning_baseline_path),
         dashboard_output_dir=Path(args.dashboard_output_dir),
         start_date=args.start_date,
         end_date=args.end_date,

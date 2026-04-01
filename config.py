@@ -16,6 +16,7 @@ LIVE_MODEL_BUNDLE_PATH = LIVE_DATA_DIR / "model_bundle.pkl"
 LIVE_MODEL_METADATA_PATH = LIVE_DATA_DIR / "model_metadata.json"
 LIVE_MODEL_DATA_PATH = LIVE_DATA_DIR / "model_training_dataset.csv"
 LIVE_DRAFT_PICKS_PATH = LIVE_DATA_DIR / "draft_picks.json"
+LIVE_MORNING_BASELINE_PICKS_PATH = LIVE_DATA_DIR / "morning_baseline_picks.json"
 LIVE_MODEL_START_DATE = "2024-03-28"
 
 SEASON_START = "2024-03-28"

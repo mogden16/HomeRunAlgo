@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-01T19:50:47.922873+00:00",
+  "generated_at": "2026-04-01T20:18:53.206414+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "logistic",
   "feature_profile": "live_shrunk",
@@ -21,16 +21,16 @@
     "timezone": "ET",
     "runs": [
       {
-        "time_et": "Early morning ET",
+        "time_et": "After 6:00 AM ET",
         "type": "prepare",
         "label": "Prepare",
-        "description": "Refreshes data, retrains the model once for the day, settles any remaining prior results, and saves a private draft slate."
+        "description": "Runs once after 6:00 AM ET, refreshes data, retrains the model for the day, settles any remaining prior results, and saves the fixed morning baseline slate."
       },
       {
-        "time_et": "Every 15 minutes pregame",
-        "type": "publish",
-        "label": "Publish",
-        "description": "Re-runs before games lock, using projected lineups early and upgrading to confirmed lineups once MLB posts them."
+        "time_et": "Every 15 minutes until last first pitch",
+        "type": "mixed",
+        "label": "Mixed refresh",
+        "description": "Updates live results for started games while continuing to rerank and republish only the games that have not started yet."
       },
       {
         "time_et": "Every 15 minutes in-game",
@@ -5562,7 +5562,7 @@
       "game_pk": 823321,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T20:10:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "matchup": "SF @ SD",
       "teams": [
@@ -5694,7 +5694,7 @@
       "game_pk": 823157,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T20:10:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "matchup": "NYY @ SEA",
       "teams": [

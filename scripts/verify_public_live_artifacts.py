@@ -217,9 +217,9 @@ def print_operator_checklist() -> None:
     print("- Cloudflare Pages build command is blank.")
     print("- Cloudflare Pages output directory is cloudflare-app.")
     print("- Cloudflare Pages production branch is master.")
-    print("- Prepare should run once in the early morning using scripts\\refresh_dashboard.ps1 -Mode prepare.")
-    print("- Publish should rerun every 15 minutes before games lock using scripts\\refresh_dashboard.ps1 -Mode publish.")
-    print("- Settle should rerun every 15 minutes from first pitch until the slate is final using scripts\\refresh_dashboard.ps1 -Mode settle.")
+    print("- Prepare should run once after 6:00 AM ET using scripts\\refresh_dashboard.ps1 -Mode prepare.")
+    print("- Scheduled auto refreshes should mix result updates and pregame reranks every 15 minutes until the last scheduled first pitch.")
+    print("- Settle should rerun every 15 minutes after the last scheduled first pitch until the slate is final using scripts\\refresh_dashboard.ps1 -Mode settle.")
     print("- This machine can git push to origin/master non-interactively.")
 
 

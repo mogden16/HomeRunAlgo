@@ -25,7 +25,7 @@ from train_model import extract_logistic_coefficient_map
 DEFAULT_TRACKING_START_DATE = "2026-03-25"
 DEFAULT_CURRENT_PICKS_PATH = Path("data/live/current_picks.json")
 DEFAULT_HISTORY_PATH = Path("data/live/pick_history.json")
-DEFAULT_DRAFT_PICKS_PATH = Path("data/live/draft_picks.json")
+DEFAULT_DRAFT_PICKS_PATH = Path("data/live/morning_baseline_picks.json")
 DEFAULT_OUTPUT_DIR = Path("cloudflare-app/data")
 DEFAULT_MODEL_BUNDLE_PATH = Path("data/live/model_bundle.pkl")
 DEFAULT_MODEL_DATA_PATH = LIVE_MODEL_DATA_PATH
@@ -37,16 +37,16 @@ DEFAULT_REFRESH_SCHEDULE = {
     "timezone": "ET",
     "runs": [
         {
-            "time_et": "Early morning ET",
+            "time_et": "After 6:00 AM ET",
             "type": "prepare",
             "label": "Prepare",
-            "description": "Refreshes data, retrains the model once for the day, settles any remaining prior results, and saves a private draft slate.",
+            "description": "Runs once after 6:00 AM ET, refreshes data, retrains the model for the day, settles any remaining prior results, and saves the fixed morning baseline slate.",
         },
         {
-            "time_et": "Every 15 minutes pregame",
-            "type": "publish",
-            "label": "Publish",
-            "description": "Re-runs before games lock, using projected lineups early and upgrading to confirmed lineups once MLB posts them.",
+            "time_et": "Every 15 minutes until last first pitch",
+            "type": "mixed",
+            "label": "Mixed refresh",
+            "description": "Updates live results for started games while continuing to rerank and republish only the games that have not started yet.",
         },
         {
             "time_et": "Every 15 minutes in-game",
@@ -311,7 +311,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--current-picks-path", default=str(DEFAULT_CURRENT_PICKS_PATH), help="Path to the latest published picks JSON.")
     parser.add_argument("--history-path", default=str(DEFAULT_HISTORY_PATH), help="Path to the public pick ledger JSON.")
-    parser.add_argument("--draft-picks-path", default=str(DEFAULT_DRAFT_PICKS_PATH), help="Path to the private morning draft JSON used for rank movement context.")
+    parser.add_argument("--draft-picks-path", default=str(DEFAULT_DRAFT_PICKS_PATH), help="Path to the fixed morning baseline JSON used for rank movement context.")
     parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR), help="Directory where dashboard JSON will be written.")
     parser.add_argument("--tracking-start-date", default=DEFAULT_TRACKING_START_DATE, help="Only picks on or after this date are published.")
     parser.add_argument("--latest-count", type=int, default=12, help="Number of latest picks shown on the landing page.")
