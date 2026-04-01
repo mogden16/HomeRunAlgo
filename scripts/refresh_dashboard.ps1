@@ -25,27 +25,15 @@ $trackedFiles = @(
 )
 $workflowFailed = $false
 
-if ($Mode -eq "settle") {
-    & $resolvedPython scripts\refresh_live_results.py --dataset-path data\live\model_training_dataset.csv
-    & $resolvedPython scripts\settle_live_results.py
+if ($Mode -eq "publish") {
+    & $resolvedPython scripts\run_refresh_mode.py --mode $Mode --refresh-results-before-publish
+} else {
+    & $resolvedPython scripts\run_refresh_mode.py --mode $Mode
 }
-elseif ($Mode -eq "prepare") {
-    & $resolvedPython scripts\prepare_live_board.py
-    if ($LASTEXITCODE -ne 0) {
-        $workflowFailed = $true
-        Write-Warning "prepare_live_board.py failed, but tracked public artifacts may have been refreshed. Continuing to rebuild, verify, and push them."
-    }
+if ($LASTEXITCODE -ne 0) {
+    $workflowFailed = $true
+    Write-Warning "run_refresh_mode.py reported a non-zero exit code for mode=$Mode."
 }
-else {
-    & $resolvedPython scripts\publish_live_picks.py
-    if ($LASTEXITCODE -ne 0) {
-        $workflowFailed = $true
-        Write-Warning "publish_live_picks.py failed, but tracked public artifacts may have been refreshed. Continuing to rebuild, verify, and push them."
-    }
-}
-
-& $resolvedPython scripts\build_dashboard_artifacts.py --output-dir cloudflare-app\data
-& $resolvedPython scripts\verify_public_live_artifacts.py
 
 $status = git status --porcelain -- $trackedFiles
 if (-not $status) {

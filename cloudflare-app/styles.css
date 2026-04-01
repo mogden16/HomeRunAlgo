@@ -613,9 +613,89 @@ td {
   display: block;
 }
 
+.name-block span {
+  display: block;
+}
+
 .name-block span,
 .reason-list,
 .empty-state {
+  color: var(--muted);
+}
+
+.lineup-panels {
+  display: grid;
+  gap: 14px;
+}
+
+.lineup-card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.lineup-card h3 {
+  margin: 0;
+}
+
+.lineup-card-head {
+  margin-bottom: 14px;
+}
+
+.lineup-team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.lineup-team {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 12px 14px;
+  background: rgba(247, 239, 224, 0.62);
+}
+
+.lineup-team-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.lineup-pill {
+  color: var(--ink);
+  background: rgba(20, 32, 51, 0.08);
+  border-color: rgba(20, 32, 51, 0.12);
+}
+
+.lineup-list {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.lineup-list li {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 7px 0;
+  border-top: 1px solid rgba(20, 32, 51, 0.08);
+}
+
+.lineup-list li:first-child {
+  border-top: 0;
+}
+
+.lineup-list li.is-selected {
+  font-weight: 700;
+  color: var(--accent-deep);
+}
+
+.lineup-slot {
+  font-family: "IBM Plex Mono", monospace;
   color: var(--muted);
 }
 
@@ -672,5 +752,9 @@ td {
   input,
   select {
     width: 100%;
+  }
+
+  .lineup-team-grid {
+    grid-template-columns: 1fr;
   }
 }

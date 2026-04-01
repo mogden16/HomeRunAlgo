@@ -76,6 +76,22 @@ OPEN_METEO_FORECAST_MAX_ATTEMPTS = 3
 OPEN_METEO_FORECAST_RETRY_BACKOFF_SECONDS = 2
 LIVE_PUBLISH_FRESHNESS_TOLERANCE_DAYS = 7
 OFFSEASON_LINEUP_FALLBACK_DAYS = 210
+TERMINAL_GAME_STATUS_TOKENS = (
+    "final",
+    "game over",
+    "completed early",
+    "cancelled",
+)
+LIVE_GAME_STATUS_TOKENS = (
+    "in progress",
+    "manager challenge",
+    "review",
+    "warmup",
+    "mid",
+    "delayed start",
+    "delayed",
+    "suspended",
+)
 TEAM_CODE_ALIASES = {
     "ARI": "AZ",
     "CHW": "CWS",
@@ -137,6 +153,66 @@ def default_training_end_date() -> str:
 
 def default_publish_date() -> str:
     return eastern_today().strftime("%Y-%m-%d")
+
+
+def parse_game_datetime(value: object) -> datetime | None:
+    if value in (None, ""):
+        return None
+    try:
+        timestamp = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if timestamp.tzinfo is None:
+        return timestamp.replace(tzinfo=timezone.utc)
+    return timestamp.astimezone(timezone.utc)
+
+
+def classify_game_state(game_like: dict[str, Any], reference_time: datetime | None = None) -> str:
+    status_token = str(game_like.get("status") or "").strip().lower()
+    if any(token in status_token for token in TERMINAL_GAME_STATUS_TOKENS):
+        return "final"
+    if any(token in status_token for token in LIVE_GAME_STATUS_TOKENS):
+        return "live"
+    reference = reference_time or datetime.now(timezone.utc)
+    game_datetime = parse_game_datetime(game_like.get("game_datetime"))
+    if game_datetime is not None and game_datetime <= reference:
+        return "live"
+    return "pregame"
+
+
+def build_slate_state(
+    schedule_games: list[dict[str, Any]],
+    *,
+    reference_time: datetime | None = None,
+) -> dict[str, Any]:
+    reference = reference_time or datetime.now(timezone.utc)
+    games: list[dict[str, Any]] = []
+    first_game_datetime: datetime | None = None
+    for game in schedule_games:
+        game_state = classify_game_state(game, reference)
+        game_datetime = parse_game_datetime(game.get("game_datetime"))
+        if game_datetime is not None and (first_game_datetime is None or game_datetime < first_game_datetime):
+            first_game_datetime = game_datetime
+        games.append(
+            {
+                **dict(game),
+                "game_state": game_state,
+                "is_locked": game_state != "pregame",
+                "is_final": game_state == "final",
+            }
+        )
+    return {
+        "reference_time": reference,
+        "first_game_datetime": first_game_datetime.isoformat() if first_game_datetime is not None else None,
+        "games": games,
+        "games_by_pk": {
+            int(game["game_pk"]): game
+            for game in games
+            if game.get("game_pk") is not None
+        },
+        "all_final": bool(games) and all(bool(game["is_final"]) for game in games),
+        "has_live_games": any(bool(game["game_state"] == "live") for game in games),
+    }
 
 
 def normalize_team_code(team_code: object) -> str:
@@ -228,6 +304,8 @@ def _build_pick_record_base(row: dict[str, Any]) -> dict[str, Any]:
         "game_pk": game_pk,
         "game_date": game_date,
         "game_datetime": str(row.get("game_datetime") or ""),
+        "game_status": str(row.get("game_status") or row.get("status") or ""),
+        "game_state": str(row.get("game_state") or classify_game_state(row)),
         "rank": _coerce_int(row.get("rank")) or 999,
         "batter_id": batter_id,
         "batter_name": batter_name,
@@ -241,6 +319,8 @@ def _build_pick_record_base(row: dict[str, Any]) -> dict[str, Any]:
         "top_reason_1": str(row.get("top_reason_1") or ""),
         "top_reason_2": str(row.get("top_reason_2") or ""),
         "top_reason_3": str(row.get("top_reason_3") or ""),
+        "lineup_source": str(row.get("lineup_source") or "projected"),
+        "batting_order": _coerce_int(row.get("batting_order")),
     }
 
 
@@ -869,6 +949,7 @@ def fetch_schedule_games(target_date: str) -> list[dict[str, Any]]:
                 {
                     "batter_id": int(player_id),
                     "batter_name": str(player.get("fullName") or ""),
+                    "batting_order": _coerce_int(player.get("battingOrder")) // 100 if _coerce_int(player.get("battingOrder")) else None,
                 }
             )
         return rows
@@ -886,6 +967,8 @@ def fetch_schedule_games(target_date: str) -> list[dict[str, Any]]:
             away = game.get("teams", {}).get("away", {})
             home = game.get("teams", {}).get("home", {})
             lineups_payload = game.get("lineups", {}) if isinstance(game.get("lineups"), dict) else {}
+            home_lineup = _projected_lineup_rows(lineups_payload, "home")
+            away_lineup = _projected_lineup_rows(lineups_payload, "away")
             games.append(
                 {
                     "game_pk": int(game["gamePk"]),
@@ -902,8 +985,10 @@ def fetch_schedule_games(target_date: str) -> list[dict[str, Any]]:
                     "away_pitcher_id": int(away["probablePitcher"]["id"]) if away.get("probablePitcher", {}).get("id") else None,
                     "home_pitcher_name": str(home.get("probablePitcher", {}).get("fullName") or ""),
                     "away_pitcher_name": str(away.get("probablePitcher", {}).get("fullName") or ""),
-                    "home_projected_lineup": _projected_lineup_rows(lineups_payload, "home"),
-                    "away_projected_lineup": _projected_lineup_rows(lineups_payload, "away"),
+                    "home_projected_lineup": home_lineup,
+                    "away_projected_lineup": away_lineup,
+                    "home_lineup_source": "confirmed" if home_lineup else "projected",
+                    "away_lineup_source": "confirmed" if away_lineup else "projected",
                 }
             )
     return games
@@ -1176,6 +1261,13 @@ def select_probable_lineup_hitters(
         excluded_rows=excluded_rows,
     )
     selected_name_source = projected_lineup if projected_lineup is not None else active_roster
+    lineup_order_lookup: dict[int, int | None] = {}
+    if projected_lineup is not None and not projected_lineup.empty and "batting_order" in projected_lineup.columns:
+        lineup_order_lookup = {
+            int(row.batter_id): _coerce_int(row.batting_order)
+            for row in projected_lineup[["batter_id", "batting_order"]].drop_duplicates().itertuples(index=False)
+            if pd.notna(row.batter_id)
+        }
     if selected_name_source is not None and selected:
         roster_name_lookup = {
             int(row.batter_id): str(row.batter_name)
@@ -1186,6 +1278,11 @@ def select_probable_lineup_hitters(
             batter_id = int(row["batter_id"])
             if batter_id in roster_name_lookup and roster_name_lookup[batter_id]:
                 row["batter_name"] = roster_name_lookup[batter_id]
+    for index, row in enumerate(selected, start=1):
+        batter_id = int(row["batter_id"])
+        row["batting_order"] = lineup_order_lookup.get(batter_id)
+        row["lineup_source"] = "confirmed" if projected_lineup is not None and not projected_lineup.empty else "projected"
+        row["projected_lineup_rank"] = index
     return selected[:hitters_per_team]
 
 
@@ -1376,6 +1473,7 @@ def build_live_candidate_frame(
     active_roster_map: dict[str, pd.DataFrame] | None = None,
 ) -> pd.DataFrame:
     print_weather_join_contract("live publish forecast merge")
+    slate_state = build_slate_state(schedule_games)
     forecast_weather = fetch_forecast_weather(
         [game["home_team"] for game in schedule_games],
         target_date=target_date,
@@ -1389,6 +1487,7 @@ def build_live_candidate_frame(
     )
     rows: list[dict[str, Any]] = []
     for game in schedule_games:
+        slate_game = slate_state["games_by_pk"].get(int(game["game_pk"])) if game.get("game_pk") is not None else dict(game)
         matchup_specs = [
             {
                 "batting_team": game["away_team"],
@@ -1396,9 +1495,10 @@ def build_live_candidate_frame(
                 "is_home": 0,
                 "pitcher_id": game["home_pitcher_id"],
                 "pitcher_name": game["home_pitcher_name"],
+                "lineup_source": str(game.get("away_lineup_source") or "projected"),
                 "projected_lineup": pd.DataFrame(
                     game.get("away_projected_lineup") or [],
-                    columns=["batter_id", "batter_name"],
+                    columns=["batter_id", "batter_name", "batting_order"],
                 )
                 if game.get("away_projected_lineup")
                 else None,
@@ -1409,9 +1509,10 @@ def build_live_candidate_frame(
                 "is_home": 1,
                 "pitcher_id": game["away_pitcher_id"],
                 "pitcher_name": game["away_pitcher_name"],
+                "lineup_source": str(game.get("home_lineup_source") or "projected"),
                 "projected_lineup": pd.DataFrame(
                     game.get("home_projected_lineup") or [],
-                    columns=["batter_id", "batter_name"],
+                    columns=["batter_id", "batter_name", "batting_order"],
                 )
                 if game.get("home_projected_lineup")
                 else None,
@@ -1433,6 +1534,8 @@ def build_live_candidate_frame(
                         "game_pk": int(game["game_pk"]),
                         "game_date": target_date,
                         "game_datetime": str(game.get("game_datetime") or ""),
+                        "game_status": str(game.get("status") or ""),
+                        "game_state": str(slate_game.get("game_state") or classify_game_state(game)),
                         "batter_id": int(hitter["batter_id"]),
                         "player_id": int(hitter["batter_id"]),
                         "batter_name": str(hitter["batter_name"]),
@@ -1444,6 +1547,8 @@ def build_live_candidate_frame(
                         "team": spec["batting_team"],
                         "opponent": spec["opponent_team"],
                         "is_home": int(spec["is_home"]),
+                        "lineup_source": str(hitter.get("lineup_source") or spec["lineup_source"]),
+                        "batting_order": _coerce_int(hitter.get("batting_order")),
                         "bat_side": hitter.get("bat_side"),
                         "pitcher_hand": pitcher_hand,
                         "pitch_hand_primary": pitcher_hand,
@@ -1487,6 +1592,89 @@ def build_live_candidate_frame(
         fail_on_all_null=False,
     )
     return candidate_df
+
+
+def build_lineup_panels(
+    dataset_df: pd.DataFrame,
+    schedule_games: list[dict[str, Any]],
+    *,
+    target_date: str,
+    hitters_per_team: int = 9,
+    current_rows: list[dict[str, Any]] | None = None,
+) -> list[dict[str, Any]]:
+    if not schedule_games:
+        return []
+    slate_state = build_slate_state(schedule_games)
+    active_roster_map = build_active_roster_map(schedule_games)
+    current_rows = list(current_rows or [])
+    panels: list[dict[str, Any]] = []
+    for game in slate_state["games"]:
+        team_panels: list[dict[str, Any]] = []
+        for team_key, opponent_key, lineup_key, source_key in [
+            ("away_team", "home_team", "away_projected_lineup", "away_lineup_source"),
+            ("home_team", "away_team", "home_projected_lineup", "home_lineup_source"),
+        ]:
+            schedule_lineup_rows = game.get(lineup_key) or []
+            schedule_lineup = (
+                pd.DataFrame(schedule_lineup_rows, columns=["batter_id", "batter_name", "batting_order"])
+                if schedule_lineup_rows
+                else None
+            )
+            team_code = str(game.get(team_key) or "")
+            hitters = select_probable_lineup_hitters(
+                dataset_df,
+                team_code=team_code,
+                target_date=target_date,
+                hitters_per_team=hitters_per_team,
+                projected_lineup=schedule_lineup,
+                active_roster=active_roster_map.get(team_code),
+            )
+            current_team_rows = [
+                row
+                for row in current_rows
+                if _coerce_int(row.get("game_pk")) == _coerce_int(game.get("game_pk")) and str(row.get("team") or "") == team_code
+            ]
+            selected_batter_ids = {
+                _coerce_int(row.get("batter_id"))
+                for row in current_team_rows
+                if _coerce_int(row.get("batter_id")) is not None
+            }
+            hitters_payload = sorted(
+                [
+                    {
+                        "batter_id": _coerce_int(row.get("batter_id")),
+                        "batter_name": str(row.get("batter_name") or ""),
+                        "batting_order": _coerce_int(row.get("batting_order")),
+                        "selected_for_pick": _coerce_int(row.get("batter_id")) in selected_batter_ids,
+                    }
+                    for row in hitters
+                ],
+                key=lambda row: (
+                    row["batting_order"] is None,
+                    row["batting_order"] or 999,
+                    str(row["batter_name"]),
+                ),
+            )
+            team_panels.append(
+                {
+                    "team": team_code,
+                    "opponent_team": str(game.get(opponent_key) or ""),
+                    "lineup_source": str(game.get(source_key) or "projected"),
+                    "hitters": hitters_payload,
+                }
+            )
+        panels.append(
+            {
+                "game_pk": _coerce_int(game.get("game_pk")),
+                "game_date": str(game.get("game_date") or target_date),
+                "game_datetime": str(game.get("game_datetime") or ""),
+                "game_status": str(game.get("status") or ""),
+                "game_state": str(game.get("game_state") or "pregame"),
+                "matchup": f"{str(game.get('away_team') or '')} @ {str(game.get('home_team') or '')}",
+                "teams": team_panels,
+            }
+        )
+    return panels
 
 
 LIVE_CONTEXT_FEATURES = {"temperature_f", "wind_speed_mph", "humidity_pct", "platoon_advantage"}
@@ -1822,6 +2010,8 @@ def score_live_candidates(
                 "game_pk": int(row["game_pk"]),
                 "game_date": game_date,
                 "game_datetime": str(row.get("game_datetime") or ""),
+                "game_status": str(row.get("game_status") or ""),
+                "game_state": str(row.get("game_state") or "pregame"),
                 "rank": int(row["rank"]),
                 "batter_id": int(row["batter_id"]),
                 "batter_name": str(row["batter_name"]),
@@ -1835,6 +2025,8 @@ def score_live_candidates(
                 "top_reason_1": str(row["top_reason_1"]),
                 "top_reason_2": str(row["top_reason_2"]),
                 "top_reason_3": str(row["top_reason_3"]),
+                "lineup_source": str(row.get("lineup_source") or "projected"),
+                "batting_order": _coerce_int(row.get("batting_order")),
                 "result": "Pending",
             }
         )
@@ -1846,7 +2038,11 @@ def settle_pick_records(
     dataset_df: pd.DataFrame,
     *,
     resolved_through_date: str,
+    schedule_games: list[dict[str, Any]] | None = None,
+    reference_time: datetime | None = None,
 ) -> list[dict[str, Any]]:
+    slate_state = build_slate_state(schedule_games or [], reference_time=reference_time)
+    games_by_pk = slate_state["games_by_pk"]
     resolved_lookup = {
         (normalize_game_date(row.game_date), int(row.batter_id)): int(row.hit_hr)
         for row in dataset_df[["game_date", "batter_id", "hit_hr"]].drop_duplicates().itertuples(index=False)
@@ -1858,19 +2054,43 @@ def settle_pick_records(
         batter_id = row.get("batter_id")
         current_result = str(row.get("result") or row.get("result_label") or "Pending")
         if current_result in {"HR", "No HR"}:
-            settled.append(row)
+            updated = dict(row)
+            game_pk = _coerce_int(row.get("game_pk"))
+            schedule_game = games_by_pk.get(game_pk) if game_pk is not None else None
+            if schedule_game:
+                updated["game_status"] = str(schedule_game.get("status") or updated.get("game_status") or "")
+                updated["game_state"] = str(schedule_game.get("game_state") or updated.get("game_state") or "final")
+            settled.append(updated)
             continue
         if not game_date or game_date > resolved_through_date:
-            settled.append(row)
+            updated = dict(row)
+            game_pk = _coerce_int(row.get("game_pk"))
+            schedule_game = games_by_pk.get(game_pk) if game_pk is not None else None
+            if schedule_game:
+                updated["game_status"] = str(schedule_game.get("status") or updated.get("game_status") or "")
+                updated["game_state"] = str(schedule_game.get("game_state") or updated.get("game_state") or "pregame")
+            settled.append(updated)
             continue
 
+        game_pk = _coerce_int(row.get("game_pk"))
+        schedule_game = games_by_pk.get(game_pk) if game_pk is not None else None
+        game_state = str(schedule_game.get("game_state") or classify_game_state(schedule_game or row, reference_time)) if schedule_game or row else "pregame"
         lookup_value = resolved_lookup.get((game_date, int(batter_id))) if batter_id is not None else None
-        resolved_hit = int(lookup_value) if lookup_value is not None else 0
-        resolved_label = "HR" if resolved_hit == 1 else "No HR"
+        if lookup_value is not None and int(lookup_value) == 1:
+            resolved_hit = 1
+            resolved_label = "HR"
+        elif game_state == "final":
+            resolved_hit = 0
+            resolved_label = "No HR"
+        else:
+            resolved_hit = None
+            resolved_label = "Pending"
         updated = dict(row)
         updated["result"] = resolved_label
         updated["result_label"] = resolved_label
         updated["actual_hit_hr"] = resolved_hit
+        updated["game_status"] = str(schedule_game.get("status") or updated.get("game_status") or "") if schedule_game else str(updated.get("game_status") or "")
+        updated["game_state"] = game_state
         settled.append(updated)
     return settled
 

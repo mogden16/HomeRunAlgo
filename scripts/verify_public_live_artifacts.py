@@ -13,6 +13,9 @@ CURRENT_PICK_COLUMNS = {
     "published_at",
     "game_pk",
     "game_date",
+    "game_datetime",
+    "game_status",
+    "game_state",
     "rank",
     "batter_id",
     "batter_name",
@@ -20,6 +23,8 @@ CURRENT_PICK_COLUMNS = {
     "opponent_team",
     "pitcher_id",
     "pitcher_name",
+    "lineup_source",
+    "batting_order",
     "confidence_tier",
     "predicted_hr_probability",
     "predicted_hr_score",
@@ -33,6 +38,9 @@ HISTORY_COLUMNS = {
     "published_at",
     "game_pk",
     "game_date",
+    "game_datetime",
+    "game_status",
+    "game_state",
     "rank",
     "batter_id",
     "batter_name",
@@ -40,6 +48,8 @@ HISTORY_COLUMNS = {
     "opponent_team",
     "pitcher_id",
     "pitcher_name",
+    "lineup_source",
+    "batting_order",
     "confidence_tier",
     "predicted_hr_probability",
     "predicted_hr_score",
@@ -53,11 +63,14 @@ DISPLAY_COLUMNS = [
     "pick_id",
     "game_pk",
     "game_date",
+    "game_state",
     "rank",
     "batter_name",
     "team",
     "opponent_team",
     "pitcher_name",
+    "lineup_source",
+    "batting_order",
     "confidence_tier",
     "predicted_hr_probability",
     "predicted_hr_score",
@@ -157,10 +170,8 @@ def verify_refresh_script(path: Path) -> None:
         '"cloudflare-app/data/dashboard.json"',
         '"settle"',
         '"prepare"',
-        "scripts\\refresh_live_results.py",
-        "scripts\\prepare_live_board.py",
+        "scripts\\run_refresh_mode.py",
         "git add -- $trackedFiles",
-        "scripts\\verify_public_live_artifacts.py",
         "git push",
     ]
     for snippet in required_snippets:
@@ -180,19 +191,36 @@ def print_operator_checklist() -> None:
     print("- Cloudflare Pages build command is blank.")
     print("- Cloudflare Pages output directory is cloudflare-app.")
     print("- Cloudflare Pages production branch is master.")
-    print("- Windows Task Scheduler should have a 2:00 AM ET settle task using scripts\\refresh_dashboard.ps1 -Mode settle.")
-    print("- Windows Task Scheduler should have a 4:00 AM ET prepare task using scripts\\refresh_dashboard.ps1 -Mode prepare.")
-    print("- Windows Task Scheduler should have publish reruns at 11:00 AM, 1:00 PM, 3:00 PM, and 6:00 PM ET using scripts\\refresh_dashboard.ps1 -Mode publish.")
+    print("- Prepare should run once in the early morning using scripts\\refresh_dashboard.ps1 -Mode prepare.")
+    print("- Publish should rerun every 15 minutes before games lock using scripts\\refresh_dashboard.ps1 -Mode publish.")
+    print("- Settle should rerun every 15 minutes from first pitch until the slate is final using scripts\\refresh_dashboard.ps1 -Mode settle.")
     print("- This machine can git push to origin/master non-interactively.")
+
+
+def verify_public_live_artifacts(
+    *,
+    current_picks: Path = Path("data/live/current_picks.json"),
+    pick_history: Path = Path("data/live/pick_history.json"),
+    dashboard: Path = Path("cloudflare-app/data/dashboard.json"),
+    refresh_script: Path = Path("scripts/refresh_dashboard.ps1"),
+    live_pipeline: Path = Path("scripts/live_pipeline.py"),
+) -> None:
+    verify_current_picks(current_picks)
+    verify_pick_history(pick_history)
+    verify_dashboard(dashboard)
+    verify_refresh_script(refresh_script)
+    verify_live_pipeline(live_pipeline)
 
 
 def main() -> None:
     args = parse_args()
-    verify_current_picks(Path(args.current_picks))
-    verify_pick_history(Path(args.pick_history))
-    verify_dashboard(Path(args.dashboard))
-    verify_refresh_script(Path(args.refresh_script))
-    verify_live_pipeline(Path(args.live_pipeline))
+    verify_public_live_artifacts(
+        current_picks=Path(args.current_picks),
+        pick_history=Path(args.pick_history),
+        dashboard=Path(args.dashboard),
+        refresh_script=Path(args.refresh_script),
+        live_pipeline=Path(args.live_pipeline),
+    )
     print("Repo-side public/live artifact verification passed.")
     print_operator_checklist()
 

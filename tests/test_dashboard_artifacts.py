@@ -73,13 +73,50 @@ class DashboardArtifactTests(unittest.TestCase):
             payload = json.loads(output_path.read_text(encoding="utf-8"))
             self.assertNotIn("top_k_summary", payload)
             self.assertEqual([row["batter_name"] for row in payload["latest_picks"]], ["Alpha", "Bravo", "Charlie"])
-            self.assertEqual(payload["history_dates"], ["2026-03-30", "2026-03-29", "2026-03-28"])
+            self.assertEqual(payload["history_dates"], ["2026-03-29", "2026-03-28"])
             self.assertEqual(payload["history_default_date"], "2026-03-29")
             self.assertEqual(payload["yesterday_homer_date"], "2026-03-29")
             self.assertEqual([row["batter_name"] for row in payload["recent_successes"]], ["Yesterday HR"])
             self.assertEqual([row["batter_name"] for row in payload["season_hr_leaders_2026"]], ["Slugger A", "Slugger B", "Slugger C", "Slugger D", "Slugger E"])
             self.assertEqual(payload["season_hr_leaders_2026"][0]["home_runs_2026"], 3)
             self.assertEqual(payload["season_hr_leaders_2026"][0]["plate_appearances_2026"], 40)
+
+    def test_dashboard_payload_keeps_same_day_resolved_rows_in_latest_and_out_of_history(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+            output_dir = base / "dashboard"
+            metadata_path = base / "model_metadata.json"
+            model_data_path = base / "dataset.csv"
+
+            current_rows = [
+                self._settled_pick("2026-03-31", 1, "Alpha", "elite", 72.0, "HR"),
+                self._pending_pick("2026-03-31", 2, "Bravo", "strong", 61.0),
+            ]
+            history_rows = [
+                self._settled_pick("2026-03-30", 1, "Yesterday HR", "elite", 80.0, "HR"),
+                self._settled_pick("2026-03-31", 3, "Should Hide", "watch", 40.0, "No HR"),
+            ]
+            current_path.write_text(json.dumps(current_rows, indent=2), encoding="utf-8")
+            history_path.write_text(json.dumps(history_rows, indent=2), encoding="utf-8")
+            metadata_path.write_text(json.dumps({}, indent=2), encoding="utf-8")
+            pd.DataFrame([self._season_row("Slugger A", "NYY", 1, "2026-03-27", 1, 4, 1)]).to_csv(model_data_path, index=False)
+
+            output_path = build_dashboard_artifacts.build_dashboard_artifacts(
+                current_picks_path=current_path,
+                history_path=history_path,
+                output_dir=output_dir,
+                model_data_path=model_data_path,
+                model_metadata_path=metadata_path,
+                persist_history=False,
+            )
+
+            payload = json.loads(output_path.read_text(encoding="utf-8"))
+            self.assertEqual([row["batter_name"] for row in payload["latest_picks"]], ["Alpha", "Bravo"])
+            self.assertEqual([row["batter_name"] for row in payload["history"]], ["Yesterday HR"])
+            self.assertEqual(payload["overview"]["settled_picks"], 2)
+            self.assertEqual(payload["overview"]["open_picks"], 1)
 
     def test_history_default_date_falls_back_to_latest_when_yesterday_missing(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:

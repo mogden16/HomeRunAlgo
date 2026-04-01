@@ -19,6 +19,7 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 from config import LIVE_MODEL_DATA_PATH
+from scripts.live_pipeline import build_lineup_panels, fetch_schedule_games
 from train_model import extract_logistic_coefficient_map
 
 DEFAULT_TRACKING_START_DATE = "2026-03-25"
@@ -28,47 +29,29 @@ DEFAULT_OUTPUT_DIR = Path("cloudflare-app/data")
 DEFAULT_MODEL_BUNDLE_PATH = Path("data/live/model_bundle.pkl")
 DEFAULT_MODEL_DATA_PATH = LIVE_MODEL_DATA_PATH
 DEFAULT_MODEL_METADATA_PATH = Path("data/live/model_metadata.json")
-DEFAULT_MODEL_FAMILY = "not available"
+DEFAULT_MODEL_FAMILY = "2024-25 trained"
 DEFAULT_FEATURE_PROFILE = "not available"
 DEFAULT_DATA_NOTE = "Public dashboard tracking begins on Opening Night, March 25, 2026. Trained on 2024 and 2025 season data."
 DEFAULT_REFRESH_SCHEDULE = {
     "timezone": "ET",
     "runs": [
         {
-            "time_et": "2:00 AM ET",
-            "type": "settle",
-            "label": "Settle",
-            "description": "Checks Statcast for yesterday's results and settles prior published picks.",
-        },
-        {
-            "time_et": "4:00 AM ET",
+            "time_et": "Early morning ET",
             "type": "prepare",
             "label": "Prepare",
-            "description": "Refreshes data, retrains the model, settles any remaining results, and saves a private draft slate.",
+            "description": "Refreshes data, retrains the model once for the day, settles any remaining prior results, and saves a private draft slate.",
         },
         {
-            "time_et": "11:00 AM ET",
+            "time_et": "Every 15 minutes pregame",
             "type": "publish",
             "label": "Publish",
-            "description": "Updates the public picks for the current slate.",
+            "description": "Re-runs before games lock, using projected lineups early and upgrading to confirmed lineups once MLB posts them.",
         },
         {
-            "time_et": "1:00 PM ET",
-            "type": "publish",
-            "label": "Publish",
-            "description": "Updates the public picks for the current slate.",
-        },
-        {
-            "time_et": "3:00 PM ET",
-            "type": "publish",
-            "label": "Publish",
-            "description": "Updates the public picks for the current slate.",
-        },
-        {
-            "time_et": "6:00 PM ET",
-            "type": "publish",
-            "label": "Publish",
-            "description": "Updates the public picks for the current slate.",
+            "time_et": "Every 15 minutes in-game",
+            "type": "settle",
+            "label": "Settle",
+            "description": "Checks today’s picks from first pitch through final, marks HR or No HR, and archives the slate when every game is complete.",
         },
     ],
 }
@@ -77,11 +60,14 @@ DISPLAY_COLUMNS = [
     "pick_id",
     "game_pk",
     "game_date",
+    "game_state",
     "rank",
     "batter_name",
     "team",
     "opponent_team",
     "pitcher_name",
+    "lineup_source",
+    "batting_order",
     "confidence_tier",
     "predicted_hr_probability",
     "predicted_hr_score",
@@ -96,6 +82,9 @@ CURRENT_PICK_COLUMNS = [
     "published_at",
     "game_pk",
     "game_date",
+    "game_datetime",
+    "game_status",
+    "game_state",
     "rank",
     "batter_id",
     "batter_name",
@@ -103,6 +92,8 @@ CURRENT_PICK_COLUMNS = [
     "opponent_team",
     "pitcher_id",
     "pitcher_name",
+    "lineup_source",
+    "batting_order",
     "confidence_tier",
     "predicted_hr_probability",
     "predicted_hr_score",
@@ -116,6 +107,9 @@ HISTORY_COLUMNS = [
     "published_at",
     "game_pk",
     "game_date",
+    "game_datetime",
+    "game_status",
+    "game_state",
     "rank",
     "batter_id",
     "batter_name",
@@ -123,6 +117,8 @@ HISTORY_COLUMNS = [
     "opponent_team",
     "pitcher_id",
     "pitcher_name",
+    "lineup_source",
+    "batting_order",
     "confidence_tier",
     "predicted_hr_probability",
     "predicted_hr_score",
@@ -360,6 +356,9 @@ def normalize_pick(row: dict[str, Any], tracking_start_date: str) -> dict[str, A
         "published_at": str(row.get("published_at") or datetime.now(timezone.utc).isoformat()),
         "game_pk": parse_int(row.get("game_pk")),
         "game_date": game_date,
+        "game_datetime": str(row.get("game_datetime") or ""),
+        "game_status": str(row.get("game_status") or row.get("status") or ""),
+        "game_state": str(row.get("game_state") or "pregame"),
         "rank": parse_int(row.get("rank")) or 999,
         "batter_id": parse_int(row.get("batter_id")),
         "batter_name": str(row.get("batter_name") or "Unknown hitter"),
@@ -367,6 +366,8 @@ def normalize_pick(row: dict[str, Any], tracking_start_date: str) -> dict[str, A
         "opponent_team": str(row.get("opponent_team") or row.get("opponent") or ""),
         "pitcher_id": parse_int(row.get("pitcher_id")),
         "pitcher_name": str(row.get("pitcher_name") or ""),
+        "lineup_source": str(row.get("lineup_source") or "projected"),
+        "batting_order": parse_int(row.get("batting_order")),
         "confidence_tier": str(row.get("confidence_tier") or "watch").lower(),
         "predicted_hr_probability": probability,
         "predicted_hr_score": score,
@@ -395,11 +396,10 @@ def clean_history_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 def select_active_current_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    pending_rows = [row for row in rows if row.get("result_label") == "Pending"]
-    if not pending_rows:
+    if not rows:
         return []
-    latest_pending_date = max(str(row["game_date"]) for row in pending_rows)
-    return [row for row in pending_rows if str(row["game_date"]) == latest_pending_date]
+    latest_current_date = max(str(row["game_date"]) for row in rows if row.get("game_date"))
+    return [row for row in rows if str(row["game_date"]) == latest_current_date]
 
 
 def upsert_history(existing_rows: list[dict[str, Any]], current_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -466,6 +466,36 @@ def eastern_yesterday() -> str:
 
 def build_history_date_options(rows: list[dict[str, Any]]) -> list[str]:
     return sorted({str(row["game_date"]) for row in rows if row.get("game_date")}, reverse=True)
+
+
+def build_player_leaderboard(rows: list[dict[str, Any]], *, min_player_picks: int) -> list[dict[str, Any]]:
+    grouped: dict[tuple[str, str], dict[str, Any]] = {}
+    for row in rows:
+        batter_name = str(row.get("batter_name") or "")
+        team = str(row.get("team") or "")
+        bucket = grouped.setdefault(
+            (batter_name, team),
+            {
+                "batter_name": batter_name,
+                "team": team,
+                "picks": 0,
+                "homers": 0,
+            },
+        )
+        bucket["picks"] += 1
+        bucket["homers"] += int(row.get("actual_hit_hr") or 0)
+    rows_out = [
+        {
+            **bucket,
+            "hit_rate": serialize_value((bucket["homers"] / bucket["picks"]) if bucket["picks"] else None),
+        }
+        for bucket in grouped.values()
+        if int(bucket["picks"]) >= min_player_picks
+    ]
+    return sorted(
+        rows_out,
+        key=lambda row: (-int(row["homers"]), -int(row["picks"]), str(row["batter_name"])),
+    )
 
 
 def resolve_default_history_date(history_dates: list[str]) -> str:
@@ -701,23 +731,24 @@ def build_dashboard_artifacts(
     current_rows = [row for row in (normalize_pick(item, tracking_start_date) for item in current_input) if row is not None]
     history_rows = [row for row in (normalize_pick(item, tracking_start_date) for item in history_input) if row is not None]
     current_rows = sorted(current_rows, key=current_pick_sort_key)
-    merged_history = upsert_history(history_rows, current_rows)
     active_current_rows = sorted(select_active_current_rows(current_rows), key=current_pick_sort_key)
+    active_current_dates = {str(row["game_date"]) for row in active_current_rows if row.get("game_date")}
+    dashboard_history = sorted(
+        [row for row in history_rows if str(row.get("game_date") or "") not in active_current_dates],
+        key=lambda row: (-int(str(row["game_date"]).replace("-", "")), -score_sort_value(row), int(row["rank"]), str(row["batter_name"])),
+    )
 
     current_picks_path.write_text(json.dumps(clean_current_pick_rows(active_current_rows), indent=2), encoding="utf-8")
     if persist_history:
-        history_path.write_text(json.dumps(clean_history_rows(merged_history), indent=2), encoding="utf-8")
+        history_path.write_text(json.dumps(clean_history_rows(history_rows), indent=2), encoding="utf-8")
 
     latest_game_date = latest_available_date_override or max(
-        (row["game_date"] for row in ([*active_current_rows, *merged_history])),
+        (row["game_date"] for row in ([*active_current_rows, *dashboard_history])),
         default=tracking_start_date,
     )
     latest_picks = list(active_current_rows)
-    dashboard_history = sorted(
-        merged_history,
-        key=lambda row: (-int(str(row["game_date"]).replace("-", "")), -score_sort_value(row), int(row["rank"]), str(row["batter_name"])),
-    )
-    settled_rows = [row for row in merged_history if row["actual_hit_hr"] is not None]
+    tracked_rows = [*dashboard_history, *active_current_rows]
+    settled_rows = [row for row in tracked_rows if row["actual_hit_hr"] is not None]
     history_dates = build_history_date_options(dashboard_history)
     default_history_date = resolve_default_history_date(history_dates)
     yesterday_value = eastern_yesterday()
@@ -737,12 +768,26 @@ def build_dashboard_artifacts(
     hit_rate = (homers / settled_count) if settled_count else None
     metadata = _load_json_object(model_metadata_path) if model_metadata_path.exists() else {}
     operational_alerts = _operational_alerts_from_metadata(metadata)
+    player_leaderboard = build_player_leaderboard(settled_rows, min_player_picks=min_player_picks)
     model_explainer = build_model_explainer(
         model_bundle_path=model_bundle_path,
         model_metadata_path=model_metadata_path,
     )
     model_family = str(model_explainer.get("model_family") or DEFAULT_MODEL_FAMILY)
     feature_profile = str(model_explainer.get("feature_profile") or DEFAULT_FEATURE_PROFILE)
+    lineup_panels: list[dict[str, Any]] = []
+    if active_current_rows and model_data_path.exists():
+        try:
+            dataset_df = pd.read_csv(model_data_path, parse_dates=["game_date"])
+            active_schedule_games = fetch_schedule_games(str(active_current_rows[0]["game_date"]))
+            lineup_panels = build_lineup_panels(
+                dataset_df,
+                active_schedule_games,
+                target_date=str(active_current_rows[0]["game_date"]),
+                current_rows=active_current_rows,
+            )
+        except Exception:
+            lineup_panels = []
 
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -758,17 +803,19 @@ def build_dashboard_artifacts(
         "refresh_schedule": build_refresh_schedule(),
         "overview": {
             "latest_slate_size": len(latest_picks),
-            "tracked_dates": len({row["game_date"] for row in merged_history}),
-            "tracked_picks": len(merged_history),
+            "tracked_dates": len({row["game_date"] for row in tracked_rows}),
+            "tracked_picks": len(tracked_rows),
             "settled_picks": settled_count,
             "tracked_homers": homers,
             "tracked_hit_rate": serialize_value(hit_rate),
-            "open_picks": len([row for row in merged_history if row["actual_hit_hr"] is None]),
+            "open_picks": len([row for row in tracked_rows if row["actual_hit_hr"] is None]),
         },
         "confidence_summary": summarize_confidence(settled_rows),
+        "player_leaderboard": player_leaderboard,
         "model_explainer": model_explainer,
         "latest_picks": to_records(latest_picks),
         "history": to_records(dashboard_history),
+        "lineup_panels": lineup_panels,
         "season_hr_leaders_2026": season_hr_leaders_2026,
         "recent_successes": to_records(recent_successes),
     }

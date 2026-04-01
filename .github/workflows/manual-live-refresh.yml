@@ -1,4 +1,4 @@
-name: Manual Live Refresh
+name: Live Refresh
 
 on:
   workflow_dispatch:
@@ -8,9 +8,12 @@ on:
         required: true
         type: choice
         options:
+          - auto
           - settle
           - prepare
           - publish
+  schedule:
+    - cron: "*/15 * * * *"
 
 permissions:
   contents: write
@@ -18,6 +21,9 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    concurrency:
+      group: live-refresh
+      cancel-in-progress: false
 
     steps:
       - name: Check out repository
@@ -34,34 +40,30 @@ jobs:
       - name: Install dependencies
         run: python -m pip install --upgrade pip && pip install -r requirements.txt
 
-      - name: Print requested mode
-        run: echo "Manual refresh mode=${{ github.event.inputs.mode }}"
-
-      - name: Run settle refresh
-        if: ${{ github.event.inputs.mode == 'settle' }}
+      - name: Resolve requested mode
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_MODE: ${{ github.event.inputs.mode }}
         run: |
-          python scripts/refresh_live_results.py --dataset-path data/live/model_training_dataset.csv
-          python scripts/settle_live_results.py
+          if [ "$EVENT_NAME" = "schedule" ]; then
+            echo "REFRESH_MODE=auto" >> "$GITHUB_ENV"
+            echo "Scheduled refresh mode=auto"
+          else
+            echo "REFRESH_MODE=${INPUT_MODE}" >> "$GITHUB_ENV"
+            echo "Manual refresh mode=${INPUT_MODE}"
+          fi
 
-      - name: Run prepare refresh
-        if: ${{ github.event.inputs.mode == 'prepare' }}
-        run: python scripts/prepare_live_board.py
-
-      - name: Run publish refresh
-        if: ${{ github.event.inputs.mode == 'publish' }}
+      - name: Run shared refresh mode
         run: |
-          python scripts/refresh_live_results.py --dataset-path data/live/model_training_dataset.csv
-          python scripts/publish_live_picks.py
-
-      - name: Rebuild dashboard artifact
-        run: python scripts/build_dashboard_artifacts.py --output-dir cloudflare-app/data
-
-      - name: Verify public artifacts
-        run: python scripts/verify_public_live_artifacts.py
+          extra_args=""
+          if [ "${REFRESH_MODE}" = "publish" ] || [ "${REFRESH_MODE}" = "auto" ]; then
+            extra_args="--refresh-results-before-publish"
+          fi
+          python scripts/run_refresh_mode.py --mode "${REFRESH_MODE}" $extra_args
 
       - name: Commit and push changes
         env:
-          REFRESH_MODE: ${{ github.event.inputs.mode }}
+          REFRESH_MODE: ${{ env.REFRESH_MODE }}
           TARGET_BRANCH: ${{ github.ref_name }}
         run: |
           python - <<'PY'
@@ -101,7 +103,8 @@ jobs:
               print("No staged refresh changes detected.")
               sys.exit(0)
 
-          subprocess.run(["git", "commit", "-m", f"chore: manual {mode} refresh"], check=True)
+          commit_label = "scheduled" if mode == "auto" else "manual"
+          subprocess.run(["git", "commit", "-m", f"chore: {commit_label} {mode} refresh"], check=True)
           subprocess.run(["git", "fetch", "origin", target_branch], check=True)
           subprocess.run(
               ["git", "rebase", "-X", "theirs", f"origin/{target_branch}"],

@@ -27,6 +27,7 @@ from scripts.live_pipeline import (
     build_active_roster_map,
     build_live_candidate_frame,
     build_live_feature_frame,
+    build_slate_state,
     CONFIDENCE_TIER_ORDER,
     default_publish_date,
     fetch_schedule_games,
@@ -42,15 +43,6 @@ from scripts.live_pipeline import (
 DEFAULT_MIN_CONFIDENCE_TIER = "strong"
 DEFAULT_MAX_PICKS_PER_TEAM = None
 DEFAULT_MAX_PICKS_PER_GAME = None
-
-STARTED_GAME_STATUS_TOKENS = (
-    "in progress",
-    "manager challenge",
-    "review",
-    "game over",
-    "final",
-    "completed early",
-)
 
 REQUIRED_PUBLISH_ARTIFACT_LABELS = {
     "dataset": "refreshed live training dataset",
@@ -126,26 +118,11 @@ def _publish_reference_now() -> datetime:
     return datetime.now(timezone.utc)
 
 
-def _parse_game_datetime(value: object) -> datetime | None:
-    if value in (None, ""):
-        return None
-    try:
-        timestamp = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
-    except ValueError:
-        return None
-    if timestamp.tzinfo is None:
-        return timestamp.replace(tzinfo=timezone.utc)
-    return timestamp.astimezone(timezone.utc)
-
-
 def _game_is_locked(game_like: dict[str, Any], publish_reference: datetime) -> bool:
-    status_token = str(game_like.get("status") or "").strip().lower()
-    if any(token in status_token for token in STARTED_GAME_STATUS_TOKENS):
-        return True
-    game_datetime = _parse_game_datetime(game_like.get("game_datetime"))
-    if game_datetime is None:
+    slate_state = build_slate_state([game_like], reference_time=publish_reference)
+    if not slate_state["games"]:
         return False
-    return game_datetime <= publish_reference
+    return bool(slate_state["games"][0]["is_locked"])
 
 
 def _merge_same_day_picks(
@@ -162,11 +139,8 @@ def _merge_same_day_picks(
     if not same_day_rows:
         return [*other_dates, *refreshed_rows]
 
-    schedule_by_game_pk = {
-        int(game["game_pk"]): game
-        for game in schedule_games
-        if game.get("game_pk") is not None
-    }
+    slate_state = build_slate_state(schedule_games, reference_time=publish_reference)
+    schedule_by_game_pk = slate_state["games_by_pk"]
     locked_rows: list[dict[str, Any]] = []
     locked_game_pks: set[int] = set()
     for row in same_day_rows:

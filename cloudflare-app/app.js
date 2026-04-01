@@ -8,7 +8,7 @@ const state = {
 };
 
 const DEFAULT_LATEST_PICKS_EMPTY_MESSAGE =
-  "Today's public picks have not been posted yet. Next publish windows are 11:00 AM, 1:00 PM, 3:00 PM, and 6:00 PM ET.";
+  "Today's public picks have not been posted yet. Publish reruns every 15 minutes before first pitch and settle reruns every 15 minutes once games begin.";
 const DEFAULT_HISTORY_EMPTY_MESSAGE = "No published picks match those filters.";
 const DEFAULT_YESTERDAY_SUCCESSES_EMPTY_MESSAGE = "No published picks homered yesterday.";
 const DEFAULT_MODEL_EXPLAINER_MESSAGE = "Metric details are not available for the current dashboard build.";
@@ -81,6 +81,21 @@ function resultClass(value) {
   return "result-miss";
 }
 
+function formatLineupSource(value) {
+  return String(value || "").trim().toLowerCase() === "confirmed" ? "Confirmed lineup" : "Projected lineup";
+}
+
+function formatGameState(value) {
+  const token = String(value || "").trim().toLowerCase();
+  if (token === "final") {
+    return "Final";
+  }
+  if (token === "live") {
+    return "Live";
+  }
+  return "Pregame";
+}
+
 function findConfidenceSummary(rows, tier) {
   return (rows || []).find((row) => normalizeTier(row.confidence_tier) === tier) || null;
 }
@@ -106,17 +121,25 @@ function formatModelValue(value) {
 
 function buildRefreshScheduleSummary(schedule) {
   const runs = Array.isArray(schedule?.runs) ? schedule.runs : [];
-  const settleRun = runs.find((run) => run.type === "settle");
   const prepareRun = runs.find((run) => run.type === "prepare");
   const publishRuns = runs.filter((run) => run.type === "publish");
+  const settleRun = runs.find((run) => run.type === "settle");
   const publishTimes = publishRuns.map((run) => run.time_et).filter(Boolean);
 
   if (!settleRun && !prepareRun && !publishTimes.length) {
     return "Schedule unavailable.";
   }
 
-  const publishText = publishTimes.length ? `Publish runs at ${publishTimes.join(", ")}.` : "";
-  const settleText = settleRun?.time_et ? `Settle run at ${settleRun.time_et}.` : "";
+  const publishText = publishTimes.length
+    ? publishTimes.every((value) => String(value).toLowerCase().startsWith("every"))
+      ? `Publish reruns ${publishTimes.join(", ")}.`
+      : `Publish runs at ${publishTimes.join(", ")}.`
+    : "";
+  const settleText = settleRun?.time_et
+    ? String(settleRun.time_et).toLowerCase().startsWith("every")
+      ? `Settle reruns ${settleRun.time_et}.`
+      : `Settle run at ${settleRun.time_et}.`
+    : "";
   const prepareText = prepareRun?.time_et ? `Prepare run at ${prepareRun.time_et}.` : "";
   return [settleText, prepareText, publishText].filter(Boolean).join(" ");
 }
@@ -134,13 +157,21 @@ function buildRefreshScheduleInlineText(schedule) {
 
   const parts = ["Refresh schedule:"];
   if (settleRun?.time_et) {
-    parts.push(`${settleRun.time_et} settle.`);
+    parts.push(
+      String(settleRun.time_et).toLowerCase().startsWith("every")
+        ? `Settle reruns ${settleRun.time_et}.`
+        : `${settleRun.time_et} settle.`,
+    );
   }
   if (prepareRun?.time_et) {
     parts.push(`${prepareRun.time_et} prepare.`);
   }
   if (publishTimes.length) {
-    parts.push(`Publish runs at ${publishTimes.join(", ")}.`);
+    parts.push(
+      publishTimes.every((value) => String(value).toLowerCase().startsWith("every"))
+        ? `Publish reruns ${publishTimes.join(", ")}.`
+        : `Publish runs at ${publishTimes.join(", ")}.`,
+    );
   }
   return parts.join(" ");
 }
@@ -202,7 +233,7 @@ function renderOverviewCards(overview, confidenceSummary, refreshSchedule) {
     },
     {
       label: "Refresh schedule",
-      value: `${Array.isArray(refreshSchedule?.runs) ? refreshSchedule.runs.length : 0} runs/day`,
+      value: "15 min cadence",
       subtext: buildRefreshScheduleSummary(refreshSchedule),
     },
   ];
@@ -267,6 +298,7 @@ function renderPicksTable(targetId, rows, emptyMessage) {
           <div class="name-block">
             <strong>${escapeHtml(row.batter_name)}</strong>
             <span>${escapeHtml(row.team)} vs ${escapeHtml(row.opponent_team || "-")}</span>
+            <span>${escapeHtml(formatLineupSource(row.lineup_source))}${row.batting_order ? `, batting ${escapeHtml(row.batting_order)}` : ""} | ${escapeHtml(formatGameState(row.game_state))}</span>
           </div>
         `,
       },
@@ -294,6 +326,57 @@ function renderPicksTable(targetId, rows, emptyMessage) {
     rows,
     emptyMessage,
   );
+}
+
+function renderLineupPanels(rows) {
+  const target = document.getElementById("lineup-panels");
+  const panels = Array.isArray(rows) ? rows : [];
+  if (!panels.length) {
+    target.innerHTML = '<p class="empty-state">No active lineup context is available for the current slate.</p>';
+    return;
+  }
+
+  target.innerHTML = panels
+    .map(
+      (panel) => `
+        <article class="lineup-card">
+          <div class="lineup-card-head">
+            <div>
+              <p class="eyebrow">Game</p>
+              <h3>${escapeHtml(panel.matchup || "")}</h3>
+              <p class="muted">${escapeHtml(formatDateTime(panel.game_datetime))} | ${escapeHtml(panel.game_status || formatGameState(panel.game_state))}</p>
+            </div>
+          </div>
+          <div class="lineup-team-grid">
+            ${(panel.teams || [])
+              .map(
+                (teamPanel) => `
+                  <section class="lineup-team">
+                    <div class="lineup-team-head">
+                      <strong>${escapeHtml(teamPanel.team)}</strong>
+                      <span class="pill lineup-pill">${escapeHtml(formatLineupSource(teamPanel.lineup_source))}</span>
+                    </div>
+                    <ol class="lineup-list">
+                      ${(teamPanel.hitters || [])
+                        .map(
+                          (hitter) => `
+                            <li class="${hitter.selected_for_pick ? "is-selected" : ""}">
+                              <span class="lineup-slot">${escapeHtml(hitter.batting_order || "-")}</span>
+                              <span>${escapeHtml(hitter.batter_name || "")}</span>
+                            </li>
+                          `,
+                        )
+                        .join("")}
+                    </ol>
+                  </section>
+                `,
+              )
+              .join("")}
+          </div>
+        </article>
+      `,
+    )
+    .join("");
 }
 
 function renderTierFilterControls(targetId, selectedTiers) {
@@ -499,6 +582,7 @@ async function loadDashboard() {
   renderTierFilterControls("history-confidence-filters", state.historyTierFilters);
   renderHistoryDateOptions(state.dashboard.history_dates, state.dashboard.history_default_date);
   applyLatestPicksFilters();
+  renderLineupPanels(state.dashboard.lineup_panels || []);
   renderSeasonLeaders(state.dashboard.season_hr_leaders_2026 || []);
   renderSuccesses(state.dashboard.recent_successes || []);
   renderRefreshScheduleInline(state.dashboard.refresh_schedule);
