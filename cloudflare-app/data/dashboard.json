@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-01T16:12:41.530175+00:00",
+  "generated_at": "2026-04-01T17:17:03.824528+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "logistic",
   "feature_profile": "live_shrunk",
@@ -477,7 +477,7 @@
       "pick_id": "2026-04-01:822835:676914:607536",
       "game_pk": 822835,
       "game_date": "2026-04-01",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 1,
       "batter_name": "Davis Schneider",
       "team": "TOR",
@@ -582,7 +582,7 @@
       "pick_id": "2026-04-01:824536:701398:694973",
       "game_pk": 824536,
       "game_date": "2026-04-01",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 6,
       "batter_name": "Sal Stewart",
       "team": "CIN",
@@ -603,7 +603,7 @@
       "pick_id": "2026-04-01:823889:808959:645261",
       "game_pk": 823889,
       "game_date": "2026-04-01",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 7,
       "batter_name": "Munetaka Murakami",
       "team": "CWS",
@@ -624,7 +624,7 @@
       "pick_id": "2026-04-01:822835:543807:607536",
       "game_pk": 822835,
       "game_date": "2026-04-01",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 8,
       "batter_name": "George Springer",
       "team": "TOR",
@@ -645,7 +645,7 @@
       "pick_id": "2026-04-01:824536:682829:694973",
       "game_pk": 824536,
       "game_date": "2026-04-01",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 9,
       "batter_name": "Elly De La Cruz",
       "team": "CIN",
@@ -666,7 +666,7 @@
       "pick_id": "2026-04-01:823483:691781:650911",
       "game_pk": 823483,
       "game_date": "2026-04-01",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 10,
       "batter_name": "Brady House",
       "team": "WSH",
@@ -687,7 +687,7 @@
       "pick_id": "2026-04-01:823483:686894:650911",
       "game_pk": 823483,
       "game_date": "2026-04-01",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 11,
       "batter_name": "Joey Wiemer",
       "team": "WSH",
@@ -708,7 +708,7 @@
       "pick_id": "2026-04-01:823078:802139:642547",
       "game_pk": 823078,
       "game_date": "2026-04-01",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 12,
       "batter_name": "JJ Wetherholt",
       "team": "STL",
@@ -2896,7 +2896,7 @@
       "game_pk": 824940,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T16:15:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "matchup": "OAK @ ATL",
       "teams": [
@@ -2973,7 +2973,7 @@
       "game_pk": 824860,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T16:35:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "matchup": "TEX @ BAL",
       "teams": [
@@ -3099,8 +3099,8 @@
       "game_pk": 824536,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T16:40:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "In Progress",
+      "game_state": "live",
       "matchup": "PIT @ CIN",
       "teams": [
         {
@@ -3231,8 +3231,8 @@
       "game_pk": 823483,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T17:05:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "In Progress",
+      "game_state": "live",
       "matchup": "WSH @ PHI",
       "teams": [
         {
@@ -3363,8 +3363,8 @@
       "game_pk": 822835,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T17:07:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "In Progress",
+      "game_state": "live",
       "matchup": "COL @ TOR",
       "teams": [
         {
@@ -3495,8 +3495,8 @@
       "game_pk": 823889,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T17:10:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "In Progress",
+      "game_state": "live",
       "matchup": "CWS @ MIA",
       "teams": [
         {
@@ -3621,8 +3621,8 @@
       "game_pk": 823078,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T17:15:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "Delayed Start",
+      "game_state": "live",
       "matchup": "NYM @ STL",
       "teams": [
         {
@@ -4067,7 +4067,7 @@
         {
           "team": "CHC",
           "opponent_team": "LAA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 608324,
@@ -4094,20 +4094,20 @@
               "selected_for_pick": false
             },
             {
+              "batter_id": 807713,
+              "batter_name": "Matt Shaw",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 683737,
               "batter_name": "Michael Busch",
               "batting_order": null,
               "selected_for_pick": false
             },
             {
-              "batter_id": 624424,
-              "batter_name": "Michael Conforto",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 694208,
-              "batter_name": "Mois\u00e9s Ballesteros",
+              "batter_id": 665804,
+              "batter_name": "Miguel Amaya",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -4131,18 +4131,24 @@
       "game_pk": 825106,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T19:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "DET @ AZ",
       "teams": [
         {
           "team": "DET",
           "opponent_team": "AZ",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 690993,
               "batter_name": "Colt Keith",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 693307,
+              "batter_name": "Dillon Dingler",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -4153,8 +4159,8 @@
               "selected_for_pick": false
             },
             {
-              "batter_id": 668670,
-              "batter_name": "Jake Rogers",
+              "batter_id": 595879,
+              "batter_name": "Javier B\u00e1ez",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -4171,6 +4177,12 @@
               "selected_for_pick": false
             },
             {
+              "batter_id": 663837,
+              "batter_name": "Matt Vierling",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 678009,
               "batter_name": "Parker Meadows",
               "batting_order": null,
@@ -4181,38 +4193,14 @@
               "batter_name": "Riley Greene",
               "batting_order": null,
               "selected_for_pick": false
-            },
-            {
-              "batter_id": 679529,
-              "batter_name": "Spencer Torkelson",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 656716,
-              "batter_name": "Zach McKinstry",
-              "batting_order": null,
-              "selected_for_pick": false
             }
           ]
         },
         {
           "team": "AZ",
           "opponent_team": "DET",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 677950,
-              "batter_name": "Alek Thomas",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 467793,
-              "batter_name": "Carlos Santana",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
             {
               "batter_id": 682998,
               "batter_name": "Corbin Carroll",
@@ -4232,14 +4220,20 @@
               "selected_for_pick": false
             },
             {
-              "batter_id": 543510,
-              "batter_name": "James McCann",
+              "batter_id": 545121,
+              "batter_name": "Ildemaro Vargas",
               "batting_order": null,
               "selected_for_pick": false
             },
             {
               "batter_id": 691783,
               "batter_name": "Jordan Lawlar",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 699912,
+              "batter_name": "Jose Fernandez",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -4263,14 +4257,14 @@
       "game_pk": 823321,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T20:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "SF @ SD",
       "teams": [
         {
           "team": "SF",
           "opponent_team": "SD",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 669477,
@@ -4331,8 +4325,14 @@
         {
           "team": "SD",
           "opponent_team": "SF",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 669369,
+              "batter_name": "Bryce Johnson",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 665487,
               "batter_name": "Fernando Tatis Jr.",
@@ -4366,12 +4366,6 @@
             {
               "batter_id": 592518,
               "batter_name": "Manny Machado",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 592206,
-              "batter_name": "Nick Castellanos",
               "batting_order": null,
               "selected_for_pick": false
             },
