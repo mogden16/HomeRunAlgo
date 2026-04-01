@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-01T14:55:28.901068+00:00",
+  "generated_at": "2026-04-01T16:12:41.530175+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "logistic",
   "feature_profile": "live_shrunk",
@@ -519,7 +519,7 @@
       "pick_id": "2026-04-01:824940:686948:622663",
       "game_pk": 824940,
       "game_date": "2026-04-01",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 3,
       "batter_name": "Drake Baldwin",
       "team": "ATL",
@@ -729,7 +729,7 @@
       "pick_id": "2026-04-01:824860:669394:669432",
       "game_pk": 824860,
       "game_date": "2026-04-01",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 13,
       "batter_name": "Jake Burger",
       "team": "TEX",
@@ -2896,8 +2896,8 @@
       "game_pk": 824940,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T16:15:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "Warmup",
+      "game_state": "live",
       "matchup": "OAK @ ATL",
       "teams": [
         {
@@ -2973,8 +2973,8 @@
       "game_pk": 824860,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T16:35:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "Warmup",
+      "game_state": "live",
       "matchup": "TEX @ BAL",
       "teams": [
         {
@@ -3041,23 +3041,23 @@
         {
           "team": "BAL",
           "opponent_team": "TEX",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 668939,
-              "batter_name": "Adley Rutschman",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 677942,
-              "batter_name": "Blaze Alexander",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
             {
               "batter_id": 691723,
               "batter_name": "Coby Mayo",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 681297,
+              "batter_name": "Colton Cowser",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 687637,
+              "batter_name": "Dylan Beavers",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -3088,12 +3088,6 @@
             {
               "batter_id": 621493,
               "batter_name": "Taylor Ward",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 641933,
-              "batter_name": "Tyler O'Neill",
               "batting_order": null,
               "selected_for_pick": false
             }
@@ -3634,7 +3628,7 @@
         {
           "team": "NYM",
           "opponent_team": "STL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666182,
@@ -3643,26 +3637,14 @@
               "selected_for_pick": false
             },
             {
-              "batter_id": 683146,
-              "batter_name": "Brett Baty",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 701807,
-              "batter_name": "Carson Benge",
+              "batter_id": 682626,
+              "batter_name": "Francisco Alvarez",
               "batting_order": null,
               "selected_for_pick": false
             },
             {
               "batter_id": 596019,
               "batter_name": "Francisco Lindor",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 676724,
-              "batter_name": "Jared Young",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -3687,6 +3669,12 @@
             {
               "batter_id": 543760,
               "batter_name": "Marcus Semien",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 668901,
+              "batter_name": "Mark Vientos",
               "batting_order": null,
               "selected_for_pick": false
             }
@@ -3766,17 +3754,11 @@
         {
           "team": "TB",
           "opponent_team": "MIL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 810938,
               "batter_name": "Ben Williamson",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 700246,
-              "batter_name": "Carson Williams",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -3793,14 +3775,14 @@
               "selected_for_pick": false
             },
             {
-              "batter_id": 666018,
-              "batter_name": "Jonathan Aranda",
+              "batter_id": 641584,
+              "batter_name": "Jake Fraley",
               "batting_order": null,
               "selected_for_pick": false
             },
             {
-              "batter_id": 676356,
-              "batter_name": "Jonny DeLuca",
+              "batter_id": 666018,
+              "batter_name": "Jonathan Aranda",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -3813,6 +3795,12 @@
             {
               "batter_id": 663743,
               "batter_name": "Nick Fortes",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 680700,
+              "batter_name": "Richie Palacios",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -3907,14 +3895,14 @@
               "selected_for_pick": false
             },
             {
-              "batter_id": 665966,
-              "batter_name": "Carlos Narv\u00e1ez",
+              "batter_id": 678882,
+              "batter_name": "Ceddanne Rafaela",
               "batting_order": null,
               "selected_for_pick": false
             },
             {
-              "batter_id": 678882,
-              "batter_name": "Ceddanne Rafaela",
+              "batter_id": 657136,
+              "batter_name": "Connor Wong",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -4017,15 +4005,21 @@
       "game_pk": 824698,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T18:20:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "LAA @ CHC",
       "teams": [
         {
           "team": "LAA",
           "opponent_team": "CHC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 600869,
+              "batter_name": "Jeimer Candelario",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 666176,
               "batter_name": "Jo Adell",
@@ -4039,32 +4033,20 @@
               "selected_for_pick": false
             },
             {
-              "batter_id": 666139,
-              "batter_name": "Josh Lowe",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 681351,
-              "batter_name": "Logan O'Hoppe",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
               "batter_id": 545361,
               "batter_name": "Mike Trout",
               "batting_order": null,
               "selected_for_pick": false
             },
             {
-              "batter_id": 694384,
-              "batter_name": "Nolan Schanuel",
+              "batter_id": 672724,
+              "batter_name": "Oswald Peraza",
               "batting_order": null,
               "selected_for_pick": false
             },
             {
-              "batter_id": 672724,
-              "batter_name": "Oswald Peraza",
+              "batter_id": 518595,
+              "batter_name": "Travis d'Arnaud",
               "batting_order": null,
               "selected_for_pick": false
             },
