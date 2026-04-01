@@ -138,6 +138,13 @@ function weatherIcon(value) {
   return "❔";
 }
 
+function formatTemperature(value) {
+  if (value === null || value === undefined || Number.isNaN(Number(value))) {
+    return "";
+  }
+  return `${Math.round(Number(value))}\u00B0F`;
+}
+
 function normalizeDegrees(value) {
   if (value === null || value === undefined || Number.isNaN(Number(value))) {
     return null;
@@ -190,11 +197,13 @@ function formatWind(row) {
 
 function renderGameMeta(row) {
   const weatherLabel = String(row.weather_label || "").trim() || "Unknown";
+  const temperatureText = formatTemperature(row.temperature_f);
+  const weatherMeta = [weatherIcon(weatherLabel), weatherLabel, temperatureText].filter(Boolean).join(" ");
   return `
     <div class="pick-meta-block">
       <div class="pick-meta-line"><span class="pick-meta-label">Gametime</span><span class="pick-meta-value">${escapeHtml(formatGameTime(row.game_datetime))}</span></div>
       <div class="pick-meta-line"><span class="pick-meta-label">Stadium</span><span class="pick-meta-value">${escapeHtml(formatStadium(row))}</span></div>
-      <div class="pick-meta-line"><span class="pick-meta-label">Conditions</span><span class="pick-meta-value">${escapeHtml(weatherIcon(weatherLabel))} ${escapeHtml(weatherLabel)}</span></div>
+      <div class="pick-meta-line"><span class="pick-meta-label">Conditions</span><span class="pick-meta-value">${escapeHtml(weatherMeta)}</span></div>
       <div class="pick-meta-line"><span class="pick-meta-label">Wind</span><span class="pick-meta-value">${escapeHtml(formatWind(row))}</span></div>
     </div>
   `;

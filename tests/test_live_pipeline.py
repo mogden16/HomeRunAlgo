@@ -640,6 +640,7 @@ class LivePipelineTests(unittest.TestCase):
                     "ballpark_region_abbr": "ON",
                     "weather_code": 3,
                     "weather_label": "Cloudy",
+                    "temperature_f": 57.0,
                     "wind_speed_mph": 12.0,
                     "wind_direction_deg": 210.0,
                     "field_bearing_deg": 30.0,
@@ -658,6 +659,7 @@ class LivePipelineTests(unittest.TestCase):
         self.assertEqual(picks[0]["ballpark_region_abbr"], "ON")
         self.assertEqual(picks[0]["weather_code"], 3)
         self.assertEqual(picks[0]["weather_label"], "Cloudy")
+        self.assertEqual(picks[0]["temperature_f"], 57.0)
         self.assertEqual(picks[0]["wind_speed_mph"], 12.0)
         self.assertEqual(picks[0]["wind_direction_deg"], 210.0)
         self.assertEqual(picks[0]["field_bearing_deg"], 30.0)

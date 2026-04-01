@@ -181,6 +181,10 @@ def _fill_missing_game_meta(
         updated.get("weather_label"),
         *(candidate.get("weather_label") for candidate in candidates),
     ) or weather_code_label(updated.get("weather_code"))
+    updated["temperature_f"] = _first_present(
+        updated.get("temperature_f"),
+        *(candidate.get("temperature_f") for candidate in candidates),
+    )
     updated["wind_speed_mph"] = _first_present(
         updated.get("wind_speed_mph"),
         *(candidate.get("wind_speed_mph") for candidate in candidates),
