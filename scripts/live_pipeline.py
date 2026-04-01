@@ -2074,7 +2074,12 @@ def settle_pick_records(
 
         game_pk = _coerce_int(row.get("game_pk"))
         schedule_game = games_by_pk.get(game_pk) if game_pk is not None else None
-        game_state = str(schedule_game.get("game_state") or classify_game_state(schedule_game or row, reference_time)) if schedule_game or row else "pregame"
+        if schedule_game is not None:
+            game_state = str(schedule_game.get("game_state") or classify_game_state(schedule_game, reference_time))
+        elif row:
+            game_state = str(classify_game_state(row, reference_time))
+        else:
+            game_state = "pregame"
         lookup_value = resolved_lookup.get((game_date, int(batter_id))) if batter_id is not None else None
         if lookup_value is not None and int(lookup_value) == 1:
             resolved_hit = 1

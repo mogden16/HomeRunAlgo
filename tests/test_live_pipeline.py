@@ -524,19 +524,52 @@ class LivePipelineTests(unittest.TestCase):
 
     def test_settle_pick_records_marks_hits_and_non_hits(self) -> None:
         picks = [
-            {"game_date": "2026-03-25", "batter_id": 101, "result": "Pending"},
-            {"game_date": "2026-03-25", "batter_id": 102, "result": "Pending"},
+            {"game_pk": 2001, "game_date": "2026-03-25", "batter_id": 101, "result": "Pending"},
+            {"game_pk": 2001, "game_date": "2026-03-25", "batter_id": 102, "result": "Pending"},
         ]
         dataset = pd.DataFrame(
             [
                 {"game_date": pd.Timestamp("2026-03-25"), "batter_id": 101, "hit_hr": 1},
             ]
         )
-        settled = settle_pick_records(picks, dataset, resolved_through_date="2026-03-25")
+        settled = settle_pick_records(
+            picks,
+            dataset,
+            resolved_through_date="2026-03-25",
+            schedule_games=[{"game_pk": 2001, "status": "Final"}],
+        )
         self.assertEqual(settled[0]["result"], "HR")
         self.assertEqual(settled[0]["actual_hit_hr"], 1)
         self.assertEqual(settled[1]["result"], "No HR")
         self.assertEqual(settled[1]["actual_hit_hr"], 0)
+
+    def test_settle_pick_records_handles_missing_schedule_game(self) -> None:
+        picks = [
+            {
+                "game_pk": 999001,
+                "game_date": "2026-03-25",
+                "batter_id": 102,
+                "result": "Pending",
+                "game_status": "Scheduled",
+            }
+        ]
+        dataset = pd.DataFrame(
+            [
+                {"game_date": pd.Timestamp("2026-03-25"), "batter_id": 101, "hit_hr": 1},
+            ]
+        )
+
+        settled = settle_pick_records(
+            picks,
+            dataset,
+            resolved_through_date="2026-03-25",
+            schedule_games=[],
+        )
+
+        self.assertEqual(len(settled), 1)
+        self.assertEqual(settled[0]["result"], "Pending")
+        self.assertIsNone(settled[0]["actual_hit_hr"])
+        self.assertEqual(settled[0]["game_state"], "pregame")
 
     def test_dashboard_filters_out_pre_tracking_rows(self) -> None:
         old_row = build_dashboard_artifacts.normalize_pick(
