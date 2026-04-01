@@ -9,7 +9,7 @@ import unittest
 from contextlib import redirect_stdout
 from datetime import datetime, timezone
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 import pandas as pd
 
@@ -115,7 +115,9 @@ class LivePipelineTests(unittest.TestCase):
                     }
                 }
 
-        with patch("data_sources.requests.get", return_value=FakeResponse()):
+        session = Mock()
+        session.get.return_value = FakeResponse()
+        with patch("data_sources.requests.Session", return_value=session):
             weather = data_sources._fetch_open_meteo(40.8296, -73.9262, "2024-11-03", "2024-11-03", "America/New_York")
 
         self.assertEqual(len(weather), 24)
