@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-01T20:18:53.206414+00:00",
+  "generated_at": "2026-04-01T20:32:11.048621+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "logistic",
   "feature_profile": "live_shrunk",
@@ -44,25 +44,25 @@
     "latest_slate_size": 18,
     "tracked_dates": 8,
     "tracked_picks": 120,
-    "settled_picks": 102,
+    "settled_picks": 111,
     "tracked_homers": 19,
-    "tracked_hit_rate": 0.186275,
-    "open_picks": 18
+    "tracked_hit_rate": 0.171171,
+    "open_picks": 9
   },
   "confidence_summary": [
     {
       "confidence_tier": "elite",
-      "picks": 16,
+      "picks": 18,
       "homers": 6,
-      "hit_rate": 0.375,
-      "avg_probability": 0.379373
+      "hit_rate": 0.333333,
+      "avg_probability": 0.35463
     },
     {
       "confidence_tier": "strong",
-      "picks": 48,
+      "picks": 55,
       "homers": 10,
-      "hit_rate": 0.208333,
-      "avg_probability": 0.291547
+      "hit_rate": 0.181818,
+      "avg_probability": 0.271863
     },
     {
       "confidence_tier": "watch",
@@ -95,15 +95,15 @@
       "hit_rate": 0.5
     },
     {
-      "batter_name": "Kyle Schwarber",
-      "team": "PHI",
-      "picks": 3,
-      "homers": 2,
-      "hit_rate": 0.666667
-    },
-    {
       "batter_name": "Munetaka Murakami",
       "team": "CWS",
+      "picks": 4,
+      "homers": 2,
+      "hit_rate": 0.5
+    },
+    {
+      "batter_name": "Kyle Schwarber",
+      "team": "PHI",
       "picks": 3,
       "homers": 2,
       "hit_rate": 0.666667
@@ -125,23 +125,23 @@
     {
       "batter_name": "Sal Stewart",
       "team": "CIN",
+      "picks": 5,
+      "homers": 1,
+      "hit_rate": 0.2
+    },
+    {
+      "batter_name": "Jake Burger",
+      "team": "TEX",
       "picks": 4,
       "homers": 1,
       "hit_rate": 0.25
     },
     {
-      "batter_name": "Jake Burger",
-      "team": "TEX",
-      "picks": 3,
-      "homers": 1,
-      "hit_rate": 0.333333
-    },
-    {
       "batter_name": "Joey Wiemer",
       "team": "WSH",
-      "picks": 3,
+      "picks": 4,
       "homers": 1,
-      "hit_rate": 0.333333
+      "hit_rate": 0.25
     },
     {
       "batter_name": "Luke Raley",
@@ -149,6 +149,13 @@
       "picks": 3,
       "homers": 1,
       "hit_rate": 0.333333
+    },
+    {
+      "batter_name": "Drake Baldwin",
+      "team": "ATL",
+      "picks": 2,
+      "homers": 1,
+      "hit_rate": 0.5
     },
     {
       "batter_name": "Giancarlo Stanton",
@@ -188,6 +195,13 @@
     {
       "batter_name": "Alec Burleson",
       "team": "STL",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Brady House",
+      "team": "WSH",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
@@ -509,7 +523,7 @@
       "game_pk": 822835,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T17:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 2,
       "morning_rank": 1,
       "batter_name": "Davis Schneider",
@@ -529,11 +543,11 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.163683,
       "predicted_hr_score": 100.0,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Hard-hit rate over the last 30 days is 100.0%, showing consistent quality contact.",
       "top_reason_2": "Kyle Freeland has allowed homers in 3.9% of plate appearances to this batter side.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-01:824211:694728:676979",
@@ -622,11 +636,11 @@
       "field_bearing_deg": 32.0,
       "predicted_hr_probability": 0.149691,
       "predicted_hr_score": 99.2,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Barrel rate over the last 30 days is 13.6%, which the model treats as sustained power quality.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 58.8%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-01:823157:670042:693645",
@@ -684,11 +698,11 @@
       "field_bearing_deg": 24.0,
       "predicted_hr_probability": 0.148137,
       "predicted_hr_score": 98.1,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Hard-hit rate over the last 30 days is 75.0%, showing consistent quality contact.",
       "top_reason_2": "Park factor for the hitter's handedness is 114.0, which adds venue lift to the matchup.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 75.0%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-01:824211:670541:676979",
@@ -746,11 +760,11 @@
       "field_bearing_deg": 37.0,
       "predicted_hr_probability": 0.139922,
       "predicted_hr_score": 97.7,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Hard-hit rate over the last 30 days is 63.6%, showing consistent quality contact.",
       "top_reason_2": "Sandy Alcantara has allowed barrels on 5.0% of batted balls to this batter side.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-01:824211:572233:676979",
@@ -788,7 +802,7 @@
       "game_pk": 822835,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T17:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 11,
       "morning_rank": 9,
       "batter_name": "George Springer",
@@ -808,11 +822,11 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.139609,
       "predicted_hr_score": 97.3,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Hard-hit rate over the last 30 days is 64.3%, showing consistent quality contact.",
       "top_reason_2": "Kyle Freeland has allowed homers in 3.9% of plate appearances to this batter side.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-01:824536:682829:694973",
@@ -839,11 +853,11 @@
       "field_bearing_deg": 24.0,
       "predicted_hr_probability": 0.137349,
       "predicted_hr_score": 96.9,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Hard-hit rate over the last 30 days is 55.6%, showing consistent quality contact.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 55.6%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-01:823970:800050:808967",
@@ -864,11 +878,11 @@
       "confidence_tier": "strong",
       "weather_code": 0,
       "weather_label": "Clear",
-      "temperature_f": 61.3,
-      "wind_speed_mph": 8.5,
-      "wind_direction_deg": 258.0,
+      "temperature_f": 61.2,
+      "wind_speed_mph": 8.8,
+      "wind_direction_deg": 255.0,
       "field_bearing_deg": 35.0,
-      "predicted_hr_probability": 0.147788,
+      "predicted_hr_probability": 0.147776,
       "predicted_hr_score": 96.5,
       "actual_hit_hr": null,
       "top_reason_1": "Barrel rate over the last 30 days is 8.7%, which the model treats as sustained power quality.",
@@ -881,7 +895,7 @@
       "game_pk": 823483,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T17:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 14,
       "morning_rank": 11,
       "batter_name": "Brady House",
@@ -901,11 +915,11 @@
       "field_bearing_deg": 28.0,
       "predicted_hr_probability": 0.137265,
       "predicted_hr_score": 96.5,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Hard-hit rate over the last 30 days is 58.3%, showing consistent quality contact.",
       "top_reason_2": "Cristopher S\u00e1nchez has allowed a 60.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-01:823157:686527:693645",
@@ -943,7 +957,7 @@
       "game_pk": 823483,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T17:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 16,
       "morning_rank": 12,
       "batter_name": "Joey Wiemer",
@@ -963,11 +977,11 @@
       "field_bearing_deg": 28.0,
       "predicted_hr_probability": 0.129799,
       "predicted_hr_score": 96.1,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Against this pitcher handedness, the hitter has a 6.0% barrel-per-PA split.",
       "top_reason_2": "Cristopher S\u00e1nchez has allowed a 60.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-01:823078:802139:642547",
@@ -1025,11 +1039,11 @@
       "field_bearing_deg": 60.0,
       "predicted_hr_probability": 0.12617,
       "predicted_hr_score": 95.4,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.2 mph, which points to top-end HR juice.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 50.0%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     }
   ],
   "history": [
@@ -4536,8 +4550,8 @@
       "game_pk": 823483,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T17:05:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "WSH @ PHI",
       "teams": [
         {
@@ -4668,8 +4682,8 @@
       "game_pk": 822835,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T17:07:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Game Over",
+      "game_state": "final",
       "matchup": "COL @ TOR",
       "teams": [
         {
@@ -5052,8 +5066,8 @@
       "game_pk": 823806,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T17:40:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Game Over",
+      "game_state": "final",
       "matchup": "TB @ MIL",
       "teams": [
         {
@@ -6020,8 +6034,14 @@
         {
           "team": "LAD",
           "opponent_team": "CLE",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 690976,
+              "batter_name": "Alex Freeland",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 681624,
               "batter_name": "Andy Pages",
@@ -6043,12 +6063,6 @@
             {
               "batter_id": 571970,
               "batter_name": "Max Muncy",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 500743,
-              "batter_name": "Miguel Rojas",
               "batting_order": null,
               "selected_for_pick": false
             },

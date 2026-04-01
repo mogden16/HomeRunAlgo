@@ -2114,25 +2114,6 @@ def settle_pick_records(
         game_date = normalize_game_date(row.get("game_date"))
         batter_id = row.get("batter_id")
         current_result = str(row.get("result") or row.get("result_label") or "Pending")
-        if current_result in {"HR", "No HR"}:
-            updated = dict(row)
-            game_pk = _coerce_int(row.get("game_pk"))
-            schedule_game = games_by_pk.get(game_pk) if game_pk is not None else None
-            if schedule_game:
-                updated["game_status"] = str(schedule_game.get("status") or updated.get("game_status") or "")
-                updated["game_state"] = str(schedule_game.get("game_state") or updated.get("game_state") or "final")
-            settled.append(updated)
-            continue
-        if not game_date or game_date > resolved_through_date:
-            updated = dict(row)
-            game_pk = _coerce_int(row.get("game_pk"))
-            schedule_game = games_by_pk.get(game_pk) if game_pk is not None else None
-            if schedule_game:
-                updated["game_status"] = str(schedule_game.get("status") or updated.get("game_status") or "")
-                updated["game_state"] = str(schedule_game.get("game_state") or updated.get("game_state") or "pregame")
-            settled.append(updated)
-            continue
-
         game_pk = _coerce_int(row.get("game_pk"))
         schedule_game = games_by_pk.get(game_pk) if game_pk is not None else None
         if schedule_game is not None:
@@ -2141,6 +2122,20 @@ def settle_pick_records(
             game_state = str(classify_game_state(row, reference_time))
         else:
             game_state = "pregame"
+        if current_result in {"HR", "No HR"}:
+            updated = dict(row)
+            if schedule_game:
+                updated["game_status"] = str(schedule_game.get("status") or updated.get("game_status") or "")
+                updated["game_state"] = str(schedule_game.get("game_state") or updated.get("game_state") or "final")
+            settled.append(updated)
+            continue
+        if not game_date or (game_date > resolved_through_date and game_state != "final"):
+            updated = dict(row)
+            if schedule_game:
+                updated["game_status"] = str(schedule_game.get("status") or updated.get("game_status") or "")
+                updated["game_state"] = str(schedule_game.get("game_state") or updated.get("game_state") or "pregame")
+            settled.append(updated)
+            continue
         lookup_value = resolved_lookup.get((game_date, int(batter_id))) if batter_id is not None else None
         if lookup_value is not None and int(lookup_value) == 1:
             resolved_hit = 1

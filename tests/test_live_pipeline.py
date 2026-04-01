@@ -571,6 +571,35 @@ class LivePipelineTests(unittest.TestCase):
         self.assertIsNone(settled[0]["actual_hit_hr"])
         self.assertEqual(settled[0]["game_state"], "pregame")
 
+    def test_settle_pick_records_marks_final_same_day_no_hr_when_dataset_lags(self) -> None:
+        picks = [
+            {
+                "game_pk": 824860,
+                "game_date": "2026-04-01",
+                "batter_id": 669394,
+                "batter_name": "Jake Burger",
+                "result": "Pending",
+                "game_status": "Final",
+            }
+        ]
+        dataset = pd.DataFrame(
+            [
+                {"game_date": pd.Timestamp("2026-03-31"), "batter_id": 101, "hit_hr": 1},
+            ]
+        )
+
+        settled = settle_pick_records(
+            picks,
+            dataset,
+            resolved_through_date="2026-03-31",
+            schedule_games=[{"game_pk": 824860, "status": "Final"}],
+        )
+
+        self.assertEqual(len(settled), 1)
+        self.assertEqual(settled[0]["result"], "No HR")
+        self.assertEqual(settled[0]["actual_hit_hr"], 0)
+        self.assertEqual(settled[0]["game_state"], "final")
+
     def test_dashboard_filters_out_pre_tracking_rows(self) -> None:
         old_row = build_dashboard_artifacts.normalize_pick(
             {
