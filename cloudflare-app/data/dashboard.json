@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-01T20:32:11.048621+00:00",
+  "generated_at": "2026-04-01T23:57:55.911937+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "logistic",
   "feature_profile": "live_shrunk",
@@ -44,25 +44,25 @@
     "latest_slate_size": 18,
     "tracked_dates": 8,
     "tracked_picks": 120,
-    "settled_picks": 111,
+    "settled_picks": 119,
     "tracked_homers": 19,
-    "tracked_hit_rate": 0.171171,
-    "open_picks": 9
+    "tracked_hit_rate": 0.159664,
+    "open_picks": 1
   },
   "confidence_summary": [
     {
       "confidence_tier": "elite",
-      "picks": 18,
+      "picks": 21,
       "homers": 6,
-      "hit_rate": 0.333333,
-      "avg_probability": 0.35463
+      "hit_rate": 0.285714,
+      "avg_probability": 0.328704
     },
     {
       "confidence_tier": "strong",
-      "picks": 55,
+      "picks": 60,
       "homers": 10,
-      "hit_rate": 0.181818,
-      "avg_probability": 0.271863
+      "hit_rate": 0.166667,
+      "avg_probability": 0.261337
     },
     {
       "confidence_tier": "watch",
@@ -102,6 +102,13 @@
       "hit_rate": 0.5
     },
     {
+      "batter_name": "Yordan Alvarez",
+      "team": "HOU",
+      "picks": 4,
+      "homers": 2,
+      "hit_rate": 0.5
+    },
+    {
       "batter_name": "Kyle Schwarber",
       "team": "PHI",
       "picks": 3,
@@ -109,18 +116,11 @@
       "hit_rate": 0.666667
     },
     {
-      "batter_name": "Yordan Alvarez",
-      "team": "HOU",
-      "picks": 3,
-      "homers": 2,
-      "hit_rate": 0.666667
-    },
-    {
       "batter_name": "Dominic Canzone",
       "team": "SEA",
-      "picks": 5,
+      "picks": 6,
       "homers": 1,
-      "hit_rate": 0.2
+      "hit_rate": 0.166667
     },
     {
       "batter_name": "Sal Stewart",
@@ -146,9 +146,9 @@
     {
       "batter_name": "Luke Raley",
       "team": "SEA",
-      "picks": 3,
+      "picks": 4,
       "homers": 1,
-      "hit_rate": 0.333333
+      "hit_rate": 0.25
     },
     {
       "batter_name": "Drake Baldwin",
@@ -186,6 +186,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "JJ Wetherholt",
+      "team": "STL",
+      "picks": 3,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Roman Anthony",
       "team": "BOS",
       "picks": 3,
@@ -216,13 +223,6 @@
     {
       "batter_name": "Ian Happ",
       "team": "CHC",
-      "picks": 2,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "JJ Wetherholt",
-      "team": "STL",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
@@ -492,7 +492,7 @@
       "game_pk": 825106,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T19:40:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 1,
       "morning_rank": null,
       "batter_name": "Jose Fernandez",
@@ -512,11 +512,11 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.17863,
       "predicted_hr_score": 100.0,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Hard-hit rate over the last 30 days is 66.7%, showing consistent quality contact.",
       "top_reason_2": "Tarik Skubal has allowed a 44.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-01:822835:676914:607536",
@@ -554,7 +554,7 @@
       "game_pk": 824211,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 3,
       "morning_rank": null,
       "batter_name": "Brice Matthews",
@@ -574,18 +574,18 @@
       "field_bearing_deg": 35.0,
       "predicted_hr_probability": 0.176827,
       "predicted_hr_score": 99.6,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Hard-hit rate over the last 30 days is 66.7%, showing consistent quality contact.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 66.7%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-01:824698:518595:571510",
       "game_pk": 824698,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 4,
       "morning_rank": null,
       "batter_name": "Travis d'Arnaud",
@@ -605,11 +605,11 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.163983,
       "predicted_hr_score": 99.2,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Hard-hit rate over the last 30 days is 100.0%, showing consistent quality contact.",
       "top_reason_2": "Matthew Boyd has allowed a 55.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-01:824940:686948:622663",
@@ -647,7 +647,7 @@
       "game_pk": 823157,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 6,
       "morning_rank": null,
       "batter_name": "Luke Raley",
@@ -667,11 +667,11 @@
       "field_bearing_deg": 18.0,
       "predicted_hr_probability": 0.155226,
       "predicted_hr_score": 98.4,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Peak exit velocity over the last 10 days is 113.8 mph, which points to top-end HR juice.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "Barrel rate over the last 30 days is 26.7%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-01:824536:701398:694973",
@@ -709,7 +709,7 @@
       "game_pk": 824211,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 8,
       "morning_rank": 2,
       "batter_name": "Yordan Alvarez",
@@ -729,11 +729,11 @@
       "field_bearing_deg": 35.0,
       "predicted_hr_probability": 0.152895,
       "predicted_hr_score": 98.0,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Peak exit velocity over the last 10 days is 113.0 mph, which points to top-end HR juice.",
       "top_reason_2": "Projected humidity is 89%, a modest positive weather input in the live model.",
       "top_reason_3": "Barrel rate over the last 30 days is 10.7%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-01:823889:808959:645261",
@@ -771,7 +771,7 @@
       "game_pk": 824211,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 10,
       "morning_rank": 5,
       "batter_name": "Christian Walker",
@@ -791,11 +791,11 @@
       "field_bearing_deg": 35.0,
       "predicted_hr_probability": 0.149653,
       "predicted_hr_score": 97.6,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Hard-hit rate over the last 30 days is 70.6%, showing consistent quality contact.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 70.6%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-01:822835:543807:607536",
@@ -864,7 +864,7 @@
       "game_pk": 823970,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-02T00:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 13,
       "morning_rank": 6,
       "batter_name": "Chase DeLauter",
@@ -907,11 +907,11 @@
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
       "confidence_tier": "strong",
-      "weather_code": null,
+      "weather_code": 0,
       "weather_label": "Unknown",
-      "temperature_f": null,
-      "wind_speed_mph": null,
-      "wind_direction_deg": null,
+      "temperature_f": 79.7,
+      "wind_speed_mph": 4.7,
+      "wind_direction_deg": 8.0,
       "field_bearing_deg": 28.0,
       "predicted_hr_probability": 0.137265,
       "predicted_hr_score": 96.5,
@@ -926,7 +926,7 @@
       "game_pk": 823157,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 15,
       "morning_rank": null,
       "batter_name": "Dominic Canzone",
@@ -946,11 +946,11 @@
       "field_bearing_deg": 18.0,
       "predicted_hr_probability": 0.140525,
       "predicted_hr_score": 96.1,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Barrel rate over the last 30 days is 23.1%, which the model treats as sustained power quality.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 60.0%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-01:823483:686894:650911",
@@ -969,11 +969,11 @@
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
       "confidence_tier": "strong",
-      "weather_code": null,
+      "weather_code": 0,
       "weather_label": "Unknown",
-      "temperature_f": null,
-      "wind_speed_mph": null,
-      "wind_direction_deg": null,
+      "temperature_f": 79.7,
+      "wind_speed_mph": 4.7,
+      "wind_direction_deg": 8.0,
       "field_bearing_deg": 28.0,
       "predicted_hr_probability": 0.129799,
       "predicted_hr_score": 96.1,
@@ -988,7 +988,7 @@
       "game_pk": 823078,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T17:15:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 17,
       "morning_rank": 13,
       "batter_name": "JJ Wetherholt",
@@ -1008,11 +1008,11 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.129401,
       "predicted_hr_score": 95.8,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Barrel rate over the last 30 days is 8.7%, which the model treats as sustained power quality.",
       "top_reason_2": "Freddy Peralta has allowed homers in 8.1% of plate appearances over the last 30 days.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-01:824860:669394:669432",
@@ -4682,7 +4682,7 @@
       "game_pk": 822835,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T17:07:00Z",
-      "game_status": "Game Over",
+      "game_status": "Final",
       "game_state": "final",
       "matchup": "COL @ TOR",
       "teams": [
@@ -4940,8 +4940,8 @@
       "game_pk": 823078,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T17:15:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "NYM @ STL",
       "teams": [
         {
@@ -5066,7 +5066,7 @@
       "game_pk": 823806,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T17:40:00Z",
-      "game_status": "Game Over",
+      "game_status": "Final",
       "game_state": "final",
       "matchup": "TB @ MIL",
       "teams": [
@@ -5198,8 +5198,8 @@
       "game_pk": 824211,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T18:10:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "BOS @ HOU",
       "teams": [
         {
@@ -5324,8 +5324,8 @@
       "game_pk": 824698,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T18:20:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "LAA @ CHC",
       "teams": [
         {
@@ -5450,8 +5450,8 @@
       "game_pk": 825106,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T19:40:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "DET @ AZ",
       "teams": [
         {
@@ -5576,8 +5576,8 @@
       "game_pk": 823321,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T20:10:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "SF @ SD",
       "teams": [
         {
@@ -5708,8 +5708,8 @@
       "game_pk": 823157,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T20:10:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "NYY @ SEA",
       "teams": [
         {
@@ -5834,8 +5834,8 @@
       "game_pk": 824136,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-01T23:40:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "In Progress",
+      "game_state": "live",
       "matchup": "MIN @ KC",
       "teams": [
         {
@@ -5966,14 +5966,14 @@
       "game_pk": 823970,
       "game_date": "2026-04-01",
       "game_datetime": "2026-04-02T00:20:00Z",
-      "game_status": "Scheduled",
-      "game_state": "pregame",
+      "game_status": "Warmup",
+      "game_state": "live",
       "matchup": "CLE @ LAD",
       "teams": [
         {
           "team": "CLE",
           "opponent_team": "LAD",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682657,
@@ -5992,12 +5992,6 @@
               "batter_name": "Brayan Rocchio",
               "batting_order": null,
               "selected_for_pick": false
-            },
-            {
-              "batter_id": 800050,
-              "batter_name": "Chase DeLauter",
-              "batting_order": null,
-              "selected_for_pick": true
             },
             {
               "batter_id": 682177,
@@ -6020,6 +6014,12 @@
             {
               "batter_id": 700932,
               "batter_name": "Kyle Manzardo",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 656555,
+              "batter_name": "Rhys Hoskins",
               "batting_order": null,
               "selected_for_pick": false
             },
