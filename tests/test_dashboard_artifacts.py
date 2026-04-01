@@ -155,6 +155,52 @@ class DashboardArtifactTests(unittest.TestCase):
             self.assertEqual([row["batter_name"] for row in payload["history"]], ["Yesterday HR"])
             self.assertEqual(payload["overview"]["open_picks"], 1)
 
+    def test_dashboard_payload_preserves_latest_game_meta_fields(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+            output_dir = base / "dashboard"
+            metadata_path = base / "model_metadata.json"
+            model_data_path = base / "dataset.csv"
+
+            current_row = self._pending_pick("2026-04-01", 1, "Alpha", "elite", 72.0)
+            current_row.update(
+                {
+                    "game_datetime": "2026-04-01T19:07:00Z",
+                    "ballpark_name": "Rogers Centre",
+                    "ballpark_region_abbr": "ON",
+                    "weather_code": 3,
+                    "weather_label": "Cloudy",
+                    "wind_speed_mph": 12.0,
+                    "wind_direction_deg": 210.0,
+                    "field_bearing_deg": 30.0,
+                }
+            )
+            current_path.write_text(json.dumps([current_row], indent=2), encoding="utf-8")
+            history_path.write_text(json.dumps([], indent=2), encoding="utf-8")
+            metadata_path.write_text(json.dumps({}, indent=2), encoding="utf-8")
+            pd.DataFrame([self._season_row("Slugger A", "NYY", 1, "2026-03-27", 1, 4, 1)]).to_csv(model_data_path, index=False)
+
+            output_path = build_dashboard_artifacts.build_dashboard_artifacts(
+                current_picks_path=current_path,
+                history_path=history_path,
+                output_dir=output_dir,
+                model_data_path=model_data_path,
+                model_metadata_path=metadata_path,
+                persist_history=False,
+            )
+
+            payload = json.loads(output_path.read_text(encoding="utf-8"))
+            latest = payload["latest_picks"][0]
+            self.assertEqual(latest["ballpark_name"], "Rogers Centre")
+            self.assertEqual(latest["ballpark_region_abbr"], "ON")
+            self.assertEqual(latest["weather_code"], 3)
+            self.assertEqual(latest["weather_label"], "Cloudy")
+            self.assertEqual(latest["wind_speed_mph"], 12.0)
+            self.assertEqual(latest["wind_direction_deg"], 210.0)
+            self.assertEqual(latest["field_bearing_deg"], 30.0)
+
     def test_history_default_date_falls_back_to_latest_when_yesterday_missing(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)

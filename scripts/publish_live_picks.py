@@ -36,7 +36,9 @@ from scripts.live_pipeline import (
     load_model_bundle,
     load_model_metadata,
     normalize_game_date,
+    park_game_meta,
     score_live_candidates,
+    weather_code_label,
     write_current_picks,
 )
 
@@ -142,6 +144,54 @@ def _game_is_locked(game_like: dict[str, Any], publish_reference: datetime) -> b
     return bool(slate_state["games"][0]["is_locked"])
 
 
+def _fill_missing_game_meta(
+    row: dict[str, Any],
+    *,
+    schedule_game: dict[str, Any] | None,
+    refreshed_game_meta: dict[str, Any] | None,
+) -> dict[str, Any]:
+    updated = dict(row)
+    home_team = str(schedule_game.get("home_team") or "") if schedule_game else ""
+    park_meta = park_game_meta(home_team)
+    candidates = [refreshed_game_meta or {}, park_meta]
+
+    def _first_present(*values: Any) -> Any:
+        for value in values:
+            if value not in (None, ""):
+                return value
+        return None
+
+    updated["ballpark_name"] = _first_present(
+        updated.get("ballpark_name"),
+        *(candidate.get("ballpark_name") for candidate in candidates),
+    ) or ""
+    updated["ballpark_region_abbr"] = _first_present(
+        updated.get("ballpark_region_abbr"),
+        *(candidate.get("ballpark_region_abbr") for candidate in candidates),
+    ) or ""
+    updated["field_bearing_deg"] = _first_present(
+        updated.get("field_bearing_deg"),
+        *(candidate.get("field_bearing_deg") for candidate in candidates),
+    )
+    updated["weather_code"] = _first_present(
+        updated.get("weather_code"),
+        *(candidate.get("weather_code") for candidate in candidates),
+    )
+    updated["weather_label"] = _first_present(
+        updated.get("weather_label"),
+        *(candidate.get("weather_label") for candidate in candidates),
+    ) or weather_code_label(updated.get("weather_code"))
+    updated["wind_speed_mph"] = _first_present(
+        updated.get("wind_speed_mph"),
+        *(candidate.get("wind_speed_mph") for candidate in candidates),
+    )
+    updated["wind_direction_deg"] = _first_present(
+        updated.get("wind_direction_deg"),
+        *(candidate.get("wind_direction_deg") for candidate in candidates),
+    )
+    return updated
+
+
 def _merge_same_day_picks(
     existing_rows: list[dict[str, Any]],
     refreshed_rows: list[dict[str, Any]],
@@ -158,13 +208,25 @@ def _merge_same_day_picks(
 
     slate_state = build_slate_state(schedule_games, reference_time=publish_reference)
     schedule_by_game_pk = slate_state["games_by_pk"]
+    refreshed_game_meta_by_pk = {
+        int(row["game_pk"]): dict(row)
+        for row in refreshed_rows
+        if row.get("game_pk") not in (None, "")
+    }
     locked_rows: list[dict[str, Any]] = []
     locked_game_pks: set[int] = set()
     for row in same_day_rows:
         game_pk = row.get("game_pk")
         schedule_game = schedule_by_game_pk.get(int(game_pk)) if game_pk not in (None, "") else None
         if _game_is_locked(schedule_game or row, publish_reference):
-            locked_rows.append(dict(row))
+            refreshed_game_meta = refreshed_game_meta_by_pk.get(int(game_pk)) if game_pk not in (None, "") else None
+            locked_rows.append(
+                _fill_missing_game_meta(
+                    row,
+                    schedule_game=schedule_game,
+                    refreshed_game_meta=refreshed_game_meta,
+                )
+            )
             if game_pk not in (None, ""):
                 locked_game_pks.add(int(game_pk))
 

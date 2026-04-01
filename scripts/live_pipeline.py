@@ -291,6 +291,40 @@ def _resolved_result_label(row: dict[str, Any]) -> str:
     return "Pending"
 
 
+def weather_code_label(value: Any) -> str:
+    code = _coerce_int(value)
+    if code is None:
+        return "Unknown"
+    if code in {0, 1}:
+        return "Clear"
+    if code in {2, 3}:
+        return "Cloudy"
+    if code in {45, 48}:
+        return "Fog"
+    if code in {51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82}:
+        return "Rain"
+    if code in {71, 73, 75, 77, 85, 86}:
+        return "Snow"
+    if code in {95, 96, 99}:
+        return "Storm"
+    return "Unknown"
+
+
+def park_game_meta(home_team: Any) -> dict[str, Any]:
+    park = PARKS.get(normalize_team_code(home_team))
+    if not park:
+        return {
+            "ballpark_name": "",
+            "ballpark_region_abbr": "",
+            "field_bearing_deg": None,
+        }
+    return {
+        "ballpark_name": str(park.get("ballpark") or ""),
+        "ballpark_region_abbr": str(park.get("region_abbr") or ""),
+        "field_bearing_deg": _coerce_float(park.get("field_bearing_deg")),
+    }
+
+
 def _build_pick_record_base(row: dict[str, Any]) -> dict[str, Any]:
     game_date = normalize_game_date(row.get("game_date"))
     batter_id = _coerce_int(row.get("batter_id"))
@@ -321,6 +355,13 @@ def _build_pick_record_base(row: dict[str, Any]) -> dict[str, Any]:
         "top_reason_3": str(row.get("top_reason_3") or ""),
         "lineup_source": str(row.get("lineup_source") or "projected"),
         "batting_order": _coerce_int(row.get("batting_order")),
+        "ballpark_name": str(row.get("ballpark_name") or row.get("ballpark") or ""),
+        "ballpark_region_abbr": str(row.get("ballpark_region_abbr") or ""),
+        "weather_code": _coerce_int(row.get("weather_code")),
+        "weather_label": str(row.get("weather_label") or weather_code_label(row.get("weather_code"))),
+        "wind_speed_mph": _coerce_float(row.get("wind_speed_mph")),
+        "wind_direction_deg": _coerce_float(row.get("wind_direction_deg")),
+        "field_bearing_deg": _coerce_float(row.get("field_bearing_deg")),
     }
 
 
@@ -1380,6 +1421,8 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
             "humidity_pct": None,
             "wind_speed_mph": None,
             "wind_direction_deg": None,
+            "weather_code": None,
+            "weather_label": "Unknown",
             "pressure_hpa": None,
         }
 
@@ -1390,10 +1433,10 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
     for home_team in sorted({normalize_team_code(team) for team in home_teams if team}):
         park = PARKS.get(home_team)
         if park is None:
-            rows.append({"game_date": target_date, "home_team": home_team})
+            rows.append(_empty_weather_row(home_team))
             continue
         if historical_target:
-            rows.append({"game_date": target_date, "home_team": home_team})
+            rows.append(_empty_weather_row(home_team))
             continue
         response = None
         for attempt in range(1, OPEN_METEO_FORECAST_MAX_ATTEMPTS + 1):
@@ -1403,7 +1446,7 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
                     params={
                         "latitude": park["lat"],
                         "longitude": park["lon"],
-                        "hourly": "temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,surface_pressure",
+                        "hourly": "temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,weather_code,surface_pressure",
                         "temperature_unit": "fahrenheit",
                         "wind_speed_unit": "mph",
                         "timezone": park["tz"],
@@ -1443,6 +1486,8 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
                 "humidity_pct": serialize_for_json(float(best.get("relative_humidity_2m"))) if pd.notna(best.get("relative_humidity_2m")) else None,
                 "wind_speed_mph": serialize_for_json(float(best.get("wind_speed_10m"))) if pd.notna(best.get("wind_speed_10m")) else None,
                 "wind_direction_deg": serialize_for_json(float(best.get("wind_direction_10m"))) if pd.notna(best.get("wind_direction_10m")) else None,
+                "weather_code": _coerce_int(best.get("weather_code")),
+                "weather_label": weather_code_label(best.get("weather_code")),
                 "pressure_hpa": serialize_for_json(float(best.get("surface_pressure"))) if pd.notna(best.get("surface_pressure")) else None,
             }
         )
@@ -1519,6 +1564,7 @@ def build_live_candidate_frame(
             },
         ]
         for spec in matchup_specs:
+            game_meta = park_game_meta(game.get("home_team"))
             hitters = select_probable_lineup_hitters(
                 dataset_df,
                 team_code=spec["batting_team"],
@@ -1552,6 +1598,7 @@ def build_live_candidate_frame(
                         "bat_side": hitter.get("bat_side"),
                         "pitcher_hand": pitcher_hand,
                         "pitch_hand_primary": pitcher_hand,
+                        "home_team": str(game.get("home_team") or ""),
                         "pa_count": 0,
                         "hr_count": 0,
                         "hit_hr": 0,
@@ -1563,21 +1610,22 @@ def build_live_candidate_frame(
                         "ev_95plus_bbe_count": 0,
                         "fly_ball_bbe_count": 0,
                         "pull_air_bbe_count": 0,
-                        "ballpark": PARKS.get(game["home_team"], {}).get("ballpark"),
+                        "ballpark": game_meta["ballpark_name"],
+                        "ballpark_name": game_meta["ballpark_name"],
+                        "ballpark_region_abbr": game_meta["ballpark_region_abbr"],
+                        "field_bearing_deg": game_meta["field_bearing_deg"],
                     }
                 )
     candidate_df = pd.DataFrame(rows)
     if candidate_df.empty:
         return candidate_df
 
-    candidate_df["home_team"] = np.where(candidate_df["is_home"].astype(bool), candidate_df["team"], candidate_df["opponent"])
     candidate_df = candidate_df.merge(
         forecast_weather,
         on=["game_date", "home_team"],
         how="left",
         validate="many_to_one",
     )
-    candidate_df = candidate_df.drop(columns=["home_team"])
     candidate_df["platoon_advantage"] = np.where(
         candidate_df["bat_side"].notna() & candidate_df["pitch_hand_primary"].notna(),
         (candidate_df["bat_side"] != candidate_df["pitch_hand_primary"]).astype(float),
@@ -2027,6 +2075,13 @@ def score_live_candidates(
                 "top_reason_3": str(row["top_reason_3"]),
                 "lineup_source": str(row.get("lineup_source") or "projected"),
                 "batting_order": _coerce_int(row.get("batting_order")),
+                "ballpark_name": str(row.get("ballpark_name") or row.get("ballpark") or ""),
+                "ballpark_region_abbr": str(row.get("ballpark_region_abbr") or ""),
+                "weather_code": _coerce_int(row.get("weather_code")),
+                "weather_label": str(row.get("weather_label") or weather_code_label(row.get("weather_code"))),
+                "wind_speed_mph": _coerce_float(row.get("wind_speed_mph")),
+                "wind_direction_deg": _coerce_float(row.get("wind_direction_deg")),
+                "field_bearing_deg": _coerce_float(row.get("field_bearing_deg")),
                 "result": "Pending",
             }
         )

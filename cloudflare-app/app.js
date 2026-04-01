@@ -54,6 +54,16 @@ function formatDateTime(value) {
   });
 }
 
+function formatGameTime(value) {
+  if (!value) {
+    return "-";
+  }
+  return new Date(value).toLocaleTimeString(undefined, {
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
 function escapeHtml(value) {
   return String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -94,6 +104,100 @@ function formatGameState(value) {
     return "Live";
   }
   return "Pregame";
+}
+
+function formatStadium(row) {
+  const name = String(row.ballpark_name || "").trim();
+  const region = String(row.ballpark_region_abbr || "").trim();
+  if (!name) {
+    return "-";
+  }
+  return region ? `${name}, ${region}` : name;
+}
+
+function weatherIcon(value) {
+  const token = String(value || "").trim().toLowerCase();
+  if (token === "clear") {
+    return "☀️";
+  }
+  if (token === "cloudy") {
+    return "☁️";
+  }
+  if (token === "fog") {
+    return "🌫️";
+  }
+  if (token === "rain") {
+    return "🌧️";
+  }
+  if (token === "snow") {
+    return "🌨️";
+  }
+  if (token === "storm") {
+    return "⛈️";
+  }
+  return "❔";
+}
+
+function normalizeDegrees(value) {
+  if (value === null || value === undefined || Number.isNaN(Number(value))) {
+    return null;
+  }
+  const normalized = Number(value) % 360;
+  return normalized >= 0 ? normalized : normalized + 360;
+}
+
+function windArrow(windDirectionDeg, fieldBearingDeg) {
+  const windFrom = normalizeDegrees(windDirectionDeg);
+  const fieldBearing = normalizeDegrees(fieldBearingDeg);
+  if (windFrom === null || fieldBearing === null) {
+    return "";
+  }
+  const blowTo = normalizeDegrees(windFrom + 180);
+  const relative = normalizeDegrees(blowTo - fieldBearing);
+  if (relative < 22.5 || relative >= 337.5) {
+    return "↑";
+  }
+  if (relative < 67.5) {
+    return "↗";
+  }
+  if (relative < 112.5) {
+    return "→";
+  }
+  if (relative < 157.5) {
+    return "↘";
+  }
+  if (relative < 202.5) {
+    return "↓";
+  }
+  if (relative < 247.5) {
+    return "↙";
+  }
+  if (relative < 292.5) {
+    return "←";
+  }
+  return "↖";
+}
+
+function formatWind(row) {
+  const speed = row.wind_speed_mph;
+  if (speed === null || speed === undefined || Number.isNaN(Number(speed))) {
+    return "-";
+  }
+  const arrow = windArrow(row.wind_direction_deg, row.field_bearing_deg);
+  const speedText = `${Math.round(Number(speed))} mph`;
+  return arrow ? `${arrow} ${speedText}` : speedText;
+}
+
+function renderGameMeta(row) {
+  const weatherLabel = String(row.weather_label || "").trim() || "Unknown";
+  return `
+    <div class="pick-meta-block">
+      <div class="pick-meta-line"><span class="pick-meta-label">Gametime</span><span class="pick-meta-value">${escapeHtml(formatGameTime(row.game_datetime))}</span></div>
+      <div class="pick-meta-line"><span class="pick-meta-label">Stadium</span><span class="pick-meta-value">${escapeHtml(formatStadium(row))}</span></div>
+      <div class="pick-meta-line"><span class="pick-meta-label">Conditions</span><span class="pick-meta-value">${escapeHtml(weatherIcon(weatherLabel))} ${escapeHtml(weatherLabel)}</span></div>
+      <div class="pick-meta-line"><span class="pick-meta-label">Wind</span><span class="pick-meta-value">${escapeHtml(formatWind(row))}</span></div>
+    </div>
+  `;
 }
 
 function findConfidenceSummary(rows, tier) {
@@ -286,46 +390,50 @@ function renderConfidenceTable(rows) {
   );
 }
 
-function renderPicksTable(targetId, rows, emptyMessage) {
-  renderSimpleTable(
-    targetId,
-    [
-      { label: "Date", render: (row) => escapeHtml(formatDate(row.game_date)) },
-      { label: "Rank", render: (row) => `<strong>${escapeHtml(row.rank)}</strong>` },
-      {
-        label: "Hitter",
-        render: (row) => `
-          <div class="name-block">
-            <strong>${escapeHtml(row.batter_name)}</strong>
-            <span>${escapeHtml(row.team)} vs ${escapeHtml(row.opponent_team || "-")}</span>
-            <span>${escapeHtml(formatLineupSource(row.lineup_source))}${row.batting_order ? `, batting ${escapeHtml(row.batting_order)}` : ""} | ${escapeHtml(formatGameState(row.game_state))}</span>
-          </div>
-        `,
+function renderPicksTable(targetId, rows, emptyMessage, { includeGameMeta = false } = {}) {
+  const columns = [
+    { label: "Date", render: (row) => escapeHtml(formatDate(row.game_date)) },
+    { label: "Rank", render: (row) => `<strong>${escapeHtml(row.rank)}</strong>` },
+    {
+      label: "Hitter",
+      render: (row) => `
+        <div class="name-block">
+          <strong>${escapeHtml(row.batter_name)}</strong>
+          <span>${escapeHtml(row.team)} vs ${escapeHtml(row.opponent_team || "-")}</span>
+          <span>${escapeHtml(formatLineupSource(row.lineup_source))}${row.batting_order ? `, batting ${escapeHtml(row.batting_order)}` : ""} | ${escapeHtml(formatGameState(row.game_state))}</span>
+        </div>
+      `,
+    },
+    { label: "Pitcher", render: (row) => escapeHtml(row.pitcher_name || "-") },
+    { label: "Score", render: (row) => escapeHtml(formatScore(row.predicted_hr_score)) },
+    {
+      label: "Tier",
+      render: (row) => `<span class="${tierClass(row.confidence_tier)}">${escapeHtml(row.confidence_tier)}</span>`,
+    },
+  ];
+  if (includeGameMeta) {
+    columns.push({
+      label: "Game Meta",
+      render: (row) => renderGameMeta(row),
+    });
+  }
+  columns.push(
+    {
+      label: "Result",
+      render: (row) => `<span class="${resultClass(row.result_label)}">${escapeHtml(row.result_label)}</span>`,
+    },
+    {
+      label: "Why",
+      render: (row) => {
+        const reasons = [row.top_reason_1, row.top_reason_2, row.top_reason_3].filter(Boolean);
+        if (!reasons.length) {
+          return '<span class="muted">No model reasons exported.</span>';
+        }
+        return `<ul class="reason-list">${reasons.map((reason) => `<li>${escapeHtml(reason)}</li>`).join("")}</ul>`;
       },
-      { label: "Pitcher", render: (row) => escapeHtml(row.pitcher_name || "-") },
-      { label: "Score", render: (row) => escapeHtml(formatScore(row.predicted_hr_score)) },
-      {
-        label: "Tier",
-        render: (row) => `<span class="${tierClass(row.confidence_tier)}">${escapeHtml(row.confidence_tier)}</span>`,
-      },
-      {
-        label: "Result",
-        render: (row) => `<span class="${resultClass(row.result_label)}">${escapeHtml(row.result_label)}</span>`,
-      },
-      {
-        label: "Why",
-        render: (row) => {
-          const reasons = [row.top_reason_1, row.top_reason_2, row.top_reason_3].filter(Boolean);
-          if (!reasons.length) {
-            return '<span class="muted">No model reasons exported.</span>';
-          }
-          return `<ul class="reason-list">${reasons.map((reason) => `<li>${escapeHtml(reason)}</li>`).join("")}</ul>`;
-        },
-      },
-    ],
-    rows,
-    emptyMessage,
+    },
   );
+  renderSimpleTable(targetId, columns, rows, emptyMessage);
 }
 
 function renderLineupPanels(rows) {
@@ -413,7 +521,7 @@ function applyLatestPicksFilters() {
     return;
   }
   state.filteredLatestPicks = filterRowsByTierSelection(state.dashboard.latest_picks, state.latestTierFilters);
-  renderPicksTable("latest-picks-table", state.filteredLatestPicks, "No published picks match the selected confidence tiers.");
+  renderPicksTable("latest-picks-table", state.filteredLatestPicks, "No published picks match the selected confidence tiers.", { includeGameMeta: true });
 }
 
 function renderSeasonLeaders(rows) {

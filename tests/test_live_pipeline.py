@@ -612,6 +612,56 @@ class LivePipelineTests(unittest.TestCase):
         self.assertEqual([row["batter_name"] for row in picks], ["Bravo", "Charlie", "Alpha"])
         self.assertEqual([row["rank"] for row in picks], [1, 2, 3])
 
+    def test_score_live_candidates_preserves_game_meta_fields(self) -> None:
+        class FakeModel:
+            def predict_proba(self, features: pd.DataFrame) -> list[list[float]]:
+                probabilities = []
+                for value in features["feature_a"].tolist():
+                    probabilities.append([1.0 - float(value), float(value)])
+                return pd.DataFrame(probabilities).to_numpy()
+
+        candidate_df = pd.DataFrame(
+            [
+                {
+                    "game_pk": 1,
+                    "game_date": pd.Timestamp("2026-03-25"),
+                    "game_datetime": "2026-03-25T23:05:00Z",
+                    "game_state": "pregame",
+                    "batter_id": 11,
+                    "batter_name": "Bravo",
+                    "team": "TOR",
+                    "opponent_team": "COL",
+                    "pitcher_id": 20,
+                    "pitcher_name": "Pitcher",
+                    "feature_a": 0.9,
+                    "confidence_tier": "elite",
+                    "lineup_source": "confirmed",
+                    "ballpark_name": "Rogers Centre",
+                    "ballpark_region_abbr": "ON",
+                    "weather_code": 3,
+                    "weather_label": "Cloudy",
+                    "wind_speed_mph": 12.0,
+                    "wind_direction_deg": 210.0,
+                    "field_bearing_deg": 30.0,
+                }
+            ]
+        )
+        bundle = {
+            "model": FakeModel(),
+            "feature_columns": ["feature_a"],
+            "reference_df": pd.DataFrame({"feature_a": [0.9]}),
+        }
+
+        picks = score_live_candidates(candidate_df, bundle, max_picks=1, published_at="2026-03-25T12:00:00+00:00")
+
+        self.assertEqual(picks[0]["ballpark_name"], "Rogers Centre")
+        self.assertEqual(picks[0]["ballpark_region_abbr"], "ON")
+        self.assertEqual(picks[0]["weather_code"], 3)
+        self.assertEqual(picks[0]["weather_label"], "Cloudy")
+        self.assertEqual(picks[0]["wind_speed_mph"], 12.0)
+        self.assertEqual(picks[0]["wind_direction_deg"], 210.0)
+        self.assertEqual(picks[0]["field_bearing_deg"], 30.0)
+
     def test_score_live_candidates_applies_confidence_and_team_filters(self) -> None:
         class FakeModel:
             def predict_proba(self, features: pd.DataFrame) -> list[list[float]]:
@@ -663,7 +713,22 @@ class LivePipelineTests(unittest.TestCase):
         with patch("scripts.live_pipeline.requests.get") as mock_get:
             weather = fetch_forecast_weather(["ATL"], "2024-09-29")
         self.assertFalse(mock_get.called)
-        self.assertEqual(weather.to_dict(orient="records"), [{"game_date": "2024-09-29", "home_team": "ATL"}])
+        self.assertEqual(
+            weather.to_dict(orient="records"),
+            [
+                {
+                    "game_date": "2024-09-29",
+                    "home_team": "ATL",
+                    "temperature_f": None,
+                    "humidity_pct": None,
+                    "wind_speed_mph": None,
+                    "wind_direction_deg": None,
+                    "weather_code": None,
+                    "weather_label": "Unknown",
+                    "pressure_hpa": None,
+                }
+            ],
+        )
 
     def test_evaluate_live_publish_freshness_accepts_fresh_metadata_and_dataset(self) -> None:
         dataset_df = pd.DataFrame({"game_date": pd.to_datetime(["2026-03-24", "2026-03-25"])})
