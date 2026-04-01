@@ -133,6 +133,54 @@ class LiveSlateRepeatabilityTests(unittest.TestCase):
             history_rows = json.loads(history_path.read_text(encoding="utf-8"))
             self.assertEqual({row["pick_id"] for row in history_rows}, {"2026-03-31:1001:10:20", "2026-03-31:1002:11:20"})
 
+    def test_settle_live_results_recovers_pending_history_rows_and_keeps_them_current_until_resolved(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            dataset_path = base / "dataset.csv"
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+
+            pd.DataFrame(
+                [
+                    {"game_date": "2026-03-30", "batter_id": 10, "hit_hr": 0},
+                ]
+            ).to_csv(dataset_path, index=False)
+            current_path.write_text("[]", encoding="utf-8")
+            history_path.write_text(
+                json.dumps(
+                    [
+                        {
+                            **self._current_pick("2026-03-31", 1001, 10, "Alpha"),
+                            "pick_id": "2026-03-31:1001:10:20",
+                            "result_label": "Pending",
+                            "actual_hit_hr": None,
+                        }
+                    ],
+                    indent=2,
+                ),
+                encoding="utf-8",
+            )
+
+            with patch(
+                "scripts.settle_live_results.fetch_schedule_games",
+                return_value=[
+                    {"game_pk": 1001, "game_date": "2026-03-31", "game_datetime": "2026-03-31T19:05:00Z", "status": "Final"},
+                ],
+            ):
+                result = settle_live_results.run_settle_live_results(
+                    dataset_path=dataset_path,
+                    current_picks_path=current_path,
+                    history_path=history_path,
+                )
+
+            self.assertEqual(result["archived_dates"], [])
+            current_rows = json.loads(current_path.read_text(encoding="utf-8"))
+            self.assertEqual(len(current_rows), 1)
+            self.assertEqual(current_rows[0]["pick_id"], "2026-03-31:1001:10:20")
+            self.assertEqual(current_rows[0]["result"], "Pending")
+            self.assertEqual(current_rows[0]["game_state"], "final")
+            self.assertEqual(json.loads(history_path.read_text(encoding="utf-8")), [])
+
     @staticmethod
     def _current_pick(game_date: str, game_pk: int, batter_id: int, batter_name: str) -> dict[str, object]:
         return {

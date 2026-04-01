@@ -423,6 +423,37 @@ def upsert_history(existing_rows: list[dict[str, Any]], current_rows: list[dict[
     return sorted(by_id.values(), key=history_sort_key)
 
 
+def recover_pending_history_rows(
+    current_rows: list[dict[str, Any]],
+    history_rows: list[dict[str, Any]],
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    recovered_rows = [
+        dict(row)
+        for row in history_rows
+        if str(row.get("result_label") or row.get("result") or "Pending") == "Pending"
+    ]
+    if not recovered_rows:
+        return current_rows, history_rows
+
+    history_without_pending = [
+        dict(row)
+        for row in history_rows
+        if str(row.get("result_label") or row.get("result") or "Pending") != "Pending"
+    ]
+    current_by_id = {
+        str(row.get("pick_id") or ""): dict(row)
+        for row in current_rows
+        if str(row.get("pick_id") or "")
+    }
+    for row in recovered_rows:
+        key = str(row.get("pick_id") or "")
+        if not key:
+            continue
+        current_by_id[key] = dict(row)
+    repaired_current_rows = sorted(current_by_id.values(), key=current_pick_sort_key)
+    return repaired_current_rows, history_without_pending
+
+
 def top_k_by_date(rows: list[dict[str, Any]], k: int) -> list[dict[str, Any]]:
     grouped: dict[str, list[dict[str, Any]]] = {}
     for row in sorted(rows, key=history_sort_key):
@@ -731,6 +762,7 @@ def build_dashboard_artifacts(
     current_rows = [row for row in (normalize_pick(item, tracking_start_date) for item in current_input) if row is not None]
     history_rows = [row for row in (normalize_pick(item, tracking_start_date) for item in history_input) if row is not None]
     current_rows = sorted(current_rows, key=current_pick_sort_key)
+    current_rows, history_rows = recover_pending_history_rows(current_rows, history_rows)
     active_current_rows = sorted(select_active_current_rows(current_rows), key=current_pick_sort_key)
     active_current_dates = {str(row["game_date"]) for row in active_current_rows if row.get("game_date")}
     dashboard_history = sorted(

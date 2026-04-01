@@ -118,6 +118,23 @@ def _publish_reference_now() -> datetime:
     return datetime.now(timezone.utc)
 
 
+def _parse_game_datetime(value: Any) -> datetime | None:
+    if value in (None, ""):
+        return None
+    if isinstance(value, datetime):
+        parsed = value
+    else:
+        text = str(value).strip()
+        if not text:
+            return None
+        if text.endswith("Z"):
+            text = f"{text[:-1]}+00:00"
+        parsed = datetime.fromisoformat(text)
+    if parsed.tzinfo is None:
+        return parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc)
+
+
 def _game_is_locked(game_like: dict[str, Any], publish_reference: datetime) -> bool:
     slate_state = build_slate_state([game_like], reference_time=publish_reference)
     if not slate_state["games"]:

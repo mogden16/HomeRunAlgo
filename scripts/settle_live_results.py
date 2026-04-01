@@ -48,6 +48,36 @@ def _upsert_history_rows(
     return list(by_id.values())
 
 
+def _recover_pending_history_rows(
+    current_rows: list[dict[str, object]],
+    history_rows: list[dict[str, object]],
+) -> tuple[list[dict[str, object]], list[dict[str, object]]]:
+    recovered_rows = [
+        dict(row)
+        for row in history_rows
+        if str(row.get("result_label") or row.get("result") or "Pending") == "Pending"
+    ]
+    if not recovered_rows:
+        return current_rows, history_rows
+
+    history_without_pending = [
+        dict(row)
+        for row in history_rows
+        if str(row.get("result_label") or row.get("result") or "Pending") != "Pending"
+    ]
+    current_by_id = {
+        str(row.get("pick_id") or ""): dict(row)
+        for row in current_rows
+        if str(row.get("pick_id") or "")
+    }
+    for row in recovered_rows:
+        key = str(row.get("pick_id") or "")
+        if not key:
+            continue
+        current_by_id[key] = dict(row)
+    return list(current_by_id.values()), history_without_pending
+
+
 def run_settle_live_results(
     *,
     dataset_path: Path = LIVE_MODEL_DATA_PATH,
@@ -59,6 +89,7 @@ def run_settle_live_results(
 
     current_rows = load_json_array(current_picks_path)
     history_rows = load_json_array(history_path)
+    current_rows, history_rows = _recover_pending_history_rows(current_rows, history_rows)
     current_dates = sorted({normalize_game_date(row.get("game_date")) for row in current_rows if normalize_game_date(row.get("game_date"))})
 
     settled_current: list[dict[str, object]] = []
@@ -73,7 +104,11 @@ def run_settle_live_results(
             resolved_through_date=resolved_through_date,
             schedule_games=schedule_games,
         )
-        if slate_state["all_final"] or (not schedule_games and all(str(row.get("result_label") or row.get("result") or "Pending") in {"HR", "No HR"} for row in settled_rows)):
+        all_rows_terminal = all(
+            str(row.get("result_label") or row.get("result") or "Pending") in {"HR", "No HR"}
+            for row in settled_rows
+        )
+        if (slate_state["all_final"] and all_rows_terminal) or (not schedule_games and all_rows_terminal):
             history_rows = _upsert_history_rows(history_rows, settled_rows)
             archived_dates.append(current_date)
             continue

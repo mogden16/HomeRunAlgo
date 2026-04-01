@@ -1,6 +1,6 @@
 {
-  "trained_through": "2026-03-30",
-  "dataset_max_game_date": "2026-03-30",
+  "trained_through": "2026-03-31",
+  "dataset_max_game_date": "2026-03-31",
   "model_family": "logistic",
   "feature_profile": "live_shrunk",
   "missingness_threshold": 0.5,
@@ -44,8 +44,8 @@
   "training_cv_summary": {},
   "final_holdout_summary": {},
   "promotion_decision": {},
-  "row_count": 98861,
-  "hr_rate": 0.106483,
+  "row_count": 99135,
+  "hr_rate": 0.106461,
   "refit_strategy": "fast_refit",
   "weather_feature_coverage": {
     "warning_null_rate_threshold": 0.35,
@@ -54,21 +54,21 @@
     "all_null_features": [],
     "summary": {
       "temperature_f": {
-        "row_count": 98861,
-        "non_null_count": 92377,
-        "null_rate": 0.065587,
+        "row_count": 99135,
+        "non_null_count": 99135,
+        "null_rate": 0.0,
         "present": true
       },
       "wind_speed_mph": {
-        "row_count": 98861,
-        "non_null_count": 92377,
-        "null_rate": 0.065587,
+        "row_count": 99135,
+        "non_null_count": 99135,
+        "null_rate": 0.0,
         "present": true
       },
       "humidity_pct": {
-        "row_count": 98861,
-        "non_null_count": 92377,
-        "null_rate": 0.065587,
+        "row_count": 99135,
+        "non_null_count": 99135,
+        "null_rate": 0.0,
         "present": true
       }
     },

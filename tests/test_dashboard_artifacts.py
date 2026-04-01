@@ -118,6 +118,43 @@ class DashboardArtifactTests(unittest.TestCase):
             self.assertEqual(payload["overview"]["settled_picks"], 2)
             self.assertEqual(payload["overview"]["open_picks"], 1)
 
+    def test_dashboard_payload_recovers_pending_history_rows_into_latest(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+            output_dir = base / "dashboard"
+            metadata_path = base / "model_metadata.json"
+            model_data_path = base / "dataset.csv"
+
+            current_path.write_text(json.dumps([], indent=2), encoding="utf-8")
+            history_path.write_text(
+                json.dumps(
+                    [
+                        self._pending_pick("2026-03-31", 1, "Alpha", "elite", 72.0),
+                        self._settled_pick("2026-03-30", 1, "Yesterday HR", "elite", 80.0, "HR"),
+                    ],
+                    indent=2,
+                ),
+                encoding="utf-8",
+            )
+            metadata_path.write_text(json.dumps({}, indent=2), encoding="utf-8")
+            pd.DataFrame([self._season_row("Slugger A", "NYY", 1, "2026-03-27", 1, 4, 1)]).to_csv(model_data_path, index=False)
+
+            output_path = build_dashboard_artifacts.build_dashboard_artifacts(
+                current_picks_path=current_path,
+                history_path=history_path,
+                output_dir=output_dir,
+                model_data_path=model_data_path,
+                model_metadata_path=metadata_path,
+                persist_history=False,
+            )
+
+            payload = json.loads(output_path.read_text(encoding="utf-8"))
+            self.assertEqual([row["batter_name"] for row in payload["latest_picks"]], ["Alpha"])
+            self.assertEqual([row["batter_name"] for row in payload["history"]], ["Yesterday HR"])
+            self.assertEqual(payload["overview"]["open_picks"], 1)
+
     def test_history_default_date_falls_back_to_latest_when_yesterday_missing(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
