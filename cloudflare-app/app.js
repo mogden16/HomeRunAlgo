@@ -10,7 +10,7 @@ const state = {
 const DEFAULT_LATEST_PICKS_EMPTY_MESSAGE =
   "Today's public picks have not been posted yet. Publish reruns every 15 minutes before first pitch and settle reruns every 15 minutes once games begin.";
 const DEFAULT_HISTORY_EMPTY_MESSAGE = "No published picks match those filters.";
-const DEFAULT_YESTERDAY_SUCCESSES_EMPTY_MESSAGE = "No published picks homered yesterday.";
+const DEFAULT_YESTERDAY_RECAP_EMPTY_MESSAGE = "No published picks were recorded for the previous tracked date.";
 const DEFAULT_MODEL_EXPLAINER_MESSAGE = "Metric details are not available for the current dashboard build.";
 const MANUAL_REFRESH_KEY_STORAGE = "manualRefreshKey";
 const CONFIDENCE_TIERS = ["elite", "strong", "watch", "longshot"];
@@ -49,6 +49,16 @@ function formatDateTime(value) {
     month: "short",
     day: "numeric",
     year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
+function formatTime(value) {
+  if (!value) {
+    return "-";
+  }
+  return new Date(value).toLocaleTimeString(undefined, {
     hour: "numeric",
     minute: "2-digit",
   });
@@ -201,6 +211,99 @@ function formatWind(row) {
   const arrow = windArrow(row.wind_direction_deg, row.field_bearing_deg);
   const speedText = `${Math.round(Number(speed))} mph`;
   return arrow ? `${arrow} ${speedText}` : speedText;
+}
+
+function weatherIcon(value) {
+  const token = String(value || "").trim().toLowerCase();
+  if (token === "clear") {
+    return "\u2600\uFE0F";
+  }
+  if (token === "cloudy") {
+    return "\u2601\uFE0F";
+  }
+  if (token === "fog") {
+    return "\uD83C\uDF2B\uFE0F";
+  }
+  if (token === "rain") {
+    return "\uD83C\uDF27\uFE0F";
+  }
+  if (token === "snow") {
+    return "\uD83C\uDF28\uFE0F";
+  }
+  if (token === "storm") {
+    return "\u26C8\uFE0F";
+  }
+  return "\u2753";
+}
+
+function windArrow(windDirectionDeg, fieldBearingDeg) {
+  const windFrom = normalizeDegrees(windDirectionDeg);
+  const fieldBearing = normalizeDegrees(fieldBearingDeg);
+  if (windFrom === null || fieldBearing === null) {
+    return "";
+  }
+  const blowTo = normalizeDegrees(windFrom + 180);
+  const relative = normalizeDegrees(blowTo - fieldBearing);
+  if (relative < 22.5 || relative >= 337.5) {
+    return "\u2191";
+  }
+  if (relative < 67.5) {
+    return "\u2197";
+  }
+  if (relative < 112.5) {
+    return "\u2192";
+  }
+  if (relative < 157.5) {
+    return "\u2198";
+  }
+  if (relative < 202.5) {
+    return "\u2193";
+  }
+  if (relative < 247.5) {
+    return "\u2199";
+  }
+  if (relative < 292.5) {
+    return "\u2190";
+  }
+  return "\u2196";
+}
+
+function renderGameMeta(row) {
+  const weatherLabel = String(row.weather_label || "").trim() || "Unknown";
+  const temperatureText = formatTemperature(row.temperature_f);
+  const weatherMeta = [weatherIcon(weatherLabel), weatherLabel, temperatureText].filter(Boolean).join(" ");
+  const mobileLineOne = [formatGameTime(row.game_datetime), formatStadium(row)]
+    .filter((value) => value && value !== "-")
+    .join(" | ") || "-";
+  const mobileLineTwo = [weatherIcon(weatherLabel), temperatureText || weatherLabel, formatWind(row)]
+    .filter((value) => value && value !== "-")
+    .join(" | ") || "Unknown";
+  return `
+    <div class="pick-meta-block pick-meta-block-desktop">
+      <div class="pick-meta-line"><span class="pick-meta-label">Gametime</span><span class="pick-meta-value">${escapeHtml(formatGameTime(row.game_datetime))}</span></div>
+      <div class="pick-meta-line"><span class="pick-meta-label">Stadium</span><span class="pick-meta-value">${escapeHtml(formatStadium(row))}</span></div>
+      <div class="pick-meta-line"><span class="pick-meta-label">Conditions</span><span class="pick-meta-value">${escapeHtml(weatherMeta)}</span></div>
+      <div class="pick-meta-line"><span class="pick-meta-label">Wind</span><span class="pick-meta-value">${escapeHtml(formatWind(row))}</span></div>
+    </div>
+    <div class="pick-meta-block-mobile">
+      <span>${escapeHtml(mobileLineOne)}</span>
+      <span>${escapeHtml(mobileLineTwo)}</span>
+    </div>
+  `;
+}
+
+function renderProbabilityCell(row) {
+  const probability = formatPercent(row.predicted_hr_probability);
+  const modelScore = formatScore(row.predicted_hr_score);
+  return renderMobileCellStack(
+    "HR chance",
+    `
+      <div class="probability-cell">
+        <strong>${escapeHtml(probability)}</strong>
+        <span class="probability-subtext">Model score ${escapeHtml(modelScore)}</span>
+      </div>
+    `,
+  );
 }
 
 function renderMobileCellStack(label, content, extraClass = "") {
@@ -382,11 +485,23 @@ function renderDashboardAlerts(alerts) {
     .join("");
 }
 
-function renderOverviewCards(overview, confidenceSummary, refreshSchedule) {
+function renderOverviewCards(dashboard) {
+  const overview = dashboard?.overview || {};
+  const confidenceSummary = dashboard?.confidence_summary || [];
+  const latestPicks = Array.isArray(dashboard?.latest_picks) ? dashboard.latest_picks : [];
   const eliteSummary = findConfidenceSummary(confidenceSummary, "elite");
   const elitePicks = eliteSummary?.picks ?? null;
   const eliteHomers = eliteSummary?.homers ?? null;
+  const confirmedCount = latestPicks.filter((row) => String(row.lineup_source || "").toLowerCase() === "confirmed").length;
+  const settledPicks = Number(overview.settled_picks) || 0;
+  const trackedHomers = Number(overview.tracked_homers) || 0;
+  const overallHitRate = settledPicks > 0 ? trackedHomers / settledPicks : null;
   const cards = [
+    {
+      label: "Latest board",
+      value: formatWholeNumber(overview.latest_slate_size),
+      subtext: `${formatDate(dashboard?.latest_available_date)} public slate.`,
+    },
     {
       label: "Elite hit rate",
       value: formatPercent(eliteSummary?.hit_rate),
@@ -396,29 +511,21 @@ function renderOverviewCards(overview, confidenceSummary, refreshSchedule) {
           : "No settled elite picks yet.",
     },
     {
-      label: "Published picks",
-      value: formatWholeNumber(overview.tracked_picks),
-      subtext: `${formatWholeNumber(overview.tracked_dates)} tracked slate dates since public tracking started.`,
+      label: "Settled hit rate",
+      value: formatPercent(overallHitRate),
+      subtext: `${formatWholeNumber(trackedHomers)} homers across ${formatWholeNumber(settledPicks)} settled picks.`,
     },
     {
-      label: "Settled picks",
-      value: formatWholeNumber(overview.settled_picks),
-      subtext: "Only settled picks count toward the public hit-rate tracker.",
+      label: "Lineups confirmed",
+      value: `${formatWholeNumber(confirmedCount)}/${formatWholeNumber(latestPicks.length)}`,
+      subtext: latestPicks.length
+        ? "Current board rows with confirmed lineups."
+        : "No picks posted on the latest board yet.",
     },
     {
-      label: "Open picks",
-      value: formatWholeNumber(overview.open_picks),
-      subtext: "These picks have been published but do not have a recorded result yet.",
-    },
-    {
-      label: "Latest slate",
-      value: formatWholeNumber(overview.latest_slate_size),
-      subtext: "Current published picks for the latest tracked date.",
-    },
-    {
-      label: "Refresh schedule",
-      value: "15 min cadence",
-      subtext: buildRefreshScheduleSummary(refreshSchedule),
+      label: "Last refresh",
+      value: formatTime(dashboard?.generated_at),
+      subtext: `${formatWholeNumber(overview.tracked_picks)} tracked picks across ${formatWholeNumber(overview.tracked_dates)} slate dates.`,
     },
   ];
 
@@ -505,9 +612,9 @@ function renderPicksTable(targetId, rows, emptyMessage, { includeGameMeta = fals
       `,
     },
     { label: "Pitcher", cellClass: "col-pitcher", render: (row) => escapeHtml(row.pitcher_name || "-") },
-    { label: "Score", cellClass: "col-score", render: (row) => escapeHtml(formatScore(row.predicted_hr_score)) },
+    { label: "HR chance", cellClass: "col-probability", render: (row) => renderProbabilityCell(row) },
     {
-      label: "Tier",
+      label: "Confidence",
       cellClass: "col-tier",
       render: (row) => `<span class="${tierClass(row.confidence_tier)}">${escapeHtml(row.confidence_tier)}</span>`,
     },
@@ -552,9 +659,13 @@ function renderPicksTable(targetId, rows, emptyMessage, { includeGameMeta = fals
 
 function renderLineupPanels(rows) {
   const target = document.getElementById("lineup-panels");
-  const panels = Array.isArray(rows) ? rows : [];
+  const panels = (Array.isArray(rows) ? rows : []).filter((panel) =>
+    Array.isArray(panel.teams) && panel.teams.some((teamPanel) =>
+      Array.isArray(teamPanel.hitters) && teamPanel.hitters.some((hitter) => hitter.selected_for_pick),
+    ),
+  );
   if (!panels.length) {
-    target.innerHTML = '<p class="empty-state">No active lineup context is available for the current slate.</p>';
+    target.innerHTML = '<p class="empty-state">No current published picks are waiting on lineup context.</p>';
     return;
   }
 
@@ -660,19 +771,59 @@ function renderSeasonLeaders(rows) {
   );
 }
 
-function renderSuccesses(rows) {
+function renderYesterdayRecap(dashboard) {
+  const summaryTarget = document.getElementById("yesterday-summary");
+  const previousDate = dashboard?.yesterday_homer_date || dashboard?.history_default_date || "";
+  const rows = (Array.isArray(dashboard?.history) ? dashboard.history : [])
+    .filter((row) => row.game_date === previousDate)
+    .sort((left, right) => Number(left.rank) - Number(right.rank));
+
+  if (!rows.length) {
+    summaryTarget.innerHTML = "";
+    document.getElementById("yesterday-table").innerHTML = `<p class="empty-state">${escapeHtml(DEFAULT_YESTERDAY_RECAP_EMPTY_MESSAGE)}</p>`;
+    return;
+  }
+
+  const homerCount = rows.filter((row) => row.result_label === "HR").length;
+  const missCount = rows.filter((row) => row.result_label === "No HR").length;
+  const pendingCount = rows.filter((row) => row.result_label === "Pending").length;
+  const hitRate = rows.length ? homerCount / rows.length : null;
+
+  summaryTarget.innerHTML = [
+    { label: "Date", value: formatDate(previousDate) },
+    { label: "Record", value: `${formatWholeNumber(homerCount)}-${formatWholeNumber(missCount)}` },
+    { label: "Hit rate", value: formatPercent(hitRate) },
+    { label: "Pending", value: formatWholeNumber(pendingCount) },
+  ]
+    .map(
+      (item) => `
+        <article class="yesterday-stat">
+          <span class="yesterday-stat-label">${escapeHtml(item.label)}</span>
+          <strong class="yesterday-stat-value">${escapeHtml(item.value)}</strong>
+        </article>
+      `,
+    )
+    .join("");
+
   renderSimpleTable(
-    "success-table",
+    "yesterday-table",
     [
-      { label: "Date", render: (row) => escapeHtml(formatDate(row.game_date)) },
+      { label: "Rank", render: (row) => escapeHtml(formatWholeNumber(row.rank)) },
       { label: "Player", render: (row) => escapeHtml(row.batter_name) },
       { label: "Team", render: (row) => escapeHtml(row.team) },
       { label: "Pitcher", render: (row) => escapeHtml(row.pitcher_name || "-") },
-      { label: "Rank", render: (row) => escapeHtml(row.rank) },
-      { label: "Score", render: (row) => escapeHtml(formatScore(row.predicted_hr_score)) },
+      { label: "HR chance", render: (row) => escapeHtml(formatPercent(row.predicted_hr_probability)) },
+      {
+        label: "Confidence",
+        render: (row) => `<span class="${tierClass(row.confidence_tier)}">${escapeHtml(row.confidence_tier)}</span>`,
+      },
+      {
+        label: "Result",
+        render: (row) => `<span class="${resultClass(row.result_label)}">${escapeHtml(row.result_label)}</span>`,
+      },
     ],
     rows,
-    DEFAULT_YESTERDAY_SUCCESSES_EMPTY_MESSAGE,
+    DEFAULT_YESTERDAY_RECAP_EMPTY_MESSAGE,
   );
 }
 
@@ -798,7 +949,7 @@ async function loadDashboard() {
   document.getElementById("usable-status").textContent = `Tracking since ${formatDate(state.dashboard.tracking_start_date)}`;
 
   renderDashboardAlerts(state.dashboard.operational_alerts);
-  renderOverviewCards(state.dashboard.overview, state.dashboard.confidence_summary, state.dashboard.refresh_schedule);
+  renderOverviewCards(state.dashboard);
   renderConfidenceTable(state.dashboard.confidence_summary);
   renderTierFilterControls("latest-confidence-filters", state.latestTierFilters);
   renderTierFilterControls("history-confidence-filters", state.historyTierFilters);
@@ -806,7 +957,7 @@ async function loadDashboard() {
   applyLatestPicksFilters();
   renderLineupPanels(state.dashboard.lineup_panels || []);
   renderSeasonLeaders(state.dashboard.season_hr_leaders_2026 || []);
-  renderSuccesses(state.dashboard.recent_successes || []);
+  renderYesterdayRecap(state.dashboard);
   renderRefreshScheduleInline(state.dashboard.refresh_schedule);
   renderModelExplainer(state.dashboard.model_explainer);
   applyHistoryFilters();
