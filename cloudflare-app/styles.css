@@ -676,6 +676,12 @@ td {
   min-width: 168px;
 }
 
+.pick-meta-block-mobile,
+.mobile-cell-label,
+.mobile-why-details {
+  display: none;
+}
+
 .pick-meta-line {
   display: grid;
   gap: 2px;
@@ -876,86 +882,158 @@ td {
     width: 100%;
   }
 
-  .table-wrap,
-  .history-scroll {
-    overflow: visible;
+  .table-wrap {
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
   }
 
   .history-scroll {
     max-height: none;
     padding-right: 0;
+    overflow-x: auto;
+    overflow-y: visible;
   }
 
-  .mobile-cards thead {
-    display: none;
+  .mobile-picks-table {
+    min-width: 860px;
   }
 
-  .mobile-cards,
-  .mobile-cards tbody,
-  .mobile-cards tr,
-  .mobile-cards td {
+  .mobile-picks-table th,
+  .mobile-picks-table td {
+    padding-right: 14px;
+    white-space: nowrap;
+    background: rgba(255, 252, 246, 0.96);
+  }
+
+  .mobile-picks-table th {
+    position: sticky;
+    top: 0;
+    z-index: 7;
+    box-shadow: 0 1px 0 var(--line);
+  }
+
+  .mobile-picks-table .col-rank,
+  .mobile-picks-table .col-hitter,
+  .mobile-picks-table .col-result {
+    position: sticky;
+    z-index: 4;
+    background: rgba(255, 252, 246, 0.98);
+    box-shadow: 1px 0 0 rgba(20, 32, 51, 0.08);
+  }
+
+  .mobile-picks-table th.col-rank,
+  .mobile-picks-table td.col-rank {
+    left: 0;
+    min-width: 82px;
+    width: 82px;
+    text-align: center;
+  }
+
+  .mobile-picks-table th.col-hitter,
+  .mobile-picks-table td.col-hitter {
+    left: 82px;
+    min-width: 188px;
+    width: 188px;
+  }
+
+  .mobile-picks-table th.col-result,
+  .mobile-picks-table td.col-result {
+    left: 270px;
+    min-width: 116px;
+    width: 116px;
+  }
+
+  .mobile-picks-table th.col-rank,
+  .mobile-picks-table th.col-hitter,
+  .mobile-picks-table th.col-result {
+    z-index: 9;
+  }
+
+  .mobile-cell-label {
     display: block;
-    width: 100%;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
   }
 
-  .mobile-cards tbody {
+  .mobile-cell-stack {
     display: grid;
-    gap: 14px;
-  }
-
-  .mobile-cards tr {
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 14px;
-    background: rgba(255, 255, 255, 0.72);
-    box-shadow: 0 12px 28px rgba(20, 32, 51, 0.08);
-  }
-
-  .mobile-cards td {
-    display: grid;
-    grid-template-columns: minmax(84px, 96px) minmax(0, 1fr);
-    gap: 10px;
-    padding: 0;
-    border-top: 0;
+    gap: 6px;
     min-width: 0;
   }
 
-  .mobile-cards td + td {
-    margin-top: 12px;
+  .mobile-cell-stack.stack-center {
+    justify-items: center;
+    text-align: center;
   }
 
-  .mobile-cards td::before {
-    content: attr(data-label);
+  .mobile-cell-content {
+    min-width: 0;
+  }
+
+  .mobile-picks-table .col-rank .rank-cell {
+    justify-content: center;
+  }
+
+  .mobile-picks-table .col-hitter .name-block,
+  .mobile-picks-table .col-result .mobile-cell-content {
+    white-space: normal;
+  }
+
+  .mobile-picks-table .col-hitter .name-block strong {
+    margin-bottom: 4px;
+  }
+
+  .mobile-picks-table .col-why {
+    display: none;
+  }
+
+  .mobile-why-details {
+    display: block;
+    margin-top: 10px;
+  }
+
+  .mobile-why-details summary {
+    cursor: pointer;
+    list-style: none;
     font-family: "IBM Plex Mono", monospace;
     font-size: 0.68rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--muted);
-    padding-top: 2px;
   }
 
-  .mobile-cards td[data-label="Hitter"],
-  .mobile-cards td[data-label="Why"],
-  .mobile-cards td[data-label="Game Meta"],
-  .mobile-cards td[data-label="Player"] {
-    grid-template-columns: 1fr;
-    gap: 6px;
+  .mobile-why-details summary::-webkit-details-marker {
+    display: none;
   }
 
-  .mobile-cards .pick-meta-block {
-    min-width: 0;
+  .mobile-why-details[open] {
+    padding-top: 8px;
   }
 
-  .mobile-cards .reason-list {
-    margin-top: 0;
+  .mobile-why-details .reason-list {
+    margin-top: 8px;
+    white-space: normal;
   }
 
-  .mobile-cards .rank-cell {
-    justify-content: flex-start;
+  .pick-meta-block-desktop {
+    display: none;
   }
 
-  .mobile-cards .name-block strong {
-    margin-bottom: 4px;
+  .pick-meta-block-mobile {
+    display: grid;
+    gap: 4px;
+    white-space: normal;
+    color: var(--ink);
+    font-size: 0.88rem;
+    line-height: 1.35;
+  }
+
+  .pick-meta-block-mobile span {
+    display: block;
   }
 
   .model-dialog {

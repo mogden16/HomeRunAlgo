@@ -203,16 +203,46 @@ function formatWind(row) {
   return arrow ? `${arrow} ${speedText}` : speedText;
 }
 
+function renderMobileCellStack(label, content, extraClass = "") {
+  return `
+    <div class="mobile-cell-stack ${extraClass}">
+      <span class="mobile-cell-label">${escapeHtml(label)}</span>
+      <span class="mobile-cell-content">${content}</span>
+    </div>
+  `;
+}
+
+function renderMobileWhyDetails(row) {
+  const reasons = [row.top_reason_1, row.top_reason_2, row.top_reason_3].filter(Boolean);
+  if (!reasons.length) {
+    return "";
+  }
+  return `
+    <details class="mobile-why-details">
+      <summary>Why</summary>
+      <ul class="reason-list">${reasons.map((reason) => `<li>${escapeHtml(reason)}</li>`).join("")}</ul>
+    </details>
+  `;
+}
+
 function renderGameMeta(row) {
   const weatherLabel = String(row.weather_label || "").trim() || "Unknown";
   const temperatureText = formatTemperature(row.temperature_f);
   const weatherMeta = [weatherIcon(weatherLabel), weatherLabel, temperatureText].filter(Boolean).join(" ");
+  const mobileLineOne = [formatGameTime(row.game_datetime), formatStadium(row)].filter((value) => value && value !== "-").join(" • ") || "-";
+  const mobileLineTwo = [weatherIcon(weatherLabel), temperatureText || weatherLabel, formatWind(row)]
+    .filter((value) => value && value !== "-")
+    .join(" • ") || "❔ Unknown";
   return `
-    <div class="pick-meta-block">
+    <div class="pick-meta-block pick-meta-block-desktop">
       <div class="pick-meta-line"><span class="pick-meta-label">Gametime</span><span class="pick-meta-value">${escapeHtml(formatGameTime(row.game_datetime))}</span></div>
       <div class="pick-meta-line"><span class="pick-meta-label">Stadium</span><span class="pick-meta-value">${escapeHtml(formatStadium(row))}</span></div>
       <div class="pick-meta-line"><span class="pick-meta-label">Conditions</span><span class="pick-meta-value">${escapeHtml(weatherMeta)}</span></div>
       <div class="pick-meta-line"><span class="pick-meta-label">Wind</span><span class="pick-meta-value">${escapeHtml(formatWind(row))}</span></div>
+    </div>
+    <div class="pick-meta-block-mobile">
+      <span>${escapeHtml(mobileLineOne)}</span>
+      <span>${escapeHtml(mobileLineTwo)}</span>
     </div>
   `;
 }
@@ -412,12 +442,17 @@ function renderSimpleTable(targetId, columns, rows, emptyMessage = "No rows avai
     return;
   }
 
-  const tableClass = ["data-table", options.mobileCards === false ? "" : "mobile-cards"].filter(Boolean).join(" ");
-  const headers = columns.map((column) => `<th>${escapeHtml(column.label)}</th>`).join("");
+  const tableClass = ["data-table", options.mobileCards === false ? "" : "mobile-cards", options.tableClass || ""].filter(Boolean).join(" ");
+  const headers = columns
+    .map((column) => `<th class="${escapeHtml(column.headerClass || column.cellClass || "")}">${escapeHtml(column.label)}</th>`)
+    .join("");
   const body = rows
     .map((row) => {
       const cells = columns
-        .map((column) => `<td data-label="${escapeHtml(column.label)}">${column.render(row)}</td>`)
+        .map(
+          (column) =>
+            `<td class="${escapeHtml(column.cellClass || "")}" data-label="${escapeHtml(column.label)}">${column.render(row)}</td>`,
+        )
         .join("");
       return `<tr>${cells}</tr>`;
     })
@@ -446,38 +481,59 @@ function renderConfidenceTable(rows) {
 function renderPicksTable(targetId, rows, emptyMessage, { includeGameMeta = false } = {}) {
   const displayRows = includeGameMeta ? enrichLatestRanks(rows) : rows;
   const columns = [
-    { label: "Date", render: (row) => escapeHtml(formatDate(row.game_date)) },
-    { label: "Rank", render: (row) => renderRankCell(row) },
+    { label: "Date", cellClass: "col-date", render: (row) => escapeHtml(formatDate(row.game_date)) },
+    {
+      label: "Rank",
+      cellClass: "col-rank",
+      render: (row) => renderMobileCellStack("Rank", renderRankCell(row), "stack-center"),
+    },
     {
       label: "Hitter",
+      cellClass: "col-hitter",
       render: (row) => `
-        <div class="name-block">
-          <strong>${escapeHtml(row.batter_name)}</strong>
-          <span>${escapeHtml(row.team)} vs ${escapeHtml(row.opponent_team || "-")}</span>
-          <span>${renderLineupBadge(row.lineup_source)}${row.batting_order ? ` <span class="lineup-order">batting ${escapeHtml(row.batting_order)}</span>` : ""} <span class="lineup-separator">|</span> ${escapeHtml(formatGameState(row.game_state))}</span>
-        </div>
+        ${renderMobileCellStack(
+          "Hitter",
+          `
+            <div class="name-block">
+              <strong>${escapeHtml(row.batter_name)}</strong>
+              <span>${escapeHtml(row.team)} vs ${escapeHtml(row.opponent_team || "-")}</span>
+              <span>${renderLineupBadge(row.lineup_source)}${row.batting_order ? ` <span class="lineup-order">batting ${escapeHtml(row.batting_order)}</span>` : ""} <span class="lineup-separator">|</span> ${escapeHtml(formatGameState(row.game_state))}</span>
+            </div>
+          `,
+        )}
       `,
     },
-    { label: "Pitcher", render: (row) => escapeHtml(row.pitcher_name || "-") },
-    { label: "Score", render: (row) => escapeHtml(formatScore(row.predicted_hr_score)) },
+    { label: "Pitcher", cellClass: "col-pitcher", render: (row) => escapeHtml(row.pitcher_name || "-") },
+    { label: "Score", cellClass: "col-score", render: (row) => escapeHtml(formatScore(row.predicted_hr_score)) },
     {
       label: "Tier",
+      cellClass: "col-tier",
       render: (row) => `<span class="${tierClass(row.confidence_tier)}">${escapeHtml(row.confidence_tier)}</span>`,
     },
   ];
   if (includeGameMeta) {
     columns.push({
       label: "Game Meta",
+      cellClass: "col-game-meta",
       render: (row) => renderGameMeta(row),
     });
   }
   columns.push(
     {
       label: "Result",
-      render: (row) => `<span class="${resultClass(row.result_label)}">${escapeHtml(row.result_label)}</span>`,
+      cellClass: "col-result",
+      render: (row) => `
+        ${renderMobileCellStack(
+          "Result",
+          `<span class="${resultClass(row.result_label)}">${escapeHtml(row.result_label)}</span>`,
+          "stack-center",
+        )}
+        ${renderMobileWhyDetails(row)}
+      `,
     },
     {
       label: "Why",
+      cellClass: "col-why",
       render: (row) => {
         const reasons = [row.top_reason_1, row.top_reason_2, row.top_reason_3].filter(Boolean);
         if (!reasons.length) {
@@ -487,7 +543,10 @@ function renderPicksTable(targetId, rows, emptyMessage, { includeGameMeta = fals
       },
     },
   );
-  renderSimpleTable(targetId, columns, displayRows, emptyMessage);
+  renderSimpleTable(targetId, columns, displayRows, emptyMessage, {
+    mobileCards: false,
+    tableClass: "mobile-picks-table",
+  });
 }
 
 function renderLineupPanels(rows) {
