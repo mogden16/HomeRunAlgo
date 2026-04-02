@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-02T03:45:33.550957+00:00",
+  "generated_at": "2026-04-02T10:54:42.433928+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "logistic",
   "feature_profile": "live_shrunk",
@@ -16,8 +16,8 @@
     "2026-03-26",
     "2026-03-25"
   ],
-  "history_default_date": "2026-03-31",
-  "yesterday_homer_date": "2026-03-31",
+  "history_default_date": "2026-04-01",
+  "yesterday_homer_date": "2026-04-01",
   "refresh_schedule": {
     "timezone": "ET",
     "runs": [
@@ -256,7 +256,7 @@
     "summary": "25 metrics are active in the current model.",
     "model_family": "logistic",
     "feature_profile": "live_shrunk",
-    "trained_through": "2026-03-31",
+    "trained_through": "2026-04-01",
     "feature_count": 25,
     "strength_source": "logistic_coefficient",
     "features": [
@@ -267,223 +267,223 @@
         "strength": "Very strong",
         "strength_score": 1.0,
         "direction": "Higher values generally boost the score",
-        "coefficient_weight": 0.141964
+        "coefficient_weight": 0.142508
       },
       {
         "feature": "platoon_advantage",
         "label": "Platoon Advantage",
         "description": "Whether the hitter has the handedness advantage against the pitcher.",
         "strength": "Strong",
-        "strength_score": 0.647995,
+        "strength_score": 0.639282,
         "direction": "Higher values generally boost the score",
-        "coefficient_weight": 0.091992
+        "coefficient_weight": 0.091103
       },
       {
         "feature": "pa_last_30d",
         "label": "Pa Last 30D",
         "description": "This feature is included in the current model configuration.",
         "strength": "Strong",
-        "strength_score": 0.613906,
+        "strength_score": 0.618575,
         "direction": "Higher values generally boost the score",
-        "coefficient_weight": 0.087153
+        "coefficient_weight": 0.088152
       },
       {
         "feature": "pitcher_barrels_allowed_per_bbe_vs_batter_hand",
         "label": "Pitcher Barrel Split Allowed vs Batter Hand",
         "description": "The pitcher's barrel susceptibility against hitters of this handedness.",
         "strength": "Strong",
-        "strength_score": 0.595676,
+        "strength_score": 0.617292,
         "direction": "Higher values generally boost the score",
-        "coefficient_weight": 0.084565
+        "coefficient_weight": 0.087969
       },
       {
         "feature": "bbe_95plus_ev_rate_last_30d",
         "label": "95+ EV Rate, Last 30 Days",
         "description": "30-day loud-contact rate, used to stabilize recent quality-of-contact signals.",
         "strength": "Strong",
-        "strength_score": 0.568585,
+        "strength_score": 0.571233,
         "direction": "Higher values generally boost the score",
-        "coefficient_weight": 0.080719
+        "coefficient_weight": 0.081405
       },
       {
         "feature": "hard_hit_rate_last_30d",
         "label": "Hard-Hit Rate, Last 30 Days",
         "description": "30-day hard-hit trend, used as a broader measure of how consistently loud the hitter's contact has been.",
         "strength": "Strong",
-        "strength_score": 0.568585,
+        "strength_score": 0.571233,
         "direction": "Higher values generally boost the score",
-        "coefficient_weight": 0.080719
-      },
-      {
-        "feature": "pa_last_10d",
-        "label": "Pa Last 10D",
-        "description": "This feature is included in the current model configuration.",
-        "strength": "Strong",
-        "strength_score": 0.491713,
-        "direction": "Higher values generally boost the score",
-        "coefficient_weight": 0.069806
+        "coefficient_weight": 0.081405
       },
       {
         "feature": "pitcher_barrels_allowed_per_bbe_last_30d",
         "label": "Pitcher Barrel Rate Allowed, Last 30 Days",
         "description": "How often recent contact against the pitcher has been barreled.",
         "strength": "Strong",
-        "strength_score": 0.479314,
+        "strength_score": 0.500331,
         "direction": "Higher values generally lower the score",
-        "coefficient_weight": -0.068045
+        "coefficient_weight": -0.071301
+      },
+      {
+        "feature": "pa_last_10d",
+        "label": "Pa Last 10D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Strong",
+        "strength_score": 0.487059,
+        "direction": "Higher values generally boost the score",
+        "coefficient_weight": 0.06941
       },
       {
         "feature": "barrels_per_pa_last_30d",
         "label": "Barrel Rate, Last 30 Days",
         "description": "Longer recent barrel trend, used as a sustained power-quality signal.",
         "strength": "Moderate",
-        "strength_score": 0.383153,
+        "strength_score": 0.392341,
         "direction": "Higher values generally boost the score",
-        "coefficient_weight": 0.054394
+        "coefficient_weight": 0.055912
       },
       {
         "feature": "humidity_pct",
         "label": "Humidity",
         "description": "Projected humidity at the park. It is a lighter weather-context feature.",
         "strength": "Light",
-        "strength_score": 0.186951,
+        "strength_score": 0.192818,
         "direction": "Higher values generally boost the score",
-        "coefficient_weight": 0.02654
+        "coefficient_weight": 0.027478
       },
       {
         "feature": "avg_exit_velocity_last_10d",
         "label": "Average Exit Velocity, Last 10 Days",
         "description": "Average recent exit velocity. It measures how hard the hitter is striking the ball lately.",
         "strength": "Light",
-        "strength_score": 0.175642,
+        "strength_score": 0.183885,
         "direction": "Higher values generally lower the score",
-        "coefficient_weight": -0.024935
+        "coefficient_weight": -0.026205
       },
       {
         "feature": "bbe_95plus_ev_rate_last_10d",
         "label": "95+ EV Rate, Last 10 Days",
         "description": "How often recent contact has cleared 95 mph. It is a compact proxy for current dangerous contact.",
         "strength": "Light",
-        "strength_score": 0.145942,
+        "strength_score": 0.140888,
         "direction": "Higher values generally lower the score",
-        "coefficient_weight": -0.020718
+        "coefficient_weight": -0.020078
       },
       {
         "feature": "hard_hit_rate_last_10d",
         "label": "Hard-Hit Rate, Last 10 Days",
         "description": "Share of recent batted balls hit hard. This helps the model separate live contact quality from raw outcomes.",
         "strength": "Light",
-        "strength_score": 0.145942,
+        "strength_score": 0.140888,
         "direction": "Higher values generally lower the score",
-        "coefficient_weight": -0.020718
+        "coefficient_weight": -0.020078
       },
       {
         "feature": "wind_speed_mph",
         "label": "Wind Speed",
         "description": "Projected wind speed at the park. This gives the model weather context for carry conditions.",
         "strength": "Light",
-        "strength_score": 0.124214,
+        "strength_score": 0.122404,
         "direction": "Higher values generally boost the score",
-        "coefficient_weight": 0.017634
-      },
-      {
-        "feature": "park_factor_hr_vs_batter_hand",
-        "label": "Park Factor vs Batter Hand",
-        "description": "Home-run environment of the park for the hitter's handedness.",
-        "strength": "Light",
-        "strength_score": 0.097482,
-        "direction": "Higher values generally boost the score",
-        "coefficient_weight": 0.013839
-      },
-      {
-        "feature": "pitcher_95plus_ev_allowed_rate_last_30d",
-        "label": "Pitcher 95+ EV Rate Allowed, Last 30 Days",
-        "description": "Rate of very hard recent contact allowed by the pitcher.",
-        "strength": "Light",
-        "strength_score": 0.097042,
-        "direction": "Higher values generally boost the score",
-        "coefficient_weight": 0.013777
-      },
-      {
-        "feature": "pitcher_hard_hit_allowed_rate_last_30d",
-        "label": "Pitcher Hard-Hit Rate Allowed, Last 30 Days",
-        "description": "Recent hard contact allowed by the opposing pitcher.",
-        "strength": "Light",
-        "strength_score": 0.097042,
-        "direction": "Higher values generally boost the score",
-        "coefficient_weight": 0.013777
-      },
-      {
-        "feature": "pitcher_hr_allowed_per_pa_vs_batter_hand",
-        "label": "Pitcher HR Split Allowed vs Batter Hand",
-        "description": "The pitcher's home-run susceptibility against hitters of this handedness.",
-        "strength": "Light",
-        "strength_score": 0.087925,
-        "direction": "Higher values generally boost the score",
-        "coefficient_weight": 0.012482
+        "coefficient_weight": 0.017444
       },
       {
         "feature": "batter_barrels_per_pa_vs_pitcher_hand",
         "label": "Hitter Barrel Split vs Pitcher Hand",
         "description": "The hitter's barrel rate against pitchers of this handedness.",
         "strength": "Light",
-        "strength_score": 0.080136,
+        "strength_score": 0.09888,
         "direction": "Higher values generally boost the score",
-        "coefficient_weight": 0.011376
-      },
-      {
-        "feature": "split_matchup_barrel",
-        "label": "Handedness Barrel Matchup Blend",
-        "description": "Combined hitter and pitcher handedness split for barrel quality.",
-        "strength": "Light",
-        "strength_score": 0.063935,
-        "direction": "Higher values generally boost the score",
-        "coefficient_weight": 0.009077
-      },
-      {
-        "feature": "pitcher_avg_ev_allowed_last_30d",
-        "label": "Pitcher Avg Exit Velocity Allowed, Last 30 Days",
-        "description": "Average exit velocity allowed by the opposing pitcher recently.",
-        "strength": "Light",
-        "strength_score": 0.062612,
-        "direction": "Higher values generally lower the score",
-        "coefficient_weight": -0.008889
+        "coefficient_weight": 0.014091
       },
       {
         "feature": "barrels_per_pa_last_10d",
         "label": "Barrel Rate, Last 10 Days",
         "description": "Recent barrel frequency, measuring how often the hitter is producing ideal home-run quality contact right now.",
         "strength": "Light",
-        "strength_score": 0.06124,
+        "strength_score": 0.096881,
         "direction": "Higher values generally lower the score",
-        "coefficient_weight": -0.008694
+        "coefficient_weight": -0.013806
+      },
+      {
+        "feature": "pitcher_95plus_ev_allowed_rate_last_30d",
+        "label": "Pitcher 95+ EV Rate Allowed, Last 30 Days",
+        "description": "Rate of very hard recent contact allowed by the pitcher.",
+        "strength": "Light",
+        "strength_score": 0.09428,
+        "direction": "Higher values generally boost the score",
+        "coefficient_weight": 0.013436
+      },
+      {
+        "feature": "pitcher_hard_hit_allowed_rate_last_30d",
+        "label": "Pitcher Hard-Hit Rate Allowed, Last 30 Days",
+        "description": "Recent hard contact allowed by the opposing pitcher.",
+        "strength": "Light",
+        "strength_score": 0.09428,
+        "direction": "Higher values generally boost the score",
+        "coefficient_weight": 0.013436
+      },
+      {
+        "feature": "pitcher_hr_allowed_per_pa_vs_batter_hand",
+        "label": "Pitcher HR Split Allowed vs Batter Hand",
+        "description": "The pitcher's home-run susceptibility against hitters of this handedness.",
+        "strength": "Light",
+        "strength_score": 0.086451,
+        "direction": "Higher values generally boost the score",
+        "coefficient_weight": 0.01232
+      },
+      {
+        "feature": "park_factor_hr_vs_batter_hand",
+        "label": "Park Factor vs Batter Hand",
+        "description": "Home-run environment of the park for the hitter's handedness.",
+        "strength": "Light",
+        "strength_score": 0.086022,
+        "direction": "Higher values generally boost the score",
+        "coefficient_weight": 0.012259
       },
       {
         "feature": "pitcher_hr_allowed_per_pa_last_30d",
         "label": "Pitcher HR Allowed Rate, Last 30 Days",
         "description": "How often the opposing pitcher has allowed homers recently. It measures matchup vulnerability.",
         "strength": "Light",
-        "strength_score": 0.05347,
+        "strength_score": 0.059032,
         "direction": "Higher values generally boost the score",
-        "coefficient_weight": 0.007591
+        "coefficient_weight": 0.008413
+      },
+      {
+        "feature": "pitcher_avg_ev_allowed_last_30d",
+        "label": "Pitcher Avg Exit Velocity Allowed, Last 30 Days",
+        "description": "Average exit velocity allowed by the opposing pitcher recently.",
+        "strength": "Light",
+        "strength_score": 0.056252,
+        "direction": "Higher values generally lower the score",
+        "coefficient_weight": -0.008016
+      },
+      {
+        "feature": "split_matchup_barrel",
+        "label": "Handedness Barrel Matchup Blend",
+        "description": "Combined hitter and pitcher handedness split for barrel quality.",
+        "strength": "Light",
+        "strength_score": 0.054961,
+        "direction": "Higher values generally boost the score",
+        "coefficient_weight": 0.007832
       },
       {
         "feature": "split_matchup_hard_hit",
         "label": "Handedness Hard-Hit Matchup Blend",
         "description": "Combined hitter and pitcher handedness split for hard-contact tendency.",
         "strength": "Light",
-        "strength_score": 0.038254,
+        "strength_score": 0.044358,
         "direction": "Higher values generally lower the score",
-        "coefficient_weight": -0.005431
+        "coefficient_weight": -0.006321
       },
       {
         "feature": "temperature_f",
         "label": "Temperature",
         "description": "Forecast game-time temperature. The live model uses weather as context, not as a primary driver.",
         "strength": "Light",
-        "strength_score": 0.020162,
+        "strength_score": 0.022518,
         "direction": "Higher values generally boost the score",
-        "coefficient_weight": 0.002862
+        "coefficient_weight": 0.003209
       }
     ]
   },
@@ -4213,6 +4213,13 @@
   "lineup_panels": [],
   "season_hr_leaders_2026": [
     {
+      "batter_name": "Shea Langeliers",
+      "team": "ATH",
+      "home_runs_2026": 5,
+      "plate_appearances_2026": 25,
+      "games_2026": 6
+    },
+    {
       "batter_name": "Chase DeLauter",
       "team": "CLE",
       "home_runs_2026": 4,
@@ -4220,15 +4227,15 @@
       "games_2026": 6
     },
     {
-      "batter_name": "Shea Langeliers",
-      "team": "ATH",
-      "home_runs_2026": 4,
-      "plate_appearances_2026": 21,
-      "games_2026": 5
-    },
-    {
       "batter_name": "Yordan Alvarez",
       "team": "HOU",
+      "home_runs_2026": 3,
+      "plate_appearances_2026": 32,
+      "games_2026": 7
+    },
+    {
+      "batter_name": "Corey Seager",
+      "team": "TEX",
       "home_runs_2026": 3,
       "plate_appearances_2026": 28,
       "games_2026": 6
@@ -4237,141 +4244,9 @@
       "batter_name": "Ian Happ",
       "team": "CHC",
       "home_runs_2026": 3,
-      "plate_appearances_2026": 23,
-      "games_2026": 5
-    },
-    {
-      "batter_name": "Brandon Lowe",
-      "team": "PIT",
-      "home_runs_2026": 3,
-      "plate_appearances_2026": 22,
-      "games_2026": 5
+      "plate_appearances_2026": 28,
+      "games_2026": 6
     }
   ],
-  "recent_successes": [
-    {
-      "pick_id": "2026-03-31:824212:670541:678394",
-      "game_pk": 824212,
-      "game_date": "2026-03-31",
-      "game_datetime": "",
-      "game_state": "final",
-      "rank": 1,
-      "morning_rank": null,
-      "batter_name": "Yordan Alvarez",
-      "team": "HOU",
-      "opponent_team": "BOS",
-      "pitcher_name": "Brayan Bello",
-      "lineup_source": "projected",
-      "batting_order": null,
-      "ballpark_name": "",
-      "ballpark_region_abbr": "",
-      "confidence_tier": "elite",
-      "weather_code": null,
-      "weather_label": "Unknown",
-      "temperature_f": null,
-      "wind_speed_mph": null,
-      "wind_direction_deg": null,
-      "field_bearing_deg": null,
-      "predicted_hr_probability": 0.154651,
-      "predicted_hr_score": 100.0,
-      "actual_hit_hr": 1,
-      "top_reason_1": "Peak exit velocity over the last 10 days is 113.0 mph, which points to top-end HR juice.",
-      "top_reason_2": "Brayan Bello has allowed a 43.0% hard-hit rate over the last 30 days.",
-      "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "HR"
-    },
-    {
-      "pick_id": "2026-03-31:824942:686948:650644",
-      "game_pk": 824942,
-      "game_date": "2026-03-31",
-      "game_datetime": "",
-      "game_state": "final",
-      "rank": 2,
-      "morning_rank": null,
-      "batter_name": "Drake Baldwin",
-      "team": "ATL",
-      "opponent_team": "OAK",
-      "pitcher_name": "Aaron Civale",
-      "lineup_source": "projected",
-      "batting_order": null,
-      "ballpark_name": "",
-      "ballpark_region_abbr": "",
-      "confidence_tier": "elite",
-      "weather_code": null,
-      "weather_label": "Unknown",
-      "temperature_f": null,
-      "wind_speed_mph": null,
-      "wind_direction_deg": null,
-      "field_bearing_deg": null,
-      "predicted_hr_probability": 0.152034,
-      "predicted_hr_score": 99.6,
-      "actual_hit_hr": 1,
-      "top_reason_1": "Hard-hit rate over the last 30 days is 69.2%, showing consistent quality contact.",
-      "top_reason_2": "Aaron Civale has allowed homers in 4.0% of plate appearances over the last 30 days.",
-      "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "HR"
-    },
-    {
-      "pick_id": "2026-03-31:824537:701398:696149",
-      "game_pk": 824537,
-      "game_date": "2026-03-31",
-      "game_datetime": "",
-      "game_state": "final",
-      "rank": 6,
-      "morning_rank": null,
-      "batter_name": "Sal Stewart",
-      "team": "CIN",
-      "opponent_team": "PIT",
-      "pitcher_name": "Bubba Chandler",
-      "lineup_source": "projected",
-      "batting_order": null,
-      "ballpark_name": "",
-      "ballpark_region_abbr": "",
-      "confidence_tier": "strong",
-      "weather_code": null,
-      "weather_label": "Unknown",
-      "temperature_f": null,
-      "wind_speed_mph": null,
-      "wind_direction_deg": null,
-      "field_bearing_deg": null,
-      "predicted_hr_probability": 0.14365,
-      "predicted_hr_score": 97.9,
-      "actual_hit_hr": 1,
-      "top_reason_1": "Hard-hit rate over the last 30 days is 80.0%, showing consistent quality contact.",
-      "top_reason_2": "Bubba Chandler has allowed a 48.0% hard-hit rate over the last 30 days.",
-      "top_reason_3": "Projected wind speed is 14.4 mph, which the live model treats as favorable weather context.",
-      "result_label": "HR"
-    },
-    {
-      "pick_id": "2026-03-31:823485:656941:676571",
-      "game_pk": 823485,
-      "game_date": "2026-03-31",
-      "game_datetime": "",
-      "game_state": "final",
-      "rank": 10,
-      "morning_rank": null,
-      "batter_name": "Kyle Schwarber",
-      "team": "PHI",
-      "opponent_team": "WSH",
-      "pitcher_name": "PJ Poulin",
-      "lineup_source": "projected",
-      "batting_order": null,
-      "ballpark_name": "",
-      "ballpark_region_abbr": "",
-      "confidence_tier": "strong",
-      "weather_code": null,
-      "weather_label": "Unknown",
-      "temperature_f": null,
-      "wind_speed_mph": null,
-      "wind_direction_deg": null,
-      "field_bearing_deg": null,
-      "predicted_hr_probability": 0.140925,
-      "predicted_hr_score": 96.3,
-      "actual_hit_hr": 1,
-      "top_reason_1": "Against this pitcher handedness, the hitter has a 6.5% barrel-per-PA split.",
-      "top_reason_2": "The hitter has the platoon advantage in this matchup.",
-      "top_reason_3": "Peak exit velocity over the last 10 days is 110.1 mph, which points to top-end HR juice.",
-      "result_label": "HR"
-    }
-  ]
+  "recent_successes": []
 }
