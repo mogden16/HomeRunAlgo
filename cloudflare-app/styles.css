@@ -896,14 +896,19 @@ td {
   }
 
   .mobile-picks-table {
-    min-width: 860px;
+    min-width: 690px;
+    font-size: 0.88rem;
   }
 
   .mobile-picks-table th,
   .mobile-picks-table td {
-    padding-right: 14px;
+    padding-right: 10px;
     white-space: nowrap;
     background: rgba(255, 252, 246, 0.96);
+  }
+
+  .mobile-picks-table th {
+    font-size: 0.66rem;
   }
 
   .mobile-picks-table th {
@@ -925,23 +930,23 @@ td {
   .mobile-picks-table th.col-rank,
   .mobile-picks-table td.col-rank {
     left: 0;
-    min-width: 82px;
-    width: 82px;
+    min-width: 72px;
+    width: 72px;
     text-align: center;
   }
 
   .mobile-picks-table th.col-hitter,
   .mobile-picks-table td.col-hitter {
-    left: 82px;
-    min-width: 188px;
-    width: 188px;
+    left: 72px;
+    min-width: 176px;
+    width: 176px;
   }
 
   .mobile-picks-table th.col-result,
   .mobile-picks-table td.col-result {
-    left: 270px;
-    min-width: 116px;
-    width: 116px;
+    left: 248px;
+    min-width: 102px;
+    width: 102px;
   }
 
   .mobile-picks-table th.col-rank,
@@ -953,7 +958,7 @@ td {
   .mobile-cell-label {
     display: block;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 0.62rem;
+    font-size: 0.56rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--muted);
@@ -983,8 +988,32 @@ td {
     white-space: normal;
   }
 
+  .mobile-picks-table .col-date {
+    display: none;
+  }
+
+  .mobile-picks-table th.col-date {
+    display: none;
+  }
+
+  .mobile-picks-table .col-pitcher {
+    display: none;
+  }
+
+  .mobile-picks-table th.col-pitcher {
+    display: none;
+  }
+
   .mobile-picks-table .col-hitter .name-block strong {
     margin-bottom: 4px;
+    font-size: 0.95rem;
+  }
+
+  .mobile-inline-pitcher {
+    display: block;
+    margin-top: 2px;
+    color: var(--muted);
+    font-size: 0.82rem;
   }
 
   .mobile-picks-table .col-why {
@@ -1000,7 +1029,7 @@ td {
     cursor: pointer;
     list-style: none;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 0.68rem;
+    font-size: 0.62rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--muted);
@@ -1028,7 +1057,7 @@ td {
     gap: 4px;
     white-space: normal;
     color: var(--ink);
-    font-size: 0.88rem;
+    font-size: 0.8rem;
     line-height: 1.35;
   }
 

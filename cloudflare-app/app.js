@@ -497,6 +497,7 @@ function renderPicksTable(targetId, rows, emptyMessage, { includeGameMeta = fals
             <div class="name-block">
               <strong>${escapeHtml(row.batter_name)}</strong>
               <span>${escapeHtml(row.team)} vs ${escapeHtml(row.opponent_team || "-")}</span>
+              <span class="mobile-inline-pitcher">vs ${escapeHtml(row.pitcher_name || "-")}</span>
               <span>${renderLineupBadge(row.lineup_source)}${row.batting_order ? ` <span class="lineup-order">batting ${escapeHtml(row.batting_order)}</span>` : ""} <span class="lineup-separator">|</span> ${escapeHtml(formatGameState(row.game_state))}</span>
             </div>
           `,
