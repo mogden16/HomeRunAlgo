@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-02T14:30:47.042940+00:00",
+  "generated_at": "2026-04-02T15:38:57.448433+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "logistic",
   "feature_profile": "live_shrunk",
@@ -507,11 +507,11 @@
       "confidence_tier": "elite",
       "weather_code": 3,
       "weather_label": "Cloudy",
-      "temperature_f": 79.9,
-      "wind_speed_mph": 5.3,
-      "wind_direction_deg": 248.0,
+      "temperature_f": 79.5,
+      "wind_speed_mph": 5.6,
+      "wind_direction_deg": 254.0,
       "field_bearing_deg": 20.0,
-      "predicted_hr_probability": 0.234584,
+      "predicted_hr_probability": 0.234501,
       "predicted_hr_score": 100.0,
       "actual_hit_hr": null,
       "top_reason_1": "Hard-hit rate over the last 30 days is 66.7%, showing consistent quality contact.",
@@ -536,13 +536,13 @@
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
       "confidence_tier": "strong",
-      "weather_code": 55,
+      "weather_code": 53,
       "weather_label": "Rain",
-      "temperature_f": 64.2,
-      "wind_speed_mph": 17.6,
+      "temperature_f": 62.7,
+      "wind_speed_mph": 12.6,
       "wind_direction_deg": 192.0,
       "field_bearing_deg": 30.0,
-      "predicted_hr_probability": 0.150719,
+      "predicted_hr_probability": 0.149833,
       "predicted_hr_score": 98.6,
       "actual_hit_hr": null,
       "top_reason_1": "Hard-hit rate over the last 30 days is 66.7%, showing consistent quality contact.",
@@ -569,11 +569,11 @@
       "confidence_tier": "strong",
       "weather_code": 3,
       "weather_label": "Cloudy",
-      "temperature_f": 79.9,
-      "wind_speed_mph": 5.3,
-      "wind_direction_deg": 248.0,
+      "temperature_f": 79.5,
+      "wind_speed_mph": 5.6,
+      "wind_direction_deg": 254.0,
       "field_bearing_deg": 20.0,
-      "predicted_hr_probability": 0.14225,
+      "predicted_hr_probability": 0.142229,
       "predicted_hr_score": 97.2,
       "actual_hit_hr": null,
       "top_reason_1": "Barrel rate over the last 30 days is 11.5%, which the model treats as sustained power quality.",
@@ -598,13 +598,13 @@
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
       "confidence_tier": "strong",
-      "weather_code": 55,
+      "weather_code": 53,
       "weather_label": "Rain",
-      "temperature_f": 64.2,
-      "wind_speed_mph": 17.6,
+      "temperature_f": 62.7,
+      "wind_speed_mph": 12.6,
       "wind_direction_deg": 192.0,
       "field_bearing_deg": 30.0,
-      "predicted_hr_probability": 0.126668,
+      "predicted_hr_probability": 0.125899,
       "predicted_hr_score": 95.8,
       "actual_hit_hr": null,
       "top_reason_1": "Against this pitcher handedness, the hitter has a 7.2% barrel-per-PA split.",
@@ -4340,24 +4340,18 @@
       "game_pk": 824133,
       "game_date": "2026-04-02",
       "game_datetime": "2026-04-02T18:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "MIN @ KC",
       "teams": [
         {
           "team": "MIN",
           "opponent_team": "KC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 668885,
               "batter_name": "Austin Martin",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 686797,
-              "batter_name": "Brooks Lee",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -4370,6 +4364,12 @@
             {
               "batter_id": 605137,
               "batter_name": "Josh Bell",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 665019,
+              "batter_name": "Kody Clemens",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -4392,8 +4392,8 @@
               "selected_for_pick": false
             },
             {
-              "batter_id": 680777,
-              "batter_name": "Ryan Jeffers",
+              "batter_id": 656484,
+              "batter_name": "Tristan Gray",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -4408,7 +4408,7 @@
         {
           "team": "KC",
           "opponent_team": "MIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 677951,
