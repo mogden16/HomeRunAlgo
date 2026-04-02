@@ -37,6 +37,8 @@ from feature_engineering import (
     compute_batter_trailing_features,
     compute_pitcher_handedness_split_features,
     compute_pitcher_trailing_features,
+    estimate_expected_pa_from_slot,
+    estimate_lineup_confirmation_score,
 )
 from generate_data import generate_mlb_dataset
 from train_model import (
@@ -1193,6 +1195,7 @@ def select_probable_lineup_hitters(
     lookback_days: int = 21,
     projected_lineup: pd.DataFrame | None = None,
     active_roster: pd.DataFrame | None = None,
+    lineup_source: str | None = None,
 ) -> list[dict[str, Any]]:
     target_timestamp = pd.Timestamp(target_date)
     historical = dataset_df[dataset_df["game_date"] < target_timestamp].copy()
@@ -1327,7 +1330,10 @@ def select_probable_lineup_hitters(
     for index, row in enumerate(selected, start=1):
         batter_id = int(row["batter_id"])
         row["batting_order"] = lineup_order_lookup.get(batter_id)
-        row["lineup_source"] = "confirmed" if projected_lineup is not None and not projected_lineup.empty else "projected"
+        if projected_lineup is None or projected_lineup.empty:
+            row["lineup_source"] = "projected"
+        else:
+            row["lineup_source"] = str(lineup_source or "confirmed")
         row["projected_lineup_rank"] = index
     return selected[:hitters_per_team]
 
@@ -1570,6 +1576,7 @@ def build_live_candidate_frame(
         ]
         for spec in matchup_specs:
             game_meta = park_game_meta(game.get("home_team"))
+            projected_lineup_present = spec["projected_lineup"] is not None and not spec["projected_lineup"].empty
             hitters = select_probable_lineup_hitters(
                 dataset_df,
                 team_code=spec["batting_team"],
@@ -1577,9 +1584,13 @@ def build_live_candidate_frame(
                 hitters_per_team=hitters_per_team,
                 projected_lineup=spec["projected_lineup"],
                 active_roster=active_roster_map.get(spec["batting_team"]) if active_roster_map else None,
+                lineup_source=spec["lineup_source"],
             )
             pitcher_hand = latest_pitcher_hand(dataset_df, spec["pitcher_id"]) or fetch_player_handedness(spec["pitcher_id"])
             for hitter in hitters:
+                batting_order_slot = _coerce_int(hitter.get("batting_order"))
+                if batting_order_slot is None:
+                    batting_order_slot = _coerce_int(hitter.get("projected_lineup_rank"))
                 rows.append(
                     {
                         "game_pk": int(game["game_pk"]),
@@ -1600,6 +1611,13 @@ def build_live_candidate_frame(
                         "is_home": int(spec["is_home"]),
                         "lineup_source": str(hitter.get("lineup_source") or spec["lineup_source"]),
                         "batting_order": _coerce_int(hitter.get("batting_order")),
+                        "batting_order_slot": batting_order_slot,
+                        "expected_pa_today": estimate_expected_pa_from_slot(batting_order_slot),
+                        "lineup_confirmation_score": estimate_lineup_confirmation_score(
+                            lineup_source=str(hitter.get("lineup_source") or spec["lineup_source"]),
+                            projected_lineup_present=projected_lineup_present,
+                        ),
+                        "projected_lineup_rank": _coerce_int(hitter.get("projected_lineup_rank")),
                         "bat_side": hitter.get("bat_side"),
                         "pitcher_hand": pitcher_hand,
                         "pitch_hand_primary": pitcher_hand,
@@ -1681,6 +1699,7 @@ def build_lineup_panels(
                 hitters_per_team=hitters_per_team,
                 projected_lineup=schedule_lineup,
                 active_roster=active_roster_map.get(team_code),
+                lineup_source=str(game.get(source_key) or "projected"),
             )
             current_team_rows = [
                 row

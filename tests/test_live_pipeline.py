@@ -466,6 +466,109 @@ class LivePipelineTests(unittest.TestCase):
                     )
         self.assertEqual(frame["batter_id"].tolist(), [10, 12])
         self.assertEqual(frame["batter_name"].tolist(), ["Alpha Projected", "Charlie Projected"])
+        frame_by_batter = frame.set_index("batter_id")
+        self.assertEqual(frame_by_batter.loc[10, "lineup_source"], "projected")
+        self.assertEqual(frame_by_batter.loc[12, "lineup_source"], "projected")
+        self.assertEqual(int(frame_by_batter.loc[10, "projected_lineup_rank"]), 1)
+        self.assertEqual(int(frame_by_batter.loc[12, "projected_lineup_rank"]), 2)
+        self.assertEqual(int(frame_by_batter.loc[10, "batting_order_slot"]), 1)
+        self.assertEqual(int(frame_by_batter.loc[12, "batting_order_slot"]), 2)
+        self.assertAlmostEqual(float(frame_by_batter.loc[10, "expected_pa_today"]), 4.65, places=2)
+        self.assertAlmostEqual(float(frame_by_batter.loc[12, "expected_pa_today"]), 4.57, places=2)
+        self.assertAlmostEqual(float(frame_by_batter.loc[10, "lineup_confirmation_score"]), 0.75, places=2)
+
+    def test_build_live_candidate_frame_uses_confirmed_lineups_when_available(self) -> None:
+        dataset = pd.DataFrame(
+            [
+                {"game_pk": 1, "game_date": "2026-03-20", "batter_id": 10, "batter_name": "Alpha", "team": "NYY", "pa_count": 5, "bat_side": "R", "hr_per_pa_last_10d": 0.2, "hr_per_pa_last_30d": 0.15},
+                {"game_pk": 2, "game_date": "2026-03-21", "batter_id": 11, "batter_name": "Bravo", "team": "NYY", "pa_count": 4, "bat_side": "L", "hr_per_pa_last_10d": 0.1, "hr_per_pa_last_30d": 0.08},
+                {"game_pk": 3, "game_date": "2026-03-22", "batter_id": 12, "batter_name": "Charlie", "team": "NYY", "pa_count": 4, "bat_side": "R", "hr_per_pa_last_10d": 0.3, "hr_per_pa_last_30d": 0.12},
+            ]
+        )
+        dataset["game_date"] = pd.to_datetime(dataset["game_date"])
+        schedule_games = [
+            {
+                "game_pk": 1001,
+                "home_team": "BOS",
+                "away_team": "NYY",
+                "home_pitcher_id": 200,
+                "home_pitcher_name": "Home Pitcher",
+                "away_pitcher_id": 201,
+                "away_pitcher_name": "Away Pitcher",
+                "away_lineup_source": "confirmed",
+                "home_projected_lineup": [],
+                "away_projected_lineup": [
+                    {"batter_id": 10, "batter_name": "Alpha Confirmed", "batting_order": 1},
+                    {"batter_id": 12, "batter_name": "Charlie Confirmed", "batting_order": 2},
+                ],
+            }
+        ]
+        active_roster_map = {
+            "NYY": pd.DataFrame(
+                [
+                    {"batter_id": 10, "batter_name": "Alpha"},
+                    {"batter_id": 11, "batter_name": "Bravo"},
+                    {"batter_id": 12, "batter_name": "Charlie"},
+                ]
+            )
+        }
+        with patch(
+            "scripts.live_pipeline.fetch_forecast_weather",
+            return_value=pd.DataFrame(
+                [
+                    {
+                        "game_date": "2026-03-26",
+                        "home_team": "BOS",
+                        "field_bearing_deg": 50.0,
+                        "temperature_f": 60.0,
+                        "wind_speed_mph": 8.0,
+                        "humidity_pct": 45.0,
+                        "wind_direction_deg": 180.0,
+                        "pressure_hpa": 1014.0,
+                    }
+                ]
+            ),
+        ):
+            with patch("scripts.live_pipeline.latest_pitcher_hand", return_value="R"):
+                with patch("scripts.live_pipeline.fetch_player_handedness", return_value="R"):
+                    frame = build_live_candidate_frame(
+                        dataset,
+                        schedule_games,
+                        target_date="2026-03-26",
+                        hitters_per_team=3,
+                        active_roster_map=active_roster_map,
+                    )
+        frame_by_batter = frame.set_index("batter_id")
+        self.assertEqual(frame_by_batter.loc[10, "lineup_source"], "confirmed")
+        self.assertEqual(frame_by_batter.loc[12, "lineup_source"], "confirmed")
+        self.assertEqual(int(frame_by_batter.loc[10, "batting_order_slot"]), 1)
+        self.assertEqual(int(frame_by_batter.loc[12, "batting_order_slot"]), 2)
+        self.assertEqual(int(frame_by_batter.loc[10, "projected_lineup_rank"]), 1)
+        self.assertEqual(int(frame_by_batter.loc[12, "projected_lineup_rank"]), 2)
+        self.assertAlmostEqual(float(frame_by_batter.loc[10, "expected_pa_today"]), 4.65, places=2)
+        self.assertAlmostEqual(float(frame_by_batter.loc[12, "expected_pa_today"]), 4.57, places=2)
+        self.assertAlmostEqual(float(frame_by_batter.loc[10, "lineup_confirmation_score"]), 1.0, places=2)
+        self.assertAlmostEqual(float(frame_by_batter.loc[12, "lineup_confirmation_score"]), 1.0, places=2)
+
+    def test_compute_opportunity_features_uses_prior_slot_history_not_current_batting_order(self) -> None:
+        dataset = pd.DataFrame(
+            [
+                {"game_pk": 1, "game_date": "2026-03-20", "batter_id": 10, "team": "NYY", "batting_order": 1, "expected_pa_proxy": 4.65},
+                {"game_pk": 1, "game_date": "2026-03-20", "batter_id": 11, "team": "NYY", "batting_order": 4, "expected_pa_proxy": 4.41},
+                {"game_pk": 2, "game_date": "2026-03-21", "batter_id": 10, "team": "NYY", "batting_order": 9, "expected_pa_proxy": 4.65},
+                {"game_pk": 2, "game_date": "2026-03-21", "batter_id": 11, "team": "NYY", "batting_order": 2, "expected_pa_proxy": 4.41},
+            ]
+        )
+        dataset["game_date"] = pd.to_datetime(dataset["game_date"])
+        featured = feature_engineering.compute_opportunity_features(dataset)
+        batter_ten_second_game = featured[(featured["game_pk"] == 2) & (featured["batter_id"] == 10)].iloc[0]
+        batter_eleven_second_game = featured[(featured["game_pk"] == 2) & (featured["batter_id"] == 11)].iloc[0]
+        self.assertEqual(int(batter_ten_second_game["batting_order_slot"]), 1)
+        self.assertNotEqual(int(batter_ten_second_game["batting_order_slot"]), 9)
+        self.assertAlmostEqual(float(batter_ten_second_game["expected_pa_today"]), 4.65, places=2)
+        self.assertEqual(int(batter_ten_second_game["projected_lineup_rank"]), 1)
+        self.assertEqual(int(batter_eleven_second_game["batting_order_slot"]), 4)
+        self.assertEqual(int(batter_eleven_second_game["projected_lineup_rank"]), 2)
 
     def test_build_live_candidate_frame_falls_back_to_active_roster_when_lineups_missing(self) -> None:
         dataset = pd.DataFrame(
@@ -521,6 +624,14 @@ class LivePipelineTests(unittest.TestCase):
                     )
         self.assertEqual(frame["batter_id"].tolist(), [10, 11])
         self.assertEqual(frame["batter_name"].tolist(), ["Alpha", "Bravo"])
+        frame_by_batter = frame.set_index("batter_id")
+        self.assertEqual(frame_by_batter.loc[10, "lineup_source"], "projected")
+        self.assertEqual(frame_by_batter.loc[11, "lineup_source"], "projected")
+        self.assertEqual(int(frame_by_batter.loc[10, "projected_lineup_rank"]), 1)
+        self.assertEqual(int(frame_by_batter.loc[11, "projected_lineup_rank"]), 2)
+        self.assertEqual(int(frame_by_batter.loc[10, "batting_order_slot"]), 1)
+        self.assertEqual(int(frame_by_batter.loc[11, "batting_order_slot"]), 2)
+        self.assertAlmostEqual(float(frame_by_batter.loc[10, "lineup_confirmation_score"]), 0.35, places=2)
 
     def test_settle_pick_records_marks_hits_and_non_hits(self) -> None:
         picks = [

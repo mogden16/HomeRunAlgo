@@ -54,6 +54,7 @@ TEAM_VENUE_KEY_ALIASES = {
 }
 NEW_CONTEXT_FEATURE_FAMILIES = {
     "park": ["park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb"],
+    "opportunity": ["expected_pa_today", "batting_order_slot", "lineup_confirmation_score", "projected_lineup_rank"],
     "handedness_split": [
         "batter_hr_per_pa_vs_rhp", "batter_hr_per_pa_vs_lhp", "batter_barrels_per_pa_vs_rhp", "batter_barrels_per_pa_vs_lhp",
         "batter_hard_hit_rate_vs_rhp", "batter_hard_hit_rate_vs_lhp", "batter_95plus_ev_rate_vs_rhp", "batter_95plus_ev_rate_vs_lhp",
@@ -205,6 +206,10 @@ FINAL_FEATURE_SPECS = {
     "recent_form_barrels_last_14d": "stable",
     "expected_pa_proxy": "stable",
     "days_since_last_game": "stable",
+    "expected_pa_today": "opportunity",
+    "batting_order_slot": "opportunity",
+    "lineup_confirmation_score": "opportunity",
+    "projected_lineup_rank": "opportunity",
     "pitcher_hr9_season_to_date": "stable",
     "pitcher_barrel_rate_allowed_last_50_bbe": "stable",
     "pitcher_hard_hit_rate_allowed_last_50_bbe": "stable",
@@ -1032,6 +1037,15 @@ def add_leakage_safe_features(
         np.nan,
     )
     dataset["starter_or_bullpen_proxy"] = np.where(dataset["opp_pitcher_bf"] >= 12, "starter_like", "bullpen_like")
+    opportunity_features = compute_opportunity_features(dataset)
+    dataset = merge_with_diagnostics(
+        dataset,
+        opportunity_features,
+        on=["batter_id", "game_pk"],
+        how="left",
+        step_name="attach opportunity features",
+        validate="one_to_one",
+    )
 
     decisions = finalize_feature_export(dataset, missingness_threshold=missingness_threshold)
     model_features = load_model_feature_list()
@@ -1204,12 +1218,141 @@ def rolling_day_rate(grp: pd.DataFrame, numerator_col: str, denominator_col: str
 
 def expected_pa_fallback(grp: pd.DataFrame) -> pd.Series:
     prior_batting_order = grp["batting_order"].shift(1)
-    current_batting_order = grp["batting_order"]
-    order = prior_batting_order.where(prior_batting_order.notna(), current_batting_order)
-    proxy = 4.65 - 0.08 * (order.fillna(9) - 1)
+    proxy = 4.65 - 0.08 * (prior_batting_order.fillna(9) - 1)
     proxy = proxy.clip(lower=3.6, upper=4.8)
-    proxy = proxy.where(order.notna(), np.nan)
+    proxy = proxy.where(prior_batting_order.notna(), np.nan)
     return proxy.astype(float)
+
+
+def estimate_expected_pa_from_slot(slot: object) -> float:
+    slot_value = pd.to_numeric(pd.Series([slot]), errors="coerce").iloc[0]
+    if pd.isna(slot_value):
+        return np.nan
+    proxy = 4.65 - 0.08 * (float(slot_value) - 1.0)
+    return float(np.clip(proxy, 3.6, 4.8))
+
+
+def estimate_slot_from_expected_pa(expected_pa: object) -> float:
+    expected_value = pd.to_numeric(pd.Series([expected_pa]), errors="coerce").iloc[0]
+    if pd.isna(expected_value):
+        return np.nan
+    slot = 1.0 + (4.65 - float(expected_value)) / 0.08
+    return float(np.clip(slot, 1.0, 9.0))
+
+
+def estimate_lineup_confirmation_score(
+    *,
+    lineup_source: str | None = None,
+    history_count: object | None = None,
+    history_std: object | None = None,
+    projected_lineup_present: bool | None = None,
+) -> float:
+    normalized_source = str(lineup_source or "").strip().lower()
+    if normalized_source == "confirmed":
+        return 1.0
+
+    if history_count is not None:
+        count_value = pd.to_numeric(pd.Series([history_count]), errors="coerce").iloc[0]
+        std_value = pd.to_numeric(pd.Series([history_std]), errors="coerce").iloc[0]
+        if pd.isna(count_value) or float(count_value) <= 0:
+            return 0.35
+        safe_std = 0.0 if pd.isna(std_value) else float(std_value)
+        score = 0.35 + 0.65 * (float(count_value) / (float(count_value) + 2.0)) * (1.0 / (1.0 + safe_std))
+        return float(np.clip(score, 0.35, 1.0))
+
+    if projected_lineup_present:
+        return 0.75
+    return 0.35
+
+
+def compute_opportunity_features(model_df: pd.DataFrame) -> pd.DataFrame:
+    required = ["batter_id", "game_pk", "game_date", "team"]
+    missing = [column for column in required if column not in model_df.columns]
+    if missing:
+        raise ValueError(f"Opportunity feature generation requires columns: {missing}")
+    if model_df.empty:
+        return pd.DataFrame(
+            columns=[
+                "batter_id",
+                "game_pk",
+                "expected_pa_today",
+                "batting_order_slot",
+                "lineup_confirmation_score",
+                "projected_lineup_rank",
+            ]
+        )
+
+    feature_frames: list[pd.DataFrame] = []
+    for _, group in model_df.groupby("batter_id", sort=False):
+        grp = group.sort_values(["game_date", "game_pk"]).reset_index(drop=True).copy()
+        if "batting_order" in grp.columns:
+            prior_batting_order = pd.to_numeric(grp["batting_order"], errors="coerce").shift(1)
+        else:
+            prior_batting_order = pd.Series(np.nan, index=grp.index, dtype=float)
+        if "expected_pa_proxy" in grp.columns:
+            expected_pa_proxy = pd.to_numeric(grp["expected_pa_proxy"], errors="coerce")
+        else:
+            expected_pa_proxy = pd.Series(np.nan, index=grp.index, dtype=float)
+
+        batting_order_slot = prior_batting_order.copy()
+        if expected_pa_proxy.notna().any():
+            batting_order_slot = batting_order_slot.where(
+                batting_order_slot.notna(),
+                expected_pa_proxy.map(estimate_slot_from_expected_pa),
+            )
+
+        expected_pa_today = batting_order_slot.map(estimate_expected_pa_from_slot)
+        expected_pa_today = expected_pa_today.where(expected_pa_today.notna(), expected_pa_proxy)
+
+        if "batting_order" in grp.columns:
+            batting_order_history = grp.set_index("game_date")["batting_order"].shift(1)
+            slot_count_30d = batting_order_history.notna().astype(float).rolling("30D", closed="left", min_periods=1).sum()
+            slot_std_30d = batting_order_history.rolling("30D", closed="left", min_periods=2).std().fillna(0.0)
+            lineup_confirmation_score = [
+                estimate_lineup_confirmation_score(history_count=count, history_std=std)
+                for count, std in zip(slot_count_30d, slot_std_30d)
+            ]
+        else:
+            lineup_confirmation_score = [estimate_lineup_confirmation_score() for _ in range(len(grp))]
+
+        feature_frame = grp[["batter_id", "game_pk", "game_date", "team"]].copy()
+        feature_frame["batting_order_slot"] = batting_order_slot.to_numpy()
+        feature_frame["expected_pa_today"] = expected_pa_today.to_numpy()
+        feature_frame["lineup_confirmation_score"] = lineup_confirmation_score
+        feature_frames.append(feature_frame)
+
+    feature_df = pd.concat(feature_frames, ignore_index=True)
+    ranked_frames: list[pd.DataFrame] = []
+    for _, group in feature_df.groupby(["game_pk", "team"], sort=False, dropna=False):
+        ordered = group.sort_values(
+            ["expected_pa_today", "lineup_confirmation_score", "batting_order_slot", "batter_id"],
+            ascending=[False, False, True, True],
+            na_position="last",
+        ).copy()
+        ordered["projected_lineup_rank"] = np.arange(1, len(ordered) + 1, dtype=int)
+        ranked_frames.append(ordered[["batter_id", "game_pk", "projected_lineup_rank"]])
+
+    rank_df = (
+        pd.concat(ranked_frames, ignore_index=True)
+        if ranked_frames
+        else pd.DataFrame(columns=["batter_id", "game_pk", "projected_lineup_rank"])
+    )
+    feature_df = merge_with_diagnostics(
+        feature_df,
+        rank_df,
+        on=["batter_id", "game_pk"],
+        how="left",
+        step_name="attach opportunity ranks",
+        validate="one_to_one",
+    )
+    return feature_df[[
+        "batter_id",
+        "game_pk",
+        "expected_pa_today",
+        "batting_order_slot",
+        "lineup_confirmation_score",
+        "projected_lineup_rank",
+    ]]
 
 
 def count_window_features(
@@ -1977,6 +2120,7 @@ def base_export_columns(df: pd.DataFrame) -> list[str]:
         "pitcher_name", "opp_pitcher_name", "team", "opponent", "is_home", "bat_side", "pitcher_hand", "pitch_hand_primary",
         "pa_count", "hr_count", "hit_hr", "bbe_count", "barrel_count", "hard_hit_bbe_count", "avg_exit_velocity", "max_exit_velocity",
         "ev_95plus_bbe_count", "fly_ball_bbe_count", "pull_air_bbe_count", "ballpark", "park_factor_hr", "platoon_advantage",
+        "expected_pa_today", "batting_order_slot", "lineup_confirmation_score", "projected_lineup_rank",
         "starter_or_bullpen_proxy",
     ]
     return [column for column in ordered if column in df.columns]
