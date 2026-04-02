@@ -32,6 +32,7 @@ from config import (
 )
 from data_sources import ensure_directories
 from feature_engineering import (
+    append_weather_carry_features,
     build_matchup_selected_handedness_features,
     compute_batter_handedness_split_features,
     compute_batter_trailing_features,
@@ -1419,9 +1420,11 @@ def build_pitcher_history_table(dataset_df: pd.DataFrame) -> pd.DataFrame:
 
 def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFrame:
     def _empty_weather_row(home_team: str) -> dict[str, Any]:
+        park = PARKS.get(home_team)
         return {
             "game_date": target_date,
             "home_team": home_team,
+            "field_bearing_deg": _coerce_float(park.get("field_bearing_deg")) if park else None,
             "temperature_f": None,
             "humidity_pct": None,
             "wind_speed_mph": None,
@@ -1429,6 +1432,9 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
             "weather_code": None,
             "weather_label": "Unknown",
             "pressure_hpa": None,
+            "wind_out_to_cf_mph": None,
+            "crosswind_mph": None,
+            "air_density_index": None,
         }
 
     rows: list[dict[str, Any]] = []
@@ -1487,6 +1493,7 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
             {
                 "game_date": target_date,
                 "home_team": home_team,
+                "field_bearing_deg": _coerce_float(park.get("field_bearing_deg")),
                 "temperature_f": serialize_for_json(float(best.get("temperature_2m"))) if pd.notna(best.get("temperature_2m")) else None,
                 "humidity_pct": serialize_for_json(float(best.get("relative_humidity_2m"))) if pd.notna(best.get("relative_humidity_2m")) else None,
                 "wind_speed_mph": serialize_for_json(float(best.get("wind_speed_10m"))) if pd.notna(best.get("wind_speed_10m")) else None,
@@ -1494,9 +1501,13 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
                 "weather_code": _coerce_int(best.get("weather_code")),
                 "weather_label": weather_code_label(best.get("weather_code")),
                 "pressure_hpa": serialize_for_json(float(best.get("surface_pressure"))) if pd.notna(best.get("surface_pressure")) else None,
+                "wind_out_to_cf_mph": None,
+                "crosswind_mph": None,
+                "air_density_index": None,
             }
         )
     forecast_df = pd.DataFrame(rows)
+    forecast_df = append_weather_carry_features(forecast_df)
     if fallback_home_teams:
         forecast_df.attrs["operational_alerts"] = [
             {
@@ -1630,7 +1641,15 @@ def build_live_candidate_frame(
         on=["game_date", "home_team"],
         how="left",
         validate="many_to_one",
+        suffixes=("", "_forecast"),
     )
+    if "field_bearing_deg_forecast" in candidate_df.columns:
+        candidate_df["field_bearing_deg"] = candidate_df["field_bearing_deg"].where(
+            candidate_df["field_bearing_deg"].notna(),
+            candidate_df["field_bearing_deg_forecast"],
+        )
+        candidate_df = candidate_df.drop(columns=["field_bearing_deg_forecast"])
+    candidate_df = append_weather_carry_features(candidate_df)
     candidate_df["platoon_advantage"] = np.where(
         candidate_df["bat_side"].notna() & candidate_df["pitch_hand_primary"].notna(),
         (candidate_df["bat_side"] != candidate_df["pitch_hand_primary"]).astype(float),

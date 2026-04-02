@@ -93,6 +93,13 @@ class LivePipelineTests(unittest.TestCase):
             self.assertEqual(len(weather), 1)
             self.assertEqual(weather.iloc[0]["home_team"], "AZ")
             self.assertAlmostEqual(float(weather.iloc[0]["temperature_f"]), 68.0)
+            self.assertIn("field_bearing_deg", weather.columns)
+            self.assertIn("wind_out_to_cf_mph", weather.columns)
+            self.assertIn("crosswind_mph", weather.columns)
+            self.assertIn("air_density_index", weather.columns)
+            self.assertTrue(pd.notna(weather.iloc[0]["wind_out_to_cf_mph"]))
+            self.assertTrue(pd.notna(weather.iloc[0]["crosswind_mph"]))
+            self.assertTrue(pd.notna(weather.iloc[0]["air_density_index"]))
             refreshed_cache = pd.read_csv(stale_cache, parse_dates=["game_date"])
             self.assertEqual(int(refreshed_cache["temperature_f"].notna().sum()), 1)
 
@@ -448,9 +455,12 @@ class LivePipelineTests(unittest.TestCase):
                     {
                         "game_date": "2026-03-26",
                         "home_team": "BOS",
+                        "field_bearing_deg": 50.0,
                         "temperature_f": 60.0,
                         "wind_speed_mph": 8.0,
                         "humidity_pct": 45.0,
+                        "wind_direction_deg": 180.0,
+                        "pressure_hpa": 1014.0,
                     }
                 ]
             ),
@@ -466,6 +476,12 @@ class LivePipelineTests(unittest.TestCase):
                     )
         self.assertEqual(frame["batter_id"].tolist(), [10, 12])
         self.assertEqual(frame["batter_name"].tolist(), ["Alpha Projected", "Charlie Projected"])
+        self.assertIn("wind_out_to_cf_mph", frame.columns)
+        self.assertIn("crosswind_mph", frame.columns)
+        self.assertIn("air_density_index", frame.columns)
+        self.assertTrue(frame["wind_out_to_cf_mph"].notna().all())
+        self.assertTrue(frame["crosswind_mph"].notna().all())
+        self.assertTrue(frame["air_density_index"].notna().all())
 
     def test_build_live_candidate_frame_falls_back_to_active_roster_when_lineups_missing(self) -> None:
         dataset = pd.DataFrame(
@@ -503,9 +519,12 @@ class LivePipelineTests(unittest.TestCase):
                     {
                         "game_date": "2026-03-26",
                         "home_team": "BOS",
+                        "field_bearing_deg": 50.0,
                         "temperature_f": 60.0,
                         "wind_speed_mph": 8.0,
                         "humidity_pct": 45.0,
+                        "wind_direction_deg": 180.0,
+                        "pressure_hpa": 1014.0,
                     }
                 ]
             ),
@@ -521,6 +540,12 @@ class LivePipelineTests(unittest.TestCase):
                     )
         self.assertEqual(frame["batter_id"].tolist(), [10, 11])
         self.assertEqual(frame["batter_name"].tolist(), ["Alpha", "Bravo"])
+        self.assertIn("wind_out_to_cf_mph", frame.columns)
+        self.assertIn("crosswind_mph", frame.columns)
+        self.assertIn("air_density_index", frame.columns)
+        self.assertTrue(frame["wind_out_to_cf_mph"].notna().all())
+        self.assertTrue(frame["crosswind_mph"].notna().all())
+        self.assertTrue(frame["air_density_index"].notna().all())
 
     def test_settle_pick_records_marks_hits_and_non_hits(self) -> None:
         picks = [
@@ -811,6 +836,7 @@ class LivePipelineTests(unittest.TestCase):
                 {
                     "game_date": "2024-09-29",
                     "home_team": "ATL",
+                    "field_bearing_deg": 32.0,
                     "temperature_f": None,
                     "humidity_pct": None,
                     "wind_speed_mph": None,
@@ -818,6 +844,9 @@ class LivePipelineTests(unittest.TestCase):
                     "weather_code": None,
                     "weather_label": "Unknown",
                     "pressure_hpa": None,
+                    "wind_out_to_cf_mph": None,
+                    "crosswind_mph": None,
+                    "air_density_index": None,
                 }
             ],
         )

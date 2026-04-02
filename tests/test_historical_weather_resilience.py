@@ -58,11 +58,15 @@ class HistoricalWeatherResilienceTests(unittest.TestCase):
                     {
                         "game_date": "2024-03-28",
                         "home_team": "AZ",
+                        "field_bearing_deg": 20.0,
                         "temperature_f": 72.0,
                         "humidity_pct": None,
                         "wind_speed_mph": 8.0,
                         "wind_direction_deg": 180.0,
                         "pressure_hpa": 1014.0,
+                        "wind_out_to_cf_mph": None,
+                        "crosswind_mph": None,
+                        "air_density_index": None,
                     }
                 ]
             ).to_csv(stale_cache, index=False)
@@ -81,6 +85,13 @@ class HistoricalWeatherResilienceTests(unittest.TestCase):
         self.assertEqual(len(weather), 1)
         self.assertEqual(weather.iloc[0]["home_team"], "AZ")
         self.assertAlmostEqual(float(weather.iloc[0]["temperature_f"]), 72.0)
+        self.assertEqual(float(weather.iloc[0]["field_bearing_deg"]), 20.0)
+        self.assertIn("wind_out_to_cf_mph", weather.columns)
+        self.assertIn("crosswind_mph", weather.columns)
+        self.assertIn("air_density_index", weather.columns)
+        self.assertTrue(pd.notna(weather.iloc[0]["wind_out_to_cf_mph"]))
+        self.assertTrue(pd.notna(weather.iloc[0]["crosswind_mph"]))
+        self.assertTrue(pd.isna(weather.iloc[0]["air_density_index"]))
         self.assertEqual(weather.attrs["operational_alerts"][0]["code"], "historical_weather_cache_reused")
 
     def test_build_weather_table_falls_back_to_null_rows_when_fetch_fails_without_cache(self) -> None:
@@ -103,6 +114,38 @@ class HistoricalWeatherResilienceTests(unittest.TestCase):
         self.assertEqual(weather.iloc[0]["home_team"], "AZ")
         self.assertTrue(pd.isna(weather.iloc[0]["temperature_f"]))
         self.assertEqual(weather.attrs["operational_alerts"][0]["code"], "historical_weather_null_fallback")
+
+    def test_build_weather_table_neutralizes_missing_wind_direction(self) -> None:
+        def fake_fetch_open_meteo(lat: float, lon: float, start_date: str, end_date: str, tz: str) -> pd.DataFrame:
+            hours = pd.date_range("2024-03-28 00:00", periods=24, freq="h", tz=tz)
+            return pd.DataFrame(
+                {
+                    "temperature_2m": [71.0] * len(hours),
+                    "relative_humidity_2m": [52.0] * len(hours),
+                    "wind_speed_10m": [11.0] * len(hours),
+                    "wind_direction_10m": [None] * len(hours),
+                    "surface_pressure": [1012.0] * len(hours),
+                },
+                index=hours,
+            )
+
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_path = Path(tmp_dir)
+            raw_dir = tmp_path / "raw"
+            raw_dir.mkdir(parents=True, exist_ok=True)
+            schedule = pd.DataFrame([{"game_date": "2024-03-28", "home_team": "ARI"}])
+
+            with patch.object(data_sources, "DATA_DIR", tmp_path):
+                with patch.object(data_sources, "RAW_DATA_DIR", raw_dir):
+                    with patch.object(data_sources, "_fetch_open_meteo", side_effect=fake_fetch_open_meteo):
+                        weather = data_sources.build_weather_table(schedule, force_refresh=False)
+
+        self.assertEqual(len(weather), 1)
+        self.assertEqual(weather.iloc[0]["home_team"], "AZ")
+        self.assertEqual(float(weather.iloc[0]["field_bearing_deg"]), 20.0)
+        self.assertEqual(weather.iloc[0]["wind_out_to_cf_mph"], 0.0)
+        self.assertEqual(weather.iloc[0]["crosswind_mph"], 0.0)
+        self.assertIsNotNone(weather.iloc[0]["air_density_index"])
 
     def test_generate_mlb_dataset_tolerates_null_weather_columns(self) -> None:
         statcast_df = pd.DataFrame(
@@ -134,11 +177,15 @@ class HistoricalWeatherResilienceTests(unittest.TestCase):
                 {
                     "game_date": pd.Timestamp("2024-03-28"),
                     "home_team": "AZ",
+                    "field_bearing_deg": 20.0,
                     "temperature_f": None,
                     "humidity_pct": None,
                     "wind_speed_mph": None,
                     "wind_direction_deg": None,
                     "pressure_hpa": None,
+                    "wind_out_to_cf_mph": None,
+                    "crosswind_mph": None,
+                    "air_density_index": None,
                 }
             ]
         )
@@ -163,6 +210,10 @@ class HistoricalWeatherResilienceTests(unittest.TestCase):
             self.assertIn("temperature_f", result.columns)
             self.assertIn("humidity_pct", result.columns)
             self.assertIn("wind_speed_mph", result.columns)
+            self.assertIn("field_bearing_deg", result.columns)
+            self.assertIn("wind_out_to_cf_mph", result.columns)
+            self.assertIn("crosswind_mph", result.columns)
+            self.assertIn("air_density_index", result.columns)
             self.assertTrue(pd.isna(result.iloc[0]["temperature_f"]))
 
 

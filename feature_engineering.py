@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import dataclass
+import math
 from pathlib import Path
 from typing import Iterable
 import pkgutil
@@ -189,6 +190,100 @@ STABLE_ENGINEERED_FEATURE_COLUMNS = [
     *STABLE_PITCHER_CONTEXT_COLUMNS,
     *STABLE_CONTEXT_FEATURE_COLUMNS,
 ]
+
+
+def _normalize_degrees(value: object) -> float | None:
+    if value is None or pd.isna(value):
+        return None
+    try:
+        normalized = float(value) % 360.0
+    except (TypeError, ValueError):
+        return None
+    return normalized if normalized >= 0 else normalized + 360.0
+
+
+def compute_weather_carry_features(
+    *,
+    temperature_f: object,
+    humidity_pct: object,
+    wind_speed_mph: object,
+    wind_direction_deg: object,
+    field_bearing_deg: object,
+    pressure_hpa: object,
+) -> dict[str, float | None]:
+    wind_speed = None if wind_speed_mph is None or pd.isna(wind_speed_mph) else float(wind_speed_mph)
+    wind_direction = _normalize_degrees(wind_direction_deg)
+    field_bearing = _normalize_degrees(field_bearing_deg)
+
+    if wind_speed is None:
+        wind_out_to_cf_mph = None
+        crosswind_mph = None
+    elif wind_direction is None or field_bearing is None:
+        # Missing direction should neutralize directional carry instead of inventing it.
+        wind_out_to_cf_mph = 0.0
+        crosswind_mph = 0.0
+    else:
+        blow_to = (wind_direction + 180.0) % 360.0
+        relative_radians = math.radians((blow_to - field_bearing + 180.0) % 360.0 - 180.0)
+        wind_out_to_cf_mph = float(wind_speed * math.cos(relative_radians))
+        crosswind_mph = float(wind_speed * math.sin(relative_radians))
+
+    temp_f = None if temperature_f is None or pd.isna(temperature_f) else float(temperature_f)
+    humidity = None if humidity_pct is None or pd.isna(humidity_pct) else float(humidity_pct)
+    pressure = None if pressure_hpa is None or pd.isna(pressure_hpa) else float(pressure_hpa)
+    if temp_f is None or humidity is None or pressure is None:
+        air_density_index = None
+    else:
+        temp_c = (temp_f - 32.0) * 5.0 / 9.0
+        temp_k = temp_c + 273.15
+        saturation_vapor_pressure_hpa = 6.112 * math.exp((17.67 * temp_c) / (temp_c + 243.5))
+        actual_vapor_pressure_hpa = saturation_vapor_pressure_hpa * (humidity / 100.0)
+        dry_pressure_pa = max(pressure * 100.0 - actual_vapor_pressure_hpa * 100.0, 0.0)
+        vapor_pressure_pa = actual_vapor_pressure_hpa * 100.0
+        rho = dry_pressure_pa / (287.05 * temp_k) + vapor_pressure_pa / (461.495 * temp_k)
+        standard_temp_k = 288.15
+        standard_pressure_pa = 101325.0
+        standard_rho = standard_pressure_pa / (287.05 * standard_temp_k)
+        air_density_index = float(rho / standard_rho) if standard_rho else None
+
+    return {
+        "wind_out_to_cf_mph": wind_out_to_cf_mph,
+        "crosswind_mph": crosswind_mph,
+        "air_density_index": air_density_index,
+    }
+
+
+def append_weather_carry_features(
+    frame: pd.DataFrame,
+    *,
+    temperature_col: str = "temperature_f",
+    humidity_col: str = "humidity_pct",
+    wind_speed_col: str = "wind_speed_mph",
+    wind_direction_col: str = "wind_direction_deg",
+    field_bearing_col: str = "field_bearing_deg",
+    pressure_col: str = "pressure_hpa",
+) -> pd.DataFrame:
+    if frame.empty:
+        return frame.copy()
+    featured = frame.copy()
+    if field_bearing_col not in featured.columns:
+        featured[field_bearing_col] = np.nan
+    carry_rows = []
+    for row in featured.itertuples(index=False):
+        carry_rows.append(
+            compute_weather_carry_features(
+                temperature_f=getattr(row, temperature_col, None),
+                humidity_pct=getattr(row, humidity_col, None),
+                wind_speed_mph=getattr(row, wind_speed_col, None),
+                wind_direction_deg=getattr(row, wind_direction_col, None),
+                field_bearing_deg=getattr(row, field_bearing_col, None),
+                pressure_hpa=getattr(row, pressure_col, None),
+            )
+        )
+    carry_df = pd.DataFrame(carry_rows, index=featured.index)
+    for column in carry_df.columns:
+        featured[column] = carry_df[column]
+    return featured
 
 FINAL_FEATURE_SPECS = {
     "hr_rate_season_to_date": "stable",
