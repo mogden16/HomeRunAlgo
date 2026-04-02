@@ -405,22 +405,25 @@ function renderOverviewCards(overview, confidenceSummary, refreshSchedule) {
     .join("");
 }
 
-function renderSimpleTable(targetId, columns, rows, emptyMessage = "No rows available.") {
+function renderSimpleTable(targetId, columns, rows, emptyMessage = "No rows available.", options = {}) {
   const target = document.getElementById(targetId);
   if (!rows.length) {
     target.innerHTML = `<p class="empty-state">${escapeHtml(emptyMessage)}</p>`;
     return;
   }
 
+  const tableClass = ["data-table", options.mobileCards === false ? "" : "mobile-cards"].filter(Boolean).join(" ");
   const headers = columns.map((column) => `<th>${escapeHtml(column.label)}</th>`).join("");
   const body = rows
     .map((row) => {
-      const cells = columns.map((column) => `<td>${column.render(row)}</td>`).join("");
+      const cells = columns
+        .map((column) => `<td data-label="${escapeHtml(column.label)}">${column.render(row)}</td>`)
+        .join("");
       return `<tr>${cells}</tr>`;
     })
     .join("");
 
-  target.innerHTML = `<table><thead><tr>${headers}</tr></thead><tbody>${body}</tbody></table>`;
+  target.innerHTML = `<table class="${tableClass}"><thead><tr>${headers}</tr></thead><tbody>${body}</tbody></table>`;
 }
 
 function renderConfidenceTable(rows) {

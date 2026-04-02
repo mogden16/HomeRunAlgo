@@ -504,6 +504,11 @@ input {
   overflow-x: auto;
 }
 
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
 .history-scroll {
   max-height: 720px;
   overflow: auto;
@@ -525,11 +530,6 @@ input {
 .history-scroll::-webkit-scrollbar-track {
   background: rgba(20, 32, 51, 0.06);
   border-radius: 999px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
 }
 
 th {
@@ -808,6 +808,11 @@ td {
     padding: 18px;
   }
 
+  .hero-copy h1 {
+    max-width: none;
+    font-size: clamp(1.9rem, 11vw, 3rem);
+  }
+
   .stats-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -821,12 +826,139 @@ td {
     width: 100%;
   }
 
+  .section-head,
+  .history-head,
+  .model-dialog-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .section-head {
+    margin-bottom: 14px;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tier-filter-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .tier-filter-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tier-filter-chip {
+    flex: 0 0 auto;
+  }
+
   input,
   select {
     width: 100%;
+    min-width: 0;
   }
 
   .lineup-team-grid {
     grid-template-columns: 1fr;
+  }
+
+  .admin-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .admin-buttons button {
+    width: 100%;
+  }
+
+  .table-wrap,
+  .history-scroll {
+    overflow: visible;
+  }
+
+  .history-scroll {
+    max-height: none;
+    padding-right: 0;
+  }
+
+  .mobile-cards thead {
+    display: none;
+  }
+
+  .mobile-cards,
+  .mobile-cards tbody,
+  .mobile-cards tr,
+  .mobile-cards td {
+    display: block;
+    width: 100%;
+  }
+
+  .mobile-cards tbody {
+    display: grid;
+    gap: 14px;
+  }
+
+  .mobile-cards tr {
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 12px 28px rgba(20, 32, 51, 0.08);
+  }
+
+  .mobile-cards td {
+    display: grid;
+    grid-template-columns: minmax(84px, 96px) minmax(0, 1fr);
+    gap: 10px;
+    padding: 0;
+    border-top: 0;
+    min-width: 0;
+  }
+
+  .mobile-cards td + td {
+    margin-top: 12px;
+  }
+
+  .mobile-cards td::before {
+    content: attr(data-label);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 2px;
+  }
+
+  .mobile-cards td[data-label="Hitter"],
+  .mobile-cards td[data-label="Why"],
+  .mobile-cards td[data-label="Game Meta"],
+  .mobile-cards td[data-label="Player"] {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .mobile-cards .pick-meta-block {
+    min-width: 0;
+  }
+
+  .mobile-cards .reason-list {
+    margin-top: 0;
+  }
+
+  .mobile-cards .rank-cell {
+    justify-content: flex-start;
+  }
+
+  .mobile-cards .name-block strong {
+    margin-bottom: 4px;
+  }
+
+  .model-dialog {
+    padding: 18px;
   }
 }
