@@ -19,6 +19,10 @@
         <p class="hero-text" id="data-note">Loading dashboard data...</p>
         <div class="dashboard-alerts" id="dashboard-alerts" hidden></div>
         <p class="hero-text hero-schedule" id="refresh-schedule-inline"></p>
+        <div class="hero-actions">
+          <a class="hero-link" href="#today-board">See today's board</a>
+          <a class="hero-link hero-link-secondary" href="#results">See tracked results</a>
+        </div>
       </div>
       <aside class="hero-panel">
         <p class="panel-label">Latest available slate</p>
@@ -37,65 +41,45 @@
         <div class="status-row">
           <span class="pill" id="usable-status">-</span>
         </div>
-        <button class="mini-button" id="model-explainer-button" type="button" hidden>Metric Guide</button>
+        <button class="mini-button" id="model-explainer-button" type="button" hidden>How rankings work</button>
       </aside>
     </header>
 
+    <nav class="section-nav" aria-label="Dashboard sections">
+      <a class="section-nav-link" href="#today-board">Today</a>
+      <a class="section-nav-link" href="#results">Results</a>
+      <a class="section-nav-link" href="#history">History</a>
+      <a class="section-nav-link" href="#lineups">Lineups</a>
+    </nav>
+
     <main>
-      <section class="stats-grid" id="overview-cards"></section>
-
-      <section class="panel admin-panel">
-        <div class="section-head admin-head">
-          <div>
-            <p class="eyebrow">Admin</p>
-            <h2>Manual Refresh</h2>
-          </div>
-        </div>
-        <div class="admin-controls">
-          <label class="admin-field" for="manual-refresh-key">
-            <span>Admin key</span>
-            <input id="manual-refresh-key" type="password" placeholder="Enter manual refresh key">
-          </label>
-          <div class="admin-buttons">
-            <button id="manual-settle-button" type="button">Run Settle</button>
-            <button id="manual-prepare-button" type="button">Run Prepare</button>
-            <button id="manual-publish-button" type="button">Run Prediction</button>
-          </div>
-          <p class="admin-status" id="manual-refresh-status">Manual refresh triggers the GitHub workflow and does not run instantly.</p>
-        </div>
-      </section>
-
-      <section class="panel">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Confidence</p>
-            <h2>Tier performance</h2>
-          </div>
-        </div>
-        <div class="table-wrap" id="confidence-table"></div>
-      </section>
-
-      <section class="panel">
+      <section class="panel today-panel" id="today-board">
         <div class="section-head">
           <div>
             <p class="eyebrow">Today</p>
-            <h2>Picks for Today</h2>
-            <p class="section-note">The default view shows elite and strong picks. Turn on all four tiers to see the full slate.</p>
+            <h2>Today's best home run looks</h2>
+            <p class="section-note">Start here. The board is sorted by current confidence, reranks during the day, and defaults to the strongest public picks.</p>
           </div>
           <div class="filters tier-filter-row" id="latest-confidence-filters" aria-label="Latest picks confidence filters"></div>
+        </div>
+        <div class="tier-legend" aria-label="Confidence tier guide">
+          <span class="legend-item"><span class="tier-tag tier-elite">elite</span><span>highest-confidence public picks</span></span>
+          <span class="legend-item"><span class="tier-tag tier-strong">strong</span><span>publishable core slate</span></span>
+          <span class="legend-item"><span class="tier-tag tier-watch">watch</span><span>worth monitoring, lower confidence</span></span>
+          <span class="legend-item"><span class="tier-tag tier-longshot">longshot</span><span>visible only when all tiers are enabled</span></span>
         </div>
         <div class="table-wrap" id="latest-picks-table"></div>
       </section>
 
-      <section class="panel">
+      <section class="panel trust-panel" id="results">
         <div class="section-head">
           <div>
-            <p class="eyebrow">Lineups</p>
-            <h2>Projected and Confirmed Lineups</h2>
-            <p class="section-note">Pregame publishes use projected lineups until MLB posts confirmed lineups. Once confirmed, unlocked games are republished with the announced hitters.</p>
+            <p class="eyebrow">Trust</p>
+            <h2>Tracking snapshot</h2>
+            <p class="section-note">The public record is meant to answer whether the board is current, how often it has worked, and how much lineup certainty exists on the latest slate.</p>
           </div>
         </div>
-        <div class="lineup-panels" id="lineup-panels"></div>
+        <section class="stats-grid" id="overview-cards"></section>
       </section>
 
       <section class="two-up">
@@ -113,18 +97,43 @@
           <div class="section-head">
             <div>
               <p class="eyebrow">Yesterday</p>
-              <h2>Published Picks that Homered Yesterday</h2>
+              <h2>Full slate recap</h2>
+              <p class="section-note">Show the whole prior slate, not just the winners.</p>
             </div>
           </div>
-          <div class="table-wrap" id="success-table"></div>
+          <div class="yesterday-summary" id="yesterday-summary"></div>
+          <div class="table-wrap" id="yesterday-table"></div>
         </article>
       </section>
 
       <section class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Confidence</p>
+            <h2>Tier performance</h2>
+            <p class="section-note">These numbers summarize how each confidence band has performed since public tracking began.</p>
+          </div>
+        </div>
+        <div class="table-wrap" id="confidence-table"></div>
+      </section>
+
+      <section class="panel" id="lineups">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Lineups</p>
+            <h2>Projected and Confirmed Lineups</h2>
+            <p class="section-note">Only games tied to current published picks are shown here. Pregame publishes use projected lineups until MLB posts confirmed lineups.</p>
+          </div>
+        </div>
+        <div class="lineup-panels" id="lineup-panels"></div>
+      </section>
+
+      <section class="panel" id="history">
         <div class="section-head history-head">
           <div>
             <p class="eyebrow">History</p>
             <h2>Historical Picks since Mar 25, 2026</h2>
+            <p class="section-note">Search by player, team, pitcher, or date to see the full public record.</p>
           </div>
           <div class="filters">
             <select id="history-date-filter" aria-label="Filter history by date"></select>
@@ -134,6 +143,25 @@
         </div>
         <div class="table-wrap history-scroll" id="history-table"></div>
       </section>
+
+      <details class="panel admin-panel admin-drawer">
+        <summary class="admin-summary">
+          <span class="admin-summary-title">Admin Controls</span>
+          <span class="admin-summary-note">Internal workflow triggers</span>
+        </summary>
+        <div class="admin-controls">
+          <label class="admin-field" for="manual-refresh-key">
+            <span>Admin key</span>
+            <input id="manual-refresh-key" type="password" placeholder="Enter manual refresh key">
+          </label>
+          <div class="admin-buttons">
+            <button id="manual-settle-button" type="button">Run Settle</button>
+            <button id="manual-prepare-button" type="button">Run Prepare</button>
+            <button id="manual-publish-button" type="button">Run Prediction</button>
+          </div>
+          <p class="admin-status" id="manual-refresh-status">Manual refresh triggers the GitHub workflow and does not run instantly.</p>
+        </div>
+      </details>
     </main>
   </div>
 
