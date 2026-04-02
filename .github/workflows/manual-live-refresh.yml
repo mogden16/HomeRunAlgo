@@ -80,7 +80,7 @@ jobs:
               "cloudflare-app/data/dashboard.json",
           ]
           force_add = []
-          if mode == "prepare":
+          if mode in {"prepare", "auto"}:
               force_add.extend(
                   [
                       "data/live/model_bundle.pkl",
@@ -95,6 +95,17 @@ jobs:
           for path in force_add:
               if os.path.exists(path):
                   subprocess.run(["git", "add", "-f", "--", path], check=True)
+
+          unstaged = subprocess.run(
+              ["git", "diff", "--name-only"],
+              check=True,
+              capture_output=True,
+              text=True,
+          ).stdout.strip()
+          if unstaged:
+              print("Refusing to rebase with unstaged tracked changes:")
+              print(unstaged)
+              sys.exit(1)
 
           diff = subprocess.run(
               ["git", "diff", "--cached", "--quiet"],
