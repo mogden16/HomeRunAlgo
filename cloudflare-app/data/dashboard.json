@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-03T22:29:52.067333+00:00",
+  "generated_at": "2026-04-03T23:02:48.202334+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -45,25 +45,25 @@
     "latest_slate_size": 14,
     "tracked_dates": 9,
     "tracked_picks": 134,
-    "settled_picks": 124,
+    "settled_picks": 130,
     "tracked_homers": 23,
-    "tracked_hit_rate": 0.185484,
-    "open_picks": 10
+    "tracked_hit_rate": 0.176923,
+    "open_picks": 4
   },
   "confidence_summary": [
     {
       "confidence_tier": "elite",
-      "picks": 21,
+      "picks": 24,
       "homers": 6,
-      "hit_rate": 0.285714,
-      "avg_probability": 0.328704
+      "hit_rate": 0.25,
+      "avg_probability": 0.312436
     },
     {
       "confidence_tier": "strong",
-      "picks": 65,
+      "picks": 68,
       "homers": 14,
-      "hit_rate": 0.215385,
-      "avg_probability": 0.254461
+      "hit_rate": 0.205882,
+      "avg_probability": 0.250611
     },
     {
       "confidence_tier": "watch",
@@ -126,16 +126,16 @@
     {
       "batter_name": "Sal Stewart",
       "team": "CIN",
-      "picks": 5,
+      "picks": 6,
       "homers": 1,
-      "hit_rate": 0.2
+      "hit_rate": 0.166667
     },
     {
       "batter_name": "Jake Burger",
       "team": "TEX",
-      "picks": 4,
+      "picks": 5,
       "homers": 1,
-      "hit_rate": 0.25
+      "hit_rate": 0.2
     },
     {
       "batter_name": "Joey Wiemer",
@@ -243,6 +243,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Corey Seager",
+      "team": "TEX",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Ian Happ",
       "team": "CHC",
       "picks": 2,
@@ -259,6 +266,13 @@
     {
       "batter_name": "Michael Harris II",
       "team": "ATL",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Oneil Cruz",
+      "team": "PIT",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
@@ -534,7 +548,7 @@
       "game_pk": 823406,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-03T20:12:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 1,
       "morning_rank": null,
       "batter_name": "Oneil Cruz",
@@ -554,11 +568,11 @@
       "field_bearing_deg": 35.0,
       "predicted_hr_probability": 0.208403,
       "predicted_hr_score": 100.0,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "The live model favors the overall recent-form and matchup profile, but no single feature cleared the explanation threshold.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-03:825103:671739:593958",
@@ -581,7 +595,7 @@
       "weather_label": "Cloudy",
       "temperature_f": 79.2,
       "wind_speed_mph": 5.4,
-      "wind_direction_deg": 268.0,
+      "wind_direction_deg": 272.0,
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.206885,
       "predicted_hr_score": 99.6,
@@ -596,7 +610,7 @@
       "game_pk": 822919,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-03T20:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 3,
       "morning_rank": null,
       "batter_name": "Sal Stewart",
@@ -616,6 +630,37 @@
       "field_bearing_deg": 35.0,
       "predicted_hr_probability": 0.194619,
       "predicted_hr_score": 99.6,
+      "actual_hit_hr": 0,
+      "top_reason_1": "The live model favors the overall recent-form and matchup profile, but no single feature cleared the explanation threshold.",
+      "top_reason_2": "",
+      "top_reason_3": "",
+      "result_label": "No HR"
+    },
+    {
+      "pick_id": "2026-04-03:825026:670541:605488",
+      "game_pk": 825026,
+      "game_date": "2026-04-03",
+      "game_datetime": "2026-04-04T01:40:00Z",
+      "game_state": "pregame",
+      "rank": 4,
+      "morning_rank": null,
+      "batter_name": "Yordan Alvarez",
+      "team": "HOU",
+      "opponent_team": "OAK",
+      "pitcher_name": "Jeffrey Springs",
+      "lineup_source": "confirmed",
+      "batting_order": null,
+      "ballpark_name": "Oakland Coliseum",
+      "ballpark_region_abbr": "CA",
+      "confidence_tier": "elite",
+      "weather_code": 0,
+      "weather_label": "Clear",
+      "temperature_f": 68.1,
+      "wind_speed_mph": 6.5,
+      "wind_direction_deg": 308.0,
+      "field_bearing_deg": 50.0,
+      "predicted_hr_probability": 0.19768,
+      "predicted_hr_score": 99.2,
       "actual_hit_hr": null,
       "top_reason_1": "The live model favors the overall recent-form and matchup profile, but no single feature cleared the explanation threshold.",
       "top_reason_2": "",
@@ -627,8 +672,8 @@
       "game_pk": 822919,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-03T20:05:00Z",
-      "game_state": "live",
-      "rank": 4,
+      "game_state": "final",
+      "rank": 5,
       "morning_rank": null,
       "batter_name": "Corey Seager",
       "team": "TEX",
@@ -647,19 +692,19 @@
       "field_bearing_deg": 35.0,
       "predicted_hr_probability": 0.192663,
       "predicted_hr_score": 99.2,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "The live model favors the overall recent-form and matchup profile, but no single feature cleared the explanation threshold.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-03:822919:682829:669022",
       "game_pk": 822919,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-03T20:05:00Z",
-      "game_state": "live",
-      "rank": 5,
+      "game_state": "final",
+      "rank": 6,
       "morning_rank": null,
       "batter_name": "Elly De La Cruz",
       "team": "CIN",
@@ -683,37 +728,6 @@
       "top_reason_2": "",
       "top_reason_3": "",
       "result_label": "HR"
-    },
-    {
-      "pick_id": "2026-04-03:825026:670541:605488",
-      "game_pk": 825026,
-      "game_date": "2026-04-03",
-      "game_datetime": "2026-04-04T01:40:00Z",
-      "game_state": "pregame",
-      "rank": 6,
-      "morning_rank": null,
-      "batter_name": "Yordan Alvarez",
-      "team": "HOU",
-      "opponent_team": "OAK",
-      "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
-      "batting_order": null,
-      "ballpark_name": "Oakland Coliseum",
-      "ballpark_region_abbr": "CA",
-      "confidence_tier": "strong",
-      "weather_code": 0,
-      "weather_label": "Clear",
-      "temperature_f": 66.3,
-      "wind_speed_mph": 7.0,
-      "wind_direction_deg": 320.0,
-      "field_bearing_deg": 50.0,
-      "predicted_hr_probability": 0.190259,
-      "predicted_hr_score": 98.4,
-      "actual_hit_hr": null,
-      "top_reason_1": "The live model favors the overall recent-form and matchup profile, but no single feature cleared the explanation threshold.",
-      "top_reason_2": "",
-      "top_reason_3": "",
-      "result_label": "Pending"
     },
     {
       "pick_id": "2026-04-03:823568:700250:691587",
@@ -767,7 +781,7 @@
       "weather_label": "Cloudy",
       "temperature_f": 79.2,
       "wind_speed_mph": 5.4,
-      "wind_direction_deg": 268.0,
+      "wind_direction_deg": 272.0,
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.183935,
       "predicted_hr_score": 97.6,
@@ -782,7 +796,7 @@
       "game_pk": 823406,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-03T20:12:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 9,
       "morning_rank": null,
       "batter_name": "Pete Alonso",
@@ -802,11 +816,11 @@
       "field_bearing_deg": 35.0,
       "predicted_hr_probability": 0.178983,
       "predicted_hr_score": 97.3,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "The live model favors the overall recent-form and matchup profile, but no single feature cleared the explanation threshold.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-03:822758:660271:571945",
@@ -858,12 +872,12 @@
       "confidence_tier": "strong",
       "weather_code": 3,
       "weather_label": "Cloudy",
-      "temperature_f": 78.1,
-      "wind_speed_mph": 10.2,
-      "wind_direction_deg": 75.0,
+      "temperature_f": 77.0,
+      "wind_speed_mph": 5.7,
+      "wind_direction_deg": 45.0,
       "field_bearing_deg": 45.0,
-      "predicted_hr_probability": 0.1743,
-      "predicted_hr_score": 96.1,
+      "predicted_hr_probability": 0.174024,
+      "predicted_hr_score": 96.5,
       "actual_hit_hr": null,
       "top_reason_1": "The live model favors the overall recent-form and matchup profile, but no single feature cleared the explanation threshold.",
       "top_reason_2": "",
@@ -906,7 +920,7 @@
       "game_pk": 822919,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-03T20:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 13,
       "morning_rank": null,
       "batter_name": "Jake Burger",
@@ -926,18 +940,18 @@
       "field_bearing_deg": 35.0,
       "predicted_hr_probability": 0.162926,
       "predicted_hr_score": 95.7,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "The live model favors the overall recent-form and matchup profile, but no single feature cleared the explanation threshold.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-03:822919:553993:669022",
       "game_pk": 822919,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-03T20:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 14,
       "morning_rank": null,
       "batter_name": "Eugenio Su\u00e1rez",
@@ -957,11 +971,11 @@
       "field_bearing_deg": 35.0,
       "predicted_hr_probability": 0.159711,
       "predicted_hr_score": 95.3,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "The live model favors the overall recent-form and matchup profile, but no single feature cleared the explanation threshold.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     }
   ],
   "history": [
@@ -5339,8 +5353,8 @@
       "game_pk": 822919,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-03T20:05:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "CIN @ TEX",
       "teams": [
         {
@@ -5471,8 +5485,8 @@
       "game_pk": 824458,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-03T20:10:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "CHC @ CLE",
       "teams": [
         {
@@ -5735,8 +5749,8 @@
       "game_pk": 824377,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-03T20:10:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Game Over",
+      "game_state": "final",
       "matchup": "PHI @ COL",
       "teams": [
         {
@@ -5861,8 +5875,8 @@
       "game_pk": 823406,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-03T20:12:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "BAL @ PIT",
       "teams": [
         {
@@ -6120,7 +6134,7 @@
         {
           "team": "HOU",
           "opponent_team": "OAK",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 694728,
@@ -6141,12 +6155,6 @@
               "selected_for_pick": false
             },
             {
-              "batter_id": 543877,
-              "batter_name": "Christian V\u00e1zquez",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
               "batter_id": 572233,
               "batter_name": "Christian Walker",
               "batting_order": null,
@@ -6155,6 +6163,12 @@
             {
               "batter_id": 676694,
               "batter_name": "Jake Meyers",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 665161,
+              "batter_name": "Jeremy Pe\u00f1a",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -6446,7 +6460,7 @@
     },
     {
       "game_pk": 824134,
-      "game_date": "2026-04-03",
+      "game_date": "2026-04-04",
       "game_datetime": "2026-04-03T23:45:00Z",
       "game_status": "Postponed",
       "game_state": "final",
