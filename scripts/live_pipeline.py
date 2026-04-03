@@ -84,6 +84,7 @@ TERMINAL_GAME_STATUS_TOKENS = (
     "final",
     "game over",
     "completed early",
+    "postponed",
     "cancelled",
 )
 LIVE_GAME_STATUS_TOKENS = (
@@ -192,6 +193,13 @@ def classify_game_state(game_like: dict[str, Any], reference_time: datetime | No
     if game_datetime is not None and game_datetime <= reference:
         return "live"
     return "pregame"
+
+
+def is_postponed_status(game_like: dict[str, Any] | None) -> bool:
+    if not game_like:
+        return False
+    status_token = str(game_like.get("status") or game_like.get("game_status") or "").strip().lower()
+    return "postponed" in status_token or "cancelled" in status_token
 
 
 def build_slate_state(
@@ -767,9 +775,9 @@ def train_live_model_bundle(
     *,
     bundle_path: Path = LIVE_MODEL_BUNDLE_PATH,
     metadata_path: Path = LIVE_MODEL_METADATA_PATH,
-    model_name: str = "logistic",
+    model_name: str = "histgb",
     calibration: str = "sigmoid",
-    feature_profile: str = "live_shrunk",
+    feature_profile: str = "live_usable_candidate_v1",
     selection_metric: str = "pr_auc",
     missingness_threshold: float | None = None,
     training_mode: str = "search",
@@ -2242,6 +2250,9 @@ def settle_pick_records(
         if lookup_value is not None and int(lookup_value) == 1:
             resolved_hit = 1
             resolved_label = "HR"
+        elif is_postponed_status(schedule_game) or is_postponed_status(row):
+            resolved_hit = None
+            resolved_label = "Postponed"
         elif game_state == "final":
             resolved_hit = 0
             resolved_label = "No HR"

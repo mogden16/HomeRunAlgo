@@ -105,7 +105,7 @@ def run_settle_live_results(
             schedule_games=schedule_games,
         )
         all_rows_terminal = all(
-            str(row.get("result_label") or row.get("result") or "Pending") in {"HR", "No HR"}
+            str(row.get("result_label") or row.get("result") or "Pending") in {"HR", "No HR", "Postponed"}
             for row in settled_rows
         )
         if (slate_state["all_final"] and all_rows_terminal) or (not schedule_games and all_rows_terminal):

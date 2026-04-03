@@ -367,6 +367,8 @@ def normalize_result(value: Any) -> tuple[str, int | None]:
         return "HR", 1
     if token in {"0", "miss", "no hr", "no_hr", "failed", "failure"}:
         return "No HR", 0
+    if token in {"postponed", "cancelled", "ppd"}:
+        return "Postponed", None
     return "Pending", None
 
 
@@ -437,7 +439,7 @@ def clean_current_pick_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     cleaned: list[dict[str, Any]] = []
     for row in sorted(rows, key=current_pick_sort_key):
         cleaned.append({column: serialize_value(row.get(column)) for column in CURRENT_PICK_COLUMNS[:-1]})
-        cleaned[-1]["result"] = str(row.get("result_label") or "Pending")
+        cleaned[-1]["result"] = str(row.get("result_label") or row.get("result") or "Pending")
     return cleaned
 
 
@@ -467,7 +469,7 @@ def upsert_history(existing_rows: list[dict[str, Any]], current_rows: list[dict[
         key = str(row["pick_id"])
         previous = by_id.get(key)
         if previous:
-            if previous.get("result_label") in {"HR", "No HR"} and row.get("result_label") == "Pending":
+            if previous.get("result_label") in {"HR", "No HR", "Postponed"} and row.get("result_label") == "Pending":
                 row["result_label"] = previous["result_label"]
                 row["actual_hit_hr"] = previous.get("actual_hit_hr")
             by_id[key].update(row)

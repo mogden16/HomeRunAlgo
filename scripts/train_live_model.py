@@ -22,10 +22,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--start-date", default=LIVE_MODEL_START_DATE, help="Inclusive historical start date.")
     parser.add_argument("--end-date", default=None, help="Inclusive historical end date. Defaults to yesterday in ET.")
     parser.add_argument("--force-refresh", action="store_true", help="Ignore caches and re-fetch remote data.")
-    parser.add_argument("--model", default="logistic", choices=["logistic", "histgb", "xgboost", "all"], help="Model family search space.")
+    parser.add_argument("--model", default="histgb", choices=["logistic", "histgb", "xgboost", "all"], help="Model family search space.")
     parser.add_argument(
         "--feature-profile",
-        default="live_shrunk",
+        default="live_usable_candidate_v1",
         choices=["stable", "live", "live_plus", "live_shrunk", "live_shrunk_precise", "live_usable_candidate_v1", "expanded", "all"],
         help="Feature profile search space.",
     )
