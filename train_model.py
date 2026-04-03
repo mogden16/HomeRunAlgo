@@ -196,6 +196,16 @@ LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS = [
     "split_matchup_barrel",
     "split_matchup_hard_hit",
 ]
+OPPORTUNITY_FEATURE_COLUMNS = [
+    "expected_pa_today",
+    "batting_order_slot",
+    "lineup_confirmation_score",
+    "projected_lineup_rank",
+]
+LIVE_USABLE_CANDIDATE_PROFILE = "live_usable_candidate_v1"
+LIVE_USABLE_CANDIDATE_SEED_COLUMNS = list(
+    dict.fromkeys([*LIVE_SHRUNK_FEATURE_COLUMNS, *OPPORTUNITY_FEATURE_COLUMNS])
+)
 EXPERIMENTAL_FEATURE_COLUMNS = [
     *LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS,
     *LIVE_SHRUNK_FEATURE_COLUMNS,
@@ -278,7 +288,16 @@ EXPERIMENTAL_FEATURE_COLUMNS = [
 ]
 FEATURE_COLUMNS = list(STABLE_FEATURE_COLUMNS)
 OPTIONAL_SECONDARY_FEATURES: list[str] = []
-FEATURE_PROFILE_CHOICES = ["stable", "live", "live_plus", "live_shrunk", "live_shrunk_precise", "expanded", "all"]
+FEATURE_PROFILE_CHOICES = [
+    "stable",
+    "live",
+    "live_plus",
+    "live_shrunk",
+    "live_shrunk_precise",
+    LIVE_USABLE_CANDIDATE_PROFILE,
+    "expanded",
+    "all",
+]
 BASELINE_FEATURES = [
     "hr_per_pa_last_30d",
     "hr_per_pa_last_10d",
@@ -306,6 +325,18 @@ DEFAULT_MISSINGNESS_THRESHOLDS = [0.35, 0.50, 0.65]
 MODEL_FAMILY_PRIORITY = {"logistic": 0, "histgb": 1, "xgboost": 2}
 HISTGB_RANDOM_SEARCH_ITERATIONS = 18
 XGBOOST_RANDOM_SEARCH_ITERATIONS = 18
+USABILITY_PROFILE_MIN_FEATURE_COUNT = 16
+USABILITY_PROFILE_TOP_K = 5
+USABILITY_MODEL_FAMILY_ORDER = ["logistic", "histgb", "xgboost"]
+USABILITY_THRESHOLD_OBJECTIVES = ["f0.5", "precision_at_min_recall"]
+# Include a conservative soft floor because recent holdout score distributions
+# can shift upward versus training OOF, making a slightly stricter threshold
+# more deployment-safe while still clearing the true recall gate on holdout.
+USABILITY_MIN_RECALL_CHOICES = [0.08, 0.10, 0.12, 0.15]
+USABILITY_MAX_POSITIVE_RATE_CHOICES = [0.12, 0.13, 0.14]
+USABILITY_ROLLING_WINDOW_DAYS = 28
+USABILITY_ROLLING_WINDOW_COUNT = 6
+USABILITY_ROLLING_WINDOW_PASS_TARGET = 5
 RANKING_EXPORT_CORE_COLUMNS = [
     "game_date",
     "game_pk",
@@ -414,6 +445,8 @@ def feature_columns_for_profile(profile: str) -> list[str]:
         return list(LIVE_SHRUNK_FEATURE_COLUMNS)
     if profile == "live_shrunk_precise":
         return list(LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS)
+    if profile == LIVE_USABLE_CANDIDATE_PROFILE:
+        return list(LIVE_USABLE_CANDIDATE_SEED_COLUMNS)
     if profile == "expanded":
         return list(dict.fromkeys(EXPERIMENTAL_FEATURE_COLUMNS))
     raise ValueError(f"Unknown feature profile: {profile}")
@@ -586,7 +619,15 @@ def resolve_model_families(model_name: str) -> list[str]:
 
 def resolve_feature_profiles(feature_profile: str, compare_against: str | None = None) -> list[str]:
     if feature_profile == "all":
-        return ["stable", "live", "live_plus", "live_shrunk", "live_shrunk_precise", "expanded"]
+        return [
+            "stable",
+            "live",
+            "live_plus",
+            "live_shrunk",
+            "live_shrunk_precise",
+            LIVE_USABLE_CANDIDATE_PROFILE,
+            "expanded",
+        ]
     profiles = [feature_profile]
     if compare_against and compare_against not in {"none", feature_profile, "all"}:
         profiles.append(compare_against)
@@ -1620,6 +1661,680 @@ def usability_reason(metrics_dict: dict[str, float], actual_rate: float) -> str:
     return "; ".join(failures) if failures else "passes all operational usability checks"
 
 
+def usability_gate_summary(metrics_dict: dict[str, float], actual_rate: float) -> dict[str, Any]:
+    passes = is_operationally_usable(metrics_dict, actual_rate)
+    return {
+        "passes_absolute_usability_gate": bool(passes),
+        "failure_reason": usability_reason(metrics_dict, actual_rate),
+        "precision": float(metrics_dict["precision"]),
+        "recall": float(metrics_dict["recall"]),
+        "positive_prediction_rate": float(metrics_dict["positive_prediction_rate"]),
+        "actual_hr_rate": float(actual_rate),
+        "max_allowed_positive_prediction_rate": float(1.25 * actual_rate),
+        "prediction_to_actual_rate_ratio": prediction_rate_ratio(
+            float(metrics_dict["positive_prediction_rate"]), float(actual_rate)
+        ),
+    }
+
+
+def _profile_search_sort_key(row: dict[str, Any]) -> tuple[float, float, float, int]:
+    return (
+        -float(row["oof_precision"]),
+        float(row["oof_positive_prediction_rate"]),
+        -float(row["oof_pr_auc"]),
+        int(row["feature_count"]),
+    )
+
+
+def _profile_search_better(candidate: dict[str, Any], current: dict[str, Any], tolerance: float = 1e-9) -> bool:
+    candidate_precision = float(candidate["oof_precision"])
+    current_precision = float(current["oof_precision"])
+    if candidate_precision > current_precision + tolerance:
+        return True
+    if abs(candidate_precision - current_precision) <= tolerance:
+        candidate_pos_rate = float(candidate["oof_positive_prediction_rate"])
+        current_pos_rate = float(current["oof_positive_prediction_rate"])
+        if candidate_pos_rate < current_pos_rate - tolerance:
+            return True
+    return False
+
+
+def evaluate_profile_subset_candidate(
+    train_df: pd.DataFrame,
+    *,
+    feature_columns: list[str],
+    missingness_threshold: float,
+    selection_metric: str,
+    variant_label: str,
+    best_params: dict[str, Any] | None = None,
+) -> dict[str, Any] | None:
+    if best_params is None:
+        candidate_result = evaluate_training_candidate(
+            train_df,
+            feature_profile=LIVE_USABLE_CANDIDATE_PROFILE,
+            feature_profile_variant=variant_label,
+            feature_columns_override=feature_columns,
+            model_name="logistic",
+            missingness_threshold=missingness_threshold,
+            selection_metric=selection_metric,
+        )
+    else:
+        initial_feature_columns = [column for column in feature_columns if column in train_df.columns]
+        pruned_feature_columns, pruning_audit_df, excluded_for_missingness = prune_model_features_by_training_missingness(
+            train_df,
+            initial_feature_columns,
+            threshold=missingness_threshold,
+        )
+        if not pruned_feature_columns:
+            return None
+        estimator = build_configured_estimator("logistic", best_params=best_params)
+        if estimator is None:
+            return None
+        X_train = prepare_feature_matrix(train_df, pruned_feature_columns)
+        y_train = train_df[TARGET_COL].to_numpy()
+        cv_summary = cross_validate_probability_metrics_time_series(
+            estimator,
+            X_train,
+            y_train,
+            feature_columns=pruned_feature_columns,
+        )
+        fit_safely_with_imputer_warning_suppressed(estimator, X_train, y_train)
+        candidate_result = {
+            "summary_row": {
+                "model_family": "logistic",
+                "feature_profile": LIVE_USABLE_CANDIDATE_PROFILE,
+                "feature_profile_variant": variant_label,
+                "missingness_threshold": float(missingness_threshold),
+                "feature_count": int(len(pruned_feature_columns)),
+                "excluded_feature_count": int(len(excluded_for_missingness)),
+                "selection_metric": selection_metric,
+                "selection_score": float(selection_score_from_cv_summary(cv_summary, selection_metric)),
+                "mean_cv_pr_auc": float(cv_summary["mean_cv_pr_auc"]),
+                "mean_cv_roc_auc": float(cv_summary["mean_cv_roc_auc"]),
+                "mean_cv_log_loss": float(cv_summary["mean_cv_log_loss"]),
+                "mean_cv_brier_score": float(cv_summary["mean_cv_brier_score"]),
+                "search_best_score": float(selection_score_from_cv_summary(cv_summary, selection_metric)),
+                "model_priority": int(MODEL_FAMILY_PRIORITY["logistic"]),
+                "best_params": dict(best_params),
+            },
+            "feature_columns": pruned_feature_columns,
+            "excluded_features": excluded_for_missingness,
+            "pruning_audit_df": pruning_audit_df,
+            "search": type("FixedSearchResult", (), {"best_estimator_": estimator})(),
+            "cv_summary": cv_summary,
+        }
+    if candidate_result is None:
+        return None
+    oof_y_true = candidate_result["cv_summary"]["oof_y_true"]
+    oof_y_prob = candidate_result["cv_summary"]["oof_y_prob"]
+    threshold_summary = summarize_thresholds(oof_y_true, oof_y_prob, THRESHOLD_GRID)
+    eligible = threshold_summary.loc[threshold_summary["recall"] >= 0.10].copy()
+    if eligible.empty:
+        selected_row = threshold_summary.sort_values(
+            by=["recall", "precision", "positive_prediction_rate", "threshold"],
+            ascending=[False, False, True, False],
+            kind="mergesort",
+        ).iloc[0]
+    else:
+        selected_row = eligible.sort_values(
+            by=["precision", "positive_prediction_rate", "threshold"],
+            ascending=[False, True, False],
+            kind="mergesort",
+        ).iloc[0]
+    candidate_result["profile_search_summary"] = {
+        "oof_precision": float(selected_row["precision"]),
+        "oof_recall": float(selected_row["recall"]),
+        "oof_positive_prediction_rate": float(selected_row["positive_prediction_rate"]),
+        "oof_pr_auc": float(candidate_result["summary_row"]["mean_cv_pr_auc"]),
+        "oof_threshold": float(selected_row["threshold"]),
+        "variant_label": variant_label,
+        "feature_count": int(len(candidate_result["feature_columns"])),
+    }
+    return candidate_result
+
+
+def generate_live_usable_profile_candidates(
+    train_df: pd.DataFrame,
+    *,
+    missingness_threshold: float,
+    selection_metric: str,
+    top_k: int = USABILITY_PROFILE_TOP_K,
+) -> dict[str, Any]:
+    seed_columns = available_feature_columns(train_df, feature_profile=LIVE_USABLE_CANDIDATE_PROFILE)
+    seed_candidate = evaluate_profile_subset_candidate(
+        train_df,
+        feature_columns=seed_columns,
+        missingness_threshold=missingness_threshold,
+        selection_metric=selection_metric,
+        variant_label=f"{LIVE_USABLE_CANDIDATE_PROFILE}_seed",
+    )
+    if seed_candidate is None:
+        raise RuntimeError("Unable to evaluate the live usable seed feature profile.")
+
+    current_candidate = seed_candidate
+    seed_best_params = dict(seed_candidate["summary_row"].get("best_params") or {})
+    evaluated_candidates: list[dict[str, Any]] = [seed_candidate]
+    accepted_path: list[dict[str, Any]] = [seed_candidate]
+    iteration = 1
+    while len(current_candidate["feature_columns"]) > USABILITY_PROFILE_MIN_FEATURE_COUNT:
+        drop_candidates: list[dict[str, Any]] = []
+        for feature_name in current_candidate["feature_columns"]:
+            next_columns = [feature for feature in current_candidate["feature_columns"] if feature != feature_name]
+            drop_candidate = evaluate_profile_subset_candidate(
+                train_df,
+                feature_columns=next_columns,
+                missingness_threshold=missingness_threshold,
+                selection_metric=selection_metric,
+                variant_label=f"{LIVE_USABLE_CANDIDATE_PROFILE}_drop_{iteration}_{feature_name}",
+                best_params=seed_best_params,
+            )
+            if drop_candidate is None:
+                continue
+            evaluated_candidates.append(drop_candidate)
+            if float(drop_candidate["profile_search_summary"]["oof_recall"]) < 0.10:
+                continue
+            drop_candidates.append(drop_candidate)
+
+        if not drop_candidates:
+            break
+        best_drop = sorted(drop_candidates, key=lambda item: _profile_search_sort_key(item["profile_search_summary"]))[0]
+        if not _profile_search_better(best_drop["profile_search_summary"], current_candidate["profile_search_summary"]):
+            break
+        current_candidate = best_drop
+        accepted_path.append(best_drop)
+        iteration += 1
+
+    unique_candidates: dict[tuple[str, ...], dict[str, Any]] = {}
+    for candidate in evaluated_candidates:
+        feature_key = tuple(candidate["feature_columns"])
+        existing = unique_candidates.get(feature_key)
+        if existing is None or _profile_search_sort_key(candidate["profile_search_summary"]) < _profile_search_sort_key(
+            existing["profile_search_summary"]
+        ):
+            unique_candidates[feature_key] = candidate
+    ranked_unique = sorted(
+        unique_candidates.values(),
+        key=lambda candidate: _profile_search_sort_key(candidate["profile_search_summary"]),
+    )
+    top_candidates = ranked_unique[:top_k]
+    candidate_specs: list[dict[str, Any]] = []
+    for index, candidate in enumerate(top_candidates, start=1):
+        candidate_specs.append(
+            {
+                "feature_profile": LIVE_USABLE_CANDIDATE_PROFILE,
+                "feature_profile_variant": f"{LIVE_USABLE_CANDIDATE_PROFILE}_candidate_{index}",
+                "feature_columns": list(candidate["feature_columns"]),
+                "candidate_rank": int(index),
+                "profile_search_summary": dict(candidate["profile_search_summary"]),
+            }
+        )
+    return {
+        "seed_feature_columns": seed_columns,
+        "accepted_path": accepted_path,
+        "top_candidates": candidate_specs,
+    }
+
+
+def build_rolling_window_slices(
+    df: pd.DataFrame,
+    *,
+    window_days: int = USABILITY_ROLLING_WINDOW_DAYS,
+    window_count: int = USABILITY_ROLLING_WINDOW_COUNT,
+) -> list[dict[str, Any]]:
+    if df.empty:
+        return []
+    df = df.copy()
+    df[DATE_COL] = pd.to_datetime(df[DATE_COL])
+    min_date = df[DATE_COL].min().normalize()
+    max_date = pd.to_datetime(df[DATE_COL]).max().normalize()
+    windows: list[dict[str, Any]] = []
+    current_end = max_date
+    attempts = 0
+    max_attempts = max(window_count * 8, window_count)
+    while len(windows) < window_count and current_end >= min_date and attempts < max_attempts:
+        window_end = current_end
+        window_start = window_end - pd.Timedelta(days=window_days - 1)
+        train_df = df.loc[df[DATE_COL] < window_start].copy()
+        test_df = df.loc[(df[DATE_COL] >= window_start) & (df[DATE_COL] <= window_end)].copy()
+        if test_df.empty:
+            current_end = current_end - pd.Timedelta(days=window_days)
+            attempts += 1
+            continue
+        windows.append(
+            {
+                "window_index": int(len(windows) + 1),
+                "train_start_date": str(train_df[DATE_COL].min().date()) if not train_df.empty else None,
+                "train_end_date": str(train_df[DATE_COL].max().date()) if not train_df.empty else None,
+                "holdout_start_date": str(window_start.date()),
+                "holdout_end_date": str(window_end.date()),
+                "train_rows": int(len(train_df)),
+                "holdout_rows": int(len(test_df)),
+                "train_df": train_df,
+                "test_df": test_df,
+            }
+        )
+        current_end = current_end - pd.Timedelta(days=window_days)
+        attempts += 1
+    return windows
+
+
+def fit_candidate_for_calibration_mode(
+    train_df: pd.DataFrame,
+    test_df: pd.DataFrame,
+    candidate_result: dict[str, Any],
+    *,
+    calibration_mode: str,
+) -> dict[str, Any]:
+    summary_row = dict(candidate_result["summary_row"])
+    feature_columns = list(candidate_result["feature_columns"])
+    X_train = prepare_feature_matrix(train_df, feature_columns)
+    y_train = train_df[TARGET_COL].to_numpy()
+    X_test = prepare_feature_matrix(test_df, feature_columns)
+    y_test = test_df[TARGET_COL].to_numpy()
+    base_estimator = clone(candidate_result["search"].best_estimator_)
+
+    if summary_row["model_family"] == "logistic":
+        if calibration_mode == "disabled":
+            model = clone(base_estimator)
+            fit_safely_with_imputer_warning_suppressed(model, X_train, y_train)
+            calibration_status = {
+                "requested": calibration_mode,
+                "used": "disabled",
+                "status": "skipped",
+                "message": "Calibration disabled for explicit evaluation.",
+            }
+        else:
+            model, calibration_status = maybe_calibrate_logistic(
+                clone(base_estimator),
+                X_train,
+                y_train,
+                calibration_mode,
+                "logistic",
+            )
+            if calibration_status.get("used") == "disabled":
+                fit_safely_with_imputer_warning_suppressed(model, X_train, y_train)
+    else:
+        model = clone(base_estimator)
+        fit_safely_with_imputer_warning_suppressed(model, X_train, y_train)
+        calibration_status = {
+            "requested": calibration_mode,
+            "used": "not_applicable",
+            "status": "not_applicable",
+            "message": f"Calibration skipped because {summary_row['model_family']} was used.",
+        }
+
+    train_cv_summary = cross_validate_probability_metrics_time_series(
+        model,
+        X_train,
+        y_train,
+        feature_columns=feature_columns,
+    )
+    train_threshold_summary = summarize_thresholds(
+        train_cv_summary["oof_y_true"],
+        train_cv_summary["oof_y_prob"],
+        THRESHOLD_GRID,
+    )
+    y_prob_test = model.predict_proba(X_test)[:, 1]
+    return {
+        "summary_row": summary_row,
+        "feature_columns": feature_columns,
+        "model": model,
+        "calibration_status": calibration_status,
+        "train_cv_summary": train_cv_summary,
+        "train_threshold_summary": train_threshold_summary,
+        "y_test": y_test,
+        "y_prob_test": y_prob_test,
+    }
+
+
+def evaluate_prepared_candidate_configuration(
+    prepared: dict[str, Any],
+    *,
+    threshold_objective: str,
+    min_recall: float,
+    max_positive_rate: float,
+    threshold_tolerance: float,
+) -> dict[str, Any]:
+    threshold_info = find_best_threshold(
+        prepared["train_threshold_summary"],
+        threshold_objective,
+        min_recall,
+        max_positive_rate,
+        threshold_tolerance,
+    )
+    chosen_threshold = float(threshold_info["threshold"])
+    metrics = evaluate_predictions(prepared["y_test"], prepared["y_prob_test"], chosen_threshold)
+    actual_holdout_rate = float(np.mean(prepared["y_test"]))
+    gate_summary = usability_gate_summary(metrics, actual_holdout_rate)
+    summary_row = {
+        **prepared["summary_row"],
+        "model": f"{prepared['summary_row']['model_family']}::{prepared['summary_row']['feature_profile_variant']}",
+        "threshold": chosen_threshold,
+        "threshold_objective": threshold_objective,
+        "threshold_min_recall": float(min_recall),
+        "threshold_max_positive_rate": float(max_positive_rate),
+        "threshold_fallback_stage": str(threshold_info["fallback_stage"]),
+        "threshold_used_fallback": bool(threshold_info["used_fallback"]),
+        "calibration_used": prepared["calibration_status"]["used"],
+        **{metric: float(metrics[metric]) for metric in METRIC_COLUMNS},
+        "roc_auc": float(metrics["roc_auc"]),
+        "pr_auc": float(metrics["pr_auc"]),
+        "log_loss": float(metrics["log_loss"]),
+        "brier_score": float(metrics["brier_score"]),
+        "actual_hr_rate": actual_holdout_rate,
+        "prediction_to_actual_rate_ratio": prediction_rate_ratio(
+            metrics["positive_prediction_rate"], actual_holdout_rate
+        ),
+        "operationally_usable": "yes" if gate_summary["passes_absolute_usability_gate"] else "no",
+        "operational_usability_reason": gate_summary["failure_reason"],
+    }
+    return {
+        "summary_row": summary_row,
+        "threshold_info": threshold_info,
+        "metrics": metrics,
+        "gate_summary": gate_summary,
+        "prepared": prepared,
+    }
+
+
+def evaluate_candidate_on_rolling_windows(
+    df: pd.DataFrame,
+    *,
+    feature_columns: list[str],
+    model_family: str,
+    best_params: dict[str, Any] | None,
+    calibration_mode: str,
+    threshold_objective: str,
+    min_recall: float,
+    max_positive_rate: float,
+    threshold_tolerance: float,
+) -> list[dict[str, Any]]:
+    rolling_rows: list[dict[str, Any]] = []
+    for window in build_rolling_window_slices(df):
+        train_df = window["train_df"]
+        test_df = window["test_df"]
+        row = {key: value for key, value in window.items() if key not in {"train_df", "test_df"}}
+        if train_df.empty or test_df.empty:
+            row.update(
+                {
+                    "passes_absolute_usability_gate": False,
+                    "failure_reason": "insufficient window rows",
+                }
+            )
+            rolling_rows.append(row)
+            continue
+        estimator = build_configured_estimator(model_family, best_params=best_params)
+        if estimator is None:
+            row.update(
+                {
+                    "passes_absolute_usability_gate": False,
+                    "failure_reason": "candidate unavailable for rolling window",
+                }
+            )
+            rolling_rows.append(row)
+            continue
+        X_train = prepare_feature_matrix(train_df, feature_columns)
+        y_train = train_df[TARGET_COL].to_numpy()
+        X_test = prepare_feature_matrix(test_df, feature_columns)
+        y_test = test_df[TARGET_COL].to_numpy()
+        if model_family == "logistic":
+            if calibration_mode == "disabled":
+                model = clone(estimator)
+                fit_safely_with_imputer_warning_suppressed(model, X_train, y_train)
+            else:
+                model, calibration_status = maybe_calibrate_logistic(
+                    clone(estimator),
+                    X_train,
+                    y_train,
+                    calibration_mode,
+                    "logistic",
+                )
+                if calibration_status.get("used") == "disabled":
+                    fit_safely_with_imputer_warning_suppressed(model, X_train, y_train)
+        else:
+            model = clone(estimator)
+            fit_safely_with_imputer_warning_suppressed(model, X_train, y_train)
+        train_cv_summary = cross_validate_probability_metrics_time_series(
+            model,
+            X_train,
+            y_train,
+            feature_columns=feature_columns,
+        )
+        train_threshold_summary = summarize_thresholds(
+            train_cv_summary["oof_y_true"],
+            train_cv_summary["oof_y_prob"],
+            THRESHOLD_GRID,
+        )
+        threshold_info = find_best_threshold(
+            train_threshold_summary,
+            objective=threshold_objective,
+            min_recall=min_recall,
+            max_positive_rate=max_positive_rate,
+            threshold_tolerance=threshold_tolerance,
+        )
+        y_prob_test = model.predict_proba(X_test)[:, 1]
+        metrics = evaluate_predictions(y_test, y_prob_test, float(threshold_info["threshold"]))
+        gate_summary = usability_gate_summary(metrics, float(np.mean(y_test)))
+        row.update(
+            {
+                "passes_absolute_usability_gate": bool(gate_summary["passes_absolute_usability_gate"]),
+                "failure_reason": str(gate_summary["failure_reason"]),
+                "precision": float(metrics["precision"]),
+                "recall": float(metrics["recall"]),
+                "positive_prediction_rate": float(metrics["positive_prediction_rate"]),
+                "pr_auc": float(metrics["pr_auc"]),
+                "log_loss": float(metrics["log_loss"]),
+            }
+        )
+        rolling_rows.append(row)
+    return rolling_rows
+
+
+def evaluate_live_usable_search(
+    train_df: pd.DataFrame,
+    test_df: pd.DataFrame,
+    *,
+    model_name: str,
+    selection_metric: str,
+    calibration: str,
+    missingness_threshold: float | None,
+    threshold_tolerance: float,
+) -> dict[str, Any]:
+    resolved_missingness_threshold = resolve_missingness_thresholds(missingness_threshold)[0]
+    profile_search = generate_live_usable_profile_candidates(
+        train_df,
+        missingness_threshold=resolved_missingness_threshold,
+        selection_metric=selection_metric,
+        top_k=USABILITY_PROFILE_TOP_K,
+    )
+
+    baseline_candidate = evaluate_training_candidate(
+        train_df,
+        feature_profile="live_shrunk",
+        model_name="logistic",
+        missingness_threshold=MAX_MODEL_FEATURE_MISSINGNESS,
+        selection_metric=selection_metric,
+    )
+    if baseline_candidate is None:
+        raise RuntimeError("Unable to evaluate the live_shrunk baseline candidate.")
+    baseline_holdout = evaluate_model_run(
+        train_df=train_df,
+        test_df=test_df,
+        candidate_result=baseline_candidate,
+        threshold_objective="f0.5",
+        min_recall=0.15,
+        max_positive_rate=0.14,
+        threshold_tolerance=threshold_tolerance,
+        calibration=calibration,
+        save_ranked_output=False,
+        ranked_output_path=None,
+    )
+
+    candidate_evaluations: list[dict[str, Any]] = []
+    any_family_passed = False
+    requested_model_families = resolve_model_families(model_name)
+    ordered_model_families = [
+        family for family in USABILITY_MODEL_FAMILY_ORDER if family in requested_model_families
+    ]
+    for model_family in ordered_model_families:
+        if any_family_passed:
+            break
+        family_passed = False
+        for profile_spec in profile_search["top_candidates"]:
+            candidate_result = evaluate_training_candidate(
+                train_df,
+                feature_profile=profile_spec["feature_profile"],
+                feature_profile_variant=profile_spec["feature_profile_variant"],
+                feature_columns_override=profile_spec["feature_columns"],
+                model_name=model_family,
+                missingness_threshold=resolved_missingness_threshold,
+                selection_metric=selection_metric,
+            )
+            if candidate_result is None:
+                continue
+            calibration_modes = (
+                CALIBRATION_CHOICES if model_family == "logistic" else ["disabled"]
+            )
+            for calibration_mode in calibration_modes:
+                prepared = fit_candidate_for_calibration_mode(
+                    train_df,
+                    test_df,
+                    candidate_result,
+                    calibration_mode=calibration_mode,
+                )
+                threshold_evaluations: list[dict[str, Any]] = []
+                for threshold_objective in USABILITY_THRESHOLD_OBJECTIVES:
+                    for min_recall in USABILITY_MIN_RECALL_CHOICES:
+                        for max_positive_rate in USABILITY_MAX_POSITIVE_RATE_CHOICES:
+                            evaluation = evaluate_prepared_candidate_configuration(
+                                prepared,
+                                threshold_objective=threshold_objective,
+                                min_recall=min_recall,
+                                max_positive_rate=max_positive_rate,
+                                threshold_tolerance=threshold_tolerance,
+                            )
+                            threshold_evaluations.append(evaluation)
+                if not threshold_evaluations:
+                    continue
+                best_threshold_evaluation = sorted(
+                    threshold_evaluations,
+                    key=lambda item: (
+                        not bool(item["gate_summary"]["passes_absolute_usability_gate"]),
+                        -float(item["summary_row"]["precision"]),
+                        float(item["summary_row"]["positive_prediction_rate"]),
+                        -float(item["summary_row"]["pr_auc"]),
+                        float(item["summary_row"]["log_loss"]),
+                    ),
+                )[0]
+                rolling_window_results = evaluate_candidate_on_rolling_windows(
+                    pd.concat([train_df, test_df], ignore_index=True),
+                    feature_columns=list(candidate_result["feature_columns"]),
+                    model_family=model_family,
+                    best_params=dict(candidate_result["summary_row"].get("best_params") or {}),
+                    calibration_mode=calibration_mode,
+                    threshold_objective=str(best_threshold_evaluation["summary_row"]["threshold_objective"]),
+                    min_recall=float(best_threshold_evaluation["summary_row"]["threshold_min_recall"]),
+                    max_positive_rate=float(best_threshold_evaluation["summary_row"]["threshold_max_positive_rate"]),
+                    threshold_tolerance=threshold_tolerance,
+                )
+                rolling_pass_count = sum(
+                    1 for row in rolling_window_results if bool(row.get("passes_absolute_usability_gate"))
+                )
+                summary_row = dict(best_threshold_evaluation["summary_row"])
+                summary_row["rolling_window_pass_count"] = int(rolling_pass_count)
+                summary_row["rolling_window_count"] = int(len(rolling_window_results))
+                summary_row["feature_profile_search_rank"] = int(profile_spec["candidate_rank"])
+                summary_row["beats_live_shrunk_precision"] = (
+                    float(summary_row["precision"]) > float(baseline_holdout["summary_row"]["precision"]) + 1e-12
+                )
+                summary_row["matches_or_beats_live_shrunk_pr_auc"] = (
+                    float(summary_row["pr_auc"]) + 1e-12 >= float(baseline_holdout["summary_row"]["pr_auc"])
+                )
+                summary_row["passes_promotion_gates"] = bool(
+                    best_threshold_evaluation["gate_summary"]["passes_absolute_usability_gate"]
+                    and rolling_pass_count >= USABILITY_ROLLING_WINDOW_PASS_TARGET
+                    and bool(summary_row["beats_live_shrunk_precision"])
+                    and bool(summary_row["matches_or_beats_live_shrunk_pr_auc"])
+                )
+                best_threshold_evaluation["summary_row"] = summary_row
+                best_threshold_evaluation["rolling_window_results"] = rolling_window_results
+                best_threshold_evaluation["candidate_result"] = candidate_result
+                candidate_evaluations.append(best_threshold_evaluation)
+                if summary_row["passes_promotion_gates"]:
+                    family_passed = True
+        any_family_passed = any_family_passed or family_passed
+
+    ranked_evaluations = sorted(
+        candidate_evaluations,
+        key=lambda item: (
+            not bool(item["summary_row"]["passes_promotion_gates"]),
+            -float(item["summary_row"]["precision"]),
+            float(item["summary_row"]["positive_prediction_rate"]),
+            -float(item["summary_row"]["pr_auc"]),
+            float(item["summary_row"]["log_loss"]),
+        ),
+    )
+    selected_evaluation = ranked_evaluations[0] if ranked_evaluations else None
+    if selected_evaluation is None:
+        raise RuntimeError("No live usable candidate evaluations completed.")
+
+    external_fallback_status = {
+        "executed": False,
+        "status": "blocked",
+        "triggered": not any(bool(item["summary_row"]["passes_promotion_gates"]) for item in candidate_evaluations),
+        "planned_feature_family": "pregame_market_signals",
+        "planned_features": ["game_total", "team_implied_runs"],
+        "join_keys": ["game_date", "team", "opponent_team"],
+        "reason": "Internal-only search completed; external-data fallback remains defined but unexecuted.",
+    }
+    report = {
+        "selection_metric": selection_metric,
+        "candidate_leaderboard": [item["summary_row"] for item in ranked_evaluations],
+        "selected_candidate": selected_evaluation["summary_row"],
+        "final_holdout_summary": selected_evaluation["summary_row"],
+        "baseline_rows": [],
+        "baseline_live_shrunk": baseline_holdout["summary_row"],
+        "profile_search_candidates": profile_search["top_candidates"],
+        "profile_search_path": [
+            {
+                "feature_count": int(len(candidate["feature_columns"])),
+                **dict(candidate["profile_search_summary"]),
+            }
+            for candidate in profile_search["accepted_path"]
+        ],
+        "usability_gate_summary": {
+            "main_holdout": usability_gate_summary(
+                selected_evaluation["metrics"],
+                float(selected_evaluation["summary_row"]["actual_hr_rate"]),
+            ),
+            "rolling_window_results": selected_evaluation["rolling_window_results"],
+            "rolling_window_pass_count": int(selected_evaluation["summary_row"]["rolling_window_pass_count"]),
+            "rolling_window_pass_target": USABILITY_ROLLING_WINDOW_PASS_TARGET,
+        },
+        "rolling_window_results": selected_evaluation["rolling_window_results"],
+        "promotion_candidate_rank": {
+            "feature_profile": LIVE_USABLE_CANDIDATE_PROFILE,
+            "feature_profile_variant": str(selected_evaluation["summary_row"]["feature_profile_variant"]),
+            "passes_promotion_gates": bool(selected_evaluation["summary_row"]["passes_promotion_gates"]),
+            "rolling_window_pass_count": int(selected_evaluation["summary_row"]["rolling_window_pass_count"]),
+            "beats_live_shrunk_precision": bool(selected_evaluation["summary_row"]["beats_live_shrunk_precision"]),
+            "matches_or_beats_live_shrunk_pr_auc": bool(
+                selected_evaluation["summary_row"]["matches_or_beats_live_shrunk_pr_auc"]
+            ),
+        },
+        "external_data_fallback": external_fallback_status,
+    }
+    return {
+        "candidate_evaluations": candidate_evaluations,
+        "ranked_evaluations": ranked_evaluations,
+        "selected_evaluation": selected_evaluation,
+        "selected_candidate": selected_evaluation["candidate_result"],
+        "final_result": selected_evaluation,
+        "baseline_holdout": baseline_holdout,
+        "report": report,
+    }
+
+
 def print_prevalence_summary(actual_rate: float, positive_prediction_rate: float, label: str) -> None:
     ratio = prediction_rate_ratio(positive_prediction_rate, actual_rate)
     print(f"{label} actual HR rate              : {actual_rate:.4f}")
@@ -1800,8 +2515,13 @@ def evaluate_training_candidate(
     model_name: str,
     missingness_threshold: float,
     selection_metric: str = "pr_auc",
+    feature_columns_override: list[str] | None = None,
+    feature_profile_variant: str | None = None,
 ) -> dict[str, Any] | None:
-    initial_feature_columns = available_feature_columns(train_df, feature_profile=feature_profile)
+    if feature_columns_override is None:
+        initial_feature_columns = available_feature_columns(train_df, feature_profile=feature_profile)
+    else:
+        initial_feature_columns = [column for column in feature_columns_override if column in train_df.columns]
     feature_columns, pruning_audit_df, excluded_for_missingness = prune_model_features_by_training_missingness(
         train_df,
         initial_feature_columns,
@@ -1825,6 +2545,7 @@ def evaluate_training_candidate(
     summary_row = {
         "model_family": model_name,
         "feature_profile": feature_profile,
+        "feature_profile_variant": feature_profile_variant or feature_profile,
         "missingness_threshold": float(missingness_threshold),
         "feature_count": int(len(feature_columns)),
         "excluded_feature_count": int(len(excluded_for_missingness)),
@@ -1860,6 +2581,11 @@ def rank_candidate_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     )
 
 
+def display_feature_profile_name(row: dict[str, Any]) -> str:
+    variant = str(row.get("feature_profile_variant") or row.get("feature_profile") or "")
+    return variant
+
+
 def print_candidate_search_summary(candidate_rows: list[dict[str, Any]]) -> None:
     print("\nTraining-only candidate search leaderboard")
     print("-" * 96)
@@ -1870,7 +2596,7 @@ def print_candidate_search_summary(candidate_rows: list[dict[str, Any]]) -> None
     print(header)
     for row in candidate_rows:
         print(
-            f"{row['model_family']:<10} {row['feature_profile']:<9} {row['missingness_threshold']:6.2f} "
+            f"{row['model_family']:<10} {display_feature_profile_name(row):<9} {row['missingness_threshold']:6.2f} "
             f"{int(row['feature_count']):5d} {row['mean_cv_pr_auc']:8.4f} "
             f"{row['mean_cv_roc_auc']:8.4f} {row['mean_cv_log_loss']:9.4f} "
             f"{row['mean_cv_brier_score']:8.4f}"
@@ -2013,6 +2739,28 @@ def fit_selected_model(
         calibration_mode,
     )
     return model, "logistic", dict(search.best_params_), calibration_status
+
+
+def build_configured_estimator(
+    model_family: str,
+    best_params: dict[str, Any] | None = None,
+) -> Pipeline | None:
+    if model_family == "logistic":
+        estimator = build_logistic_pipeline()
+    elif model_family == "histgb":
+        estimator = build_histgb_pipeline()
+    elif model_family == "xgboost":
+        estimator = build_xgboost_pipeline()
+    else:
+        raise ValueError(f"Unsupported model family: {model_family}")
+    if estimator is None:
+        return None
+    if best_params:
+        valid_keys = set(estimator.get_params().keys())
+        filtered = {key: value for key, value in best_params.items() if key in valid_keys}
+        if filtered:
+            estimator.set_params(**filtered)
+    return estimator
 
 
 def evaluate_baseline_feature(
@@ -2208,7 +2956,7 @@ def print_candidate_leaderboard(candidate_rows: list[dict[str, Any]]) -> None:
     print(header)
     for row in candidate_rows:
         print(
-            f"{row['model_family']:<10} {row['feature_profile']:<9} {row['missingness_threshold']:6.2f} "
+            f"{row['model_family']:<10} {display_feature_profile_name(row):<9} {row['missingness_threshold']:6.2f} "
             f"{int(row['feature_count']):5d} {row['mean_cv_pr_auc']:8.4f} "
             f"{row['mean_cv_roc_auc']:8.4f} {row['mean_cv_log_loss']:9.4f} "
             f"{row['mean_cv_brier_score']:8.4f}"
@@ -2487,6 +3235,59 @@ def run_backtest(
         if "warning" not in row:
             print(f"  - {row['model']}: operationally_usable={row['operationally_usable']} ({row['operational_usability_reason']})")
 
+    if feature_profile == LIVE_USABLE_CANDIDATE_PROFILE:
+        usability_search = evaluate_live_usable_search(
+            train_df=train_df,
+            test_df=test_df,
+            model_name=model_name,
+            selection_metric=selection_metric,
+            calibration=calibration,
+            missingness_threshold=missingness_threshold,
+            threshold_tolerance=threshold_tolerance,
+        )
+        selected_evaluation = usability_search["selected_evaluation"]
+        comparison_rows: list[dict[str, float | str]] = [selected_evaluation["summary_row"]]
+        comparison_rows.extend(baseline_rows)
+        comparison_rows.append(usability_search["baseline_holdout"]["summary_row"])
+        print_comparison_table(comparison_rows, title="Compact model comparison summary (selected winner)")
+        print("\nHoldout text summary")
+        print("-" * 60)
+        for line in holdout_commentary(selected_evaluation["summary_row"], baseline_rows):
+            print(f"- {line}")
+
+        report = dict(usability_search["report"])
+        report["baseline_rows"] = baseline_rows
+        if report_path is not None:
+            output_path = Path(report_path)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            if output_path.suffix.lower() == ".csv":
+                pd.DataFrame(report["candidate_leaderboard"]).to_csv(output_path, index=False)
+            else:
+                output_path.write_text(json.dumps(serialize_report_value(report), indent=2), encoding="utf-8")
+            print(f"\nSearch report written         : {report_path}")
+
+        print("\nBacktest complete.")
+        print("-" * 60)
+        print(
+            "Selected final model         : "
+            f"{selected_evaluation['summary_row']['model_family']} / {selected_evaluation['summary_row']['feature_profile_variant']}"
+        )
+        print(f"Final holdout PR-AUC         : {selected_evaluation['summary_row']['pr_auc']:.4f}")
+        print(f"Final holdout ROC-AUC        : {selected_evaluation['summary_row']['roc_auc']:.4f}")
+        print(f"Final holdout log loss       : {selected_evaluation['summary_row']['log_loss']:.4f}")
+        print(f"Final holdout Brier          : {selected_evaluation['summary_row']['brier_score']:.4f}")
+        return {
+            "train_df": train_df,
+            "test_df": test_df,
+            "candidate_results": [item["candidate_result"] for item in usability_search["candidate_evaluations"]],
+            "candidate_rows": [item["summary_row"] for item in usability_search["ranked_evaluations"]],
+            "selected_candidate": usability_search["selected_candidate"],
+            "final_result": usability_search["final_result"],
+            "baseline_rows": baseline_rows,
+            "report": report,
+            "baseline_holdout": usability_search["baseline_holdout"],
+        }
+
     candidate_results = search_training_candidates(
         train_df,
         model_name=model_name,
@@ -2506,6 +3307,8 @@ def run_backtest(
         for result in candidate_results
         if result["summary_row"]["model_family"] == selected_row["model_family"]
         and result["summary_row"]["feature_profile"] == selected_row["feature_profile"]
+        and str(result["summary_row"].get("feature_profile_variant") or result["summary_row"]["feature_profile"])
+        == str(selected_row.get("feature_profile_variant") or selected_row["feature_profile"])
         and np.isclose(result["summary_row"]["missingness_threshold"], selected_row["missingness_threshold"])
     )
     final_result = evaluate_model_run(

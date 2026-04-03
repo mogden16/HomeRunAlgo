@@ -42,6 +42,8 @@ from feature_engineering import (
 )
 from generate_data import generate_mlb_dataset
 from train_model import (
+    LIVE_USABLE_CANDIDATE_PROFILE,
+    LIVE_USABLE_CANDIDATE_SEED_COLUMNS,
     LIVE_PLUS_FEATURE_COLUMNS,
     LIVE_PRODUCTION_FEATURE_COLUMNS,
     LIVE_SHRUNK_FEATURE_COLUMNS,
@@ -113,8 +115,18 @@ LIVE_SHRUNK_ONLY_FEATURE_COLUMNS = [
 LIVE_SHRUNK_PRECISE_ONLY_FEATURE_COLUMNS = [
     feature for feature in LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS if feature not in LIVE_PLUS_FEATURE_COLUMNS
 ]
+LIVE_USABLE_CANDIDATE_ONLY_FEATURE_COLUMNS = [
+    feature for feature in LIVE_USABLE_CANDIDATE_SEED_COLUMNS if feature not in LIVE_PLUS_FEATURE_COLUMNS
+]
 LIVE_COMPATIBLE_FEATURE_COLUMNS = list(
-    dict.fromkeys([*LIVE_PLUS_FEATURE_COLUMNS, *LIVE_SHRUNK_FEATURE_COLUMNS, *LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS])
+    dict.fromkeys(
+        [
+            *LIVE_PLUS_FEATURE_COLUMNS,
+            *LIVE_SHRUNK_FEATURE_COLUMNS,
+            *LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS,
+            *LIVE_USABLE_CANDIDATE_SEED_COLUMNS,
+        ]
+    )
 )
 LIVE_BATTER_SPLIT_SOURCE_COLUMNS = [
     "batter_hr_per_pa_vs_rhp",
@@ -542,10 +554,14 @@ def _fit_full_dataset_bundle_candidate(
     missingness_threshold: float,
     selection_metric: str,
     calibration: str,
+    feature_columns_override: list[str] | None = None,
+    feature_profile_variant: str | None = None,
 ) -> tuple[dict[str, Any], dict[str, Any], dict[str, str], list[dict[str, Any]]]:
     full_candidate = evaluate_training_candidate(
         df,
         feature_profile=feature_profile,
+        feature_profile_variant=feature_profile_variant,
+        feature_columns_override=feature_columns_override,
         model_name=model_family,
         missingness_threshold=missingness_threshold,
         selection_metric=selection_metric,
@@ -589,6 +605,7 @@ def _fit_full_dataset_bundle_candidate(
         "dataset_max_game_date": str(df["game_date"].max().date()),
         "model_family": model_family,
         "feature_profile": feature_profile,
+        "feature_profile_variant": feature_profile_variant or feature_profile,
         "missingness_threshold": float(missingness_threshold),
         "selection_metric": selection_metric,
         "best_params": dict(full_candidate["summary_row"]["best_params"]),
@@ -621,12 +638,21 @@ def _fit_live_bundle_fast_refit(
         "live_plus": LIVE_PLUS_FEATURE_COLUMNS,
         "live_shrunk": LIVE_SHRUNK_FEATURE_COLUMNS,
         "live_shrunk_precise": LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS,
+        LIVE_USABLE_CANDIDATE_PROFILE: LIVE_USABLE_CANDIDATE_SEED_COLUMNS,
     }
-    configured_features = [
-        column for column in configured_feature_map.get(feature_profile, []) if column in df.columns
-    ]
+    configured_features: list[str] = []
+    metadata_feature_columns = existing_metadata.get("feature_columns")
+    if feature_profile == LIVE_USABLE_CANDIDATE_PROFILE and isinstance(metadata_feature_columns, list):
+        configured_features = [
+            str(column)
+            for column in metadata_feature_columns
+            if isinstance(column, str) and column in df.columns
+        ]
     if not configured_features:
-        metadata_feature_columns = existing_metadata.get("feature_columns")
+        configured_features = [
+            column for column in configured_feature_map.get(feature_profile, []) if column in df.columns
+        ]
+    if not configured_features:
         if isinstance(metadata_feature_columns, list):
             configured_features = [
                 str(column)
@@ -693,6 +719,7 @@ def _fit_live_bundle_fast_refit(
         "dataset_max_game_date": str(df["game_date"].max().date()),
         "model_family": model_family,
         "feature_profile": feature_profile,
+        "feature_profile_variant": str(existing_metadata.get("feature_profile_variant") or feature_profile),
         "missingness_threshold": float(missingness_threshold),
         "selection_metric": selection_metric,
         "best_params": dict(resolved_best_params),
@@ -702,6 +729,10 @@ def _fit_live_bundle_fast_refit(
         "training_cv_summary": dict(existing_metadata.get("training_cv_summary") or {}),
         "final_holdout_summary": dict(existing_metadata.get("final_holdout_summary") or {}),
         "promotion_decision": dict(existing_metadata.get("promotion_decision") or {}),
+        "usability_gate_summary": dict(existing_metadata.get("usability_gate_summary") or {}),
+        "rolling_window_results": list(existing_metadata.get("rolling_window_results") or []),
+        "promotion_candidate_rank": dict(existing_metadata.get("promotion_candidate_rank") or {}),
+        "external_data_fallback": dict(existing_metadata.get("external_data_fallback") or {}),
         "refit_strategy": "fast_refit",
     }
     metadata = {
@@ -709,6 +740,7 @@ def _fit_live_bundle_fast_refit(
         "dataset_max_game_date": bundle["dataset_max_game_date"],
         "model_family": bundle["model_family"],
         "feature_profile": bundle["feature_profile"],
+        "feature_profile_variant": bundle["feature_profile_variant"],
         "missingness_threshold": bundle["missingness_threshold"],
         "selection_metric": bundle["selection_metric"],
         "feature_columns": bundle["feature_columns"],
@@ -719,6 +751,10 @@ def _fit_live_bundle_fast_refit(
         "training_cv_summary": bundle["training_cv_summary"],
         "final_holdout_summary": bundle["final_holdout_summary"],
         "promotion_decision": bundle["promotion_decision"],
+        "usability_gate_summary": bundle["usability_gate_summary"],
+        "rolling_window_results": bundle["rolling_window_results"],
+        "promotion_candidate_rank": bundle["promotion_candidate_rank"],
+        "external_data_fallback": bundle["external_data_fallback"],
         "row_count": int(len(df)),
         "hr_rate": serialize_for_json(float(df["hit_hr"].mean())),
         "refit_strategy": "fast_refit",
@@ -795,9 +831,13 @@ def train_live_model_bundle(
         model_name=model_name,
         feature_profile=feature_profile,
         compare_against=(
+            "live_shrunk"
+            if feature_profile == LIVE_USABLE_CANDIDATE_PROFILE
+            else (
             "live_plus"
             if feature_profile in {"live_shrunk", "live_shrunk_precise"}
             else ("live" if feature_profile == "live_plus" else None)
+            )
         ),
         selection_metric=selection_metric,
         missingness_threshold=missingness_threshold,
@@ -809,56 +849,77 @@ def train_live_model_bundle(
     train_df = backtest["train_df"]
     test_df = backtest["test_df"]
 
-    baseline_candidate = next(
-        (
-            result
-            for result in candidate_results
-            if result["summary_row"]["model_family"] == "logistic"
-            and result["summary_row"]["feature_profile"] == "live"
-            and np.isclose(result["summary_row"]["missingness_threshold"], MAX_MODEL_FEATURE_MISSINGNESS)
-        ),
-        None,
-    )
-    if baseline_candidate is None:
+    baseline_profile = "live_shrunk" if feature_profile == LIVE_USABLE_CANDIDATE_PROFILE else "live"
+    if feature_profile == LIVE_USABLE_CANDIDATE_PROFILE and isinstance(backtest.get("baseline_holdout"), dict):
+        baseline_holdout = backtest["baseline_holdout"]
         baseline_candidate = evaluate_training_candidate(
             train_df,
-            feature_profile="live",
+            feature_profile=baseline_profile,
             model_name="logistic",
             missingness_threshold=MAX_MODEL_FEATURE_MISSINGNESS,
             selection_metric=selection_metric,
         )
-        if baseline_candidate is None:
-            raise RuntimeError("Unable to evaluate the live baseline candidate.")
-    if (
-        selected_candidate["summary_row"]["model_family"] == "logistic"
-        and selected_candidate["summary_row"]["feature_profile"] == "live"
-        and np.isclose(selected_candidate["summary_row"]["missingness_threshold"], MAX_MODEL_FEATURE_MISSINGNESS)
-    ):
-        baseline_holdout = backtest["final_result"]
     else:
-        baseline_holdout = evaluate_model_run(
-            train_df=train_df,
-            test_df=test_df,
-            candidate_result=baseline_candidate,
-            threshold_objective="f0.5",
-            min_recall=0.15,
-            max_positive_rate=0.14,
-            threshold_tolerance=0.001,
-            calibration=calibration,
-            save_ranked_output=False,
-            ranked_output_path=None,
+        baseline_candidate = next(
+            (
+                result
+                for result in candidate_results
+                if result["summary_row"]["model_family"] == "logistic"
+                and result["summary_row"]["feature_profile"] == baseline_profile
+                and np.isclose(result["summary_row"]["missingness_threshold"], MAX_MODEL_FEATURE_MISSINGNESS)
+            ),
+            None,
         )
+        if baseline_candidate is None:
+            baseline_candidate = evaluate_training_candidate(
+                train_df,
+                feature_profile=baseline_profile,
+                model_name="logistic",
+                missingness_threshold=MAX_MODEL_FEATURE_MISSINGNESS,
+                selection_metric=selection_metric,
+            )
+            if baseline_candidate is None:
+                raise RuntimeError("Unable to evaluate the live baseline candidate.")
+        if (
+            selected_candidate["summary_row"]["model_family"] == "logistic"
+            and selected_candidate["summary_row"]["feature_profile"] == baseline_profile
+            and np.isclose(selected_candidate["summary_row"]["missingness_threshold"], MAX_MODEL_FEATURE_MISSINGNESS)
+        ):
+            baseline_holdout = backtest["final_result"]
+        else:
+            baseline_holdout = evaluate_model_run(
+                train_df=train_df,
+                test_df=test_df,
+                candidate_result=baseline_candidate,
+                threshold_objective="f0.5",
+                min_recall=0.15,
+                max_positive_rate=0.14,
+                threshold_tolerance=0.001,
+                calibration=calibration,
+                save_ranked_output=False,
+                ranked_output_path=None,
+            )
 
     winner_is_compatible = _candidate_is_live_compatible(list(selected_candidate["feature_columns"]))
     winner_beats_baseline = float(winner_holdout_summary["pr_auc"]) >= float(baseline_holdout["summary_row"]["pr_auc"])
-    if winner_is_compatible and winner_beats_baseline:
+    winner_passes_promotion = bool(
+        backtest.get("report", {}).get("promotion_candidate_rank", {}).get("passes_promotion_gates", winner_beats_baseline)
+    )
+    should_promote_selected = winner_is_compatible and winner_beats_baseline
+    if feature_profile == LIVE_USABLE_CANDIDATE_PROFILE:
+        should_promote_selected = should_promote_selected and winner_passes_promotion
+    if should_promote_selected:
         promoted_candidate = selected_candidate
         promoted_holdout = backtest["final_result"]
         promotion_reason = "selected_candidate"
     else:
         promoted_candidate = baseline_candidate
         promoted_holdout = baseline_holdout
-        promotion_reason = "baseline_fallback"
+        promotion_reason = (
+            "baseline_fallback_after_failed_promotion_gate"
+            if feature_profile == LIVE_USABLE_CANDIDATE_PROFILE
+            else "baseline_fallback"
+        )
 
     bundle, full_candidate, calibration_status, calibration_search_rows = _fit_full_dataset_bundle_candidate(
         df,
@@ -867,15 +928,28 @@ def train_live_model_bundle(
         missingness_threshold=float(promoted_candidate["summary_row"]["missingness_threshold"]),
         selection_metric=selection_metric,
         calibration=calibration,
+        feature_columns_override=list(promoted_candidate["feature_columns"]),
+        feature_profile_variant=str(
+            promoted_candidate["summary_row"].get("feature_profile_variant")
+            or promoted_candidate["summary_row"]["feature_profile"]
+        ),
     )
     bundle["final_holdout_summary"] = dict(promoted_holdout["summary_row"])
     bundle["promotion_decision"] = {
         "used": promotion_reason,
         "winner_live_compatible": winner_is_compatible,
         "winner_beats_baseline": winner_beats_baseline,
+        "winner_passes_promotion_gates": winner_passes_promotion,
         "winner_pr_auc": float(winner_holdout_summary["pr_auc"]),
         "baseline_pr_auc": float(baseline_holdout["summary_row"]["pr_auc"]),
     }
+    bundle["feature_profile_variant"] = str(
+        promoted_candidate["summary_row"].get("feature_profile_variant") or promoted_candidate["summary_row"]["feature_profile"]
+    )
+    bundle["usability_gate_summary"] = dict(backtest.get("report", {}).get("usability_gate_summary") or {})
+    bundle["rolling_window_results"] = list(backtest.get("report", {}).get("rolling_window_results") or [])
+    bundle["promotion_candidate_rank"] = dict(backtest.get("report", {}).get("promotion_candidate_rank") or {})
+    bundle["external_data_fallback"] = dict(backtest.get("report", {}).get("external_data_fallback") or {})
     bundle["weather_feature_coverage"] = _weather_coverage_summary_payload(weather_coverage)
     bundle["weather_join_contract"] = _live_publish_weather_contract_label()
     metadata = {
@@ -883,6 +957,7 @@ def train_live_model_bundle(
         "dataset_max_game_date": bundle["dataset_max_game_date"],
         "model_family": bundle["model_family"],
         "feature_profile": bundle["feature_profile"],
+        "feature_profile_variant": bundle["feature_profile_variant"],
         "missingness_threshold": bundle["missingness_threshold"],
         "selection_metric": bundle["selection_metric"],
         "feature_columns": bundle["feature_columns"],
@@ -893,6 +968,10 @@ def train_live_model_bundle(
         "training_cv_summary": bundle["training_cv_summary"],
         "final_holdout_summary": bundle["final_holdout_summary"],
         "promotion_decision": bundle["promotion_decision"],
+        "usability_gate_summary": bundle["usability_gate_summary"],
+        "rolling_window_results": bundle["rolling_window_results"],
+        "promotion_candidate_rank": bundle["promotion_candidate_rank"],
+        "external_data_fallback": bundle["external_data_fallback"],
         "weather_feature_coverage": bundle["weather_feature_coverage"],
         "weather_join_contract": bundle["weather_join_contract"],
         "row_count": int(len(df)),
@@ -1997,6 +2076,10 @@ def score_live_candidates(
     elif feature_profile == "live_shrunk_precise":
         required_live_features = [
             feature for feature in feature_columns if feature in LIVE_SHRUNK_PRECISE_ONLY_FEATURE_COLUMNS
+        ]
+    elif feature_profile == LIVE_USABLE_CANDIDATE_PROFILE:
+        required_live_features = [
+            feature for feature in feature_columns if feature in LIVE_USABLE_CANDIDATE_ONLY_FEATURE_COLUMNS
         ]
     else:
         required_live_features = []

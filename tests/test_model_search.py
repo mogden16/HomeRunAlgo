@@ -59,6 +59,10 @@ def make_live_dataset(rows: int = 24) -> pd.DataFrame:
                 "wind_speed_mph": 10.0 + (idx % 4),
                 "humidity_pct": 50.0 + (idx % 6),
                 "platoon_advantage": float(idx % 2),
+                "expected_pa_today": 3.8 + (idx % 4) * 0.1,
+                "batting_order_slot": float((idx % 9) + 1),
+                "lineup_confirmation_score": 1.0 if idx % 3 == 0 else 0.5,
+                "projected_lineup_rank": float((idx % 9) + 1),
             }
         )
     return pd.DataFrame(records)
@@ -266,13 +270,95 @@ class ModelSearchTests(unittest.TestCase):
                     )
 
             metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
-            self.assertEqual(bundle["feature_profile"], "live")
-            self.assertEqual(metadata["selection_metric"], "pr_auc")
-            self.assertIn("dataset_max_game_date", metadata)
-            self.assertIn("training_cv_summary", metadata)
-            self.assertIn("final_holdout_summary", metadata)
-            self.assertIn("promotion_decision", metadata)
-            self.assertIn("weather_feature_coverage", metadata)
+        self.assertEqual(bundle["feature_profile"], "live")
+        self.assertEqual(metadata["selection_metric"], "pr_auc")
+        self.assertIn("dataset_max_game_date", metadata)
+        self.assertIn("training_cv_summary", metadata)
+        self.assertIn("final_holdout_summary", metadata)
+        self.assertIn("promotion_decision", metadata)
+        self.assertIn("weather_feature_coverage", metadata)
+
+    def test_usability_gate_summary_matches_existing_gate_functions(self) -> None:
+        metrics = {"precision": 0.19, "recall": 0.11, "positive_prediction_rate": 0.12}
+        summary = train_model.usability_gate_summary(metrics, actual_rate=0.10)
+        self.assertEqual(
+            summary["passes_absolute_usability_gate"],
+            train_model.is_operationally_usable(metrics, actual_rate=0.10),
+        )
+        self.assertEqual(
+            summary["failure_reason"],
+            train_model.usability_reason(metrics, actual_rate=0.10),
+        )
+
+    def test_usability_threshold_search_includes_conservative_recall_floor(self) -> None:
+        self.assertIn(0.08, train_model.USABILITY_MIN_RECALL_CHOICES)
+
+    def test_build_rolling_window_slices_is_deterministic(self) -> None:
+        df = make_live_dataset(rows=90)
+        df["game_date"] = pd.to_datetime(df["game_date"])
+        first = train_model.build_rolling_window_slices(df)
+        second = train_model.build_rolling_window_slices(df)
+        self.assertEqual(
+            [(row["holdout_start_date"], row["holdout_end_date"]) for row in first],
+            [(row["holdout_start_date"], row["holdout_end_date"]) for row in second],
+        )
+        self.assertGreater(len(first), 0)
+        self.assertLessEqual(len(first), train_model.USABILITY_ROLLING_WINDOW_COUNT)
+
+    def test_build_rolling_window_slices_skips_empty_offseason_windows(self) -> None:
+        first_block = make_live_dataset(rows=40)
+        first_block["game_date"] = pd.to_datetime(first_block["game_date"])
+        second_block = make_live_dataset(rows=20)
+        second_block["game_date"] = pd.to_datetime("2025-03-05") + pd.to_timedelta(range(20), unit="D")
+        df = pd.concat([first_block, second_block], ignore_index=True)
+        windows = train_model.build_rolling_window_slices(df, window_days=14, window_count=3)
+        self.assertEqual(len(windows), 3)
+        self.assertTrue(all(window["holdout_rows"] > 0 for window in windows))
+
+    def test_backward_elimination_search_keeps_recall_floor(self) -> None:
+        df = make_live_dataset(rows=36)
+
+        def fake_evaluate_profile_subset_candidate(
+            train_df: pd.DataFrame,
+            *,
+            feature_columns: list[str],
+            missingness_threshold: float,
+            selection_metric: str,
+            variant_label: str,
+            best_params=None,
+        ):
+            feature_count = len(feature_columns)
+            recall = 0.11 if feature_count >= 16 else 0.09
+            precision = 0.14 + max(0, 24 - feature_count) * 0.001
+            return {
+                "summary_row": {
+                    "feature_profile": train_model.LIVE_USABLE_CANDIDATE_PROFILE,
+                    "feature_profile_variant": variant_label,
+                    "mean_cv_pr_auc": 0.20 + feature_count * 0.0001,
+                },
+                "feature_columns": list(feature_columns),
+                "profile_search_summary": {
+                    "oof_precision": precision,
+                    "oof_recall": recall,
+                    "oof_positive_prediction_rate": 0.12 + feature_count * 0.0001,
+                    "oof_pr_auc": 0.20 + feature_count * 0.0001,
+                    "oof_threshold": 0.20,
+                    "variant_label": variant_label,
+                    "feature_count": feature_count,
+                },
+            }
+
+        with patch.object(train_model, "evaluate_profile_subset_candidate", side_effect=fake_evaluate_profile_subset_candidate):
+            search = train_model.generate_live_usable_profile_candidates(
+                df,
+                missingness_threshold=0.5,
+                selection_metric="pr_auc",
+            )
+        accepted_recalls = [
+            candidate["profile_search_summary"]["oof_recall"]
+            for candidate in search["accepted_path"]
+        ]
+        self.assertTrue(all(recall >= 0.10 for recall in accepted_recalls))
 
     def test_train_live_model_bundle_live_plus_search_compares_against_live_and_serializes_profile(self) -> None:
         df = make_live_dataset()
