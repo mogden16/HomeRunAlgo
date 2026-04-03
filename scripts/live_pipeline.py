@@ -72,6 +72,7 @@ from weather_audit import (
 )
 
 MLB_SCHEDULE_URL = "https://statsapi.mlb.com/api/v1/schedule"
+MLB_GAME_BOXSCORE_URL_TEMPLATE = "https://statsapi.mlb.com/api/v1/game/{game_pk}/boxscore"
 MLB_PERSON_URL_TEMPLATE = "https://statsapi.mlb.com/api/v1/people/{player_id}"
 MLB_TEAM_ROSTER_URL_TEMPLATE = "https://statsapi.mlb.com/api/v1/teams/{team_id}/roster"
 OPEN_METEO_FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
@@ -1127,6 +1128,33 @@ def fetch_schedule_games(target_date: str) -> list[dict[str, Any]]:
                 }
             )
     return games
+
+
+def fetch_game_home_run_batter_ids(game_pk: int) -> set[int] | None:
+    try:
+        response = requests.get(
+            MLB_GAME_BOXSCORE_URL_TEMPLATE.format(game_pk=game_pk),
+            timeout=30,
+        )
+        response.raise_for_status()
+        payload = response.json()
+    except (requests.RequestException, ValueError) as exc:
+        print(f"Boxscore HR lookup failed for game_pk={game_pk}: {exc}")
+        return None
+
+    hitter_ids: set[int] = set()
+    for side in ("home", "away"):
+        players = payload.get("teams", {}).get(side, {}).get("players", {})
+        if not isinstance(players, dict):
+            continue
+        for player_payload in players.values():
+            if not isinstance(player_payload, dict):
+                continue
+            player_id = _coerce_int(player_payload.get("person", {}).get("id"))
+            home_runs = _coerce_int(player_payload.get("stats", {}).get("batting", {}).get("homeRuns"))
+            if player_id is not None and home_runs is not None and home_runs > 0:
+                hitter_ids.add(player_id)
+    return hitter_ids
 
 
 def fetch_player_handedness(player_id: int | None) -> str | None:
@@ -2214,6 +2242,17 @@ def settle_pick_records(
 ) -> list[dict[str, Any]]:
     slate_state = build_slate_state(schedule_games or [], reference_time=reference_time)
     games_by_pk = slate_state["games_by_pk"]
+    live_boxscore_hr_lookup: dict[int, set[int]] = {}
+    for slate_game in slate_state["games"]:
+        slate_game_pk = _coerce_int(slate_game.get("game_pk"))
+        if slate_game_pk is None or is_postponed_status(slate_game):
+            continue
+        slate_game_state = str(slate_game.get("game_state") or "")
+        if slate_game_state not in {"live", "final"}:
+            continue
+        hr_hitters = fetch_game_home_run_batter_ids(slate_game_pk)
+        if hr_hitters is not None:
+            live_boxscore_hr_lookup[slate_game_pk] = hr_hitters
     resolved_lookup = {
         (normalize_game_date(row.game_date), int(row.batter_id)): int(row.hit_hr)
         for row in dataset_df[["game_date", "batter_id", "hit_hr"]].drop_duplicates().itertuples(index=False)
@@ -2232,30 +2271,43 @@ def settle_pick_records(
             game_state = str(classify_game_state(row, reference_time))
         else:
             game_state = "pregame"
-        if current_result in {"HR", "No HR"}:
+        batter_id_int = _coerce_int(batter_id)
+        live_hr_hitters = live_boxscore_hr_lookup.get(game_pk) if game_pk is not None else None
+        if current_result in {"HR", "No HR", "Postponed"} and not game_date:
             updated = dict(row)
             if schedule_game:
                 updated["game_status"] = str(schedule_game.get("status") or updated.get("game_status") or "")
                 updated["game_state"] = str(schedule_game.get("game_state") or updated.get("game_state") or "final")
             settled.append(updated)
             continue
-        if not game_date or (game_date > resolved_through_date and game_state != "final"):
+        if not game_date or (
+            game_date > resolved_through_date
+            and game_state != "final"
+            and live_hr_hitters is None
+        ):
             updated = dict(row)
             if schedule_game:
                 updated["game_status"] = str(schedule_game.get("status") or updated.get("game_status") or "")
                 updated["game_state"] = str(schedule_game.get("game_state") or updated.get("game_state") or "pregame")
             settled.append(updated)
             continue
-        lookup_value = resolved_lookup.get((game_date, int(batter_id))) if batter_id is not None else None
-        if lookup_value is not None and int(lookup_value) == 1:
+        lookup_value = resolved_lookup.get((game_date, batter_id_int)) if batter_id_int is not None else None
+        if live_hr_hitters is not None and batter_id_int in live_hr_hitters:
+            resolved_hit = 1
+            resolved_label = "HR"
+        elif lookup_value is not None and int(lookup_value) == 1:
             resolved_hit = 1
             resolved_label = "HR"
         elif is_postponed_status(schedule_game) or is_postponed_status(row):
             resolved_hit = None
             resolved_label = "Postponed"
         elif game_state == "final":
-            resolved_hit = 0
-            resolved_label = "No HR"
+            if live_hr_hitters is not None or game_date <= resolved_through_date:
+                resolved_hit = 0
+                resolved_label = "No HR"
+            else:
+                resolved_hit = None
+                resolved_label = "Pending"
         else:
             resolved_hit = None
             resolved_label = "Pending"
