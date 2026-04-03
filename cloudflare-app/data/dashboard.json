@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-03T00:22:03.286894+00:00",
+  "generated_at": "2026-04-03T05:43:58.745926+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "logistic",
   "feature_profile": "live_shrunk",
@@ -17,7 +17,7 @@
     "2026-03-25"
   ],
   "history_default_date": "2026-04-01",
-  "yesterday_homer_date": "2026-04-01",
+  "yesterday_homer_date": "2026-04-02",
   "refresh_schedule": {
     "timezone": "ET",
     "runs": [
@@ -45,10 +45,10 @@
     "latest_slate_size": 3,
     "tracked_dates": 9,
     "tracked_picks": 123,
-    "settled_picks": 120,
+    "settled_picks": 121,
     "tracked_homers": 19,
-    "tracked_hit_rate": 0.158333,
-    "open_picks": 3
+    "tracked_hit_rate": 0.157025,
+    "open_picks": 2
   },
   "confidence_summary": [
     {
@@ -60,10 +60,10 @@
     },
     {
       "confidence_tier": "strong",
-      "picks": 61,
+      "picks": 62,
       "homers": 10,
-      "hit_rate": 0.163934,
-      "avg_probability": 0.259475
+      "hit_rate": 0.16129,
+      "avg_probability": 0.257571
     },
     {
       "confidence_tier": "watch",
@@ -154,9 +154,9 @@
     {
       "batter_name": "Drake Baldwin",
       "team": "ATL",
-      "picks": 2,
+      "picks": 3,
       "homers": 1,
-      "hit_rate": 0.5
+      "hit_rate": 0.333333
     },
     {
       "batter_name": "Giancarlo Stanton",
@@ -524,7 +524,7 @@
       "game_pk": 825105,
       "game_date": "2026-04-02",
       "game_datetime": "2026-04-03T01:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 2,
       "morning_rank": 3,
       "batter_name": "Drake Baldwin",
@@ -544,11 +544,11 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.141415,
       "predicted_hr_score": 98.6,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 0,
       "top_reason_1": "Barrel rate over the last 30 days is 11.5%, which the model treats as sustained power quality.",
       "top_reason_2": "Ryne Nelson has allowed homers in 6.5% of plate appearances over the last 30 days.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-02:824621:695657:656302",
@@ -4441,8 +4441,8 @@
       "game_pk": 825105,
       "game_date": "2026-04-02",
       "game_datetime": "2026-04-03T01:40:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "ATL @ AZ",
       "teams": [
         {
@@ -4567,8 +4567,8 @@
       "game_pk": 823242,
       "game_date": "2026-04-02",
       "game_datetime": "2026-04-03T01:45:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "NYM @ SF",
       "teams": [
         {
