@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-03T22:21:34.524670+00:00",
+  "generated_at": "2026-04-03T22:29:52.067333+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -45,10 +45,10 @@
     "latest_slate_size": 14,
     "tracked_dates": 9,
     "tracked_picks": 134,
-    "settled_picks": 123,
-    "tracked_homers": 19,
-    "tracked_hit_rate": 0.154472,
-    "open_picks": 11
+    "settled_picks": 124,
+    "tracked_homers": 23,
+    "tracked_hit_rate": 0.185484,
+    "open_picks": 10
   },
   "confidence_summary": [
     {
@@ -60,10 +60,10 @@
     },
     {
       "confidence_tier": "strong",
-      "picks": 64,
-      "homers": 10,
-      "hit_rate": 0.15625,
-      "avg_probability": 0.25547
+      "picks": 65,
+      "homers": 14,
+      "hit_rate": 0.215385,
+      "avg_probability": 0.254461
     },
     {
       "confidence_tier": "watch",
@@ -152,8 +152,29 @@
       "hit_rate": 0.25
     },
     {
+      "batter_name": "Shohei Ohtani",
+      "team": "LAD",
+      "picks": 3,
+      "homers": 1,
+      "hit_rate": 0.333333
+    },
+    {
+      "batter_name": "Ben Rice",
+      "team": "NYY",
+      "picks": 2,
+      "homers": 1,
+      "hit_rate": 0.5
+    },
+    {
       "batter_name": "Drake Baldwin",
       "team": "ATL",
+      "picks": 2,
+      "homers": 1,
+      "hit_rate": 0.5
+    },
+    {
+      "batter_name": "Elly De La Cruz",
+      "team": "CIN",
       "picks": 2,
       "homers": 1,
       "hit_rate": 0.5
@@ -201,22 +222,8 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Shohei Ohtani",
-      "team": "LAD",
-      "picks": 3,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Alec Burleson",
       "team": "STL",
-      "picks": 2,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Ben Rice",
-      "team": "NYY",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
@@ -671,11 +678,11 @@
       "field_bearing_deg": 35.0,
       "predicted_hr_probability": 0.189859,
       "predicted_hr_score": 98.8,
-      "actual_hit_hr": null,
+      "actual_hit_hr": 1,
       "top_reason_1": "The live model favors the overall recent-form and matchup profile, but no single feature cleared the explanation threshold.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-03:825026:670541:605488",
@@ -733,11 +740,11 @@
       "field_bearing_deg": 52.0,
       "predicted_hr_probability": 0.180676,
       "predicted_hr_score": 97.7,
-      "actual_hit_hr": 0,
+      "actual_hit_hr": 1,
       "top_reason_1": "The live model favors the overall recent-form and matchup profile, but no single feature cleared the explanation threshold.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "No HR"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-03:825103:686948:593958",
@@ -826,11 +833,11 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.177647,
       "predicted_hr_score": 97.3,
-      "actual_hit_hr": 0,
+      "actual_hit_hr": 1,
       "top_reason_1": "The live model favors the overall recent-form and matchup profile, but no single feature cleared the explanation threshold.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "No HR"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-03:824056:545361:693433",
@@ -888,11 +895,11 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.163802,
       "predicted_hr_score": 96.1,
-      "actual_hit_hr": 0,
+      "actual_hit_hr": 1,
       "top_reason_1": "The live model favors the overall recent-form and matchup profile, but no single feature cleared the explanation threshold.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "No HR"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-03:822919:669394:663903",
@@ -5977,132 +5984,6 @@
       ]
     },
     {
-      "game_pk": 824134,
-      "game_date": "2026-04-03",
-      "game_datetime": "2026-04-03T23:45:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
-      "matchup": "MIL @ KC",
-      "teams": [
-        {
-          "team": "MIL",
-          "opponent_team": "KC",
-          "lineup_source": "confirmed",
-          "hitters": [
-            {
-              "batter_id": 663604,
-              "batter_name": "Brandon Lockridge",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 668930,
-              "batter_name": "Brice Turang",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 592885,
-              "batter_name": "Christian Yelich",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 666152,
-              "batter_name": "David Hamilton",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 669003,
-              "batter_name": "Garrett Mitchell",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 641343,
-              "batter_name": "Jake Bauers",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 650859,
-              "batter_name": "Luis Rengifo",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 686217,
-              "batter_name": "Sal Frelick",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 661388,
-              "batter_name": "William Contreras",
-              "batting_order": null,
-              "selected_for_pick": false
-            }
-          ]
-        },
-        {
-          "team": "KC",
-          "opponent_team": "MIL",
-          "lineup_source": "confirmed",
-          "hitters": [
-            {
-              "batter_id": 677951,
-              "batter_name": "Bobby Witt Jr.",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 686555,
-              "batter_name": "Isaac Collins",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 695506,
-              "batter_name": "Jac Caglianone",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 664728,
-              "batter_name": "Kyle Isbel",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 672580,
-              "batter_name": "Maikel Garcia",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 679845,
-              "batter_name": "Nick Loftin",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 521692,
-              "batter_name": "Salvador Perez",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 686469,
-              "batter_name": "Vinnie Pasquantino",
-              "batting_order": null,
-              "selected_for_pick": false
-            }
-          ]
-        }
-      ]
-    },
-    {
       "game_pk": 824056,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-04T01:38:00Z",
@@ -6503,7 +6384,7 @@
         {
           "team": "SF",
           "opponent_team": "NYM",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 669477,
@@ -6556,6 +6437,138 @@
             {
               "batter_id": 642715,
               "batter_name": "Willy Adames",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game_pk": 824134,
+      "game_date": "2026-04-03",
+      "game_datetime": "2026-04-03T23:45:00Z",
+      "game_status": "Postponed",
+      "game_state": "final",
+      "matchup": "MIL @ KC",
+      "teams": [
+        {
+          "team": "MIL",
+          "opponent_team": "KC",
+          "lineup_source": "projected",
+          "hitters": [
+            {
+              "batter_id": 668930,
+              "batter_name": "Brice Turang",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 592885,
+              "batter_name": "Christian Yelich",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 666152,
+              "batter_name": "David Hamilton",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 669003,
+              "batter_name": "Garrett Mitchell",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 641343,
+              "batter_name": "Jake Bauers",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 687401,
+              "batter_name": "Joey Ortiz",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 650859,
+              "batter_name": "Luis Rengifo",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 686217,
+              "batter_name": "Sal Frelick",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 661388,
+              "batter_name": "William Contreras",
+              "batting_order": null,
+              "selected_for_pick": false
+            }
+          ]
+        },
+        {
+          "team": "KC",
+          "opponent_team": "MIL",
+          "lineup_source": "projected",
+          "hitters": [
+            {
+              "batter_id": 677951,
+              "batter_name": "Bobby Witt Jr.",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 695600,
+              "batter_name": "Carter Jensen",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 686555,
+              "batter_name": "Isaac Collins",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 695506,
+              "batter_name": "Jac Caglianone",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 663697,
+              "batter_name": "Jonathan India",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 664728,
+              "batter_name": "Kyle Isbel",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 672580,
+              "batter_name": "Maikel Garcia",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 521692,
+              "batter_name": "Salvador Perez",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 686469,
+              "batter_name": "Vinnie Pasquantino",
               "batting_order": null,
               "selected_for_pick": false
             }
