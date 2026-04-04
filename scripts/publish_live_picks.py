@@ -43,6 +43,7 @@ from scripts.live_pipeline import (
 )
 
 DEFAULT_MIN_CONFIDENCE_TIER = None
+DEFAULT_MAX_PICKS = None
 DEFAULT_MAX_PICKS_PER_TEAM = None
 DEFAULT_MAX_PICKS_PER_GAME = None
 
@@ -63,7 +64,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--dashboard-output-dir", default=str(DEFAULT_OUTPUT_DIR), help=argparse.SUPPRESS)
     parser.add_argument("--schedule-date", default=None, help="Official MLB date to publish. Defaults to today in ET.")
     parser.add_argument("--hitters-per-team", type=int, default=9, help="How many likely starters to consider for each team.")
-    parser.add_argument("--max-picks", type=int, default=20, help="Maximum published picks across the slate.")
+    parser.add_argument(
+        "--max-picks",
+        type=int,
+        default=DEFAULT_MAX_PICKS,
+        help="Optional maximum published picks across the slate. Disabled by default.",
+    )
     parser.add_argument(
         "--min-confidence-tier",
         choices=tuple(CONFIDENCE_TIER_ORDER.keys()),
@@ -225,7 +231,7 @@ def _merge_same_day_picks(
     *,
     schedule_date: str,
     publish_reference: datetime,
-    max_picks: int,
+    max_picks: int | None,
 ) -> list[dict[str, Any]]:
     other_dates = [dict(row) for row in existing_rows if normalize_game_date(row.get("game_date")) != schedule_date]
     same_day_rows = [dict(row) for row in existing_rows if normalize_game_date(row.get("game_date")) == schedule_date]
@@ -278,7 +284,7 @@ def publish_live_picks(
     dashboard_output_dir: Path = DEFAULT_OUTPUT_DIR,
     schedule_date: str | None = None,
     hitters_per_team: int = 9,
-    max_picks: int = 20,
+    max_picks: int | None = DEFAULT_MAX_PICKS,
     min_confidence_tier: str | None = DEFAULT_MIN_CONFIDENCE_TIER,
     max_picks_per_team: int | None = DEFAULT_MAX_PICKS_PER_TEAM,
     max_picks_per_game: int | None = DEFAULT_MAX_PICKS_PER_GAME,
@@ -333,7 +339,7 @@ def generate_live_picks(
     metadata_path: Path = LIVE_MODEL_METADATA_PATH,
     schedule_date: str | None = None,
     hitters_per_team: int = 9,
-    max_picks: int = 20,
+    max_picks: int | None = DEFAULT_MAX_PICKS,
     min_confidence_tier: str | None = DEFAULT_MIN_CONFIDENCE_TIER,
     max_picks_per_team: int | None = DEFAULT_MAX_PICKS_PER_TEAM,
     max_picks_per_game: int | None = DEFAULT_MAX_PICKS_PER_GAME,

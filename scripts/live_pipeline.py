@@ -2101,7 +2101,7 @@ def score_live_candidates(
     candidate_df: pd.DataFrame,
     bundle: dict[str, Any],
     *,
-    max_picks: int = 20,
+    max_picks: int | None = None,
     min_confidence_tier: str | None = None,
     max_picks_per_team: int | None = None,
     max_picks_per_game: int | None = None,
@@ -2208,7 +2208,7 @@ def score_live_candidates(
             team_counts[team_key] = team_counts.get(team_key, 0) + 1
         if game_key is not None:
             game_counts[game_key] = game_counts.get(game_key, 0) + 1
-        if len(selected_indices) >= max_picks:
+        if max_picks is not None and len(selected_indices) >= max_picks:
             break
 
     ranked = ranked_source.loc[selected_indices].copy()

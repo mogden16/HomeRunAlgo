@@ -977,12 +977,13 @@ class LivePipelineTests(unittest.TestCase):
         picks = score_live_candidates(
             candidate_df,
             bundle,
-            max_picks=20,
+            max_picks=None,
             min_confidence_tier=None,
             published_at="2026-03-25T12:00:00+00:00",
         )
 
         tiers = {row["confidence_tier"] for row in picks}
+        self.assertEqual(len(picks), len(candidate_rows))
         self.assertIn("watch", tiers)
         self.assertIn("longshot", tiers)
 
@@ -1146,10 +1147,11 @@ class LivePipelineTests(unittest.TestCase):
             self.assertEqual(dashboard_payload["latest_available_date"], "2026-03-26")
             self.assertEqual(dashboard_payload["latest_picks"][0]["game_date"], "2026-03-26")
 
-    def test_run_refresh_mode_publish_defaults_do_not_force_min_confidence_tier(self) -> None:
+    def test_run_refresh_mode_publish_defaults_allow_all_tiers(self) -> None:
         argv = ["run_refresh_mode.py", "--mode", "publish"]
         with patch.object(sys, "argv", argv):
             args = run_refresh_mode.parse_args()
+        self.assertIsNone(args.max_picks)
         self.assertIsNone(args.min_confidence_tier)
 
     def test_publish_live_picks_preserves_started_same_day_rows_and_replaces_unstarted_rows(self) -> None:

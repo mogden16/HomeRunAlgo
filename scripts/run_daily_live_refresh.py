@@ -58,7 +58,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--missingness-threshold", type=float, default=None, help="Optional fixed feature-missingness threshold.")
     parser.add_argument("--training-mode", default="fast_refit", choices=["search", "fast_refit"], help="Use fast_refit for daily production or search for slower full candidate selection.")
     parser.add_argument("--hitters-per-team", type=int, default=9, help="How many likely starters to consider for each team.")
-    parser.add_argument("--max-picks", type=int, default=20, help="Maximum published picks across the slate.")
+    parser.add_argument(
+        "--max-picks",
+        type=int,
+        default=None,
+        help="Optional maximum published picks across the slate. Disabled by default.",
+    )
     return parser.parse_args()
 
 
@@ -89,7 +94,7 @@ def run_daily_live_refresh(
     missingness_threshold: float | None = None,
     training_mode: str = "fast_refit",
     hitters_per_team: int = 9,
-    max_picks: int = 20,
+    max_picks: int | None = None,
 ) -> list[dict[str, Any]]:
     resolved_train_end_date = train_end_date or default_training_end_date()
     resolved_publish_date = publish_date or default_publish_date()

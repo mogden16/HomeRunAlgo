@@ -30,6 +30,7 @@ from scripts.live_pipeline import (
 )
 from scripts.prepare_live_board import run_prepare_live_board
 from scripts.publish_live_picks import (
+    DEFAULT_MAX_PICKS,
     DEFAULT_MAX_PICKS_PER_GAME,
     DEFAULT_MAX_PICKS_PER_TEAM,
     DEFAULT_MIN_CONFIDENCE_TIER,
@@ -241,7 +242,7 @@ def run_prepare_refresh(
     missingness_threshold: float | None = None,
     training_mode: str = "fast_refit",
     hitters_per_team: int = 9,
-    max_picks: int = 20,
+    max_picks: int | None = DEFAULT_MAX_PICKS,
     rebuild_dashboard: bool = True,
     verify_public_artifacts: bool = True,
     **_: Any,
@@ -296,7 +297,7 @@ def run_mixed_refresh(
     end_date: str | None = None,
     schedule_date: str | None = None,
     hitters_per_team: int = 9,
-    max_picks: int = 20,
+    max_picks: int | None = DEFAULT_MAX_PICKS,
     min_confidence_tier: str | None = DEFAULT_MIN_CONFIDENCE_TIER,
     max_picks_per_team: int | None = DEFAULT_MAX_PICKS_PER_TEAM,
     max_picks_per_game: int | None = DEFAULT_MAX_PICKS_PER_GAME,
