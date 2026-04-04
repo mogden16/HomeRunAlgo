@@ -390,5 +390,16 @@
     }
   },
   "weather_join_contract": "game_date + home_team; PARKS[home_team]; nearest available hour to 19:00 local park time",
-  "operational_alerts": []
+  "operational_alerts": [
+    {
+      "kind": "warning",
+      "code": "weather_forecast_unavailable",
+      "title": "Weather data incomplete",
+      "message": "Weather forecast data was unavailable for PIT on 2026-04-03. This slate was generated with null weather inputs for those parks. Rerun later for a weather-refreshed draft.",
+      "target_date": "2026-04-03",
+      "teams": [
+        "PIT"
+      ]
+    }
+  ]
 }
