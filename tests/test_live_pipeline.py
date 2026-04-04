@@ -23,6 +23,7 @@ from scripts import build_dashboard_artifacts
 from scripts import live_pipeline
 from scripts import publish_live_picks
 from scripts import run_daily_live_refresh
+from scripts import run_refresh_mode
 from scripts.live_pipeline import (
     assert_live_publish_freshness,
     build_live_candidate_frame,
@@ -1144,6 +1145,12 @@ class LivePipelineTests(unittest.TestCase):
             dashboard_payload = json.loads((dashboard_dir / "dashboard.json").read_text(encoding="utf-8"))
             self.assertEqual(dashboard_payload["latest_available_date"], "2026-03-26")
             self.assertEqual(dashboard_payload["latest_picks"][0]["game_date"], "2026-03-26")
+
+    def test_run_refresh_mode_publish_defaults_do_not_force_min_confidence_tier(self) -> None:
+        argv = ["run_refresh_mode.py", "--mode", "publish"]
+        with patch.object(sys, "argv", argv):
+            args = run_refresh_mode.parse_args()
+        self.assertIsNone(args.min_confidence_tier)
 
     def test_publish_live_picks_preserves_started_same_day_rows_and_replaces_unstarted_rows(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:

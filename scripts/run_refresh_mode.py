@@ -50,7 +50,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--training-mode", default="fast_refit", choices=["search", "fast_refit"], help="Training mode for prepare.")
     parser.add_argument("--hitters-per-team", type=int, default=9, help="How many likely starters to consider for each team.")
     parser.add_argument("--max-picks", type=int, default=20, help="Maximum picks across the slate.")
-    parser.add_argument("--min-confidence-tier", choices=("watch", "strong", "elite"), default="strong", help="Minimum confidence tier required for publish.")
+    parser.add_argument("--min-confidence-tier", choices=("watch", "strong", "elite"), default=None, help="Optional minimum confidence tier required for publish. Disabled by default.")
     parser.add_argument("--max-picks-per-team", type=int, default=None, help="Maximum published picks allowed from the same team.")
     parser.add_argument("--max-picks-per-game", type=int, default=None, help="Maximum published picks allowed from the same game.")
     parser.add_argument("--skip-dashboard-build", action="store_true", help="Skip rebuilding dashboard artifacts after the mode-specific work.")
