@@ -15,6 +15,28 @@ const DEFAULT_MODEL_EXPLAINER_MESSAGE = "Metric details are not available for th
 const MANUAL_REFRESH_KEY_STORAGE = "manualRefreshKey";
 const CONFIDENCE_TIERS = ["elite", "strong", "watch", "longshot"];
 const ALL_DATES_FILTER_VALUE = "__all_dates__";
+const DEFAULT_TIER_GUIDE = [
+  {
+    confidence_tier: "elite",
+    label: "elite",
+    description: "Most selective subset on the board.",
+  },
+  {
+    confidence_tier: "strong",
+    label: "strong",
+    description: "Main public board after the elite subset is carved out.",
+  },
+  {
+    confidence_tier: "watch",
+    label: "watch",
+    description: "Worth monitoring, but lower-confidence than the main public board.",
+  },
+  {
+    confidence_tier: "longshot",
+    label: "longshot",
+    description: "Visible only when all tiers are enabled.",
+  },
+];
 
 function formatPercent(value, digits = 1) {
   if (value === null || value === undefined || Number.isNaN(Number(value))) {
@@ -72,6 +94,23 @@ function formatGameTime(value) {
     hour: "numeric",
     minute: "2-digit",
   });
+}
+
+function formatElitePolicySummary(dashboard) {
+  const policy = dashboard?.confidence_policy || {};
+  const topK = Number(policy?.elite_top_k);
+  const probabilityFloor = Number(policy?.elite_probability_floor);
+  if (Number.isInteger(topK) && topK > 0) {
+    const pickLabel = topK === 1 ? "pick" : "picks";
+    if (Number.isFinite(probabilityFloor)) {
+      return `Current elite policy caps the tier at the top ${topK} ${pickLabel} per slate above ${formatPercent(probabilityFloor, 1)}.`;
+    }
+    return `Current elite policy caps the tier at the top ${topK} ${pickLabel} per slate.`;
+  }
+  if (Number.isFinite(probabilityFloor)) {
+    return `Elite rows must clear at least ${formatPercent(probabilityFloor, 1)} predicted HR probability.`;
+  }
+  return "Elite is the most selective subset within the public board.";
 }
 
 function escapeHtml(value) {
@@ -503,12 +542,12 @@ function renderOverviewCards(dashboard) {
       subtext: `${formatDate(dashboard?.latest_available_date)} public slate.`,
     },
     {
-      label: "Elite hit rate",
+      label: "Elite subset hit rate",
       value: formatPercent(eliteSummary?.hit_rate),
       subtext:
         elitePicks && eliteHomers !== null
-          ? `${formatWholeNumber(eliteHomers)} home runs across ${formatWholeNumber(elitePicks)} elite picks.`
-          : "No settled elite picks yet.",
+          ? `${formatWholeNumber(eliteHomers)} home runs across ${formatWholeNumber(elitePicks)} elite picks. ${formatElitePolicySummary(dashboard)}`
+          : formatElitePolicySummary(dashboard),
     },
     {
       label: "Settled hit rate",
@@ -537,6 +576,24 @@ function renderOverviewCards(dashboard) {
           <span class="value">${escapeHtml(card.value)}</span>
           <p class="subtext">${escapeHtml(card.subtext)}</p>
         </article>
+      `,
+    )
+    .join("");
+}
+
+function renderTierLegend(entries) {
+  const target = document.getElementById("tier-legend");
+  if (!target) {
+    return;
+  }
+  const guide = Array.isArray(entries) && entries.length ? entries : DEFAULT_TIER_GUIDE;
+  target.innerHTML = guide
+    .map(
+      (entry) => `
+        <span class="legend-item">
+          <span class="tier-tag tier-${escapeHtml(normalizeTier(entry.confidence_tier || entry.label || "watch"))}">${escapeHtml(entry.label || entry.confidence_tier || "watch")}</span>
+          <span>${escapeHtml(entry.description || "")}</span>
+        </span>
       `,
     )
     .join("");
@@ -949,6 +1006,7 @@ async function loadDashboard() {
   document.getElementById("usable-status").textContent = `Tracking since ${formatDate(state.dashboard.tracking_start_date)}`;
 
   renderDashboardAlerts(state.dashboard.operational_alerts);
+  renderTierLegend(state.dashboard.tier_guide);
   renderOverviewCards(state.dashboard);
   renderConfidenceTable(state.dashboard.confidence_summary);
   renderTierFilterControls("latest-confidence-filters", state.latestTierFilters);

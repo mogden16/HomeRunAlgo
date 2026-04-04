@@ -108,6 +108,7 @@ This repo now includes a static dashboard app in `cloudflare-app/` for:
 - picks generated from March 25, 2026 onward
 - forward-only public performance tracking
 - confidence-tier and player-level results once picks settle
+- a narrower elite subset that can shrink to roughly one pick per slate when the persisted confidence policy is selective
 
 Build the dashboard artifact locally with:
 
@@ -136,6 +137,8 @@ Local-only live model assets are written to:
 - `data/live/model_metadata.json`
 
 Those files are not part of the public Cloudflare artifact.
+
+The live production bundle now persists a confidence-policy snapshot alongside the model metadata. In production, `fast_refit` reuses the approved model family, feature profile, calibration mode, and elite-pick confidence policy from `data/live/model_metadata.json`. If that metadata is missing, the training script bootstraps by running the full search flow once and then persists the resulting configuration for later fast refits.
 
 ## Deploy to Cloudflare Pages
 
@@ -195,6 +198,7 @@ The publish flow uses:
 - the free MLB Stats API for today's schedule and probable pitchers
 - a recent-starter heuristic to approximate probable lineups
 - free Open-Meteo forecasts for same-day weather inputs
+- the persisted elite confidence policy from `data/live/model_metadata.json` to keep public tier assignment aligned with the validated backtest
 
 The wrapper script then:
 
@@ -205,6 +209,21 @@ The wrapper script then:
 - pushes the commit so Cloudflare Pages redeploys automatically
 
 The `settle` wrapper mode refreshes the live dataset and settles prior picks only. It does not retrain the model bundle or republish the current slate. The `prepare` wrapper mode handles the critical morning retrain and stores today's draft slate in the local-only `data/live/draft_picks.json`.
+
+Dashboard semantics for the production board:
+
+- `elite` is the most selective subset on the board and may be capped at about one pick per slate
+- `strong` is the main public board after the elite subset is carved out
+- `watch` and `longshot` remain available for deeper browsing, but the default dashboard filters stay on `elite + strong`
+
+Pre-release verification for a production cut:
+
+```powershell
+.\.venv1\Scripts\python.exe -m unittest tests.test_model_search
+.\.venv1\Scripts\python.exe -m unittest tests.test_live_pipeline
+.\.venv1\Scripts\python.exe .\scripts\build_dashboard_artifacts.py --output-dir cloudflare-app\data
+.\.venv1\Scripts\python.exe .\scripts\verify_public_live_artifacts.py
+```
 
 Verify the repo-side public/live contract with:
 

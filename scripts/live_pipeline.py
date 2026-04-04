@@ -42,6 +42,7 @@ from feature_engineering import (
 )
 from generate_data import generate_mlb_dataset
 from train_model import (
+    DEFAULT_CONFIDENCE_POLICY,
     LIVE_USABLE_CANDIDATE_PROFILE,
     LIVE_USABLE_CANDIDATE_SEED_COLUMNS,
     LIVE_PLUS_FEATURE_COLUMNS,
@@ -49,6 +50,7 @@ from train_model import (
     LIVE_SHRUNK_FEATURE_COLUMNS,
     LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS,
     MAX_MODEL_FEATURE_MISSINGNESS,
+    apply_confidence_policy_to_frame,
     REASON_TEXT_BY_FEATURE,
     build_histgb_pipeline,
     build_logistic_pipeline,
@@ -649,25 +651,20 @@ def _fit_live_bundle_fast_refit(
         "live_shrunk_precise": LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS,
         LIVE_USABLE_CANDIDATE_PROFILE: LIVE_USABLE_CANDIDATE_SEED_COLUMNS,
     }
-    configured_features: list[str] = []
     metadata_feature_columns = existing_metadata.get("feature_columns")
-    if feature_profile == LIVE_USABLE_CANDIDATE_PROFILE and isinstance(metadata_feature_columns, list):
-        configured_features = [
+    configured_features = (
+        [
             str(column)
             for column in metadata_feature_columns
             if isinstance(column, str) and column in df.columns
         ]
+        if isinstance(metadata_feature_columns, list)
+        else []
+    )
     if not configured_features:
         configured_features = [
             column for column in configured_feature_map.get(feature_profile, []) if column in df.columns
         ]
-    if not configured_features:
-        if isinstance(metadata_feature_columns, list):
-            configured_features = [
-                str(column)
-                for column in metadata_feature_columns
-                if isinstance(column, str) and column in df.columns
-            ]
     if not configured_features:
         from train_model import available_feature_columns
 
@@ -742,6 +739,10 @@ def _fit_live_bundle_fast_refit(
         "rolling_window_results": list(existing_metadata.get("rolling_window_results") or []),
         "promotion_candidate_rank": dict(existing_metadata.get("promotion_candidate_rank") or {}),
         "external_data_fallback": dict(existing_metadata.get("external_data_fallback") or {}),
+        "confidence_policy": dict(existing_metadata.get("confidence_policy") or DEFAULT_CONFIDENCE_POLICY),
+        "confidence_policy_search_rows": list(existing_metadata.get("confidence_policy_search_rows") or []),
+        "confidence_summary": list(existing_metadata.get("confidence_summary") or []),
+        "elite_pick_metrics": dict(existing_metadata.get("elite_pick_metrics") or {}),
         "refit_strategy": "fast_refit",
     }
     metadata = {
@@ -764,6 +765,10 @@ def _fit_live_bundle_fast_refit(
         "rolling_window_results": bundle["rolling_window_results"],
         "promotion_candidate_rank": bundle["promotion_candidate_rank"],
         "external_data_fallback": bundle["external_data_fallback"],
+        "confidence_policy": bundle["confidence_policy"],
+        "confidence_policy_search_rows": bundle["confidence_policy_search_rows"],
+        "confidence_summary": bundle["confidence_summary"],
+        "elite_pick_metrics": bundle["elite_pick_metrics"],
         "row_count": int(len(df)),
         "hr_rate": serialize_for_json(float(df["hit_hr"].mean())),
         "refit_strategy": "fast_refit",
@@ -792,48 +797,54 @@ def train_live_model_bundle(
         fail_on_missing_columns=True,
         fail_on_all_null=False,
     )
+    existing_metadata = load_model_metadata(metadata_path) if metadata_path.exists() else {}
     if training_mode == "fast_refit":
-        existing_metadata = load_model_metadata(metadata_path) if metadata_path.exists() else {}
-        resolved_model_family = str(model_name or existing_metadata.get("model_family") or "logistic")
-        resolved_feature_profile = str(feature_profile or existing_metadata.get("feature_profile") or "live_shrunk")
-        resolved_missingness_threshold = float(
-            existing_metadata.get("missingness_threshold")
-            if existing_metadata.get("missingness_threshold") is not None
-            else (missingness_threshold if missingness_threshold is not None else MAX_MODEL_FEATURE_MISSINGNESS)
-        )
-        resolved_selection_metric = str(existing_metadata.get("selection_metric") or selection_metric)
-        calibration_status = existing_metadata.get("calibration_status") if isinstance(existing_metadata.get("calibration_status"), dict) else {}
-        resolved_calibration = str(calibration_status.get("used") or calibration)
         if existing_metadata:
+            resolved_model_family = str(existing_metadata.get("model_family") or model_name or "logistic")
+            resolved_feature_profile = str(existing_metadata.get("feature_profile") or feature_profile or "live_shrunk")
+            resolved_missingness_threshold = float(
+                existing_metadata.get("missingness_threshold")
+                if existing_metadata.get("missingness_threshold") is not None
+                else (missingness_threshold if missingness_threshold is not None else MAX_MODEL_FEATURE_MISSINGNESS)
+            )
+            resolved_selection_metric = str(existing_metadata.get("selection_metric") or selection_metric)
+            calibration_status = (
+                existing_metadata.get("calibration_status")
+                if isinstance(existing_metadata.get("calibration_status"), dict)
+                else {}
+            )
+            resolved_calibration = str(calibration_status.get("used") or calibration)
             print("\nFast live refit")
             print("-" * 60)
             print(f"Selection metric snapshot  : {resolved_selection_metric}")
             print(f"Calibration mode reused    : {resolved_calibration}")
-        else:
-            print("\nFast live refit bootstrap")
-            print("-" * 60)
-            print("No existing model metadata found; using the requested live configuration for a direct refit.")
-            print(f"Selection metric snapshot  : {resolved_selection_metric}")
-            print(f"Calibration mode requested : {resolved_calibration}")
-        print(f"Model family               : {resolved_model_family}")
-        print(f"Feature profile            : {resolved_feature_profile}")
-        print(f"Missingness threshold      : {resolved_missingness_threshold:.2f}")
-        bundle, metadata = _fit_live_bundle_fast_refit(
-            df,
-            model_family=resolved_model_family,
-            feature_profile=resolved_feature_profile,
-            missingness_threshold=resolved_missingness_threshold,
-            selection_metric=resolved_selection_metric,
-            calibration=resolved_calibration,
-            best_params=existing_metadata.get("best_params") if isinstance(existing_metadata.get("best_params"), dict) else {},
-            existing_metadata=existing_metadata,
-        )
-        bundle["weather_feature_coverage"] = _weather_coverage_summary_payload(weather_coverage)
-        bundle["weather_join_contract"] = _live_publish_weather_contract_label()
-        metadata["weather_feature_coverage"] = _weather_coverage_summary_payload(weather_coverage)
-        metadata["weather_join_contract"] = _live_publish_weather_contract_label()
-        _persist_live_bundle(bundle_path, metadata_path, bundle, metadata)
-        return bundle
+            print(f"Model family               : {resolved_model_family}")
+            print(f"Feature profile            : {resolved_feature_profile}")
+            print(f"Missingness threshold      : {resolved_missingness_threshold:.2f}")
+            bundle, metadata = _fit_live_bundle_fast_refit(
+                df,
+                model_family=resolved_model_family,
+                feature_profile=resolved_feature_profile,
+                missingness_threshold=resolved_missingness_threshold,
+                selection_metric=resolved_selection_metric,
+                calibration=resolved_calibration,
+                best_params=existing_metadata.get("best_params") if isinstance(existing_metadata.get("best_params"), dict) else {},
+                existing_metadata=existing_metadata,
+            )
+            bundle["weather_feature_coverage"] = _weather_coverage_summary_payload(weather_coverage)
+            bundle["weather_join_contract"] = _live_publish_weather_contract_label()
+            metadata["weather_feature_coverage"] = _weather_coverage_summary_payload(weather_coverage)
+            metadata["weather_join_contract"] = _live_publish_weather_contract_label()
+            _persist_live_bundle(bundle_path, metadata_path, bundle, metadata)
+            return bundle
+
+        print("\nFast live refit bootstrap")
+        print("-" * 60)
+        print("No existing model metadata found; bootstrapping the approved live configuration through the search flow.")
+        print(f"Selection metric requested : {selection_metric}")
+        print(f"Calibration mode requested : {calibration}")
+        print(f"Model family requested     : {model_name}")
+        print(f"Feature profile requested  : {feature_profile}")
 
     backtest = run_backtest(
         str(dataset_path),
@@ -959,6 +970,10 @@ def train_live_model_bundle(
     bundle["rolling_window_results"] = list(backtest.get("report", {}).get("rolling_window_results") or [])
     bundle["promotion_candidate_rank"] = dict(backtest.get("report", {}).get("promotion_candidate_rank") or {})
     bundle["external_data_fallback"] = dict(backtest.get("report", {}).get("external_data_fallback") or {})
+    bundle["confidence_policy"] = dict(promoted_holdout.get("confidence_policy") or DEFAULT_CONFIDENCE_POLICY)
+    bundle["confidence_policy_search_rows"] = list(promoted_holdout.get("confidence_policy_search_rows") or [])
+    bundle["confidence_summary"] = list(promoted_holdout.get("confidence_summary") or [])
+    bundle["elite_pick_metrics"] = dict(promoted_holdout.get("elite_pick_metrics") or {})
     bundle["weather_feature_coverage"] = _weather_coverage_summary_payload(weather_coverage)
     bundle["weather_join_contract"] = _live_publish_weather_contract_label()
     metadata = {
@@ -981,6 +996,10 @@ def train_live_model_bundle(
         "rolling_window_results": bundle["rolling_window_results"],
         "promotion_candidate_rank": bundle["promotion_candidate_rank"],
         "external_data_fallback": bundle["external_data_fallback"],
+        "confidence_policy": bundle["confidence_policy"],
+        "confidence_policy_search_rows": bundle["confidence_policy_search_rows"],
+        "confidence_summary": bundle["confidence_summary"],
+        "elite_pick_metrics": bundle["elite_pick_metrics"],
         "weather_feature_coverage": bundle["weather_feature_coverage"],
         "weather_join_contract": bundle["weather_join_contract"],
         "row_count": int(len(df)),
@@ -2133,9 +2152,21 @@ def score_live_candidates(
 
     probabilities = model.predict_proba(scored[feature_columns])[:, 1]
     scored["predicted_hr_probability"] = probabilities
-    scored["predicted_hr_percentile"] = scored["predicted_hr_probability"].rank(method="first", pct=True)
+    confidence_policy = (
+        bundle.get("confidence_policy")
+        if isinstance(bundle.get("confidence_policy"), dict)
+        else DEFAULT_CONFIDENCE_POLICY
+    )
+    scored = apply_confidence_policy_to_frame(
+        scored,
+        probability_col="predicted_hr_probability",
+        date_col="game_date",
+        policy=confidence_policy,
+        percentile_col="predicted_hr_percentile",
+        rank_col="slate_rank",
+        tier_col="confidence_tier",
+    )
     scored["predicted_hr_score"] = (scored["predicted_hr_percentile"] * 100.0).round(1)
-    scored["confidence_tier"] = scored["predicted_hr_percentile"].apply(confidence_tier_from_percentile)
 
     coef_map = extract_logistic_coefficient_map(model, feature_columns)
     positive_coef_map = {feature: value for feature, value in coef_map.items() if value > 0}
@@ -2295,9 +2326,9 @@ def settle_pick_records(
         if live_hr_hitters is not None and batter_id_int in live_hr_hitters:
             resolved_hit = 1
             resolved_label = "HR"
-        elif lookup_value is not None and int(lookup_value) == 1:
-            resolved_hit = 1
-            resolved_label = "HR"
+        elif lookup_value is not None:
+            resolved_hit = int(lookup_value)
+            resolved_label = "HR" if resolved_hit == 1 else "No HR"
         elif is_postponed_status(schedule_game) or is_postponed_status(row):
             resolved_hit = None
             resolved_label = "Postponed"

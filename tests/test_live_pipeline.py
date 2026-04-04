@@ -751,6 +751,32 @@ class LivePipelineTests(unittest.TestCase):
         picks = score_live_candidates(candidate_df, bundle, max_picks=3, published_at="2026-03-25T12:00:00+00:00")
         self.assertEqual([row["batter_name"] for row in picks], ["Bravo", "Charlie", "Alpha"])
         self.assertEqual([row["rank"] for row in picks], [1, 2, 3])
+        self.assertEqual(picks[0]["confidence_tier"], "elite")
+
+    def test_score_live_candidates_falls_back_to_default_confidence_policy(self) -> None:
+        class FakeModel:
+            def predict_proba(self, features: pd.DataFrame) -> list[list[float]]:
+                probabilities = []
+                for value in features["feature_a"].tolist():
+                    probabilities.append([1.0 - float(value), float(value)])
+                return pd.DataFrame(probabilities).to_numpy()
+
+        candidate_df = pd.DataFrame(
+            [
+                {"game_pk": 1, "game_date": pd.Timestamp("2026-03-25"), "batter_id": 10, "batter_name": "Alpha", "team": "NYY", "opponent_team": "BOS", "pitcher_id": 20, "pitcher_name": "Pitcher", "feature_a": 0.91},
+                {"game_pk": 1, "game_date": pd.Timestamp("2026-03-25"), "batter_id": 11, "batter_name": "Bravo", "team": "NYY", "opponent_team": "BOS", "pitcher_id": 20, "pitcher_name": "Pitcher", "feature_a": 0.50},
+            ]
+        )
+        bundle = {
+            "model": FakeModel(),
+            "feature_columns": ["feature_a"],
+            "reference_df": pd.DataFrame({"feature_a": [0.5, 0.91]}),
+        }
+
+        picks = score_live_candidates(candidate_df, bundle, max_picks=2, published_at="2026-03-25T12:00:00+00:00")
+
+        self.assertEqual(picks[0]["confidence_tier"], "elite")
+        self.assertIn("predicted_hr_score", picks[0])
 
     def test_score_live_candidates_preserves_game_meta_fields(self) -> None:
         class FakeModel:
@@ -1347,6 +1373,9 @@ class LivePipelineTests(unittest.TestCase):
                         "training_cv_summary": {"mean_cv_pr_auc": 0.12},
                         "final_holdout_summary": {"pr_auc": 0.15},
                         "promotion_decision": {"used": "selected_candidate"},
+                        "confidence_policy": {"elite_top_k": 1, "elite_probability_floor": None},
+                        "confidence_summary": [{"confidence_tier": "elite", "sample_size": 1}],
+                        "elite_pick_metrics": {"elite_sample_size": 1, "elite_precision": 1.0},
                     }
                 ),
                 encoding="utf-8",
@@ -1364,6 +1393,8 @@ class LivePipelineTests(unittest.TestCase):
             self.assertEqual(written_metadata["trained_through"], "2026-03-25")
             self.assertEqual(written_metadata["refit_strategy"], "fast_refit")
             self.assertEqual(written_metadata["model_family"], "logistic")
+            self.assertEqual(written_metadata["confidence_policy"]["elite_top_k"], 1)
+            self.assertEqual(bundle["confidence_policy"]["elite_top_k"], 1)
             self.assertTrue(bundle_path.exists())
             reloaded_bundle = live_pipeline.load_model_bundle(bundle_path)
             probabilities = reloaded_bundle["model"].predict_proba(
@@ -1484,7 +1515,13 @@ class LivePipelineTests(unittest.TestCase):
             }
             fake_backtest = {
                 "selected_candidate": selected_candidate,
-                "final_result": {"summary_row": dict(selected_candidate["summary_row"])},
+                "final_result": {
+                    "summary_row": dict(selected_candidate["summary_row"]),
+                    "confidence_policy": {"elite_top_k": 1, "elite_probability_floor": None},
+                    "confidence_policy_search_rows": [{"elite_top_k": 1, "elite_precision": 0.3}],
+                    "confidence_summary": [{"confidence_tier": "elite", "sample_size": 1}],
+                    "elite_pick_metrics": {"elite_sample_size": 1, "elite_precision": 1.0},
+                },
                 "candidate_results": [selected_candidate],
                 "train_df": pd.DataFrame({"game_date": pd.to_datetime(["2026-03-24"]), "hit_hr": [0]}),
                 "test_df": pd.DataFrame({"game_date": pd.to_datetime(["2026-03-25"]), "hit_hr": [1]}),
@@ -1523,6 +1560,7 @@ class LivePipelineTests(unittest.TestCase):
             written_metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
             self.assertEqual(written_metadata["feature_profile"], "live")
             self.assertEqual(written_metadata["trained_through"], "2026-03-25")
+            self.assertEqual(written_metadata["confidence_policy"]["elite_top_k"], 1)
 
     def test_failed_publish_does_not_mutate_pick_history(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
@@ -1951,11 +1989,14 @@ class LivePipelineTests(unittest.TestCase):
                 "Public dashboard tracking begins on Opening Night, March 25, 2026. Trained on 2024 and 2025 season data.",
             )
             self.assertEqual(payload["model_family"], "2024-25 trained")
-            self.assertEqual(payload["refresh_schedule"]["runs"][0]["time_et"], "2:00 AM ET")
-            self.assertEqual(payload["refresh_schedule"]["runs"][0]["type"], "settle")
-            self.assertEqual(payload["refresh_schedule"]["runs"][1]["time_et"], "4:00 AM ET")
-            self.assertEqual(payload["refresh_schedule"]["runs"][1]["type"], "prepare")
-            self.assertEqual(payload["refresh_schedule"]["runs"][2]["time_et"], "11:00 AM ET")
+            self.assertEqual(payload["confidence_policy"]["elite_percentile_floor"], 0.99)
+            self.assertEqual(payload["tier_guide"][0]["confidence_tier"], "elite")
+            self.assertEqual(payload["refresh_schedule"]["runs"][0]["time_et"], "After 6:00 AM ET")
+            self.assertEqual(payload["refresh_schedule"]["runs"][0]["type"], "prepare")
+            self.assertEqual(payload["refresh_schedule"]["runs"][1]["time_et"], "Every 15 minutes until last first pitch")
+            self.assertEqual(payload["refresh_schedule"]["runs"][1]["type"], "mixed")
+            self.assertEqual(payload["refresh_schedule"]["runs"][2]["time_et"], "Every 15 minutes in-game")
+            self.assertEqual(payload["refresh_schedule"]["runs"][2]["type"], "settle")
             elite_row = payload["confidence_summary"][0]
             self.assertEqual(elite_row["confidence_tier"], "elite")
             self.assertEqual(len(payload["history"]), 1)

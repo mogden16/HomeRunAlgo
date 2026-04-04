@@ -309,6 +309,15 @@ THRESHOLD_OBJECTIVES = ["f1", "f0.5", "precision_at_min_recall", "balanced_accur
 CALIBRATION_CHOICES = ["disabled", "sigmoid", "isotonic"]
 MODEL_CHOICES = ["logistic", "histgb", "xgboost", "all", "both"]
 SELECTION_METRIC_CHOICES = ["pr_auc", "roc_auc", "neg_log_loss", "neg_brier"]
+ELITE_TOP_K_CANDIDATES = [None, 3, 2, 1]
+ELITE_PROBABILITY_FLOOR_GRID = [None, 0.18, 0.19, 0.20, 0.21, 0.22]
+DEFAULT_CONFIDENCE_POLICY = {
+    "elite_percentile_floor": 0.99,
+    "elite_probability_floor": None,
+    "elite_top_k": None,
+    "strong_percentile_floor": 0.95,
+    "watch_percentile_floor": 0.80,
+}
 METRIC_COLUMNS = [
     "precision",
     "recall",
@@ -739,6 +748,8 @@ def tune_xgboost_pipeline(
 
 
 def calibration_cv_supported(y_train: np.ndarray, n_splits: int) -> tuple[bool, str]:
+    if len(y_train) <= n_splits:
+        return False, f"training window has {len(y_train)} rows, which is not enough for {n_splits} CV splits"
     splitter = TimeSeriesSplit(n_splits=n_splits)
     for fold_number, (fit_idx, _) in enumerate(splitter.split(np.arange(len(y_train))), start=1):
         unique_classes = np.unique(y_train[fit_idx])
@@ -1020,10 +1031,12 @@ def cross_validate_probability_metrics_time_series(
         raise ValueError("No OOF probabilities were generated from TimeSeriesSplit.")
 
     fold_df = pd.DataFrame(fold_metrics)
+    oof_index = np.flatnonzero(valid_mask)
     return {
         "fold_metrics": fold_metrics,
         "oof_y_true": y_train[valid_mask],
         "oof_y_prob": oof_prob[valid_mask],
+        "oof_index": oof_index,
         "mean_cv_pr_auc": float(fold_df["pr_auc"].mean()) if not fold_df.empty else float("nan"),
         "mean_cv_roc_auc": float(fold_df["roc_auc"].mean()) if not fold_df.empty else float("nan"),
         "mean_cv_log_loss": float(fold_df["log_loss"].mean()) if not fold_df.empty else float("nan"),
@@ -1276,6 +1289,204 @@ def summarize_prediction_deciles(y_true: np.ndarray, y_prob: np.ndarray, bins: i
     grouped["cumulative_hrs"] = grouped["hrs"].cumsum()
     grouped["cumulative_hr_capture_pct"] = grouped["cumulative_hrs"] / total_hrs if total_hrs > 0 else np.nan
     return grouped
+
+
+def normalized_confidence_policy(policy: dict[str, Any] | None = None) -> dict[str, Any]:
+    merged = dict(DEFAULT_CONFIDENCE_POLICY)
+    if isinstance(policy, dict):
+        merged.update({key: value for key, value in policy.items() if key in merged})
+    elite_probability_floor = merged.get("elite_probability_floor")
+    merged["elite_probability_floor"] = None if elite_probability_floor in (None, "") else float(elite_probability_floor)
+    elite_top_k = merged.get("elite_top_k")
+    merged["elite_top_k"] = None if elite_top_k in (None, "") else int(elite_top_k)
+    for key in ["elite_percentile_floor", "strong_percentile_floor", "watch_percentile_floor"]:
+        merged[key] = float(merged[key])
+    return merged
+
+
+def apply_confidence_policy_to_frame(
+    frame: pd.DataFrame,
+    *,
+    probability_col: str,
+    date_col: str,
+    policy: dict[str, Any] | None = None,
+    percentile_col: str = "predicted_hr_percentile",
+    rank_col: str = "slate_rank",
+    tier_col: str = "confidence_tier",
+) -> pd.DataFrame:
+    scored = frame.copy()
+    resolved_policy = normalized_confidence_policy(policy)
+    scored[date_col] = pd.to_datetime(scored[date_col])
+    scored[percentile_col] = scored.groupby(date_col)[probability_col].rank(method="first", pct=True)
+    scored[rank_col] = scored.groupby(date_col)[probability_col].rank(method="first", ascending=False).astype(int)
+
+    elite_mask = scored[percentile_col] >= resolved_policy["elite_percentile_floor"]
+    if resolved_policy["elite_probability_floor"] is not None:
+        elite_mask &= scored[probability_col] >= resolved_policy["elite_probability_floor"]
+    if resolved_policy["elite_top_k"] is not None:
+        elite_mask &= scored[rank_col] <= resolved_policy["elite_top_k"]
+
+    scored[tier_col] = np.select(
+        [
+            elite_mask,
+            scored[percentile_col] >= resolved_policy["strong_percentile_floor"],
+            scored[percentile_col] >= resolved_policy["watch_percentile_floor"],
+        ],
+        ["elite", "strong", "watch"],
+        default="longshot",
+    )
+    return scored
+
+
+def summarize_confidence_tiers(
+    scored_df: pd.DataFrame,
+    *,
+    actual_col: str = "actual_hit_hr",
+    tier_col: str = "confidence_tier",
+) -> pd.DataFrame:
+    rows: list[dict[str, Any]] = []
+    for tier in ["elite", "strong", "watch", "longshot"]:
+        subset = scored_df.loc[scored_df[tier_col] == tier].copy()
+        if subset.empty:
+            rows.append(
+                {
+                    "confidence_tier": tier,
+                    "sample_size": 0,
+                    "hr_count": 0,
+                    "precision": 0.0,
+                    "false_positives": 0,
+                }
+            )
+            continue
+        hr_count = int(subset[actual_col].sum())
+        sample_size = int(len(subset))
+        rows.append(
+            {
+                "confidence_tier": tier,
+                "sample_size": sample_size,
+                "hr_count": hr_count,
+                "precision": float(subset[actual_col].mean()),
+                "false_positives": int(sample_size - hr_count),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def elite_tier_metrics(
+    scored_df: pd.DataFrame,
+    *,
+    actual_col: str = "actual_hit_hr",
+    tier_col: str = "confidence_tier",
+) -> dict[str, float | int]:
+    elite_rows = scored_df.loc[scored_df[tier_col] == "elite"].copy()
+    if elite_rows.empty:
+        return {
+            "elite_sample_size": 0,
+            "elite_hr_count": 0,
+            "elite_precision": 0.0,
+            "elite_false_positives": 0,
+            "elite_positive_rate": 0.0,
+        }
+    sample_size = int(len(elite_rows))
+    hr_count = int(elite_rows[actual_col].sum())
+    return {
+        "elite_sample_size": sample_size,
+        "elite_hr_count": hr_count,
+        "elite_precision": float(elite_rows[actual_col].mean()),
+        "elite_false_positives": int(sample_size - hr_count),
+        "elite_positive_rate": float(sample_size / len(scored_df)),
+    }
+
+
+def search_confidence_policy_for_elite_precision(
+    scored_df: pd.DataFrame,
+    *,
+    probability_col: str = "predicted_hr_probability",
+    date_col: str = DATE_COL,
+    actual_col: str = "actual_hit_hr",
+) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    search_rows: list[dict[str, Any]] = []
+    for elite_top_k in ELITE_TOP_K_CANDIDATES:
+        for elite_probability_floor in ELITE_PROBABILITY_FLOOR_GRID:
+            policy = normalized_confidence_policy(
+                {
+                    "elite_top_k": elite_top_k,
+                    "elite_probability_floor": elite_probability_floor,
+                }
+            )
+            tiered = apply_confidence_policy_to_frame(
+                scored_df,
+                probability_col=probability_col,
+                date_col=date_col,
+                policy=policy,
+                percentile_col="policy_percentile",
+                rank_col="policy_rank",
+                tier_col="policy_tier",
+            )
+            metrics = elite_tier_metrics(tiered, actual_col=actual_col, tier_col="policy_tier")
+            search_rows.append(
+                {
+                    "elite_top_k": policy["elite_top_k"],
+                    "elite_probability_floor": policy["elite_probability_floor"],
+                    **metrics,
+                }
+            )
+
+    baseline_row = next(
+        row
+        for row in search_rows
+        if row["elite_top_k"] is None and row["elite_probability_floor"] is None
+    )
+    baseline_precision = float(baseline_row["elite_precision"])
+    baseline_sample_size = int(baseline_row["elite_sample_size"])
+    min_sample_size = max(1, int(np.ceil(baseline_sample_size * 0.75))) if baseline_sample_size > 0 else 0
+
+    ranked_rows: list[dict[str, Any]] = []
+    for row in search_rows:
+        precision = float(row["elite_precision"])
+        sample_size = int(row["elite_sample_size"])
+        sample_ratio = (sample_size / baseline_sample_size) if baseline_sample_size > 0 else 1.0
+        precision_lift = ((precision / baseline_precision) - 1.0) if baseline_precision > 0 else 0.0
+        ranked_rows.append(
+            {
+                **row,
+                "sample_ratio_vs_baseline": float(sample_ratio),
+                "precision_lift_vs_baseline": float(precision_lift),
+                "meets_sample_guardrail": bool(sample_size >= min_sample_size),
+            }
+        )
+
+    eligible_rows = [
+        row
+        for row in ranked_rows
+        if row["elite_sample_size"] > 0
+        and row["elite_precision"] > baseline_precision + 1e-12
+        and (row["meets_sample_guardrail"] or row["precision_lift_vs_baseline"] >= 0.15)
+    ]
+    if eligible_rows:
+        selected_row = sorted(
+            eligible_rows,
+            key=lambda row: (
+                -float(row["elite_precision"]),
+                -int(row["elite_sample_size"]),
+                float(row["elite_probability_floor"]) if row["elite_probability_floor"] is not None else -1.0,
+                int(row["elite_top_k"]) if row["elite_top_k"] is not None else 999,
+            ),
+        )[0]
+    else:
+        selected_row = next(
+            row
+            for row in ranked_rows
+            if row["elite_top_k"] is None and row["elite_probability_floor"] is None
+        )
+
+    selected_policy = normalized_confidence_policy(
+        {
+            "elite_top_k": selected_row["elite_top_k"],
+            "elite_probability_floor": selected_row["elite_probability_floor"],
+        }
+    )
+    return selected_policy, ranked_rows
 
 
 def assign_confidence_tiers(predicted_percentile: pd.Series) -> pd.Series:
@@ -1615,6 +1826,38 @@ def print_prediction_bucket_summary(decile_df: pd.DataFrame, label: str) -> None
             f"{row['bucket_label']:<14} {int(row['rows']):7d} {row['avg_predicted_score']:10.4f} "
             f"{row['actual_hr_rate']:10.4f} {row['cumulative_hr_capture_pct']:12.4f}"
         )
+
+
+def print_confidence_policy_search(rows: list[dict[str, Any]], selected_policy: dict[str, Any]) -> None:
+    ranked_rows = sorted(
+        rows,
+        key=lambda row: (
+            -float(row["elite_precision"]),
+            -int(row["elite_sample_size"]),
+            float(row["elite_probability_floor"]) if row["elite_probability_floor"] is not None else -1.0,
+            int(row["elite_top_k"]) if row["elite_top_k"] is not None else 999,
+        ),
+    )
+    print("\nElite confidence-policy search (training OOF)")
+    print("-" * 60)
+    print(f"{'top_k':>6} {'prob_floor':>10} {'elite_n':>8} {'elite_prec':>11} {'lift_vs_base':>12} {'sample_vs_base':>14}")
+    for row in ranked_rows[:8]:
+        top_k = row["elite_top_k"] if row["elite_top_k"] is not None else "pct_only"
+        prob_floor = f"{row['elite_probability_floor']:.2f}" if row["elite_probability_floor"] is not None else "none"
+        print(
+            f"{str(top_k):>6} {prob_floor:>10} {int(row['elite_sample_size']):8d} {row['elite_precision']:11.4f} "
+            f"{row['precision_lift_vs_baseline']:12.4f} {row['sample_ratio_vs_baseline']:14.4f}"
+        )
+    selected_top_k = selected_policy["elite_top_k"] if selected_policy["elite_top_k"] is not None else "pct_only"
+    selected_floor = (
+        f"{selected_policy['elite_probability_floor']:.2f}"
+        if selected_policy["elite_probability_floor"] is not None
+        else "none"
+    )
+    print(
+        "Selected elite policy        : "
+        f"top_k={selected_top_k}, prob_floor={selected_floor}, elite_percentile_floor={selected_policy['elite_percentile_floor']:.2f}"
+    )
 
 
 def print_top_candidates_summary(ranked_df: pd.DataFrame, top_n: int = DEFAULT_TOP_CANDIDATES_TO_PRINT) -> None:
@@ -3038,6 +3281,9 @@ def evaluate_model_run(
     )
     y_train_oof = train_cv_summary["oof_y_true"]
     y_prob_oof = train_cv_summary["oof_y_prob"]
+    train_oof_frame = train_df.iloc[train_cv_summary["oof_index"]][[DATE_COL]].reset_index(drop=True).copy()
+    train_oof_frame["actual_hit_hr"] = y_train_oof
+    train_oof_frame["predicted_hr_probability"] = y_prob_oof
     train_threshold_summary = summarize_thresholds(y_train_oof, y_prob_oof, THRESHOLD_GRID)
     threshold_info = find_best_threshold(
         train_threshold_summary,
@@ -3084,6 +3330,8 @@ def evaluate_model_run(
         min_recall=min_recall,
         max_positive_rate=max_positive_rate,
     )
+    confidence_policy, confidence_policy_search_rows = search_confidence_policy_for_elite_precision(train_oof_frame)
+    print_confidence_policy_search(confidence_policy_search_rows, confidence_policy)
 
     y_prob_test = model.predict_proba(X_test)[:, 1]
     metrics = evaluate_predictions(y_test, y_prob_test, chosen_threshold)
@@ -3141,6 +3389,36 @@ def evaluate_model_run(
         feature_columns=feature_columns,
         y_true=y_test,
     )
+    ranked_output = apply_confidence_policy_to_frame(
+        ranked_output,
+        probability_col="predicted_hr_probability",
+        date_col="game_date",
+        policy=confidence_policy,
+        percentile_col="slate_percentile",
+        rank_col="slate_rank",
+        tier_col="slate_confidence_tier",
+    )
+    confidence_summary = summarize_confidence_tiers(
+        ranked_output,
+        actual_col="actual_hit_hr",
+        tier_col="slate_confidence_tier",
+    )
+    elite_pick_metrics = elite_tier_metrics(
+        ranked_output,
+        actual_col="actual_hit_hr",
+        tier_col="slate_confidence_tier",
+    )
+    model_row.update(elite_pick_metrics)
+    print("\nHoldout elite-pick summary")
+    print("-" * 60)
+    print(
+        f"Elite policy                 : top_k={confidence_policy['elite_top_k'] if confidence_policy['elite_top_k'] is not None else 'pct_only'}, "
+        f"prob_floor={confidence_policy['elite_probability_floor'] if confidence_policy['elite_probability_floor'] is not None else 'none'}"
+    )
+    print(f"Elite sample size            : {elite_pick_metrics['elite_sample_size']}")
+    print(f"Elite precision              : {elite_pick_metrics['elite_precision']:.4f}")
+    print(f"Elite HR count               : {elite_pick_metrics['elite_hr_count']}")
+    print(f"Elite false positives        : {elite_pick_metrics['elite_false_positives']}")
     print_top_candidates_summary(ranked_output, top_n=min(DEFAULT_TOP_CANDIDATES_TO_PRINT, len(ranked_output)))
 
     output_path: str | None = None
@@ -3158,6 +3436,10 @@ def evaluate_model_run(
         "best_params": summary_row["best_params"],
         "calibration_status": calibration_status,
         "calibration_search_rows": calibration_search_rows,
+        "confidence_policy": confidence_policy,
+        "confidence_policy_search_rows": confidence_policy_search_rows,
+        "confidence_summary": confidence_summary.to_dict(orient="records"),
+        "elite_pick_metrics": elite_pick_metrics,
         "threshold_info": threshold_info,
         "threshold_result": threshold_result,
         "holdout_metrics": metrics,

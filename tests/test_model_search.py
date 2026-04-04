@@ -198,6 +198,47 @@ class ModelSearchTests(unittest.TestCase):
         self.assertNotIn("barrels_per_pa_last_30d", strict_result["feature_columns"])
         self.assertIn("barrels_per_pa_last_30d", loose_result["feature_columns"])
 
+    def test_apply_confidence_policy_demotes_elite_without_probability_floor(self) -> None:
+        frame = pd.DataFrame(
+            [
+                {"game_date": "2024-08-01", "predicted_hr_probability": 0.18, "actual_hit_hr": 0},
+                {"game_date": "2024-08-01", "predicted_hr_probability": 0.17, "actual_hit_hr": 0},
+                {"game_date": "2024-08-01", "predicted_hr_probability": 0.16, "actual_hit_hr": 0},
+                {"game_date": "2024-08-01", "predicted_hr_probability": 0.15, "actual_hit_hr": 0},
+            ]
+        )
+        tiered = train_model.apply_confidence_policy_to_frame(
+            frame,
+            probability_col="predicted_hr_probability",
+            date_col="game_date",
+            policy={"elite_top_k": 1, "elite_probability_floor": 0.19},
+        )
+        self.assertEqual(list(tiered["confidence_tier"]), ["strong", "longshot", "longshot", "longshot"])
+
+    def test_confidence_policy_search_can_add_probability_floor(self) -> None:
+        rows: list[dict[str, float | int | str]] = []
+        top_probs = [0.22, 0.22, 0.21, 0.20, 0.18, 0.17, 0.21, 0.20]
+        top_actuals = [1, 1, 1, 1, 0, 0, 1, 1]
+        for date_idx, (top_prob, top_actual) in enumerate(zip(top_probs, top_actuals, strict=True), start=1):
+            game_date = str(pd.Timestamp("2024-08-01") + pd.Timedelta(days=date_idx - 1))
+            for row_idx in range(20):
+                probability = top_prob if row_idx == 0 else 0.10 - (row_idx * 0.002)
+                actual = top_actual if row_idx == 0 else 0
+                rows.append(
+                    {
+                        "game_date": game_date,
+                        "predicted_hr_probability": probability,
+                        "actual_hit_hr": actual,
+                    }
+                )
+        frame = pd.DataFrame(rows)
+        policy, search_rows = train_model.search_confidence_policy_for_elite_precision(frame)
+        baseline_row = next(
+            row for row in search_rows if row["elite_top_k"] is None and row["elite_probability_floor"] is None
+        )
+        self.assertEqual(baseline_row["elite_sample_size"], 8)
+        self.assertEqual(policy["elite_probability_floor"], 0.19)
+
     def test_non_logistic_bundle_round_trip_scores_live_candidates(self) -> None:
         model = HistGradientBoostingClassifier(random_state=42)
         train_X = pd.DataFrame({"feature_a": [0.1, 0.3, 0.6, 0.9, 0.95, 0.2]})

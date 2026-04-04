@@ -20,7 +20,7 @@ if str(ROOT_DIR) not in sys.path:
 
 from config import LIVE_MODEL_DATA_PATH
 from scripts.live_pipeline import build_lineup_panels, fetch_schedule_games
-from train_model import extract_logistic_coefficient_map
+from train_model import DEFAULT_CONFIDENCE_POLICY, extract_logistic_coefficient_map, normalized_confidence_policy
 
 DEFAULT_TRACKING_START_DATE = "2026-03-25"
 DEFAULT_CURRENT_PICKS_PATH = Path("data/live/current_picks.json")
@@ -313,6 +313,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--history-path", default=str(DEFAULT_HISTORY_PATH), help="Path to the public pick ledger JSON.")
     parser.add_argument("--draft-picks-path", default=str(DEFAULT_DRAFT_PICKS_PATH), help="Path to the fixed morning baseline JSON used for rank movement context.")
     parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR), help="Directory where dashboard JSON will be written.")
+    parser.add_argument("--model-bundle-path", default=None, help="Optional model bundle path for dashboard metadata and feature explanations.")
+    parser.add_argument("--model-data-path", default=None, help="Optional engineered dataset path for lineup panels and season leaders.")
+    parser.add_argument("--model-metadata-path", default=None, help="Optional model metadata path for dashboard summaries.")
     parser.add_argument("--tracking-start-date", default=DEFAULT_TRACKING_START_DATE, help="Only picks on or after this date are published.")
     parser.add_argument("--latest-count", type=int, default=12, help="Number of latest picks shown on the landing page.")
     parser.add_argument("--history-per-date", type=int, default=10, help="Number of historical picks preserved per date in the dashboard.")
@@ -723,6 +726,54 @@ def _operational_alerts_from_metadata(metadata: dict[str, Any]) -> list[dict[str
     return [dict(alert) for alert in alerts if isinstance(alert, dict)]
 
 
+def _confidence_policy_from_metadata(metadata: dict[str, Any]) -> dict[str, Any]:
+    policy_payload = metadata.get("confidence_policy") if isinstance(metadata.get("confidence_policy"), dict) else {}
+    resolved_policy = normalized_confidence_policy(policy_payload)
+    return {key: serialize_value(value) for key, value in resolved_policy.items()}
+
+
+def _build_tier_guide(metadata: dict[str, Any]) -> list[dict[str, str]]:
+    policy = normalized_confidence_policy(
+        metadata.get("confidence_policy") if isinstance(metadata.get("confidence_policy"), dict) else DEFAULT_CONFIDENCE_POLICY
+    )
+    elite_clauses = ["Most selective subset on the board."]
+    if policy["elite_top_k"] is not None:
+        elite_clauses.append(
+            f"Current production policy caps elite at the top {int(policy['elite_top_k'])} pick"
+            f"{'' if int(policy['elite_top_k']) == 1 else 's'} per slate."
+        )
+    else:
+        elite_clauses.append(
+            f"Current production policy starts at the top {int(round(float(policy['elite_percentile_floor']) * 100))}% of each slate."
+        )
+    if policy["elite_probability_floor"] is not None:
+        elite_clauses.append(
+            f"Elite picks must also clear a {float(policy['elite_probability_floor']) * 100:.1f}% probability floor."
+        )
+    return [
+        {
+            "confidence_tier": "elite",
+            "label": "elite",
+            "description": " ".join(elite_clauses),
+        },
+        {
+            "confidence_tier": "strong",
+            "label": "strong",
+            "description": "Main public board after the elite subset is carved out.",
+        },
+        {
+            "confidence_tier": "watch",
+            "label": "watch",
+            "description": "Worth monitoring, but lower-confidence than the main public board.",
+        },
+        {
+            "confidence_tier": "longshot",
+            "label": "longshot",
+            "description": "Visible only when all tiers are enabled.",
+        },
+    ]
+
+
 def build_model_explainer(
     *,
     model_bundle_path: Path = DEFAULT_MODEL_BUNDLE_PATH,
@@ -821,7 +872,10 @@ def build_dashboard_artifacts(
     draft_rows = [row for row in (normalize_pick(item, tracking_start_date) for item in draft_input) if row is not None]
     current_rows = sorted(current_rows, key=current_pick_sort_key)
     current_rows, history_rows = recover_pending_history_rows(current_rows, history_rows)
-    active_current_rows = resequence_rows(select_active_current_rows(current_rows))
+    history_rows = upsert_history(history_rows, current_rows)
+    active_current_rows = resequence_rows(
+        select_active_current_rows([row for row in current_rows if row.get("result_label") == "Pending"])
+    )
     active_current_dates = {str(row["game_date"]) for row in active_current_rows if row.get("game_date")}
     if active_current_dates:
         morning_rows = sorted(
@@ -865,6 +919,8 @@ def build_dashboard_artifacts(
     homers = sum(int(row["actual_hit_hr"] or 0) for row in settled_rows)
     hit_rate = (homers / settled_count) if settled_count else None
     metadata = _load_json_object(model_metadata_path) if model_metadata_path.exists() else {}
+    confidence_policy = _confidence_policy_from_metadata(metadata)
+    tier_guide = _build_tier_guide(metadata)
     operational_alerts = _operational_alerts_from_metadata(metadata)
     player_leaderboard = build_player_leaderboard(settled_rows, min_player_picks=min_player_picks)
     model_explainer = build_model_explainer(
@@ -895,6 +951,8 @@ def build_dashboard_artifacts(
         "latest_available_date": latest_game_date,
         "data_note": DEFAULT_DATA_NOTE,
         "operational_alerts": operational_alerts,
+        "confidence_policy": confidence_policy,
+        "tier_guide": tier_guide,
         "history_dates": history_dates,
         "history_default_date": default_history_date,
         "yesterday_homer_date": yesterday_value,
@@ -925,14 +983,35 @@ def build_dashboard_artifacts(
 
 def main() -> None:
     args = parse_args()
+    current_picks_path = Path(args.current_picks_path)
+    history_path = Path(args.history_path)
+    draft_picks_path = Path(args.draft_picks_path)
+    use_repo_model_assets = (
+        current_picks_path == DEFAULT_CURRENT_PICKS_PATH
+        and history_path == DEFAULT_HISTORY_PATH
+        and draft_picks_path == DEFAULT_DRAFT_PICKS_PATH
+    )
+    asset_anchor = current_picks_path.parent
     output_path = build_dashboard_artifacts(
-        current_picks_path=Path(args.current_picks_path),
-        history_path=Path(args.history_path),
-        draft_picks_path=Path(args.draft_picks_path),
+        current_picks_path=current_picks_path,
+        history_path=history_path,
+        draft_picks_path=draft_picks_path,
         output_dir=Path(args.output_dir),
-        model_bundle_path=DEFAULT_MODEL_BUNDLE_PATH,
-        model_data_path=DEFAULT_MODEL_DATA_PATH,
-        model_metadata_path=DEFAULT_MODEL_METADATA_PATH,
+        model_bundle_path=(
+            Path(args.model_bundle_path)
+            if args.model_bundle_path
+            else (DEFAULT_MODEL_BUNDLE_PATH if use_repo_model_assets else asset_anchor / DEFAULT_MODEL_BUNDLE_PATH.name)
+        ),
+        model_data_path=(
+            Path(args.model_data_path)
+            if args.model_data_path
+            else (DEFAULT_MODEL_DATA_PATH if use_repo_model_assets else asset_anchor / DEFAULT_MODEL_DATA_PATH.name)
+        ),
+        model_metadata_path=(
+            Path(args.model_metadata_path)
+            if args.model_metadata_path
+            else (DEFAULT_MODEL_METADATA_PATH if use_repo_model_assets else asset_anchor / DEFAULT_MODEL_METADATA_PATH.name)
+        ),
         tracking_start_date=args.tracking_start_date,
         latest_count=args.latest_count,
         history_per_date=args.history_per_date,

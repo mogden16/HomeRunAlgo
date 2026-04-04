@@ -58,16 +58,11 @@
           <div>
             <p class="eyebrow">Today</p>
             <h2>Today's best home run looks</h2>
-            <p class="section-note">Start here. The board is sorted by current confidence, reranks during the day, and defaults to the strongest public picks.</p>
+            <p class="section-note">Start here. The board defaults to elite and strong picks, reranks during the day, and treats elite as the narrowest high-conviction subset of the public slate.</p>
           </div>
           <div class="filters tier-filter-row" id="latest-confidence-filters" aria-label="Latest picks confidence filters"></div>
         </div>
-        <div class="tier-legend" aria-label="Confidence tier guide">
-          <span class="legend-item"><span class="tier-tag tier-elite">elite</span><span>highest-confidence public picks</span></span>
-          <span class="legend-item"><span class="tier-tag tier-strong">strong</span><span>publishable core slate</span></span>
-          <span class="legend-item"><span class="tier-tag tier-watch">watch</span><span>worth monitoring, lower confidence</span></span>
-          <span class="legend-item"><span class="tier-tag tier-longshot">longshot</span><span>visible only when all tiers are enabled</span></span>
-        </div>
+        <div class="tier-legend" id="tier-legend" aria-label="Confidence tier guide"></div>
         <div class="table-wrap" id="latest-picks-table"></div>
       </section>
 
@@ -111,7 +106,7 @@
           <div>
             <p class="eyebrow">Confidence</p>
             <h2>Tier performance</h2>
-            <p class="section-note">These numbers summarize how each confidence band has performed since public tracking began.</p>
+            <p class="section-note">These numbers summarize how each confidence band has performed since public tracking began, with elite treated as the most selective subset of the public board.</p>
           </div>
         </div>
         <div class="table-wrap" id="confidence-table"></div>
