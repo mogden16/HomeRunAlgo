@@ -64,6 +64,7 @@ from train_model import (
     maybe_calibrate_logistic,
     prepare_feature_matrix,
     prune_model_features_by_training_missingness,
+    resolve_reason_weight_map,
     run_backtest,
 )
 from weather_audit import (
@@ -2169,9 +2170,9 @@ def score_live_candidates(
     scored["predicted_hr_score"] = (scored["predicted_hr_percentile"] * 100.0).round(1)
 
     coef_map = extract_logistic_coefficient_map(model, feature_columns)
-    positive_coef_map = {feature: value for feature, value in coef_map.items() if value > 0}
+    reason_weight_map = resolve_reason_weight_map(feature_columns, coef_map)
     reasons = scored.apply(
-        lambda row: generate_reason_strings(row, reference_df=reference_df, positive_coef_map=positive_coef_map, max_reasons=3),
+        lambda row: generate_reason_strings(row, reference_df=reference_df, positive_coef_map=reason_weight_map, max_reasons=3),
         axis=1,
     )
     scored["top_reason_1"] = reasons.apply(lambda items: items[0] if len(items) > 0 else "")

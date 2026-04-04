@@ -1541,6 +1541,24 @@ def extract_logistic_coefficient_map(
     return {feature: float(value) for feature, value in zip(kept_columns, coef, strict=False)}
 
 
+def resolve_reason_weight_map(
+    feature_columns: list[str],
+    coefficient_map: dict[str, float],
+) -> dict[str, float]:
+    available_features = set(feature_columns)
+    use_feature_presence_fallback = not any(value > 0 for value in coefficient_map.values())
+    reason_weight_map: dict[str, float] = {}
+    for feature in REASON_TEXT_BY_FEATURE:
+        alias_candidates = [feature, f"{feature}_shrunk"]
+        positive_weight = max((float(coefficient_map.get(alias, 0.0)) for alias in alias_candidates), default=0.0)
+        if positive_weight > 0:
+            reason_weight_map[feature] = positive_weight
+            continue
+        if use_feature_presence_fallback and any(alias in available_features for alias in alias_candidates):
+            reason_weight_map[feature] = 1.0
+    return reason_weight_map
+
+
 def _format_pct(value: float) -> str:
     return f"{value * 100:.1f}%"
 
@@ -1642,6 +1660,7 @@ def generate_reason_strings(
     max_reasons: int = 3,
 ) -> list[str]:
     contributions: list[dict[str, object]] = []
+    fallback_candidates: list[dict[str, object]] = []
     for feature in REASON_TEXT_BY_FEATURE:
         if feature not in row.index or feature not in reference_df.columns:
             continue
@@ -1672,6 +1691,16 @@ def generate_reason_strings(
         reason = _build_feature_reason(feature, float(value), percentile, row)
         if not reason:
             continue
+        bucket_priority = {"batter": 3.0, "pitcher": 2.5, "context": 1.0}.get(bucket, 0.0)
+        fallback_candidates.append(
+            {
+                "feature": feature,
+                "bucket": bucket,
+                "score": float(coef_weight) + percentile + bucket_priority,
+                "percentile": percentile,
+                "reason": reason,
+            }
+        )
         score = None
         if strong_signal:
             score = 2.0 + coef_weight + percentile
@@ -1681,7 +1710,6 @@ def generate_reason_strings(
             score = 0.5 + coef_weight + percentile
         if score is None:
             continue
-        bucket_priority = {"batter": 3.0, "pitcher": 2.5, "context": 1.0}.get(bucket, 0.0)
         contributions.append(
             {
                 "feature": feature,
@@ -1691,9 +1719,10 @@ def generate_reason_strings(
                 "reason": reason,
             }
         )
-    if not contributions:
+    candidate_pool = contributions or fallback_candidates
+    if not candidate_pool:
         return ["The live model favors the overall recent-form and matchup profile, but no single feature cleared the explanation threshold."][:max_reasons]
-    ordered = sorted(contributions, key=lambda item: float(item["score"]), reverse=True)
+    ordered = sorted(candidate_pool, key=lambda item: float(item["score"]), reverse=True)
     selected: list[str] = []
     seen_reasons: set[str] = set()
     for bucket in ["batter", "pitcher", "context"]:
@@ -1739,9 +1768,9 @@ def build_ranked_predictions_output(
         ranked["actual_hit_hr"] = y_true
 
     coef_map = extract_logistic_coefficient_map(fitted_model, feature_columns)
-    positive_coef_map = {k: v for k, v in coef_map.items() if v > 0}
+    reason_weight_map = resolve_reason_weight_map(feature_columns, coef_map)
     reasons = ranked.apply(
-        lambda row: generate_reason_strings(row, reference_df=reference_df, positive_coef_map=positive_coef_map, max_reasons=3),
+        lambda row: generate_reason_strings(row, reference_df=reference_df, positive_coef_map=reason_weight_map, max_reasons=3),
         axis=1,
     )
     ranked["top_reason_1"] = reasons.apply(lambda items: items[0] if len(items) > 0 else "")

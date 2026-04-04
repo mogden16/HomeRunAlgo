@@ -224,6 +224,42 @@ def _rerank_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return reranked
 
 
+def _pick_match_key(row: dict[str, Any]) -> tuple[int, int] | None:
+    game_pk = row.get("game_pk")
+    batter_id = row.get("batter_id")
+    if game_pk in (None, "") or batter_id in (None, ""):
+        return None
+    try:
+        return int(game_pk), int(batter_id)
+    except (TypeError, ValueError):
+        return None
+
+
+def _refresh_locked_pick_explanations(
+    row: dict[str, Any],
+    refreshed_row: dict[str, Any] | None,
+) -> dict[str, Any]:
+    if not refreshed_row:
+        return dict(row)
+    updated = dict(row)
+    for field in [
+        "top_reason_1",
+        "top_reason_2",
+        "top_reason_3",
+        "weather_code",
+        "weather_label",
+        "temperature_f",
+        "wind_speed_mph",
+        "wind_direction_deg",
+        "field_bearing_deg",
+        "ballpark_name",
+        "ballpark_region_abbr",
+    ]:
+        if field in refreshed_row and refreshed_row.get(field) not in (None, ""):
+            updated[field] = refreshed_row.get(field)
+    return updated
+
+
 def _merge_same_day_picks(
     existing_rows: list[dict[str, Any]],
     refreshed_rows: list[dict[str, Any]],
@@ -240,6 +276,16 @@ def _merge_same_day_picks(
 
     slate_state = build_slate_state(schedule_games, reference_time=publish_reference)
     schedule_by_game_pk = slate_state["games_by_pk"]
+    refreshed_by_pick_id = {
+        str(row["pick_id"]): dict(row)
+        for row in refreshed_rows
+        if row.get("pick_id") not in (None, "")
+    }
+    refreshed_by_match_key = {
+        match_key: dict(row)
+        for row in refreshed_rows
+        if (match_key := _pick_match_key(row)) is not None
+    }
     refreshed_game_meta_by_pk = {
         int(row["game_pk"]): dict(row)
         for row in refreshed_rows
@@ -251,10 +297,13 @@ def _merge_same_day_picks(
         game_pk = row.get("game_pk")
         schedule_game = schedule_by_game_pk.get(int(game_pk)) if game_pk not in (None, "") else None
         if _game_is_locked(schedule_game or row, publish_reference):
+            refreshed_match = refreshed_by_pick_id.get(str(row.get("pick_id") or ""))
+            if refreshed_match is None:
+                refreshed_match = refreshed_by_match_key.get(_pick_match_key(row))
             refreshed_game_meta = refreshed_game_meta_by_pk.get(int(game_pk)) if game_pk not in (None, "") else None
             locked_rows.append(
                 _fill_missing_game_meta(
-                    row,
+                    _refresh_locked_pick_explanations(row, refreshed_match),
                     schedule_game=schedule_game,
                     refreshed_game_meta=refreshed_game_meta,
                 )

@@ -349,7 +349,7 @@ function renderMobileCellStack(label, content, extraClass = "") {
   return `
     <div class="mobile-cell-stack ${extraClass}">
       <span class="mobile-cell-label">${escapeHtml(label)}</span>
-      <span class="mobile-cell-content">${content}</span>
+      <div class="mobile-cell-content">${content}</div>
     </div>
   `;
 }

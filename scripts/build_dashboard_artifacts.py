@@ -485,10 +485,12 @@ def recover_pending_history_rows(
     current_rows: list[dict[str, Any]],
     history_rows: list[dict[str, Any]],
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    current_dates = {str(row.get("game_date") or "") for row in current_rows if row.get("game_date")}
     recovered_rows = [
         dict(row)
         for row in history_rows
         if str(row.get("result_label") or row.get("result") or "Pending") == "Pending"
+        and str(row.get("game_date") or "") not in current_dates
     ]
     if not recovered_rows:
         return current_rows, history_rows
@@ -507,7 +509,12 @@ def recover_pending_history_rows(
         key = str(row.get("pick_id") or "")
         if not key:
             continue
-        current_by_id[key] = dict(row)
+        if key in current_by_id:
+            merged_row = dict(row)
+            merged_row.update(current_by_id[key])
+            current_by_id[key] = merged_row
+        else:
+            current_by_id[key] = dict(row)
     repaired_current_rows = sorted(current_by_id.values(), key=current_pick_sort_key)
     return repaired_current_rows, history_without_pending
 

@@ -36,7 +36,7 @@ from scripts.live_pipeline import (
     select_probable_lineup_hitters,
     settle_pick_records,
 )
-from train_model import LIVE_PLUS_FEATURE_COLUMNS, generate_reason_strings
+from train_model import LIVE_PLUS_FEATURE_COLUMNS, generate_reason_strings, resolve_reason_weight_map
 
 
 class LivePipelineTests(unittest.TestCase):
@@ -1291,6 +1291,77 @@ class LivePipelineTests(unittest.TestCase):
             self.assertEqual(locked_row["game_datetime"], "2026-03-26T18:00:00Z")
             self.assertEqual([row["pick_id"] for row in published], ["replacement-future", "started-pick", "replacement-later"])
 
+    def test_publish_live_picks_refreshes_locked_pick_reasons_when_same_pick_is_rescored(self) -> None:
+        existing_rows = [
+            {
+                "pick_id": "same-pick",
+                "published_at": "2026-03-26T17:00:00+00:00",
+                "game_pk": 1,
+                "game_date": "2026-03-26",
+                "game_datetime": "2026-03-26T18:00:00Z",
+                "rank": 1,
+                "batter_id": 10,
+                "batter_name": "Started Batter",
+                "team": "NYY",
+                "opponent_team": "BOS",
+                "pitcher_id": 20,
+                "pitcher_name": "Pitcher A",
+                "confidence_tier": "elite",
+                "predicted_hr_probability": 0.88,
+                "predicted_hr_score": 98.0,
+                "top_reason_1": "stale placeholder",
+                "top_reason_2": "",
+                "top_reason_3": "",
+                "weather_label": "Unknown",
+                "result": "Pending",
+            }
+        ]
+        refreshed_rows = [
+            {
+                "pick_id": "same-pick",
+                "published_at": "2026-03-26T20:00:00+00:00",
+                "game_pk": 1,
+                "game_date": "2026-03-26",
+                "game_datetime": "2026-03-26T18:00:00Z",
+                "rank": 1,
+                "batter_id": 10,
+                "batter_name": "Started Batter",
+                "team": "NYY",
+                "opponent_team": "BOS",
+                "pitcher_id": 20,
+                "pitcher_name": "Pitcher A",
+                "confidence_tier": "elite",
+                "predicted_hr_probability": 0.91,
+                "predicted_hr_score": 99.0,
+                "top_reason_1": "fresh stat reason",
+                "top_reason_2": "fresh matchup reason",
+                "top_reason_3": "",
+                "weather_label": "Clear",
+                "temperature_f": 72.0,
+                "result": "Pending",
+            }
+        ]
+        schedule_games = [{"game_pk": 1, "game_datetime": "2026-03-26T18:00:00Z", "status": "In Progress"}]
+
+        with patch("scripts.publish_live_picks.build_slate_state", return_value={"games_by_pk": {1: {"game_pk": 1}}}):
+            with patch("scripts.publish_live_picks._game_is_locked", return_value=True):
+                merged = publish_live_picks._merge_same_day_picks(
+                    existing_rows,
+                    refreshed_rows,
+                    schedule_games,
+                    schedule_date="2026-03-26",
+                    publish_reference=datetime(2026, 3, 26, 20, 0, tzinfo=timezone.utc),
+                    max_picks=None,
+                )
+
+        self.assertEqual(len(merged), 1)
+        self.assertEqual(merged[0]["pick_id"], "same-pick")
+        self.assertEqual(merged[0]["published_at"], "2026-03-26T17:00:00+00:00")
+        self.assertEqual(merged[0]["predicted_hr_score"], 98.0)
+        self.assertEqual(merged[0]["top_reason_1"], "fresh stat reason")
+        self.assertEqual(merged[0]["top_reason_2"], "fresh matchup reason")
+        self.assertEqual(merged[0]["weather_label"], "Clear")
+
     def test_publish_live_picks_locks_in_progress_game_even_before_scheduled_first_pitch(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
@@ -2294,6 +2365,51 @@ class LivePipelineTests(unittest.TestCase):
         merged = build_dashboard_artifacts.upsert_history(existing_rows, current_rows)
         self.assertEqual([row["pick_id"] for row in merged], ["new-pick"])
 
+    def test_dashboard_builder_recovered_pending_rows_keep_fresh_current_reasons(self) -> None:
+        current_rows = [
+            {
+                "pick_id": "pick-1",
+                "game_date": "2026-04-04",
+                "rank": 1,
+                "batter_id": 10,
+                "batter_name": "Alpha",
+                "team": "NYY",
+                "opponent_team": "BOS",
+                "pitcher_id": 20,
+                "pitcher_name": "Pitcher",
+                "confidence_tier": "elite",
+                "predicted_hr_probability": 0.25,
+                "predicted_hr_score": 99.0,
+                "top_reason_1": "Fresh current reason",
+                "result": "Pending",
+            }
+        ]
+        history_rows = [
+            {
+                "pick_id": "pick-1",
+                "game_date": "2026-04-04",
+                "rank": 1,
+                "batter_id": 10,
+                "batter_name": "Alpha",
+                "team": "NYY",
+                "opponent_team": "BOS",
+                "pitcher_id": 20,
+                "pitcher_name": "Pitcher",
+                "confidence_tier": "elite",
+                "predicted_hr_probability": 0.25,
+                "predicted_hr_score": 99.0,
+                "top_reason_1": "Stale pending history reason",
+                "result_label": "Pending",
+                "actual_hit_hr": None,
+            }
+        ]
+
+        repaired_current, remaining_history = build_dashboard_artifacts.recover_pending_history_rows(current_rows, history_rows)
+
+        self.assertEqual(len(remaining_history), 1)
+        self.assertEqual(remaining_history[0]["top_reason_1"], "Stale pending history reason")
+        self.assertEqual(repaired_current[0]["top_reason_1"], "Fresh current reason")
+
     def test_dashboard_score_sort_value_orders_rows(self) -> None:
         rows = [
             {"pick_id": "a", "predicted_hr_score": 80.0, "rank": 3, "batter_name": "Alpha"},
@@ -2390,7 +2506,7 @@ class LivePipelineTests(unittest.TestCase):
         self.assertIn("Hard-hit rate over the last 30 days is 54.0%", reasons[0])
         self.assertIn("Max Fried", reasons[1])
 
-    def test_generate_reason_strings_uses_generic_fallback_only_when_needed(self) -> None:
+    def test_generate_reason_strings_uses_best_available_reason_when_no_feature_clears_threshold(self) -> None:
         row = pd.Series({"batter_name": "Alpha", "pitcher_name": "Pitcher", "hard_hit_rate_last_10d": 0.10})
         reference_df = pd.DataFrame({"hard_hit_rate_last_10d": [0.20, 0.25, 0.30, 0.35, 0.40]})
         reasons = generate_reason_strings(
@@ -2399,10 +2515,41 @@ class LivePipelineTests(unittest.TestCase):
             positive_coef_map={"hard_hit_rate_last_10d": 0.8},
             max_reasons=3,
         )
+        self.assertEqual(reasons, ["Hard-hit rate over the last 10 days is 10.0%, a above-baseline recent-contact signal."])
+
+    def test_generate_reason_strings_uses_generic_fallback_only_when_no_reason_candidates_exist(self) -> None:
+        row = pd.Series({"batter_name": "Alpha", "pitcher_name": "Pitcher", "hard_hit_rate_last_10d": 0.10})
+        reference_df = pd.DataFrame({"hard_hit_rate_last_10d": [0.20, 0.25, 0.30, 0.35, 0.40]})
+        reasons = generate_reason_strings(
+            row,
+            reference_df=reference_df,
+            positive_coef_map={},
+            max_reasons=3,
+        )
         self.assertEqual(
             reasons,
             ["The live model favors the overall recent-form and matchup profile, but no single feature cleared the explanation threshold."],
         )
+
+    def test_resolve_reason_weight_map_uses_feature_presence_when_no_coefficients_exist(self) -> None:
+        weights = resolve_reason_weight_map(
+            ["hard_hit_rate_last_10d", "pitcher_hard_hit_allowed_rate_last_30d", "expected_pa_today"],
+            {},
+        )
+        self.assertEqual(weights["hard_hit_rate_last_10d"], 1.0)
+        self.assertEqual(weights["pitcher_hard_hit_allowed_rate_last_30d"], 1.0)
+        self.assertNotIn("expected_pa_today", weights)
+
+    def test_resolve_reason_weight_map_maps_shrunk_coefficients_back_to_reason_features(self) -> None:
+        weights = resolve_reason_weight_map(
+            ["hard_hit_rate_last_10d_shrunk", "pitcher_hard_hit_allowed_rate_last_30d_shrunk"],
+            {
+                "hard_hit_rate_last_10d_shrunk": 0.7,
+                "pitcher_hard_hit_allowed_rate_last_30d_shrunk": 0.5,
+            },
+        )
+        self.assertEqual(weights["hard_hit_rate_last_10d"], 0.7)
+        self.assertEqual(weights["pitcher_hard_hit_allowed_rate_last_30d"], 0.5)
 
 
 if __name__ == "__main__":
