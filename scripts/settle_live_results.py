@@ -78,6 +78,30 @@ def _recover_pending_history_rows(
     return list(current_by_id.values()), history_without_pending
 
 
+def _rows_reference_only_terminal_games(
+    rows: list[dict[str, object]],
+    slate_state: dict[str, object],
+) -> bool:
+    games_by_pk = slate_state.get("games_by_pk") or {}
+    if not isinstance(games_by_pk, dict):
+        return True
+    relevant_games = []
+    for row in rows:
+        game_pk = row.get("game_pk")
+        try:
+            normalized_game_pk = int(game_pk) if game_pk not in (None, "") else None
+        except (TypeError, ValueError):
+            normalized_game_pk = None
+        if normalized_game_pk is None:
+            continue
+        game = games_by_pk.get(normalized_game_pk)
+        if isinstance(game, dict):
+            relevant_games.append(game)
+    if not relevant_games:
+        return True
+    return all(bool(game.get("is_final")) for game in relevant_games)
+
+
 def run_settle_live_results(
     *,
     dataset_path: Path = LIVE_MODEL_DATA_PATH,
@@ -108,7 +132,8 @@ def run_settle_live_results(
             str(row.get("result_label") or row.get("result") or "Pending") in {"HR", "No HR", "Postponed"}
             for row in settled_rows
         )
-        if (slate_state["all_final"] and all_rows_terminal) or (not schedule_games and all_rows_terminal):
+        relevant_games_terminal = _rows_reference_only_terminal_games(settled_rows, slate_state)
+        if all_rows_terminal and relevant_games_terminal:
             history_rows = _upsert_history_rows(history_rows, settled_rows)
             archived_dates.append(current_date)
             continue
