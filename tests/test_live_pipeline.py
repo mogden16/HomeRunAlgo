@@ -938,6 +938,53 @@ class LivePipelineTests(unittest.TestCase):
         self.assertEqual([row["batter_name"] for row in picks], ["Batter 1", "Batter 3"])
         self.assertEqual([row["confidence_tier"] for row in picks], ["elite", "strong"])
 
+    def test_score_live_candidates_without_min_tier_keeps_lower_confidence_rows(self) -> None:
+        class FakeModel:
+            def predict_proba(self, features: pd.DataFrame) -> list[list[float]]:
+                probabilities = []
+                for value in features["feature_a"].tolist():
+                    probabilities.append([1.0 - float(value), float(value)])
+                return pd.DataFrame(probabilities).to_numpy()
+
+        candidate_rows = []
+        probability_map = {
+            1: 0.99,
+            2: 0.97,
+            3: 0.98,
+        }
+        for batter_id in range(1, 21):
+            candidate_rows.append(
+                {
+                    "game_pk": 100 + ((batter_id - 1) // 2),
+                    "game_date": pd.Timestamp("2026-03-25"),
+                    "batter_id": batter_id,
+                    "batter_name": f"Batter {batter_id}",
+                    "team": f"TEAM{batter_id}",
+                    "opponent_team": "OPP",
+                    "pitcher_id": 200 + batter_id,
+                    "pitcher_name": "Pitcher",
+                    "feature_a": probability_map.get(batter_id, max(0.01, 0.50 - (batter_id * 0.01))),
+                }
+            )
+        candidate_df = pd.DataFrame(candidate_rows)
+        bundle = {
+            "model": FakeModel(),
+            "feature_columns": ["feature_a"],
+            "reference_df": pd.DataFrame({"feature_a": [row["feature_a"] for row in candidate_rows]}),
+        }
+
+        picks = score_live_candidates(
+            candidate_df,
+            bundle,
+            max_picks=20,
+            min_confidence_tier=None,
+            published_at="2026-03-25T12:00:00+00:00",
+        )
+
+        tiers = {row["confidence_tier"] for row in picks}
+        self.assertIn("watch", tiers)
+        self.assertIn("longshot", tiers)
+
     def test_fetch_forecast_weather_skips_api_for_historical_dates(self) -> None:
         with patch("scripts.live_pipeline.requests.get") as mock_get:
             weather = fetch_forecast_weather(["ATL"], "2024-09-29")

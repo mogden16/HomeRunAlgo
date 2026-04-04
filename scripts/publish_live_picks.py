@@ -42,7 +42,7 @@ from scripts.live_pipeline import (
     write_current_picks,
 )
 
-DEFAULT_MIN_CONFIDENCE_TIER = "strong"
+DEFAULT_MIN_CONFIDENCE_TIER = None
 DEFAULT_MAX_PICKS_PER_TEAM = None
 DEFAULT_MAX_PICKS_PER_GAME = None
 
@@ -68,7 +68,7 @@ def parse_args() -> argparse.Namespace:
         "--min-confidence-tier",
         choices=tuple(CONFIDENCE_TIER_ORDER.keys()),
         default=DEFAULT_MIN_CONFIDENCE_TIER,
-        help="Minimum confidence tier required for publication.",
+        help="Optional minimum confidence tier required for publication. Disabled by default.",
     )
     parser.add_argument(
         "--max-picks-per-team",
