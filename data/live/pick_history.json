@@ -73,8 +73,8 @@
     "game_pk": 823244,
     "game_date": "2026-03-25",
     "game_datetime": "",
-    "game_status": "",
-    "game_state": "pregame",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 3,
     "batter_id": 666464,
     "batter_name": "Jerar Encarnacion",
@@ -98,8 +98,8 @@
     "top_reason_1": "Peak exit velocity over the last 10 days is 115.0 mph, which points to top-end HR juice.",
     "top_reason_2": "Projected wind speed is 14.5 mph, which the live model treats as favorable weather context.",
     "top_reason_3": "Hard-hit rate over the last 30 days is 64.1%, showing consistent quality contact.",
-    "result_label": "Pending",
-    "actual_hit_hr": null
+    "result_label": "No HR",
+    "actual_hit_hr": 0
   },
   {
     "pick_id": "2026-03-25:823244:656305:608331",
@@ -2113,8 +2113,8 @@
     "game_pk": 824701,
     "game_date": "2026-03-28",
     "game_datetime": "",
-    "game_status": "",
-    "game_state": "pregame",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 11,
     "batter_id": 686894,
     "batter_name": "Joey Wiemer",
@@ -2138,8 +2138,8 @@
     "top_reason_1": "HR rate over the last 30 days is 25.0%, which keeps the recent power trend elevated.",
     "top_reason_2": "Cade Horton has allowed 90.0 mph average exit velocity recently, which the model flags as hittable contact.",
     "top_reason_3": "Average exit velocity over the last 10 days is 98.3 mph, a top-decile recent batted-ball quality marker.",
-    "result_label": "Pending",
-    "actual_hit_hr": null
+    "result_label": "No HR",
+    "actual_hit_hr": 0
   },
   {
     "pick_id": "2026-03-28:823488:656941:594798",
@@ -2657,8 +2657,8 @@
     "game_pk": 823159,
     "game_date": "2026-03-30",
     "game_datetime": "",
-    "game_status": "",
-    "game_state": "pregame",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 4,
     "batter_id": 670042,
     "batter_name": "Luke Raley",
@@ -2682,8 +2682,8 @@
     "top_reason_1": "Peak exit velocity over the last 10 days is 113.8 mph, which points to top-end HR juice.",
     "top_reason_2": "Ryan Weathers has allowed a 54.5% hard-hit rate over the last 30 days.",
     "top_reason_3": "Hard-hit rate over the last 30 days is 66.7%, showing consistent quality contact.",
-    "result_label": "Pending",
-    "actual_hit_hr": null
+    "result_label": "No HR",
+    "actual_hit_hr": 0
   },
   {
     "pick_id": "2026-03-30:823484:691781:592836",
@@ -3406,7 +3406,7 @@
     "game_date": "2026-03-31",
     "game_datetime": "",
     "game_status": "Final",
-    "game_state": "pregame",
+    "game_state": "final",
     "rank": 12,
     "batter_id": 693307,
     "batter_name": "Dillon Dingler",
@@ -3430,8 +3430,8 @@
     "top_reason_1": "Hard-hit rate over the last 30 days is 75.0%, showing consistent quality contact.",
     "top_reason_2": "Brandon Pfaadt has allowed a 45.6% hard-hit rate over the last 30 days.",
     "top_reason_3": "95+ EV contact rate over the last 30 days is 75.0%, a strong loud-contact input for the model.",
-    "result_label": "Pending",
-    "actual_hit_hr": null
+    "result_label": "No HR",
+    "actual_hit_hr": 0
   },
   {
     "pick_id": "2026-03-31:824942:671739:650644",
@@ -3882,7 +3882,7 @@
     "game_date": "2026-04-01",
     "game_datetime": "2026-04-02T00:20:00Z",
     "game_status": "Final",
-    "game_state": "live",
+    "game_state": "final",
     "rank": 13,
     "batter_id": 800050,
     "batter_name": "Chase DeLauter",
@@ -3906,8 +3906,8 @@
     "top_reason_1": "Barrel rate over the last 30 days is 8.7%, which the model treats as sustained power quality.",
     "top_reason_2": "The hitter has the platoon advantage in this matchup.",
     "top_reason_3": "Against this pitcher handedness, the hitter has a 8.7% barrel-per-PA split.",
-    "result_label": "Pending",
-    "actual_hit_hr": null
+    "result_label": "No HR",
+    "actual_hit_hr": 0
   },
   {
     "pick_id": "2026-04-01:823483:691781:650911",
