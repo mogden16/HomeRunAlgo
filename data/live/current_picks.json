@@ -1,1 +1,35 @@
-[]
+[
+  {
+    "pick_id": "2026-04-01:823970:800050:808967",
+    "published_at": "2026-04-01T20:27:32.325447+00:00",
+    "game_pk": 823970,
+    "game_date": "2026-04-01",
+    "game_datetime": "2026-04-02T00:20:00Z",
+    "game_status": "Final",
+    "game_state": "live",
+    "rank": 1,
+    "batter_id": 800050,
+    "batter_name": "Chase DeLauter",
+    "team": "CLE",
+    "opponent_team": "LAD",
+    "pitcher_id": 808967,
+    "pitcher_name": "Yoshinobu Yamamoto",
+    "lineup_source": "projected",
+    "batting_order": null,
+    "ballpark_name": "Dodger Stadium",
+    "ballpark_region_abbr": "CA",
+    "weather_code": 0,
+    "weather_label": "Clear",
+    "temperature_f": 61.2,
+    "wind_speed_mph": 8.8,
+    "wind_direction_deg": 255.0,
+    "field_bearing_deg": 35.0,
+    "confidence_tier": "strong",
+    "predicted_hr_probability": 0.147776,
+    "predicted_hr_score": 96.5,
+    "top_reason_1": "Barrel rate over the last 30 days is 8.7%, which the model treats as sustained power quality.",
+    "top_reason_2": "The hitter has the platoon advantage in this matchup.",
+    "top_reason_3": "Against this pitcher handedness, the hitter has a 8.7% barrel-per-PA split.",
+    "result": "Pending"
+  }
+]
