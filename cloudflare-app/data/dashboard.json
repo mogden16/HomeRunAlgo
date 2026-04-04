@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-04T00:26:54.586207+00:00",
+  "generated_at": "2026-04-04T03:33:56.893429+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -590,7 +590,7 @@
       "game_pk": 825103,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-04T01:45:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 2,
       "morning_rank": null,
       "batter_name": "Michael Harris",
@@ -652,7 +652,7 @@
       "game_pk": 825026,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-04T01:40:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 4,
       "morning_rank": null,
       "batter_name": "Yordan Alvarez",
@@ -776,7 +776,7 @@
       "game_pk": 825103,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-04T01:45:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 8,
       "morning_rank": null,
       "batter_name": "Drake Baldwin",
@@ -869,7 +869,7 @@
       "game_pk": 824056,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-04T01:38:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 11,
       "morning_rank": null,
       "batter_name": "Mike Trout",
@@ -5628,7 +5628,7 @@
       "game_pk": 823732,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-03T20:10:00Z",
-      "game_status": "Game Over",
+      "game_status": "Final",
       "game_state": "final",
       "matchup": "TB @ MIN",
       "teams": [
@@ -6012,8 +6012,8 @@
       "game_pk": 824056,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-04T01:38:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "In Progress",
+      "game_state": "live",
       "matchup": "SEA @ LAA",
       "teams": [
         {
@@ -6138,8 +6138,8 @@
       "game_pk": 825026,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-04T01:40:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "In Progress",
+      "game_state": "live",
       "matchup": "HOU @ OAK",
       "teams": [
         {
@@ -6215,8 +6215,8 @@
       "game_pk": 825103,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-04T01:45:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "In Progress",
+      "game_state": "live",
       "matchup": "ATL @ AZ",
       "teams": [
         {
@@ -6256,7 +6256,7 @@
             },
             {
               "batter_id": 671739,
-              "batter_name": "Michael Harris",
+              "batter_name": "Michael Harris II",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -6268,7 +6268,7 @@
             },
             {
               "batter_id": 660670,
-              "batter_name": "Ronald Acu\u00f1a",
+              "batter_name": "Ronald Acu\u00f1a Jr.",
               "batting_order": null,
               "selected_for_pick": false
             }
@@ -6341,8 +6341,8 @@
       "game_pk": 823240,
       "game_date": "2026-04-03",
       "game_datetime": "2026-04-04T02:15:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "In Progress",
+      "game_state": "live",
       "matchup": "NYM @ SF",
       "teams": [
         {
@@ -6412,12 +6412,6 @@
           "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 669477,
-              "batter_name": "Casey Schmitt",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
               "batter_id": 664056,
               "batter_name": "Harrison Bader",
               "batting_order": null,
@@ -6426,6 +6420,12 @@
             {
               "batter_id": 671218,
               "batter_name": "Heliot Ramos",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 666464,
+              "batter_name": "Jerar Encarnacion",
               "batting_order": null,
               "selected_for_pick": false
             },
