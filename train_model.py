@@ -519,6 +519,16 @@ def prune_model_features_by_training_missingness(
     feature_columns: list[str],
     threshold: float = MAX_MODEL_FEATURE_MISSINGNESS,
 ) -> tuple[list[str], pd.DataFrame, list[str]]:
+    audit_columns = ["feature_name", "training_missing_pct", "keep_for_model", "reason"]
+    if not feature_columns:
+        audit_df = pd.DataFrame(columns=audit_columns)
+        print("\nFeature-pruning audit (training missingness)")
+        print("-" * 60)
+        print("No candidate features were available for this profile on the training slice.")
+        print(f"Configured MAX_MODEL_FEATURE_MISSINGNESS: {threshold:.0%}")
+        print("Model features kept: 0 | excluded: 0")
+        return [], audit_df, []
+
     rows: list[dict[str, object]] = []
     kept: list[str] = []
     excluded: list[str] = []
@@ -538,7 +548,10 @@ def prune_model_features_by_training_missingness(
             kept.append(feature)
         else:
             excluded.append(feature)
-    audit_df = pd.DataFrame(rows).sort_values(["keep_for_model", "training_missing_pct", "feature_name"], ascending=[True, False, True])
+    audit_df = pd.DataFrame(rows, columns=audit_columns).sort_values(
+        ["keep_for_model", "training_missing_pct", "feature_name"],
+        ascending=[True, False, True],
+    )
     print("\nFeature-pruning audit (training missingness)")
     print("-" * 60)
     print(audit_df.to_string(index=False, formatters={"training_missing_pct": lambda v: f"{v:.2f}%"}))

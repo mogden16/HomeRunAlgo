@@ -1513,6 +1513,15 @@ class LivePipelineTests(unittest.TestCase):
                 },
                 "feature_columns": ["hr_per_pa_last_30d"],
             }
+            baseline_candidate = {
+                "summary_row": {
+                    "model_family": "logistic",
+                    "feature_profile": "live_shrunk",
+                    "missingness_threshold": live_pipeline.MAX_MODEL_FEATURE_MISSINGNESS,
+                    "pr_auc": 0.1,
+                },
+                "feature_columns": ["hr_per_pa_last_30d"],
+            }
             fake_backtest = {
                 "selected_candidate": selected_candidate,
                 "final_result": {
@@ -1522,7 +1531,8 @@ class LivePipelineTests(unittest.TestCase):
                     "confidence_summary": [{"confidence_tier": "elite", "sample_size": 1}],
                     "elite_pick_metrics": {"elite_sample_size": 1, "elite_precision": 1.0},
                 },
-                "candidate_results": [selected_candidate],
+                "baseline_holdout": {"summary_row": dict(baseline_candidate["summary_row"])},
+                "candidate_results": [selected_candidate, baseline_candidate],
                 "train_df": pd.DataFrame({"game_date": pd.to_datetime(["2026-03-24"]), "hit_hr": [0]}),
                 "test_df": pd.DataFrame({"game_date": pd.to_datetime(["2026-03-25"]), "hit_hr": [1]}),
             }
