@@ -354,13 +354,14 @@ function renderMobileCellStack(label, content, extraClass = "") {
   `;
 }
 
-function renderMobileWhyDetails(row) {
+function renderMobileWhyDetails(row, extraClass = "") {
   const reasons = [row.top_reason_1, row.top_reason_2, row.top_reason_3].filter(Boolean);
   if (!reasons.length) {
     return "";
   }
+  const detailsClass = ["mobile-why-details", extraClass].filter(Boolean).join(" ");
   return `
-    <details class="mobile-why-details">
+    <details class="${detailsClass}">
       <summary>Why</summary>
       <ul class="reason-list">${reasons.map((reason) => `<li>${escapeHtml(reason)}</li>`).join("")}</ul>
     </details>
@@ -664,6 +665,7 @@ function renderPicksTable(targetId, rows, emptyMessage, { includeGameMeta = fals
               <span class="mobile-inline-pitcher">vs ${escapeHtml(row.pitcher_name || "-")}</span>
               <span>${renderLineupBadge(row.lineup_source)}${row.batting_order ? ` <span class="lineup-order">batting ${escapeHtml(row.batting_order)}</span>` : ""} <span class="lineup-separator">|</span> ${escapeHtml(formatGameState(row.game_state))}</span>
             </div>
+            ${renderMobileWhyDetails(row, "mobile-why-inline")}
           `,
         )}
       `,
@@ -693,7 +695,6 @@ function renderPicksTable(targetId, rows, emptyMessage, { includeGameMeta = fals
           `<span class="${resultClass(row.result_label)}">${escapeHtml(row.result_label)}</span>`,
           "stack-center",
         )}
-        ${renderMobileWhyDetails(row)}
       `,
     },
     {
