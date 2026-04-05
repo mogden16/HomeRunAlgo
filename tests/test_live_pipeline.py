@@ -24,6 +24,7 @@ from scripts import live_pipeline
 from scripts import publish_live_picks
 from scripts import run_daily_live_refresh
 from scripts import run_refresh_mode
+from scripts import refresh_modes
 from scripts.live_pipeline import (
     assert_live_publish_freshness,
     build_live_candidate_frame,
@@ -1362,6 +1363,61 @@ class LivePipelineTests(unittest.TestCase):
         self.assertEqual(merged[0]["top_reason_2"], "fresh matchup reason")
         self.assertEqual(merged[0]["weather_label"], "Clear")
 
+    def test_publish_live_picks_drops_stale_previous_date_rows(self) -> None:
+        existing_rows = [
+            {
+                "pick_id": "stale-yesterday",
+                "published_at": "2026-04-04T20:00:00+00:00",
+                "game_pk": 824460,
+                "game_date": "2026-04-04",
+                "game_datetime": "2026-04-04T17:15:00Z",
+                "rank": 1,
+                "batter_id": 10,
+                "batter_name": "Yesterday Batter",
+                "team": "CHC",
+                "opponent_team": "CLE",
+                "pitcher_id": 20,
+                "pitcher_name": "Pitcher A",
+                "confidence_tier": "watch",
+                "predicted_hr_probability": 0.12,
+                "predicted_hr_score": 85.0,
+                "top_reason_1": "stale",
+                "result": "Pending",
+            }
+        ]
+        refreshed_rows = [
+            {
+                "pick_id": "today-pick",
+                "published_at": "2026-04-05T16:00:00+00:00",
+                "game_pk": 824459,
+                "game_date": "2026-04-05",
+                "game_datetime": "2026-04-05T17:10:00Z",
+                "rank": 1,
+                "batter_id": 11,
+                "batter_name": "Today Batter",
+                "team": "CLE",
+                "opponent_team": "CHC",
+                "pitcher_id": 21,
+                "pitcher_name": "Pitcher B",
+                "confidence_tier": "elite",
+                "predicted_hr_probability": 0.21,
+                "predicted_hr_score": 97.0,
+                "top_reason_1": "fresh",
+                "result": "Pending",
+            }
+        ]
+
+        merged = publish_live_picks._merge_same_day_picks(
+            existing_rows,
+            refreshed_rows,
+            schedule_games=[{"game_pk": 824459, "status": "Scheduled", "game_datetime": "2026-04-05T17:10:00Z"}],
+            schedule_date="2026-04-05",
+            publish_reference=datetime(2026, 4, 5, 16, 0, tzinfo=timezone.utc),
+            max_picks=None,
+        )
+
+        self.assertEqual([row["pick_id"] for row in merged], ["today-pick"])
+
     def test_publish_live_picks_locks_in_progress_game_even_before_scheduled_first_pitch(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
@@ -1954,6 +2010,43 @@ class LivePipelineTests(unittest.TestCase):
             self.assertEqual(current_rows, [])
             self.assertEqual(dashboard_payload["latest_available_date"], "2026-03-26")
             self.assertEqual(dashboard_payload["latest_picks"], [])
+
+    def test_resolve_auto_refresh_mode_ignores_stale_terminal_previous_day_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            current_path = base / "current.json"
+            metadata_path = base / "metadata.json"
+            draft_path = base / "draft.json"
+            current_path.write_text(
+                json.dumps(
+                    [
+                        {
+                            "pick_id": "postponed-old",
+                            "game_date": "2026-04-04",
+                            "game_pk": 824460,
+                            "game_status": "Postponed",
+                            "game_state": "final",
+                            "result": "Pending",
+                        }
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            metadata_path.write_text(json.dumps({"trained_through": "2026-04-03"}), encoding="utf-8")
+            draft_path.write_text("[]", encoding="utf-8")
+
+            with patch(
+                "scripts.refresh_modes.fetch_schedule_games",
+                return_value=[{"game_pk": 824459, "status": "Scheduled", "game_datetime": "2026-04-05T17:10:00Z"}],
+            ):
+                mode = refresh_modes.resolve_auto_refresh_mode(
+                    current_picks_path=current_path,
+                    metadata_path=metadata_path,
+                    draft_output_path=draft_path,
+                    reference_time=datetime(2026, 4, 5, 11, 0, tzinfo=timezone.utc),
+                )
+
+            self.assertEqual(mode, "prepare")
 
     def test_build_live_feature_frame_backfills_latest_batter_and_pitcher_features(self) -> None:
         dataset_df = pd.DataFrame(

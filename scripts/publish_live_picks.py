@@ -269,10 +269,9 @@ def _merge_same_day_picks(
     publish_reference: datetime,
     max_picks: int | None,
 ) -> list[dict[str, Any]]:
-    other_dates = [dict(row) for row in existing_rows if normalize_game_date(row.get("game_date")) != schedule_date]
     same_day_rows = [dict(row) for row in existing_rows if normalize_game_date(row.get("game_date")) == schedule_date]
     if not same_day_rows:
-        return [*other_dates, *_rerank_rows(refreshed_rows)]
+        return _rerank_rows(refreshed_rows)[:max_picks]
 
     slate_state = build_slate_state(schedule_games, reference_time=publish_reference)
     schedule_by_game_pk = slate_state["games_by_pk"]
@@ -317,10 +316,10 @@ def _merge_same_day_picks(
         if row.get("game_pk") in (None, "") or int(row["game_pk"]) not in locked_game_pks
     ]
     if not locked_rows:
-        return [*other_dates, *_rerank_rows(unlocked_refreshed)]
+        return _rerank_rows(unlocked_refreshed)[:max_picks]
 
     merged_same_day = _rerank_rows([*locked_rows, *unlocked_refreshed])[:max_picks]
-    return [*other_dates, *merged_same_day]
+    return merged_same_day
 
 
 def publish_live_picks(

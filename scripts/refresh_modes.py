@@ -81,6 +81,33 @@ def _has_pregame_games(slate_state: dict[str, Any]) -> bool:
     return any(str(game.get("game_state") or "") == "pregame" for game in slate_state.get("games", []))
 
 
+def _row_is_terminal_for_refresh(row: dict[str, Any]) -> bool:
+    result_token = str(row.get("result_label") or row.get("result") or "").strip().lower()
+    if result_token in {"hr", "no hr", "postponed"}:
+        return True
+    game_state = str(row.get("game_state") or "").strip().lower()
+    if game_state == "final":
+        return True
+    status_token = str(row.get("game_status") or row.get("status") or "").strip().lower()
+    return any(token in status_token for token in ("final", "game over", "completed early", "postponed", "cancelled"))
+
+
+def _stale_terminal_rows_should_not_block_publish(
+    *,
+    active_date: str | None,
+    publish_date: str,
+    current_rows: list[dict[str, Any]],
+) -> bool:
+    if not active_date or active_date >= publish_date:
+        return False
+    active_rows = [
+        dict(row)
+        for row in current_rows
+        if normalize_game_date(row.get("game_date")) == active_date
+    ]
+    return bool(active_rows) and all(_row_is_terminal_for_refresh(row) for row in active_rows)
+
+
 def _write_morning_baseline_if_needed(
     *,
     baseline_path: Path,
@@ -118,6 +145,12 @@ def resolve_auto_refresh_mode(
     current_rows = load_json_array(current_picks_path)
     active_dates = sorted({normalize_game_date(row.get("game_date")) for row in current_rows if normalize_game_date(row.get("game_date"))})
     active_date = active_dates[-1] if active_dates else None
+    if _stale_terminal_rows_should_not_block_publish(
+        active_date=active_date,
+        publish_date=publish_date,
+        current_rows=current_rows,
+    ):
+        active_date = None
 
     if active_date:
         schedule_games = fetch_schedule_games(active_date)
