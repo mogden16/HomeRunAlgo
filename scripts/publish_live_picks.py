@@ -15,11 +15,21 @@ if str(ROOT_DIR) not in sys.path:
 
 from config import (
     LIVE_CURRENT_PICKS_PATH,
+    LIVE_DAILY_BOARD_STATE_PATH,
     LIVE_MODEL_BUNDLE_PATH,
     LIVE_MODEL_DATA_PATH,
     LIVE_MODEL_METADATA_PATH,
     LIVE_PICK_HISTORY_PATH,
     LIVE_TRACKING_START_DATE,
+)
+from scripts.board_state import (
+    apply_major_alerts,
+    board_entries_to_current_rows,
+    create_daily_board_snapshot,
+    load_daily_board_state,
+    resolve_board_state_path,
+    update_board_entry_status,
+    write_daily_board_state,
 )
 from scripts.build_dashboard_artifacts import DEFAULT_OUTPUT_DIR, build_dashboard_artifacts
 from scripts.live_pipeline import (
@@ -81,6 +91,11 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=DEFAULT_MAX_PICKS_PER_GAME,
         help="Maximum published picks allowed from the same game. Disabled by default.",
+    )
+    parser.add_argument(
+        "--force-republish",
+        action="store_true",
+        help="Explicitly rebuild the board for the same date instead of reusing the existing morning snapshot.",
     )
     return parser.parse_args()
 
@@ -275,6 +290,7 @@ def publish_live_picks(
     metadata_path: Path = LIVE_MODEL_METADATA_PATH,
     output_path: Path = LIVE_CURRENT_PICKS_PATH,
     history_path: Path = LIVE_PICK_HISTORY_PATH,
+    board_state_path: Path | None = LIVE_DAILY_BOARD_STATE_PATH,
     dashboard_output_dir: Path = DEFAULT_OUTPUT_DIR,
     schedule_date: str | None = None,
     hitters_per_team: int = 9,
@@ -282,9 +298,71 @@ def publish_live_picks(
     min_confidence_tier: str | None = DEFAULT_MIN_CONFIDENCE_TIER,
     max_picks_per_team: int | None = DEFAULT_MAX_PICKS_PER_TEAM,
     max_picks_per_game: int | None = DEFAULT_MAX_PICKS_PER_GAME,
+    force_republish: bool = False,
 ) -> list[dict[str, Any]]:
     resolved_schedule_date = schedule_date or default_publish_date()
     publish_reference = _publish_reference_now()
+    resolved_board_state_path = resolve_board_state_path(
+        board_state_path=board_state_path,
+        current_picks_path=output_path,
+    )
+    dataset_df = load_live_dataset(Path(dataset_path))
+    model_metadata = load_model_metadata(Path(metadata_path))
+    try:
+        assert_live_publish_freshness(
+            schedule_date=resolved_schedule_date,
+            dataset_df=dataset_df,
+            model_metadata=model_metadata,
+        )
+    except RuntimeError:
+        write_current_picks([], output_path)
+        refresh_cloudflare_dashboard(
+            output_path,
+            history_path,
+            dashboard_output_dir,
+            resolved_schedule_date,
+            persist_history=False,
+        )
+        raise
+    resolved_through_date = str(dataset_df["game_date"].max().date())
+    schedule_games = fetch_schedule_games(resolved_schedule_date)
+    existing_rows = load_json_array(output_path)
+    existing_same_day_rows = [
+        dict(row)
+        for row in existing_rows
+        if normalize_game_date(row.get("game_date")) == resolved_schedule_date
+    ]
+
+    if existing_same_day_rows and not force_republish:
+        existing_board = load_daily_board_state(resolved_board_state_path)
+        if normalize_game_date(existing_board.get("board_date")) != resolved_schedule_date or not existing_board.get("entries"):
+            created_at = str(existing_same_day_rows[0].get("created_at") or existing_same_day_rows[0].get("published_at") or publish_reference.isoformat())
+            existing_board = create_daily_board_snapshot(
+                existing_same_day_rows,
+                resolved_schedule_date,
+                created_at=created_at,
+            )
+        existing_board, status_updates = update_board_entry_status(
+            existing_board,
+            dataset_df,
+            resolved_through_date=resolved_through_date,
+            schedule_games=schedule_games,
+            reference_time=publish_reference,
+        )
+        existing_board, alert_count = apply_major_alerts(
+            existing_board,
+            schedule_games=schedule_games,
+        )
+        write_daily_board_state(existing_board, resolved_board_state_path)
+        stable_rows = board_entries_to_current_rows(existing_board)
+        write_current_picks(stable_rows, output_path)
+        refresh_cloudflare_dashboard(output_path, history_path, dashboard_output_dir, resolved_schedule_date)
+        print(
+            f"Reused stable board for {resolved_schedule_date}: "
+            f"{len(stable_rows)} entries, {status_updates} status updates, {alert_count} alerts"
+        )
+        return load_json_array(output_path)
+
     try:
         picks = generate_live_picks(
             dataset_path=dataset_path,
@@ -309,20 +387,24 @@ def publish_live_picks(
             persist_history=False,
         )
         raise
-    schedule_games = fetch_schedule_games(resolved_schedule_date)
-    existing_rows = load_json_array(output_path)
-    merged_picks = _merge_same_day_picks(
-        existing_rows,
+    board_state = create_daily_board_snapshot(
         picks,
-        schedule_games,
-        schedule_date=resolved_schedule_date,
-        publish_reference=publish_reference,
-        max_picks=max_picks,
+        resolved_schedule_date,
+        created_at=publish_reference.isoformat(),
     )
-    write_current_picks(merged_picks, output_path)
+    board_state, alert_count = apply_major_alerts(
+        board_state,
+        schedule_games=schedule_games,
+    )
+    write_daily_board_state(board_state, resolved_board_state_path)
+    stable_rows = board_entries_to_current_rows(board_state)
+    write_current_picks(stable_rows, output_path)
     published_rows = load_json_array(output_path)
     refresh_cloudflare_dashboard(output_path, history_path, dashboard_output_dir, resolved_schedule_date)
-    print(f"Published {len(published_rows)} picks to {output_path} for {resolved_schedule_date}")
+    print(
+        f"Published stable board with {len(published_rows)} picks to {output_path} for {resolved_schedule_date} "
+        f"({alert_count} alerts)"
+    )
     return published_rows
 
 
@@ -402,6 +484,7 @@ def main() -> None:
         metadata_path=Path(args.metadata_path),
         output_path=Path(args.output_path),
         history_path=Path(args.history_path),
+        board_state_path=LIVE_DAILY_BOARD_STATE_PATH,
         dashboard_output_dir=Path(args.dashboard_output_dir),
         schedule_date=args.schedule_date,
         hitters_per_team=args.hitters_per_team,
@@ -409,6 +492,7 @@ def main() -> None:
         min_confidence_tier=args.min_confidence_tier,
         max_picks_per_team=args.max_picks_per_team,
         max_picks_per_game=args.max_picks_per_game,
+        force_republish=args.force_republish,
     )
 
 

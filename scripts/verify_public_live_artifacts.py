@@ -11,12 +11,17 @@ TRACKING_START_DATE = "2026-03-25"
 CURRENT_PICK_COLUMNS = {
     "pick_id",
     "published_at",
+    "board_date",
+    "created_at",
+    "finalized_at",
+    "is_finalized",
     "game_pk",
     "game_date",
     "game_datetime",
     "game_status",
     "game_state",
     "rank",
+    "original_rank",
     "batter_id",
     "batter_name",
     "team",
@@ -34,8 +39,14 @@ CURRENT_PICK_COLUMNS = {
     "wind_direction_deg",
     "field_bearing_deg",
     "confidence_tier",
+    "original_tier",
     "predicted_hr_probability",
     "predicted_hr_score",
+    "original_score",
+    "current_status",
+    "alert_flags",
+    "inactive_flag",
+    "display_style",
     "top_reason_1",
     "top_reason_2",
     "top_reason_3",
@@ -44,12 +55,17 @@ CURRENT_PICK_COLUMNS = {
 HISTORY_COLUMNS = {
     "pick_id",
     "published_at",
+    "board_date",
+    "created_at",
+    "finalized_at",
+    "is_finalized",
     "game_pk",
     "game_date",
     "game_datetime",
     "game_status",
     "game_state",
     "rank",
+    "original_rank",
     "batter_id",
     "batter_name",
     "team",
@@ -67,8 +83,14 @@ HISTORY_COLUMNS = {
     "wind_direction_deg",
     "field_bearing_deg",
     "confidence_tier",
+    "original_tier",
     "predicted_hr_probability",
     "predicted_hr_score",
+    "original_score",
+    "current_status",
+    "alert_flags",
+    "inactive_flag",
+    "display_style",
     "top_reason_1",
     "top_reason_2",
     "top_reason_3",
@@ -77,11 +99,18 @@ HISTORY_COLUMNS = {
 }
 DISPLAY_COLUMNS = [
     "pick_id",
+    "board_date",
+    "created_at",
+    "finalized_at",
+    "is_finalized",
     "game_pk",
     "game_date",
     "game_datetime",
     "game_state",
     "rank",
+    "original_rank",
+    "original_score",
+    "original_tier",
     "morning_rank",
     "batter_name",
     "team",
@@ -101,6 +130,10 @@ DISPLAY_COLUMNS = [
     "predicted_hr_probability",
     "predicted_hr_score",
     "actual_hit_hr",
+    "current_status",
+    "alert_flags",
+    "inactive_flag",
+    "display_style",
     "top_reason_1",
     "top_reason_2",
     "top_reason_3",
@@ -128,14 +161,18 @@ def score_sort_value(row: dict[str, Any]) -> float:
 
 
 def current_sort_key(row: dict[str, Any]) -> tuple[float, int, str]:
-    return (-score_sort_value(row), int(row.get("rank") or 999), str(row.get("batter_name") or ""))
+    return (
+        float(str(row.get("game_date") or "0").replace("-", "")),
+        int(row.get("original_rank") or row.get("rank") or 999),
+        str(row.get("batter_name") or ""),
+    )
 
 
 def history_sort_key(row: dict[str, Any]) -> tuple[str, float, int, str]:
     return (
         str(row.get("game_date") or ""),
-        -score_sort_value(row),
-        int(row.get("rank") or 999),
+        int(row.get("original_rank") or row.get("rank") or 999),
+        -score_sort_value({"predicted_hr_score": row.get("original_score", row.get("predicted_hr_score"))}),
         str(row.get("batter_name") or ""),
     )
 
@@ -148,7 +185,7 @@ def assert_true(condition: bool, message: str) -> None:
 def verify_current_picks(path: Path) -> None:
     rows = load_json(path)
     assert_true(isinstance(rows, list), f"{path} must contain a JSON array.")
-    assert_true(rows == sorted(rows, key=current_sort_key), f"{path} is not sorted by score descending.")
+    assert_true(rows == sorted(rows, key=current_sort_key), f"{path} is not sorted by stable board order.")
     for row in rows:
         assert_true(set(row.keys()) == CURRENT_PICK_COLUMNS, f"{path} contains unexpected current-pick fields: {sorted(set(row.keys()) - CURRENT_PICK_COLUMNS)}")
         assert_true(str(row.get("game_date") or "") >= TRACKING_START_DATE, f"{path} contains pre-tracking row {row.get('pick_id')}.")
@@ -175,13 +212,13 @@ def verify_dashboard(path: Path) -> None:
     history = payload.get("history", [])
     assert_true(isinstance(latest_picks, list), f"{path} latest_picks must be a list.")
     assert_true(isinstance(history, list), f"{path} history must be a list.")
-    assert_true(latest_picks == sorted(latest_picks, key=current_sort_key), f"{path} latest_picks are not sorted by score descending.")
+    assert_true(latest_picks == sorted(latest_picks, key=current_sort_key), f"{path} latest_picks are not sorted by stable board order.")
     assert_true(
         history == sorted(
             history,
-            key=lambda row: (-int(str(row.get("game_date") or "0").replace("-", "")), -score_sort_value(row), int(row.get("rank") or 999), str(row.get("batter_name") or "")),
+            key=lambda row: (-int(str(row.get("game_date") or "0").replace("-", "")), int(row.get("original_rank") or row.get("rank") or 999), -score_sort_value({"predicted_hr_score": row.get("original_score", row.get("predicted_hr_score"))}), str(row.get("batter_name") or "")),
         ),
-        f"{path} history is not sorted by date desc and score desc.",
+        f"{path} history is not sorted by date desc and stable board order.",
     )
     for row in latest_picks + history:
         assert_true(list(row.keys()) == DISPLAY_COLUMNS, f"{path} contains unexpected dashboard row fields for pick {row.get('pick_id')}.")
@@ -218,7 +255,7 @@ def print_operator_checklist() -> None:
     print("- Cloudflare Pages output directory is cloudflare-app.")
     print("- Cloudflare Pages production branch is master.")
     print("- Prepare should run once after 6:00 AM ET using scripts\\refresh_dashboard.ps1 -Mode prepare.")
-    print("- Scheduled auto refreshes should mix result updates and pregame reranks every 15 minutes until the last scheduled first pitch.")
+    print("- Scheduled mixed refreshes should update statuses and major alerts without reshuffling the morning board.")
     print("- Settle should rerun every 15 minutes after the last scheduled first pitch until the slate is final using scripts\\refresh_dashboard.ps1 -Mode settle.")
     print("- This machine can git push to origin/master non-interactively.")
 

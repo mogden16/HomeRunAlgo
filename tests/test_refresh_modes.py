@@ -7,6 +7,8 @@ from datetime import datetime
 from pathlib import Path
 from unittest.mock import patch
 
+import pandas as pd
+
 from scripts import refresh_modes
 
 
@@ -276,6 +278,67 @@ class RefreshModesTests(unittest.TestCase):
             self.assertEqual(call_order, ["refresh", "settle", "publish", "build", "verify"])
             self.assertEqual(result["resolved_schedule_date"], "2026-03-31")
             self.assertEqual(result["dashboard_path"], output_dir / "dashboard.json")
+
+    def test_run_mixed_refresh_updates_existing_board_without_republishing(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            dataset_path = base / "dataset.csv"
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+            board_state_path = base / "daily_board_state.json"
+            output_dir = base / "dashboard"
+            current_path.write_text(
+                json.dumps(
+                    [
+                        {
+                            "pick_id": "2026-03-31:1001:10:20",
+                            "game_date": "2026-03-31",
+                            "game_pk": 1001,
+                            "rank": 1,
+                            "batter_id": 10,
+                            "batter_name": "Alpha",
+                            "team": "NYY",
+                            "opponent_team": "BOS",
+                            "pitcher_id": 20,
+                            "pitcher_name": "Pitcher",
+                            "confidence_tier": "elite",
+                            "predicted_hr_score": 98.0,
+                            "predicted_hr_probability": 0.2,
+                            "result": "Pending",
+                        }
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            history_path.write_text("[]", encoding="utf-8")
+            dataset_path.write_text("game_date,batter_id,hit_hr\n2026-03-31,10,1\n", encoding="utf-8")
+
+            call_order: list[str] = []
+            with patch("scripts.refresh_modes.refresh_live_dataset", side_effect=lambda **_: call_order.append("refresh")):
+                with patch(
+                    "scripts.refresh_modes.run_settle_live_results",
+                    side_effect=lambda **_: call_order.append("settle") or {"resolved_through_date": "2026-03-31"},
+                ):
+                    with patch("scripts.refresh_modes.fetch_schedule_games", return_value=[{"game_pk": 1001, "status": "Final"}]):
+                        with patch("scripts.refresh_modes.load_live_dataset", return_value=pd.DataFrame([{"game_date": pd.Timestamp("2026-03-31"), "batter_id": 10, "hit_hr": 1}])):
+                            with patch("scripts.refresh_modes.publish_live_picks", side_effect=lambda **_: call_order.append("publish") or []):
+                                with patch(
+                                    "scripts.refresh_modes.build_dashboard_artifacts",
+                                    side_effect=lambda **_: call_order.append("build") or (output_dir / "dashboard.json"),
+                                ):
+                                    with patch("scripts.refresh_modes.verify_public_live_artifacts", side_effect=lambda **_: call_order.append("verify")):
+                                        result = refresh_modes.run_mixed_refresh(
+                                            dataset_path=dataset_path,
+                                            current_picks_path=current_path,
+                                            history_path=history_path,
+                                            board_state_path=board_state_path,
+                                            dashboard_output_dir=output_dir,
+                                            schedule_date="2026-03-31",
+                                        )
+
+            self.assertEqual(call_order, ["refresh", "settle", "build", "verify"])
+            self.assertEqual(result["resolved_schedule_date"], "2026-03-31")
+            self.assertEqual(result["published_rows"][0]["result"], "HR")
 
     def test_run_publish_refresh_runs_publish_then_builds_and_verifies(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:

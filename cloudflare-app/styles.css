@@ -8,6 +8,7 @@
   --accent-soft: rgba(209, 79, 43, 0.12);
   --hit: #1f8f63;
   --miss: #9d374d;
+  --warning: #b45309;
   --shadow: 0 22px 60px rgba(20, 32, 51, 0.14);
 }
 
@@ -716,6 +717,16 @@ td {
   background: rgba(20, 32, 51, 0.08);
 }
 
+.result-inactive {
+  color: var(--muted);
+  background: rgba(92, 104, 125, 0.12);
+}
+
+.result-postponed {
+  color: var(--warning);
+  background: rgba(180, 83, 9, 0.12);
+}
+
 .tier-tag {
   background: var(--accent-soft);
   color: var(--accent-deep);
@@ -745,8 +756,41 @@ td {
   display: block;
 }
 
+.name-inactive {
+  text-decoration: line-through;
+  opacity: 0.72;
+}
+
 .name-block span {
   display: block;
+}
+
+.alert-flag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.alert-flag {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--warning);
+  background: rgba(180, 83, 9, 0.12);
+}
+
+.row-inactive {
+  opacity: 0.74;
+}
+
+.row-inactive td {
+  background: rgba(92, 104, 125, 0.04);
 }
 
 .rank-cell {
