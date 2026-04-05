@@ -25,6 +25,7 @@ from scripts import publish_live_picks
 from scripts import run_daily_live_refresh
 from scripts import run_refresh_mode
 from scripts import refresh_modes
+from scripts import settle_live_results
 from scripts.live_pipeline import (
     assert_live_publish_freshness,
     build_live_candidate_frame,
@@ -95,6 +96,13 @@ class LivePipelineTests(unittest.TestCase):
             self.assertEqual(len(weather), 1)
             self.assertEqual(weather.iloc[0]["home_team"], "AZ")
             self.assertAlmostEqual(float(weather.iloc[0]["temperature_f"]), 68.0)
+            self.assertIn("field_bearing_deg", weather.columns)
+            self.assertIn("wind_out_to_cf_mph", weather.columns)
+            self.assertIn("crosswind_mph", weather.columns)
+            self.assertIn("air_density_index", weather.columns)
+            self.assertTrue(pd.notna(weather.iloc[0]["wind_out_to_cf_mph"]))
+            self.assertTrue(pd.notna(weather.iloc[0]["crosswind_mph"]))
+            self.assertTrue(pd.notna(weather.iloc[0]["air_density_index"]))
             refreshed_cache = pd.read_csv(stale_cache, parse_dates=["game_date"])
             self.assertEqual(int(refreshed_cache["temperature_f"].notna().sum()), 1)
 
@@ -450,9 +458,12 @@ class LivePipelineTests(unittest.TestCase):
                     {
                         "game_date": "2026-03-26",
                         "home_team": "BOS",
+                        "field_bearing_deg": 50.0,
                         "temperature_f": 60.0,
                         "wind_speed_mph": 8.0,
                         "humidity_pct": 45.0,
+                        "wind_direction_deg": 180.0,
+                        "pressure_hpa": 1014.0,
                     }
                 ]
             ),
@@ -478,6 +489,12 @@ class LivePipelineTests(unittest.TestCase):
         self.assertAlmostEqual(float(frame_by_batter.loc[10, "expected_pa_today"]), 4.65, places=2)
         self.assertAlmostEqual(float(frame_by_batter.loc[12, "expected_pa_today"]), 4.57, places=2)
         self.assertAlmostEqual(float(frame_by_batter.loc[10, "lineup_confirmation_score"]), 0.75, places=2)
+        self.assertIn("wind_out_to_cf_mph", frame.columns)
+        self.assertIn("crosswind_mph", frame.columns)
+        self.assertIn("air_density_index", frame.columns)
+        self.assertTrue(frame["wind_out_to_cf_mph"].notna().all())
+        self.assertTrue(frame["crosswind_mph"].notna().all())
+        self.assertTrue(frame["air_density_index"].notna().all())
 
     def test_build_live_candidate_frame_uses_confirmed_lineups_when_available(self) -> None:
         dataset = pd.DataFrame(
@@ -608,9 +625,12 @@ class LivePipelineTests(unittest.TestCase):
                     {
                         "game_date": "2026-03-26",
                         "home_team": "BOS",
+                        "field_bearing_deg": 50.0,
                         "temperature_f": 60.0,
                         "wind_speed_mph": 8.0,
                         "humidity_pct": 45.0,
+                        "wind_direction_deg": 180.0,
+                        "pressure_hpa": 1014.0,
                     }
                 ]
             ),
@@ -634,6 +654,12 @@ class LivePipelineTests(unittest.TestCase):
         self.assertEqual(int(frame_by_batter.loc[10, "batting_order_slot"]), 1)
         self.assertEqual(int(frame_by_batter.loc[11, "batting_order_slot"]), 2)
         self.assertAlmostEqual(float(frame_by_batter.loc[10, "lineup_confirmation_score"]), 0.35, places=2)
+        self.assertIn("wind_out_to_cf_mph", frame.columns)
+        self.assertIn("crosswind_mph", frame.columns)
+        self.assertIn("air_density_index", frame.columns)
+        self.assertTrue(frame["wind_out_to_cf_mph"].notna().all())
+        self.assertTrue(frame["crosswind_mph"].notna().all())
+        self.assertTrue(frame["air_density_index"].notna().all())
 
     def test_settle_pick_records_marks_hits_and_non_hits(self) -> None:
         picks = [
@@ -712,6 +738,83 @@ class LivePipelineTests(unittest.TestCase):
         self.assertEqual(settled[0]["result"], "No HR")
         self.assertEqual(settled[0]["actual_hit_hr"], 0)
         self.assertEqual(settled[0]["game_state"], "final")
+
+    def test_settle_pick_records_backfills_actual_hit_hr_for_existing_terminal_rows(self) -> None:
+        picks = [
+            {
+                "game_pk": 824860,
+                "game_date": "2026-04-01",
+                "batter_id": 669394,
+                "batter_name": "Jake Burger",
+                "result": "HR",
+                "actual_hit_hr": None,
+                "game_status": "Final",
+            }
+        ]
+        dataset = pd.DataFrame(columns=["game_date", "batter_id", "hit_hr"])
+
+        settled = settle_pick_records(
+            picks,
+            dataset,
+            resolved_through_date="2026-04-01",
+            schedule_games=[{"game_pk": 824860, "status": "Final"}],
+        )
+
+        self.assertEqual(len(settled), 1)
+        self.assertEqual(settled[0]["result"], "HR")
+        self.assertEqual(settled[0]["result_label"], "HR")
+        self.assertEqual(settled[0]["actual_hit_hr"], 1)
+        self.assertEqual(settled[0]["game_state"], "final")
+
+    def test_run_settle_live_results_archives_terminal_rows_even_if_unrelated_game_is_postponed(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            dataset_path = base / "dataset.csv"
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+
+            pd.DataFrame(
+                [
+                    {"game_date": pd.Timestamp("2026-03-31"), "batter_id": 101, "hit_hr": 1},
+                ]
+            ).to_csv(dataset_path, index=False)
+            current_path.write_text(
+                json.dumps(
+                    [
+                        {
+                            "pick_id": "pick-1",
+                            "game_pk": 2001,
+                            "game_date": "2026-04-03",
+                            "batter_id": 102,
+                            "batter_name": "Alpha",
+                            "pitcher_id": 301,
+                            "pitcher_name": "Pitcher A",
+                            "result": "Pending",
+                        }
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            history_path.write_text("[]", encoding="utf-8")
+
+            schedule_games = [
+                {"game_pk": 2001, "status": "Final", "game_datetime": "2026-04-03T23:00:00Z"},
+                {"game_pk": 2999, "status": "Postponed", "game_datetime": "2026-04-03T23:10:00Z"},
+            ]
+
+            with patch("scripts.settle_live_results.fetch_schedule_games", return_value=schedule_games):
+                result = settle_live_results.run_settle_live_results(
+                    dataset_path=dataset_path,
+                    current_picks_path=current_path,
+                    history_path=history_path,
+                )
+
+            self.assertEqual(result["archived_dates"], ["2026-04-03"])
+            self.assertEqual(json.loads(current_path.read_text(encoding="utf-8")), [])
+            history_rows = json.loads(history_path.read_text(encoding="utf-8"))
+            self.assertEqual(len(history_rows), 1)
+            self.assertEqual(history_rows[0]["result_label"], "No HR")
+            self.assertEqual(history_rows[0]["actual_hit_hr"], 0)
 
     def test_dashboard_filters_out_pre_tracking_rows(self) -> None:
         old_row = build_dashboard_artifacts.normalize_pick(
@@ -998,6 +1101,7 @@ class LivePipelineTests(unittest.TestCase):
                 {
                     "game_date": "2024-09-29",
                     "home_team": "ATL",
+                    "field_bearing_deg": 32.0,
                     "temperature_f": None,
                     "humidity_pct": None,
                     "wind_speed_mph": None,
@@ -1005,6 +1109,9 @@ class LivePipelineTests(unittest.TestCase):
                     "weather_code": None,
                     "weather_label": "Unknown",
                     "pressure_hpa": None,
+                    "wind_out_to_cf_mph": None,
+                    "crosswind_mph": None,
+                    "air_density_index": None,
                 }
             ],
         )
@@ -1155,7 +1262,7 @@ class LivePipelineTests(unittest.TestCase):
         self.assertIsNone(args.max_picks)
         self.assertIsNone(args.min_confidence_tier)
 
-    def test_publish_live_picks_preserves_started_same_day_rows_and_replaces_unstarted_rows(self) -> None:
+    def test_publish_live_picks_reuses_existing_same_day_board_without_replacing_future_rows(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
             dataset_path = base / "dataset.csv"
@@ -1282,15 +1389,10 @@ class LivePipelineTests(unittest.TestCase):
                                         )
 
             written = json.loads(output_path.read_text(encoding="utf-8"))
-            self.assertEqual([row["rank"] for row in written], [1, 2, 3])
-            self.assertEqual([row["batter_name"] for row in written], ["Future Refresh", "Started Batter", "Later Refresh"])
-            locked_row = written[1]
-            self.assertEqual(locked_row["pick_id"], "started-pick")
-            self.assertEqual(locked_row["published_at"], "2026-03-26T17:00:00+00:00")
-            self.assertEqual(locked_row["top_reason_1"], "keep me")
-            self.assertEqual(locked_row["predicted_hr_score"], 98.0)
-            self.assertEqual(locked_row["game_datetime"], "2026-03-26T18:00:00Z")
-            self.assertEqual([row["pick_id"] for row in published], ["replacement-future", "started-pick", "replacement-later"])
+            self.assertEqual([row["rank"] for row in written], [1, 2])
+            self.assertEqual([row["pick_id"] for row in written], ["future-pick", "started-pick"])
+            self.assertEqual([row["batter_name"] for row in written], ["Replace Me", "Started Batter"])
+            self.assertEqual([row["pick_id"] for row in published], ["future-pick", "started-pick"])
 
     def test_publish_live_picks_refreshes_locked_pick_reasons_when_same_pick_is_rescored(self) -> None:
         existing_rows = [
@@ -1418,7 +1520,7 @@ class LivePipelineTests(unittest.TestCase):
 
         self.assertEqual([row["pick_id"] for row in merged], ["today-pick"])
 
-    def test_publish_live_picks_locks_in_progress_game_even_before_scheduled_first_pitch(self) -> None:
+    def test_publish_live_picks_keeps_existing_in_progress_game_board_even_before_scheduled_first_pitch(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
             dataset_path = base / "dataset.csv"
@@ -2229,12 +2331,14 @@ class LivePipelineTests(unittest.TestCase):
             self.assertEqual(payload["refresh_schedule"]["runs"][2]["type"], "settle")
             elite_row = payload["confidence_summary"][0]
             self.assertEqual(elite_row["confidence_tier"], "elite")
-            self.assertEqual(len(payload["history"]), 1)
-            self.assertEqual(payload["history"][0]["batter_name"], "Alpha")
+            self.assertEqual(len(payload["latest_picks"]), 1)
+            self.assertEqual(payload["latest_picks"][0]["batter_name"], "Alpha")
+            self.assertEqual(payload["latest_picks"][0]["current_status"], "home_run")
+            self.assertEqual(len(payload["history"]), 0)
             self.assertNotIn("forward-only", payload_text)
             history_payload = history_path.read_text(encoding="utf-8")
             self.assertIn("2026-03-25", history_payload)
-            self.assertEqual(json.loads(current_path.read_text(encoding="utf-8")), [])
+            self.assertEqual(len(json.loads(current_path.read_text(encoding="utf-8"))), 1)
 
     def test_dashboard_builder_keeps_only_latest_pending_slate_in_current(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:

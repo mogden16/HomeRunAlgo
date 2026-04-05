@@ -203,7 +203,7 @@ class DashboardArtifactTests(unittest.TestCase):
             self.assertEqual(latest["wind_direction_deg"], 210.0)
             self.assertEqual(latest["field_bearing_deg"], 30.0)
 
-    def test_dashboard_payload_resequences_latest_ranks_and_keeps_morning_baseline(self) -> None:
+    def test_dashboard_payload_uses_morning_snapshot_order_and_keeps_morning_baseline(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
             current_path = base / "current.json"
@@ -250,9 +250,10 @@ class DashboardArtifactTests(unittest.TestCase):
 
             payload = json.loads(output_path.read_text(encoding="utf-8"))
             latest = payload["latest_picks"]
-            self.assertEqual([row["batter_name"] for row in latest], ["Alpha", "Bravo", "Charlie"])
+            self.assertEqual([row["batter_name"] for row in latest], ["Bravo", "Alpha", "Charlie"])
             self.assertEqual([row["rank"] for row in latest], [1, 2, 3])
-            self.assertEqual([row["morning_rank"] for row in latest], [2, 1, 3])
+            self.assertEqual([row["original_rank"] for row in latest], [1, 2, 3])
+            self.assertEqual([row["morning_rank"] for row in latest], [1, 2, 3])
 
     def test_history_default_date_falls_back_to_latest_when_yesterday_missing(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:

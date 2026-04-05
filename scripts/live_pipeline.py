@@ -32,6 +32,7 @@ from config import (
 )
 from data_sources import ensure_directories
 from feature_engineering import (
+    append_weather_carry_features,
     build_matchup_selected_handedness_features,
     compute_batter_handedness_split_features,
     compute_batter_trailing_features,
@@ -90,6 +91,7 @@ TERMINAL_GAME_STATUS_TOKENS = (
     "completed early",
     "postponed",
     "cancelled",
+    "postponed",
 )
 LIVE_GAME_STATUS_TOKENS = (
     "in progress",
@@ -311,13 +313,17 @@ def _coerce_float(value: Any) -> float | None:
 
 def _resolved_result_label(row: dict[str, Any]) -> str:
     token = str(row.get("result_label") or row.get("result") or "Pending").strip()
-    if token in {"HR", "No HR", "Pending"}:
+    if token in {"HR", "No HR", "Pending", "Inactive", "Postponed"}:
         return token
     normalized = token.lower()
     if normalized in {"1", "hr", "hit", "home_run", "home run", "success"}:
         return "HR"
     if normalized in {"0", "miss", "no hr", "no_hr", "failed", "failure"}:
         return "No HR"
+    if normalized in {"inactive", "scratched", "scratch", "out"}:
+        return "Inactive"
+    if normalized in {"postponed", "cancelled", "canceled"}:
+        return "Postponed"
     return "Pending"
 
 
@@ -362,24 +368,42 @@ def _build_pick_record_base(row: dict[str, Any]) -> dict[str, Any]:
     batter_name = str(row.get("batter_name") or "Unknown hitter")
     pitcher_name = str(row.get("pitcher_name") or "")
     game_pk = _coerce_int(row.get("game_pk"))
+    original_rank = _coerce_int(row.get("original_rank")) or _coerce_int(row.get("rank")) or 999
+    original_score = _coerce_float(row.get("original_score"))
+    if original_score is None:
+        original_score = _coerce_float(row.get("predicted_hr_score"))
+    original_tier = str(row.get("original_tier") or row.get("confidence_tier") or "watch")
+    alert_flags = row.get("alert_flags")
+    if isinstance(alert_flags, list):
+        normalized_alert_flags = [str(flag) for flag in alert_flags if str(flag or "").strip()]
+    else:
+        normalized_alert_flags = []
+    display_style = str(row.get("display_style") or "default")
     return {
         "pick_id": str(row.get("pick_id") or build_pick_id(game_date, game_pk, batter_id, batter_name, pitcher_id, pitcher_name)),
         "published_at": str(row.get("published_at") or datetime.now(timezone.utc).isoformat()),
+        "board_date": str(row.get("board_date") or game_date),
+        "created_at": str(row.get("created_at") or row.get("published_at") or datetime.now(timezone.utc).isoformat()),
+        "finalized_at": str(row.get("finalized_at") or "") or None,
+        "is_finalized": bool(row.get("is_finalized", False)),
         "game_pk": game_pk,
         "game_date": game_date,
         "game_datetime": str(row.get("game_datetime") or ""),
         "game_status": str(row.get("game_status") or row.get("status") or ""),
         "game_state": str(row.get("game_state") or classify_game_state(row)),
-        "rank": _coerce_int(row.get("rank")) or 999,
+        "rank": original_rank,
+        "original_rank": original_rank,
         "batter_id": batter_id,
         "batter_name": batter_name,
         "team": str(row.get("team") or ""),
         "opponent_team": str(row.get("opponent_team") or row.get("opponent") or ""),
         "pitcher_id": pitcher_id,
         "pitcher_name": pitcher_name,
-        "confidence_tier": str(row.get("confidence_tier") or "watch"),
+        "confidence_tier": original_tier,
+        "original_tier": original_tier,
         "predicted_hr_probability": _coerce_float(row.get("predicted_hr_probability")),
-        "predicted_hr_score": _coerce_float(row.get("predicted_hr_score")),
+        "predicted_hr_score": original_score,
+        "original_score": original_score,
         "top_reason_1": str(row.get("top_reason_1") or ""),
         "top_reason_2": str(row.get("top_reason_2") or ""),
         "top_reason_3": str(row.get("top_reason_3") or ""),
@@ -393,6 +417,10 @@ def _build_pick_record_base(row: dict[str, Any]) -> dict[str, Any]:
         "wind_speed_mph": _coerce_float(row.get("wind_speed_mph")),
         "wind_direction_deg": _coerce_float(row.get("wind_direction_deg")),
         "field_bearing_deg": _coerce_float(row.get("field_bearing_deg")),
+        "current_status": str(row.get("current_status") or ""),
+        "alert_flags": normalized_alert_flags,
+        "inactive_flag": bool(row.get("inactive_flag") or row.get("is_inactive", False)),
+        "display_style": display_style,
     }
 
 
@@ -1560,9 +1588,11 @@ def build_pitcher_history_table(dataset_df: pd.DataFrame) -> pd.DataFrame:
 
 def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFrame:
     def _empty_weather_row(home_team: str) -> dict[str, Any]:
+        park = PARKS.get(home_team)
         return {
             "game_date": target_date,
             "home_team": home_team,
+            "field_bearing_deg": _coerce_float(park.get("field_bearing_deg")) if park else None,
             "temperature_f": None,
             "humidity_pct": None,
             "wind_speed_mph": None,
@@ -1570,6 +1600,9 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
             "weather_code": None,
             "weather_label": "Unknown",
             "pressure_hpa": None,
+            "wind_out_to_cf_mph": None,
+            "crosswind_mph": None,
+            "air_density_index": None,
         }
 
     rows: list[dict[str, Any]] = []
@@ -1628,6 +1661,7 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
             {
                 "game_date": target_date,
                 "home_team": home_team,
+                "field_bearing_deg": _coerce_float(park.get("field_bearing_deg")),
                 "temperature_f": serialize_for_json(float(best.get("temperature_2m"))) if pd.notna(best.get("temperature_2m")) else None,
                 "humidity_pct": serialize_for_json(float(best.get("relative_humidity_2m"))) if pd.notna(best.get("relative_humidity_2m")) else None,
                 "wind_speed_mph": serialize_for_json(float(best.get("wind_speed_10m"))) if pd.notna(best.get("wind_speed_10m")) else None,
@@ -1635,9 +1669,13 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
                 "weather_code": _coerce_int(best.get("weather_code")),
                 "weather_label": weather_code_label(best.get("weather_code")),
                 "pressure_hpa": serialize_for_json(float(best.get("surface_pressure"))) if pd.notna(best.get("surface_pressure")) else None,
+                "wind_out_to_cf_mph": None,
+                "crosswind_mph": None,
+                "air_density_index": None,
             }
         )
     forecast_df = pd.DataFrame(rows)
+    forecast_df = append_weather_carry_features(forecast_df)
     if fallback_home_teams:
         forecast_df.attrs["operational_alerts"] = [
             {
@@ -1783,7 +1821,15 @@ def build_live_candidate_frame(
         on=["game_date", "home_team"],
         how="left",
         validate="many_to_one",
+        suffixes=("", "_forecast"),
     )
+    if "field_bearing_deg_forecast" in candidate_df.columns:
+        candidate_df["field_bearing_deg"] = candidate_df["field_bearing_deg"].where(
+            candidate_df["field_bearing_deg"].notna(),
+            candidate_df["field_bearing_deg_forecast"],
+        )
+        candidate_df = candidate_df.drop(columns=["field_bearing_deg_forecast"])
+    candidate_df = append_weather_carry_features(candidate_df)
     candidate_df["platoon_advantage"] = np.where(
         candidate_df["bat_side"].notna() & candidate_df["pitch_hand_primary"].notna(),
         (candidate_df["bat_side"] != candidate_df["pitch_hand_primary"]).astype(float),
@@ -2285,11 +2331,14 @@ def settle_pick_records(
         hr_hitters = fetch_game_home_run_batter_ids(slate_game_pk)
         if hr_hitters is not None:
             live_boxscore_hr_lookup[slate_game_pk] = hr_hitters
-    resolved_lookup = {
-        (normalize_game_date(row.game_date), int(row.batter_id)): int(row.hit_hr)
-        for row in dataset_df[["game_date", "batter_id", "hit_hr"]].drop_duplicates().itertuples(index=False)
-        if pd.notna(row.batter_id)
-    }
+    if {"game_date", "batter_id", "hit_hr"}.issubset(set(dataset_df.columns)):
+        resolved_lookup = {
+            (normalize_game_date(row.game_date), int(row.batter_id)): int(row.hit_hr)
+            for row in dataset_df[["game_date", "batter_id", "hit_hr"]].drop_duplicates().itertuples(index=False)
+            if pd.notna(row.batter_id)
+        }
+    else:
+        resolved_lookup = {}
     settled: list[dict[str, Any]] = []
     for row in records:
         game_date = normalize_game_date(row.get("game_date"))
@@ -2305,11 +2354,18 @@ def settle_pick_records(
             game_state = "pregame"
         batter_id_int = _coerce_int(batter_id)
         live_hr_hitters = live_boxscore_hr_lookup.get(game_pk) if game_pk is not None else None
-        if current_result in {"HR", "No HR", "Postponed"} and not game_date:
+        batter_id_int = _coerce_int(batter_id)
+        live_hr_hitters = live_boxscore_hr_lookup.get(game_pk) if game_pk is not None else None
+        if current_result in {"HR", "No HR", "Inactive", "Postponed"}:
             updated = dict(row)
+            updated["result"] = current_result
+            updated["result_label"] = current_result
+            updated["actual_hit_hr"] = 1 if current_result == "HR" else 0 if current_result == "No HR" else None
             if schedule_game:
                 updated["game_status"] = str(schedule_game.get("status") or updated.get("game_status") or "")
                 updated["game_state"] = str(schedule_game.get("game_state") or updated.get("game_state") or "final")
+            else:
+                updated["game_state"] = game_state
             settled.append(updated)
             continue
         if not game_date or (
@@ -2358,8 +2414,9 @@ def write_current_picks(rows: list[dict[str, Any]], path: Path = LIVE_CURRENT_PI
     ordered = sorted(
         canonical_rows,
         key=lambda row: (
-            int(row.get("rank") or 999),
-            -(float(row.get("predicted_hr_score")) if row.get("predicted_hr_score") is not None else -999.0),
+            normalize_game_date(row.get("game_date")),
+            int(row.get("original_rank") or row.get("rank") or 999),
+            -(float(row.get("original_score")) if row.get("original_score") is not None else -999.0),
             str(row.get("batter_name") or ""),
         ),
     )
@@ -2376,8 +2433,8 @@ def write_pick_history(rows: list[dict[str, Any]], path: Path = LIVE_PICK_HISTOR
         canonical_rows,
         key=lambda row: (
             str(row.get("game_date") or ""),
-            -(float(row.get("predicted_hr_score")) if row.get("predicted_hr_score") is not None else -999.0),
-            int(row.get("rank") or 999),
+            int(row.get("original_rank") or row.get("rank") or 999),
+            -(float(row.get("original_score")) if row.get("original_score") is not None else -999.0),
             str(row.get("batter_name") or ""),
         ),
     )

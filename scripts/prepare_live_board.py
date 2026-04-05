@@ -13,6 +13,7 @@ if str(ROOT_DIR) not in sys.path:
 
 from config import (
     LIVE_CURRENT_PICKS_PATH,
+    LIVE_DAILY_BOARD_STATE_PATH,
     LIVE_DRAFT_PICKS_PATH,
     LIVE_MODEL_BUNDLE_PATH,
     LIVE_MODEL_DATA_PATH,
@@ -23,15 +24,13 @@ from config import (
 from scripts.live_pipeline import (
     default_publish_date,
     default_training_end_date,
-    load_json_array,
     load_live_dataset,
     refresh_live_dataset,
-    settle_pick_records,
     train_live_model_bundle,
     write_current_picks,
-    write_pick_history,
 )
 from scripts.publish_live_picks import generate_live_picks
+from scripts.settle_live_results import run_settle_live_results
 
 
 def parse_args() -> argparse.Namespace:
@@ -66,7 +65,7 @@ def _count_resolved(rows: list[dict[str, Any]]) -> int:
     return sum(
         1
         for row in rows
-        if str(row.get("result") or row.get("result_label") or "Pending") in {"HR", "No HR"}
+        if str(row.get("result") or row.get("result_label") or "Pending") in {"HR", "No HR", "Inactive", "Postponed"}
     )
 
 
@@ -77,6 +76,7 @@ def run_prepare_live_board(
     metadata_path: Path = LIVE_MODEL_METADATA_PATH,
     current_picks_path: Path = LIVE_CURRENT_PICKS_PATH,
     history_path: Path = LIVE_PICK_HISTORY_PATH,
+    board_state_path: Path = LIVE_DAILY_BOARD_STATE_PATH,
     draft_output_path: Path = LIVE_DRAFT_PICKS_PATH,
     start_date: str = LIVE_MODEL_START_DATE,
     train_end_date: str | None = None,
@@ -125,12 +125,14 @@ def run_prepare_live_board(
     print(f"Bundle trained through     : {bundle['trained_through']}")
 
     print("\n[2/4] Settling previously published picks")
-    current_rows = load_json_array(current_picks_path)
-    history_rows = load_json_array(history_path)
-    settled_current = settle_pick_records(current_rows, dataset_df, resolved_through_date=dataset_max_game_date)
-    settled_history = settle_pick_records(history_rows, dataset_df, resolved_through_date=dataset_max_game_date)
-    write_current_picks(settled_current, current_picks_path)
-    write_pick_history(settled_history, history_path)
+    settle_result = run_settle_live_results(
+        dataset_path=dataset_path,
+        current_picks_path=current_picks_path,
+        history_path=history_path,
+        board_state_path=board_state_path,
+    )
+    settled_current = settle_result["current_rows"]
+    settled_history = settle_result["history_rows"]
     print(
         "Settled current/history    : "
         f"{_count_resolved(settled_current)}/{len(settled_current)} current, "
@@ -162,6 +164,7 @@ def main() -> None:
         metadata_path=Path(args.metadata_path),
         current_picks_path=Path(args.current_picks_path),
         history_path=Path(args.history_path),
+        board_state_path=LIVE_DAILY_BOARD_STATE_PATH,
         draft_output_path=Path(args.draft_output_path),
         start_date=args.start_date,
         train_end_date=args.train_end_date,

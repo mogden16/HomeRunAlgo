@@ -10,6 +10,7 @@ from zoneinfo import ZoneInfo
 
 from config import (
     LIVE_CURRENT_PICKS_PATH,
+    LIVE_DAILY_BOARD_STATE_PATH,
     LIVE_DRAFT_PICKS_PATH,
     LIVE_MORNING_BASELINE_PICKS_PATH,
     LIVE_MODEL_BUNDLE_PATH,
@@ -18,12 +19,21 @@ from config import (
     LIVE_MODEL_START_DATE,
     LIVE_PICK_HISTORY_PATH,
 )
+from scripts.board_state import (
+    apply_major_alerts,
+    board_entries_to_current_rows,
+    create_daily_board_snapshot,
+    load_daily_board_state,
+    update_board_entry_status,
+    write_daily_board_state,
+)
 from scripts.build_dashboard_artifacts import DEFAULT_OUTPUT_DIR, build_dashboard_artifacts
 from scripts.live_pipeline import (
     build_slate_state,
     default_publish_date,
     fetch_schedule_games,
     load_json_array,
+    load_live_dataset,
     normalize_game_date,
     parse_game_datetime,
     write_current_picks,
@@ -219,6 +229,7 @@ def run_settle_refresh(
     dataset_path: Path = LIVE_MODEL_DATA_PATH,
     current_picks_path: Path = LIVE_CURRENT_PICKS_PATH,
     history_path: Path = LIVE_PICK_HISTORY_PATH,
+    board_state_path: Path = LIVE_DAILY_BOARD_STATE_PATH,
     morning_baseline_path: Path = LIVE_MORNING_BASELINE_PICKS_PATH,
     dashboard_output_dir: Path = DEFAULT_OUTPUT_DIR,
     start_date: str = LIVE_MODEL_START_DATE,
@@ -241,6 +252,7 @@ def run_settle_refresh(
         dataset_path=dataset_path,
         current_picks_path=current_picks_path,
         history_path=history_path,
+        board_state_path=board_state_path,
     )
     if rebuild_dashboard:
         dashboard_path = rebuild_and_verify_public_artifacts(
@@ -261,6 +273,7 @@ def run_prepare_refresh(
     metadata_path: Path = LIVE_MODEL_METADATA_PATH,
     current_picks_path: Path = LIVE_CURRENT_PICKS_PATH,
     history_path: Path = LIVE_PICK_HISTORY_PATH,
+    board_state_path: Path = LIVE_DAILY_BOARD_STATE_PATH,
     draft_output_path: Path = LIVE_DRAFT_PICKS_PATH,
     morning_baseline_path: Path = LIVE_MORNING_BASELINE_PICKS_PATH,
     dashboard_output_dir: Path = DEFAULT_OUTPUT_DIR,
@@ -286,6 +299,7 @@ def run_prepare_refresh(
         metadata_path=metadata_path,
         current_picks_path=current_picks_path,
         history_path=history_path,
+        board_state_path=board_state_path,
         draft_output_path=draft_output_path,
         start_date=start_date,
         train_end_date=train_end_date,
@@ -324,6 +338,7 @@ def run_mixed_refresh(
     metadata_path: Path = LIVE_MODEL_METADATA_PATH,
     current_picks_path: Path = LIVE_CURRENT_PICKS_PATH,
     history_path: Path = LIVE_PICK_HISTORY_PATH,
+    board_state_path: Path = LIVE_DAILY_BOARD_STATE_PATH,
     morning_baseline_path: Path = LIVE_MORNING_BASELINE_PICKS_PATH,
     dashboard_output_dir: Path = DEFAULT_OUTPUT_DIR,
     start_date: str = LIVE_MODEL_START_DATE,
@@ -352,21 +367,58 @@ def run_mixed_refresh(
         dataset_path=dataset_path,
         current_picks_path=current_picks_path,
         history_path=history_path,
+        board_state_path=board_state_path,
     )
-    published_rows = publish_live_picks(
-        dataset_path=dataset_path,
-        bundle_path=bundle_path,
-        metadata_path=metadata_path,
-        output_path=current_picks_path,
-        history_path=history_path,
-        dashboard_output_dir=dashboard_output_dir,
-        schedule_date=resolved_schedule_date,
-        hitters_per_team=hitters_per_team,
-        max_picks=max_picks,
-        min_confidence_tier=min_confidence_tier,
-        max_picks_per_team=max_picks_per_team,
-        max_picks_per_game=max_picks_per_game,
-    )
+    refreshed_current_rows = load_json_array(current_picks_path)
+    existing_same_day_rows = [
+        dict(row)
+        for row in refreshed_current_rows
+        if normalize_game_date(row.get("game_date")) == resolved_schedule_date
+    ]
+    if existing_same_day_rows:
+        schedule_games = fetch_schedule_games(resolved_schedule_date)
+        board_state = load_daily_board_state(board_state_path)
+        if normalize_game_date(board_state.get("board_date")) != resolved_schedule_date or not board_state.get("entries"):
+            board_state = create_daily_board_snapshot(
+                existing_same_day_rows,
+                resolved_schedule_date,
+                created_at=str(existing_same_day_rows[0].get("created_at") or existing_same_day_rows[0].get("published_at") or ""),
+            )
+        dataset_df = load_live_dataset(dataset_path)
+        resolved_through_date = str(dataset_df["game_date"].max().date())
+        board_state, status_updates = update_board_entry_status(
+            board_state,
+            dataset_df,
+            resolved_through_date=resolved_through_date,
+            schedule_games=schedule_games,
+        )
+        board_state, alert_count = apply_major_alerts(
+            board_state,
+            schedule_games=schedule_games,
+        )
+        write_daily_board_state(board_state, board_state_path)
+        published_rows = board_entries_to_current_rows(board_state)
+        write_current_picks(published_rows, current_picks_path)
+        print(
+            f"Stable mixed refresh for {resolved_schedule_date}: "
+            f"{len(published_rows)} rows kept in original order, {status_updates} status updates, {alert_count} alerts"
+        )
+    else:
+        published_rows = publish_live_picks(
+            dataset_path=dataset_path,
+            bundle_path=bundle_path,
+            metadata_path=metadata_path,
+            output_path=current_picks_path,
+            history_path=history_path,
+            board_state_path=board_state_path,
+            dashboard_output_dir=dashboard_output_dir,
+            schedule_date=resolved_schedule_date,
+            hitters_per_team=hitters_per_team,
+            max_picks=max_picks,
+            min_confidence_tier=min_confidence_tier,
+            max_picks_per_team=max_picks_per_team,
+            max_picks_per_game=max_picks_per_game,
+        )
     result: dict[str, Any] = {
         "resolved_schedule_date": resolved_schedule_date,
         "settle_result": settle_result,
@@ -391,6 +443,7 @@ def run_publish_refresh(
     metadata_path: Path = LIVE_MODEL_METADATA_PATH,
     current_picks_path: Path = LIVE_CURRENT_PICKS_PATH,
     history_path: Path = LIVE_PICK_HISTORY_PATH,
+    board_state_path: Path = LIVE_DAILY_BOARD_STATE_PATH,
     morning_baseline_path: Path = LIVE_MORNING_BASELINE_PICKS_PATH,
     dashboard_output_dir: Path = DEFAULT_OUTPUT_DIR,
     start_date: str = LIVE_MODEL_START_DATE,
@@ -420,6 +473,7 @@ def run_publish_refresh(
         metadata_path=metadata_path,
         output_path=current_picks_path,
         history_path=history_path,
+        board_state_path=board_state_path,
         dashboard_output_dir=dashboard_output_dir,
         schedule_date=schedule_date,
         hitters_per_team=hitters_per_team,

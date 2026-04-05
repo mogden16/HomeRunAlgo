@@ -8,7 +8,7 @@ const state = {
 };
 
 const DEFAULT_LATEST_PICKS_EMPTY_MESSAGE =
-  "Today's public picks have not been posted yet. Publish reruns every 15 minutes before first pitch and settle reruns every 15 minutes once games begin.";
+  "Today's board has not been posted yet. The morning publish creates one stable board, then in-day refreshes only update statuses and major alerts.";
 const DEFAULT_HISTORY_EMPTY_MESSAGE = "No published picks match those filters.";
 const DEFAULT_YESTERDAY_RECAP_EMPTY_MESSAGE = "No published picks were recorded for the previous tracked date.";
 const DEFAULT_MODEL_EXPLAINER_MESSAGE = "Metric details are not available for the current dashboard build.";
@@ -131,13 +131,69 @@ function tierClass(value) {
 }
 
 function resultClass(value) {
-  if (value === "HR") {
+  const token = String(value || "").trim().toLowerCase();
+  if (token === "hr" || token === "home run" || token === "home_run") {
     return "result-hit";
   }
-  if (value === "Pending") {
+  if (token === "pending" || token === "game in progress" || token === "in progress") {
     return "result-pending";
   }
+  if (token === "inactive") {
+    return "result-inactive";
+  }
+  if (token === "postponed") {
+    return "result-postponed";
+  }
   return "result-miss";
+}
+
+function boardStatusLabel(row) {
+  const status = String(row.current_status || "").trim().toLowerCase();
+  if (status === "home_run") {
+    return "Home run";
+  }
+  if (status === "no_home_run") {
+    return "No home run";
+  }
+  if (status === "inactive") {
+    return "Inactive";
+  }
+  if (status === "postponed") {
+    return "Postponed";
+  }
+  if (status === "game_in_progress") {
+    return "In progress";
+  }
+  if (status === "final") {
+    return "Final";
+  }
+  return row.result_label || "Pending";
+}
+
+function alertFlagLabel(flag) {
+  const token = String(flag || "").trim().toLowerCase();
+  if (token === "weather_alert") {
+    return "Weather alert";
+  }
+  if (token === "lineup_alert") {
+    return "Lineup alert";
+  }
+  if (token === "pitcher_change_alert") {
+    return "Pitcher change";
+  }
+  return token.replaceAll("_", " ");
+}
+
+function renderAlertFlags(row) {
+  const flags = Array.isArray(row.alert_flags) ? row.alert_flags : [];
+  if (!flags.length) {
+    return "";
+  }
+  return `
+    <div class="alert-flag-row">
+      ${flags.map((flag) => `<span class="alert-flag">${escapeHtml(alertFlagLabel(flag))}</span>`).join("")}
+    </div>
+  `;
 }
 
 function formatLineupSource(value) {
@@ -613,13 +669,20 @@ function renderSimpleTable(targetId, columns, rows, emptyMessage = "No rows avai
     .join("");
   const body = rows
     .map((row) => {
+      const rowClasses = [];
+      if (typeof options.rowClass === "function") {
+        const className = options.rowClass(row);
+        if (className) {
+          rowClasses.push(className);
+        }
+      }
       const cells = columns
         .map(
           (column) =>
             `<td class="${escapeHtml(column.cellClass || "")}" data-label="${escapeHtml(column.label)}">${column.render(row)}</td>`,
         )
         .join("");
-      return `<tr>${cells}</tr>`;
+      return `<tr class="${escapeHtml(rowClasses.join(" "))}">${cells}</tr>`;
     })
     .join("");
 
@@ -660,10 +723,12 @@ function renderPicksTable(targetId, rows, emptyMessage, { includeGameMeta = fals
           "Hitter",
           `
             <div class="name-block">
-              <strong>${escapeHtml(row.batter_name)}</strong>
+              <strong class="${row.inactive_flag ? "name-inactive" : ""}">${escapeHtml(row.batter_name)}</strong>
               <span>${escapeHtml(row.team)} vs ${escapeHtml(row.opponent_team || "-")}</span>
               <span class="mobile-inline-pitcher">vs ${escapeHtml(row.pitcher_name || "-")}</span>
               <span>${renderLineupBadge(row.lineup_source)}${row.batting_order ? ` <span class="lineup-order">batting ${escapeHtml(row.batting_order)}</span>` : ""} <span class="lineup-separator">|</span> ${escapeHtml(formatGameState(row.game_state))}</span>
+              ${renderAlertFlags(row)}
+              ${renderMobileWhyDetails(row)}
             </div>
             ${renderMobileWhyDetails(row, "mobile-why-inline")}
           `,
@@ -692,7 +757,7 @@ function renderPicksTable(targetId, rows, emptyMessage, { includeGameMeta = fals
       render: (row) => `
         ${renderMobileCellStack(
           "Result",
-          `<span class="${resultClass(row.result_label)}">${escapeHtml(row.result_label)}</span>`,
+          `<span class="${resultClass(boardStatusLabel(row))}">${escapeHtml(boardStatusLabel(row))}</span>`,
           "stack-center",
         )}
       `,
@@ -712,6 +777,7 @@ function renderPicksTable(targetId, rows, emptyMessage, { includeGameMeta = fals
   renderSimpleTable(targetId, columns, displayRows, emptyMessage, {
     mobileCards: false,
     tableClass: "mobile-picks-table",
+    rowClass: (row) => (row.inactive_flag || row.display_style === "strikethrough" ? "row-inactive" : ""),
   });
 }
 

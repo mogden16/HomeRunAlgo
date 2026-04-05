@@ -133,7 +133,7 @@ class LiveSlateRepeatabilityTests(unittest.TestCase):
             history_rows = json.loads(history_path.read_text(encoding="utf-8"))
             self.assertEqual({row["pick_id"] for row in history_rows}, {"2026-03-31:1001:10:20", "2026-03-31:1002:11:20"})
 
-    def test_settle_live_results_recovers_pending_history_rows_and_keeps_them_current_until_resolved(self) -> None:
+    def test_settle_live_results_recovers_pending_history_rows_and_archives_when_recovered_slate_is_complete(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
             dataset_path = base / "dataset.csv"
@@ -173,13 +173,12 @@ class LiveSlateRepeatabilityTests(unittest.TestCase):
                     history_path=history_path,
                 )
 
-            self.assertEqual(result["archived_dates"], [])
-            current_rows = json.loads(current_path.read_text(encoding="utf-8"))
-            self.assertEqual(len(current_rows), 1)
-            self.assertEqual(current_rows[0]["pick_id"], "2026-03-31:1001:10:20")
-            self.assertEqual(current_rows[0]["result"], "Pending")
-            self.assertEqual(current_rows[0]["game_state"], "final")
-            self.assertEqual(json.loads(history_path.read_text(encoding="utf-8")), [])
+            self.assertEqual(result["archived_dates"], ["2026-03-31"])
+            self.assertEqual(json.loads(current_path.read_text(encoding="utf-8")), [])
+            history_rows = json.loads(history_path.read_text(encoding="utf-8"))
+            self.assertEqual(len(history_rows), 1)
+            self.assertEqual(history_rows[0]["pick_id"], "2026-03-31:1001:10:20")
+            self.assertEqual(history_rows[0]["game_state"], "final")
 
     @staticmethod
     def _current_pick(game_date: str, game_pk: int, batter_id: int, batter_name: str) -> dict[str, object]:

@@ -46,24 +46,31 @@ DEFAULT_REFRESH_SCHEDULE = {
             "time_et": "Every 15 minutes until last first pitch",
             "type": "mixed",
             "label": "Mixed refresh",
-            "description": "Updates live results for started games while continuing to rerank and republish only the games that have not started yet.",
+            "description": "Keeps the morning board fixed while updating statuses and annotating only major alerts such as scratches or severe weather.",
         },
         {
             "time_et": "Every 15 minutes in-game",
             "type": "settle",
             "label": "Settle",
-            "description": "Checks today’s picks from first pitch through final, marks HR or No HR, and archives the slate when every game is complete.",
+            "description": "Checks today's board from first pitch through final, updates each entry in place, and archives the whole slate only after every tracked game is complete.",
         },
     ],
 }
 
 DISPLAY_COLUMNS = [
     "pick_id",
+    "board_date",
+    "created_at",
+    "finalized_at",
+    "is_finalized",
     "game_pk",
     "game_date",
     "game_datetime",
     "game_state",
     "rank",
+    "original_rank",
+    "original_score",
+    "original_tier",
     "morning_rank",
     "batter_name",
     "team",
@@ -83,6 +90,10 @@ DISPLAY_COLUMNS = [
     "predicted_hr_probability",
     "predicted_hr_score",
     "actual_hit_hr",
+    "current_status",
+    "alert_flags",
+    "inactive_flag",
+    "display_style",
     "top_reason_1",
     "top_reason_2",
     "top_reason_3",
@@ -91,12 +102,17 @@ DISPLAY_COLUMNS = [
 CURRENT_PICK_COLUMNS = [
     "pick_id",
     "published_at",
+    "board_date",
+    "created_at",
+    "finalized_at",
+    "is_finalized",
     "game_pk",
     "game_date",
     "game_datetime",
     "game_status",
     "game_state",
     "rank",
+    "original_rank",
     "batter_id",
     "batter_name",
     "team",
@@ -114,8 +130,14 @@ CURRENT_PICK_COLUMNS = [
     "wind_direction_deg",
     "field_bearing_deg",
     "confidence_tier",
+    "original_tier",
     "predicted_hr_probability",
     "predicted_hr_score",
+    "original_score",
+    "current_status",
+    "alert_flags",
+    "inactive_flag",
+    "display_style",
     "top_reason_1",
     "top_reason_2",
     "top_reason_3",
@@ -124,12 +146,17 @@ CURRENT_PICK_COLUMNS = [
 HISTORY_COLUMNS = [
     "pick_id",
     "published_at",
+    "board_date",
+    "created_at",
+    "finalized_at",
+    "is_finalized",
     "game_pk",
     "game_date",
     "game_datetime",
     "game_status",
     "game_state",
     "rank",
+    "original_rank",
     "batter_id",
     "batter_name",
     "team",
@@ -147,8 +174,14 @@ HISTORY_COLUMNS = [
     "wind_direction_deg",
     "field_bearing_deg",
     "confidence_tier",
+    "original_tier",
     "predicted_hr_probability",
     "predicted_hr_score",
+    "original_score",
+    "current_status",
+    "alert_flags",
+    "inactive_flag",
+    "display_style",
     "top_reason_1",
     "top_reason_2",
     "top_reason_3",
@@ -279,13 +312,17 @@ def score_sort_value(row: dict[str, Any]) -> float:
 
 
 def current_pick_sort_key(row: dict[str, Any]) -> tuple[float, int, str]:
-    return (-score_sort_value(row), int(row.get("rank") or 999), str(row.get("batter_name") or ""))
+    return (
+        float(str(row.get("game_date") or "").replace("-", "") or 0),
+        int(row.get("original_rank") or row.get("rank") or 999),
+        str(row.get("batter_name") or ""),
+    )
 
 
 def resequence_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     resequenced: list[dict[str, Any]] = []
     for index, row in enumerate(sorted((dict(item) for item in rows), key=current_pick_sort_key), start=1):
-        row["rank"] = index
+        row["rank"] = int(row.get("original_rank") or row.get("rank") or index)
         resequenced.append(row)
     return resequenced
 
@@ -301,8 +338,8 @@ def rank_movement_key(row: dict[str, Any]) -> tuple[int | None, int | None, str]
 def history_sort_key(row: dict[str, Any]) -> tuple[str, float, int, str]:
     return (
         str(row.get("game_date") or ""),
-        -score_sort_value(row),
-        int(row.get("rank") or 999),
+        int(row.get("original_rank") or row.get("rank") or 999),
+        -score_sort_value({"predicted_hr_score": row.get("original_score", row.get("predicted_hr_score"))}),
         str(row.get("batter_name") or ""),
     )
 
@@ -370,9 +407,31 @@ def normalize_result(value: Any) -> tuple[str, int | None]:
         return "HR", 1
     if token in {"0", "miss", "no hr", "no_hr", "failed", "failure"}:
         return "No HR", 0
-    if token in {"postponed", "cancelled", "ppd"}:
+    if token in {"inactive", "scratched", "scratch", "out"}:
+        return "Inactive", None
+    if token in {"postponed", "cancelled", "canceled", "ppd"}:
         return "Postponed", None
     return "Pending", None
+
+
+def derive_current_status(row: dict[str, Any], result_label: str) -> str:
+    explicit = str(row.get("current_status") or "").strip().lower()
+    if explicit:
+        return explicit
+    if result_label == "HR":
+        return "home_run"
+    if result_label == "No HR":
+        return "no_home_run"
+    if result_label == "Inactive":
+        return "inactive"
+    if result_label == "Postponed":
+        return "postponed"
+    game_state = str(row.get("game_state") or "").strip().lower()
+    if game_state == "live":
+        return "game_in_progress"
+    if game_state == "final":
+        return "final"
+    return "pending"
 
 
 def build_pick_id(row: dict[str, Any]) -> str:
@@ -403,12 +462,17 @@ def normalize_pick(row: dict[str, Any], tracking_start_date: str) -> dict[str, A
     normalized = {
         "pick_id": build_pick_id(row),
         "published_at": str(row.get("published_at") or datetime.now(timezone.utc).isoformat()),
+        "board_date": str(row.get("board_date") or game_date),
+        "created_at": str(row.get("created_at") or row.get("published_at") or datetime.now(timezone.utc).isoformat()),
+        "finalized_at": str(row.get("finalized_at") or "") or None,
+        "is_finalized": bool(row.get("is_finalized", False)),
         "game_pk": parse_int(row.get("game_pk")),
         "game_date": game_date,
         "game_datetime": str(row.get("game_datetime") or ""),
         "game_status": str(row.get("game_status") or row.get("status") or ""),
         "game_state": str(row.get("game_state") or "pregame"),
-        "rank": parse_int(row.get("rank")) or 999,
+        "rank": parse_int(row.get("original_rank") or row.get("rank")) or 999,
+        "original_rank": parse_int(row.get("original_rank") or row.get("rank")) or 999,
         "morning_rank": parse_int(row.get("morning_rank")),
         "batter_id": parse_int(row.get("batter_id")),
         "batter_name": str(row.get("batter_name") or "Unknown hitter"),
@@ -420,7 +484,8 @@ def normalize_pick(row: dict[str, Any], tracking_start_date: str) -> dict[str, A
         "batting_order": parse_int(row.get("batting_order")),
         "ballpark_name": str(row.get("ballpark_name") or row.get("ballpark") or ""),
         "ballpark_region_abbr": str(row.get("ballpark_region_abbr") or ""),
-        "confidence_tier": str(row.get("confidence_tier") or "watch").lower(),
+        "confidence_tier": str(row.get("original_tier") or row.get("confidence_tier") or "watch").lower(),
+        "original_tier": str(row.get("original_tier") or row.get("confidence_tier") or "watch").lower(),
         "weather_code": parse_int(row.get("weather_code")),
         "weather_label": str(row.get("weather_label") or ""),
         "temperature_f": parse_float(row.get("temperature_f")),
@@ -428,7 +493,12 @@ def normalize_pick(row: dict[str, Any], tracking_start_date: str) -> dict[str, A
         "wind_direction_deg": parse_float(row.get("wind_direction_deg")),
         "field_bearing_deg": parse_float(row.get("field_bearing_deg")),
         "predicted_hr_probability": probability,
-        "predicted_hr_score": score,
+        "predicted_hr_score": parse_float(row.get("original_score")) if parse_float(row.get("original_score")) is not None else score,
+        "original_score": parse_float(row.get("original_score")) if parse_float(row.get("original_score")) is not None else score,
+        "current_status": derive_current_status(row, result_label),
+        "alert_flags": list(row.get("alert_flags") or []) if isinstance(row.get("alert_flags"), list) else [],
+        "inactive_flag": bool(row.get("inactive_flag") or row.get("is_inactive", False)),
+        "display_style": str(row.get("display_style") or "default"),
         "top_reason_1": str(row.get("top_reason_1") or ""),
         "top_reason_2": str(row.get("top_reason_2") or ""),
         "top_reason_3": str(row.get("top_reason_3") or ""),
@@ -880,9 +950,7 @@ def build_dashboard_artifacts(
     current_rows = sorted(current_rows, key=current_pick_sort_key)
     current_rows, history_rows = recover_pending_history_rows(current_rows, history_rows)
     history_rows = upsert_history(history_rows, current_rows)
-    active_current_rows = resequence_rows(
-        select_active_current_rows([row for row in current_rows if row.get("result_label") == "Pending"])
-    )
+    active_current_rows = resequence_rows(select_active_current_rows(current_rows))
     active_current_dates = {str(row["game_date"]) for row in active_current_rows if row.get("game_date")}
     if active_current_dates:
         morning_rows = sorted(
@@ -890,11 +958,27 @@ def build_dashboard_artifacts(
             key=lambda row: (int(row.get("rank") or 999), -score_sort_value(row), str(row.get("batter_name") or "")),
         )
         morning_rank_by_key = {rank_movement_key(row): index for index, row in enumerate(morning_rows, start=1)}
+        morning_row_by_key = {rank_movement_key(row): dict(row) for row in morning_rows}
         for row in active_current_rows:
-            row["morning_rank"] = morning_rank_by_key.get(rank_movement_key(row))
+            row_key = rank_movement_key(row)
+            morning_row = morning_row_by_key.get(row_key)
+            row["morning_rank"] = morning_rank_by_key.get(row_key)
+            if morning_row is not None:
+                row["original_rank"] = int(morning_row.get("original_rank") or morning_row.get("rank") or row.get("original_rank") or row.get("rank") or 999)
+                row["rank"] = int(row["original_rank"])
+                if row.get("original_score") in (None, ""):
+                    row["original_score"] = morning_row.get("original_score", morning_row.get("predicted_hr_score"))
+                if not row.get("original_tier"):
+                    row["original_tier"] = morning_row.get("original_tier") or morning_row.get("confidence_tier")
+        active_current_rows = resequence_rows(active_current_rows)
     dashboard_history = sorted(
         [row for row in history_rows if str(row.get("game_date") or "") not in active_current_dates],
-        key=lambda row: (-int(str(row["game_date"]).replace("-", "")), -score_sort_value(row), int(row["rank"]), str(row["batter_name"])),
+        key=lambda row: (
+            -int(str(row["game_date"]).replace("-", "")),
+            int(row.get("original_rank") or row.get("rank") or 999),
+            -score_sort_value({"predicted_hr_score": row.get("original_score", row.get("predicted_hr_score"))}),
+            str(row["batter_name"]),
+        ),
     )
 
     current_picks_path.write_text(json.dumps(clean_current_pick_rows(active_current_rows), indent=2), encoding="utf-8")
