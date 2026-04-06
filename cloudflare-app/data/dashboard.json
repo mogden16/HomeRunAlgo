@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-06T18:32:08.130290+00:00",
+  "generated_at": "2026-04-06T19:52:39.070127+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2008,7 +2008,7 @@
       "team": "PIT",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -2050,7 +2050,7 @@
       "team": "STL",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -2252,7 +2252,7 @@
       "game_pk": 823002,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 10,
       "original_rank": 10,
       "original_score": 96.2,
@@ -2276,7 +2276,7 @@
       "predicted_hr_probability": 0.146542,
       "predicted_hr_score": 96.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -2420,7 +2420,7 @@
       "game_pk": 823002,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 14,
       "original_rank": 14,
       "original_score": 94.4,
@@ -2444,7 +2444,7 @@
       "predicted_hr_probability": 0.14276,
       "predicted_hr_score": 94.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -2462,7 +2462,7 @@
       "game_pk": 823002,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 15,
       "original_rank": 15,
       "original_score": 93.6,
@@ -2486,7 +2486,7 @@
       "predicted_hr_probability": 0.141332,
       "predicted_hr_score": 93.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -2556,7 +2556,7 @@
       "team": "COL",
       "opponent_team": "HOU",
       "pitcher_name": "Cody Bolton",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -2598,7 +2598,7 @@
       "team": "STL",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -2630,7 +2630,7 @@
       "game_pk": 823002,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 19,
       "original_rank": 19,
       "original_score": 92.3,
@@ -2654,7 +2654,7 @@
       "predicted_hr_probability": 0.140381,
       "predicted_hr_score": 92.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -2724,7 +2724,7 @@
       "team": "MIL",
       "opponent_team": "BOS",
       "pitcher_name": "Brayan Bello",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -3018,7 +3018,7 @@
       "team": "PIT",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -3060,7 +3060,7 @@
       "team": "CIN",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -3356,7 +3356,7 @@
       "team": "STL",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -3440,7 +3440,7 @@
       "team": "COL",
       "opponent_team": "HOU",
       "pitcher_name": "Cody Bolton",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -3482,7 +3482,7 @@
       "team": "COL",
       "opponent_team": "HOU",
       "pitcher_name": "Cody Bolton",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -3496,14 +3496,16 @@
       "predicted_hr_probability": 0.126363,
       "predicted_hr_score": 84.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 5.3%, which the model treats as sustained power quality.",
       "top_reason_2": "Cody Bolton has allowed a 45.5% hard-hit rate over the last 30 days.",
       "top_reason_3": "Park factor for the hitter's handedness is 120.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:822918:668227:594798",
@@ -3608,7 +3610,7 @@
       "team": "CIN",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -3734,7 +3736,7 @@
       "team": "TOR",
       "opponent_team": "LAD",
       "pitcher_name": "Justin Wrobleski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -3766,7 +3768,7 @@
       "game_pk": 823002,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 46,
       "original_rank": 46,
       "original_score": 80.8,
@@ -3790,7 +3792,7 @@
       "predicted_hr_probability": 0.123469,
       "predicted_hr_score": 80.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -3860,7 +3862,7 @@
       "team": "MIA",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -3892,7 +3894,7 @@
       "game_pk": 823002,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 49,
       "original_rank": 49,
       "original_score": 79.5,
@@ -3916,7 +3918,7 @@
       "predicted_hr_probability": 0.122303,
       "predicted_hr_score": 79.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -4280,7 +4282,7 @@
       "team": "TOR",
       "opponent_team": "LAD",
       "pitcher_name": "Justin Wrobleski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -4322,7 +4324,7 @@
       "team": "MIL",
       "opponent_team": "BOS",
       "pitcher_name": "Brayan Bello",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -4406,7 +4408,7 @@
       "team": "COL",
       "opponent_team": "HOU",
       "pitcher_name": "Cody Bolton",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -4448,7 +4450,7 @@
       "team": "PIT",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -4490,7 +4492,7 @@
       "team": "WSH",
       "opponent_team": "STL",
       "pitcher_name": "Andre Pallante",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -4826,7 +4828,7 @@
       "team": "TOR",
       "opponent_team": "LAD",
       "pitcher_name": "Justin Wrobleski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -4998,7 +5000,7 @@
       "team": "CIN",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -5030,7 +5032,7 @@
       "game_pk": 823002,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 76,
       "original_rank": 76,
       "original_score": 68.4,
@@ -5054,7 +5056,7 @@
       "predicted_hr_probability": 0.112215,
       "predicted_hr_score": 68.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -5124,7 +5126,7 @@
       "team": "WSH",
       "opponent_team": "STL",
       "pitcher_name": "Andre Pallante",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -5250,7 +5252,7 @@
       "team": "PIT",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -5418,7 +5420,7 @@
       "team": "MIL",
       "opponent_team": "BOS",
       "pitcher_name": "Brayan Bello",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -5460,7 +5462,7 @@
       "team": "MIL",
       "opponent_team": "BOS",
       "pitcher_name": "Brayan Bello",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -5502,7 +5504,7 @@
       "team": "STL",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -5544,7 +5546,7 @@
       "team": "COL",
       "opponent_team": "HOU",
       "pitcher_name": "Cody Bolton",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -5586,7 +5588,7 @@
       "team": "WSH",
       "opponent_team": "STL",
       "pitcher_name": "Andre Pallante",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -5628,7 +5630,7 @@
       "team": "COL",
       "opponent_team": "HOU",
       "pitcher_name": "Cody Bolton",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -5756,7 +5758,7 @@
       "team": "PIT",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -5798,7 +5800,7 @@
       "team": "CIN",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -5882,7 +5884,7 @@
       "team": "STL",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -5924,7 +5926,7 @@
       "team": "MIL",
       "opponent_team": "BOS",
       "pitcher_name": "Brayan Bello",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -5938,14 +5940,16 @@
       "predicted_hr_probability": 0.104949,
       "predicted_hr_score": 59.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 18.8%, which the model treats as sustained power quality.",
       "top_reason_2": "Brayan Bello has allowed homers in 5.4% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 11.9 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:824783:668930:678394",
@@ -5966,7 +5970,7 @@
       "team": "MIL",
       "opponent_team": "BOS",
       "pitcher_name": "Brayan Bello",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -6134,7 +6138,7 @@
       "team": "MIA",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -6292,7 +6296,7 @@
       "game_pk": 823002,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 106,
       "original_rank": 106,
       "original_score": 54.3,
@@ -6316,7 +6320,7 @@
       "predicted_hr_probability": 0.101713,
       "predicted_hr_score": 54.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -7096,7 +7100,7 @@
       "game_pk": 823002,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 125,
       "original_rank": 125,
       "original_score": 47.4,
@@ -7120,7 +7124,7 @@
       "predicted_hr_probability": 0.097211,
       "predicted_hr_score": 47.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -7190,7 +7194,7 @@
       "team": "COL",
       "opponent_team": "HOU",
       "pitcher_name": "Cody Bolton",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -7274,7 +7278,7 @@
       "team": "CIN",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -7348,7 +7352,7 @@
       "game_pk": 823002,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 131,
       "original_rank": 131,
       "original_score": 44.9,
@@ -7372,7 +7376,7 @@
       "predicted_hr_probability": 0.095145,
       "predicted_hr_score": 44.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -7400,7 +7404,7 @@
       "team": "MIA",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -7782,7 +7786,7 @@
       "team": "MIA",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -7814,7 +7818,7 @@
       "game_pk": 823002,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 142,
       "original_rank": 142,
       "original_score": 39.7,
@@ -7838,7 +7842,7 @@
       "predicted_hr_probability": 0.091972,
       "predicted_hr_score": 39.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -7866,7 +7870,7 @@
       "team": "COL",
       "opponent_team": "HOU",
       "pitcher_name": "Cody Bolton",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -7880,14 +7884,16 @@
       "predicted_hr_probability": 0.09121,
       "predicted_hr_score": 39.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.1 mph, which points to top-end HR juice.",
       "top_reason_2": "Cody Bolton has allowed a 45.5% hard-hit rate over the last 30 days.",
       "top_reason_3": "Park factor for the hitter's handedness is 120.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:823728:668904:663554",
@@ -7992,7 +7998,7 @@
       "team": "CIN",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -8034,7 +8040,7 @@
       "team": "WSH",
       "opponent_team": "STL",
       "pitcher_name": "Andre Pallante",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -8118,7 +8124,7 @@
       "team": "MIL",
       "opponent_team": "BOS",
       "pitcher_name": "Brayan Bello",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -8132,14 +8138,16 @@
       "predicted_hr_probability": 0.08921,
       "predicted_hr_score": 36.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 109.7 mph, which points to top-end HR juice.",
       "top_reason_2": "Brayan Bello has allowed homers in 5.4% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 11.9 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:822918:669701:669302",
@@ -8286,7 +8294,7 @@
       "team": "STL",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -8300,14 +8308,16 @@
       "predicted_hr_probability": 0.088702,
       "predicted_hr_score": 34.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 4.3%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Zack Littell has allowed homers in 6.2% of plate appearances over the last 30 days.",
       "top_reason_3": "Barrel rate over the last 30 days is 3.7%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:823401:542303:608566",
@@ -8328,7 +8338,7 @@
       "team": "PIT",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -8370,7 +8380,7 @@
       "team": "WSH",
       "opponent_team": "STL",
       "pitcher_name": "Andre Pallante",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -8580,7 +8590,7 @@
       "team": "MIA",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -8594,14 +8604,16 @@
       "predicted_hr_probability": 0.086891,
       "predicted_hr_score": 32.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 6.9%, which the model treats as sustained power quality.",
       "top_reason_2": "Brandon Williamson has allowed homers in 11.1% of plate appearances over the last 30 days.",
       "top_reason_3": "Brandon Williamson has allowed homers in 9.7% of plate appearances to this batter side.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:824456:663697:676440",
@@ -8876,7 +8888,7 @@
       "team": "STL",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -8890,14 +8902,16 @@
       "predicted_hr_probability": 0.082793,
       "predicted_hr_score": 29.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 5.6%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Zack Littell has allowed homers in 6.2% of plate appearances over the last 30 days.",
       "top_reason_3": "Zack Littell has allowed homers in 4.1% of plate appearances to this batter side.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:823728:678009:657746",
@@ -9034,7 +9048,7 @@
       "game_pk": 823002,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 171,
       "original_rank": 171,
       "original_score": 27.8,
@@ -9058,7 +9072,7 @@
       "predicted_hr_probability": 0.081846,
       "predicted_hr_score": 27.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -9086,7 +9100,7 @@
       "team": "MIL",
       "opponent_team": "BOS",
       "pitcher_name": "Brayan Bello",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -9202,7 +9216,7 @@
       "game_pk": 823002,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 175,
       "original_rank": 175,
       "original_score": 26.5,
@@ -9298,7 +9312,7 @@
       "team": "STL",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -9466,7 +9480,7 @@
       "team": "TOR",
       "opponent_team": "LAD",
       "pitcher_name": "Justin Wrobleski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -9480,14 +9494,16 @@
       "predicted_hr_probability": 0.079305,
       "predicted_hr_score": 23.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 50.0%, showing consistent quality contact.",
       "top_reason_2": "Projected humidity is 92%, a modest positive weather input in the live model.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 50.0%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:824052:645277:667755",
@@ -9550,7 +9566,7 @@
       "team": "TOR",
       "opponent_team": "LAD",
       "pitcher_name": "Justin Wrobleski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -9676,7 +9692,7 @@
       "team": "COL",
       "opponent_team": "HOU",
       "pitcher_name": "Cody Bolton",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -9718,7 +9734,7 @@
       "team": "PIT",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -9760,7 +9776,7 @@
       "team": "TOR",
       "opponent_team": "LAD",
       "pitcher_name": "Justin Wrobleski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -9774,14 +9790,16 @@
       "predicted_hr_probability": 0.07696,
       "predicted_hr_score": 20.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 50.0%, showing consistent quality contact.",
       "top_reason_2": "Projected humidity is 92%, a modest positive weather input in the live model.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 50.0%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:824456:677587:608379",
@@ -9888,7 +9906,7 @@
       "team": "MIL",
       "opponent_team": "BOS",
       "pitcher_name": "Brayan Bello",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -9920,7 +9938,7 @@
       "game_pk": 823002,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 192,
       "original_rank": 192,
       "original_score": 18.4,
@@ -9944,7 +9962,7 @@
       "predicted_hr_probability": 0.075729,
       "predicted_hr_score": 18.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10014,7 +10032,7 @@
       "team": "MIA",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -10056,7 +10074,7 @@
       "team": "STL",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -10140,7 +10158,7 @@
       "team": "MIA",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -10340,7 +10358,7 @@
       "game_pk": 823002,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 202,
       "original_rank": 202,
       "original_score": 14.1,
@@ -10364,7 +10382,7 @@
       "predicted_hr_probability": 0.070553,
       "predicted_hr_score": 14.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10382,7 +10400,7 @@
       "game_pk": 823002,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 203,
       "original_rank": 203,
       "original_score": 13.7,
@@ -10406,7 +10424,7 @@
       "predicted_hr_probability": 0.070487,
       "predicted_hr_score": 13.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10434,7 +10452,7 @@
       "team": "TOR",
       "opponent_team": "LAD",
       "pitcher_name": "Justin Wrobleski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -10518,7 +10536,7 @@
       "team": "WSH",
       "opponent_team": "STL",
       "pitcher_name": "Andre Pallante",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -10560,7 +10578,7 @@
       "team": "CIN",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -10574,14 +10592,16 @@
       "predicted_hr_probability": 0.06907,
       "predicted_hr_score": 12.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 6.7%, which the model treats as sustained power quality.",
       "top_reason_2": "Janson Junk has allowed a 47.4% hard-hit rate over the last 30 days.",
       "top_reason_3": "Barrel rate over the last 10 days is 7.1%, a top-quartile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:823728:663616:663554",
@@ -10686,7 +10706,7 @@
       "team": "TOR",
       "opponent_team": "LAD",
       "pitcher_name": "Justin Wrobleski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -10770,7 +10790,7 @@
       "team": "MIA",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -10928,7 +10948,7 @@
       "game_pk": 823002,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 216,
       "original_rank": 216,
       "original_score": 8.5,
@@ -10952,7 +10972,7 @@
       "predicted_hr_probability": 0.063879,
       "predicted_hr_score": 8.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10980,7 +11000,7 @@
       "team": "MIA",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -11150,7 +11170,7 @@
       "team": "CIN",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -11276,7 +11296,7 @@
       "team": "WSH",
       "opponent_team": "STL",
       "pitcher_name": "Andre Pallante",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -11290,14 +11310,16 @@
       "predicted_hr_probability": 0.05853,
       "predicted_hr_score": 4.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Andre Pallante has allowed a 47.6% hard-hit rate over the last 30 days.",
       "top_reason_2": "Andre Pallante has allowed 47.6% 95+ EV contact over the last 30 days.",
       "top_reason_3": "Andre Pallante has allowed 89.6 mph average exit velocity recently, which the model flags as hittable contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:823401:663968:608566",
@@ -11318,7 +11340,7 @@
       "team": "PIT",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -11332,14 +11354,16 @@
       "predicted_hr_probability": 0.057652,
       "predicted_hr_score": 4.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Germ\u00e1n M\u00e1rquez has allowed barrels on 6.2% of batted balls to this batter side.",
       "top_reason_2": "Germ\u00e1n M\u00e1rquez has allowed homers in 3.8% of plate appearances to this batter side.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:823886:670770:676083",
@@ -11360,7 +11384,7 @@
       "team": "CIN",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -11444,7 +11468,7 @@
       "team": "WSH",
       "opponent_team": "STL",
       "pitcher_name": "Andre Pallante",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -11458,14 +11482,16 @@
       "predicted_hr_probability": 0.055247,
       "predicted_hr_score": 3.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 6.7%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Andre Pallante has allowed a 47.6% hard-hit rate over the last 30 days.",
       "top_reason_3": "Barrel rate over the last 30 days is 5.3%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:823401:804606:608566",
@@ -11486,7 +11512,7 @@
       "team": "PIT",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -11570,7 +11596,7 @@
       "team": "WSH",
       "opponent_team": "STL",
       "pitcher_name": "Andre Pallante",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -11612,7 +11638,7 @@
       "team": "TOR",
       "opponent_team": "LAD",
       "pitcher_name": "Justin Wrobleski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -11626,14 +11652,16 @@
       "predicted_hr_probability": 0.048039,
       "predicted_hr_score": 0.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Projected humidity is 92%, a modest positive weather input in the live model.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:823002:802415:592791",
@@ -11644,7 +11672,7 @@
       "game_pk": 823002,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 233,
       "original_rank": 233,
       "original_score": 1.3,
@@ -11668,7 +11696,7 @@
       "predicted_hr_probability": 0.048467,
       "predicted_hr_score": 1.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -40223,8 +40251,8 @@
       "game_pk": 823002,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T20:10:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "Warmup",
+      "game_state": "live",
       "matchup": "CHC @ TB",
       "teams": [
         {
@@ -40481,7 +40509,7 @@
       "game_pk": 823401,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T22:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "SD @ PIT",
       "teams": [
@@ -40549,7 +40577,7 @@
         {
           "team": "PIT",
           "opponent_team": "SD",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 664040,
@@ -40570,12 +40598,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 663968,
-              "batter_name": "Jake Mangum",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 804606,
               "batter_name": "Konnor Griffin",
               "batting_order": null,
@@ -40586,6 +40608,12 @@
               "batter_name": "Marcell Ozuna",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 693304,
+              "batter_name": "Nick Gonzales",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 665833,
@@ -40613,21 +40641,15 @@
       "game_pk": 823886,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T22:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "CIN @ MIA",
       "teams": [
         {
           "team": "CIN",
           "opponent_team": "MIA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 667472,
-              "batter_name": "Dane Myers",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 682829,
               "batter_name": "Elly De La Cruz",
@@ -40675,13 +40697,19 @@
               "batter_name": "Tyler Stephenson",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 666181,
+              "batter_name": "Will Benson",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         },
         {
           "team": "MIA",
           "opponent_team": "CIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682663,
@@ -40720,10 +40748,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 689414,
-              "batter_name": "Liam Hicks",
+              "batter_id": 677870,
+              "batter_name": "Leo Jim\u00e9nez",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 672640,
@@ -40745,14 +40773,14 @@
       "game_pk": 822755,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T22:45:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "STL @ WSH",
       "teams": [
         {
           "team": "STL",
           "opponent_team": "WSH",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 676475,
@@ -40779,10 +40807,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 701675,
-              "batter_name": "Nathan Church",
+              "batter_id": 665877,
+              "batter_name": "Jos\u00e9 Ferm\u00edn",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 669357,
@@ -40791,10 +40819,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 686780,
-              "batter_name": "Pedro Pag\u00e9s",
+              "batter_id": 602104,
+              "batter_name": "Ram\u00f3n Ur\u00edas",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 695336,
@@ -40813,7 +40841,7 @@
         {
           "team": "WSH",
           "opponent_team": "STL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 691781,
@@ -40834,6 +40862,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 686452,
+              "batter_name": "Drew Millas",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 696285,
               "batter_name": "Jacob Young",
               "batting_order": null,
@@ -40846,16 +40880,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 678391,
-              "batter_name": "Jorbit Vivas",
+              "batter_id": 677588,
+              "batter_name": "Jos\u00e9 Tena",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 660688,
-              "batter_name": "Keibert Ruiz",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 671277,
@@ -40884,17 +40912,11 @@
         {
           "team": "MIL",
           "opponent_team": "BOS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 663368,
               "batter_name": "Blake Perkins",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 663604,
-              "batter_name": "Brandon Lockridge",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -40911,14 +40933,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 669003,
-              "batter_name": "Garrett Mitchell",
+              "batter_id": 666152,
+              "batter_name": "David Hamilton",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 596142,
-              "batter_name": "Gary S\u00e1nchez",
+              "batter_id": 669003,
+              "batter_name": "Garrett Mitchell",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -40933,6 +40955,12 @@
               "batter_name": "Luis Rengifo",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 686217,
+              "batter_name": "Sal Frelick",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 661388,
@@ -41009,7 +41037,7 @@
       "game_pk": 822832,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T23:07:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "LAD @ TOR",
       "teams": [
@@ -41077,14 +41105,8 @@
         {
           "team": "TOR",
           "opponent_team": "LAD",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 680718,
-              "batter_name": "Addison Barger",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 665926,
               "batter_name": "Andr\u00e9s Gim\u00e9nez",
@@ -41096,6 +41118,12 @@
               "batter_name": "Daulton Varsho",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 676914,
+              "batter_name": "Davis Schneider",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 676391,
@@ -41110,22 +41138,22 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 660821,
-              "batter_name": "Jes\u00fas S\u00e1nchez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 672960,
               "batter_name": "Kazuma Okamoto",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 664770,
-              "batter_name": "Nathan Lukes",
+              "batter_id": 664702,
+              "batter_name": "Myles Straw",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 623168,
+              "batter_name": "Tyler Heineman",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 665489,
@@ -41141,7 +41169,7 @@
       "game_pk": 823728,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T23:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "DET @ MIN",
       "teams": [
@@ -41209,8 +41237,14 @@
         {
           "team": "MIN",
           "opponent_team": "DET",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 686797,
+              "batter_name": "Brooks Lee",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 621439,
               "batter_name": "Byron Buxton",
@@ -41218,14 +41252,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 605137,
-              "batter_name": "Josh Bell",
+              "batter_id": 681546,
+              "batter_name": "James Outman",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 665019,
-              "batter_name": "Kody Clemens",
+              "batter_id": 605137,
+              "batter_name": "Josh Bell",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -41248,22 +41282,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 680777,
-              "batter_name": "Ryan Jeffers",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 663616,
               "batter_name": "Trevor Larnach",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 656484,
-              "batter_name": "Tristan Gray",
+              "batter_id": 605170,
+              "batter_name": "Victor Caratini",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             }
           ]
         }
@@ -41537,7 +41565,7 @@
       "game_pk": 824376,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-07T00:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "HOU @ COL",
       "teams": [
@@ -41605,7 +41633,7 @@
         {
           "team": "COL",
           "opponent_team": "HOU",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 686668,
@@ -41614,10 +41642,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 678662,
-              "batter_name": "Ezequiel Tovar",
+              "batter_id": 666397,
+              "batter_name": "Edouard Julien",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 696100,
@@ -41626,10 +41654,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 687597,
-              "batter_name": "Jordan Beck",
+              "batter_id": 664983,
+              "batter_name": "Jake McCarthy",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 691720,
