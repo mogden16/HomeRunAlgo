@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-06T17:40:06.310708+00:00",
+  "generated_at": "2026-04-06T18:32:08.130290+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2092,7 +2092,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Michael Wacha",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -2220,7 +2220,7 @@
       "team": "BOS",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -2304,7 +2304,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -2682,7 +2682,7 @@
       "team": "BOS",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -2766,7 +2766,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -2892,7 +2892,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Michael Wacha",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -2976,7 +2976,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -3398,7 +3398,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -4028,7 +4028,7 @@
       "team": "BOS",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -4784,7 +4784,7 @@
       "team": "BOS",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -5292,7 +5292,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Michael Wacha",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -5376,7 +5376,7 @@
       "team": "BOS",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -5670,7 +5670,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -6428,7 +6428,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -6442,14 +6442,16 @@
       "predicted_hr_probability": 0.100136,
       "predicted_hr_score": 52.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 100.1 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Tanner Bibee has allowed 95.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 17.7 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:824456:682177:608379",
@@ -6470,7 +6472,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Michael Wacha",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -6484,14 +6486,16 @@
       "predicted_hr_probability": 0.10065,
       "predicted_hr_score": 53.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 4.2%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Michael Wacha has allowed a 43.5% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 17.7 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:823401:592518:696149",
@@ -6806,7 +6810,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Michael Wacha",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -7438,7 +7442,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -7480,7 +7484,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Michael Wacha",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -7650,7 +7654,7 @@
       "team": "BOS",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -7664,14 +7668,16 @@
       "predicted_hr_probability": 0.093314,
       "predicted_hr_score": 41.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.2 mph, which points to top-end HR juice.",
       "top_reason_2": "Brandon Woodruff has allowed homers in 6.1% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 11.9 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:824783:665966:605540",
@@ -7692,7 +7698,7 @@
       "team": "BOS",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -8490,7 +8496,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -8616,7 +8622,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -8826,7 +8832,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Michael Wacha",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -8840,14 +8846,16 @@
       "predicted_hr_probability": 0.076887,
       "predicted_hr_score": 20.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.1 mph, which points to top-end HR juice.",
       "top_reason_2": "Michael Wacha has allowed barrels on 5.5% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 17.7 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:822755:686780:641793",
@@ -9416,7 +9424,7 @@
       "team": "BOS",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -9794,7 +9802,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Michael Wacha",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -10090,7 +10098,7 @@
       "team": "BOS",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -10720,7 +10728,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Michael Wacha",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -40341,20 +40349,26 @@
       "game_pk": 824456,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T22:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "KC @ CLE",
       "teams": [
         {
           "team": "KC",
           "opponent_team": "CLE",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 677951,
               "batter_name": "Bobby Witt Jr.",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 695600,
+              "batter_name": "Carter Jensen",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 686555,
@@ -40393,12 +40407,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 516782,
-              "batter_name": "Starling Marte",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 686469,
               "batter_name": "Vinnie Pasquantino",
               "batting_order": null,
@@ -40409,14 +40417,8 @@
         {
           "team": "CLE",
           "opponent_team": "KC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 682657,
-              "batter_name": "Angel Mart\u00ednez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 666310,
               "batter_name": "Bo Naylor",
@@ -40430,14 +40432,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 800050,
-              "batter_name": "Chase DeLauter",
+              "batter_id": 692216,
+              "batter_name": "CJ Kayfus",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 682177,
-              "batter_name": "Daniel Schneemann",
+              "batter_id": 800050,
+              "batter_name": "Chase DeLauter",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -40458,6 +40460,12 @@
               "batter_name": "Kyle Manzardo",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 656555,
+              "batter_name": "Rhys Hoskins",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 680757,
@@ -40869,7 +40877,7 @@
       "game_pk": 824783,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T22:45:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "MIL @ BOS",
       "teams": [
@@ -40937,7 +40945,7 @@
         {
           "team": "BOS",
           "opponent_team": "MIL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 702332,
@@ -40958,16 +40966,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 680776,
-              "batter_name": "Jarren Duran",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 691785,
               "batter_name": "Marcelo Mayer",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 807799,
+              "batter_name": "Masataka Yoshida",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 701350,
