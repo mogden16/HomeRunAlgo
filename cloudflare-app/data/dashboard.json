@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-06T19:52:39.070127+00:00",
+  "generated_at": "2026-04-06T21:29:53.689459+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -77,10 +77,10 @@
     "latest_slate_size": 234,
     "tracked_dates": 12,
     "tracked_picks": 912,
-    "settled_picks": 657,
-    "tracked_homers": 63,
-    "tracked_hit_rate": 0.09589,
-    "open_picks": 255
+    "settled_picks": 659,
+    "tracked_homers": 65,
+    "tracked_hit_rate": 0.098634,
+    "open_picks": 253
   },
   "confidence_summary": [
     {
@@ -92,10 +92,10 @@
     },
     {
       "confidence_tier": "strong",
-      "picks": 94,
-      "homers": 17,
-      "hit_rate": 0.180851,
-      "avg_probability": 0.227569
+      "picks": 95,
+      "homers": 18,
+      "hit_rate": 0.189474,
+      "avg_probability": 0.226716
     },
     {
       "confidence_tier": "watch",
@@ -106,9 +106,9 @@
     },
     {
       "confidence_tier": "longshot",
-      "picks": 419,
-      "homers": 23,
-      "hit_rate": 0.054893,
+      "picks": 420,
+      "homers": 24,
+      "hit_rate": 0.057143,
       "avg_probability": 0.09182
     }
   ],
@@ -165,6 +165,13 @@
     {
       "batter_name": "Ben Rice",
       "team": "NYY",
+      "picks": 4,
+      "homers": 2,
+      "hit_rate": 0.5
+    },
+    {
+      "batter_name": "Junior Caminero",
+      "team": "TB",
       "picks": 4,
       "homers": 2,
       "hit_rate": 0.5
@@ -268,15 +275,15 @@
       "hit_rate": 0.25
     },
     {
-      "batter_name": "James Wood",
-      "team": "WSH",
+      "batter_name": "Cedric Mullins",
+      "team": "TB",
       "picks": 3,
       "homers": 1,
       "hit_rate": 0.333333
     },
     {
-      "batter_name": "Junior Caminero",
-      "team": "TB",
+      "batter_name": "James Wood",
+      "team": "WSH",
       "picks": 3,
       "homers": 1,
       "hit_rate": 0.333333
@@ -907,13 +914,6 @@
     {
       "batter_name": "Carlos Santana",
       "team": "AZ",
-      "picks": 2,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Cedric Mullins",
-      "team": "TB",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
@@ -1882,7 +1882,7 @@
       "team": "LAD",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -2134,7 +2134,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -2178,7 +2178,7 @@
       "team": "TEX",
       "opponent_team": "SEA",
       "pitcher_name": "Logan Gilbert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -2275,15 +2275,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.146542,
       "predicted_hr_score": 96.2,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 116.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Against this pitcher handedness, the hitter has a 5.7% barrel-per-PA split.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0024, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-06:824456:695506:676440",
@@ -2346,7 +2346,7 @@
       "team": "TEX",
       "opponent_team": "SEA",
       "pitcher_name": "Logan Gilbert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -2514,7 +2514,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -2528,14 +2528,16 @@
       "predicted_hr_probability": 0.141032,
       "predicted_hr_score": 93.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0032, reinforcing the power-contact fit.",
       "top_reason_2": "Joe Ryan has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 11.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:824376:666160:675989",
@@ -2808,7 +2810,7 @@
       "team": "BAL",
       "opponent_team": "CWS",
       "pitcher_name": "Grant Taylor",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -2850,7 +2852,7 @@
       "team": "LAD",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -2934,7 +2936,7 @@
       "team": "LAD",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -3102,7 +3104,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "Jacob deGrom",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -3144,7 +3146,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "Jacob deGrom",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -3186,7 +3188,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -3230,7 +3232,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "Jacob deGrom",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -3314,7 +3316,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -3328,14 +3330,16 @@
       "predicted_hr_probability": 0.127252,
       "predicted_hr_score": 85.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 64.7%, showing consistent quality contact.",
       "top_reason_2": "Joe Ryan has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 11.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:822755:671056:641793",
@@ -3526,7 +3530,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "Jacob deGrom",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -3652,7 +3656,7 @@
       "team": "SD",
       "opponent_team": "PIT",
       "pitcher_name": "Bubba Chandler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -3694,7 +3698,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "Jacob deGrom",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -3820,7 +3824,7 @@
       "team": "TEX",
       "opponent_team": "SEA",
       "pitcher_name": "Logan Gilbert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -3946,7 +3950,7 @@
       "team": "TEX",
       "opponent_team": "SEA",
       "pitcher_name": "Logan Gilbert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -3988,7 +3992,7 @@
       "team": "MIN",
       "opponent_team": "DET",
       "pitcher_name": "Casey Mize",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -4072,7 +4076,7 @@
       "team": "TEX",
       "opponent_team": "SEA",
       "pitcher_name": "Logan Gilbert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -4198,7 +4202,7 @@
       "team": "LAD",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -4534,7 +4538,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -4576,7 +4580,7 @@
       "team": "TEX",
       "opponent_team": "SEA",
       "pitcher_name": "Logan Gilbert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -4618,7 +4622,7 @@
       "team": "LAD",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -4702,7 +4706,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -4744,7 +4748,7 @@
       "team": "TEX",
       "opponent_team": "SEA",
       "pitcher_name": "Logan Gilbert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -4870,7 +4874,7 @@
       "team": "MIN",
       "opponent_team": "DET",
       "pitcher_name": "Casey Mize",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -4884,14 +4888,16 @@
       "predicted_hr_probability": 0.112919,
       "predicted_hr_score": 70.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 47.1%, showing consistent quality contact.",
       "top_reason_2": "Casey Mize has allowed barrels on 16.7% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 11.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:824619:678246:",
@@ -4912,7 +4918,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -4956,7 +4962,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -5084,7 +5090,7 @@
       "team": "LAD",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -5098,14 +5104,16 @@
       "predicted_hr_probability": 0.111325,
       "predicted_hr_score": 67.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 12.9%, which the model treats as sustained power quality.",
       "top_reason_2": "Max Scherzer has allowed barrels on 7.4% of batted balls to this batter side.",
       "top_reason_3": "Projected humidity is 92%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:822755:682928:669467",
@@ -5336,7 +5344,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "Jacob deGrom",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -5714,7 +5722,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -5842,7 +5850,7 @@
       "team": "BAL",
       "opponent_team": "CWS",
       "pitcher_name": "Grant Taylor",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -6012,7 +6020,7 @@
       "team": "BAL",
       "opponent_team": "CWS",
       "pitcher_name": "Grant Taylor",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -6026,14 +6034,16 @@
       "predicted_hr_probability": 0.104309,
       "predicted_hr_score": 58.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 96.3 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Grant Taylor has allowed a 62.5% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 12.7 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:824052:671739:667755",
@@ -6180,7 +6190,7 @@
       "team": "SD",
       "opponent_team": "PIT",
       "pitcher_name": "Bubba Chandler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -6390,7 +6400,7 @@
       "team": "SD",
       "opponent_team": "PIT",
       "pitcher_name": "Bubba Chandler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -6404,14 +6414,16 @@
       "predicted_hr_probability": 0.101793,
       "predicted_hr_score": 54.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 25.0%, which the model treats as sustained power quality.",
       "top_reason_2": "Bubba Chandler has allowed a 50.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Barrel rate over the last 10 days is 25.0%, a top-decile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:824456:516782:676440",
@@ -6520,7 +6532,7 @@
       "team": "SD",
       "opponent_team": "PIT",
       "pitcher_name": "Bubba Chandler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -6604,7 +6616,7 @@
       "team": "MIN",
       "opponent_team": "DET",
       "pitcher_name": "Casey Mize",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -6646,7 +6658,7 @@
       "team": "SD",
       "opponent_team": "PIT",
       "pitcher_name": "Bubba Chandler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -6688,7 +6700,7 @@
       "team": "LAD",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -6730,7 +6742,7 @@
       "team": "SD",
       "opponent_team": "PIT",
       "pitcher_name": "Bubba Chandler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -6744,14 +6756,16 @@
       "predicted_hr_probability": 0.099533,
       "predicted_hr_score": 50.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 94.5 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Bubba Chandler has allowed a 50.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Bubba Chandler has allowed 50.0% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:823237:607208:605288",
@@ -6856,7 +6870,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -7026,7 +7040,7 @@
       "team": "BAL",
       "opponent_team": "CWS",
       "pitcher_name": "Grant Taylor",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -7040,14 +7054,16 @@
       "predicted_hr_probability": 0.097603,
       "predicted_hr_score": 48.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 3.8%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Grant Taylor has allowed a 62.5% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 12.7 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:824376:514888:663372",
@@ -7236,7 +7252,7 @@
       "team": "BAL",
       "opponent_team": "CWS",
       "pitcher_name": "Grant Taylor",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -7320,7 +7336,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -7530,7 +7546,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -7574,7 +7590,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "Jacob deGrom",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -7588,14 +7604,16 @@
       "predicted_hr_probability": 0.093644,
       "predicted_hr_score": 42.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 60.0%, showing consistent quality contact.",
       "top_reason_2": "Jacob deGrom has allowed 91.5 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 60.0%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:823728:621439:663554",
@@ -7616,7 +7634,7 @@
       "team": "MIN",
       "opponent_team": "DET",
       "pitcher_name": "Casey Mize",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -7744,7 +7762,7 @@
       "team": "SD",
       "opponent_team": "PIT",
       "pitcher_name": "Bubba Chandler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -7841,15 +7859,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.091972,
       "predicted_hr_score": 39.7,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0015, reinforcing the power-contact fit.",
       "top_reason_2": "Jameson Taillon has allowed barrels on 5.2% of batted balls to this batter side.",
       "top_reason_3": "Jameson Taillon has allowed homers in 3.4% of plate appearances to this batter side.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-06:824376:687597:675989",
@@ -7914,7 +7932,7 @@
       "team": "MIN",
       "opponent_team": "DET",
       "pitcher_name": "Casey Mize",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -7956,7 +7974,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -8168,7 +8186,7 @@
       "team": "TEX",
       "opponent_team": "SEA",
       "pitcher_name": "Logan Gilbert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -8210,7 +8228,7 @@
       "team": "MIN",
       "opponent_team": "DET",
       "pitcher_name": "Casey Mize",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -8224,14 +8242,16 @@
       "predicted_hr_probability": 0.089018,
       "predicted_hr_score": 35.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1834, supporting loud-contact upside.",
       "top_reason_2": "Casey Mize has allowed barrels on 16.7% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 11.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:822832:500743:453286",
@@ -8252,7 +8272,7 @@
       "team": "LAD",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -8266,14 +8286,16 @@
       "predicted_hr_probability": 0.088897,
       "predicted_hr_score": 35.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 50.0%, showing consistent quality contact.",
       "top_reason_2": "Max Scherzer has allowed barrels on 7.4% of batted balls to this batter side.",
       "top_reason_3": "Projected humidity is 92%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:822755:701675:641793",
@@ -8422,7 +8444,7 @@
       "team": "BAL",
       "opponent_team": "CWS",
       "pitcher_name": "Grant Taylor",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -8436,14 +8458,16 @@
       "predicted_hr_probability": 0.088109,
       "predicted_hr_score": 33.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 53.8%, showing consistent quality contact.",
       "top_reason_2": "Grant Taylor has allowed a 62.5% hard-hit rate over the last 30 days.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:823237:642715:691725",
@@ -8676,7 +8700,7 @@
       "team": "BAL",
       "opponent_team": "CWS",
       "pitcher_name": "Grant Taylor",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -8718,7 +8742,7 @@
       "team": "MIN",
       "opponent_team": "DET",
       "pitcher_name": "Casey Mize",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -8760,7 +8784,7 @@
       "team": "BAL",
       "opponent_team": "CWS",
       "pitcher_name": "Grant Taylor",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -8932,7 +8956,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -9016,7 +9040,7 @@
       "team": "TEX",
       "opponent_team": "SEA",
       "pitcher_name": "Logan Gilbert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -9142,7 +9166,7 @@
       "team": "SD",
       "opponent_team": "PIT",
       "pitcher_name": "Bubba Chandler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -9270,7 +9294,7 @@
       "team": "MIN",
       "opponent_team": "DET",
       "pitcher_name": "Casey Mize",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -9284,14 +9308,16 @@
       "predicted_hr_probability": 0.080634,
       "predicted_hr_score": 26.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 8.7%, which the model treats as sustained power quality.",
       "top_reason_2": "Casey Mize has allowed barrels on 16.7% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 11.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:822755:695336:641793",
@@ -9608,7 +9634,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -9862,7 +9888,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -9876,16 +9902,17 @@
       "predicted_hr_probability": 0.076476,
       "predicted_hr_score": 19.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "inactive",
       "alert_flags": [
+        "lineup_alert",
         "pitcher_change_alert"
       ],
-      "inactive_flag": false,
-      "display_style": "default",
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 4.3% barrel-per-PA split.",
       "top_reason_2": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
       "top_reason_3": "Projected wind speed is 12.7 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:824783:663368:678394",
@@ -9990,7 +10017,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "Jacob deGrom",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -10004,14 +10031,16 @@
       "predicted_hr_probability": 0.07549,
       "predicted_hr_score": 17.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1784, supporting loud-contact upside.",
       "top_reason_2": "Jacob deGrom has allowed 91.5 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Jacob deGrom has allowed a 48.0% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:823886:805300:682227",
@@ -10242,7 +10271,7 @@
       "team": "SD",
       "opponent_team": "PIT",
       "pitcher_name": "Bubba Chandler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -10256,14 +10285,16 @@
       "predicted_hr_probability": 0.07258,
       "predicted_hr_score": 15.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Bubba Chandler has allowed a 50.0% hard-hit rate over the last 30 days.",
       "top_reason_2": "Bubba Chandler has allowed 50.0% 95+ EV contact over the last 30 days.",
       "top_reason_3": "Bubba Chandler has allowed homers in 3.6% of plate appearances over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:824052:694384:519242",
@@ -10622,7 +10653,7 @@
       "team": "MIN",
       "opponent_team": "DET",
       "pitcher_name": "Casey Mize",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -10664,7 +10695,7 @@
       "team": "BAL",
       "opponent_team": "CWS",
       "pitcher_name": "Grant Taylor",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -10678,14 +10709,16 @@
       "predicted_hr_probability": 0.068278,
       "predicted_hr_score": 11.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 60.0%, showing consistent quality contact.",
       "top_reason_2": "Grant Taylor has allowed a 62.5% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 12.7 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:822832:676391:680736",
@@ -10874,7 +10907,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -10888,14 +10921,16 @@
       "predicted_hr_probability": 0.064217,
       "predicted_hr_score": 9.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Joe Ryan has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_2": "Projected wind speed is 11.6 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Joe Ryan has allowed a 44.9% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:824052:672724:519242",
@@ -11084,7 +11119,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "Jacob deGrom",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -11126,7 +11161,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -11212,7 +11247,7 @@
       "team": "LAD",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -11226,14 +11261,16 @@
       "predicted_hr_probability": 0.061021,
       "predicted_hr_score": 5.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Max Scherzer has allowed barrels on 7.4% of batted balls to this batter side.",
       "top_reason_2": "Projected humidity is 92%, a modest positive weather input in the live model.",
       "top_reason_3": "Max Scherzer has allowed barrels on 8.7% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-06:824376:669397:663372",
@@ -40251,7 +40288,7 @@
       "game_pk": 823002,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T20:10:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "matchup": "CHC @ TB",
       "teams": [
@@ -40516,13 +40553,25 @@
         {
           "team": "SD",
           "opponent_team": "PIT",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 665487,
               "batter_name": "Fernando Tatis Jr.",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 666023,
+              "batter_name": "Freddy Fermin",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 657757,
+              "batter_name": "Gavin Sheets",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 701538,
@@ -40537,32 +40586,20 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 669134,
-              "batter_name": "Luis Campusano",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 592518,
               "batter_name": "Manny Machado",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 609280,
-              "batter_name": "Miguel Andujar",
+              "batter_id": 592206,
+              "batter_name": "Nick Castellanos",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 657656,
               "batter_name": "Ram\u00f3n Laureano",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 664034,
-              "batter_name": "Ty France",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -41044,14 +41081,8 @@
         {
           "team": "LAD",
           "opponent_team": "TOR",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 669743,
-              "batter_name": "Alex Call",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 690976,
               "batter_name": "Alex Freeland",
@@ -41063,6 +41094,12 @@
               "batter_name": "Andy Pages",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 687221,
+              "batter_name": "Dalton Rushing",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 518692,
@@ -41083,22 +41120,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 500743,
-              "batter_name": "Miguel Rojas",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 660271,
               "batter_name": "Shohei Ohtani",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 669257,
-              "batter_name": "Will Smith",
+              "batter_id": 606192,
+              "batter_name": "Teoscar Hern\u00e1ndez",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             }
           ]
         },
@@ -41176,13 +41207,13 @@
         {
           "team": "DET",
           "opponent_team": "MIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 693307,
-              "batter_name": "Dillon Dingler",
+              "batter_id": 690993,
+              "batter_name": "Colt Keith",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 650402,
@@ -41191,22 +41222,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 595879,
-              "batter_name": "Javier B\u00e1ez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 681481,
-              "batter_name": "Kerry Carpenter",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 805808,
               "batter_name": "Kevin McGonigle",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 663837,
+              "batter_name": "Matt Vierling",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 678009,
@@ -41301,14 +41326,14 @@
       "game_pk": 824619,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-06T23:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "BAL @ CWS",
       "teams": [
         {
           "team": "BAL",
           "opponent_team": "CWS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 668939,
@@ -41317,16 +41342,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 677942,
-              "batter_name": "Blaze Alexander",
+              "batter_id": 691723,
+              "batter_name": "Coby Mayo",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 687637,
-              "batter_name": "Dylan Beavers",
+              "batter_id": 681297,
+              "batter_name": "Colton Cowser",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 683002,
@@ -41341,20 +41366,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 665750,
-              "batter_name": "Leody Taveras",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 624413,
               "batter_name": "Pete Alonso",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 694212,
-              "batter_name": "Samuel Basallo",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -41363,14 +41376,26 @@
               "batter_name": "Taylor Ward",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 641933,
+              "batter_name": "Tyler O'Neill",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         },
         {
           "team": "CWS",
           "opponent_team": "BAL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 643217,
+              "batter_name": "Andrew Benintendi",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 669720,
               "batter_name": "Austin Hays",
@@ -41392,12 +41417,6 @@
             {
               "batter_id": 700337,
               "batter_name": "Edgar Quero",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 672820,
-              "batter_name": "Lenyn Sosa",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -41433,15 +41452,21 @@
       "game_pk": 822918,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-07T00:05:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "SEA @ TEX",
       "teams": [
         {
           "team": "SEA",
           "opponent_team": "TEX",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 680977,
+              "batter_name": "Brendan Donovan",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 663728,
               "batter_name": "Cal Raleigh",
@@ -41455,10 +41480,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 641487,
-              "batter_name": "J.P. Crawford",
+              "batter_id": 686527,
+              "batter_name": "Dominic Canzone",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 647304,
@@ -41489,19 +41514,13 @@
               "batter_name": "Randy Arozarena",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 608701,
-              "batter_name": "Rob Refsnyder",
-              "batting_order": null,
-              "selected_for_pick": true
             }
           ]
         },
         {
           "team": "TEX",
           "opponent_team": "SEA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 607043,
