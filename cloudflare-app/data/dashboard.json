@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-07T20:12:45.678609+00:00",
+  "generated_at": "2026-04-07T20:53:26.363484+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -3063,7 +3063,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -3779,7 +3779,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "Nathan Eovaldi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -4241,7 +4241,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "Nathan Eovaldi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -4411,7 +4411,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "Nathan Eovaldi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -5299,7 +5299,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "Nathan Eovaldi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -5383,7 +5383,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "Nathan Eovaldi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -5893,7 +5893,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "Nathan Eovaldi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -6145,7 +6145,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -7967,7 +7967,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -8517,7 +8517,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -8816,7 +8816,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -8942,7 +8942,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "Nathan Eovaldi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -9114,7 +9114,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -9838,7 +9838,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "Nathan Eovaldi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -10810,7 +10810,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -10824,14 +10824,16 @@
       "predicted_hr_probability": 0.078921,
       "predicted_hr_score": 22.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 5.9%, which the model treats as sustained power quality.",
       "top_reason_2": "Taj Bradley has allowed 93.9 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 11.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-07:822999:665804:656876",
@@ -10982,7 +10984,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -11960,7 +11962,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "Nathan Eovaldi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -11974,14 +11976,16 @@
       "predicted_hr_probability": 0.069987,
       "predicted_hr_score": 10.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Nathan Eovaldi has allowed homers in 5.1% of plate appearances over the last 30 days.",
       "top_reason_2": "Nathan Eovaldi has allowed a 47.2% hard-hit rate over the last 30 days.",
       "top_reason_3": "Nathan Eovaldi has allowed 47.2% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-07:823402:693304:601713",
@@ -12254,7 +12258,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -52898,7 +52902,7 @@
         {
           "team": "DET",
           "opponent_team": "MIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 690993,
@@ -52919,14 +52923,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 805808,
-              "batter_name": "Kevin McGonigle",
+              "batter_id": 595879,
+              "batter_name": "Javier B\u00e1ez",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 663837,
-              "batter_name": "Matt Vierling",
+              "batter_id": 805808,
+              "batter_name": "Kevin McGonigle",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -53030,8 +53034,14 @@
         {
           "team": "SEA",
           "opponent_team": "TEX",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 680977,
+              "batter_name": "Brendan Donovan",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 663728,
               "batter_name": "Cal Raleigh",
@@ -53065,12 +53075,6 @@
             {
               "batter_id": 677594,
               "batter_name": "Julio Rodr\u00edguez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 660844,
-              "batter_name": "Leo Rivas",
               "batting_order": null,
               "selected_for_pick": true
             },
