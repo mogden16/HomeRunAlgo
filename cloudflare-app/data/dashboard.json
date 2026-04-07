@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-06T23:54:44.376736+00:00",
+  "generated_at": "2026-04-07T00:18:21.020420+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -77,10 +77,10 @@
     "latest_slate_size": 234,
     "tracked_dates": 12,
     "tracked_picks": 912,
-    "settled_picks": 675,
-    "tracked_homers": 68,
-    "tracked_hit_rate": 0.100741,
-    "open_picks": 237
+    "settled_picks": 677,
+    "tracked_homers": 70,
+    "tracked_hit_rate": 0.103397,
+    "open_picks": 235
   },
   "confidence_summary": [
     {
@@ -99,17 +99,17 @@
     },
     {
       "confidence_tier": "watch",
-      "picks": 114,
-      "homers": 16,
-      "hit_rate": 0.140351,
-      "avg_probability": 0.145846
+      "picks": 115,
+      "homers": 17,
+      "hit_rate": 0.147826,
+      "avg_probability": 0.145753
     },
     {
       "confidence_tier": "longshot",
-      "picks": 432,
-      "homers": 26,
-      "hit_rate": 0.060185,
-      "avg_probability": 0.091587
+      "picks": 433,
+      "homers": 27,
+      "hit_rate": 0.062356,
+      "avg_probability": 0.091626
     }
   ],
   "player_leaderboard": [
@@ -282,6 +282,13 @@
       "hit_rate": 0.25
     },
     {
+      "batter_name": "Cal Raleigh",
+      "team": "SEA",
+      "picks": 3,
+      "homers": 1,
+      "hit_rate": 0.333333
+    },
+    {
       "batter_name": "Cedric Mullins",
       "team": "TB",
       "picks": 3,
@@ -291,6 +298,13 @@
     {
       "batter_name": "Dansby Swanson",
       "team": "CHC",
+      "picks": 3,
+      "homers": 1,
+      "hit_rate": 0.333333
+    },
+    {
+      "batter_name": "Freddie Freeman",
+      "team": "LAD",
       "picks": 3,
       "homers": 1,
       "hit_rate": 0.333333
@@ -912,13 +926,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Cal Raleigh",
-      "team": "SEA",
-      "picks": 2,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Caleb Durbin",
       "team": "BOS",
       "picks": 2,
@@ -1047,13 +1054,6 @@
     {
       "batter_name": "Francisco Lindor",
       "team": "NYM",
-      "picks": 2,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Freddie Freeman",
-      "team": "LAD",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
@@ -2886,15 +2886,15 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.135222,
       "predicted_hr_score": 90.2,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 10.0%, which the model treats as sustained power quality.",
       "top_reason_2": "Max Scherzer has allowed barrels on 8.7% of recent batted balls.",
       "top_reason_3": "Projected humidity is 92%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-06:824456:672356:608379",
@@ -5380,15 +5380,15 @@
       "field_bearing_deg": 35.0,
       "predicted_hr_probability": 0.108684,
       "predicted_hr_score": 65.0,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2372, supporting loud-contact upside.",
       "top_reason_2": "Jacob deGrom has allowed 91.5 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0033, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-06:824783:691785:605540",
@@ -41481,7 +41481,7 @@
       "game_pk": 822918,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-07T00:05:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "matchup": "SEA @ TEX",
       "teams": [
@@ -41613,8 +41613,8 @@
       "game_pk": 824376,
       "game_date": "2026-04-06",
       "game_datetime": "2026-04-07T00:40:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "Warmup",
+      "game_state": "live",
       "matchup": "HOU @ COL",
       "teams": [
         {
