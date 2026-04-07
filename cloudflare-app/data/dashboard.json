@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-07T13:18:05.099550+00:00",
+  "generated_at": "2026-04-07T15:21:39.817528+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2489,7 +2489,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -2951,7 +2951,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -2965,14 +2965,16 @@
       "predicted_hr_probability": 0.143385,
       "predicted_hr_score": 92.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 94.6 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Noah Cameron has allowed a 58.3% hard-hit rate over the last 30 days.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 111.6 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-07:822999:664023:656876",
@@ -4253,7 +4255,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -4967,7 +4969,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -4981,14 +4983,16 @@
       "predicted_hr_probability": 0.122543,
       "predicted_hr_score": 78.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 7.7%, which the model treats as sustained power quality.",
       "top_reason_2": "Noah Cameron has allowed a 58.3% hard-hit rate over the last 30 days.",
       "top_reason_3": "Noah Cameron has allowed 58.3% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-07:823567:669224:650644",
@@ -5219,7 +5223,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -5471,7 +5475,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -5891,7 +5895,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -6773,7 +6777,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -7991,7 +7995,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -8915,7 +8919,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -8929,14 +8933,16 @@
       "predicted_hr_probability": 0.092913,
       "predicted_hr_score": 38.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 57.1%, a top-quartile recent-contact signal.",
       "top_reason_2": "Noah Cameron has allowed a 58.3% hard-hit rate over the last 30 days.",
       "top_reason_3": "Noah Cameron has allowed 58.3% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-07:823402:701538:694973",
@@ -9209,7 +9215,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -9335,7 +9341,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -9461,7 +9467,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -10595,7 +10601,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -11057,7 +11063,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -11071,14 +11077,16 @@
       "predicted_hr_probability": 0.078165,
       "predicted_hr_score": 20.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 45.0%, showing consistent quality contact.",
       "top_reason_2": "Noah Cameron has allowed a 58.3% hard-hit rate over the last 30 days.",
       "top_reason_3": "Noah Cameron has allowed 58.3% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-07:822754:695336:676917",
@@ -11645,7 +11653,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -11813,7 +11821,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -12359,7 +12367,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -51529,14 +51537,14 @@
       "game_pk": 824457,
       "game_date": "2026-04-07",
       "game_datetime": "2026-04-07T17:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "KC @ CLE",
       "teams": [
         {
           "team": "KC",
           "opponent_team": "CLE",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 677951,
@@ -51597,13 +51605,19 @@
         {
           "team": "CLE",
           "opponent_team": "KC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 666310,
-              "batter_name": "Bo Naylor",
+              "batter_id": 682657,
+              "batter_name": "Angel Mart\u00ednez",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 595978,
+              "batter_name": "Austin Hedges",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 677587,
@@ -51618,26 +51632,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 800050,
-              "batter_name": "Chase DeLauter",
+              "batter_id": 681807,
+              "batter_name": "David Fry",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 672356,
-              "batter_name": "Gabriel Arias",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 608070,
               "batter_name": "Jos\u00e9 Ram\u00edrez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 700932,
-              "batter_name": "Kyle Manzardo",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -51732,10 +51734,10 @@
           "lineup_source": "projected",
           "hitters": [
             {
-              "batter_id": 669720,
-              "batter_name": "Austin Hays",
+              "batter_id": 643217,
+              "batter_name": "Andrew Benintendi",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 805367,
