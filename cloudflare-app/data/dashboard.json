@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-07T15:21:39.817528+00:00",
+  "generated_at": "2026-04-07T16:48:35.218100+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -3541,7 +3541,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "Trevor Rogers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -3555,14 +3555,16 @@
       "predicted_hr_probability": 0.134236,
       "predicted_hr_score": 87.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 12.5% barrel-per-PA split.",
       "top_reason_2": "Trevor Rogers has allowed 89.9 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0047, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-07:822831:543807:808967",
@@ -3877,7 +3879,7 @@
       "team": "NYM",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -5937,7 +5939,7 @@
       "team": "NYM",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -6189,7 +6191,7 @@
       "team": "NYM",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -6399,7 +6401,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "Trevor Rogers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -6483,7 +6485,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "Trevor Rogers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -6497,14 +6499,16 @@
       "predicted_hr_probability": 0.107764,
       "predicted_hr_score": 58.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 111.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Trevor Rogers has allowed 89.9 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-07:823648:701807:668678",
@@ -6525,7 +6529,7 @@
       "team": "NYM",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -7071,7 +7075,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "Trevor Rogers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -7155,7 +7159,7 @@
       "team": "NYM",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -7239,7 +7243,7 @@
       "team": "NYM",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -7323,7 +7327,7 @@
       "team": "NYM",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -7617,7 +7621,7 @@
       "team": "NYM",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -8331,7 +8335,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "Trevor Rogers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -10055,7 +10059,7 @@
       "team": "NYM",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -10069,14 +10073,16 @@
       "predicted_hr_probability": 0.088043,
       "predicted_hr_score": 34.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 7.7%, which the model treats as sustained power quality.",
       "top_reason_2": "Zac Gallen has allowed 92.8 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Zac Gallen has allowed barrels on 8.9% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-07:824780:666152:676979",
@@ -10223,7 +10229,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "Trevor Rogers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -10517,7 +10523,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "Trevor Rogers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -12073,7 +12079,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "Trevor Rogers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -12829,7 +12835,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "Trevor Rogers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -12843,14 +12849,16 @@
       "predicted_hr_probability": 0.054396,
       "predicted_hr_score": 2.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Trevor Rogers has allowed 89.9 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-07:823402:804606:601713",
@@ -51537,8 +51545,8 @@
       "game_pk": 824457,
       "game_date": "2026-04-07",
       "game_datetime": "2026-04-07T17:10:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "Warmup",
+      "game_state": "live",
       "matchup": "KC @ CLE",
       "teams": [
         {
@@ -51663,7 +51671,7 @@
       "game_pk": 824618,
       "game_date": "2026-04-07",
       "game_datetime": "2026-04-07T19:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "BAL @ CWS",
       "teams": [
@@ -51731,7 +51739,7 @@
         {
           "team": "CWS",
           "opponent_team": "BAL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 643217,
@@ -51750,6 +51758,12 @@
               "batter_name": "Colson Montgomery",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 656537,
+              "batter_name": "Derek Hill",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 700337,
@@ -51776,16 +51790,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 808959,
-              "batter_name": "Munetaka Murakami",
+              "batter_id": 695020,
+              "batter_name": "Tanner Murray",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 671976,
-              "batter_name": "Tristan Peters",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             }
           ]
         }
@@ -51795,15 +51803,27 @@
       "game_pk": 823648,
       "game_date": "2026-04-07",
       "game_datetime": "2026-04-07T20:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "AZ @ NYM",
       "teams": [
         {
           "team": "AZ",
           "opponent_team": "NYM",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 680728,
+              "batter_name": "Adrian Del Castillo",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 677950,
+              "batter_name": "Alek Thomas",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 682998,
               "batter_name": "Corbin Carroll",
@@ -51823,20 +51843,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 543510,
-              "batter_name": "James McCann",
+              "batter_id": 545121,
+              "batter_name": "Ildemaro Vargas",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 678489,
               "batter_name": "Jorge Barrosa",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 699912,
-              "batter_name": "Jose Fernandez",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -51851,19 +51865,13 @@
               "batter_name": "Nolan Arenado",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 694374,
-              "batter_name": "Tim Tawa",
-              "batting_order": null,
-              "selected_for_pick": true
             }
           ]
         },
         {
           "team": "NYM",
           "opponent_team": "AZ",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666182,
@@ -51896,6 +51904,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 593871,
+              "batter_name": "Jorge Polanco",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 673357,
               "batter_name": "Luis Robert Jr.",
               "batting_order": null,
@@ -51910,12 +51924,6 @@
             {
               "batter_id": 668901,
               "batter_name": "Mark Vientos",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 621438,
-              "batter_name": "Tyrone Taylor",
               "batting_order": null,
               "selected_for_pick": true
             }
