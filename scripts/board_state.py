@@ -17,6 +17,7 @@ from scripts.live_pipeline import (
     normalize_game_date,
     parse_game_datetime,
     settle_pick_records,
+    weather_code_label,
 )
 
 BOARD_STATUS_PENDING = "pending"
@@ -43,6 +44,7 @@ TERMINAL_BOARD_STATUSES = {
     BOARD_STATUS_FINAL,
 }
 SEVERE_WEATHER_CODES = {51, 53, 55, 61, 63, 65, 66, 67, 75, 80, 81, 82, 95, 96, 99}
+WEATHER_FALLBACK_LABEL = "Weather unavailable"
 
 
 def _serialize_row(row: dict[str, Any]) -> dict[str, Any]:
@@ -112,6 +114,83 @@ def _coerce_flag_list(value: Any) -> list[str]:
     return flags
 
 
+def _player_day_key(row: dict[str, Any]) -> tuple[str, str, str]:
+    return (
+        normalize_game_date(row.get("board_date") or row.get("game_date")),
+        str(row.get("batter_id") or "").strip() or str(row.get("batter_name") or "").strip().lower(),
+        str(row.get("team") or "").strip().upper(),
+    )
+
+
+def _normalize_reason_text(value: Any) -> str:
+    return " ".join(str(value or "").strip().lower().split())
+
+
+def _reason_list(row: dict[str, Any]) -> list[str]:
+    return [str(row.get(column) or "").strip() for column in ("top_reason_1", "top_reason_2", "top_reason_3") if str(row.get(column) or "").strip()]
+
+
+def _apply_reason_list(row: dict[str, Any], reasons: list[str]) -> dict[str, Any]:
+    updated = dict(row)
+    normalized_reasons = [reason.strip() for reason in reasons if reason.strip()]
+    for index, column in enumerate(("top_reason_1", "top_reason_2", "top_reason_3")):
+        updated[column] = normalized_reasons[index] if index < len(normalized_reasons) else ""
+    return updated
+
+
+def _merge_reason_lists(existing_reasons: list[str], new_reasons: list[str]) -> list[str]:
+    merged = list(existing_reasons)
+    seen = {_normalize_reason_text(reason) for reason in merged}
+    for reason in new_reasons:
+        normalized_reason = _normalize_reason_text(reason)
+        if not normalized_reason or normalized_reason in seen:
+            continue
+        if len(merged) < 3:
+            merged.append(reason.strip())
+        else:
+            merged[-1] = f"{merged[-1].rstrip()} Update: {reason.strip()}"
+        seen.add(normalized_reason)
+    return merged
+
+
+def _merge_board_entries(existing: dict[str, Any], incoming: dict[str, Any]) -> dict[str, Any]:
+    merged = dict(existing)
+    for key, value in incoming.items():
+        if key in {"pick_id", "created_at", "published_at", "original_rank", "original_score", "original_tier"}:
+            continue
+        if value in (None, "") and key not in {"alert_flags", "inactive_flag"}:
+            continue
+        merged[key] = value
+
+    merged["pick_id"] = str(existing.get("pick_id") or incoming.get("pick_id") or "")
+    merged["created_at"] = str(existing.get("created_at") or incoming.get("created_at") or "")
+    merged["published_at"] = str(existing.get("published_at") or incoming.get("published_at") or "")
+    merged["original_rank"] = int(existing.get("original_rank") or existing.get("rank") or incoming.get("original_rank") or incoming.get("rank") or 999)
+    merged["original_score"] = existing.get("original_score", existing.get("predicted_hr_score", incoming.get("original_score", incoming.get("predicted_hr_score"))))
+    merged["original_tier"] = str(existing.get("original_tier") or existing.get("confidence_tier") or incoming.get("original_tier") or incoming.get("confidence_tier") or "watch")
+    merged["alert_flags"] = _coerce_flag_list([*_coerce_flag_list(existing.get("alert_flags")), *_coerce_flag_list(incoming.get("alert_flags"))])
+    merged["inactive_flag"] = bool(existing.get("inactive_flag") or incoming.get("inactive_flag") or incoming.get("is_inactive"))
+
+    weather_label = str(merged.get("weather_label") or "").strip()
+    if not weather_label or weather_label.lower() == "unknown":
+        if merged.get("weather_code") is not None:
+            merged["weather_label"] = weather_code_label(merged.get("weather_code"))
+        else:
+            merged["weather_label"] = WEATHER_FALLBACK_LABEL
+
+    merged_reasons = _merge_reason_lists(_reason_list(existing), _reason_list(incoming))
+    return _apply_reason_list(merged, merged_reasons)
+
+
+def _dedupe_board_entries(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    by_player_day: dict[tuple[str, str, str], dict[str, Any]] = {}
+    for row in rows:
+        key = _player_day_key(row)
+        previous = by_player_day.get(key)
+        by_player_day[key] = _merge_board_entries(previous, row) if previous is not None else dict(row)
+    return sorted(by_player_day.values(), key=_sort_entry_key)
+
+
 def _base_entry(row: dict[str, Any], created_at: str) -> dict[str, Any]:
     game_date = normalize_game_date(row.get("game_date"))
     batter_name = str(row.get("batter_name") or "Unknown hitter")
@@ -136,6 +215,9 @@ def _base_entry(row: dict[str, Any], created_at: str) -> dict[str, Any]:
             game_status=str(row.get("game_status") or ""),
             inactive_flag=inactive_flag,
         )
+    weather_label = str(row.get("weather_label") or "").strip()
+    if weather_label.lower() in {"", "unknown", "n/a", "na"}:
+        weather_label = weather_code_label(row.get("weather_code")) or WEATHER_FALLBACK_LABEL
     return {
         **dict(row),
         "pick_id": str(
@@ -165,6 +247,7 @@ def _base_entry(row: dict[str, Any], created_at: str) -> dict[str, Any]:
         "display_style": display_style,
         "result": result_label,
         "result_label": result_label,
+        "weather_label": weather_label,
     }
 
 
@@ -176,7 +259,7 @@ def create_daily_board_snapshot(
 ) -> dict[str, Any]:
     created_timestamp = created_at or datetime.now(timezone.utc).isoformat()
     entries = [_base_entry(dict(row), created_timestamp) for row in rows if normalize_game_date(row.get("game_date")) == board_date]
-    ordered_entries = sorted(entries, key=_sort_entry_key)
+    ordered_entries = _dedupe_board_entries(entries)
     return {
         "board_date": board_date,
         "created_at": created_timestamp,
@@ -191,7 +274,7 @@ def board_entries_to_current_rows(board_state: dict[str, Any]) -> list[dict[str,
     if not isinstance(entries, list):
         return []
     rows: list[dict[str, Any]] = []
-    for entry in sorted((dict(item) for item in entries if isinstance(item, dict)), key=_sort_entry_key):
+    for entry in _dedupe_board_entries([dict(item) for item in entries if isinstance(item, dict)]):
         row = dict(entry)
         row["rank"] = int(row.get("original_rank") or row.get("rank") or 999)
         row["predicted_hr_score"] = row.get("original_score", row.get("predicted_hr_score"))

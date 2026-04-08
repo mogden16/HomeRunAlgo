@@ -134,6 +134,115 @@ class LivePipelineTests(unittest.TestCase):
         self.assertEqual(str(weather.index.tz), "America/New_York")
         self.assertEqual(float(weather.iloc[0]["temperature_2m"]), 0.0)
 
+    def test_fetch_forecast_weather_uses_cache_on_repeat_lookup(self) -> None:
+        class FakeResponse:
+            def raise_for_status(self) -> None:
+                return None
+
+            def json(self) -> dict[str, dict[str, list[float | int | str]]]:
+                return {
+                    "hourly": {
+                        "time": [f"2026-04-07T{hour:02d}:00" for hour in range(24)],
+                        "temperature_2m": [72.0] * 24,
+                        "relative_humidity_2m": [44.0] * 24,
+                        "wind_speed_10m": [11.0] * 24,
+                        "wind_direction_10m": [210.0] * 24,
+                        "weather_code": [3] * 24,
+                        "surface_pressure": [1014.0] * 24,
+                    }
+                }
+
+        cache_store: dict[str, object] = {}
+
+        def fake_load_cache() -> dict[str, object]:
+            return dict(cache_store)
+
+        def fake_write_cache(payload: dict[str, object]) -> None:
+            cache_store.clear()
+            cache_store.update(payload)
+
+        with patch("scripts.live_pipeline._load_forecast_weather_cache", side_effect=fake_load_cache):
+            with patch("scripts.live_pipeline._write_forecast_weather_cache", side_effect=fake_write_cache):
+                with patch("scripts.live_pipeline.requests.get", return_value=FakeResponse()) as request_mock:
+                    first = fetch_forecast_weather(["NYY"], "2026-04-07")
+                    second = fetch_forecast_weather(["NYY"], "2026-04-07")
+
+        self.assertEqual(request_mock.call_count, 1)
+        self.assertEqual(first.iloc[0]["weather_label"], "Cloudy")
+        self.assertEqual(second.iloc[0]["weather_label"], "Cloudy")
+
+    def test_fill_missing_game_meta_replaces_unknown_weather_label(self) -> None:
+        updated = publish_live_picks._fill_missing_game_meta(
+            {
+                "weather_label": "Unknown",
+                "weather_code": None,
+                "temperature_f": None,
+            },
+            schedule_game={"home_team": "NYY"},
+            refreshed_game_meta={
+                "weather_label": "Clear",
+                "weather_code": 0,
+                "temperature_f": 72.0,
+                "wind_speed_mph": 9.0,
+            },
+        )
+
+        self.assertEqual(updated["weather_label"], "Clear")
+        self.assertEqual(updated["weather_code"], 0)
+        self.assertEqual(updated["temperature_f"], 72.0)
+
+    def test_write_current_picks_collapses_same_day_player_duplicates_and_merges_reasons(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            output_path = Path(tmp_dir) / "current.json"
+            rows = [
+                {
+                    "pick_id": "old-pick",
+                    "game_date": "2026-04-07",
+                    "game_pk": 10,
+                    "rank": 1,
+                    "batter_id": 99,
+                    "batter_name": "Alpha",
+                    "team": "NYY",
+                    "opponent_team": "BOS",
+                    "pitcher_id": 42,
+                    "pitcher_name": "Pitcher A",
+                    "confidence_tier": "elite",
+                    "predicted_hr_probability": 0.22,
+                    "predicted_hr_score": 95.0,
+                    "top_reason_1": "recent power surge",
+                    "top_reason_2": "",
+                    "top_reason_3": "",
+                    "result": "Pending",
+                },
+                {
+                    "pick_id": "new-pick",
+                    "game_date": "2026-04-07",
+                    "game_pk": 11,
+                    "rank": 3,
+                    "batter_id": 99,
+                    "batter_name": "Alpha",
+                    "team": "NYY",
+                    "opponent_team": "BOS",
+                    "pitcher_id": 43,
+                    "pitcher_name": "Pitcher B",
+                    "confidence_tier": "strong",
+                    "predicted_hr_probability": 0.19,
+                    "predicted_hr_score": 88.0,
+                    "top_reason_1": "wind is helping to left",
+                    "top_reason_2": "",
+                    "top_reason_3": "",
+                    "result": "Pending",
+                },
+            ]
+
+            live_pipeline.write_current_picks(rows, output_path)
+            written_rows = live_pipeline.load_json_array(output_path)
+
+            self.assertEqual(len(written_rows), 1)
+            self.assertEqual(written_rows[0]["pick_id"], "old-pick")
+            self.assertEqual(written_rows[0]["top_reason_1"], "recent power surge")
+            self.assertEqual(written_rows[0]["top_reason_2"], "wind is helping to left")
+
     def test_extract_plate_appearances_computes_spray_angle_from_numeric_arrays(self) -> None:
         statcast_df = pd.DataFrame(
             [

@@ -19,7 +19,7 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 from config import LIVE_MODEL_DATA_PATH
-from scripts.live_pipeline import build_lineup_panels, fetch_schedule_games
+from scripts.live_pipeline import build_lineup_panels, fetch_schedule_games, weather_code_label
 from train_model import DEFAULT_CONFIDENCE_POLICY, extract_logistic_coefficient_map, normalized_confidence_policy
 
 DEFAULT_TRACKING_START_DATE = "2026-03-25"
@@ -487,7 +487,7 @@ def normalize_pick(row: dict[str, Any], tracking_start_date: str) -> dict[str, A
         "confidence_tier": str(row.get("original_tier") or row.get("confidence_tier") or "watch").lower(),
         "original_tier": str(row.get("original_tier") or row.get("confidence_tier") or "watch").lower(),
         "weather_code": parse_int(row.get("weather_code")),
-        "weather_label": str(row.get("weather_label") or ""),
+        "weather_label": str(row.get("weather_label") or weather_code_label(row.get("weather_code")) or "Weather unavailable"),
         "temperature_f": parse_float(row.get("temperature_f")),
         "wind_speed_mph": parse_float(row.get("wind_speed_mph")),
         "wind_direction_deg": parse_float(row.get("wind_direction_deg")),
@@ -530,7 +530,82 @@ def select_active_current_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any
     return [row for row in rows if str(row["game_date"]) == latest_current_date]
 
 
+def _player_day_key(row: dict[str, Any]) -> tuple[str, str, str]:
+    return (
+        str(row.get("game_date") or ""),
+        str(row.get("batter_id") or "").strip() or str(row.get("batter_name") or "").strip().lower(),
+        str(row.get("team") or "").strip().upper(),
+    )
+
+
+def _normalize_reason_text(value: Any) -> str:
+    return " ".join(str(value or "").strip().lower().split())
+
+
+def _reason_list(row: dict[str, Any]) -> list[str]:
+    return [str(row.get(column) or "").strip() for column in ("top_reason_1", "top_reason_2", "top_reason_3") if str(row.get(column) or "").strip()]
+
+
+def _apply_reason_list(row: dict[str, Any], reasons: list[str]) -> dict[str, Any]:
+    updated = dict(row)
+    filtered = [reason for reason in reasons if reason]
+    for index, column in enumerate(("top_reason_1", "top_reason_2", "top_reason_3")):
+        updated[column] = filtered[index] if index < len(filtered) else ""
+    return updated
+
+
+def _merge_reason_lists(existing_reasons: list[str], new_reasons: list[str]) -> list[str]:
+    merged = list(existing_reasons)
+    seen = {_normalize_reason_text(reason) for reason in merged}
+    for reason in new_reasons:
+        normalized_reason = _normalize_reason_text(reason)
+        if not normalized_reason or normalized_reason in seen:
+            continue
+        if len(merged) < 3:
+            merged.append(reason)
+        else:
+            merged[-1] = f"{merged[-1].rstrip()} Update: {reason}"
+        seen.add(normalized_reason)
+    return merged
+
+
+def _merge_same_player_day_rows(primary: dict[str, Any], incoming: dict[str, Any]) -> dict[str, Any]:
+    merged = dict(primary)
+    for key, value in incoming.items():
+        if key in {"pick_id", "created_at", "published_at", "original_rank", "original_score", "original_tier"}:
+            continue
+        if value in (None, ""):
+            continue
+        merged[key] = value
+    merged["pick_id"] = str(primary.get("pick_id") or incoming.get("pick_id") or "")
+    merged["created_at"] = str(primary.get("created_at") or incoming.get("created_at") or "")
+    merged["published_at"] = str(primary.get("published_at") or incoming.get("published_at") or "")
+    merged["original_rank"] = parse_int(primary.get("original_rank") or primary.get("rank") or incoming.get("original_rank") or incoming.get("rank")) or 999
+    merged["rank"] = merged["original_rank"]
+    merged["original_score"] = primary.get("original_score", primary.get("predicted_hr_score", incoming.get("original_score", incoming.get("predicted_hr_score"))))
+    merged["predicted_hr_score"] = merged.get("original_score", merged.get("predicted_hr_score"))
+    merged["original_tier"] = str(primary.get("original_tier") or primary.get("confidence_tier") or incoming.get("original_tier") or incoming.get("confidence_tier") or "watch")
+    merged["confidence_tier"] = str(merged.get("original_tier") or merged.get("confidence_tier") or "watch")
+    existing_weather_label = str(merged.get("weather_label") or "").strip()
+    if existing_weather_label.lower() in {"", "unknown", "n/a", "na"}:
+        existing_weather_label = ""
+    merged["weather_label"] = existing_weather_label or weather_code_label(merged.get("weather_code")) or "Weather unavailable"
+    merged_reasons = _merge_reason_lists(_reason_list(primary), _reason_list(incoming))
+    return _apply_reason_list(merged, merged_reasons)
+
+
+def consolidate_same_day_pick_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    by_key: dict[tuple[str, str, str], dict[str, Any]] = {}
+    for row in sorted((dict(item) for item in rows), key=current_pick_sort_key):
+        key = _player_day_key(row)
+        previous = by_key.get(key)
+        by_key[key] = _merge_same_player_day_rows(previous, row) if previous is not None else dict(row)
+    return sorted(by_key.values(), key=current_pick_sort_key)
+
+
 def upsert_history(existing_rows: list[dict[str, Any]], current_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    existing_rows = consolidate_same_day_pick_rows(existing_rows)
+    current_rows = consolidate_same_day_pick_rows(current_rows)
     current_dates = {str(row["game_date"]) for row in current_rows}
     retained_existing = [
         row
@@ -947,6 +1022,8 @@ def build_dashboard_artifacts(
     current_rows = [row for row in (normalize_pick(item, tracking_start_date) for item in current_input) if row is not None]
     history_rows = [row for row in (normalize_pick(item, tracking_start_date) for item in history_input) if row is not None]
     draft_rows = [row for row in (normalize_pick(item, tracking_start_date) for item in draft_input) if row is not None]
+    current_rows = consolidate_same_day_pick_rows(current_rows)
+    history_rows = consolidate_same_day_pick_rows(history_rows)
     current_rows = sorted(current_rows, key=current_pick_sort_key)
     current_rows, history_rows = recover_pending_history_rows(current_rows, history_rows)
     history_rows = upsert_history(history_rows, current_rows)
