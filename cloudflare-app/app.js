@@ -308,6 +308,14 @@ function formatWind(row) {
   return arrow ? `${arrow} ${speedText}` : speedText;
 }
 
+function hasWeatherData(row) {
+  return (
+    (row.weather_code !== null && row.weather_code !== undefined && !Number.isNaN(Number(row.weather_code))) ||
+    (row.temperature_f !== null && row.temperature_f !== undefined && !Number.isNaN(Number(row.temperature_f))) ||
+    (row.wind_speed_mph !== null && row.wind_speed_mph !== undefined && !Number.isNaN(Number(row.wind_speed_mph)))
+  );
+}
+
 function weatherIcon(value) {
   const token = String(value || "").trim().toLowerCase();
   if (token === "clear") {
@@ -364,15 +372,22 @@ function windArrow(windDirectionDeg, fieldBearingDeg) {
 }
 
 function renderGameMeta(row) {
-  const weatherLabel = String(row.weather_label || "").trim() || "Unknown";
+  const weatherAvailable = hasWeatherData(row);
+  const weatherLabel = weatherAvailable
+    ? (String(row.weather_label || "").trim() || "Conditions available")
+    : "Weather unavailable";
   const temperatureText = formatTemperature(row.temperature_f);
-  const weatherMeta = [weatherIcon(weatherLabel), weatherLabel, temperatureText].filter(Boolean).join(" ");
+  const weatherMeta = weatherAvailable
+    ? [weatherIcon(weatherLabel), weatherLabel, temperatureText].filter(Boolean).join(" ")
+    : weatherLabel;
   const mobileLineOne = [formatGameTime(row.game_datetime), formatStadium(row)]
     .filter((value) => value && value !== "-")
     .join(" | ") || "-";
-  const mobileLineTwo = [weatherIcon(weatherLabel), temperatureText || weatherLabel, formatWind(row)]
-    .filter((value) => value && value !== "-")
-    .join(" | ") || "Unknown";
+  const mobileLineTwo = weatherAvailable
+    ? [weatherIcon(weatherLabel), temperatureText || weatherLabel, formatWind(row)]
+        .filter((value) => value && value !== "-")
+        .join(" | ") || "Weather unavailable"
+    : "Weather unavailable";
   return `
     <div class="pick-meta-block pick-meta-block-desktop">
       <div class="pick-meta-line"><span class="pick-meta-label">Gametime</span><span class="pick-meta-value">${escapeHtml(formatGameTime(row.game_datetime))}</span></div>
@@ -424,13 +439,20 @@ function renderMobileWhyDetails(row) {
 }
 
 function renderGameMeta(row) {
-  const weatherLabel = String(row.weather_label || "").trim() || "Unknown";
+  const weatherAvailable = hasWeatherData(row);
+  const weatherLabel = weatherAvailable
+    ? (String(row.weather_label || "").trim() || "Conditions available")
+    : "Weather unavailable";
   const temperatureText = formatTemperature(row.temperature_f);
-  const weatherMeta = [weatherIcon(weatherLabel), weatherLabel, temperatureText].filter(Boolean).join(" ");
+  const weatherMeta = weatherAvailable
+    ? [weatherIcon(weatherLabel), weatherLabel, temperatureText].filter(Boolean).join(" ")
+    : weatherLabel;
   const mobileLineOne = [formatGameTime(row.game_datetime), formatStadium(row)].filter((value) => value && value !== "-").join(" • ") || "-";
-  const mobileLineTwo = [weatherIcon(weatherLabel), temperatureText || weatherLabel, formatWind(row)]
-    .filter((value) => value && value !== "-")
-    .join(" • ") || "❔ Unknown";
+  const mobileLineTwo = weatherAvailable
+    ? [weatherIcon(weatherLabel), temperatureText || weatherLabel, formatWind(row)]
+        .filter((value) => value && value !== "-")
+        .join(" • ") || "Weather unavailable"
+    : "Weather unavailable";
   return `
     <div class="pick-meta-block pick-meta-block-desktop">
       <div class="pick-meta-line"><span class="pick-meta-label">Gametime</span><span class="pick-meta-value">${escapeHtml(formatGameTime(row.game_datetime))}</span></div>
@@ -895,6 +917,7 @@ function renderSeasonLeaders(rows) {
 
 function renderYesterdayRecap(dashboard) {
   const summaryTarget = document.getElementById("yesterday-summary");
+  const tableTarget = document.getElementById("yesterday-table");
   const previousDate = dashboard?.yesterday_homer_date || dashboard?.history_default_date || "";
   const rows = (Array.isArray(dashboard?.history) ? dashboard.history : [])
     .filter((row) => row.game_date === previousDate)
@@ -902,7 +925,7 @@ function renderYesterdayRecap(dashboard) {
 
   if (!rows.length) {
     summaryTarget.innerHTML = "";
-    document.getElementById("yesterday-table").innerHTML = `<p class="empty-state">${escapeHtml(DEFAULT_YESTERDAY_RECAP_EMPTY_MESSAGE)}</p>`;
+    tableTarget.innerHTML = `<p class="empty-state">${escapeHtml(DEFAULT_YESTERDAY_RECAP_EMPTY_MESSAGE)}</p>`;
     return;
   }
 
@@ -926,27 +949,11 @@ function renderYesterdayRecap(dashboard) {
       `,
     )
     .join("");
-
-  renderSimpleTable(
-    "yesterday-table",
-    [
-      { label: "Rank", render: (row) => escapeHtml(formatWholeNumber(row.rank)) },
-      { label: "Player", render: (row) => escapeHtml(row.batter_name) },
-      { label: "Team", render: (row) => escapeHtml(row.team) },
-      { label: "Pitcher", render: (row) => escapeHtml(row.pitcher_name || "-") },
-      { label: "HR chance", render: (row) => escapeHtml(formatPercent(row.predicted_hr_probability)) },
-      {
-        label: "Confidence",
-        render: (row) => `<span class="${tierClass(row.confidence_tier)}">${escapeHtml(row.confidence_tier)}</span>`,
-      },
-      {
-        label: "Result",
-        render: (row) => `<span class="${resultClass(row.result_label)}">${escapeHtml(row.result_label)}</span>`,
-      },
-    ],
-    rows,
-    DEFAULT_YESTERDAY_RECAP_EMPTY_MESSAGE,
-  );
+  tableTarget.innerHTML = `
+    <p class="empty-state">
+      Full slate recap now stays summary-only here. Totals above cover ${escapeHtml(formatWholeNumber(rows.length))} tracked picks for ${escapeHtml(formatDate(previousDate))}.
+    </p>
+  `;
 }
 
 function renderRefreshScheduleInline(schedule) {

@@ -169,6 +169,7 @@ def _fill_missing_game_meta(
     home_team = str(schedule_game.get("home_team") or "") if schedule_game else ""
     park_meta = park_game_meta(home_team)
     candidates = [refreshed_game_meta or {}, park_meta]
+    unknown_weather_tokens = {"", "unknown", "n/a", "na", "weather unavailable"}
 
     def _first_present(*values: Any) -> Any:
         for value in values:
@@ -192,8 +193,11 @@ def _fill_missing_game_meta(
         updated.get("weather_code"),
         *(candidate.get("weather_code") for candidate in candidates),
     )
+    existing_weather_label = str(updated.get("weather_label") or "").strip()
+    if existing_weather_label.lower() in unknown_weather_tokens:
+        existing_weather_label = ""
     updated["weather_label"] = _first_present(
-        updated.get("weather_label"),
+        existing_weather_label,
         *(candidate.get("weather_label") for candidate in candidates),
     ) or weather_code_label(updated.get("weather_code"))
     updated["temperature_f"] = _first_present(

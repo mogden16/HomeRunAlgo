@@ -27,6 +27,7 @@ from config import (
     LIVE_MODEL_METADATA_PATH,
     LIVE_MODEL_START_DATE,
     LIVE_PICK_HISTORY_PATH,
+    LIVE_DATA_DIR,
     LIVE_TRACKING_START_DATE,
     PARKS,
 )
@@ -79,6 +80,9 @@ OPEN_METEO_FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
 OPEN_METEO_FORECAST_TIMEOUT_SECONDS = 20
 OPEN_METEO_FORECAST_MAX_ATTEMPTS = 3
 OPEN_METEO_FORECAST_RETRY_BACKOFF_SECONDS = 2
+OPEN_METEO_FORECAST_CACHE_PATH = LIVE_DATA_DIR / "forecast_weather_cache.json"
+OPEN_METEO_FORECAST_CACHE_TTL_SECONDS = 30 * 60
+OPEN_METEO_FORECAST_FAILURE_CACHE_TTL_SECONDS = 5 * 60
 LIVE_PUBLISH_FRESHNESS_TOLERANCE_DAYS = 7
 OFFSEASON_LINEUP_FALLBACK_DAYS = 210
 TERMINAL_GAME_STATUS_TOKENS = (
@@ -289,6 +293,94 @@ def _coerce_float(value: Any) -> float | None:
         return None
 
 
+def _load_forecast_weather_cache(path: Path = OPEN_METEO_FORECAST_CACHE_PATH) -> dict[str, Any]:
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError, OSError):
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def _write_forecast_weather_cache(cache_payload: dict[str, Any], path: Path = OPEN_METEO_FORECAST_CACHE_PATH) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(cache_payload, indent=2), encoding="utf-8")
+
+
+def _forecast_cache_key(*, home_team: str, target_date: str) -> str:
+    return f"{target_date}:{home_team}"
+
+
+def _weather_row_debug_event(
+    *,
+    home_team: str,
+    target_date: str,
+    source: str,
+    status: str,
+    detail: str,
+) -> dict[str, str]:
+    return {
+        "event": "weather_lookup",
+        "team": home_team,
+        "target_date": target_date,
+        "source": source,
+        "status": status,
+        "detail": detail,
+    }
+
+
+def _resolve_cached_weather_row(
+    cache_payload: dict[str, Any],
+    *,
+    home_team: str,
+    target_date: str,
+    now_utc: datetime,
+) -> tuple[dict[str, Any] | None, dict[str, str] | None]:
+    cache_entry = cache_payload.get(_forecast_cache_key(home_team=home_team, target_date=target_date))
+    if not isinstance(cache_entry, dict):
+        return None, None
+    cached_at_raw = cache_entry.get("cached_at")
+    cached_row = cache_entry.get("row")
+    if not cached_at_raw or not isinstance(cached_row, dict):
+        return None, None
+    cached_at = parse_game_datetime(cached_at_raw)
+    if cached_at is None:
+        return None, None
+    age_seconds = max(0.0, (now_utc - cached_at).total_seconds())
+    cached_status = str(cache_entry.get("status") or "success")
+    ttl_seconds = (
+        OPEN_METEO_FORECAST_FAILURE_CACHE_TTL_SECONDS
+        if cached_status == "fallback"
+        else OPEN_METEO_FORECAST_CACHE_TTL_SECONDS
+    )
+    if age_seconds > ttl_seconds:
+        return None, None
+    return dict(cached_row), _weather_row_debug_event(
+        home_team=home_team,
+        target_date=target_date,
+        source="cache",
+        status=cached_status,
+        detail=f"age_seconds={int(age_seconds)}",
+    )
+
+
+def _store_cached_weather_row(
+    cache_payload: dict[str, Any],
+    *,
+    home_team: str,
+    target_date: str,
+    row: dict[str, Any],
+    status: str,
+    detail: str,
+    now_utc: datetime,
+) -> None:
+    cache_payload[_forecast_cache_key(home_team=home_team, target_date=target_date)] = {
+        "cached_at": now_utc.isoformat(),
+        "status": status,
+        "detail": detail,
+        "row": dict(row),
+    }
+
+
 def _resolved_result_label(row: dict[str, Any]) -> str:
     token = str(row.get("result_label") or row.get("result") or "Pending").strip()
     if token in {"HR", "No HR", "Pending", "Inactive", "Postponed"}:
@@ -425,6 +517,78 @@ def canonicalize_history_pick_rows(rows: list[dict[str, Any]]) -> list[dict[str,
         base["actual_hit_hr"] = actual_hit_hr
         canonical_rows.append(base)
     return canonical_rows
+
+
+def _player_day_identity(row: dict[str, Any]) -> tuple[str, str, str]:
+    return (
+        normalize_game_date(row.get("board_date") or row.get("game_date")),
+        str(row.get("batter_id") or "").strip() or str(row.get("batter_name") or "").strip().lower(),
+        str(row.get("team") or "").strip().upper(),
+    )
+
+
+def _normalize_reason_token(value: Any) -> str:
+    return " ".join(str(value or "").strip().lower().split())
+
+
+def _reason_columns(row: dict[str, Any]) -> list[str]:
+    return [str(row.get(column) or "").strip() for column in ("top_reason_1", "top_reason_2", "top_reason_3") if str(row.get(column) or "").strip()]
+
+
+def _apply_reason_columns(row: dict[str, Any], reasons: list[str]) -> dict[str, Any]:
+    updated = dict(row)
+    filtered = [reason for reason in reasons if reason]
+    for index, column in enumerate(("top_reason_1", "top_reason_2", "top_reason_3")):
+        updated[column] = filtered[index] if index < len(filtered) else ""
+    return updated
+
+
+def _merge_reason_columns(existing_reasons: list[str], new_reasons: list[str]) -> list[str]:
+    merged = list(existing_reasons)
+    seen = {_normalize_reason_token(reason) for reason in merged}
+    for reason in new_reasons:
+        normalized_reason = _normalize_reason_token(reason)
+        if not normalized_reason or normalized_reason in seen:
+            continue
+        if len(merged) < 3:
+            merged.append(reason)
+        else:
+            merged[-1] = f"{merged[-1].rstrip()} Update: {reason}"
+        seen.add(normalized_reason)
+    return merged
+
+
+def _merge_same_day_player_row(existing: dict[str, Any], incoming: dict[str, Any]) -> dict[str, Any]:
+    merged = dict(existing)
+    for key, value in incoming.items():
+        if key in {"pick_id", "created_at", "published_at", "original_rank", "original_score", "original_tier"}:
+            continue
+        if value in (None, ""):
+            continue
+        merged[key] = value
+    merged["pick_id"] = str(existing.get("pick_id") or incoming.get("pick_id") or "")
+    merged["created_at"] = str(existing.get("created_at") or incoming.get("created_at") or "")
+    merged["published_at"] = str(existing.get("published_at") or incoming.get("published_at") or "")
+    merged["original_rank"] = int(existing.get("original_rank") or existing.get("rank") or incoming.get("original_rank") or incoming.get("rank") or 999)
+    merged["rank"] = merged["original_rank"]
+    merged["original_score"] = existing.get("original_score", existing.get("predicted_hr_score", incoming.get("original_score", incoming.get("predicted_hr_score"))))
+    merged["predicted_hr_score"] = merged.get("original_score", merged.get("predicted_hr_score"))
+    merged["original_tier"] = str(existing.get("original_tier") or existing.get("confidence_tier") or incoming.get("original_tier") or incoming.get("confidence_tier") or "watch")
+    merged["confidence_tier"] = str(merged.get("original_tier") or merged.get("confidence_tier") or "watch")
+    merged["weather_label"] = str(merged.get("weather_label") or "").strip()
+    if merged["weather_label"].lower() in {"", "unknown", "n/a", "na"}:
+        merged["weather_label"] = weather_code_label(merged.get("weather_code")) or "Weather unavailable"
+    merged_reasons = _merge_reason_columns(_reason_columns(existing), _reason_columns(incoming))
+    return _apply_reason_columns(merged, merged_reasons)
+
+
+def _collapse_same_day_player_duplicates(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    by_identity: dict[tuple[str, str, str], dict[str, Any]] = {}
+    for row in rows:
+        key = _player_day_identity(row)
+        previous = by_identity.get(key)
+        by_identity[key] = _merge_same_day_player_row(previous, row) if previous is not None else dict(row)
+    return list(by_identity.values())
 
 
 def build_pick_id(game_date: str, game_pk: int | None, batter_id: int | None, batter_name: str, pitcher_id: int | None, pitcher_name: str) -> str:
@@ -1499,17 +1663,53 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
 
     rows: list[dict[str, Any]] = []
     fallback_home_teams: list[str] = []
+    debug_events: list[dict[str, str]] = []
     target_timestamp = pd.to_datetime(target_date, errors="coerce")
     historical_target = pd.notna(target_timestamp) and target_timestamp.date() < eastern_today().date()
+    cache_payload = _load_forecast_weather_cache()
+    cache_updated = False
+    now_utc = datetime.now(timezone.utc)
     for home_team in sorted({normalize_team_code(team) for team in home_teams if team}):
         park = PARKS.get(home_team)
         if park is None:
-            rows.append(_empty_weather_row(home_team))
+            fallback_row = _empty_weather_row(home_team)
+            rows.append(fallback_row)
+            debug_events.append(
+                _weather_row_debug_event(
+                    home_team=home_team,
+                    target_date=target_date,
+                    source="park_lookup",
+                    status="fallback",
+                    detail="missing_park_metadata",
+                )
+            )
             continue
         if historical_target:
-            rows.append(_empty_weather_row(home_team))
+            fallback_row = _empty_weather_row(home_team)
+            rows.append(fallback_row)
+            debug_events.append(
+                _weather_row_debug_event(
+                    home_team=home_team,
+                    target_date=target_date,
+                    source="historical_guard",
+                    status="fallback",
+                    detail="forecast_not_requested_for_historical_date",
+                )
+            )
+            continue
+        cached_row, cache_event = _resolve_cached_weather_row(
+            cache_payload,
+            home_team=home_team,
+            target_date=target_date,
+            now_utc=now_utc,
+        )
+        if cached_row is not None:
+            rows.append(cached_row)
+            if cache_event is not None:
+                debug_events.append(cache_event)
             continue
         response = None
+        last_error_detail = ""
         for attempt in range(1, OPEN_METEO_FORECAST_MAX_ATTEMPTS + 1):
             try:
                 response = requests.get(
@@ -1527,8 +1727,19 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
                     timeout=OPEN_METEO_FORECAST_TIMEOUT_SECONDS,
                 )
                 response.raise_for_status()
+                debug_events.append(
+                    _weather_row_debug_event(
+                        home_team=home_team,
+                        target_date=target_date,
+                        source="open_meteo",
+                        status="success",
+                        detail=f"attempt={attempt}",
+                    )
+                )
                 break
             except requests.RequestException as exc:
+                response_status = getattr(getattr(exc, "response", None), "status_code", None)
+                last_error_detail = f"attempt={attempt};status={response_status or 'n/a'};error={type(exc).__name__}"
                 if attempt == OPEN_METEO_FORECAST_MAX_ATTEMPTS:
                     print(
                         "Open-Meteo forecast lookup failed "
@@ -1536,38 +1747,88 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
                         "Falling back to null weather values."
                     )
                     fallback_home_teams.append(home_team)
+                    debug_events.append(
+                        _weather_row_debug_event(
+                            home_team=home_team,
+                            target_date=target_date,
+                            source="open_meteo",
+                            status="fallback",
+                            detail=last_error_detail,
+                        )
+                    )
                 else:
                     time.sleep(OPEN_METEO_FORECAST_RETRY_BACKOFF_SECONDS * attempt)
         if response is None:
-            rows.append(_empty_weather_row(home_team))
+            fallback_row = _empty_weather_row(home_team)
+            rows.append(fallback_row)
+            _store_cached_weather_row(
+                cache_payload,
+                home_team=home_team,
+                target_date=target_date,
+                row=fallback_row,
+                status="fallback",
+                detail=last_error_detail or "no_response",
+                now_utc=now_utc,
+            )
+            cache_updated = True
             continue
         hourly = response.json().get("hourly", {})
         weather = pd.DataFrame(hourly)
         if weather.empty:
-            rows.append(_empty_weather_row(home_team))
+            fallback_row = _empty_weather_row(home_team)
+            rows.append(fallback_row)
+            debug_events.append(
+                _weather_row_debug_event(
+                    home_team=home_team,
+                    target_date=target_date,
+                    source="open_meteo",
+                    status="fallback",
+                    detail="empty_hourly_payload",
+                )
+            )
+            _store_cached_weather_row(
+                cache_payload,
+                home_team=home_team,
+                target_date=target_date,
+                row=fallback_row,
+                status="fallback",
+                detail="empty_hourly_payload",
+                now_utc=now_utc,
+            )
+            cache_updated = True
             continue
         weather["timestamp"] = pd.to_datetime(weather["time"])
         weather["hour_diff"] = (weather["timestamp"].dt.hour - DEFAULT_GAME_HOUR_LOCAL).abs()
         best = weather.sort_values("hour_diff").iloc[0]
-        rows.append(
-            {
-                "game_date": target_date,
-                "home_team": home_team,
-                "field_bearing_deg": _coerce_float(park.get("field_bearing_deg")),
-                "temperature_f": serialize_for_json(float(best.get("temperature_2m"))) if pd.notna(best.get("temperature_2m")) else None,
-                "humidity_pct": serialize_for_json(float(best.get("relative_humidity_2m"))) if pd.notna(best.get("relative_humidity_2m")) else None,
-                "wind_speed_mph": serialize_for_json(float(best.get("wind_speed_10m"))) if pd.notna(best.get("wind_speed_10m")) else None,
-                "wind_direction_deg": serialize_for_json(float(best.get("wind_direction_10m"))) if pd.notna(best.get("wind_direction_10m")) else None,
-                "weather_code": _coerce_int(best.get("weather_code")),
-                "weather_label": weather_code_label(best.get("weather_code")),
-                "pressure_hpa": serialize_for_json(float(best.get("surface_pressure"))) if pd.notna(best.get("surface_pressure")) else None,
-                "wind_out_to_cf_mph": None,
-                "crosswind_mph": None,
-                "air_density_index": None,
-            }
+        row = {
+            "game_date": target_date,
+            "home_team": home_team,
+            "field_bearing_deg": _coerce_float(park.get("field_bearing_deg")),
+            "temperature_f": serialize_for_json(float(best.get("temperature_2m"))) if pd.notna(best.get("temperature_2m")) else None,
+            "humidity_pct": serialize_for_json(float(best.get("relative_humidity_2m"))) if pd.notna(best.get("relative_humidity_2m")) else None,
+            "wind_speed_mph": serialize_for_json(float(best.get("wind_speed_10m"))) if pd.notna(best.get("wind_speed_10m")) else None,
+            "wind_direction_deg": serialize_for_json(float(best.get("wind_direction_10m"))) if pd.notna(best.get("wind_direction_10m")) else None,
+            "weather_code": _coerce_int(best.get("weather_code")),
+            "weather_label": weather_code_label(best.get("weather_code")),
+            "pressure_hpa": serialize_for_json(float(best.get("surface_pressure"))) if pd.notna(best.get("surface_pressure")) else None,
+            "wind_out_to_cf_mph": None,
+            "crosswind_mph": None,
+            "air_density_index": None,
+        }
+        rows.append(row)
+        _store_cached_weather_row(
+            cache_payload,
+            home_team=home_team,
+            target_date=target_date,
+            row=row,
+            status="success",
+            detail="api_success",
+            now_utc=now_utc,
         )
+        cache_updated = True
     forecast_df = pd.DataFrame(rows)
     forecast_df = append_weather_carry_features(forecast_df)
+    forecast_df.attrs["debug_events"] = list(debug_events)
     if fallback_home_teams:
         forecast_df.attrs["operational_alerts"] = [
             {
@@ -1582,6 +1843,10 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
                 "teams": sorted(set(fallback_home_teams)),
             }
         ]
+    if cache_updated:
+        _write_forecast_weather_cache(cache_payload)
+    for event in debug_events:
+        print(json.dumps(event, sort_keys=True))
     return forecast_df
 
 
@@ -2273,6 +2538,7 @@ def settle_pick_records(
 
 def write_current_picks(rows: list[dict[str, Any]], path: Path = LIVE_CURRENT_PICKS_PATH) -> None:
     canonical_rows = canonicalize_current_pick_rows(rows)
+    canonical_rows = _collapse_same_day_player_duplicates(canonical_rows)
     ordered = sorted(
         canonical_rows,
         key=lambda row: (
@@ -2291,6 +2557,7 @@ def load_pick_history(path: Path = LIVE_PICK_HISTORY_PATH) -> list[dict[str, Any
 
 def write_pick_history(rows: list[dict[str, Any]], path: Path = LIVE_PICK_HISTORY_PATH) -> None:
     canonical_rows = canonicalize_history_pick_rows(rows)
+    canonical_rows = _collapse_same_day_player_duplicates(canonical_rows)
     ordered = sorted(
         canonical_rows,
         key=lambda row: (
