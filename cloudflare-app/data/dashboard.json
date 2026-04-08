@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-08T13:14:42.556151+00:00",
+  "generated_at": "2026-04-08T14:55:23.939154+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2584,7 +2584,7 @@
       "team": "SD",
       "opponent_team": "PIT",
       "pitcher_name": "Mitch Keller",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -2626,7 +2626,7 @@
       "team": "BOS",
       "opponent_team": "MIL",
       "pitcher_name": "Shane Drohan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -2878,7 +2878,7 @@
       "team": "PIT",
       "opponent_team": "SD",
       "pitcher_name": "Michael King",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -3298,7 +3298,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -3382,7 +3382,7 @@
       "team": "BOS",
       "opponent_team": "MIL",
       "pitcher_name": "Shane Drohan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -3592,7 +3592,7 @@
       "team": "SD",
       "opponent_team": "PIT",
       "pitcher_name": "Mitch Keller",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -3844,7 +3844,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -3970,7 +3970,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -4054,7 +4054,7 @@
       "team": "BOS",
       "opponent_team": "MIL",
       "pitcher_name": "Shane Drohan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -4138,7 +4138,7 @@
       "team": "MIL",
       "opponent_team": "BOS",
       "pitcher_name": "Sonny Gray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -4180,7 +4180,7 @@
       "team": "MIL",
       "opponent_team": "BOS",
       "pitcher_name": "Sonny Gray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -4194,14 +4194,16 @@
       "predicted_hr_probability": 0.129449,
       "predicted_hr_score": 84.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Sonny Gray has allowed barrels on 6.4% of recent batted balls.",
       "top_reason_3": "The handedness-specific hard-hit matchup score is 0.2096, supporting loud-contact upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-08:823234:646240:605400",
@@ -4264,7 +4266,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -4558,7 +4560,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -4600,7 +4602,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -5104,7 +5106,7 @@
       "team": "MIL",
       "opponent_team": "BOS",
       "pitcher_name": "Sonny Gray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -5146,7 +5148,7 @@
       "team": "SD",
       "opponent_team": "PIT",
       "pitcher_name": "Mitch Keller",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -5650,7 +5652,7 @@
       "team": "PIT",
       "opponent_team": "SD",
       "pitcher_name": "Michael King",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -6028,7 +6030,7 @@
       "team": "BOS",
       "opponent_team": "MIL",
       "pitcher_name": "Shane Drohan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -6574,7 +6576,7 @@
       "team": "SD",
       "opponent_team": "PIT",
       "pitcher_name": "Mitch Keller",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -6588,14 +6590,16 @@
       "predicted_hr_probability": 0.1128,
       "predicted_hr_score": 62.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1971, supporting loud-contact upside.",
       "top_reason_2": "The handedness-specific barrel matchup score is 0.0019, reinforcing the power-contact fit.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 3.9% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-08:822915:607043:693433",
@@ -6742,7 +6746,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -6756,14 +6760,16 @@
       "predicted_hr_probability": 0.110039,
       "predicted_hr_score": 59.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 116.1 mph, which points to top-end HR juice.",
       "top_reason_2": "Against this pitcher handedness, the hitter has a 5.6% barrel-per-PA split.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0027, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-08:824374:691720:664299",
@@ -7078,7 +7084,7 @@
       "team": "BOS",
       "opponent_team": "MIL",
       "pitcher_name": "Shane Drohan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -7092,14 +7098,16 @@
       "predicted_hr_probability": 0.107996,
       "predicted_hr_score": 56.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 3.8% barrel-per-PA split.",
       "top_reason_2": "Peak exit velocity over the last 10 days is 108.2 mph, which points to top-end HR juice.",
       "top_reason_3": "Barrel rate over the last 10 days is 3.4%, a above-baseline indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-08:823000:608348:671212",
@@ -7330,7 +7338,7 @@
       "team": "MIL",
       "opponent_team": "BOS",
       "pitcher_name": "Sonny Gray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -7344,14 +7352,16 @@
       "predicted_hr_probability": 0.106746,
       "predicted_hr_score": 54.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 4.3%, which the model treats as sustained power quality.",
       "top_reason_2": "Sonny Gray has allowed barrels on 6.4% of recent batted balls.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 44.4%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-08:823885:680574:691587",
@@ -7498,7 +7508,7 @@
       "team": "SD",
       "opponent_team": "PIT",
       "pitcher_name": "Mitch Keller",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -7624,7 +7634,7 @@
       "team": "SD",
       "opponent_team": "PIT",
       "pitcher_name": "Mitch Keller",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -7750,7 +7760,7 @@
       "team": "MIL",
       "opponent_team": "BOS",
       "pitcher_name": "Sonny Gray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -8212,7 +8222,7 @@
       "team": "BOS",
       "opponent_team": "MIL",
       "pitcher_name": "Shane Drohan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -8338,7 +8348,7 @@
       "team": "SD",
       "opponent_team": "PIT",
       "pitcher_name": "Mitch Keller",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -8380,7 +8390,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -8632,7 +8642,7 @@
       "team": "PIT",
       "opponent_team": "SD",
       "pitcher_name": "Michael King",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -8674,7 +8684,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -8758,7 +8768,7 @@
       "team": "MIL",
       "opponent_team": "BOS",
       "pitcher_name": "Sonny Gray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -8772,14 +8782,16 @@
       "predicted_hr_probability": 0.097091,
       "predicted_hr_score": 42.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Sonny Gray has allowed barrels on 6.4% of recent batted balls.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-08:824455:608070:666142",
@@ -8800,7 +8812,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -8842,7 +8854,7 @@
       "team": "BOS",
       "opponent_team": "MIL",
       "pitcher_name": "Shane Drohan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -8856,14 +8868,16 @@
       "predicted_hr_probability": 0.096769,
       "predicted_hr_score": 41.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 52.6%, showing consistent quality contact.",
       "top_reason_2": "95+ EV contact rate over the last 30 days is 52.6%, a strong loud-contact input for the model.",
       "top_reason_3": "Average exit velocity over the last 10 days is 91.2 mph, a above-baseline recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-08:823403:664040:650633",
@@ -8884,7 +8898,7 @@
       "team": "PIT",
       "opponent_team": "SD",
       "pitcher_name": "Michael King",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -9430,7 +9444,7 @@
       "team": "PIT",
       "opponent_team": "SD",
       "pitcher_name": "Michael King",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -9444,14 +9458,16 @@
       "predicted_hr_probability": 0.091858,
       "predicted_hr_score": 35.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 112.3 mph, which points to top-end HR juice.",
       "top_reason_2": "Michael King has allowed barrels on 7.3% of recent batted balls.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 4.3% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-08:823885:681393:663903",
@@ -9640,7 +9656,7 @@
       "team": "BOS",
       "opponent_team": "MIL",
       "pitcher_name": "Shane Drohan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -9654,14 +9670,16 @@
       "predicted_hr_probability": 0.088597,
       "predicted_hr_score": 32.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 69.2%, showing consistent quality contact.",
       "top_reason_2": "95+ EV contact rate over the last 30 days is 69.2%, a strong loud-contact input for the model.",
       "top_reason_3": "Average exit velocity over the last 10 days is 97.3 mph, a top-decile recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-08:824455:656555:666142",
@@ -9682,7 +9700,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -9724,7 +9742,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -9850,7 +9868,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -9864,14 +9882,16 @@
       "predicted_hr_probability": 0.088805,
       "predicted_hr_score": 33.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Kyle Bradish has allowed 89.6 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_2": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
       "top_reason_3": "Projected wind speed is 11.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-08:823885:668715:691587",
@@ -9976,7 +9996,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -10270,7 +10290,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -10312,7 +10332,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -10354,7 +10374,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -10368,14 +10388,16 @@
       "predicted_hr_probability": 0.083841,
       "predicted_hr_score": 25.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 60.0%, a top-decile recent-contact signal.",
       "top_reason_2": "Cole Ragans has allowed homers in 11.3% of plate appearances over the last 30 days.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 60.0%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-08:823726:807712:664285",
@@ -10564,7 +10586,7 @@
       "team": "SD",
       "opponent_team": "PIT",
       "pitcher_name": "Mitch Keller",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -10648,7 +10670,7 @@
       "team": "PIT",
       "opponent_team": "SD",
       "pitcher_name": "Michael King",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -10732,7 +10754,7 @@
       "team": "PIT",
       "opponent_team": "SD",
       "pitcher_name": "Michael King",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -10746,14 +10768,16 @@
       "predicted_hr_probability": 0.081169,
       "predicted_hr_score": 22.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 113.2 mph, which points to top-end HR juice.",
       "top_reason_2": "Michael King has allowed barrels on 7.3% of recent batted balls.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-08:822833:676391:660271",
@@ -10858,7 +10882,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -10872,14 +10896,16 @@
       "predicted_hr_probability": 0.07961,
       "predicted_hr_score": 21.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Average exit velocity over the last 10 days is 91.6 mph, a above-baseline recent batted-ball quality marker.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-08:824617:805367:680694",
@@ -10900,7 +10926,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -11026,7 +11052,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -11040,14 +11066,16 @@
       "predicted_hr_probability": 0.07932,
       "predicted_hr_score": 21.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Kyle Bradish has allowed 89.6 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_2": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
       "top_reason_3": "Projected wind speed is 11.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-08:824455:682657:666142",
@@ -11068,7 +11096,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -11152,7 +11180,7 @@
       "team": "MIL",
       "opponent_team": "BOS",
       "pitcher_name": "Sonny Gray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -11278,7 +11306,7 @@
       "team": "BOS",
       "opponent_team": "MIL",
       "pitcher_name": "Shane Drohan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -11362,7 +11390,7 @@
       "team": "MIL",
       "opponent_team": "BOS",
       "pitcher_name": "Sonny Gray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -11404,7 +11432,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -11488,7 +11516,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -11614,7 +11642,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -11698,7 +11726,7 @@
       "team": "KC",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -11712,14 +11740,16 @@
       "predicted_hr_probability": 0.072548,
       "predicted_hr_score": 14.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 3.6%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-08:823646:699912:656849",
@@ -11782,7 +11812,7 @@
       "team": "CWS",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -11796,14 +11826,16 @@
       "predicted_hr_probability": 0.073814,
       "predicted_hr_score": 16.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 4.3% barrel-per-PA split.",
       "top_reason_2": "Kyle Bradish has allowed 89.6 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-08:824779:686217:543243",
@@ -11824,7 +11856,7 @@
       "team": "MIL",
       "opponent_team": "BOS",
       "pitcher_name": "Sonny Gray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -11908,7 +11940,7 @@
       "team": "PIT",
       "opponent_team": "SD",
       "pitcher_name": "Michael King",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -12160,7 +12192,7 @@
       "team": "SD",
       "opponent_team": "PIT",
       "pitcher_name": "Mitch Keller",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -12174,14 +12206,16 @@
       "predicted_hr_probability": 0.067105,
       "predicted_hr_score": 10.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 91.2 mph, a above-baseline recent batted-ball quality marker.",
       "top_reason_2": "Hard-hit rate over the last 30 days is 43.8%, showing consistent quality contact.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 43.8%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-08:823885:663647:691587",
@@ -12412,7 +12446,7 @@
       "team": "PIT",
       "opponent_team": "SD",
       "pitcher_name": "Michael King",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -12580,7 +12614,7 @@
       "team": "CLE",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -62720,24 +62754,18 @@
       "game_pk": 823403,
       "game_date": "2026-04-08",
       "game_datetime": "2026-04-08T16:35:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "SD @ PIT",
       "teams": [
         {
           "team": "SD",
           "opponent_team": "PIT",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 665487,
               "batter_name": "Fernando Tatis Jr.",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 666023,
-              "batter_name": "Freddy Fermin",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -62760,16 +62788,22 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 592518,
-              "batter_name": "Manny Machado",
+              "batter_id": 669134,
+              "batter_name": "Luis Campusano",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 609280,
               "batter_name": "Miguel Andujar",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 592206,
+              "batter_name": "Nick Castellanos",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 657656,
@@ -62788,7 +62822,7 @@
         {
           "team": "PIT",
           "opponent_team": "SD",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 664040,
@@ -62803,16 +62837,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 680779,
-              "batter_name": "Henry Davis",
+              "batter_id": 663968,
+              "batter_name": "Jake Mangum",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 804606,
-              "batter_name": "Konnor Griffin",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 693304,
@@ -62852,14 +62880,14 @@
       "game_pk": 824455,
       "game_date": "2026-04-08",
       "game_datetime": "2026-04-08T17:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "KC @ CLE",
       "teams": [
         {
           "team": "KC",
           "opponent_team": "CLE",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 677951,
@@ -62874,28 +62902,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 686555,
-              "batter_name": "Isaac Collins",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 695506,
-              "batter_name": "Jac Caglianone",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 663697,
               "batter_name": "Jonathan India",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 664728,
-              "batter_name": "Kyle Isbel",
+              "batter_id": 657041,
+              "batter_name": "Lane Thomas",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 672580,
@@ -62910,6 +62926,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 516782,
+              "batter_name": "Starling Marte",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 686469,
               "batter_name": "Vinnie Pasquantino",
               "batting_order": null,
@@ -62920,7 +62942,7 @@
         {
           "team": "CLE",
           "opponent_team": "KC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682657,
@@ -62937,12 +62959,6 @@
             {
               "batter_id": 677587,
               "batter_name": "Brayan Rocchio",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 692216,
-              "batter_name": "CJ Kayfus",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -62965,6 +62981,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 682877,
+              "batter_name": "Juan Brito",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 656555,
               "batter_name": "Rhys Hoskins",
               "batting_order": null,
@@ -62984,30 +63006,18 @@
       "game_pk": 824779,
       "game_date": "2026-04-08",
       "game_datetime": "2026-04-08T17:35:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "MIL @ BOS",
       "teams": [
         {
           "team": "MIL",
           "opponent_team": "BOS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 663368,
-              "batter_name": "Blake Perkins",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 663604,
               "batter_name": "Brandon Lockridge",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 668930,
-              "batter_name": "Brice Turang",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -63024,10 +63034,28 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 669003,
+              "batter_name": "Garrett Mitchell",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 596142,
               "batter_name": "Gary S\u00e1nchez",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 641343,
+              "batter_name": "Jake Bauers",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 687401,
+              "batter_name": "Joey Ortiz",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 650859,
@@ -63040,20 +63068,20 @@
               "batter_name": "Sal Frelick",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 661388,
-              "batter_name": "William Contreras",
-              "batting_order": null,
-              "selected_for_pick": true
             }
           ]
         },
         {
           "team": "BOS",
           "opponent_team": "MIL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 655316,
+              "batter_name": "Andruw Monasterio",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 702332,
               "batter_name": "Caleb Durbin",
@@ -63067,22 +63095,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 680776,
-              "batter_name": "Jarren Duran",
+              "batter_id": 678882,
+              "batter_name": "Ceddanne Rafaela",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 691785,
-              "batter_name": "Marcelo Mayer",
+              "batter_id": 643396,
+              "batter_name": "Isiah Kiner-Falefa",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 807799,
-              "batter_name": "Masataka Yoshida",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 701350,
@@ -63116,7 +63138,7 @@
       "game_pk": 824617,
       "game_date": "2026-04-08",
       "game_datetime": "2026-04-08T18:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "BAL @ CWS",
       "teams": [
@@ -63184,7 +63206,7 @@
         {
           "team": "CWS",
           "opponent_team": "BAL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 643217,
@@ -63205,22 +63227,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 656537,
-              "batter_name": "Derek Hill",
+              "batter_id": 687957,
+              "batter_name": "Dustin Harris",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 700337,
-              "batter_name": "Edgar Quero",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 672820,
-              "batter_name": "Lenyn Sosa",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 682668,
@@ -63239,6 +63249,12 @@
               "batter_name": "Munetaka Murakami",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 671976,
+              "batter_name": "Tristan Peters",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         }
