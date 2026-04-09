@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-09T11:48:53.810000+00:00",
+  "generated_at": "2026-04-09T13:13:02.759673+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2564,7 +2564,7 @@
       "team": "CIN",
       "opponent_team": "MIA",
       "pitcher_name": "Max Meyer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -2774,7 +2774,7 @@
       "team": "CIN",
       "opponent_team": "MIA",
       "pitcher_name": "Max Meyer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -3194,7 +3194,7 @@
       "team": "CIN",
       "opponent_team": "MIA",
       "pitcher_name": "Max Meyer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -3236,7 +3236,7 @@
       "team": "CIN",
       "opponent_team": "MIA",
       "pitcher_name": "Max Meyer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -3250,14 +3250,16 @@
       "predicted_hr_probability": 0.118422,
       "predicted_hr_score": 77.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 66.7%, a top-decile recent-contact signal.",
       "top_reason_2": "Max Meyer has allowed 91.0 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-09:824130:678246:607625",
@@ -3782,7 +3784,7 @@
       "team": "CIN",
       "opponent_team": "MIA",
       "pitcher_name": "Max Meyer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -4958,7 +4960,7 @@
       "team": "CIN",
       "opponent_team": "MIA",
       "pitcher_name": "Max Meyer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -4972,14 +4974,16 @@
       "predicted_hr_probability": 0.09593,
       "predicted_hr_score": 41.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2207, supporting loud-contact upside.",
       "top_reason_2": "Max Meyer has allowed 91.0 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-09:823724:807712:656427",
@@ -5168,7 +5172,7 @@
       "team": "CIN",
       "opponent_team": "MIA",
       "pitcher_name": "Max Meyer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -5182,14 +5186,16 @@
       "predicted_hr_probability": 0.089624,
       "predicted_hr_score": 34.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 50.0%, showing consistent quality contact.",
       "top_reason_2": "Max Meyer has allowed 91.0 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-09:823645:593871:593958",
@@ -5336,7 +5342,7 @@
       "team": "CIN",
       "opponent_team": "MIA",
       "pitcher_name": "Max Meyer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -5350,14 +5356,16 @@
       "predicted_hr_probability": 0.085325,
       "predicted_hr_score": 29.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 55.0%, a top-quartile recent-contact signal.",
       "top_reason_2": "Max Meyer has allowed 91.0 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-09:823724:693307:690953",
@@ -6092,7 +6100,7 @@
       "team": "CIN",
       "opponent_team": "MIA",
       "pitcher_name": "Max Meyer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -67050,15 +67058,21 @@
       "game_pk": 823884,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T16:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "CIN @ MIA",
       "teams": [
         {
           "team": "CIN",
           "opponent_team": "MIA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 667472,
+              "batter_name": "Dane Myers",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 682829,
               "batter_name": "Elly De La Cruz",
@@ -67072,22 +67086,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 663647,
-              "batter_name": "Ke'Bryan Hayes",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 680574,
               "batter_name": "Matt McLain",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 682622,
-              "batter_name": "Noelvi Marte",
+              "batter_id": 663993,
+              "batter_name": "Nathaniel Lowe",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 701398,
@@ -67096,20 +67104,14 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 668715,
+              "batter_name": "Spencer Steer",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 670770,
               "batter_name": "TJ Friedl",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 663886,
-              "batter_name": "Tyler Stephenson",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 666181,
-              "batter_name": "Will Benson",
               "batting_order": null,
               "selected_for_pick": true
             }
