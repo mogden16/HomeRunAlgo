@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-08T23:41:36.015159+00:00",
+  "generated_at": "2026-04-09T00:30:49.049929+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -79,10 +79,10 @@
     "latest_slate_size": 261,
     "tracked_dates": 14,
     "tracked_picks": 1434,
-    "settled_picks": 1210,
-    "tracked_homers": 106,
-    "tracked_hit_rate": 0.087603,
-    "open_picks": 224
+    "settled_picks": 1211,
+    "tracked_homers": 107,
+    "tracked_hit_rate": 0.088357,
+    "open_picks": 223
   },
   "confidence_summary": [
     {
@@ -101,10 +101,10 @@
     },
     {
       "confidence_tier": "watch",
-      "picks": 206,
-      "homers": 25,
-      "hit_rate": 0.121359,
-      "avg_probability": 0.140461
+      "picks": 207,
+      "homers": 26,
+      "hit_rate": 0.125604,
+      "avg_probability": 0.14043
     },
     {
       "confidence_tier": "longshot",
@@ -170,6 +170,13 @@
       "picks": 6,
       "homers": 3,
       "hit_rate": 0.5
+    },
+    {
+      "batter_name": "Sal Stewart",
+      "team": "CIN",
+      "picks": 11,
+      "homers": 2,
+      "hit_rate": 0.181818
     },
     {
       "batter_name": "Mike Trout",
@@ -258,13 +265,6 @@
     {
       "batter_name": "Jake Burger",
       "team": "TEX",
-      "picks": 10,
-      "homers": 1,
-      "hit_rate": 0.1
-    },
-    {
-      "batter_name": "Sal Stewart",
-      "team": "CIN",
       "picks": 10,
       "homers": 1,
       "hit_rate": 0.1
@@ -3731,15 +3731,15 @@
       "field_bearing_deg": 37.0,
       "predicted_hr_probability": 0.134087,
       "predicted_hr_score": 87.0,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 8.3% barrel-per-PA split.",
       "top_reason_2": "Eury P\u00e9rez has allowed barrels on 13.2% of recent batted balls.",
       "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-08:822833:681624:656302",
