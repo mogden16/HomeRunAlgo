@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-09T13:13:02.759673+00:00",
+  "generated_at": "2026-04-09T15:21:19.427757+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2312,7 +2312,7 @@
       "team": "NYY",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -2354,7 +2354,7 @@
       "team": "NYY",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -2480,7 +2480,7 @@
       "team": "NYY",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -2648,7 +2648,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Mick Abel",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -2858,7 +2858,7 @@
       "team": "MIN",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -2900,7 +2900,7 @@
       "team": "MIN",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -3364,7 +3364,7 @@
       "team": "MIN",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -3406,7 +3406,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Mick Abel",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -3420,14 +3420,16 @@
       "predicted_hr_probability": 0.11305,
       "predicted_hr_score": 73.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0065, reinforcing the power-contact fit.",
       "top_reason_2": "Mick Abel has allowed homers in 6.4% of plate appearances to this batter side.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 7.4% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-09:823319:666160:681190",
@@ -3490,7 +3492,7 @@
       "team": "MIN",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -3532,7 +3534,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Mick Abel",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -3616,7 +3618,7 @@
       "team": "MIA",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -3826,7 +3828,7 @@
       "team": "NYY",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -3910,7 +3912,7 @@
       "team": "NYY",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -3924,14 +3926,16 @@
       "predicted_hr_probability": 0.086681,
       "predicted_hr_score": 31.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 60.7%, showing consistent quality contact.",
       "top_reason_2": "Park factor for the hitter's handedness is 115.0, which adds venue lift to the matchup.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 60.7%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-09:823319:630105:",
@@ -4330,7 +4334,7 @@
       "team": "NYY",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -4372,7 +4376,7 @@
       "team": "MIN",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -4456,7 +4460,7 @@
       "team": "MIA",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -4498,7 +4502,7 @@
       "team": "MIA",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -4582,7 +4586,7 @@
       "team": "MIA",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -4596,14 +4600,16 @@
       "predicted_hr_probability": 0.099707,
       "predicted_hr_score": 47.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 5.3% barrel-per-PA split.",
       "top_reason_2": "Rhett Lowder has allowed a 46.5% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-09:823319:696100:681190",
@@ -4666,7 +4672,7 @@
       "team": "MIA",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -4680,14 +4686,16 @@
       "predicted_hr_probability": 0.100302,
       "predicted_hr_score": 48.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2083, supporting loud-contact upside.",
       "top_reason_2": "Rhett Lowder has allowed a 46.5% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-09:823319:678662:681190",
@@ -4792,7 +4800,7 @@
       "team": "NYY",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -4876,7 +4884,7 @@
       "team": "MIN",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -4890,14 +4898,16 @@
       "predicted_hr_probability": 0.096914,
       "predicted_hr_score": 43.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.6 mph, which points to top-end HR juice.",
       "top_reason_2": "Jack Flaherty has allowed homers in 3.8% of plate appearances to this batter side.",
       "top_reason_3": "Barrel rate over the last 10 days is 3.3%, a above-baseline indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-09:823319:681198:681190",
@@ -5004,7 +5014,7 @@
       "team": "MIN",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -5018,14 +5028,16 @@
       "predicted_hr_probability": 0.09461,
       "predicted_hr_score": 38.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Jack Flaherty has allowed homers in 3.8% of plate appearances to this batter side.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-09:824130:805367:607625",
@@ -5386,7 +5398,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Mick Abel",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -5400,14 +5412,16 @@
       "predicted_hr_probability": 0.084629,
       "predicted_hr_score": 27.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 60.9%, showing consistent quality contact.",
       "top_reason_2": "95+ EV contact rate over the last 30 days is 60.9%, a strong loud-contact input for the model.",
       "top_reason_3": "Barrel rate over the last 30 days is 7.5%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-09:823645:571448:690997",
@@ -5554,7 +5568,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Mick Abel",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -5596,7 +5610,7 @@
       "team": "NYY",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -5610,14 +5624,16 @@
       "predicted_hr_probability": 0.068052,
       "predicted_hr_score": 7.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Park factor for the hitter's handedness is 115.0, which adds venue lift to the matchup.",
       "top_reason_2": "Projected wind speed is 11.0 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-09:823884:689414:695076",
@@ -5638,7 +5654,7 @@
       "team": "MIA",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -5680,7 +5696,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Mick Abel",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -5848,7 +5864,7 @@
       "team": "MIA",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -5932,7 +5948,7 @@
       "team": "MIA",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -5974,7 +5990,7 @@
       "team": "MIN",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -5988,14 +6004,16 @@
       "predicted_hr_probability": 0.073805,
       "predicted_hr_score": 13.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Jack Flaherty has allowed homers in 3.8% of plate appearances to this batter side.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-09:823724:650402:690953",
@@ -6016,7 +6034,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Mick Abel",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -6142,7 +6160,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Mick Abel",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -6268,7 +6286,7 @@
       "team": "NYY",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -6310,7 +6328,7 @@
       "team": "DET",
       "opponent_team": "MIN",
       "pitcher_name": "Mick Abel",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -6352,7 +6370,7 @@
       "team": "MIA",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -6366,14 +6384,16 @@
       "predicted_hr_probability": 0.056237,
       "predicted_hr_score": 4.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1930, supporting loud-contact upside.",
       "top_reason_2": "Rhett Lowder has allowed a 46.5% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-09:823724:668885:656427",
@@ -6394,7 +6414,7 @@
       "team": "MIN",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -6408,14 +6428,16 @@
       "predicted_hr_probability": 0.055058,
       "predicted_hr_score": 3.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Jack Flaherty has allowed homers in 3.8% of plate appearances to this batter side.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-09:824130:671976:607625",
@@ -67120,7 +67142,7 @@
         {
           "team": "MIA",
           "opponent_team": "CIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682663,
@@ -67129,22 +67151,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 596103,
-              "batter_name": "Austin Slater",
+              "batter_id": 688363,
+              "batter_name": "Graham Pauley",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 681393,
-              "batter_name": "Connor Norby",
+              "batter_id": 665052,
+              "batter_name": "Griffin Conine",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 681715,
-              "batter_name": "Heriberto Hern\u00e1ndez",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 805300,
@@ -67171,6 +67187,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 683357,
+              "batter_name": "Owen Caissie",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 669364,
               "batter_name": "Xavier Edwards",
               "batting_order": null,
@@ -67184,20 +67206,20 @@
       "game_pk": 823565,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T17:35:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "OAK @ NYY",
       "teams": [
         {
           "team": "OAK",
           "opponent_team": "NYY",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": []
         },
         {
           "team": "NYY",
           "opponent_team": "OAK",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 592450,
@@ -67236,20 +67258,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 665862,
-              "batter_name": "Jazz Chisholm Jr.",
+              "batter_id": 676609,
+              "batter_name": "Jos\u00e9 Caballero",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 641857,
               "batter_name": "Ryan McMahon",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 663757,
-              "batter_name": "Trent Grisham",
               "batting_order": null,
               "selected_for_pick": true
             }
@@ -67261,24 +67277,18 @@
       "game_pk": 823724,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T17:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "DET @ MIN",
       "teams": [
         {
           "team": "DET",
           "opponent_team": "MIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 690993,
               "batter_name": "Colt Keith",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 693307,
-              "batter_name": "Dillon Dingler",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -67289,16 +67299,22 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 668670,
+              "batter_name": "Jake Rogers",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 595879,
               "batter_name": "Javier B\u00e1ez",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 805808,
-              "batter_name": "Kevin McGonigle",
+              "batter_id": 681481,
+              "batter_name": "Kerry Carpenter",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 678009,
@@ -67329,25 +67345,19 @@
         {
           "team": "MIN",
           "opponent_team": "DET",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 668885,
-              "batter_name": "Austin Martin",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 686797,
-              "batter_name": "Brooks Lee",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 621439,
               "batter_name": "Byron Buxton",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 681546,
+              "batter_name": "James Outman",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 605137,
@@ -67356,10 +67366,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 807712,
-              "batter_name": "Luke Keaschall",
+              "batter_id": 665019,
+              "batter_name": "Kody Clemens",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 670242,
@@ -67374,10 +67384,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 680777,
-              "batter_name": "Ryan Jeffers",
+              "batter_id": 663616,
+              "batter_name": "Trevor Larnach",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 605170,
