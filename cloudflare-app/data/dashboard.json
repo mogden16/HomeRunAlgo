@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-09T23:09:02.972432+00:00",
+  "generated_at": "2026-04-10T09:56:55.533309+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -36,6 +36,7 @@
     }
   ],
   "history_dates": [
+    "2026-04-09",
     "2026-04-08",
     "2026-04-07",
     "2026-04-06",
@@ -51,8 +52,8 @@
     "2026-03-26",
     "2026-03-25"
   ],
-  "history_default_date": "2026-04-08",
-  "yesterday_homer_date": "2026-04-08",
+  "history_default_date": "2026-04-09",
+  "yesterday_homer_date": "2026-04-09",
   "refresh_schedule": {
     "timezone": "ET",
     "runs": [
@@ -77,42 +78,42 @@
     ]
   },
   "overview": {
-    "latest_slate_size": 99,
+    "latest_slate_size": 0,
     "tracked_dates": 15,
     "tracked_picks": 1533,
-    "settled_picks": 1288,
-    "tracked_homers": 110,
-    "tracked_hit_rate": 0.085404,
-    "open_picks": 245
+    "settled_picks": 1332,
+    "tracked_homers": 113,
+    "tracked_hit_rate": 0.084835,
+    "open_picks": 201
   },
   "confidence_summary": [
     {
       "confidence_tier": "elite",
-      "picks": 43,
+      "picks": 44,
       "homers": 10,
-      "hit_rate": 0.232558,
-      "avg_probability": 0.259118
+      "hit_rate": 0.227273,
+      "avg_probability": 0.256932
     },
     {
       "confidence_tier": "strong",
-      "picks": 127,
+      "picks": 129,
       "homers": 21,
-      "hit_rate": 0.165354,
-      "avg_probability": 0.210044
+      "hit_rate": 0.162791,
+      "avg_probability": 0.209218
     },
     {
       "confidence_tier": "watch",
-      "picks": 219,
-      "homers": 27,
-      "hit_rate": 0.123288,
-      "avg_probability": 0.140142
+      "picks": 226,
+      "homers": 28,
+      "hit_rate": 0.123894,
+      "avg_probability": 0.139791
     },
     {
       "confidence_tier": "longshot",
-      "picks": 899,
-      "homers": 52,
-      "hit_rate": 0.057842,
-      "avg_probability": 0.09289
+      "picks": 933,
+      "homers": 54,
+      "hit_rate": 0.057878,
+      "avg_probability": 0.093013
     }
   ],
   "player_leaderboard": [
@@ -138,15 +139,15 @@
       "hit_rate": 0.3
     },
     {
-      "batter_name": "Drake Baldwin",
-      "team": "ATL",
-      "picks": 8,
-      "homers": 3,
-      "hit_rate": 0.375
-    },
-    {
       "batter_name": "Munetaka Murakami",
       "team": "CWS",
+      "picks": 9,
+      "homers": 3,
+      "hit_rate": 0.333333
+    },
+    {
+      "batter_name": "Drake Baldwin",
+      "team": "ATL",
       "picks": 8,
       "homers": 3,
       "hit_rate": 0.375
@@ -201,6 +202,13 @@
       "hit_rate": 0.25
     },
     {
+      "batter_name": "Salvador Perez",
+      "team": "KC",
+      "picks": 8,
+      "homers": 2,
+      "hit_rate": 0.25
+    },
+    {
       "batter_name": "Ben Rice",
       "team": "NYY",
       "picks": 7,
@@ -215,8 +223,8 @@
       "hit_rate": 0.285714
     },
     {
-      "batter_name": "Salvador Perez",
-      "team": "KC",
+      "batter_name": "Xander Bogaerts",
+      "team": "SD",
       "picks": 7,
       "homers": 2,
       "hit_rate": 0.285714
@@ -250,18 +258,18 @@
       "hit_rate": 0.4
     },
     {
-      "batter_name": "Zach Neto",
-      "team": "LAA",
+      "batter_name": "Mickey Moniak",
+      "team": "COL",
       "picks": 5,
       "homers": 2,
       "hit_rate": 0.4
     },
     {
-      "batter_name": "Mickey Moniak",
-      "team": "COL",
-      "picks": 4,
+      "batter_name": "Zach Neto",
+      "team": "LAA",
+      "picks": 5,
       "homers": 2,
-      "hit_rate": 0.5
+      "hit_rate": 0.4
     },
     {
       "batter_name": "Jake Burger",
@@ -299,6 +307,13 @@
       "hit_rate": 0.142857
     },
     {
+      "batter_name": "Maikel Garcia",
+      "team": "KC",
+      "picks": 7,
+      "homers": 1,
+      "hit_rate": 0.142857
+    },
+    {
       "batter_name": "Oneil Cruz",
       "team": "PIT",
       "picks": 7,
@@ -320,8 +335,22 @@
       "hit_rate": 0.166667
     },
     {
+      "batter_name": "Colson Montgomery",
+      "team": "CWS",
+      "picks": 6,
+      "homers": 1,
+      "hit_rate": 0.166667
+    },
+    {
       "batter_name": "Gleyber Torres",
       "team": "DET",
+      "picks": 6,
+      "homers": 1,
+      "hit_rate": 0.166667
+    },
+    {
+      "batter_name": "Jake Cronenworth",
+      "team": "SD",
       "picks": 6,
       "homers": 1,
       "hit_rate": 0.166667
@@ -334,7 +363,7 @@
       "hit_rate": 0.166667
     },
     {
-      "batter_name": "Maikel Garcia",
+      "batter_name": "Jonathan India",
       "team": "KC",
       "picks": 6,
       "homers": 1,
@@ -348,8 +377,8 @@
       "hit_rate": 0.166667
     },
     {
-      "batter_name": "Xander Bogaerts",
-      "team": "SD",
+      "batter_name": "Troy Johnston",
+      "team": "COL",
       "picks": 6,
       "homers": 1,
       "hit_rate": 0.166667
@@ -397,13 +426,6 @@
       "hit_rate": 0.2
     },
     {
-      "batter_name": "Colson Montgomery",
-      "team": "CWS",
-      "picks": 5,
-      "homers": 1,
-      "hit_rate": 0.2
-    },
-    {
       "batter_name": "Connor Norby",
       "team": "MIA",
       "picks": 5,
@@ -425,7 +447,14 @@
       "hit_rate": 0.2
     },
     {
-      "batter_name": "Jake Cronenworth",
+      "batter_name": "Hunter Goodman",
+      "team": "COL",
+      "picks": 5,
+      "homers": 1,
+      "hit_rate": 0.2
+    },
+    {
+      "batter_name": "Jackson Merrill",
       "team": "SD",
       "picks": 5,
       "homers": 1,
@@ -453,13 +482,6 @@
       "hit_rate": 0.2
     },
     {
-      "batter_name": "Jonathan India",
-      "team": "KC",
-      "picks": 5,
-      "homers": 1,
-      "hit_rate": 0.2
-    },
-    {
       "batter_name": "Josh Bell",
       "team": "MIN",
       "picks": 5,
@@ -469,6 +491,13 @@
     {
       "batter_name": "Luke Keaschall",
       "team": "MIN",
+      "picks": 5,
+      "homers": 1,
+      "hit_rate": 0.2
+    },
+    {
+      "batter_name": "Manny Machado",
+      "team": "SD",
       "picks": 5,
       "homers": 1,
       "hit_rate": 0.2
@@ -537,7 +566,7 @@
       "hit_rate": 0.2
     },
     {
-      "batter_name": "Troy Johnston",
+      "batter_name": "TJ Rumfield",
       "team": "COL",
       "picks": 5,
       "homers": 1,
@@ -546,6 +575,13 @@
     {
       "batter_name": "Vladimir Guerrero Jr.",
       "team": "TOR",
+      "picks": 5,
+      "homers": 1,
+      "hit_rate": 0.2
+    },
+    {
+      "batter_name": "Willi Castro",
+      "team": "COL",
       "picks": 5,
       "homers": 1,
       "hit_rate": 0.2
@@ -586,20 +622,6 @@
       "hit_rate": 0.25
     },
     {
-      "batter_name": "Hunter Goodman",
-      "team": "COL",
-      "picks": 4,
-      "homers": 1,
-      "hit_rate": 0.25
-    },
-    {
-      "batter_name": "Jackson Merrill",
-      "team": "SD",
-      "picks": 4,
-      "homers": 1,
-      "hit_rate": 0.25
-    },
-    {
       "batter_name": "Luis Garc\u00eda Jr.",
       "team": "WSH",
       "picks": 4,
@@ -607,15 +629,8 @@
       "hit_rate": 0.25
     },
     {
-      "batter_name": "Manny Machado",
-      "team": "SD",
-      "picks": 4,
-      "homers": 1,
-      "hit_rate": 0.25
-    },
-    {
-      "batter_name": "TJ Rumfield",
-      "team": "COL",
+      "batter_name": "Luis Robert Jr.",
+      "team": "NYM",
       "picks": 4,
       "homers": 1,
       "hit_rate": 0.25
@@ -628,11 +643,11 @@
       "hit_rate": 0.25
     },
     {
-      "batter_name": "Willi Castro",
+      "batter_name": "Brenton Doyle",
       "team": "COL",
-      "picks": 4,
+      "picks": 3,
       "homers": 1,
-      "hit_rate": 0.25
+      "hit_rate": 0.333333
     },
     {
       "batter_name": "Carter Jensen",
@@ -670,6 +685,13 @@
       "hit_rate": 0.5
     },
     {
+      "batter_name": "Bobby Witt Jr.",
+      "team": "KC",
+      "picks": 8,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "JJ Wetherholt",
       "team": "STL",
       "picks": 8,
@@ -679,6 +701,13 @@
     {
       "batter_name": "Roman Anthony",
       "team": "BOS",
+      "picks": 8,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Vinnie Pasquantino",
+      "team": "KC",
       "picks": 8,
       "homers": 0,
       "hit_rate": 0.0
@@ -698,13 +727,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Bobby Witt Jr.",
-      "team": "KC",
-      "picks": 7,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Corey Seager",
       "team": "TEX",
       "picks": 7,
@@ -719,15 +741,15 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Jakob Marsee",
-      "team": "MIA",
+      "batter_name": "Fernando Tatis Jr.",
+      "team": "SD",
       "picks": 7,
       "homers": 0,
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Vinnie Pasquantino",
-      "team": "KC",
+      "batter_name": "Jakob Marsee",
+      "team": "MIA",
       "picks": 7,
       "homers": 0,
       "hit_rate": 0.0
@@ -754,6 +776,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Chase Meidroth",
+      "team": "CWS",
+      "picks": 6,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Christian Yelich",
       "team": "MIL",
       "picks": 6,
@@ -768,13 +797,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Fernando Tatis Jr.",
-      "team": "SD",
-      "picks": 6,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "George Springer",
       "team": "TOR",
       "picks": 6,
@@ -782,8 +804,22 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Geraldo Perdomo",
+      "team": "AZ",
+      "picks": 6,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Iv\u00e1n Herrera",
       "team": "STL",
+      "picks": 6,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Jac Caglianone",
+      "team": "KC",
       "picks": 6,
       "homers": 0,
       "hit_rate": 0.0
@@ -810,6 +846,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Luisangel Acu\u00f1a",
+      "team": "CWS",
+      "picks": 6,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Matt Chapman",
       "team": "SF",
       "picks": 6,
@@ -826,6 +869,13 @@
     {
       "batter_name": "Michael Busch",
       "team": "CHC",
+      "picks": 6,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Miguel Vargas",
+      "team": "CWS",
       "picks": 6,
       "homers": 0,
       "hit_rate": 0.0
@@ -908,6 +958,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Bo Bichette",
+      "team": "NYM",
+      "picks": 5,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Brandon Nimmo",
       "team": "TEX",
       "picks": 5,
@@ -931,13 +988,6 @@
     {
       "batter_name": "Chandler Simpson",
       "team": "TB",
-      "picks": 5,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Chase Meidroth",
-      "team": "CWS",
       "picks": 5,
       "homers": 0,
       "hit_rate": 0.0
@@ -978,8 +1028,15 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Geraldo Perdomo",
-      "team": "AZ",
+      "batter_name": "Ezequiel Tovar",
+      "team": "COL",
+      "picks": 5,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Francisco Lindor",
+      "team": "NYM",
       "picks": 5,
       "homers": 0,
       "hit_rate": 0.0
@@ -992,7 +1049,7 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Jac Caglianone",
+      "batter_name": "Isaac Collins",
       "team": "KC",
       "picks": 5,
       "homers": 0,
@@ -1013,8 +1070,22 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Jorge Barrosa",
+      "team": "AZ",
+      "picks": 5,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Jose Altuve",
       "team": "HOU",
+      "picks": 5,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Jose Fernandez",
+      "team": "AZ",
       "picks": 5,
       "homers": 0,
       "hit_rate": 0.0
@@ -1055,6 +1126,20 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Ketel Marte",
+      "team": "AZ",
+      "picks": 5,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Kyle Isbel",
+      "team": "KC",
+      "picks": 5,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Luis Arraez",
       "team": "SF",
       "picks": 5,
@@ -1069,8 +1154,8 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Luisangel Acu\u00f1a",
-      "team": "CWS",
+      "batter_name": "Marcus Semien",
+      "team": "NYM",
       "picks": 5,
       "homers": 0,
       "hit_rate": 0.0
@@ -1078,13 +1163,6 @@
     {
       "batter_name": "Michael Harris II",
       "team": "ATL",
-      "picks": 5,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Miguel Vargas",
-      "team": "CWS",
       "picks": 5,
       "homers": 0,
       "hit_rate": 0.0
@@ -1251,15 +1329,15 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Bo Bichette",
-      "team": "NYM",
+      "batter_name": "Brandon Marsh",
+      "team": "PHI",
       "picks": 4,
       "homers": 0,
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Brandon Marsh",
-      "team": "PHI",
+      "batter_name": "Brett Baty",
+      "team": "NYM",
       "picks": 4,
       "homers": 0,
       "hit_rate": 0.0
@@ -1321,14 +1399,14 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Ezequiel Tovar",
-      "team": "COL",
+      "batter_name": "Edgar Quero",
+      "team": "CWS",
       "picks": 4,
       "homers": 0,
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Francisco Lindor",
+      "batter_name": "Francisco Alvarez",
       "team": "NYM",
       "picks": 4,
       "homers": 0,
@@ -1344,13 +1422,6 @@
     {
       "batter_name": "Ian Happ",
       "team": "CHC",
-      "picks": 4,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Isaac Collins",
-      "team": "KC",
       "picks": 4,
       "homers": 0,
       "hit_rate": 0.0
@@ -1377,20 +1448,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Jorge Barrosa",
-      "team": "AZ",
-      "picks": 4,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Jose Fernandez",
-      "team": "AZ",
-      "picks": 4,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Josh Naylor",
       "team": "SEA",
       "picks": 4,
@@ -1405,22 +1462,8 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Ketel Marte",
-      "team": "AZ",
-      "picks": 4,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Konnor Griffin",
       "team": "PIT",
-      "picks": 4,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Kyle Isbel",
-      "team": "KC",
       "picks": 4,
       "homers": 0,
       "hit_rate": 0.0
@@ -1454,7 +1497,7 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Marcus Semien",
+      "batter_name": "Mark Vientos",
       "team": "NYM",
       "picks": 4,
       "homers": 0,
@@ -1559,13 +1602,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Brett Baty",
-      "team": "NYM",
-      "picks": 3,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Carlos Correa",
       "team": "HOU",
       "picks": 3,
@@ -1587,15 +1623,8 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Edgar Quero",
-      "team": "CWS",
-      "picks": 3,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Francisco Alvarez",
-      "team": "NYM",
+      "batter_name": "Edouard Julien",
+      "team": "COL",
       "picks": 3,
       "homers": 0,
       "hit_rate": 0.0
@@ -1720,20 +1749,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Luis Robert Jr.",
-      "team": "NYM",
-      "picks": 3,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Mark Vientos",
-      "team": "NYM",
-      "picks": 3,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Miguel Amaya",
       "team": "CHC",
       "picks": 3,
@@ -1776,6 +1791,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Tristan Peters",
+      "team": "CWS",
+      "picks": 3,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Yo\u00e1n Moncada",
       "team": "LAA",
       "picks": 3,
@@ -1797,6 +1819,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Andrew Benintendi",
+      "team": "CWS",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Bo Naylor",
       "team": "CLE",
       "picks": 2,
@@ -1806,13 +1835,6 @@
     {
       "batter_name": "Brendan Donovan",
       "team": "SEA",
-      "picks": 2,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Brenton Doyle",
-      "team": "COL",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
@@ -1860,13 +1882,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Edouard Julien",
-      "team": "COL",
-      "picks": 2,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Eli White",
       "team": "ATL",
       "picks": 2,
@@ -1883,6 +1898,20 @@
     {
       "batter_name": "Freddy Fermin",
       "team": "SD",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Gavin Sheets",
+      "team": "SD",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Ildemaro Vargas",
+      "team": "AZ",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
@@ -1972,6 +2001,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Nick Castellanos",
+      "team": "SD",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Nick Fortes",
       "team": "TB",
       "picks": 2,
@@ -1993,15 +2029,15 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Trevor Larnach",
-      "team": "MIN",
+      "batter_name": "Tim Tawa",
+      "team": "AZ",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Tristan Peters",
-      "team": "CWS",
+      "batter_name": "Trevor Larnach",
+      "team": "MIN",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
@@ -2292,7 +2328,8 @@
       }
     ]
   },
-  "latest_picks": [
+  "latest_picks": [],
+  "history": [
     {
       "pick_id": "2026-04-09:823565:700250:605488",
       "board_date": "2026-04-09",
@@ -2307,7 +2344,7 @@
       "original_rank": 1,
       "original_score": 97.0,
       "original_tier": "strong",
-      "morning_rank": 1,
+      "morning_rank": null,
       "batter_name": "Ben Rice",
       "team": "NYY",
       "opponent_team": "OAK",
@@ -2349,7 +2386,7 @@
       "original_rank": 2,
       "original_score": 96.0,
       "original_tier": "strong",
-      "morning_rank": 2,
+      "morning_rank": null,
       "batter_name": "Giancarlo Stanton",
       "team": "NYY",
       "opponent_team": "OAK",
@@ -2386,12 +2423,12 @@
       "game_pk": 823645,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 3,
       "original_rank": 3,
       "original_score": 100.0,
       "original_tier": "elite",
-      "morning_rank": 3,
+      "morning_rank": null,
       "batter_name": "Ketel Marte",
       "team": "AZ",
       "opponent_team": "NYM",
@@ -2409,15 +2446,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.162905,
       "predicted_hr_score": 100.0,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 116.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Nolan McLean has allowed barrels on 6.9% of batted balls to this batter side.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0042, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:824130:677951:641743",
@@ -2428,12 +2465,12 @@
       "game_pk": 824130,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 4,
       "original_rank": 4,
       "original_score": 99.0,
       "original_tier": "strong",
-      "morning_rank": 4,
+      "morning_rank": null,
       "batter_name": "Bobby Witt Jr.",
       "team": "KC",
       "opponent_team": "CWS",
@@ -2451,15 +2488,15 @@
       "field_bearing_deg": 25.0,
       "predicted_hr_probability": 0.160412,
       "predicted_hr_score": 99.0,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 115.6 mph, which points to top-end HR juice.",
       "top_reason_2": "Anthony Kay has allowed barrels on 8.1% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823565:592450:605488",
@@ -2475,7 +2512,7 @@
       "original_rank": 5,
       "original_score": 87.9,
       "original_tier": "watch",
-      "morning_rank": 5,
+      "morning_rank": null,
       "batter_name": "Aaron Judge",
       "team": "NYY",
       "opponent_team": "OAK",
@@ -2512,12 +2549,12 @@
       "game_pk": 824130,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 6,
       "original_rank": 6,
       "original_score": 98.0,
       "original_tier": "strong",
-      "morning_rank": 6,
+      "morning_rank": null,
       "batter_name": "Maikel Garcia",
       "team": "KC",
       "opponent_team": "CWS",
@@ -2535,15 +2572,15 @@
       "field_bearing_deg": 25.0,
       "predicted_hr_probability": 0.153154,
       "predicted_hr_score": 98.0,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0033, reinforcing the power-contact fit.",
       "top_reason_2": "Anthony Kay has allowed barrels on 8.1% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823884:701398:676974",
@@ -2559,7 +2596,7 @@
       "original_rank": 7,
       "original_score": 94.9,
       "original_tier": "watch",
-      "morning_rank": 7,
+      "morning_rank": null,
       "batter_name": "Sal Stewart",
       "team": "CIN",
       "opponent_team": "MIA",
@@ -2596,12 +2633,12 @@
       "game_pk": 824130,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 8,
       "original_rank": 8,
       "original_score": 93.9,
       "original_tier": "watch",
-      "morning_rank": 8,
+      "morning_rank": null,
       "batter_name": "Carter Jensen",
       "team": "KC",
       "opponent_team": "CWS",
@@ -2645,7 +2682,7 @@
       "original_rank": 9,
       "original_score": 92.9,
       "original_tier": "watch",
-      "morning_rank": 9,
+      "morning_rank": null,
       "batter_name": "Riley Greene",
       "team": "DET",
       "opponent_team": "MIN",
@@ -2682,12 +2719,12 @@
       "game_pk": 823319,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-10T01:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 10,
       "original_rank": 10,
       "original_score": 89.9,
       "original_tier": "watch",
-      "morning_rank": 10,
+      "morning_rank": null,
       "batter_name": "Fernando Tatis Jr.",
       "team": "SD",
       "opponent_team": "COL",
@@ -2705,8 +2742,8 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.133316,
       "predicted_hr_score": 89.9,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [
         "pitcher_change_alert"
       ],
@@ -2715,7 +2752,7 @@
       "top_reason_1": "Hard-hit rate over the last 30 days is 68.8%, showing consistent quality contact.",
       "top_reason_2": "95+ EV contact rate over the last 30 days is 68.8%, a strong loud-contact input for the model.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 70.8%, a top-decile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823645:682626:593958",
@@ -2726,12 +2763,12 @@
       "game_pk": 823645,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 11,
       "original_rank": 11,
       "original_score": 90.9,
       "original_tier": "watch",
-      "morning_rank": 11,
+      "morning_rank": null,
       "batter_name": "Francisco Alvarez",
       "team": "NYM",
       "opponent_team": "AZ",
@@ -2749,15 +2786,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.135359,
       "predicted_hr_score": 90.9,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 8.1%, which the model treats as sustained power quality.",
       "top_reason_2": "Eduardo Rodriguez has allowed homers in 4.8% of plate appearances over the last 30 days.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 52.2%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823884:682829:676974",
@@ -2773,7 +2810,7 @@
       "original_rank": 12,
       "original_score": 91.9,
       "original_tier": "watch",
-      "morning_rank": 12,
+      "morning_rank": null,
       "batter_name": "Elly De La Cruz",
       "team": "CIN",
       "opponent_team": "MIA",
@@ -2810,12 +2847,12 @@
       "game_pk": 823645,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 13,
       "original_rank": 13,
       "original_score": 88.9,
       "original_tier": "watch",
-      "morning_rank": 13,
+      "morning_rank": null,
       "batter_name": "Luis Robert Jr.",
       "team": "NYM",
       "opponent_team": "AZ",
@@ -2833,15 +2870,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.130634,
       "predicted_hr_score": 88.9,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 112.4 mph, which points to top-end HR juice.",
       "top_reason_2": "Eduardo Rodriguez has allowed homers in 4.8% of plate appearances over the last 30 days.",
       "top_reason_3": "Average exit velocity over the last 10 days is 94.4 mph, a top-quartile recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-09:823724:670242:656427",
@@ -2857,7 +2894,7 @@
       "original_rank": 14,
       "original_score": 86.9,
       "original_tier": "watch",
-      "morning_rank": 14,
+      "morning_rank": null,
       "batter_name": "Matt Wallner",
       "team": "MIN",
       "opponent_team": "DET",
@@ -2899,7 +2936,7 @@
       "original_rank": 15,
       "original_score": 85.9,
       "original_tier": "watch",
-      "morning_rank": 15,
+      "morning_rank": null,
       "batter_name": "Byron Buxton",
       "team": "MIN",
       "opponent_team": "DET",
@@ -2936,12 +2973,12 @@
       "game_pk": 824130,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 16,
       "original_rank": 16,
       "original_score": 84.8,
       "original_tier": "watch",
-      "morning_rank": 16,
+      "morning_rank": null,
       "batter_name": "Munetaka Murakami",
       "team": "CWS",
       "opponent_team": "KC",
@@ -2959,15 +2996,15 @@
       "field_bearing_deg": 25.0,
       "predicted_hr_probability": 0.12858,
       "predicted_hr_score": 84.8,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 111.1 mph, which points to top-end HR juice.",
       "top_reason_2": "Seth Lugo has allowed barrels on 8.7% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823645:666182:593958",
@@ -2978,12 +3015,12 @@
       "game_pk": 823645,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 17,
       "original_rank": 17,
       "original_score": 83.8,
       "original_tier": "watch",
-      "morning_rank": 17,
+      "morning_rank": null,
       "batter_name": "Bo Bichette",
       "team": "NYM",
       "opponent_team": "AZ",
@@ -3001,15 +3038,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.12782,
       "predicted_hr_score": 83.8,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 5.3% barrel-per-PA split.",
       "top_reason_2": "Eduardo Rodriguez has allowed homers in 4.8% of plate appearances over the last 30 days.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0027, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:824130:521692:641743",
@@ -3020,12 +3057,12 @@
       "game_pk": 824130,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 18,
       "original_rank": 18,
       "original_score": 82.8,
       "original_tier": "watch",
-      "morning_rank": 18,
+      "morning_rank": null,
       "batter_name": "Salvador Perez",
       "team": "KC",
       "opponent_team": "CWS",
@@ -3043,15 +3080,15 @@
       "field_bearing_deg": 25.0,
       "predicted_hr_probability": 0.124244,
       "predicted_hr_score": 82.8,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0040, reinforcing the power-contact fit.",
       "top_reason_2": "Anthony Kay has allowed barrels on 8.1% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823319:657656:",
@@ -3062,12 +3099,12 @@
       "game_pk": 823319,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-10T01:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 19,
       "original_rank": 19,
       "original_score": 79.8,
       "original_tier": "longshot",
-      "morning_rank": 19,
+      "morning_rank": null,
       "batter_name": "Ram\u00f3n Laureano",
       "team": "SD",
       "opponent_team": "COL",
@@ -3107,12 +3144,12 @@
       "game_pk": 823319,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-10T01:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 20,
       "original_rank": 20,
       "original_score": 78.8,
       "original_tier": "longshot",
-      "morning_rank": 20,
+      "morning_rank": null,
       "batter_name": "Jackson Merrill",
       "team": "SD",
       "opponent_team": "COL",
@@ -3130,8 +3167,8 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.120332,
       "predicted_hr_score": 78.8,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [
         "pitcher_change_alert"
       ],
@@ -3140,7 +3177,7 @@
       "top_reason_1": "Against this pitcher handedness, the hitter has a 4.9% barrel-per-PA split.",
       "top_reason_2": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 50.0%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:824130:695657:607625",
@@ -3151,12 +3188,12 @@
       "game_pk": 824130,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 21,
       "original_rank": 21,
       "original_score": 80.8,
       "original_tier": "watch",
-      "morning_rank": 21,
+      "morning_rank": null,
       "batter_name": "Colson Montgomery",
       "team": "CWS",
       "opponent_team": "KC",
@@ -3174,15 +3211,15 @@
       "field_bearing_deg": 25.0,
       "predicted_hr_probability": 0.121611,
       "predicted_hr_score": 80.8,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 6.8% barrel-per-PA split.",
       "top_reason_2": "Seth Lugo has allowed barrels on 8.7% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823884:680574:676974",
@@ -3198,7 +3235,7 @@
       "original_rank": 22,
       "original_score": 81.8,
       "original_tier": "watch",
-      "morning_rank": 22,
+      "morning_rank": null,
       "batter_name": "Matt McLain",
       "team": "CIN",
       "opponent_team": "MIA",
@@ -3240,7 +3277,7 @@
       "original_rank": 23,
       "original_score": 77.8,
       "original_tier": "longshot",
-      "morning_rank": 23,
+      "morning_rank": null,
       "batter_name": "Tyler Stephenson",
       "team": "CIN",
       "opponent_team": "MIA",
@@ -3279,12 +3316,12 @@
       "game_pk": 824130,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 24,
       "original_rank": 24,
       "original_score": 76.8,
       "original_tier": "longshot",
-      "morning_rank": 24,
+      "morning_rank": null,
       "batter_name": "Miguel Vargas",
       "team": "CWS",
       "opponent_team": "KC",
@@ -3302,15 +3339,15 @@
       "field_bearing_deg": 25.0,
       "predicted_hr_probability": 0.117334,
       "predicted_hr_score": 76.8,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 5.3%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Seth Lugo has allowed barrels on 8.7% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823645:682998:690997",
@@ -3321,12 +3358,12 @@
       "game_pk": 823645,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 25,
       "original_rank": 25,
       "original_score": 75.8,
       "original_tier": "longshot",
-      "morning_rank": 25,
+      "morning_rank": null,
       "batter_name": "Corbin Carroll",
       "team": "AZ",
       "opponent_team": "NYM",
@@ -3370,7 +3407,7 @@
       "original_rank": 26,
       "original_score": 74.7,
       "original_tier": "longshot",
-      "morning_rank": 26,
+      "morning_rank": null,
       "batter_name": "Victor Caratini",
       "team": "MIN",
       "opponent_team": "DET",
@@ -3412,7 +3449,7 @@
       "original_rank": 27,
       "original_score": 73.7,
       "original_tier": "longshot",
-      "morning_rank": 27,
+      "morning_rank": null,
       "batter_name": "Kevin McGonigle",
       "team": "DET",
       "opponent_team": "MIN",
@@ -3451,12 +3488,12 @@
       "game_pk": 823319,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-10T01:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 28,
       "original_rank": 28,
       "original_score": 70.7,
       "original_tier": "longshot",
-      "morning_rank": 28,
+      "morning_rank": null,
       "batter_name": "Mickey Moniak",
       "team": "COL",
       "opponent_team": "SD",
@@ -3474,15 +3511,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.112064,
       "predicted_hr_score": 70.7,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 8.7%, which the model treats as sustained power quality.",
       "top_reason_2": "Randy V\u00e1squez has allowed a 50.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Barrel rate over the last 10 days is 8.7%, a top-decile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823724:605137:656427",
@@ -3498,7 +3535,7 @@
       "original_rank": 29,
       "original_score": 72.7,
       "original_tier": "longshot",
-      "morning_rank": 29,
+      "morning_rank": null,
       "batter_name": "Josh Bell",
       "team": "MIN",
       "opponent_team": "DET",
@@ -3540,7 +3577,7 @@
       "original_rank": 30,
       "original_score": 71.7,
       "original_tier": "longshot",
-      "morning_rank": 30,
+      "morning_rank": null,
       "batter_name": "Colt Keith",
       "team": "DET",
       "opponent_team": "MIN",
@@ -3577,12 +3614,12 @@
       "game_pk": 823319,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-10T01:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 31,
       "original_rank": 31,
       "original_score": 67.7,
       "original_tier": "longshot",
-      "morning_rank": 31,
+      "morning_rank": null,
       "batter_name": "Troy Johnston",
       "team": "COL",
       "opponent_team": "SD",
@@ -3600,15 +3637,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.110736,
       "predicted_hr_score": 67.7,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0025, reinforcing the power-contact fit.",
       "top_reason_2": "Randy V\u00e1squez has allowed a 50.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Randy V\u00e1squez has allowed 50.0% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823884:682663:695076",
@@ -3624,7 +3661,7 @@
       "original_rank": 32,
       "original_score": 69.7,
       "original_tier": "longshot",
-      "morning_rank": 32,
+      "morning_rank": null,
       "batter_name": "Agust\u00edn Ram\u00edrez",
       "team": "MIA",
       "opponent_team": "CIN",
@@ -3661,12 +3698,12 @@
       "game_pk": 823645,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 33,
       "original_rank": 33,
       "original_score": 68.7,
       "original_tier": "longshot",
-      "morning_rank": 33,
+      "morning_rank": null,
       "batter_name": "Francisco Lindor",
       "team": "NYM",
       "opponent_team": "AZ",
@@ -3684,15 +3721,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.111339,
       "predicted_hr_score": 68.7,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0025, reinforcing the power-contact fit.",
       "top_reason_2": "Eduardo Rodriguez has allowed homers in 4.8% of plate appearances over the last 30 days.",
       "top_reason_3": "Eduardo Rodriguez has allowed barrels on 5.9% of batted balls to this batter side.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:824130:643217:607625",
@@ -3703,12 +3740,12 @@
       "game_pk": 824130,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 34,
       "original_rank": 34,
       "original_score": 66.7,
       "original_tier": "longshot",
-      "morning_rank": 34,
+      "morning_rank": null,
       "batter_name": "Andrew Benintendi",
       "team": "CWS",
       "opponent_team": "KC",
@@ -3726,15 +3763,15 @@
       "field_bearing_deg": 25.0,
       "predicted_hr_probability": 0.110257,
       "predicted_hr_score": 66.7,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 62.5%, showing consistent quality contact.",
       "top_reason_2": "Seth Lugo has allowed barrels on 8.7% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823645:545121:690997",
@@ -3745,12 +3782,12 @@
       "game_pk": 823645,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 35,
       "original_rank": 35,
       "original_score": 65.7,
       "original_tier": "longshot",
-      "morning_rank": 35,
+      "morning_rank": null,
       "batter_name": "Ildemaro Vargas",
       "team": "AZ",
       "opponent_team": "NYM",
@@ -3768,15 +3805,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.109747,
       "predicted_hr_score": 65.7,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 4.8%, which the model treats as sustained power quality.",
       "top_reason_2": "Nolan McLean has allowed barrels on 6.9% of batted balls to this batter side.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 108.9 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823884:553993:676974",
@@ -3792,7 +3829,7 @@
       "original_rank": 36,
       "original_score": 64.6,
       "original_tier": "longshot",
-      "morning_rank": 36,
+      "morning_rank": null,
       "batter_name": "Eugenio Su\u00e1rez",
       "team": "CIN",
       "opponent_team": "MIA",
@@ -3834,7 +3871,7 @@
       "original_rank": 37,
       "original_score": 40.4,
       "original_tier": "longshot",
-      "morning_rank": 37,
+      "morning_rank": null,
       "batter_name": "Amed Rosario",
       "team": "NYY",
       "opponent_team": "OAK",
@@ -3871,12 +3908,12 @@
       "game_pk": 824130,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 38,
       "original_rank": 38,
       "original_score": 63.6,
       "original_tier": "longshot",
-      "morning_rank": 38,
+      "morning_rank": null,
       "batter_name": "Jonathan India",
       "team": "KC",
       "opponent_team": "CWS",
@@ -3894,15 +3931,15 @@
       "field_bearing_deg": 25.0,
       "predicted_hr_probability": 0.108149,
       "predicted_hr_score": 63.6,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 6.2%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Anthony Kay has allowed barrels on 8.1% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823565:663757:605488",
@@ -3918,7 +3955,7 @@
       "original_rank": 39,
       "original_score": 31.3,
       "original_tier": "longshot",
-      "morning_rank": 39,
+      "morning_rank": null,
       "batter_name": "Trent Grisham",
       "team": "NYY",
       "opponent_team": "OAK",
@@ -3957,12 +3994,12 @@
       "game_pk": 823319,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-10T01:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 40,
       "original_rank": 40,
       "original_score": 60.6,
       "original_tier": "longshot",
-      "morning_rank": 40,
+      "morning_rank": null,
       "batter_name": "Jake Cronenworth",
       "team": "SD",
       "opponent_team": "COL",
@@ -3980,8 +4017,8 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.105166,
       "predicted_hr_score": 60.6,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [
         "pitcher_change_alert"
       ],
@@ -3990,7 +4027,7 @@
       "top_reason_1": "Barrel rate over the last 10 days is 5.9%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Barrel rate over the last 30 days is 4.3%, which the model treats as sustained power quality.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 108.6 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823645:668901:593958",
@@ -4001,12 +4038,12 @@
       "game_pk": 823645,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 41,
       "original_rank": 41,
       "original_score": 62.6,
       "original_tier": "longshot",
-      "morning_rank": 41,
+      "morning_rank": null,
       "batter_name": "Mark Vientos",
       "team": "NYM",
       "opponent_team": "AZ",
@@ -4024,15 +4061,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.106669,
       "predicted_hr_score": 62.6,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0018, reinforcing the power-contact fit.",
       "top_reason_2": "Eduardo Rodriguez has allowed homers in 4.8% of plate appearances over the last 30 days.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 108.6 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823319:593428:",
@@ -4043,12 +4080,12 @@
       "game_pk": 823319,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-10T01:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 42,
       "original_rank": 42,
       "original_score": 57.6,
       "original_tier": "longshot",
-      "morning_rank": 42,
+      "morning_rank": null,
       "batter_name": "Xander Bogaerts",
       "team": "SD",
       "opponent_team": "COL",
@@ -4066,8 +4103,8 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.104136,
       "predicted_hr_score": 57.6,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [
         "pitcher_change_alert"
       ],
@@ -4076,7 +4113,7 @@
       "top_reason_1": "Barrel rate over the last 10 days is 2.6%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Projected humidity is 79%, a modest positive weather input in the live model.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 2.8% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-09:823645:683146:593958",
@@ -4087,12 +4124,12 @@
       "game_pk": 823645,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 43,
       "original_rank": 43,
       "original_score": 61.6,
       "original_tier": "longshot",
-      "morning_rank": 43,
+      "morning_rank": null,
       "batter_name": "Brett Baty",
       "team": "NYM",
       "opponent_team": "AZ",
@@ -4110,15 +4147,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.105819,
       "predicted_hr_score": 61.6,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 7.1%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Eduardo Rodriguez has allowed homers in 4.8% of plate appearances over the last 30 days.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 110.6 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823645:672515:690997",
@@ -4129,12 +4166,12 @@
       "game_pk": 823645,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 44,
       "original_rank": 44,
       "original_score": 59.6,
       "original_tier": "longshot",
-      "morning_rank": 44,
+      "morning_rank": null,
       "batter_name": "Gabriel Moreno",
       "team": "AZ",
       "opponent_team": "NYM",
@@ -4173,12 +4210,12 @@
       "game_pk": 823319,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-10T01:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 45,
       "original_rank": 45,
       "original_score": 51.5,
       "original_tier": "longshot",
-      "morning_rank": 45,
+      "morning_rank": null,
       "batter_name": "Gavin Sheets",
       "team": "SD",
       "opponent_team": "COL",
@@ -4196,8 +4233,8 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.103341,
       "predicted_hr_score": 51.5,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [
         "pitcher_change_alert"
       ],
@@ -4206,7 +4243,7 @@
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.6 mph, which points to top-end HR juice.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823319:592206:",
@@ -4217,12 +4254,12 @@
       "game_pk": 823319,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-10T01:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 46,
       "original_rank": 46,
       "original_score": 53.5,
       "original_tier": "longshot",
-      "morning_rank": 46,
+      "morning_rank": null,
       "batter_name": "Nick Castellanos",
       "team": "SD",
       "opponent_team": "COL",
@@ -4240,8 +4277,8 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.103515,
       "predicted_hr_score": 53.5,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [
         "pitcher_change_alert"
       ],
@@ -4250,7 +4287,7 @@
       "top_reason_1": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
       "top_reason_2": "95+ EV contact rate over the last 10 days is 50.0%, which supports near-term HR upside.",
       "top_reason_3": "Barrel rate over the last 10 days is 5.3%, a top-quartile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823319:666397:681190",
@@ -4261,12 +4298,12 @@
       "game_pk": 823319,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-10T01:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 47,
       "original_rank": 47,
       "original_score": 56.6,
       "original_tier": "longshot",
-      "morning_rank": 47,
+      "morning_rank": null,
       "batter_name": "Edouard Julien",
       "team": "COL",
       "opponent_team": "SD",
@@ -4284,15 +4321,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.104112,
       "predicted_hr_score": 56.6,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0022, reinforcing the power-contact fit.",
       "top_reason_2": "Randy V\u00e1squez has allowed a 50.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Randy V\u00e1squez has allowed 50.0% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823645:543760:593958",
@@ -4303,12 +4340,12 @@
       "game_pk": 823645,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 48,
       "original_rank": 48,
       "original_score": 58.6,
       "original_tier": "longshot",
-      "morning_rank": 48,
+      "morning_rank": null,
       "batter_name": "Marcus Semien",
       "team": "NYM",
       "opponent_team": "AZ",
@@ -4326,15 +4363,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.10423,
       "predicted_hr_score": 58.6,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Eduardo Rodriguez has allowed homers in 4.8% of plate appearances over the last 30 days.",
       "top_reason_2": "Eduardo Rodriguez has allowed barrels on 6.1% of recent batted balls.",
       "top_reason_3": "Eduardo Rodriguez has allowed barrels on 5.1% of batted balls to this batter side.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823565:641355:605488",
@@ -4350,7 +4387,7 @@
       "original_rank": 49,
       "original_score": 32.3,
       "original_tier": "longshot",
-      "morning_rank": 49,
+      "morning_rank": null,
       "batter_name": "Cody Bellinger",
       "team": "NYY",
       "opponent_team": "OAK",
@@ -4392,7 +4429,7 @@
       "original_rank": 50,
       "original_score": 55.6,
       "original_tier": "longshot",
-      "morning_rank": 50,
+      "morning_rank": null,
       "batter_name": "Royce Lewis",
       "team": "MIN",
       "opponent_team": "DET",
@@ -4429,12 +4466,12 @@
       "game_pk": 824130,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 51,
       "original_rank": 51,
       "original_score": 52.5,
       "original_tier": "longshot",
-      "morning_rank": 51,
+      "morning_rank": null,
       "batter_name": "Jac Caglianone",
       "team": "KC",
       "opponent_team": "CWS",
@@ -4452,15 +4489,15 @@
       "field_bearing_deg": 25.0,
       "predicted_hr_probability": 0.103396,
       "predicted_hr_score": 52.5,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 116.1 mph, which points to top-end HR juice.",
       "top_reason_2": "Anthony Kay has allowed 90.3 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823884:672640:695076",
@@ -4476,7 +4513,7 @@
       "original_rank": 52,
       "original_score": 54.5,
       "original_tier": "longshot",
-      "morning_rank": 52,
+      "morning_rank": null,
       "batter_name": "Otto Lopez",
       "team": "MIA",
       "opponent_team": "CIN",
@@ -4518,7 +4555,7 @@
       "original_rank": 53,
       "original_score": 50.5,
       "original_tier": "longshot",
-      "morning_rank": 53,
+      "morning_rank": null,
       "batter_name": "Jakob Marsee",
       "team": "MIA",
       "opponent_team": "CIN",
@@ -4555,12 +4592,12 @@
       "game_pk": 823645,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 54,
       "original_rank": 54,
       "original_score": 49.5,
       "original_tier": "longshot",
-      "morning_rank": 54,
+      "morning_rank": null,
       "batter_name": "Jose Fernandez",
       "team": "AZ",
       "opponent_team": "NYM",
@@ -4578,15 +4615,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.10074,
       "predicted_hr_score": 49.5,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 22.2% barrel-per-PA split.",
       "top_reason_2": "Nolan McLean has allowed barrels on 6.9% of batted balls to this batter side.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0153, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823884:681393:695076",
@@ -4602,7 +4639,7 @@
       "original_rank": 55,
       "original_score": 47.5,
       "original_tier": "longshot",
-      "morning_rank": 55,
+      "morning_rank": null,
       "batter_name": "Connor Norby",
       "team": "MIA",
       "opponent_team": "CIN",
@@ -4641,12 +4678,12 @@
       "game_pk": 823319,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-10T01:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 56,
       "original_rank": 56,
       "original_score": 46.5,
       "original_tier": "longshot",
-      "morning_rank": 56,
+      "morning_rank": null,
       "batter_name": "Hunter Goodman",
       "team": "COL",
       "opponent_team": "SD",
@@ -4664,15 +4701,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.098403,
       "predicted_hr_score": 46.5,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 111.1 mph, which points to top-end HR juice.",
       "top_reason_2": "Randy V\u00e1squez has allowed a 50.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Randy V\u00e1squez has allowed 50.0% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823884:681715:695076",
@@ -4688,7 +4725,7 @@
       "original_rank": 57,
       "original_score": 48.5,
       "original_tier": "longshot",
-      "morning_rank": 57,
+      "morning_rank": null,
       "batter_name": "Heriberto Hern\u00e1ndez",
       "team": "MIA",
       "opponent_team": "CIN",
@@ -4727,12 +4764,12 @@
       "game_pk": 823319,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-10T01:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 58,
       "original_rank": 58,
       "original_score": 45.5,
       "original_tier": "longshot",
-      "morning_rank": 58,
+      "morning_rank": null,
       "batter_name": "Ezequiel Tovar",
       "team": "COL",
       "opponent_team": "SD",
@@ -4750,15 +4787,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.097196,
       "predicted_hr_score": 45.5,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 50.0%, showing consistent quality contact.",
       "top_reason_2": "Randy V\u00e1squez has allowed a 50.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Randy V\u00e1squez has allowed 50.0% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823319:592518:",
@@ -4769,12 +4806,12 @@
       "game_pk": 823319,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-10T01:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 59,
       "original_rank": 59,
       "original_score": 42.4,
       "original_tier": "longshot",
-      "morning_rank": 59,
+      "morning_rank": null,
       "batter_name": "Manny Machado",
       "team": "SD",
       "opponent_team": "COL",
@@ -4792,8 +4829,8 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.096475,
       "predicted_hr_score": 42.4,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [
         "pitcher_change_alert"
       ],
@@ -4802,7 +4839,7 @@
       "top_reason_1": "Against this pitcher handedness, the hitter has a 3.9% barrel-per-PA split.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823565:669224:605488",
@@ -4818,7 +4855,7 @@
       "original_rank": 60,
       "original_score": 20.2,
       "original_tier": "longshot",
-      "morning_rank": 60,
+      "morning_rank": null,
       "batter_name": "Austin Wells",
       "team": "NYY",
       "opponent_team": "OAK",
@@ -4855,12 +4892,12 @@
       "game_pk": 824130,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 61,
       "original_rank": 61,
       "original_score": 44.4,
       "original_tier": "longshot",
-      "morning_rank": 61,
+      "morning_rank": null,
       "batter_name": "Isaac Collins",
       "team": "KC",
       "opponent_team": "CWS",
@@ -4878,15 +4915,15 @@
       "field_bearing_deg": 25.0,
       "predicted_hr_probability": 0.096986,
       "predicted_hr_score": 44.4,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Anthony Kay has allowed barrels on 8.1% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823724:680777:656427",
@@ -4902,7 +4939,7 @@
       "original_rank": 62,
       "original_score": 43.4,
       "original_tier": "longshot",
-      "morning_rank": 62,
+      "morning_rank": null,
       "batter_name": "Ryan Jeffers",
       "team": "MIN",
       "opponent_team": "DET",
@@ -4941,12 +4978,12 @@
       "game_pk": 823319,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-10T01:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 63,
       "original_rank": 63,
       "original_score": 39.4,
       "original_tier": "longshot",
-      "morning_rank": 63,
+      "morning_rank": null,
       "batter_name": "TJ Rumfield",
       "team": "COL",
       "opponent_team": "SD",
@@ -4964,15 +5001,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.095312,
       "predicted_hr_score": 39.4,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1704, supporting loud-contact upside.",
       "top_reason_2": "Randy V\u00e1squez has allowed a 50.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Randy V\u00e1squez has allowed 50.0% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823884:666181:676974",
@@ -4988,7 +5025,7 @@
       "original_rank": 64,
       "original_score": 41.4,
       "original_tier": "longshot",
-      "morning_rank": 64,
+      "morning_rank": null,
       "batter_name": "Will Benson",
       "team": "CIN",
       "opponent_team": "MIA",
@@ -5032,7 +5069,7 @@
       "original_rank": 65,
       "original_score": 38.4,
       "original_tier": "longshot",
-      "morning_rank": 65,
+      "morning_rank": null,
       "batter_name": "Luke Keaschall",
       "team": "MIN",
       "opponent_team": "DET",
@@ -5071,12 +5108,12 @@
       "game_pk": 824130,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 66,
       "original_rank": 66,
       "original_score": 37.4,
       "original_tier": "longshot",
-      "morning_rank": 66,
+      "morning_rank": null,
       "batter_name": "Chase Meidroth",
       "team": "CWS",
       "opponent_team": "KC",
@@ -5094,15 +5131,15 @@
       "field_bearing_deg": 25.0,
       "predicted_hr_probability": 0.09196,
       "predicted_hr_score": 37.4,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 4.3%, which the model treats as sustained power quality.",
       "top_reason_2": "Seth Lugo has allowed barrels on 8.7% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823319:691720:681190",
@@ -5113,12 +5150,12 @@
       "game_pk": 823319,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-10T01:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 67,
       "original_rank": 67,
       "original_score": 35.4,
       "original_tier": "longshot",
-      "morning_rank": 67,
+      "morning_rank": null,
       "batter_name": "Kyle Karros",
       "team": "COL",
       "opponent_team": "SD",
@@ -5157,12 +5194,12 @@
       "game_pk": 823645,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 68,
       "original_rank": 68,
       "original_score": 36.4,
       "original_tier": "longshot",
-      "morning_rank": 68,
+      "morning_rank": null,
       "batter_name": "Tim Tawa",
       "team": "AZ",
       "opponent_team": "NYM",
@@ -5180,15 +5217,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.090602,
       "predicted_hr_score": 36.4,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 58.3%, a top-quartile recent-contact signal.",
       "top_reason_2": "Nolan McLean has allowed barrels on 6.9% of batted balls to this batter side.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 58.3%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823884:682622:676974",
@@ -5204,7 +5241,7 @@
       "original_rank": 69,
       "original_score": 34.3,
       "original_tier": "longshot",
-      "morning_rank": 69,
+      "morning_rank": null,
       "batter_name": "Noelvi Marte",
       "team": "CIN",
       "opponent_team": "MIA",
@@ -5243,12 +5280,12 @@
       "game_pk": 823645,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 70,
       "original_rank": 70,
       "original_score": 33.3,
       "original_tier": "longshot",
-      "morning_rank": 70,
+      "morning_rank": null,
       "batter_name": "Jorge Polanco",
       "team": "NYM",
       "opponent_team": "AZ",
@@ -5287,12 +5324,12 @@
       "game_pk": 823319,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-10T01:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 71,
       "original_rank": 71,
       "original_score": 28.3,
       "original_tier": "longshot",
-      "morning_rank": 71,
+      "morning_rank": null,
       "batter_name": "Miguel Andujar",
       "team": "SD",
       "opponent_team": "COL",
@@ -5332,12 +5369,12 @@
       "game_pk": 824130,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 72,
       "original_rank": 72,
       "original_score": 30.3,
       "original_tier": "longshot",
-      "morning_rank": 72,
+      "morning_rank": null,
       "batter_name": "Vinnie Pasquantino",
       "team": "KC",
       "opponent_team": "CWS",
@@ -5355,15 +5392,15 @@
       "field_bearing_deg": 25.0,
       "predicted_hr_probability": 0.085617,
       "predicted_hr_score": 30.3,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1813, supporting loud-contact upside.",
       "top_reason_2": "Anthony Kay has allowed 90.3 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823884:663647:676974",
@@ -5379,7 +5416,7 @@
       "original_rank": 73,
       "original_score": 29.3,
       "original_tier": "longshot",
-      "morning_rank": 73,
+      "morning_rank": null,
       "batter_name": "Ke'Bryan Hayes",
       "team": "CIN",
       "opponent_team": "MIA",
@@ -5423,7 +5460,7 @@
       "original_rank": 74,
       "original_score": 27.3,
       "original_tier": "longshot",
-      "morning_rank": 74,
+      "morning_rank": null,
       "batter_name": "Dillon Dingler",
       "team": "DET",
       "opponent_team": "MIN",
@@ -5462,12 +5499,12 @@
       "game_pk": 823645,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 75,
       "original_rank": 75,
       "original_score": 26.3,
       "original_tier": "longshot",
-      "morning_rank": 75,
+      "morning_rank": null,
       "batter_name": "Nolan Arenado",
       "team": "AZ",
       "opponent_team": "NYM",
@@ -5506,12 +5543,12 @@
       "game_pk": 823645,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 76,
       "original_rank": 76,
       "original_score": 25.3,
       "original_tier": "longshot",
-      "morning_rank": 76,
+      "morning_rank": null,
       "batter_name": "Geraldo Perdomo",
       "team": "AZ",
       "opponent_team": "NYM",
@@ -5529,15 +5566,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.083599,
       "predicted_hr_score": 25.3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Nolan McLean has allowed barrels on 6.9% of batted balls to this batter side.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823645:701807:593958",
@@ -5548,12 +5585,12 @@
       "game_pk": 823645,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 77,
       "original_rank": 77,
       "original_score": 23.2,
       "original_tier": "longshot",
-      "morning_rank": 77,
+      "morning_rank": null,
       "batter_name": "Carson Benge",
       "team": "NYM",
       "opponent_team": "AZ",
@@ -5597,7 +5634,7 @@
       "original_rank": 78,
       "original_score": 22.2,
       "original_tier": "longshot",
-      "morning_rank": 78,
+      "morning_rank": null,
       "batter_name": "Spencer Torkelson",
       "team": "DET",
       "opponent_team": "MIN",
@@ -5639,7 +5676,7 @@
       "original_rank": 79,
       "original_score": 7.1,
       "original_tier": "longshot",
-      "morning_rank": 79,
+      "morning_rank": null,
       "batter_name": "Jazz Chisholm Jr.",
       "team": "NYY",
       "opponent_team": "OAK",
@@ -5683,7 +5720,7 @@
       "original_rank": 80,
       "original_score": 24.2,
       "original_tier": "longshot",
-      "morning_rank": 80,
+      "morning_rank": null,
       "batter_name": "Liam Hicks",
       "team": "MIA",
       "opponent_team": "CIN",
@@ -5725,7 +5762,7 @@
       "original_rank": 81,
       "original_score": 21.2,
       "original_tier": "longshot",
-      "morning_rank": 81,
+      "morning_rank": null,
       "batter_name": "Zach McKinstry",
       "team": "DET",
       "opponent_team": "MIN",
@@ -5762,12 +5799,12 @@
       "game_pk": 824130,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 82,
       "original_rank": 82,
       "original_score": 19.2,
       "original_tier": "longshot",
-      "morning_rank": 82,
+      "morning_rank": null,
       "batter_name": "Kyle Isbel",
       "team": "KC",
       "opponent_team": "CWS",
@@ -5785,15 +5822,15 @@
       "field_bearing_deg": 25.0,
       "predicted_hr_probability": 0.079039,
       "predicted_hr_score": 19.2,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 4.2%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Anthony Kay has allowed 90.3 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:824130:700337:607625",
@@ -5804,12 +5841,12 @@
       "game_pk": 824130,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 83,
       "original_rank": 83,
       "original_score": 18.2,
       "original_tier": "longshot",
-      "morning_rank": 83,
+      "morning_rank": null,
       "batter_name": "Edgar Quero",
       "team": "CWS",
       "opponent_team": "KC",
@@ -5827,15 +5864,15 @@
       "field_bearing_deg": 25.0,
       "predicted_hr_probability": 0.078963,
       "predicted_hr_score": 18.2,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1719, supporting loud-contact upside.",
       "top_reason_2": "Seth Lugo has allowed barrels on 8.7% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:824130:682668:607625",
@@ -5846,12 +5883,12 @@
       "game_pk": 824130,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 84,
       "original_rank": 84,
       "original_score": 17.2,
       "original_tier": "longshot",
-      "morning_rank": 84,
+      "morning_rank": null,
       "batter_name": "Luisangel Acu\u00f1a",
       "team": "CWS",
       "opponent_team": "KC",
@@ -5869,15 +5906,15 @@
       "field_bearing_deg": 25.0,
       "predicted_hr_probability": 0.078767,
       "predicted_hr_score": 17.2,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Seth Lugo has allowed barrels on 8.7% of recent batted balls.",
       "top_reason_2": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Seth Lugo has allowed 90.6 mph average exit velocity recently, which the model flags as hittable contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823884:669364:695076",
@@ -5893,7 +5930,7 @@
       "original_rank": 85,
       "original_score": 16.2,
       "original_tier": "longshot",
-      "morning_rank": 85,
+      "morning_rank": null,
       "batter_name": "Xavier Edwards",
       "team": "MIA",
       "opponent_team": "CIN",
@@ -5930,12 +5967,12 @@
       "game_pk": 823319,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-10T01:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 86,
       "original_rank": 86,
       "original_score": 15.2,
       "original_tier": "longshot",
-      "morning_rank": 86,
+      "morning_rank": null,
       "batter_name": "Willi Castro",
       "team": "COL",
       "opponent_team": "SD",
@@ -5953,15 +5990,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.075016,
       "predicted_hr_score": 15.2,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0016, reinforcing the power-contact fit.",
       "top_reason_2": "Randy V\u00e1squez has allowed a 50.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Randy V\u00e1squez has allowed 50.0% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823884:691594:695076",
@@ -5977,7 +6014,7 @@
       "original_rank": 87,
       "original_score": 14.1,
       "original_tier": "longshot",
-      "morning_rank": 87,
+      "morning_rank": null,
       "batter_name": "Javier Sanoja",
       "team": "MIA",
       "opponent_team": "CIN",
@@ -6019,7 +6056,7 @@
       "original_rank": 88,
       "original_score": 13.1,
       "original_tier": "longshot",
-      "morning_rank": 88,
+      "morning_rank": null,
       "batter_name": "Brooks Lee",
       "team": "MIN",
       "opponent_team": "DET",
@@ -6063,7 +6100,7 @@
       "original_rank": 89,
       "original_score": 12.1,
       "original_tier": "longshot",
-      "morning_rank": 89,
+      "morning_rank": null,
       "batter_name": "Gleyber Torres",
       "team": "DET",
       "opponent_team": "MIN",
@@ -6100,12 +6137,12 @@
       "game_pk": 823319,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-10T01:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 90,
       "original_rank": 90,
       "original_score": 10.1,
       "original_tier": "longshot",
-      "morning_rank": 90,
+      "morning_rank": null,
       "batter_name": "Brenton Doyle",
       "team": "COL",
       "opponent_team": "SD",
@@ -6123,15 +6160,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.072004,
       "predicted_hr_score": 10.1,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
       "top_reason_2": "Randy V\u00e1squez has allowed a 50.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Randy V\u00e1squez has allowed 50.0% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-09:823884:670770:676974",
@@ -6147,7 +6184,7 @@
       "original_rank": 91,
       "original_score": 11.1,
       "original_tier": "longshot",
-      "morning_rank": 91,
+      "morning_rank": null,
       "batter_name": "TJ Friedl",
       "team": "CIN",
       "opponent_team": "MIA",
@@ -6189,7 +6226,7 @@
       "original_rank": 92,
       "original_score": 9.1,
       "original_tier": "longshot",
-      "morning_rank": 92,
+      "morning_rank": null,
       "batter_name": "Parker Meadows",
       "team": "DET",
       "opponent_team": "MIN",
@@ -6226,12 +6263,12 @@
       "game_pk": 824130,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 93,
       "original_rank": 93,
       "original_score": 8.1,
       "original_tier": "longshot",
-      "morning_rank": 93,
+      "morning_rank": null,
       "batter_name": "Derek Hill",
       "team": "CWS",
       "opponent_team": "KC",
@@ -6270,12 +6307,12 @@
       "game_pk": 823645,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 94,
       "original_rank": 94,
       "original_score": 6.1,
       "original_tier": "longshot",
-      "morning_rank": 94,
+      "morning_rank": null,
       "batter_name": "Jorge Barrosa",
       "team": "AZ",
       "opponent_team": "NYM",
@@ -6293,15 +6330,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.067143,
       "predicted_hr_score": 6.1,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 5.6%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Nolan McLean has allowed barrels on 6.9% of batted balls to this batter side.",
       "top_reason_3": "Barrel rate over the last 30 days is 4.8%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-09:823565:641857:605488",
@@ -6317,7 +6354,7 @@
       "original_rank": 95,
       "original_score": 2.0,
       "original_tier": "longshot",
-      "morning_rank": 95,
+      "morning_rank": null,
       "batter_name": "Ryan McMahon",
       "team": "NYY",
       "opponent_team": "OAK",
@@ -6359,7 +6396,7 @@
       "original_rank": 96,
       "original_score": 5.1,
       "original_tier": "longshot",
-      "morning_rank": 96,
+      "morning_rank": null,
       "batter_name": "Javier B\u00e1ez",
       "team": "DET",
       "opponent_team": "MIN",
@@ -6401,7 +6438,7 @@
       "original_rank": 97,
       "original_score": 4.0,
       "original_tier": "longshot",
-      "morning_rank": 97,
+      "morning_rank": null,
       "batter_name": "Austin Slater",
       "team": "MIA",
       "opponent_team": "CIN",
@@ -6445,7 +6482,7 @@
       "original_rank": 98,
       "original_score": 3.0,
       "original_tier": "longshot",
-      "morning_rank": 98,
+      "morning_rank": null,
       "batter_name": "Austin Martin",
       "team": "MIN",
       "opponent_team": "DET",
@@ -6484,12 +6521,12 @@
       "game_pk": 824130,
       "game_date": "2026-04-09",
       "game_datetime": "2026-04-09T23:40:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 99,
       "original_rank": 99,
       "original_score": 1.0,
       "original_tier": "longshot",
-      "morning_rank": 99,
+      "morning_rank": null,
       "batter_name": "Tristan Peters",
       "team": "CWS",
       "opponent_team": "KC",
@@ -6507,18 +6544,16 @@
       "field_bearing_deg": 25.0,
       "predicted_hr_probability": 0.044986,
       "predicted_hr_score": 1.0,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Seth Lugo has allowed barrels on 8.7% of recent batted balls.",
       "top_reason_2": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Seth Lugo has allowed 90.6 mph average exit velocity recently, which the model flags as hittable contact.",
-      "result_label": "Pending"
-    }
-  ],
-  "history": [
+      "result_label": "No HR"
+    },
     {
       "pick_id": "2026-04-08:823564:700250:622663",
       "board_date": "2026-04-08",
@@ -67111,721 +67146,7 @@
       "result_label": "No HR"
     }
   ],
-  "lineup_panels": [
-    {
-      "game_pk": 823884,
-      "game_date": "2026-04-09",
-      "game_datetime": "2026-04-09T16:10:00Z",
-      "game_status": "Final",
-      "game_state": "final",
-      "matchup": "CIN @ MIA",
-      "teams": [
-        {
-          "team": "CIN",
-          "opponent_team": "MIA",
-          "lineup_source": "confirmed",
-          "hitters": [
-            {
-              "batter_id": 667472,
-              "batter_name": "Dane Myers",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 682829,
-              "batter_name": "Elly De La Cruz",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 553993,
-              "batter_name": "Eugenio Su\u00e1rez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 680574,
-              "batter_name": "Matt McLain",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 663993,
-              "batter_name": "Nathaniel Lowe",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 701398,
-              "batter_name": "Sal Stewart",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 668715,
-              "batter_name": "Spencer Steer",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 670770,
-              "batter_name": "TJ Friedl",
-              "batting_order": null,
-              "selected_for_pick": true
-            }
-          ]
-        },
-        {
-          "team": "MIA",
-          "opponent_team": "CIN",
-          "lineup_source": "confirmed",
-          "hitters": [
-            {
-              "batter_id": 682663,
-              "batter_name": "Agust\u00edn Ram\u00edrez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 688363,
-              "batter_name": "Graham Pauley",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 665052,
-              "batter_name": "Griffin Conine",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 805300,
-              "batter_name": "Jakob Marsee",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 691594,
-              "batter_name": "Javier Sanoja",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 689414,
-              "batter_name": "Liam Hicks",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 672640,
-              "batter_name": "Otto Lopez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 683357,
-              "batter_name": "Owen Caissie",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 669364,
-              "batter_name": "Xavier Edwards",
-              "batting_order": null,
-              "selected_for_pick": true
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "game_pk": 823565,
-      "game_date": "2026-04-09",
-      "game_datetime": "2026-04-09T17:35:00Z",
-      "game_status": "Final",
-      "game_state": "final",
-      "matchup": "OAK @ NYY",
-      "teams": [
-        {
-          "team": "OAK",
-          "opponent_team": "NYY",
-          "lineup_source": "confirmed",
-          "hitters": []
-        },
-        {
-          "team": "NYY",
-          "opponent_team": "OAK",
-          "lineup_source": "confirmed",
-          "hitters": [
-            {
-              "batter_id": 592450,
-              "batter_name": "Aaron Judge",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 642708,
-              "batter_name": "Amed Rosario",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 669224,
-              "batter_name": "Austin Wells",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 700250,
-              "batter_name": "Ben Rice",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 641355,
-              "batter_name": "Cody Bellinger",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 519317,
-              "batter_name": "Giancarlo Stanton",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 676609,
-              "batter_name": "Jos\u00e9 Caballero",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 641857,
-              "batter_name": "Ryan McMahon",
-              "batting_order": null,
-              "selected_for_pick": true
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "game_pk": 823724,
-      "game_date": "2026-04-09",
-      "game_datetime": "2026-04-09T17:40:00Z",
-      "game_status": "Final",
-      "game_state": "final",
-      "matchup": "DET @ MIN",
-      "teams": [
-        {
-          "team": "DET",
-          "opponent_team": "MIN",
-          "lineup_source": "confirmed",
-          "hitters": [
-            {
-              "batter_id": 690993,
-              "batter_name": "Colt Keith",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 650402,
-              "batter_name": "Gleyber Torres",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 668670,
-              "batter_name": "Jake Rogers",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 595879,
-              "batter_name": "Javier B\u00e1ez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 681481,
-              "batter_name": "Kerry Carpenter",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 678009,
-              "batter_name": "Parker Meadows",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 682985,
-              "batter_name": "Riley Greene",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 679529,
-              "batter_name": "Spencer Torkelson",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 656716,
-              "batter_name": "Zach McKinstry",
-              "batting_order": null,
-              "selected_for_pick": true
-            }
-          ]
-        },
-        {
-          "team": "MIN",
-          "opponent_team": "DET",
-          "lineup_source": "confirmed",
-          "hitters": [
-            {
-              "batter_id": 621439,
-              "batter_name": "Byron Buxton",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 681546,
-              "batter_name": "James Outman",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 605137,
-              "batter_name": "Josh Bell",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 665019,
-              "batter_name": "Kody Clemens",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 670242,
-              "batter_name": "Matt Wallner",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 668904,
-              "batter_name": "Royce Lewis",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 663616,
-              "batter_name": "Trevor Larnach",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 605170,
-              "batter_name": "Victor Caratini",
-              "batting_order": null,
-              "selected_for_pick": true
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "game_pk": 823645,
-      "game_date": "2026-04-09",
-      "game_datetime": "2026-04-09T23:10:00Z",
-      "game_status": "Warmup",
-      "game_state": "live",
-      "matchup": "AZ @ NYM",
-      "teams": [
-        {
-          "team": "AZ",
-          "opponent_team": "NYM",
-          "lineup_source": "confirmed",
-          "hitters": [
-            {
-              "batter_id": 680728,
-              "batter_name": "Adrian Del Castillo",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 677950,
-              "batter_name": "Alek Thomas",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 672695,
-              "batter_name": "Geraldo Perdomo",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 545121,
-              "batter_name": "Ildemaro Vargas",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 543510,
-              "batter_name": "James McCann",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 678489,
-              "batter_name": "Jorge Barrosa",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 699912,
-              "batter_name": "Jose Fernandez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 606466,
-              "batter_name": "Ketel Marte",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 694374,
-              "batter_name": "Tim Tawa",
-              "batting_order": null,
-              "selected_for_pick": true
-            }
-          ]
-        },
-        {
-          "team": "NYM",
-          "opponent_team": "AZ",
-          "lineup_source": "confirmed",
-          "hitters": [
-            {
-              "batter_id": 666182,
-              "batter_name": "Bo Bichette",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 683146,
-              "batter_name": "Brett Baty",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 682626,
-              "batter_name": "Francisco Alvarez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 596019,
-              "batter_name": "Francisco Lindor",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 673357,
-              "batter_name": "Luis Robert Jr.",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 620443,
-              "batter_name": "Luis Torrens",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 543760,
-              "batter_name": "Marcus Semien",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 668901,
-              "batter_name": "Mark Vientos",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 621438,
-              "batter_name": "Tyrone Taylor",
-              "batting_order": null,
-              "selected_for_pick": false
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "game_pk": 824130,
-      "game_date": "2026-04-09",
-      "game_datetime": "2026-04-09T23:40:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
-      "matchup": "CWS @ KC",
-      "teams": [
-        {
-          "team": "CWS",
-          "opponent_team": "KC",
-          "lineup_source": "confirmed",
-          "hitters": [
-            {
-              "batter_id": 643217,
-              "batter_name": "Andrew Benintendi",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 805367,
-              "batter_name": "Chase Meidroth",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 695657,
-              "batter_name": "Colson Montgomery",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 687957,
-              "batter_name": "Dustin Harris",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 700337,
-              "batter_name": "Edgar Quero",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 682668,
-              "batter_name": "Luisangel Acu\u00f1a",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 678246,
-              "batter_name": "Miguel Vargas",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 808959,
-              "batter_name": "Munetaka Murakami",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 671976,
-              "batter_name": "Tristan Peters",
-              "batting_order": null,
-              "selected_for_pick": true
-            }
-          ]
-        },
-        {
-          "team": "KC",
-          "opponent_team": "CWS",
-          "lineup_source": "confirmed",
-          "hitters": [
-            {
-              "batter_id": 677951,
-              "batter_name": "Bobby Witt Jr.",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 686555,
-              "batter_name": "Isaac Collins",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 695506,
-              "batter_name": "Jac Caglianone",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 663697,
-              "batter_name": "Jonathan India",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 664728,
-              "batter_name": "Kyle Isbel",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 657041,
-              "batter_name": "Lane Thomas",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 672580,
-              "batter_name": "Maikel Garcia",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 521692,
-              "batter_name": "Salvador Perez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 686469,
-              "batter_name": "Vinnie Pasquantino",
-              "batting_order": null,
-              "selected_for_pick": true
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "game_pk": 823319,
-      "game_date": "2026-04-09",
-      "game_datetime": "2026-04-10T01:40:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
-      "matchup": "COL @ SD",
-      "teams": [
-        {
-          "team": "COL",
-          "opponent_team": "SD",
-          "lineup_source": "confirmed",
-          "hitters": [
-            {
-              "batter_id": 686668,
-              "batter_name": "Brenton Doyle",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 666397,
-              "batter_name": "Edouard Julien",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 678662,
-              "batter_name": "Ezequiel Tovar",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 696100,
-              "batter_name": "Hunter Goodman",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 664983,
-              "batter_name": "Jake McCarthy",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 666160,
-              "batter_name": "Mickey Moniak",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 681198,
-              "batter_name": "TJ Rumfield",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 687859,
-              "batter_name": "Troy Johnston",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 650489,
-              "batter_name": "Willi Castro",
-              "batting_order": null,
-              "selected_for_pick": true
-            }
-          ]
-        },
-        {
-          "team": "SD",
-          "opponent_team": "COL",
-          "lineup_source": "confirmed",
-          "hitters": [
-            {
-              "batter_id": 665487,
-              "batter_name": "Fernando Tatis Jr.",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 666023,
-              "batter_name": "Freddy Fermin",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 657757,
-              "batter_name": "Gavin Sheets",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 701538,
-              "batter_name": "Jackson Merrill",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 630105,
-              "batter_name": "Jake Cronenworth",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 592518,
-              "batter_name": "Manny Machado",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 592206,
-              "batter_name": "Nick Castellanos",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 593428,
-              "batter_name": "Xander Bogaerts",
-              "batting_order": null,
-              "selected_for_pick": true
-            }
-          ]
-        }
-      ]
-    }
-  ],
+  "lineup_panels": [],
   "season_hr_leaders_2026": [
     {
       "batter_name": "Drake Baldwin",
@@ -67865,423 +67186,215 @@
   ],
   "recent_successes": [
     {
-      "pick_id": "2026-04-08:822753:691023:571945",
-      "board_date": "2026-04-08",
-      "created_at": "2026-04-08T12:02:23.252537+00:00",
+      "pick_id": "2026-04-09:823884:701398:676974",
+      "board_date": "2026-04-09",
+      "created_at": "2026-04-09T11:46:30.508254+00:00",
       "finalized_at": null,
       "is_finalized": false,
-      "game_pk": 822753,
-      "game_date": "2026-04-08",
-      "game_datetime": "2026-04-08T20:05:00Z",
+      "game_pk": 823884,
+      "game_date": "2026-04-09",
+      "game_datetime": "2026-04-09T16:10:00Z",
       "game_state": "final",
-      "rank": 2,
-      "original_rank": 2,
-      "original_score": 99.2,
-      "original_tier": "elite",
+      "rank": 7,
+      "original_rank": 7,
+      "original_score": 94.9,
+      "original_tier": "watch",
       "morning_rank": null,
-      "batter_name": "Jordan Walker",
-      "team": "STL",
-      "opponent_team": "WSH",
-      "pitcher_name": "Miles Mikolas",
+      "batter_name": "Sal Stewart",
+      "team": "CIN",
+      "opponent_team": "MIA",
+      "pitcher_name": "Max Meyer",
       "lineup_source": "confirmed",
       "batting_order": null,
-      "ballpark_name": "Nationals Park",
-      "ballpark_region_abbr": "DC",
-      "confidence_tier": "elite",
-      "weather_code": 0,
+      "ballpark_name": "loanDepot park",
+      "ballpark_region_abbr": "FL",
+      "confidence_tier": "watch",
+      "weather_code": 1,
       "weather_label": "Clear",
-      "temperature_f": 51.3,
-      "wind_speed_mph": 7.1,
-      "wind_direction_deg": 108.0,
-      "field_bearing_deg": 30.0,
-      "predicted_hr_probability": 0.179899,
-      "predicted_hr_score": 99.2,
+      "temperature_f": 72.6,
+      "wind_speed_mph": 13.5,
+      "wind_direction_deg": 43.0,
+      "field_bearing_deg": 37.0,
+      "predicted_hr_probability": 0.146696,
+      "predicted_hr_score": 94.9,
       "actual_hit_hr": 1,
       "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
-      "top_reason_1": "Hard-hit rate over the last 30 days is 71.4%, showing consistent quality contact.",
-      "top_reason_2": "Miles Mikolas has allowed homers in 8.0% of plate appearances over the last 30 days.",
-      "top_reason_3": "95+ EV contact rate over the last 30 days is 71.4%, a strong loud-contact input for the model.",
+      "top_reason_1": "Against this pitcher handedness, the hitter has a 9.1% barrel-per-PA split.",
+      "top_reason_2": "Max Meyer has allowed 91.0 mph average exit velocity recently, which the model flags as hittable contact.",
+      "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
       "result_label": "HR"
     },
     {
-      "pick_id": "2026-04-08:824374:696100:664299",
-      "board_date": "2026-04-08",
-      "created_at": "2026-04-08T12:02:23.252537+00:00",
+      "pick_id": "2026-04-09:823645:673357:593958",
+      "board_date": "2026-04-09",
+      "created_at": "2026-04-09T11:46:30.508254+00:00",
       "finalized_at": null,
       "is_finalized": false,
-      "game_pk": 824374,
-      "game_date": "2026-04-08",
-      "game_datetime": "2026-04-08T19:10:00Z",
+      "game_pk": 823645,
+      "game_date": "2026-04-09",
+      "game_datetime": "2026-04-09T23:10:00Z",
       "game_state": "final",
-      "rank": 12,
-      "original_rank": 12,
-      "original_score": 96.2,
-      "original_tier": "strong",
-      "morning_rank": null,
-      "batter_name": "Hunter Goodman",
-      "team": "COL",
-      "opponent_team": "HOU",
-      "pitcher_name": "Cristian Javier",
-      "lineup_source": "confirmed",
-      "batting_order": null,
-      "ballpark_name": "Coors Field",
-      "ballpark_region_abbr": "CO",
-      "confidence_tier": "strong",
-      "weather_code": 3,
-      "weather_label": "Cloudy",
-      "temperature_f": 69.9,
-      "wind_speed_mph": 10.1,
-      "wind_direction_deg": 302.0,
-      "field_bearing_deg": 30.0,
-      "predicted_hr_probability": 0.157678,
-      "predicted_hr_score": 96.2,
-      "actual_hit_hr": 1,
-      "current_status": "home_run",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
-      "top_reason_1": "The handedness-specific barrel matchup score is 0.0029, reinforcing the power-contact fit.",
-      "top_reason_2": "Cristian Javier has allowed homers in 6.2% of plate appearances over the last 30 days.",
-      "top_reason_3": "Park factor for the hitter's handedness is 120.0, which adds venue lift to the matchup.",
-      "result_label": "HR"
-    },
-    {
-      "pick_id": "2026-04-08:824050:621566:672282",
-      "board_date": "2026-04-08",
-      "created_at": "2026-04-08T12:02:23.252537+00:00",
-      "finalized_at": null,
-      "is_finalized": false,
-      "game_pk": 824050,
-      "game_date": "2026-04-08",
-      "game_datetime": "2026-04-08T20:07:00Z",
-      "game_state": "final",
-      "rank": 30,
-      "original_rank": 30,
+      "rank": 13,
+      "original_rank": 13,
       "original_score": 88.9,
       "original_tier": "watch",
       "morning_rank": null,
-      "batter_name": "Matt Olson",
-      "team": "ATL",
-      "opponent_team": "LAA",
-      "pitcher_name": "Reid Detmers",
+      "batter_name": "Luis Robert Jr.",
+      "team": "NYM",
+      "opponent_team": "AZ",
+      "pitcher_name": "Eduardo Rodriguez",
       "lineup_source": "confirmed",
       "batting_order": null,
-      "ballpark_name": "Angel Stadium",
-      "ballpark_region_abbr": "CA",
+      "ballpark_name": "Citi Field",
+      "ballpark_region_abbr": "NY",
       "confidence_tier": "watch",
-      "weather_code": 0,
+      "weather_code": 1,
       "weather_label": "Clear",
-      "temperature_f": 68.2,
-      "wind_speed_mph": 6.3,
-      "wind_direction_deg": 225.0,
-      "field_bearing_deg": 45.0,
-      "predicted_hr_probability": 0.139392,
+      "temperature_f": 42.3,
+      "wind_speed_mph": 10.9,
+      "wind_direction_deg": 152.0,
+      "field_bearing_deg": 40.0,
+      "predicted_hr_probability": 0.130634,
       "predicted_hr_score": 88.9,
       "actual_hit_hr": 1,
       "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
-      "top_reason_1": "Barrel rate over the last 30 days is 9.6%, which the model treats as sustained power quality.",
-      "top_reason_2": "Reid Detmers has allowed homers in 4.5% of plate appearances to this batter side.",
-      "top_reason_3": "Barrel rate over the last 10 days is 11.4%, a top-decile indicator of current lift-and-damage contact.",
+      "top_reason_1": "Peak exit velocity over the last 10 days is 112.4 mph, which points to top-end HR juice.",
+      "top_reason_2": "Eduardo Rodriguez has allowed homers in 4.8% of plate appearances over the last 30 days.",
+      "top_reason_3": "Average exit velocity over the last 10 days is 94.4 mph, a top-quartile recent batted-ball quality marker.",
       "result_label": "HR"
     },
     {
-      "pick_id": "2026-04-08:823885:701398:691587",
-      "board_date": "2026-04-08",
-      "created_at": "2026-04-08T12:02:23.252537+00:00",
+      "pick_id": "2026-04-09:823724:605137:656427",
+      "board_date": "2026-04-09",
+      "created_at": "2026-04-09T11:46:30.508254+00:00",
       "finalized_at": null,
       "is_finalized": false,
-      "game_pk": 823885,
-      "game_date": "2026-04-08",
-      "game_datetime": "2026-04-08T22:40:00Z",
+      "game_pk": 823724,
+      "game_date": "2026-04-09",
+      "game_datetime": "2026-04-09T17:40:00Z",
       "game_state": "final",
-      "rank": 35,
-      "original_rank": 35,
-      "original_score": 87.0,
-      "original_tier": "watch",
-      "morning_rank": null,
-      "batter_name": "Sal Stewart",
-      "team": "CIN",
-      "opponent_team": "MIA",
-      "pitcher_name": "Eury P\u00e9rez",
-      "lineup_source": "confirmed",
-      "batting_order": null,
-      "ballpark_name": "loanDepot park",
-      "ballpark_region_abbr": "FL",
-      "confidence_tier": "watch",
-      "weather_code": 51,
-      "weather_label": "Rain",
-      "temperature_f": 73.3,
-      "wind_speed_mph": 4.7,
-      "wind_direction_deg": 90.0,
-      "field_bearing_deg": 37.0,
-      "predicted_hr_probability": 0.134087,
-      "predicted_hr_score": 87.0,
-      "actual_hit_hr": 1,
-      "current_status": "home_run",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
-      "top_reason_1": "Against this pitcher handedness, the hitter has a 8.3% barrel-per-PA split.",
-      "top_reason_2": "Eury P\u00e9rez has allowed barrels on 13.2% of recent batted balls.",
-      "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "HR"
-    },
-    {
-      "pick_id": "2026-04-08:824050:624585:656550",
-      "board_date": "2026-04-08",
-      "created_at": "2026-04-08T12:02:23.252537+00:00",
-      "finalized_at": null,
-      "is_finalized": false,
-      "game_pk": 824050,
-      "game_date": "2026-04-08",
-      "game_datetime": "2026-04-08T20:07:00Z",
-      "game_state": "final",
-      "rank": 37,
-      "original_rank": 37,
-      "original_score": 86.6,
-      "original_tier": "watch",
-      "morning_rank": null,
-      "batter_name": "Jorge Soler",
-      "team": "LAA",
-      "opponent_team": "ATL",
-      "pitcher_name": "Grant Holmes",
-      "lineup_source": "confirmed",
-      "batting_order": null,
-      "ballpark_name": "Angel Stadium",
-      "ballpark_region_abbr": "CA",
-      "confidence_tier": "watch",
-      "weather_code": 0,
-      "weather_label": "Clear",
-      "temperature_f": 68.2,
-      "wind_speed_mph": 6.3,
-      "wind_direction_deg": 225.0,
-      "field_bearing_deg": 45.0,
-      "predicted_hr_probability": 0.133116,
-      "predicted_hr_score": 86.6,
-      "actual_hit_hr": 1,
-      "current_status": "home_run",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
-      "top_reason_1": "Peak exit velocity over the last 10 days is 111.3 mph, which points to top-end HR juice.",
-      "top_reason_2": "Grant Holmes has allowed homers in 4.1% of plate appearances to this batter side.",
-      "top_reason_3": "The handedness-specific barrel matchup score is 0.0024, reinforcing the power-contact fit.",
-      "result_label": "HR"
-    },
-    {
-      "pick_id": "2026-04-08:823234:646240:605400",
-      "board_date": "2026-04-08",
-      "created_at": "2026-04-08T12:02:23.252537+00:00",
-      "finalized_at": null,
-      "is_finalized": false,
-      "game_pk": 823234,
-      "game_date": "2026-04-08",
-      "game_datetime": "2026-04-08T19:45:00Z",
-      "game_state": "final",
-      "rank": 48,
-      "original_rank": 48,
-      "original_score": 83.9,
-      "original_tier": "watch",
-      "morning_rank": null,
-      "batter_name": "Rafael Devers",
-      "team": "SF",
-      "opponent_team": "PHI",
-      "pitcher_name": "Aaron Nola",
-      "lineup_source": "confirmed",
-      "batting_order": null,
-      "ballpark_name": "Oracle Park",
-      "ballpark_region_abbr": "CA",
-      "confidence_tier": "watch",
-      "weather_code": 3,
-      "weather_label": "Cloudy",
-      "temperature_f": 57.6,
-      "wind_speed_mph": 13.2,
-      "wind_direction_deg": 289.0,
-      "field_bearing_deg": 58.0,
-      "predicted_hr_probability": 0.128412,
-      "predicted_hr_score": 83.9,
-      "actual_hit_hr": 1,
-      "current_status": "home_run",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
-      "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2320, supporting loud-contact upside.",
-      "top_reason_2": "Aaron Nola has allowed homers in 3.9% of plate appearances to this batter side.",
-      "top_reason_3": "Projected humidity is 94%, a modest positive weather input in the live model.",
-      "result_label": "HR"
-    },
-    {
-      "pick_id": "2026-04-08:823403:630105:656605",
-      "board_date": "2026-04-08",
-      "created_at": "2026-04-08T12:02:23.252537+00:00",
-      "finalized_at": null,
-      "is_finalized": false,
-      "game_pk": 823403,
-      "game_date": "2026-04-08",
-      "game_datetime": "2026-04-08T16:35:00Z",
-      "game_state": "final",
-      "rank": 126,
-      "original_rank": 126,
-      "original_score": 52.9,
+      "rank": 29,
+      "original_rank": 29,
+      "original_score": 72.7,
       "original_tier": "longshot",
       "morning_rank": null,
-      "batter_name": "Jake Cronenworth",
+      "batter_name": "Josh Bell",
+      "team": "MIN",
+      "opponent_team": "DET",
+      "pitcher_name": "Jack Flaherty",
+      "lineup_source": "confirmed",
+      "batting_order": null,
+      "ballpark_name": "Target Field",
+      "ballpark_region_abbr": "MN",
+      "confidence_tier": "longshot",
+      "weather_code": 51,
+      "weather_label": "Rain",
+      "temperature_f": 42.2,
+      "wind_speed_mph": 8.4,
+      "wind_direction_deg": 326.0,
+      "field_bearing_deg": 30.0,
+      "predicted_hr_probability": 0.112449,
+      "predicted_hr_score": 72.7,
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
+      "alert_flags": [],
+      "inactive_flag": false,
+      "display_style": "default",
+      "top_reason_1": "Hard-hit rate over the last 30 days is 54.2%, showing consistent quality contact.",
+      "top_reason_2": "Jack Flaherty has allowed homers in 3.8% of plate appearances to this batter side.",
+      "top_reason_3": "95+ EV contact rate over the last 30 days is 54.2%, a strong loud-contact input for the model.",
+      "result_label": "HR"
+    },
+    {
+      "pick_id": "2026-04-09:823319:593428:",
+      "board_date": "2026-04-09",
+      "created_at": "2026-04-09T11:46:30.508254+00:00",
+      "finalized_at": null,
+      "is_finalized": false,
+      "game_pk": 823319,
+      "game_date": "2026-04-09",
+      "game_datetime": "2026-04-10T01:40:00Z",
+      "game_state": "final",
+      "rank": 42,
+      "original_rank": 42,
+      "original_score": 57.6,
+      "original_tier": "longshot",
+      "morning_rank": null,
+      "batter_name": "Xander Bogaerts",
       "team": "SD",
-      "opponent_team": "PIT",
-      "pitcher_name": "Mitch Keller",
+      "opponent_team": "COL",
+      "pitcher_name": "",
       "lineup_source": "confirmed",
       "batting_order": null,
-      "ballpark_name": "PNC Park",
-      "ballpark_region_abbr": "PA",
-      "confidence_tier": "longshot",
-      "weather_code": 0,
-      "weather_label": "Clear",
-      "temperature_f": 60.2,
-      "wind_speed_mph": 7.9,
-      "wind_direction_deg": 137.0,
-      "field_bearing_deg": 35.0,
-      "predicted_hr_probability": 0.105625,
-      "predicted_hr_score": 52.9,
-      "actual_hit_hr": 1,
-      "current_status": "home_run",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
-      "top_reason_1": "Peak exit velocity over the last 10 days is 108.6 mph, which points to top-end HR juice.",
-      "top_reason_2": "Barrel rate over the last 10 days is 3.3%, a above-baseline indicator of current lift-and-damage contact.",
-      "top_reason_3": "The handedness-specific barrel matchup score is 0.0015, reinforcing the power-contact fit.",
-      "result_label": "HR"
-    },
-    {
-      "pick_id": "2026-04-08:823885:681393:663903",
-      "board_date": "2026-04-08",
-      "created_at": "2026-04-08T12:02:23.252537+00:00",
-      "finalized_at": null,
-      "is_finalized": false,
-      "game_pk": 823885,
-      "game_date": "2026-04-08",
-      "game_datetime": "2026-04-08T22:40:00Z",
-      "game_state": "final",
-      "rank": 173,
-      "original_rank": 173,
-      "original_score": 35.2,
-      "original_tier": "longshot",
-      "morning_rank": null,
-      "batter_name": "Connor Norby",
-      "team": "MIA",
-      "opponent_team": "CIN",
-      "pitcher_name": "Brady Singer",
-      "lineup_source": "confirmed",
-      "batting_order": null,
-      "ballpark_name": "loanDepot park",
-      "ballpark_region_abbr": "FL",
-      "confidence_tier": "longshot",
-      "weather_code": 51,
-      "weather_label": "Rain",
-      "temperature_f": 73.3,
-      "wind_speed_mph": 4.7,
-      "wind_direction_deg": 90.0,
-      "field_bearing_deg": 37.0,
-      "predicted_hr_probability": 0.091008,
-      "predicted_hr_score": 35.2,
-      "actual_hit_hr": 1,
-      "current_status": "home_run",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
-      "top_reason_1": "Against this pitcher handedness, the hitter has a 5.4% barrel-per-PA split.",
-      "top_reason_2": "Brady Singer has allowed 94.4 mph average exit velocity recently, which the model flags as hittable contact.",
-      "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "HR"
-    },
-    {
-      "pick_id": "2026-04-08:823000:663538:671212",
-      "board_date": "2026-04-08",
-      "created_at": "2026-04-08T12:02:23.252537+00:00",
-      "finalized_at": null,
-      "is_finalized": false,
-      "game_pk": 823000,
-      "game_date": "2026-04-08",
-      "game_datetime": "2026-04-08T22:40:00Z",
-      "game_state": "final",
-      "rank": 202,
-      "original_rank": 202,
-      "original_score": 23.0,
-      "original_tier": "longshot",
-      "morning_rank": null,
-      "batter_name": "Nico Hoerner",
-      "team": "CHC",
-      "opponent_team": "TB",
-      "pitcher_name": "Joe Boyle",
-      "lineup_source": "confirmed",
-      "batting_order": null,
-      "ballpark_name": "Tropicana Field",
-      "ballpark_region_abbr": "FL",
+      "ballpark_name": "Petco Park",
+      "ballpark_region_abbr": "CA",
       "confidence_tier": "longshot",
       "weather_code": 3,
       "weather_label": "Cloudy",
-      "temperature_f": 68.6,
-      "wind_speed_mph": 17.8,
-      "wind_direction_deg": 54.0,
-      "field_bearing_deg": 40.0,
-      "predicted_hr_probability": 0.081248,
-      "predicted_hr_score": 23.0,
-      "actual_hit_hr": 1,
-      "current_status": "home_run",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
-      "top_reason_1": "Joe Boyle has allowed a 44.2% hard-hit rate over the last 30 days.",
-      "top_reason_2": "Projected wind speed is 17.8 mph, which the live model treats as favorable weather context.",
-      "top_reason_3": "Joe Boyle has allowed 44.2% 95+ EV contact over the last 30 days.",
-      "result_label": "HR"
-    },
-    {
-      "pick_id": "2026-04-08:824455:682657:666142",
-      "board_date": "2026-04-08",
-      "created_at": "2026-04-08T12:02:23.252537+00:00",
-      "finalized_at": null,
-      "is_finalized": false,
-      "game_pk": 824455,
-      "game_date": "2026-04-08",
-      "game_datetime": "2026-04-08T17:10:00Z",
-      "game_state": "final",
-      "rank": 211,
-      "original_rank": 211,
-      "original_score": 20.7,
-      "original_tier": "longshot",
-      "morning_rank": null,
-      "batter_name": "Angel Mart\u00ednez",
-      "team": "CLE",
-      "opponent_team": "KC",
-      "pitcher_name": "Cole Ragans",
-      "lineup_source": "confirmed",
-      "batting_order": null,
-      "ballpark_name": "Progressive Field",
-      "ballpark_region_abbr": "OH",
-      "confidence_tier": "longshot",
-      "weather_code": 3,
-      "weather_label": "Cloudy",
-      "temperature_f": 58.3,
-      "wind_speed_mph": 9.9,
-      "wind_direction_deg": 172.0,
+      "temperature_f": 65.1,
+      "wind_speed_mph": 4.0,
+      "wind_direction_deg": 297.0,
       "field_bearing_deg": 20.0,
-      "predicted_hr_probability": 0.077569,
-      "predicted_hr_score": 20.7,
+      "predicted_hr_probability": 0.104136,
+      "predicted_hr_score": 57.6,
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
+      "inactive_flag": false,
+      "display_style": "default",
+      "top_reason_1": "Barrel rate over the last 10 days is 2.6%, a above-baseline indicator of current lift-and-damage contact.",
+      "top_reason_2": "Projected humidity is 79%, a modest positive weather input in the live model.",
+      "top_reason_3": "Against this pitcher handedness, the hitter has a 2.8% barrel-per-PA split.",
+      "result_label": "HR"
+    },
+    {
+      "pick_id": "2026-04-09:823319:686668:681190",
+      "board_date": "2026-04-09",
+      "created_at": "2026-04-09T11:46:30.508254+00:00",
+      "finalized_at": null,
+      "is_finalized": false,
+      "game_pk": 823319,
+      "game_date": "2026-04-09",
+      "game_datetime": "2026-04-10T01:40:00Z",
+      "game_state": "final",
+      "rank": 90,
+      "original_rank": 90,
+      "original_score": 10.1,
+      "original_tier": "longshot",
+      "morning_rank": null,
+      "batter_name": "Brenton Doyle",
+      "team": "COL",
+      "opponent_team": "SD",
+      "pitcher_name": "Randy V\u00e1squez",
+      "lineup_source": "confirmed",
+      "batting_order": null,
+      "ballpark_name": "Petco Park",
+      "ballpark_region_abbr": "CA",
+      "confidence_tier": "longshot",
+      "weather_code": 3,
+      "weather_label": "Cloudy",
+      "temperature_f": 65.1,
+      "wind_speed_mph": 4.0,
+      "wind_direction_deg": 297.0,
+      "field_bearing_deg": 20.0,
+      "predicted_hr_probability": 0.072004,
+      "predicted_hr_score": 10.1,
       "actual_hit_hr": 1,
       "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
-      "top_reason_1": "Peak exit velocity over the last 10 days is 108.1 mph, which points to top-end HR juice.",
-      "top_reason_2": "Cole Ragans has allowed homers in 11.3% of plate appearances over the last 30 days.",
-      "top_reason_3": "Cole Ragans has allowed barrels on 9.1% of recent batted balls.",
+      "top_reason_1": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
+      "top_reason_2": "Randy V\u00e1squez has allowed a 50.0% hard-hit rate over the last 30 days.",
+      "top_reason_3": "Randy V\u00e1squez has allowed 50.0% 95+ EV contact over the last 30 days.",
       "result_label": "HR"
     }
   ]
