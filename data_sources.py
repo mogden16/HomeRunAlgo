@@ -10,6 +10,7 @@ from typing import Iterable
 import time
 import warnings
 
+import numpy as np
 import pandas as pd
 import requests
 from pybaseball import cache, statcast
@@ -142,13 +143,49 @@ def _augment_weather_carry_fields(weather_df: pd.DataFrame) -> pd.DataFrame:
     return augmented
 
 
+def _read_cached_csv(
+    path: Path,
+    *,
+    parse_dates: list[str] | None = None,
+    low_memory: bool = False,
+    cache_label: str = "cached CSV",
+) -> pd.DataFrame | None:
+    try:
+        return pd.read_csv(path, parse_dates=parse_dates, low_memory=low_memory)
+    except (pd.errors.ParserError, UnicodeDecodeError, OSError, ValueError) as exc:
+        warnings.warn(f"{cache_label} at {path} is unreadable ({exc}); deleting and rebuilding.")
+        try:
+            path.unlink(missing_ok=True)
+        except OSError as unlink_exc:
+            warnings.warn(f"Unable to delete unreadable cache file {path}: {unlink_exc}")
+        return None
+
+
 def fetch_statcast_range(start_date: str, end_date: str, force_refresh: bool = False) -> pd.DataFrame:
     """Fetch a cached Statcast date window and keep only required columns."""
     ensure_directories()
     chunk_path = _raw_chunk_path(start_date, end_date)
+    df: pd.DataFrame | None = None
     if chunk_path.exists() and not force_refresh:
-        df = pd.read_csv(chunk_path, low_memory=False)
-    else:
+        df = _read_cached_csv(
+            chunk_path,
+            low_memory=False,
+            cache_label="Cached Statcast chunk",
+        )
+        if df is not None:
+            missing_cached_columns = [column for column in STATCAST_COLUMNS if column not in df.columns]
+            if missing_cached_columns:
+                warnings.warn(
+                    "Cached Statcast chunk at "
+                    f"{chunk_path} is missing expected columns ({missing_cached_columns}); deleting and rebuilding."
+                )
+                try:
+                    chunk_path.unlink(missing_ok=True)
+                except OSError as unlink_exc:
+                    warnings.warn(f"Unable to delete invalid Statcast cache file {chunk_path}: {unlink_exc}")
+                df = None
+
+    if df is None:
         df = statcast(start_dt=start_date, end_dt=end_date)
         if df is None or df.empty:
             df = pd.DataFrame(columns=STATCAST_COLUMNS)
@@ -301,17 +338,22 @@ def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False
     weather_cache_path = _weather_cache_path(normalized_schedule)
     existing_cached_weather: pd.DataFrame | None = None
     if weather_cache_path.exists() and not force_refresh:
-        existing_cached_weather = pd.read_csv(weather_cache_path, parse_dates=["game_date"])
-        existing_cached_weather["game_date"] = pd.to_datetime(existing_cached_weather["game_date"], errors="coerce").dt.normalize()
-        existing_cached_weather["home_team"] = existing_cached_weather["home_team"].map(_normalize_home_team_code)
-        existing_cached_weather = _augment_weather_carry_fields(existing_cached_weather)
-        if _weather_cache_is_healthy(existing_cached_weather, normalized_schedule):
-            existing_cached_weather.attrs["operational_alerts"] = []
-            existing_cached_weather.to_csv(weather_cache_path, index=False)
-            return existing_cached_weather
-        warnings.warn(
-            f"Cached weather table at {weather_cache_path} is incomplete or sparse; rebuilding from source."
+        existing_cached_weather = _read_cached_csv(
+            weather_cache_path,
+            parse_dates=["game_date"],
+            cache_label="Cached weather table",
         )
+        if existing_cached_weather is not None:
+            existing_cached_weather["game_date"] = pd.to_datetime(existing_cached_weather["game_date"], errors="coerce").dt.normalize()
+            existing_cached_weather["home_team"] = existing_cached_weather["home_team"].map(_normalize_home_team_code)
+            existing_cached_weather = _augment_weather_carry_fields(existing_cached_weather)
+            if _weather_cache_is_healthy(existing_cached_weather, normalized_schedule):
+                existing_cached_weather.attrs["operational_alerts"] = []
+                existing_cached_weather.to_csv(weather_cache_path, index=False)
+                return existing_cached_weather
+            warnings.warn(
+                f"Cached weather table at {weather_cache_path} is incomplete or sparse; rebuilding from source."
+            )
 
     rows: list[WeatherLookupRow] = []
     operational_alerts: list[dict[str, object]] = []
