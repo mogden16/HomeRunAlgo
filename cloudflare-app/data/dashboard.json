@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-10T19:39:26.987042+00:00",
+  "generated_at": "2026-04-10T21:06:46.471031+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -93,18 +93,18 @@
     "latest_slate_size": 258,
     "tracked_dates": 16,
     "tracked_picks": 1754,
-    "settled_picks": 1296,
-    "tracked_homers": 112,
-    "tracked_hit_rate": 0.08642,
-    "open_picks": 458
+    "settled_picks": 1312,
+    "tracked_homers": 113,
+    "tracked_hit_rate": 0.086128,
+    "open_picks": 442
   },
   "confidence_summary": [
     {
       "confidence_tier": "elite",
-      "picks": 43,
+      "picks": 44,
       "homers": 10,
-      "hit_rate": 0.232558,
-      "avg_probability": 0.25868
+      "hit_rate": 0.227273,
+      "avg_probability": 0.25685
     },
     {
       "confidence_tier": "strong",
@@ -115,17 +115,17 @@
     },
     {
       "confidence_tier": "watch",
-      "picks": 225,
-      "homers": 28,
-      "hit_rate": 0.124444,
-      "avg_probability": 0.139201
+      "picks": 226,
+      "homers": 29,
+      "hit_rate": 0.128319,
+      "avg_probability": 0.139259
     },
     {
       "confidence_tier": "longshot",
-      "picks": 899,
+      "picks": 913,
       "homers": 53,
-      "hit_rate": 0.058954,
-      "avg_probability": 0.092841
+      "hit_rate": 0.05805,
+      "avg_probability": 0.092832
     }
   ],
   "player_leaderboard": [
@@ -305,15 +305,15 @@
       "hit_rate": 0.125
     },
     {
-      "batter_name": "Giancarlo Stanton",
-      "team": "NYY",
-      "picks": 7,
-      "homers": 1,
-      "hit_rate": 0.142857
-    },
-    {
       "batter_name": "Oneil Cruz",
       "team": "PIT",
+      "picks": 8,
+      "homers": 1,
+      "hit_rate": 0.125
+    },
+    {
+      "batter_name": "Giancarlo Stanton",
+      "team": "NYY",
       "picks": 7,
       "homers": 1,
       "hit_rate": 0.142857
@@ -335,6 +335,13 @@
     {
       "batter_name": "Brady House",
       "team": "WSH",
+      "picks": 6,
+      "homers": 1,
+      "hit_rate": 0.166667
+    },
+    {
+      "batter_name": "Bryan Reynolds",
+      "team": "PIT",
       "picks": 6,
       "homers": 1,
       "hit_rate": 0.166667
@@ -389,6 +396,13 @@
       "hit_rate": 0.166667
     },
     {
+      "batter_name": "Ryan O'Hearn",
+      "team": "PIT",
+      "picks": 6,
+      "homers": 1,
+      "hit_rate": 0.166667
+    },
+    {
       "batter_name": "Troy Johnston",
       "team": "COL",
       "picks": 6,
@@ -433,6 +447,13 @@
     {
       "batter_name": "Connor Norby",
       "team": "MIA",
+      "picks": 5,
+      "homers": 1,
+      "hit_rate": 0.2
+    },
+    {
+      "batter_name": "Dansby Swanson",
+      "team": "CHC",
       "picks": 5,
       "homers": 1,
       "hit_rate": 0.2
@@ -515,6 +536,13 @@
       "hit_rate": 0.2
     },
     {
+      "batter_name": "Nico Hoerner",
+      "team": "CHC",
+      "picks": 5,
+      "homers": 1,
+      "hit_rate": 0.2
+    },
+    {
       "batter_name": "Ozzie Albies",
       "team": "ATL",
       "picks": 5,
@@ -522,15 +550,15 @@
       "hit_rate": 0.2
     },
     {
-      "batter_name": "Rafael Devers",
-      "team": "SF",
+      "batter_name": "Pete Crow-Armstrong",
+      "team": "CHC",
       "picks": 5,
       "homers": 1,
       "hit_rate": 0.2
     },
     {
-      "batter_name": "Ryan O'Hearn",
-      "team": "PIT",
+      "batter_name": "Rafael Devers",
+      "team": "SF",
       "picks": 5,
       "homers": 1,
       "hit_rate": 0.2
@@ -599,13 +627,6 @@
       "hit_rate": 0.25
     },
     {
-      "batter_name": "Dansby Swanson",
-      "team": "CHC",
-      "picks": 4,
-      "homers": 1,
-      "hit_rate": 0.25
-    },
-    {
       "batter_name": "Gary S\u00e1nchez",
       "team": "MIL",
       "picks": 4,
@@ -622,20 +643,6 @@
     {
       "batter_name": "Luis Robert Jr.",
       "team": "NYM",
-      "picks": 4,
-      "homers": 1,
-      "hit_rate": 0.25
-    },
-    {
-      "batter_name": "Nico Hoerner",
-      "team": "CHC",
-      "picks": 4,
-      "homers": 1,
-      "hit_rate": 0.25
-    },
-    {
-      "batter_name": "Pete Crow-Armstrong",
-      "team": "CHC",
       "picks": 4,
       "homers": 1,
       "hit_rate": 0.25
@@ -865,6 +872,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Michael Busch",
+      "team": "CHC",
+      "picks": 6,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Miguel Vargas",
       "team": "CWS",
       "picks": 6,
@@ -921,6 +935,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Alex Bregman",
+      "team": "CHC",
+      "picks": 5,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Alex Freeland",
       "team": "LAD",
       "picks": 5,
@@ -944,13 +965,6 @@
     {
       "batter_name": "Brandon Nimmo",
       "team": "TEX",
-      "picks": 5,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Bryan Reynolds",
-      "team": "PIT",
       "picks": 5,
       "homers": 0,
       "hit_rate": 0.0
@@ -1021,6 +1035,13 @@
     {
       "batter_name": "Francisco Lindor",
       "team": "NYM",
+      "picks": 5,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Ian Happ",
+      "team": "CHC",
       "picks": 5,
       "homers": 0,
       "hit_rate": 0.0
@@ -1103,6 +1124,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Konnor Griffin",
+      "team": "PIT",
+      "picks": 5,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Luis Arraez",
       "team": "SF",
       "picks": 5,
@@ -1119,13 +1147,6 @@
     {
       "batter_name": "Marcus Semien",
       "team": "NYM",
-      "picks": 5,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Michael Busch",
-      "team": "CHC",
       "picks": 5,
       "homers": 0,
       "hit_rate": 0.0
@@ -1250,13 +1271,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Alex Bregman",
-      "team": "CHC",
-      "picks": 4,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Andr\u00e9s Gim\u00e9nez",
       "team": "TOR",
       "picks": 4,
@@ -1348,6 +1362,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Carson Kelly",
+      "team": "CHC",
+      "picks": 4,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Corbin Carroll",
       "team": "AZ",
       "picks": 4,
@@ -1385,13 +1406,6 @@
     {
       "batter_name": "Heriberto Hern\u00e1ndez",
       "team": "MIA",
-      "picks": 4,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Ian Happ",
-      "team": "CHC",
       "picks": 4,
       "homers": 0,
       "hit_rate": 0.0
@@ -1441,13 +1455,6 @@
     {
       "batter_name": "Ke'Bryan Hayes",
       "team": "CIN",
-      "picks": 4,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Konnor Griffin",
-      "team": "PIT",
       "picks": 4,
       "homers": 0,
       "hit_rate": 0.0
@@ -1518,6 +1525,13 @@
     {
       "batter_name": "Nasim Nu\u00f1ez",
       "team": "WSH",
+      "picks": 4,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Nick Gonzales",
+      "team": "PIT",
       "picks": 4,
       "homers": 0,
       "hit_rate": 0.0
@@ -1602,13 +1616,6 @@
     {
       "batter_name": "Carlos Correa",
       "team": "HOU",
-      "picks": 3,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Carson Kelly",
-      "team": "CHC",
       "picks": 3,
       "homers": 0,
       "hit_rate": 0.0
@@ -1733,7 +1740,14 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Nick Gonzales",
+      "batter_name": "Marcell Ozuna",
+      "team": "PIT",
+      "picks": 3,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Nick Yorke",
       "team": "PIT",
       "picks": 3,
       "homers": 0,
@@ -1922,6 +1936,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Joey Bart",
+      "team": "PIT",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Joey Ortiz",
       "team": "MIL",
       "picks": 2,
@@ -1957,13 +1978,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Marcell Ozuna",
-      "team": "PIT",
-      "picks": 2,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Miguel Amaya",
       "team": "CHC",
       "picks": 2,
@@ -1994,13 +2008,6 @@
     {
       "batter_name": "Nick Loftin",
       "team": "KC",
-      "picks": 2,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Nick Yorke",
-      "team": "PIT",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
@@ -2322,7 +2329,7 @@
       "game_pk": 824695,
       "game_date": "2026-04-10",
       "game_datetime": "2026-04-10T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 1,
       "original_rank": 1,
       "original_score": 100.0,
@@ -2345,15 +2352,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.178147,
       "predicted_hr_score": 100.0,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.6 mph, which points to top-end HR juice.",
       "top_reason_2": "Shota Imanaga has allowed 91.6 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected humidity is 93%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-10:822997:519317:571927",
@@ -2374,7 +2381,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Steven Matz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -2416,7 +2423,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Chad Patrick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -2460,7 +2467,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Steven Matz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -2474,14 +2481,16 @@
       "predicted_hr_probability": 0.163756,
       "predicted_hr_score": 98.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 85.7%, a top-decile recent-contact signal.",
       "top_reason_2": "Steven Matz has allowed a 47.9% hard-hit rate over the last 30 days.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 85.7%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-10:823076:677800:669160",
@@ -2502,7 +2511,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Dustin May",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -2544,7 +2553,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Steven Matz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -2660,7 +2669,7 @@
       "game_pk": 824695,
       "game_date": "2026-04-10",
       "game_datetime": "2026-04-10T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 9,
       "original_rank": 9,
       "original_score": 95.0,
@@ -2683,15 +2692,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.152237,
       "predicted_hr_score": 95.0,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 96.0 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Shota Imanaga has allowed 91.6 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected humidity is 93%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-10:823076:691023:813349",
@@ -3384,7 +3393,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Dustin May",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -3552,7 +3561,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Dustin May",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -3566,14 +3575,16 @@
       "predicted_hr_probability": 0.132834,
       "predicted_hr_score": 87.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2707, supporting loud-contact upside.",
       "top_reason_2": "Dustin May has allowed a 49.1% hard-hit rate over the last 30 days.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0029, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-10:823968:694671:607192",
@@ -3720,7 +3731,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Steven Matz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -4646,7 +4657,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Chad Patrick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -4690,7 +4701,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Chad Patrick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -4860,7 +4871,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Chad Patrick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -4894,7 +4905,7 @@
       "game_pk": 824695,
       "game_date": "2026-04-10",
       "game_datetime": "2026-04-10T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 63,
       "original_rank": 63,
       "original_score": 73.3,
@@ -4917,15 +4928,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.1145,
       "predicted_hr_score": 73.3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0021, reinforcing the power-contact fit.",
       "top_reason_2": "Shota Imanaga has allowed 91.6 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected humidity is 93%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-10:823076:596115:669160",
@@ -4946,7 +4957,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Dustin May",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -5188,7 +5199,7 @@
       "game_pk": 824695,
       "game_date": "2026-04-10",
       "game_datetime": "2026-04-10T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 70,
       "original_rank": 70,
       "original_score": 70.2,
@@ -5211,15 +5222,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.111256,
       "predicted_hr_score": 70.2,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 64.0%, showing consistent quality contact.",
       "top_reason_2": "Carmen Mlodzinski has allowed a 47.6% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 93%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-10:823076:671056:813349",
@@ -5576,7 +5587,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Dustin May",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -5776,7 +5787,7 @@
       "game_pk": 824695,
       "game_date": "2026-04-10",
       "game_datetime": "2026-04-10T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 84,
       "original_rank": 84,
       "original_score": 64.3,
@@ -5799,15 +5810,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.107838,
       "predicted_hr_score": 64.3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 6.7%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Shota Imanaga has allowed 91.6 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected humidity is 93%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-10:824534:624585:695505",
@@ -6122,7 +6133,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -6500,7 +6511,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Steven Matz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -6584,7 +6595,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Steven Matz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -6598,14 +6609,16 @@
       "predicted_hr_probability": 0.10327,
       "predicted_hr_score": 58.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 70.6%, a top-decile recent-contact signal.",
       "top_reason_2": "Steven Matz has allowed a 47.9% hard-hit rate over the last 30 days.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 70.6%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-10:824941:608070:693821",
@@ -6964,7 +6977,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Dustin May",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -7006,7 +7019,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -7416,7 +7429,7 @@
       "game_pk": 824695,
       "game_date": "2026-04-10",
       "game_datetime": "2026-04-10T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 124,
       "original_rank": 124,
       "original_score": 51.9,
@@ -7439,15 +7452,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.098986,
       "predicted_hr_score": 51.9,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 55.0%, showing consistent quality contact.",
       "top_reason_2": "Carmen Mlodzinski has allowed a 47.6% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 93%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-10:823968:690976:677958",
@@ -7846,7 +7859,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Steven Matz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -7878,7 +7891,7 @@
       "game_pk": 824695,
       "game_date": "2026-04-10",
       "game_datetime": "2026-04-10T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 135,
       "original_rank": 135,
       "original_score": 46.9,
@@ -7901,15 +7914,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.095928,
       "predicted_hr_score": 46.9,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 48.6%, showing consistent quality contact.",
       "top_reason_2": "Carmen Mlodzinski has allowed a 47.6% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 93%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-10:823968:663656:677958",
@@ -8014,7 +8027,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Steven Matz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -8260,7 +8273,7 @@
       "game_pk": 824695,
       "game_date": "2026-04-10",
       "game_datetime": "2026-04-10T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 144,
       "original_rank": 144,
       "original_score": 43.0,
@@ -8283,15 +8296,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.094111,
       "predicted_hr_score": 43.0,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 5.2% barrel-per-PA split.",
       "top_reason_2": "Carmen Mlodzinski has allowed a 47.6% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 93%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-10:823808:695734:694477",
@@ -8312,7 +8325,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Chad Patrick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -8726,7 +8739,7 @@
       "game_pk": 824695,
       "game_date": "2026-04-10",
       "game_datetime": "2026-04-10T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 155,
       "original_rank": 155,
       "original_score": 40.3,
@@ -8749,15 +8762,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.091488,
       "predicted_hr_score": 40.3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 11.1%, which the model treats as sustained power quality.",
       "top_reason_2": "Carmen Mlodzinski has allowed a 47.6% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 93%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-10:824297:679529:663978",
@@ -8852,7 +8865,7 @@
       "game_pk": 824695,
       "game_date": "2026-04-10",
       "game_datetime": "2026-04-10T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 158,
       "original_rank": 158,
       "original_score": 39.5,
@@ -8875,15 +8888,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.091226,
       "predicted_hr_score": 39.5,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 113.2 mph, which points to top-end HR juice.",
       "top_reason_2": "Shota Imanaga has allowed 91.6 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected humidity is 93%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-10:823156:694388:676106",
@@ -8978,7 +8991,7 @@
       "game_pk": 824695,
       "game_date": "2026-04-10",
       "game_datetime": "2026-04-10T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 161,
       "original_rank": 161,
       "original_score": 38.4,
@@ -9001,15 +9014,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.090282,
       "predicted_hr_score": 38.4,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 60.0%, showing consistent quality contact.",
       "top_reason_2": "Carmen Mlodzinski has allowed a 47.6% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 93%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-10:824941:573262:677944",
@@ -9370,7 +9383,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -9540,7 +9553,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -9656,7 +9669,7 @@
       "game_pk": 824695,
       "game_date": "2026-04-10",
       "game_datetime": "2026-04-10T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 176,
       "original_rank": 176,
       "original_score": 32.6,
@@ -9679,15 +9692,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.08689,
       "predicted_hr_score": 32.6,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 64.3%, a top-decile recent-contact signal.",
       "top_reason_2": "Shota Imanaga has allowed 91.6 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected humidity is 93%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-10:823482:607208:647336",
@@ -9992,7 +10005,7 @@
       "game_pk": 824695,
       "game_date": "2026-04-10",
       "game_datetime": "2026-04-10T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 186,
       "original_rank": 186,
       "original_score": 28.7,
@@ -10015,15 +10028,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.083963,
       "predicted_hr_score": 28.7,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0020, reinforcing the power-contact fit.",
       "top_reason_2": "Shota Imanaga has allowed 91.6 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected humidity is 93%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-10:823318:691720:621111",
@@ -10118,7 +10131,7 @@
       "game_pk": 824695,
       "game_date": "2026-04-10",
       "game_datetime": "2026-04-10T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 189,
       "original_rank": 189,
       "original_score": 28.3,
@@ -10141,15 +10154,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.083287,
       "predicted_hr_score": 28.3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 12.5%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Carmen Mlodzinski has allowed a 47.6% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 93%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-10:823482:699912:666200",
@@ -10720,7 +10733,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Dustin May",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -11050,7 +11063,7 @@
       "game_pk": 824695,
       "game_date": "2026-04-10",
       "game_datetime": "2026-04-10T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 211,
       "original_rank": 211,
       "original_score": 17.8,
@@ -11073,15 +11086,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.075763,
       "predicted_hr_score": 17.8,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1956, supporting loud-contact upside.",
       "top_reason_2": "Shota Imanaga has allowed 91.6 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected humidity is 93%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-10:823482:664761:647336",
@@ -11144,7 +11157,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Steven Matz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -11158,14 +11171,16 @@
       "predicted_hr_probability": 0.075068,
       "predicted_hr_score": 17.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 77.8%, a top-decile recent-contact signal.",
       "top_reason_2": "Steven Matz has allowed a 47.9% hard-hit rate over the last 30 days.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 77.8%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-10:824128:643217:663460",
@@ -11272,7 +11287,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -11314,7 +11329,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Chad Patrick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -11328,16 +11343,17 @@
       "predicted_hr_probability": 0.073565,
       "predicted_hr_score": 15.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "inactive",
       "alert_flags": [
+        "lineup_alert",
         "pitcher_change_alert"
       ],
-      "inactive_flag": false,
-      "display_style": "default",
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 44.4%, showing consistent quality contact.",
       "top_reason_2": "Chad Patrick has allowed a 46.2% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 82%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-10:824534:663647:686799",
@@ -11948,7 +11964,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -12160,7 +12176,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Chad Patrick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -12174,16 +12190,17 @@
       "predicted_hr_probability": 0.067935,
       "predicted_hr_score": 9.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "inactive",
       "alert_flags": [
+        "lineup_alert",
         "pitcher_change_alert"
       ],
-      "inactive_flag": false,
-      "display_style": "default",
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1883, supporting loud-contact upside.",
       "top_reason_2": "Chad Patrick has allowed a 46.2% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 82%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-10:824858:672275:669358",
@@ -12246,7 +12263,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -12362,7 +12379,7 @@
       "game_pk": 824695,
       "game_date": "2026-04-10",
       "game_datetime": "2026-04-10T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 241,
       "original_rank": 241,
       "original_score": 7.8,
@@ -12385,15 +12402,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.0659,
       "predicted_hr_score": 7.8,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Carmen Mlodzinski has allowed a 47.6% hard-hit rate over the last 30 days.",
       "top_reason_2": "Projected humidity is 93%, a modest positive weather input in the live model.",
       "top_reason_3": "Carmen Mlodzinski has allowed 47.6% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-10:822997:670764:661563",
@@ -12456,7 +12473,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -12754,7 +12771,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -12838,7 +12855,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Dustin May",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -12852,14 +12869,16 @@
       "predicted_hr_probability": 0.06193,
       "predicted_hr_score": 3.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 50.0%, showing consistent quality contact.",
       "top_reason_2": "Dustin May has allowed a 49.1% hard-hit rate over the last 30 days.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 50.0%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-10:823808:683083:694477",
@@ -12880,7 +12899,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Chad Patrick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -12894,16 +12913,17 @@
       "predicted_hr_probability": 0.060815,
       "predicted_hr_score": 3.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "inactive",
       "alert_flags": [
+        "lineup_alert",
         "pitcher_change_alert"
       ],
-      "inactive_flag": false,
-      "display_style": "default",
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Chad Patrick has allowed a 46.2% hard-hit rate over the last 30 days.",
       "top_reason_2": "Projected humidity is 82%, a modest positive weather input in the live model.",
       "top_reason_3": "Chad Patrick has allowed 46.2% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-10:822829:668885:571578",
@@ -13008,7 +13028,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Dustin May",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -13022,14 +13042,16 @@
       "predicted_hr_probability": 0.05488,
       "predicted_hr_score": 1.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Dustin May has allowed a 49.1% hard-hit rate over the last 30 days.",
       "top_reason_2": "Dustin May has allowed 49.1% 95+ EV contact over the last 30 days.",
       "top_reason_3": "Dustin May has allowed homers in 3.8% of plate appearances over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-10:823808:686452:694477",
@@ -13050,7 +13072,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Chad Patrick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -13064,16 +13086,17 @@
       "predicted_hr_probability": 0.054368,
       "predicted_hr_score": 1.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "inactive",
       "alert_flags": [
+        "lineup_alert",
         "pitcher_change_alert"
       ],
-      "inactive_flag": false,
-      "display_style": "default",
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Chad Patrick has allowed a 46.2% hard-hit rate over the last 30 days.",
       "top_reason_2": "Projected humidity is 82%, a modest positive weather input in the live model.",
       "top_reason_3": "Chad Patrick has allowed 46.2% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-10:822997:802415:661563",
@@ -76472,8 +76495,8 @@
       "game_pk": 824695,
       "game_date": "2026-04-10",
       "game_datetime": "2026-04-10T18:20:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Game Over",
+      "game_state": "final",
       "matchup": "PIT @ CHC",
       "teams": [
         {
@@ -76731,7 +76754,7 @@
         {
           "team": "MIA",
           "opponent_team": "DET",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682663,
@@ -77121,7 +77144,7 @@
         {
           "team": "OAK",
           "opponent_team": "NYM",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": []
         },
         {
@@ -77198,7 +77221,7 @@
         {
           "team": "NYY",
           "opponent_team": "TB",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 592450,
@@ -77215,12 +77238,6 @@
             {
               "batter_id": 669224,
               "batter_name": "Austin Wells",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 700250,
-              "batter_name": "Ben Rice",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -77243,16 +77260,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 641857,
-              "batter_name": "Ryan McMahon",
+              "batter_id": 676609,
+              "batter_name": "Jos\u00e9 Caballero",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 663757,
-              "batter_name": "Trent Grisham",
+              "batter_id": 545341,
+              "batter_name": "Randal Grichuk",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             }
           ]
         },
@@ -77719,14 +77736,14 @@
       "game_pk": 823808,
       "game_date": "2026-04-10",
       "game_datetime": "2026-04-10T23:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "WSH @ MIL",
       "teams": [
         {
           "team": "WSH",
           "opponent_team": "MIL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 691781,
@@ -77741,20 +77758,14 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 678554,
+              "batter_name": "Curtis Mead",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 695734,
               "batter_name": "Daylen Lile",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 686452,
-              "batter_name": "Drew Millas",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 696285,
-              "batter_name": "Jacob Young",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -77765,20 +77776,26 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 677588,
-              "batter_name": "Jos\u00e9 Tena",
+              "batter_id": 686894,
+              "batter_name": "Joey Wiemer",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 678391,
+              "batter_name": "Jorbit Vivas",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 660688,
+              "batter_name": "Keibert Ruiz",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 671277,
               "batter_name": "Luis Garc\u00eda Jr.",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 683083,
-              "batter_name": "Nasim Nu\u00f1ez",
               "batting_order": null,
               "selected_for_pick": true
             }
@@ -77858,14 +77875,8 @@
         {
           "team": "BOS",
           "opponent_team": "STL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 655316,
-              "batter_name": "Andruw Monasterio",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 702332,
               "batter_name": "Caleb Durbin",
@@ -77885,16 +77896,22 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 643396,
-              "batter_name": "Isiah Kiner-Falefa",
+              "batter_id": 680776,
+              "batter_name": "Jarren Duran",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 701350,
-              "batter_name": "Roman Anthony",
+              "batter_id": 691785,
+              "batter_name": "Marcelo Mayer",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 807799,
+              "batter_name": "Masataka Yoshida",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 596115,
