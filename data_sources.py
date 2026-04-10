@@ -10,6 +10,7 @@ from typing import Iterable
 import time
 import warnings
 
+import numpy as np
 import pandas as pd
 import requests
 from pybaseball import cache, statcast
@@ -22,6 +23,7 @@ from config import (
     STATCAST_CHUNK_DAYS,
     STATCAST_COLUMNS,
 )
+from feature_engineering import append_weather_carry_features
 from weather_audit import PRIMARY_WEATHER_FEATURE_COLUMNS, WEATHER_WARNING_NULL_RATE, summarize_weather_feature_coverage
 
 cache.enable()
@@ -31,11 +33,15 @@ cache.enable()
 class WeatherLookupRow:
     game_date: pd.Timestamp
     home_team: str
+    field_bearing_deg: float | None
     temperature_f: float | None
     humidity_pct: float | None
     wind_speed_mph: float | None
     wind_direction_deg: float | None
     pressure_hpa: float | None
+    wind_out_to_cf_mph: float | None
+    crosswind_mph: float | None
+    air_density_index: float | None
 
 
 def ensure_directories() -> None:
@@ -115,13 +121,71 @@ def _weather_cache_is_healthy(weather_df: pd.DataFrame, normalized_schedule: pd.
     return True
 
 
+def _park_field_bearing_deg(home_team: str) -> float | None:
+    park = PARKS.get(home_team)
+    if not park:
+        return None
+    return _safe_float(park.get("field_bearing_deg"))
+
+
+def _augment_weather_carry_fields(weather_df: pd.DataFrame) -> pd.DataFrame:
+    if weather_df.empty:
+        return weather_df.copy()
+    augmented = weather_df.copy()
+    if "field_bearing_deg" not in augmented.columns:
+        augmented["field_bearing_deg"] = np.nan
+    if augmented["field_bearing_deg"].isna().any():
+        augmented["field_bearing_deg"] = augmented["field_bearing_deg"].where(
+            augmented["field_bearing_deg"].notna(),
+            augmented["home_team"].map(_park_field_bearing_deg),
+        )
+    augmented = append_weather_carry_features(augmented)
+    return augmented
+
+
+def _read_cached_csv(
+    path: Path,
+    *,
+    parse_dates: list[str] | None = None,
+    low_memory: bool = False,
+    cache_label: str = "cached CSV",
+) -> pd.DataFrame | None:
+    try:
+        return pd.read_csv(path, parse_dates=parse_dates, low_memory=low_memory)
+    except (pd.errors.ParserError, UnicodeDecodeError, OSError, ValueError) as exc:
+        warnings.warn(f"{cache_label} at {path} is unreadable ({exc}); deleting and rebuilding.")
+        try:
+            path.unlink(missing_ok=True)
+        except OSError as unlink_exc:
+            warnings.warn(f"Unable to delete unreadable cache file {path}: {unlink_exc}")
+        return None
+
+
 def fetch_statcast_range(start_date: str, end_date: str, force_refresh: bool = False) -> pd.DataFrame:
     """Fetch a cached Statcast date window and keep only required columns."""
     ensure_directories()
     chunk_path = _raw_chunk_path(start_date, end_date)
+    df: pd.DataFrame | None = None
     if chunk_path.exists() and not force_refresh:
-        df = pd.read_csv(chunk_path, low_memory=False)
-    else:
+        df = _read_cached_csv(
+            chunk_path,
+            low_memory=False,
+            cache_label="Cached Statcast chunk",
+        )
+        if df is not None:
+            missing_cached_columns = [column for column in STATCAST_COLUMNS if column not in df.columns]
+            if missing_cached_columns:
+                warnings.warn(
+                    "Cached Statcast chunk at "
+                    f"{chunk_path} is missing expected columns ({missing_cached_columns}); deleting and rebuilding."
+                )
+                try:
+                    chunk_path.unlink(missing_ok=True)
+                except OSError as unlink_exc:
+                    warnings.warn(f"Unable to delete invalid Statcast cache file {chunk_path}: {unlink_exc}")
+                df = None
+
+    if df is None:
         df = statcast(start_dt=start_date, end_dt=end_date)
         if df is None or df.empty:
             df = pd.DataFrame(columns=STATCAST_COLUMNS)
@@ -208,11 +272,15 @@ def _build_null_weather_row(game_date: pd.Timestamp, home_team: str) -> WeatherL
     return WeatherLookupRow(
         game_date=pd.Timestamp(game_date).normalize(),
         home_team=home_team,
+        field_bearing_deg=_park_field_bearing_deg(home_team),
         temperature_f=None,
         humidity_pct=None,
         wind_speed_mph=None,
         wind_direction_deg=None,
         pressure_hpa=None,
+        wind_out_to_cf_mph=None,
+        crosswind_mph=None,
+        air_density_index=None,
     )
 
 
@@ -249,11 +317,15 @@ def _cached_weather_rows_for_team(
             WeatherLookupRow(
                 game_date=normalized_game_date,
                 home_team=home_team,
+                field_bearing_deg=_park_field_bearing_deg(home_team),
                 temperature_f=_safe_float(cached_row.get("temperature_f")),
                 humidity_pct=_safe_float(cached_row.get("humidity_pct")),
                 wind_speed_mph=_safe_float(cached_row.get("wind_speed_mph")),
                 wind_direction_deg=_safe_float(cached_row.get("wind_direction_deg")),
                 pressure_hpa=_safe_float(cached_row.get("pressure_hpa")),
+                wind_out_to_cf_mph=_safe_float(cached_row.get("wind_out_to_cf_mph")),
+                crosswind_mph=_safe_float(cached_row.get("crosswind_mph")),
+                air_density_index=_safe_float(cached_row.get("air_density_index")),
             )
         )
     return recovered_rows
@@ -266,15 +338,22 @@ def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False
     weather_cache_path = _weather_cache_path(normalized_schedule)
     existing_cached_weather: pd.DataFrame | None = None
     if weather_cache_path.exists() and not force_refresh:
-        existing_cached_weather = pd.read_csv(weather_cache_path, parse_dates=["game_date"])
-        existing_cached_weather["game_date"] = pd.to_datetime(existing_cached_weather["game_date"], errors="coerce").dt.normalize()
-        existing_cached_weather["home_team"] = existing_cached_weather["home_team"].map(_normalize_home_team_code)
-        if _weather_cache_is_healthy(existing_cached_weather, normalized_schedule):
-            existing_cached_weather.attrs["operational_alerts"] = []
-            return existing_cached_weather
-        warnings.warn(
-            f"Cached weather table at {weather_cache_path} is incomplete or sparse; rebuilding from source."
+        existing_cached_weather = _read_cached_csv(
+            weather_cache_path,
+            parse_dates=["game_date"],
+            cache_label="Cached weather table",
         )
+        if existing_cached_weather is not None:
+            existing_cached_weather["game_date"] = pd.to_datetime(existing_cached_weather["game_date"], errors="coerce").dt.normalize()
+            existing_cached_weather["home_team"] = existing_cached_weather["home_team"].map(_normalize_home_team_code)
+            existing_cached_weather = _augment_weather_carry_fields(existing_cached_weather)
+            if _weather_cache_is_healthy(existing_cached_weather, normalized_schedule):
+                existing_cached_weather.attrs["operational_alerts"] = []
+                existing_cached_weather.to_csv(weather_cache_path, index=False)
+                return existing_cached_weather
+            warnings.warn(
+                f"Cached weather table at {weather_cache_path} is incomplete or sparse; rebuilding from source."
+            )
 
     rows: list[WeatherLookupRow] = []
     operational_alerts: list[dict[str, object]] = []
@@ -357,11 +436,15 @@ def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False
                 WeatherLookupRow(
                     game_date=normalized_game_date,
                     home_team=home_team,
+                    field_bearing_deg=_park_field_bearing_deg(home_team),
                     temperature_f=_safe_float(best.get("temperature_2m")),
                     humidity_pct=_safe_float(best.get("relative_humidity_2m")),
                     wind_speed_mph=_safe_float(best.get("wind_speed_10m")),
                     wind_direction_deg=_safe_float(best.get("wind_direction_10m")),
                     pressure_hpa=_safe_float(best.get("surface_pressure")),
+                    wind_out_to_cf_mph=None,
+                    crosswind_mph=None,
+                    air_density_index=None,
                 )
             )
 
@@ -370,13 +453,18 @@ def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False
         columns=[
             "game_date",
             "home_team",
+            "field_bearing_deg",
             "temperature_f",
             "humidity_pct",
             "wind_speed_mph",
             "wind_direction_deg",
             "pressure_hpa",
+            "wind_out_to_cf_mph",
+            "crosswind_mph",
+            "air_density_index",
         ],
     )
+    weather_df = _augment_weather_carry_fields(weather_df)
     weather_df.attrs["operational_alerts"] = operational_alerts
     weather_df.to_csv(weather_cache_path, index=False)
     return weather_df

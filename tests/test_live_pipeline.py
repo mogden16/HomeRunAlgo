@@ -40,6 +40,19 @@ from train_model import LIVE_PLUS_FEATURE_COLUMNS, generate_reason_strings
 
 
 class LivePipelineTests(unittest.TestCase):
+    def test_fetch_statcast_range_rebuilds_malformed_cached_chunk(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            chunk_path = Path(tmp_dir) / "statcast_bad.csv"
+            chunk_path.write_text("bad_header_only\nvalue1,value2\n", encoding="utf-8")
+            with patch("data_sources._raw_chunk_path", return_value=chunk_path):
+                with patch("data_sources.ensure_directories", side_effect=lambda: None):
+                    with patch("data_sources.statcast", return_value=pd.DataFrame(columns=data_sources.STATCAST_COLUMNS)) as statcast_mock:
+                        frame = data_sources.fetch_statcast_range("2024-10-31", "2024-11-06", force_refresh=False)
+
+        self.assertEqual(statcast_mock.call_count, 1)
+        self.assertEqual(list(frame.columns), data_sources.STATCAST_COLUMNS)
+        self.assertTrue(frame.empty)
+
     def test_fetch_statcast_range_returns_empty_frame_for_offseason_chunk(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             chunk_path = Path(tmp_dir) / "statcast_empty.csv"
