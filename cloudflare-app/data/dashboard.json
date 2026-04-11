@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-11T13:24:19.434942+00:00",
+  "generated_at": "2026-04-11T14:28:47.884835+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2543,7 +2543,7 @@
       "team": "PHI",
       "opponent_team": "AZ",
       "pitcher_name": "Brandon Pfaadt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -2669,7 +2669,7 @@
       "team": "DET",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -2963,7 +2963,7 @@
       "team": "PHI",
       "opponent_team": "AZ",
       "pitcher_name": "Brandon Pfaadt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -3299,7 +3299,7 @@
       "team": "DET",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -3971,7 +3971,7 @@
       "team": "PHI",
       "opponent_team": "AZ",
       "pitcher_name": "Brandon Pfaadt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -4097,7 +4097,7 @@
       "team": "DET",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -5945,7 +5945,7 @@
       "team": "PHI",
       "opponent_team": "AZ",
       "pitcher_name": "Brandon Pfaadt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -6617,7 +6617,7 @@
       "team": "DET",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -6701,7 +6701,7 @@
       "team": "DET",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -7795,7 +7795,7 @@
       "team": "PHI",
       "opponent_team": "AZ",
       "pitcher_name": "Brandon Pfaadt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -8383,7 +8383,7 @@
       "team": "PHI",
       "opponent_team": "AZ",
       "pitcher_name": "Brandon Pfaadt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -8593,7 +8593,7 @@
       "team": "PHI",
       "opponent_team": "AZ",
       "pitcher_name": "Brandon Pfaadt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -8803,7 +8803,7 @@
       "team": "DET",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -8817,14 +8817,16 @@
       "predicted_hr_probability": 0.09067,
       "predicted_hr_score": 40.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1796, supporting loud-contact upside.",
       "top_reason_2": "Barrel rate over the last 10 days is 4.0%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 45.0%, a above-baseline recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824857:694212:657277",
@@ -9013,7 +9015,7 @@
       "team": "DET",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -9139,7 +9141,7 @@
       "team": "PHI",
       "opponent_team": "AZ",
       "pitcher_name": "Brandon Pfaadt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -9517,7 +9519,7 @@
       "team": "DET",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -9531,14 +9533,16 @@
       "predicted_hr_probability": 0.087027,
       "predicted_hr_score": 33.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1711, supporting loud-contact upside.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824697:664040:665795",
@@ -12207,7 +12211,7 @@
       "team": "DET",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -12711,7 +12715,7 @@
       "team": "PHI",
       "opponent_team": "AZ",
       "pitcher_name": "Brandon Pfaadt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -12725,14 +12729,16 @@
       "predicted_hr_probability": 0.060943,
       "predicted_hr_score": 5.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 90.4 mph, a above-baseline recent batted-ball quality marker.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824857:650333:605135",
@@ -87585,7 +87591,7 @@
         {
           "team": "PHI",
           "opponent_team": "AZ",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666969,
@@ -87618,6 +87624,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 592663,
+              "batter_name": "J.T. Realmuto",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 702222,
               "batter_name": "Justin Crawford",
               "batting_order": null,
@@ -87626,12 +87638,6 @@
             {
               "batter_id": 656941,
               "batter_name": "Kyle Schwarber",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 665561,
-              "batter_name": "Rafael March\u00e1n",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -87649,7 +87655,7 @@
       "game_pk": 824294,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "MIA @ DET",
       "teams": [
@@ -87717,7 +87723,7 @@
         {
           "team": "DET",
           "opponent_team": "MIA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 690993,
@@ -87728,18 +87734,6 @@
             {
               "batter_id": 693307,
               "batter_name": "Dillon Dingler",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 650402,
-              "batter_name": "Gleyber Torres",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 595879,
-              "batter_name": "Javier B\u00e1ez",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -87756,6 +87750,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 663837,
+              "batter_name": "Matt Vierling",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 682985,
               "batter_name": "Riley Greene",
               "batting_order": null,
@@ -87766,6 +87766,12 @@
               "batter_name": "Spencer Torkelson",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 672761,
+              "batter_name": "Wenceel P\u00e9rez",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 656716,
@@ -87959,16 +87965,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 668904,
-              "batter_name": "Royce Lewis",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 680777,
               "batter_name": "Ryan Jeffers",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 656484,
+              "batter_name": "Tristan Gray",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 605170,
