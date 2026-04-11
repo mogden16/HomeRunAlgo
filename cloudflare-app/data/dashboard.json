@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-11T18:01:50.089063+00:00",
+  "generated_at": "2026-04-11T22:14:45.009804+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -94,10 +94,10 @@
     "latest_slate_size": 261,
     "tracked_dates": 17,
     "tracked_picks": 2015,
-    "settled_picks": 1518,
-    "tracked_homers": 142,
-    "tracked_hit_rate": 0.093544,
-    "open_picks": 497
+    "settled_picks": 1577,
+    "tracked_homers": 150,
+    "tracked_hit_rate": 0.095117,
+    "open_picks": 438
   },
   "confidence_summary": [
     {
@@ -109,24 +109,24 @@
     },
     {
       "confidence_tier": "strong",
-      "picks": 140,
-      "homers": 25,
-      "hit_rate": 0.178571,
-      "avg_probability": 0.205043
+      "picks": 142,
+      "homers": 26,
+      "hit_rate": 0.183099,
+      "avg_probability": 0.204487
     },
     {
       "confidence_tier": "watch",
-      "picks": 263,
-      "homers": 36,
-      "hit_rate": 0.136882,
-      "avg_probability": 0.138461
+      "picks": 277,
+      "homers": 39,
+      "hit_rate": 0.140794,
+      "avg_probability": 0.138181
     },
     {
       "confidence_tier": "longshot",
-      "picks": 1069,
-      "homers": 71,
-      "hit_rate": 0.066417,
-      "avg_probability": 0.092768
+      "picks": 1112,
+      "homers": 75,
+      "hit_rate": 0.067446,
+      "avg_probability": 0.092649
     }
   ],
   "player_leaderboard": [
@@ -250,6 +250,13 @@
       "hit_rate": 0.25
     },
     {
+      "batter_name": "Maikel Garcia",
+      "team": "KC",
+      "picks": 8,
+      "homers": 2,
+      "hit_rate": 0.25
+    },
+    {
       "batter_name": "Xander Bogaerts",
       "team": "SD",
       "picks": 8,
@@ -271,6 +278,13 @@
       "hit_rate": 0.285714
     },
     {
+      "batter_name": "Daulton Varsho",
+      "team": "TOR",
+      "picks": 7,
+      "homers": 2,
+      "hit_rate": 0.285714
+    },
+    {
       "batter_name": "Junior Caminero",
       "team": "TB",
       "picks": 7,
@@ -280,6 +294,13 @@
     {
       "batter_name": "Andy Pages",
       "team": "LAD",
+      "picks": 6,
+      "homers": 2,
+      "hit_rate": 0.333333
+    },
+    {
+      "batter_name": "Brooks Lee",
+      "team": "MIN",
       "picks": 6,
       "homers": 2,
       "hit_rate": 0.333333
@@ -334,6 +355,13 @@
       "hit_rate": 0.111111
     },
     {
+      "batter_name": "Oneil Cruz",
+      "team": "PIT",
+      "picks": 9,
+      "homers": 1,
+      "hit_rate": 0.111111
+    },
+    {
       "batter_name": "Corey Seager",
       "team": "TEX",
       "picks": 8,
@@ -348,8 +376,8 @@
       "hit_rate": 0.125
     },
     {
-      "batter_name": "Oneil Cruz",
-      "team": "PIT",
+      "batter_name": "Riley Greene",
+      "team": "DET",
       "picks": 8,
       "homers": 1,
       "hit_rate": 0.125
@@ -362,8 +390,29 @@
       "hit_rate": 0.125
     },
     {
+      "batter_name": "Adolis Garc\u00eda",
+      "team": "PHI",
+      "picks": 7,
+      "homers": 1,
+      "hit_rate": 0.142857
+    },
+    {
+      "batter_name": "Bo Bichette",
+      "team": "NYM",
+      "picks": 7,
+      "homers": 1,
+      "hit_rate": 0.142857
+    },
+    {
       "batter_name": "Brady House",
       "team": "WSH",
+      "picks": 7,
+      "homers": 1,
+      "hit_rate": 0.142857
+    },
+    {
+      "batter_name": "Bryan Reynolds",
+      "team": "PIT",
       "picks": 7,
       "homers": 1,
       "hit_rate": 0.142857
@@ -378,6 +427,13 @@
     {
       "batter_name": "Colson Montgomery",
       "team": "CWS",
+      "picks": 7,
+      "homers": 1,
+      "hit_rate": 0.142857
+    },
+    {
+      "batter_name": "Connor Norby",
+      "team": "MIA",
       "picks": 7,
       "homers": 1,
       "hit_rate": 0.142857
@@ -404,6 +460,13 @@
       "hit_rate": 0.142857
     },
     {
+      "batter_name": "Josh Bell",
+      "team": "MIN",
+      "picks": 7,
+      "homers": 1,
+      "hit_rate": 0.142857
+    },
+    {
       "batter_name": "Ketel Marte",
       "team": "AZ",
       "picks": 7,
@@ -411,8 +474,8 @@
       "hit_rate": 0.142857
     },
     {
-      "batter_name": "Maikel Garcia",
-      "team": "KC",
+      "batter_name": "Luke Keaschall",
+      "team": "MIN",
       "picks": 7,
       "homers": 1,
       "hit_rate": 0.142857
@@ -432,15 +495,29 @@
       "hit_rate": 0.142857
     },
     {
-      "batter_name": "Adolis Garc\u00eda",
-      "team": "PHI",
-      "picks": 6,
+      "batter_name": "Ryan O'Hearn",
+      "team": "PIT",
+      "picks": 7,
       "homers": 1,
-      "hit_rate": 0.166667
+      "hit_rate": 0.142857
     },
     {
-      "batter_name": "Bryan Reynolds",
-      "team": "PIT",
+      "batter_name": "Spencer Torkelson",
+      "team": "DET",
+      "picks": 7,
+      "homers": 1,
+      "hit_rate": 0.142857
+    },
+    {
+      "batter_name": "Vladimir Guerrero Jr.",
+      "team": "TOR",
+      "picks": 7,
+      "homers": 1,
+      "hit_rate": 0.142857
+    },
+    {
+      "batter_name": "Brandon Marsh",
+      "team": "PHI",
       "picks": 6,
       "homers": 1,
       "hit_rate": 0.166667
@@ -467,15 +544,8 @@
       "hit_rate": 0.166667
     },
     {
-      "batter_name": "Connor Norby",
-      "team": "MIA",
-      "picks": 6,
-      "homers": 1,
-      "hit_rate": 0.166667
-    },
-    {
-      "batter_name": "Daulton Varsho",
-      "team": "TOR",
+      "batter_name": "Dansby Swanson",
+      "team": "CHC",
       "picks": 6,
       "homers": 1,
       "hit_rate": 0.166667
@@ -483,6 +553,13 @@
     {
       "batter_name": "Evan Carter",
       "team": "TEX",
+      "picks": 6,
+      "homers": 1,
+      "hit_rate": 0.166667
+    },
+    {
+      "batter_name": "Francisco Alvarez",
+      "team": "NYM",
       "picks": 6,
       "homers": 1,
       "hit_rate": 0.166667
@@ -509,22 +586,8 @@
       "hit_rate": 0.166667
     },
     {
-      "batter_name": "Josh Bell",
-      "team": "MIN",
-      "picks": 6,
-      "homers": 1,
-      "hit_rate": 0.166667
-    },
-    {
       "batter_name": "Jung Hoo Lee",
       "team": "SF",
-      "picks": 6,
-      "homers": 1,
-      "hit_rate": 0.166667
-    },
-    {
-      "batter_name": "Luke Keaschall",
-      "team": "MIN",
       "picks": 6,
       "homers": 1,
       "hit_rate": 0.166667
@@ -551,8 +614,22 @@
       "hit_rate": 0.166667
     },
     {
+      "batter_name": "Nico Hoerner",
+      "team": "CHC",
+      "picks": 6,
+      "homers": 1,
+      "hit_rate": 0.166667
+    },
+    {
       "batter_name": "Ozzie Albies",
       "team": "ATL",
+      "picks": 6,
+      "homers": 1,
+      "hit_rate": 0.166667
+    },
+    {
+      "batter_name": "Pete Crow-Armstrong",
+      "team": "CHC",
       "picks": 6,
       "homers": 1,
       "hit_rate": 0.166667
@@ -572,15 +649,8 @@
       "hit_rate": 0.166667
     },
     {
-      "batter_name": "Ryan O'Hearn",
-      "team": "PIT",
-      "picks": 6,
-      "homers": 1,
-      "hit_rate": 0.166667
-    },
-    {
-      "batter_name": "Spencer Torkelson",
-      "team": "DET",
+      "batter_name": "Spencer Steer",
+      "team": "CIN",
       "picks": 6,
       "homers": 1,
       "hit_rate": 0.166667
@@ -595,13 +665,6 @@
     {
       "batter_name": "Troy Johnston",
       "team": "COL",
-      "picks": 6,
-      "homers": 1,
-      "hit_rate": 0.166667
-    },
-    {
-      "batter_name": "Vladimir Guerrero Jr.",
-      "team": "TOR",
       "picks": 6,
       "homers": 1,
       "hit_rate": 0.166667
@@ -635,22 +698,15 @@
       "hit_rate": 0.166667
     },
     {
-      "batter_name": "Brandon Marsh",
-      "team": "PHI",
-      "picks": 5,
+      "batter_name": "Zach McKinstry",
+      "team": "DET",
+      "picks": 6,
       "homers": 1,
-      "hit_rate": 0.2
+      "hit_rate": 0.166667
     },
     {
       "batter_name": "Brayan Rocchio",
       "team": "CLE",
-      "picks": 5,
-      "homers": 1,
-      "hit_rate": 0.2
-    },
-    {
-      "batter_name": "Brooks Lee",
-      "team": "MIN",
       "picks": 5,
       "homers": 1,
       "hit_rate": 0.2
@@ -665,13 +721,6 @@
     {
       "batter_name": "Cedric Mullins",
       "team": "TB",
-      "picks": 5,
-      "homers": 1,
-      "hit_rate": 0.2
-    },
-    {
-      "batter_name": "Dansby Swanson",
-      "team": "CHC",
       "picks": 5,
       "homers": 1,
       "hit_rate": 0.2
@@ -726,15 +775,8 @@
       "hit_rate": 0.2
     },
     {
-      "batter_name": "Nico Hoerner",
-      "team": "CHC",
-      "picks": 5,
-      "homers": 1,
-      "hit_rate": 0.2
-    },
-    {
-      "batter_name": "Pete Crow-Armstrong",
-      "team": "CHC",
+      "batter_name": "Ryan Jeffers",
+      "team": "MIN",
       "picks": 5,
       "homers": 1,
       "hit_rate": 0.2
@@ -749,13 +791,6 @@
     {
       "batter_name": "Tyler Stephenson",
       "team": "CIN",
-      "picks": 5,
-      "homers": 1,
-      "hit_rate": 0.2
-    },
-    {
-      "batter_name": "Zach McKinstry",
-      "team": "DET",
       "picks": 5,
       "homers": 1,
       "hit_rate": 0.2
@@ -777,13 +812,6 @@
     {
       "batter_name": "Javier B\u00e1ez",
       "team": "DET",
-      "picks": 4,
-      "homers": 1,
-      "hit_rate": 0.25
-    },
-    {
-      "batter_name": "Ryan Jeffers",
-      "team": "MIN",
       "picks": 4,
       "homers": 1,
       "hit_rate": 0.25
@@ -817,8 +845,22 @@
       "hit_rate": 0.333333
     },
     {
+      "batter_name": "Jes\u00fas S\u00e1nchez",
+      "team": "TOR",
+      "picks": 3,
+      "homers": 1,
+      "hit_rate": 0.333333
+    },
+    {
       "batter_name": "Josh Lowe",
       "team": "LAA",
+      "picks": 3,
+      "homers": 1,
+      "hit_rate": 0.333333
+    },
+    {
+      "batter_name": "Kerry Carpenter",
+      "team": "DET",
       "picks": 3,
       "homers": 1,
       "hit_rate": 0.333333
@@ -831,23 +873,16 @@
       "hit_rate": 0.333333
     },
     {
-      "batter_name": "Kerry Carpenter",
-      "team": "DET",
-      "picks": 2,
-      "homers": 1,
-      "hit_rate": 0.5
-    },
-    {
-      "batter_name": "JJ Wetherholt",
-      "team": "STL",
+      "batter_name": "Agust\u00edn Ram\u00edrez",
+      "team": "MIA",
       "picks": 9,
       "homers": 0,
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Agust\u00edn Ram\u00edrez",
-      "team": "MIA",
-      "picks": 8,
+      "batter_name": "JJ Wetherholt",
+      "team": "STL",
+      "picks": 9,
       "homers": 0,
       "hit_rate": 0.0
     },
@@ -861,6 +896,20 @@
     {
       "batter_name": "Bobby Witt Jr.",
       "team": "KC",
+      "picks": 8,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Byron Buxton",
+      "team": "MIN",
+      "picks": 8,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Dillon Dingler",
+      "team": "DET",
       "picks": 8,
       "homers": 0,
       "hit_rate": 0.0
@@ -880,6 +929,34 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "George Springer",
+      "team": "TOR",
+      "picks": 8,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Geraldo Perdomo",
+      "team": "AZ",
+      "picks": 8,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Jakob Marsee",
+      "team": "MIA",
+      "picks": 8,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Kevin McGonigle",
+      "team": "DET",
+      "picks": 8,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Roman Anthony",
       "team": "BOS",
       "picks": 8,
@@ -894,8 +971,15 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Byron Buxton",
-      "team": "MIN",
+      "batter_name": "Xavier Edwards",
+      "team": "MIA",
+      "picks": 8,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Brandon Lowe",
+      "team": "PIT",
       "picks": 7,
       "homers": 0,
       "hit_rate": 0.0
@@ -915,22 +999,15 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Dillon Dingler",
+      "batter_name": "Colt Keith",
       "team": "DET",
       "picks": 7,
       "homers": 0,
       "hit_rate": 0.0
     },
     {
-      "batter_name": "George Springer",
+      "batter_name": "Ernie Clement",
       "team": "TOR",
-      "picks": 7,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Geraldo Perdomo",
-      "team": "AZ",
       "picks": 7,
       "homers": 0,
       "hit_rate": 0.0
@@ -943,8 +1020,15 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Jakob Marsee",
-      "team": "MIA",
+      "batter_name": "Jorge Barrosa",
+      "team": "AZ",
+      "picks": 7,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Jose Fernandez",
+      "team": "AZ",
       "picks": 7,
       "homers": 0,
       "hit_rate": 0.0
@@ -957,8 +1041,8 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Kevin McGonigle",
-      "team": "DET",
+      "batter_name": "Justin Crawford",
+      "team": "PHI",
       "picks": 7,
       "homers": 0,
       "hit_rate": 0.0
@@ -985,8 +1069,22 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Michael Busch",
+      "team": "CHC",
+      "picks": 7,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Miguel Vargas",
       "team": "CWS",
+      "picks": 7,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Otto Lopez",
+      "team": "MIA",
       "picks": 7,
       "homers": 0,
       "hit_rate": 0.0
@@ -1006,13 +1104,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Riley Greene",
-      "team": "DET",
-      "picks": 7,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "TJ Friedl",
       "team": "CIN",
       "picks": 7,
@@ -1020,8 +1111,8 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Xavier Edwards",
-      "team": "MIA",
+      "batter_name": "Trea Turner",
+      "team": "PHI",
       "picks": 7,
       "homers": 0,
       "hit_rate": 0.0
@@ -1034,8 +1125,36 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Alec Bohm",
+      "team": "PHI",
+      "picks": 6,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Alex Bregman",
+      "team": "CHC",
+      "picks": 6,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Alex Freeland",
       "team": "LAD",
+      "picks": 6,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Andr\u00e9s Gim\u00e9nez",
+      "team": "TOR",
+      "picks": 6,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Austin Martin",
+      "team": "MIN",
       "picks": 6,
       "homers": 0,
       "hit_rate": 0.0
@@ -1048,22 +1167,15 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Bo Bichette",
-      "team": "NYM",
-      "picks": 6,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Brandon Lowe",
-      "team": "PIT",
-      "picks": 6,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Brandon Nimmo",
       "team": "TEX",
+      "picks": 6,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Bryson Stott",
+      "team": "PHI",
       "picks": 6,
       "homers": 0,
       "hit_rate": 0.0
@@ -1083,22 +1195,8 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Colt Keith",
-      "team": "DET",
-      "picks": 6,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Daylen Lile",
       "team": "WSH",
-      "picks": 6,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Ernie Clement",
-      "team": "TOR",
       "picks": 6,
       "homers": 0,
       "hit_rate": 0.0
@@ -1146,22 +1244,8 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Jorge Barrosa",
-      "team": "AZ",
-      "picks": 6,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Jose Altuve",
       "team": "HOU",
-      "picks": 6,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Jose Fernandez",
-      "team": "AZ",
       "picks": 6,
       "homers": 0,
       "hit_rate": 0.0
@@ -1174,15 +1258,15 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Justin Crawford",
-      "team": "PHI",
+      "batter_name": "Kazuma Okamoto",
+      "team": "TOR",
       "picks": 6,
       "homers": 0,
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Kazuma Okamoto",
-      "team": "TOR",
+      "batter_name": "Konnor Griffin",
+      "team": "PIT",
       "picks": 6,
       "homers": 0,
       "hit_rate": 0.0
@@ -1209,8 +1293,8 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Michael Busch",
-      "team": "CHC",
+      "batter_name": "Nolan Arenado",
+      "team": "AZ",
       "picks": 6,
       "homers": 0,
       "hit_rate": 0.0
@@ -1218,13 +1302,6 @@
     {
       "batter_name": "Nolan Schanuel",
       "team": "LAA",
-      "picks": 6,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Otto Lopez",
-      "team": "MIA",
       "picks": 6,
       "homers": 0,
       "hit_rate": 0.0
@@ -1244,15 +1321,15 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Trea Turner",
-      "team": "PHI",
+      "batter_name": "Trevor Story",
+      "team": "BOS",
       "picks": 6,
       "homers": 0,
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Trevor Story",
-      "team": "BOS",
+      "batter_name": "Victor Caratini",
+      "team": "MIN",
       "picks": 6,
       "homers": 0,
       "hit_rate": 0.0
@@ -1261,34 +1338,6 @@
       "batter_name": "Wilyer Abreu",
       "team": "BOS",
       "picks": 6,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Alec Bohm",
-      "team": "PHI",
-      "picks": 5,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Alex Bregman",
-      "team": "CHC",
-      "picks": 5,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Andr\u00e9s Gim\u00e9nez",
-      "team": "TOR",
-      "picks": 5,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Austin Martin",
-      "team": "MIN",
-      "picks": 5,
       "homers": 0,
       "hit_rate": 0.0
     },
@@ -1328,13 +1377,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Bryson Stott",
-      "team": "PHI",
-      "picks": 5,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Caleb Durbin",
       "team": "BOS",
       "picks": 5,
@@ -1351,13 +1393,6 @@
     {
       "batter_name": "Edgar Quero",
       "team": "CWS",
-      "picks": 5,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Francisco Alvarez",
-      "team": "NYM",
       "picks": 5,
       "homers": 0,
       "hit_rate": 0.0
@@ -1419,13 +1454,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Konnor Griffin",
-      "team": "PIT",
-      "picks": 5,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Kyle Isbel",
       "team": "KC",
       "picks": 5,
@@ -1447,6 +1475,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Liam Hicks",
+      "team": "MIA",
+      "picks": 5,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Logan O'Hoppe",
       "team": "LAA",
       "picks": 5,
@@ -1463,13 +1498,6 @@
     {
       "batter_name": "Mike Yastrzemski",
       "team": "ATL",
-      "picks": 5,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Nolan Arenado",
-      "team": "AZ",
       "picks": 5,
       "homers": 0,
       "hit_rate": 0.0
@@ -1503,22 +1531,8 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Spencer Steer",
-      "team": "CIN",
-      "picks": 5,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Thomas Saggese",
       "team": "STL",
-      "picks": 5,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Victor Caratini",
-      "team": "MIN",
       "picks": 5,
       "homers": 0,
       "hit_rate": 0.0
@@ -1561,6 +1575,13 @@
     {
       "batter_name": "David Hamilton",
       "team": "MIL",
+      "picks": 4,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Davis Schneider",
+      "team": "TOR",
       "picks": 4,
       "homers": 0,
       "hit_rate": 0.0
@@ -1615,13 +1636,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Liam Hicks",
-      "team": "MIA",
-      "picks": 4,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Marcelo Mayer",
       "team": "BOS",
       "picks": 4,
@@ -1650,6 +1664,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Nick Yorke",
+      "team": "PIT",
+      "picks": 4,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Pedro Pag\u00e9s",
       "team": "STL",
       "picks": 4,
@@ -1666,6 +1687,13 @@
     {
       "batter_name": "Ryan McMahon",
       "team": "NYY",
+      "picks": 4,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Tim Tawa",
+      "team": "AZ",
       "picks": 4,
       "homers": 0,
       "hit_rate": 0.0
@@ -1694,6 +1722,13 @@
     {
       "batter_name": "Adley Rutschman",
       "team": "BAL",
+      "picks": 3,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Alek Thomas",
+      "team": "AZ",
       "picks": 3,
       "homers": 0,
       "hit_rate": 0.0
@@ -1743,13 +1778,6 @@
     {
       "batter_name": "Danny Jansen",
       "team": "TEX",
-      "picks": 3,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Davis Schneider",
-      "team": "TOR",
       "picks": 3,
       "homers": 0,
       "hit_rate": 0.0
@@ -1853,13 +1881,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Nick Yorke",
-      "team": "PIT",
-      "picks": 3,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Oswald Peraza",
       "team": "LAA",
       "picks": 3,
@@ -1869,13 +1890,6 @@
     {
       "batter_name": "Sal Frelick",
       "team": "MIL",
-      "picks": 3,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Tim Tawa",
-      "team": "AZ",
       "picks": 3,
       "homers": 0,
       "hit_rate": 0.0
@@ -1898,13 +1912,6 @@
       "batter_name": "Will Smith",
       "team": "LAD",
       "picks": 3,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Alek Thomas",
-      "team": "AZ",
-      "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
     },
@@ -1986,15 +1993,15 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Jared Young",
-      "team": "NYM",
+      "batter_name": "Graham Pauley",
+      "team": "MIA",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Jes\u00fas S\u00e1nchez",
-      "team": "TOR",
+      "batter_name": "Jared Young",
+      "team": "NYM",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
@@ -2042,7 +2049,21 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Michael Conforto",
+      "team": "CHC",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Miguel Amaya",
+      "team": "CHC",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Mois\u00e9s Ballesteros",
       "team": "CHC",
       "picks": 2,
       "homers": 0,
@@ -2065,6 +2086,13 @@
     {
       "batter_name": "Nick Loftin",
       "team": "KC",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Owen Caissie",
+      "team": "MIA",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
@@ -2375,7 +2403,7 @@
       "team": "LAD",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -2407,7 +2435,7 @@
       "game_pk": 822996,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T22:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 2,
       "original_rank": 2,
       "original_score": 99.6,
@@ -2417,7 +2445,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -2431,7 +2459,7 @@
       "predicted_hr_probability": 0.181576,
       "predicted_hr_score": 99.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -2459,7 +2487,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Kyle Harrison",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -2533,7 +2561,7 @@
       "game_pk": 823480,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 5,
       "original_rank": 5,
       "original_score": 98.1,
@@ -2575,7 +2603,7 @@
       "game_pk": 822996,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T22:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 6,
       "original_rank": 6,
       "original_score": 97.7,
@@ -2585,7 +2613,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -2599,7 +2627,7 @@
       "predicted_hr_probability": 0.169984,
       "predicted_hr_score": 97.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -2617,7 +2645,7 @@
       "game_pk": 824129,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 7,
       "original_rank": 7,
       "original_score": 98.5,
@@ -2641,7 +2669,7 @@
       "predicted_hr_probability": 0.173897,
       "predicted_hr_score": 98.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -2659,7 +2687,7 @@
       "game_pk": 824294,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 8,
       "original_rank": 8,
       "original_score": 97.3,
@@ -2682,15 +2710,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.167496,
       "predicted_hr_score": 97.3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 10.5%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Average exit velocity over the last 10 days is 95.4 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 60.9%, a top-decile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-11:824535:666176:682227",
@@ -2701,7 +2729,7 @@
       "game_pk": 824535,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 9,
       "original_rank": 9,
       "original_score": 96.9,
@@ -2725,7 +2753,7 @@
       "predicted_hr_probability": 0.165323,
       "predicted_hr_score": 96.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -2743,7 +2771,7 @@
       "game_pk": 823480,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 10,
       "original_rank": 10,
       "original_score": 95.8,
@@ -2785,7 +2813,7 @@
       "game_pk": 822996,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T22:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 11,
       "original_rank": 11,
       "original_score": 95.4,
@@ -2795,7 +2823,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -2809,7 +2837,7 @@
       "predicted_hr_probability": 0.158356,
       "predicted_hr_score": 95.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -2837,7 +2865,7 @@
       "team": "ATL",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -2869,7 +2897,7 @@
       "game_pk": 823644,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 13,
       "original_rank": 13,
       "original_score": 94.6,
@@ -2893,7 +2921,7 @@
       "predicted_hr_probability": 0.155461,
       "predicted_hr_score": 94.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -2911,7 +2939,7 @@
       "game_pk": 824697,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 14,
       "original_rank": 14,
       "original_score": 94.3,
@@ -2934,15 +2962,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.153806,
       "predicted_hr_score": 94.3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.6 mph, which points to top-end HR juice.",
       "top_reason_2": "Edward Cabrera has allowed barrels on 5.8% of batted balls to this batter side.",
       "top_reason_3": "The handedness-specific hard-hit matchup score is 0.2578, supporting loud-contact upside.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823480:547180:694297",
@@ -2953,7 +2981,7 @@
       "game_pk": 823480,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 15,
       "original_rank": 15,
       "original_score": 93.9,
@@ -2995,7 +3023,7 @@
       "game_pk": 824129,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 16,
       "original_rank": 16,
       "original_score": 96.2,
@@ -3019,7 +3047,7 @@
       "predicted_hr_probability": 0.158907,
       "predicted_hr_score": 96.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -3037,7 +3065,7 @@
       "game_pk": 822830,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 17,
       "original_rank": 17,
       "original_score": 96.6,
@@ -3060,15 +3088,15 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.163702,
       "predicted_hr_score": 96.6,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 115.7 mph, which points to top-end HR juice.",
       "top_reason_2": "Joe Ryan has allowed barrels on 7.4% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824535:687263:682227",
@@ -3079,7 +3107,7 @@
       "game_pk": 824535,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 18,
       "original_rank": 18,
       "original_score": 93.5,
@@ -3103,7 +3131,7 @@
       "predicted_hr_probability": 0.14834,
       "predicted_hr_score": 93.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -3131,7 +3159,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Ryan Feltner",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -3173,7 +3201,7 @@
       "team": "LAD",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -3215,7 +3243,7 @@
       "team": "TEX",
       "opponent_team": "LAD",
       "pitcher_name": "Emmet Sheehan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -3247,7 +3275,7 @@
       "game_pk": 824535,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 22,
       "original_rank": 22,
       "original_score": 92.0,
@@ -3271,7 +3299,7 @@
       "predicted_hr_probability": 0.146232,
       "predicted_hr_score": 92.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -3289,7 +3317,7 @@
       "game_pk": 824294,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 23,
       "original_rank": 23,
       "original_score": 91.6,
@@ -3312,15 +3340,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.145753,
       "predicted_hr_score": 91.6,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2261, supporting loud-contact upside.",
       "top_reason_2": "Against this pitcher handedness, the hitter has a 5.4% barrel-per-PA split.",
       "top_reason_3": "Barrel rate over the last 10 days is 7.4%, a top-quartile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823480:699912:592836",
@@ -3331,7 +3359,7 @@
       "game_pk": 823480,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 24,
       "original_rank": 24,
       "original_score": 90.4,
@@ -3354,15 +3382,15 @@
       "field_bearing_deg": 28.0,
       "predicted_hr_probability": 0.143673,
       "predicted_hr_score": 90.4,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 15.4% barrel-per-PA split.",
       "top_reason_2": "Taijuan Walker has allowed homers in 4.0% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823074:676475:624133",
@@ -3427,7 +3455,7 @@
       "team": "TEX",
       "opponent_team": "LAD",
       "pitcher_name": "Emmet Sheehan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -3501,7 +3529,7 @@
       "game_pk": 824535,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 28,
       "original_rank": 28,
       "original_score": 88.9,
@@ -3525,7 +3553,7 @@
       "predicted_hr_probability": 0.13918,
       "predicted_hr_score": 88.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -3543,7 +3571,7 @@
       "game_pk": 824129,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 29,
       "original_rank": 29,
       "original_score": 90.8,
@@ -3567,7 +3595,7 @@
       "predicted_hr_probability": 0.145053,
       "predicted_hr_score": 90.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -3595,7 +3623,7 @@
       "team": "LAD",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -3637,7 +3665,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Kyle Leahy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -3669,7 +3697,7 @@
       "game_pk": 824535,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 32,
       "original_rank": 32,
       "original_score": 87.7,
@@ -3693,7 +3721,7 @@
       "predicted_hr_probability": 0.135647,
       "predicted_hr_score": 87.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -3721,7 +3749,7 @@
       "team": "ATL",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -3753,7 +3781,7 @@
       "game_pk": 822830,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 34,
       "original_rank": 34,
       "original_score": 88.5,
@@ -3776,15 +3804,15 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.138307,
       "predicted_hr_score": 88.5,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 5.7% barrel-per-PA split.",
       "top_reason_2": "Eric Lauer has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824294:682663:663554",
@@ -3795,7 +3823,7 @@
       "game_pk": 824294,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 35,
       "original_rank": 35,
       "original_score": 86.6,
@@ -3818,15 +3846,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.132584,
       "predicted_hr_score": 86.6,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 113.0 mph, which points to top-end HR juice.",
       "top_reason_2": "Casey Mize has allowed barrels on 10.5% of recent batted balls.",
       "top_reason_3": "Casey Mize has allowed a 50.0% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823644:666182:682052",
@@ -3837,7 +3865,7 @@
       "game_pk": 823644,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 36,
       "original_rank": 36,
       "original_score": 86.2,
@@ -3860,15 +3888,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.130614,
       "predicted_hr_score": 86.2,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0033, reinforcing the power-contact fit.",
       "top_reason_2": "Jacob Lopez has allowed barrels on 6.4% of batted balls to this batter side.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 5.2% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-11:824857:656305:605135",
@@ -3889,7 +3917,7 @@
       "team": "SF",
       "opponent_team": "BAL",
       "pitcher_name": "Chris Bassitt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -3921,7 +3949,7 @@
       "game_pk": 824294,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 38,
       "original_rank": 38,
       "original_score": 85.1,
@@ -3944,15 +3972,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.12681,
       "predicted_hr_score": 85.1,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 12.5%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Casey Mize has allowed barrels on 10.5% of recent batted balls.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 112.6 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823480:666969:694297",
@@ -3963,7 +3991,7 @@
       "game_pk": 823480,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 39,
       "original_rank": 39,
       "original_score": 84.7,
@@ -3986,15 +4014,15 @@
       "field_bearing_deg": 28.0,
       "predicted_hr_probability": 0.126611,
       "predicted_hr_score": 84.7,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2086, supporting loud-contact upside.",
       "top_reason_2": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 51.4%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824857:642715:605135",
@@ -4015,7 +4043,7 @@
       "team": "SF",
       "opponent_team": "BAL",
       "pitcher_name": "Chris Bassitt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -4047,7 +4075,7 @@
       "game_pk": 823644,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 41,
       "original_rank": 41,
       "original_score": 83.1,
@@ -4091,7 +4119,7 @@
       "game_pk": 824294,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 42,
       "original_rank": 42,
       "original_score": 82.4,
@@ -4114,15 +4142,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.125308,
       "predicted_hr_score": 82.4,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 72.7%, a top-decile recent-contact signal.",
       "top_reason_2": "95+ EV contact rate over the last 10 days is 72.7%, which supports near-term HR upside.",
       "top_reason_3": "Average exit velocity over the last 10 days is 97.4 mph, a top-decile recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824857:646240:605135",
@@ -4143,7 +4171,7 @@
       "team": "SF",
       "opponent_team": "BAL",
       "pitcher_name": "Chris Bassitt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -4185,7 +4213,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -4217,7 +4245,7 @@
       "game_pk": 824129,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 45,
       "original_rank": 45,
       "original_score": 80.1,
@@ -4241,7 +4269,7 @@
       "predicted_hr_probability": 0.124038,
       "predicted_hr_score": 80.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -4301,7 +4329,7 @@
       "game_pk": 822830,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 47,
       "original_rank": 47,
       "original_score": 87.0,
@@ -4324,15 +4352,15 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.132668,
       "predicted_hr_score": 87.0,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0026, reinforcing the power-contact fit.",
       "top_reason_2": "Joe Ryan has allowed barrels on 7.4% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823155:668227:621121",
@@ -4353,7 +4381,7 @@
       "team": "SEA",
       "opponent_team": "HOU",
       "pitcher_name": "Lance McCullers Jr.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -4385,7 +4413,7 @@
       "game_pk": 824535,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 49,
       "original_rank": 49,
       "original_score": 78.2,
@@ -4409,7 +4437,7 @@
       "predicted_hr_probability": 0.120853,
       "predicted_hr_score": 78.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -4437,7 +4465,7 @@
       "team": "TEX",
       "opponent_team": "LAD",
       "pitcher_name": "Emmet Sheehan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -4469,7 +4497,7 @@
       "game_pk": 822830,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 51,
       "original_rank": 51,
       "original_score": 84.3,
@@ -4492,15 +4520,15 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.126597,
       "predicted_hr_score": 84.3,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 51.6%, showing consistent quality contact.",
       "top_reason_2": "Eric Lauer has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824939:800050:527048",
@@ -4521,7 +4549,7 @@
       "team": "CLE",
       "opponent_team": "ATL",
       "pitcher_name": "Mart\u00edn P\u00e9rez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -4563,7 +4591,7 @@
       "team": "MIL",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -4595,7 +4623,7 @@
       "game_pk": 824294,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 54,
       "original_rank": 54,
       "original_score": 76.6,
@@ -4618,15 +4646,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.119082,
       "predicted_hr_score": 76.6,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 112.8 mph, which points to top-end HR juice.",
       "top_reason_2": "Casey Mize has allowed barrels on 10.5% of recent batted balls.",
       "top_reason_3": "Casey Mize has allowed a 50.0% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823316:701538:663372",
@@ -4647,7 +4675,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Ryan Feltner",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -4689,7 +4717,7 @@
       "team": "LAD",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -4731,7 +4759,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Kyle Leahy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -4763,7 +4791,7 @@
       "game_pk": 822830,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 58,
       "original_rank": 58,
       "original_score": 80.5,
@@ -4817,7 +4845,7 @@
       "team": "ATL",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -4859,7 +4887,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Ryan Feltner",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -4901,7 +4929,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -4933,7 +4961,7 @@
       "game_pk": 822996,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T22:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 62,
       "original_rank": 62,
       "original_score": 72.4,
@@ -4943,7 +4971,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -4957,7 +4985,7 @@
       "predicted_hr_probability": 0.115903,
       "predicted_hr_score": 72.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -4985,7 +5013,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -5027,7 +5055,7 @@
       "team": "LAD",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -5059,7 +5087,7 @@
       "game_pk": 824535,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 65,
       "original_rank": 65,
       "original_score": 73.2,
@@ -5083,7 +5111,7 @@
       "predicted_hr_probability": 0.116361,
       "predicted_hr_score": 73.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -5111,7 +5139,7 @@
       "team": "MIL",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -5143,7 +5171,7 @@
       "game_pk": 822996,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T22:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 67,
       "original_rank": 67,
       "original_score": 72.0,
@@ -5153,7 +5181,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -5167,7 +5195,7 @@
       "predicted_hr_probability": 0.115459,
       "predicted_hr_score": 72.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -5185,7 +5213,7 @@
       "game_pk": 822830,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 68,
       "original_rank": 68,
       "original_score": 85.4,
@@ -5208,15 +5236,15 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.128155,
       "predicted_hr_score": 85.4,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 8.3% barrel-per-PA split.",
       "top_reason_2": "Joe Ryan has allowed barrels on 7.4% of recent batted balls.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0048, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:822830:660821:657746",
@@ -5227,7 +5255,7 @@
       "game_pk": 822830,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 69,
       "original_rank": 69,
       "original_score": 82.8,
@@ -5250,15 +5278,15 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.125594,
       "predicted_hr_score": 82.8,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 112.3 mph, which points to top-end HR juice.",
       "top_reason_2": "Joe Ryan has allowed barrels on 7.4% of recent batted balls.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0026, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-11:823644:682626:682052",
@@ -5269,7 +5297,7 @@
       "game_pk": 823644,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 70,
       "original_rank": 70,
       "original_score": 71.6,
@@ -5292,15 +5320,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.114971,
       "predicted_hr_score": 71.6,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 9.1%, which the model treats as sustained power quality.",
       "top_reason_2": "Jacob Lopez has allowed barrels on 6.4% of batted balls to this batter side.",
       "top_reason_3": "Barrel rate over the last 10 days is 9.7%, a top-decile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-11:823316:593428:663372",
@@ -5321,7 +5349,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Ryan Feltner",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -5335,14 +5363,16 @@
       "predicted_hr_probability": 0.114658,
       "predicted_hr_score": 71.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 7.3%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Ryan Feltner has allowed barrels on 7.1% of recent batted balls.",
       "top_reason_3": "Barrel rate over the last 30 days is 4.9%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824857:664056:605135",
@@ -5363,7 +5393,7 @@
       "team": "SF",
       "opponent_team": "BAL",
       "pitcher_name": "Chris Bassitt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -5395,7 +5425,7 @@
       "game_pk": 822830,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 73,
       "original_rank": 73,
       "original_score": 80.8,
@@ -5418,15 +5448,15 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.124433,
       "predicted_hr_score": 80.8,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0026, reinforcing the power-contact fit.",
       "top_reason_2": "Joe Ryan has allowed barrels on 7.4% of recent batted balls.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 4.5% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-11:822996:642708:607259",
@@ -5437,7 +5467,7 @@
       "game_pk": 822996,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T22:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 74,
       "original_rank": 74,
       "original_score": 70.1,
@@ -5447,7 +5477,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -5461,14 +5491,16 @@
       "predicted_hr_probability": 0.114342,
       "predicted_hr_score": 70.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 8.7%, which the model treats as sustained power quality.",
       "top_reason_2": "Nick Martinez has allowed barrels on 6.1% of recent batted balls.",
       "top_reason_3": "Barrel rate over the last 10 days is 10.5%, a top-decile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:822830:668904:641778",
@@ -5479,7 +5511,7 @@
       "game_pk": 822830,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 75,
       "original_rank": 75,
       "original_score": 81.6,
@@ -5523,7 +5555,7 @@
       "game_pk": 824129,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 76,
       "original_rank": 76,
       "original_score": 77.0,
@@ -5547,7 +5579,7 @@
       "predicted_hr_probability": 0.119469,
       "predicted_hr_score": 77.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -5617,7 +5649,7 @@
       "team": "LAD",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -5659,7 +5691,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Kyle Harrison",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -5691,7 +5723,7 @@
       "game_pk": 822830,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 80,
       "original_rank": 80,
       "original_score": 75.5,
@@ -5714,15 +5746,15 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.118211,
       "predicted_hr_score": 75.5,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 4.3%, which the model treats as sustained power quality.",
       "top_reason_2": "Eric Lauer has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:822996:666018:608331",
@@ -5733,7 +5765,7 @@
       "game_pk": 822996,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T22:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 81,
       "original_rank": 81,
       "original_score": 68.6,
@@ -5743,7 +5775,7 @@
       "team": "TB",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -5757,7 +5789,7 @@
       "predicted_hr_probability": 0.11278,
       "predicted_hr_score": 68.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -5775,7 +5807,7 @@
       "game_pk": 822996,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T22:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 82,
       "original_rank": 82,
       "original_score": 67.8,
@@ -5785,7 +5817,7 @@
       "team": "TB",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -5799,7 +5831,7 @@
       "predicted_hr_probability": 0.112659,
       "predicted_hr_score": 67.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -5827,7 +5859,7 @@
       "team": "BAL",
       "opponent_team": "SF",
       "pitcher_name": "Logan Webb",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -5869,7 +5901,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -5883,14 +5915,16 @@
       "predicted_hr_probability": 0.112306,
       "predicted_hr_score": 67.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1884, supporting loud-contact upside.",
       "top_reason_2": "Germ\u00e1n M\u00e1rquez has allowed homers in 4.5% of plate appearances to this batter side.",
       "top_reason_3": "Germ\u00e1n M\u00e1rquez has allowed barrels on 5.9% of batted balls to this batter side.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:822830:676914:657746",
@@ -5901,7 +5935,7 @@
       "game_pk": 822830,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 85,
       "original_rank": 85,
       "original_score": 79.3,
@@ -5924,15 +5958,15 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.121313,
       "predicted_hr_score": 79.3,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 63.6%, showing consistent quality contact.",
       "top_reason_2": "Joe Ryan has allowed barrels on 7.4% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823480:669016:694297",
@@ -5943,7 +5977,7 @@
       "game_pk": 823480,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 86,
       "original_rank": 86,
       "original_score": 66.7,
@@ -5966,15 +6000,15 @@
       "field_bearing_deg": 28.0,
       "predicted_hr_probability": 0.112033,
       "predicted_hr_score": 66.7,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 6.7%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "The handedness-specific hard-hit matchup score is 0.1895, supporting loud-contact upside.",
       "top_reason_3": "Barrel rate over the last 30 days is 4.3%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824129:686469:607200",
@@ -5985,7 +6019,7 @@
       "game_pk": 824129,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 87,
       "original_rank": 87,
       "original_score": 66.3,
@@ -6009,7 +6043,7 @@
       "predicted_hr_probability": 0.111594,
       "predicted_hr_score": 66.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -6037,7 +6071,7 @@
       "team": "SEA",
       "opponent_team": "HOU",
       "pitcher_name": "Lance McCullers Jr.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -6079,7 +6113,7 @@
       "team": "SF",
       "opponent_team": "BAL",
       "pitcher_name": "Chris Bassitt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -6111,7 +6145,7 @@
       "game_pk": 824697,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 90,
       "original_rank": 90,
       "original_score": 65.1,
@@ -6134,15 +6168,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.110358,
       "predicted_hr_score": 65.1,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 6.7%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Edward Cabrera has allowed barrels on 5.8% of batted balls to this batter side.",
       "top_reason_3": "Barrel rate over the last 30 days is 5.7%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823805:678554:690986",
@@ -6163,7 +6197,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Kyle Harrison",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -6195,7 +6229,7 @@
       "game_pk": 824129,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 92,
       "original_rank": 92,
       "original_score": 64.4,
@@ -6219,7 +6253,7 @@
       "predicted_hr_probability": 0.110282,
       "predicted_hr_score": 64.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -6289,7 +6323,7 @@
       "team": "TEX",
       "opponent_team": "LAD",
       "pitcher_name": "Emmet Sheehan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -6303,14 +6337,16 @@
       "predicted_hr_probability": 0.109897,
       "predicted_hr_score": 63.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0020, reinforcing the power-contact fit.",
       "top_reason_2": "Emmet Sheehan has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 109.0 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:823967:669257:683004",
@@ -6331,7 +6367,7 @@
       "team": "LAD",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -6363,7 +6399,7 @@
       "game_pk": 824535,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 96,
       "original_rank": 96,
       "original_score": 62.8,
@@ -6417,7 +6453,7 @@
       "team": "TEX",
       "opponent_team": "LAD",
       "pitcher_name": "Emmet Sheehan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -6449,7 +6485,7 @@
       "game_pk": 823644,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 98,
       "original_rank": 98,
       "original_score": 61.7,
@@ -6473,7 +6509,7 @@
       "predicted_hr_probability": 0.107772,
       "predicted_hr_score": 61.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -6501,7 +6537,7 @@
       "team": "ATL",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -6543,7 +6579,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Ryan Feltner",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -6585,7 +6621,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Kyle Harrison",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -6617,7 +6653,7 @@
       "game_pk": 824294,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 102,
       "original_rank": 102,
       "original_score": 59.8,
@@ -6640,15 +6676,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.106907,
       "predicted_hr_score": 59.8,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 6.7%, which the model treats as sustained power quality.",
       "top_reason_2": "Hard-hit rate over the last 30 days is 53.8%, showing consistent quality contact.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 53.8%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823644:543760:682052",
@@ -6659,7 +6695,7 @@
       "game_pk": 823644,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 103,
       "original_rank": 103,
       "original_score": 59.4,
@@ -6683,7 +6719,7 @@
       "predicted_hr_probability": 0.10688,
       "predicted_hr_score": 59.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -6701,7 +6737,7 @@
       "game_pk": 824294,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 104,
       "original_rank": 104,
       "original_score": 59.0,
@@ -6724,15 +6760,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.106854,
       "predicted_hr_score": 59.0,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 6.8% barrel-per-PA split.",
       "top_reason_2": "Barrel rate over the last 30 days is 6.8%, which the model treats as sustained power quality.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0029, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824129:672580:607200",
@@ -6743,7 +6779,7 @@
       "game_pk": 824129,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 105,
       "original_rank": 105,
       "original_score": 68.2,
@@ -6766,15 +6802,15 @@
       "field_bearing_deg": 25.0,
       "predicted_hr_probability": 0.112748,
       "predicted_hr_score": 68.2,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 57.6%, a top-quartile recent-contact signal.",
       "top_reason_2": "Projected wind speed is 11.4 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 57.6%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-11:822996:545341:607259",
@@ -6785,7 +6821,7 @@
       "game_pk": 822996,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T22:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 106,
       "original_rank": 106,
       "original_score": 58.6,
@@ -6795,7 +6831,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -6809,14 +6845,16 @@
       "predicted_hr_probability": 0.106521,
       "predicted_hr_score": 58.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 11.1%, which the model treats as sustained power quality.",
       "top_reason_2": "Nick Martinez has allowed barrels on 6.1% of recent batted balls.",
       "top_reason_3": "Barrel rate over the last 10 days is 14.3%, a top-decile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:823316:681198:608566",
@@ -6837,7 +6875,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -6851,14 +6889,16 @@
       "predicted_hr_probability": 0.107377,
       "predicted_hr_score": 60.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1833, supporting loud-contact upside.",
       "top_reason_2": "Germ\u00e1n M\u00e1rquez has allowed barrels on 6.0% of batted balls to this batter side.",
       "top_reason_3": "Germ\u00e1n M\u00e1rquez has allowed homers in 3.7% of plate appearances to this batter side.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:823316:669134:663372",
@@ -6879,7 +6919,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Ryan Feltner",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -6893,14 +6933,16 @@
       "predicted_hr_probability": 0.106444,
       "predicted_hr_score": 58.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 7.7%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Ryan Feltner has allowed barrels on 7.1% of recent batted balls.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 55.6%, a top-quartile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824857:669477:605135",
@@ -6921,7 +6963,7 @@
       "team": "SF",
       "opponent_team": "BAL",
       "pitcher_name": "Chris Bassitt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -6953,7 +6995,7 @@
       "game_pk": 823480,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 110,
       "original_rank": 110,
       "original_score": 57.5,
@@ -7007,7 +7049,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Ryan Feltner",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -7039,7 +7081,7 @@
       "game_pk": 823644,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 112,
       "original_rank": 112,
       "original_score": 56.3,
@@ -7063,7 +7105,7 @@
       "predicted_hr_probability": 0.104955,
       "predicted_hr_score": 56.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -7091,7 +7133,7 @@
       "team": "MIL",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -7105,14 +7147,16 @@
       "predicted_hr_probability": 0.104934,
       "predicted_hr_score": 55.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 58.8%, showing consistent quality contact.",
       "top_reason_2": "Foster Griffin has allowed barrels on 15.8% of batted balls to this batter side.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 58.8%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:823805:671277:690986",
@@ -7133,7 +7177,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Kyle Harrison",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -7147,14 +7191,16 @@
       "predicted_hr_probability": 0.104651,
       "predicted_hr_score": 54.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 14.3%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Kyle Harrison has allowed a 57.1% hard-hit rate over the last 30 days.",
       "top_reason_3": "Barrel rate over the last 30 days is 8.7%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:823316:666160:608566",
@@ -7175,7 +7221,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -7217,7 +7263,7 @@
       "team": "ATL",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -7231,14 +7277,16 @@
       "predicted_hr_probability": 0.104919,
       "predicted_hr_score": 55.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 9.4%, which the model treats as sustained power quality.",
       "top_reason_2": "Parker Messick has allowed homers in 4.2% of plate appearances over the last 30 days.",
       "top_reason_3": "Barrel rate over the last 10 days is 11.8%, a top-decile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:822830:680777:641778",
@@ -7249,7 +7297,7 @@
       "game_pk": 822830,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 117,
       "original_rank": 117,
       "original_score": 64.0,
@@ -7272,15 +7320,15 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.110234,
       "predicted_hr_score": 64.0,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 4.8%, which the model treats as sustained power quality.",
       "top_reason_2": "Eric Lauer has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824129:678246:608379",
@@ -7291,7 +7339,7 @@
       "game_pk": 824129,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 118,
       "original_rank": 118,
       "original_score": 53.6,
@@ -7335,7 +7383,7 @@
       "game_pk": 824697,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 119,
       "original_rank": 119,
       "original_score": 53.3,
@@ -7358,15 +7406,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.103784,
       "predicted_hr_score": 53.3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 95.4 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Barrel rate over the last 10 days is 8.6%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_3": "Barrel rate over the last 30 days is 6.9%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823805:666152:656492",
@@ -7387,7 +7435,7 @@
       "team": "MIL",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -7401,14 +7449,16 @@
       "predicted_hr_probability": 0.103758,
       "predicted_hr_score": 52.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0040, reinforcing the power-contact fit.",
       "top_reason_2": "Foster Griffin has allowed barrels on 15.8% of batted balls to this batter side.",
       "top_reason_3": "Foster Griffin has allowed homers in 7.4% of plate appearances to this batter side.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:822830:672960:657746",
@@ -7419,7 +7469,7 @@
       "game_pk": 822830,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 121,
       "original_rank": 121,
       "original_score": 62.1,
@@ -7473,7 +7523,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Kyle Leahy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -7515,7 +7565,7 @@
       "team": "TEX",
       "opponent_team": "LAD",
       "pitcher_name": "Emmet Sheehan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -7557,7 +7607,7 @@
       "team": "MIL",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -7589,7 +7639,7 @@
       "game_pk": 824535,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 125,
       "original_rank": 125,
       "original_score": 51.3,
@@ -7613,7 +7663,7 @@
       "predicted_hr_probability": 0.101069,
       "predicted_hr_score": 51.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -7641,7 +7691,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Kyle Leahy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -7683,7 +7733,7 @@
       "team": "TEX",
       "opponent_team": "LAD",
       "pitcher_name": "Emmet Sheehan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -7725,7 +7775,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Kyle Leahy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -7767,7 +7817,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -7799,7 +7849,7 @@
       "game_pk": 823480,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 130,
       "original_rank": 130,
       "original_score": 50.6,
@@ -7822,15 +7872,15 @@
       "field_bearing_deg": 28.0,
       "predicted_hr_probability": 0.099453,
       "predicted_hr_score": 50.6,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
       "top_reason_3": "The handedness-specific hard-hit matchup score is 0.1842, supporting loud-contact upside.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824857:683002:657277",
@@ -7851,7 +7901,7 @@
       "team": "BAL",
       "opponent_team": "SF",
       "pitcher_name": "Logan Webb",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -7893,7 +7943,7 @@
       "team": "SEA",
       "opponent_team": "HOU",
       "pitcher_name": "Lance McCullers Jr.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -7935,7 +7985,7 @@
       "team": "BAL",
       "opponent_team": "SF",
       "pitcher_name": "Logan Webb",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -7977,7 +8027,7 @@
       "team": "LAD",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -8019,7 +8069,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Kyle Leahy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -8061,7 +8111,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Ryan Feltner",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -8103,7 +8153,7 @@
       "team": "TEX",
       "opponent_team": "LAD",
       "pitcher_name": "Emmet Sheehan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -8145,7 +8195,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -8177,7 +8227,7 @@
       "game_pk": 824294,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 139,
       "original_rank": 139,
       "original_score": 46.0,
@@ -8200,15 +8250,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.094155,
       "predicted_hr_score": 46.0,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1901, supporting loud-contact upside.",
       "top_reason_2": "Casey Mize has allowed barrels on 10.5% of recent batted balls.",
       "top_reason_3": "Casey Mize has allowed a 50.0% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824939:656555:527048",
@@ -8229,7 +8279,7 @@
       "team": "CLE",
       "opponent_team": "ATL",
       "pitcher_name": "Mart\u00edn P\u00e9rez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -8261,7 +8311,7 @@
       "game_pk": 822996,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T22:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 141,
       "original_rank": 141,
       "original_score": 45.6,
@@ -8271,7 +8321,7 @@
       "team": "TB",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -8285,7 +8335,7 @@
       "predicted_hr_probability": 0.09379,
       "predicted_hr_score": 45.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -8313,7 +8363,7 @@
       "team": "SEA",
       "opponent_team": "HOU",
       "pitcher_name": "Lance McCullers Jr.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -8355,7 +8405,7 @@
       "team": "CLE",
       "opponent_team": "ATL",
       "pitcher_name": "Mart\u00edn P\u00e9rez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -8387,7 +8437,7 @@
       "game_pk": 823480,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 144,
       "original_rank": 144,
       "original_score": 44.4,
@@ -8410,15 +8460,15 @@
       "field_bearing_deg": 28.0,
       "predicted_hr_probability": 0.092984,
       "predicted_hr_score": 44.4,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 48.4%, showing consistent quality contact.",
       "top_reason_2": "95+ EV contact rate over the last 30 days is 48.4%, a strong loud-contact input for the model.",
       "top_reason_3": "Average exit velocity over the last 10 days is 91.1 mph, a above-baseline recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824535:666181:691946",
@@ -8429,7 +8479,7 @@
       "game_pk": 824535,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 145,
       "original_rank": 145,
       "original_score": 44.1,
@@ -8483,7 +8533,7 @@
       "team": "TEX",
       "opponent_team": "LAD",
       "pitcher_name": "Emmet Sheehan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -8497,14 +8547,16 @@
       "predicted_hr_probability": 0.092499,
       "predicted_hr_score": 43.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0019, reinforcing the power-contact fit.",
       "top_reason_2": "Emmet Sheehan has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 3.6% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824129:686555:607200",
@@ -8515,7 +8567,7 @@
       "game_pk": 824129,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 147,
       "original_rank": 147,
       "original_score": 47.9,
@@ -8559,7 +8611,7 @@
       "game_pk": 822830,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 148,
       "original_rank": 148,
       "original_score": 49.4,
@@ -8582,15 +8634,15 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.096611,
       "predicted_hr_score": 49.4,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 4.8%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Eric Lauer has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823480:702222:694297",
@@ -8601,7 +8653,7 @@
       "game_pk": 823480,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 149,
       "original_rank": 149,
       "original_score": 43.3,
@@ -8624,15 +8676,15 @@
       "field_bearing_deg": 28.0,
       "predicted_hr_probability": 0.092158,
       "predicted_hr_score": 43.3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 91.3 mph, a above-baseline recent batted-ball quality marker.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823155:686527:621121",
@@ -8653,7 +8705,7 @@
       "team": "SEA",
       "opponent_team": "HOU",
       "pitcher_name": "Lance McCullers Jr.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -8685,7 +8737,7 @@
       "game_pk": 824697,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 151,
       "original_rank": 151,
       "original_score": 41.8,
@@ -8708,15 +8760,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.091219,
       "predicted_hr_score": 41.8,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 63.0%, showing consistent quality contact.",
       "top_reason_2": "Braxton Ashcraft has allowed 92.4 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 63.0%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823805:686894:690986",
@@ -8737,7 +8789,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Kyle Harrison",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -8779,7 +8831,7 @@
       "team": "MIL",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -8811,7 +8863,7 @@
       "game_pk": 824294,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 154,
       "original_rank": 154,
       "original_score": 40.6,
@@ -8865,7 +8917,7 @@
       "team": "BAL",
       "opponent_team": "SF",
       "pitcher_name": "Logan Webb",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -8907,7 +8959,7 @@
       "team": "ATL",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -8939,7 +8991,7 @@
       "game_pk": 824129,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 157,
       "original_rank": 157,
       "original_score": 39.5,
@@ -8963,7 +9015,7 @@
       "predicted_hr_probability": 0.09028,
       "predicted_hr_score": 39.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -8981,7 +9033,7 @@
       "game_pk": 824129,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 158,
       "original_rank": 158,
       "original_score": 39.1,
@@ -9005,7 +9057,7 @@
       "predicted_hr_probability": 0.089867,
       "predicted_hr_score": 39.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -9023,7 +9075,7 @@
       "game_pk": 824294,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 159,
       "original_rank": 159,
       "original_score": 38.7,
@@ -9046,15 +9098,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.089746,
       "predicted_hr_score": 38.7,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 66.7%, a top-decile recent-contact signal.",
       "top_reason_2": "95+ EV contact rate over the last 10 days is 66.7%, which supports near-term HR upside.",
       "top_reason_3": "Average exit velocity over the last 10 days is 95.7 mph, a top-decile recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823074:695336:624133",
@@ -9149,7 +9201,7 @@
       "game_pk": 823480,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 162,
       "original_rank": 162,
       "original_score": 37.9,
@@ -9172,15 +9224,15 @@
       "field_bearing_deg": 28.0,
       "predicted_hr_probability": 0.08937,
       "predicted_hr_score": 37.9,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2029, supporting loud-contact upside.",
       "top_reason_2": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824129:700337:608379",
@@ -9191,7 +9243,7 @@
       "game_pk": 824129,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 163,
       "original_rank": 163,
       "original_score": 37.5,
@@ -9235,7 +9287,7 @@
       "game_pk": 824697,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 164,
       "original_rank": 164,
       "original_score": 36.8,
@@ -9258,15 +9310,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.08904,
       "predicted_hr_score": 36.8,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 5.2% barrel-per-PA split.",
       "top_reason_2": "Braxton Ashcraft has allowed 92.4 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Braxton Ashcraft has allowed a 47.4% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:822996:641857:607259",
@@ -9277,7 +9329,7 @@
       "game_pk": 822996,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T22:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 165,
       "original_rank": 165,
       "original_score": 36.0,
@@ -9287,7 +9339,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -9301,7 +9353,7 @@
       "predicted_hr_probability": 0.08865,
       "predicted_hr_score": 36.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -9371,7 +9423,7 @@
       "team": "ATL",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -9403,7 +9455,7 @@
       "game_pk": 822996,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T22:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 168,
       "original_rank": 168,
       "original_score": 35.2,
@@ -9413,7 +9465,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -9427,7 +9479,7 @@
       "predicted_hr_probability": 0.088348,
       "predicted_hr_score": 35.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -9445,7 +9497,7 @@
       "game_pk": 823480,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 169,
       "original_rank": 169,
       "original_score": 34.5,
@@ -9468,15 +9520,15 @@
       "field_bearing_deg": 28.0,
       "predicted_hr_probability": 0.087333,
       "predicted_hr_score": 34.5,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 4.8%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Taijuan Walker has allowed homers in 4.4% of plate appearances to this batter side.",
       "top_reason_3": "The handedness-specific hard-hit matchup score is 0.1830, supporting loud-contact upside.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824535:553993:691946",
@@ -9487,7 +9539,7 @@
       "game_pk": 824535,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 170,
       "original_rank": 170,
       "original_score": 34.1,
@@ -9511,7 +9563,7 @@
       "predicted_hr_probability": 0.087319,
       "predicted_hr_score": 34.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -9529,7 +9581,7 @@
       "game_pk": 824294,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 171,
       "original_rank": 171,
       "original_score": 33.7,
@@ -9573,7 +9625,7 @@
       "game_pk": 824697,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 172,
       "original_rank": 172,
       "original_score": 33.3,
@@ -9596,15 +9648,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.086834,
       "predicted_hr_score": 33.3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0032, reinforcing the power-contact fit.",
       "top_reason_2": "Edward Cabrera has allowed barrels on 5.8% of batted balls to this batter side.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 5.5% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823480:694374:592836",
@@ -9615,7 +9667,7 @@
       "game_pk": 823480,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 173,
       "original_rank": 173,
       "original_score": 33.0,
@@ -9638,15 +9690,15 @@
       "field_bearing_deg": 28.0,
       "predicted_hr_probability": 0.086807,
       "predicted_hr_score": 33.0,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 4.2%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Taijuan Walker has allowed homers in 4.0% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823074:665966:681517",
@@ -9667,7 +9719,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Kyle Leahy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -9699,7 +9751,7 @@
       "game_pk": 824535,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 175,
       "original_rank": 175,
       "original_score": 32.2,
@@ -9722,15 +9774,15 @@
       "field_bearing_deg": 24.0,
       "predicted_hr_probability": 0.086291,
       "predicted_hr_score": 32.2,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 6.5%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "George Klassen has allowed barrels on 15.8% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 114.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-11:823155:701358:622491",
@@ -9783,7 +9835,7 @@
       "game_pk": 822830,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 177,
       "original_rank": 177,
       "original_score": 34.9,
@@ -9806,15 +9858,15 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.087849,
       "predicted_hr_score": 34.9,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Joe Ryan has allowed barrels on 7.4% of recent batted balls.",
       "top_reason_3": "Joe Ryan has allowed barrels on 5.8% of batted balls to this batter side.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824697:608324:677952",
@@ -9825,7 +9877,7 @@
       "game_pk": 824697,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 178,
       "original_rank": 178,
       "original_score": 31.4,
@@ -9848,15 +9900,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.085428,
       "predicted_hr_score": 31.4,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 52.3%, showing consistent quality contact.",
       "top_reason_2": "Braxton Ashcraft has allowed 92.4 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 52.3%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823074:686780:624133",
@@ -9909,7 +9961,7 @@
       "game_pk": 824697,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 180,
       "original_rank": 180,
       "original_score": 30.7,
@@ -9932,15 +9984,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.08403,
       "predicted_hr_score": 30.7,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 4.4% barrel-per-PA split.",
       "top_reason_2": "Braxton Ashcraft has allowed 92.4 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Braxton Ashcraft has allowed a 47.4% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824857:808982:605135",
@@ -9961,7 +10013,7 @@
       "team": "SF",
       "opponent_team": "BAL",
       "pitcher_name": "Chris Bassitt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -10045,7 +10097,7 @@
       "team": "ATL",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -10077,7 +10129,7 @@
       "game_pk": 822830,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 184,
       "original_rank": 184,
       "original_score": 32.6,
@@ -10100,15 +10152,15 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.086356,
       "predicted_hr_score": 32.6,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 3.6%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Eric Lauer has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-11:824535:694384:682227",
@@ -10119,7 +10171,7 @@
       "game_pk": 824535,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 185,
       "original_rank": 185,
       "original_score": 29.1,
@@ -10143,7 +10195,7 @@
       "predicted_hr_probability": 0.082621,
       "predicted_hr_score": 29.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10161,7 +10213,7 @@
       "game_pk": 824697,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 186,
       "original_rank": 186,
       "original_score": 28.4,
@@ -10184,15 +10236,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.081929,
       "predicted_hr_score": 28.4,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 13.3%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Braxton Ashcraft has allowed 92.4 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Average exit velocity over the last 10 days is 96.9 mph, a top-decile recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823805:695734:690986",
@@ -10213,7 +10265,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Kyle Harrison",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -10255,7 +10307,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Ryan Feltner",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -10297,7 +10349,7 @@
       "team": "BAL",
       "opponent_team": "SF",
       "pitcher_name": "Logan Webb",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -10311,14 +10363,16 @@
       "predicted_hr_probability": 0.081517,
       "predicted_hr_score": 27.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Logan Webb has allowed 91.3 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_2": "Logan Webb has allowed a 44.9% hard-hit rate over the last 30 days.",
       "top_reason_3": "Logan Webb has allowed 44.9% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824857:687637:657277",
@@ -10339,7 +10393,7 @@
       "team": "BAL",
       "opponent_team": "SF",
       "pitcher_name": "Logan Webb",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -10353,14 +10407,16 @@
       "predicted_hr_probability": 0.08102,
       "predicted_hr_score": 27.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 3.8%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Logan Webb has allowed 91.3 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 44.4%, a above-baseline recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:823805:686217:656492",
@@ -10381,7 +10437,7 @@
       "team": "MIL",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -10423,7 +10479,7 @@
       "team": "MIL",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -10455,7 +10511,7 @@
       "game_pk": 822830,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 193,
       "original_rank": 193,
       "original_score": 31.0,
@@ -10478,15 +10534,15 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.084244,
       "predicted_hr_score": 31.0,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 109.7 mph, which points to top-end HR juice.",
       "top_reason_2": "Joe Ryan has allowed barrels on 7.4% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824535:666139:682227",
@@ -10497,7 +10553,7 @@
       "game_pk": 824535,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 194,
       "original_rank": 194,
       "original_score": 26.1,
@@ -10541,7 +10597,7 @@
       "game_pk": 824294,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 195,
       "original_rank": 195,
       "original_score": 25.3,
@@ -10564,15 +10620,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.078936,
       "predicted_hr_score": 25.3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0029, reinforcing the power-contact fit.",
       "top_reason_2": "Casey Mize has allowed barrels on 10.5% of recent batted balls.",
       "top_reason_3": "Casey Mize has allowed a 50.0% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824294:688363:663554",
@@ -10583,7 +10639,7 @@
       "game_pk": 824294,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 196,
       "original_rank": 196,
       "original_score": 24.9,
@@ -10606,15 +10662,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.07883,
       "predicted_hr_score": 24.9,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Casey Mize has allowed barrels on 10.5% of recent batted balls.",
       "top_reason_2": "Casey Mize has allowed a 50.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Casey Mize has allowed 50.0% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823155:694388:622491",
@@ -10677,7 +10733,7 @@
       "team": "SEA",
       "opponent_team": "HOU",
       "pitcher_name": "Lance McCullers Jr.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -10719,7 +10775,7 @@
       "team": "CLE",
       "opponent_team": "ATL",
       "pitcher_name": "Mart\u00edn P\u00e9rez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -10751,7 +10807,7 @@
       "game_pk": 824535,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 200,
       "original_rank": 200,
       "original_score": 23.8,
@@ -10775,7 +10831,7 @@
       "predicted_hr_probability": 0.078138,
       "predicted_hr_score": 23.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10793,7 +10849,7 @@
       "game_pk": 824129,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 201,
       "original_rank": 201,
       "original_score": 23.4,
@@ -10817,7 +10873,7 @@
       "predicted_hr_probability": 0.078135,
       "predicted_hr_score": 23.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10835,7 +10891,7 @@
       "game_pk": 824129,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 202,
       "original_rank": 202,
       "original_score": 23.0,
@@ -10859,7 +10915,7 @@
       "predicted_hr_probability": 0.078058,
       "predicted_hr_score": 23.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10877,7 +10933,7 @@
       "game_pk": 824129,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 203,
       "original_rank": 203,
       "original_score": 22.6,
@@ -10931,7 +10987,7 @@
       "team": "SEA",
       "opponent_team": "HOU",
       "pitcher_name": "Lance McCullers Jr.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -11005,7 +11061,7 @@
       "game_pk": 823480,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 206,
       "original_rank": 206,
       "original_score": 20.3,
@@ -11028,15 +11084,15 @@
       "field_bearing_deg": 28.0,
       "predicted_hr_probability": 0.076553,
       "predicted_hr_score": 20.3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Taijuan Walker has allowed homers in 4.0% of plate appearances to this batter side.",
       "top_reason_2": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
       "top_reason_3": "Taijuan Walker has allowed homers in 3.8% of plate appearances over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824857:672275:605135",
@@ -11057,7 +11113,7 @@
       "team": "SF",
       "opponent_team": "BAL",
       "pitcher_name": "Chris Bassitt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -11099,7 +11155,7 @@
       "team": "ATL",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -11131,7 +11187,7 @@
       "game_pk": 823480,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 209,
       "original_rank": 209,
       "original_score": 19.5,
@@ -11175,7 +11231,7 @@
       "game_pk": 824697,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 210,
       "original_rank": 210,
       "original_score": 21.1,
@@ -11198,15 +11254,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.076708,
       "predicted_hr_score": 21.1,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 57.1%, a top-quartile recent-contact signal.",
       "top_reason_2": "95+ EV contact rate over the last 10 days is 57.1%, which supports near-term HR upside.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 52.4%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823155:647304:621121",
@@ -11227,7 +11283,7 @@
       "team": "SEA",
       "opponent_team": "HOU",
       "pitcher_name": "Lance McCullers Jr.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -11259,7 +11315,7 @@
       "game_pk": 824697,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 212,
       "original_rank": 212,
       "original_score": 18.8,
@@ -11313,7 +11369,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Kyle Harrison",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -11389,7 +11445,7 @@
       "game_pk": 823644,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 215,
       "original_rank": 215,
       "original_score": 17.2,
@@ -11413,7 +11469,7 @@
       "predicted_hr_probability": 0.074403,
       "predicted_hr_score": 17.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -11431,7 +11487,7 @@
       "game_pk": 824294,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 216,
       "original_rank": 216,
       "original_score": 16.9,
@@ -11454,15 +11510,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.074256,
       "predicted_hr_score": 16.9,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 4.5%, which the model treats as sustained power quality.",
       "top_reason_2": "Casey Mize has allowed barrels on 10.5% of recent batted balls.",
       "top_reason_3": "Casey Mize has allowed a 50.0% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824294:669364:663554",
@@ -11473,7 +11529,7 @@
       "game_pk": 824294,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 217,
       "original_rank": 217,
       "original_score": 16.5,
@@ -11496,15 +11552,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.074166,
       "predicted_hr_score": 16.5,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 91.5 mph, a above-baseline recent batted-ball quality marker.",
       "top_reason_2": "Casey Mize has allowed barrels on 10.5% of recent batted balls.",
       "top_reason_3": "Casey Mize has allowed a 50.0% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824294:691594:663554",
@@ -11515,7 +11571,7 @@
       "game_pk": 824294,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 218,
       "original_rank": 218,
       "original_score": 16.1,
@@ -11559,7 +11615,7 @@
       "game_pk": 824697,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 219,
       "original_rank": 219,
       "original_score": 17.6,
@@ -11613,7 +11669,7 @@
       "team": "BAL",
       "opponent_team": "SF",
       "pitcher_name": "Logan Webb",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -11627,14 +11683,16 @@
       "predicted_hr_probability": 0.07381,
       "predicted_hr_score": 15.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 56.5%, showing consistent quality contact.",
       "top_reason_2": "Logan Webb has allowed 91.3 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 56.5%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824129:687957:608379",
@@ -11645,7 +11703,7 @@
       "game_pk": 824129,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 221,
       "original_rank": 221,
       "original_score": 15.3,
@@ -11669,7 +11727,7 @@
       "predicted_hr_probability": 0.073672,
       "predicted_hr_score": 15.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -11729,7 +11787,7 @@
       "game_pk": 824535,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 223,
       "original_rank": 223,
       "original_score": 14.6,
@@ -11753,7 +11811,7 @@
       "predicted_hr_probability": 0.072914,
       "predicted_hr_score": 14.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -11771,7 +11829,7 @@
       "game_pk": 822996,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T22:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 224,
       "original_rank": 224,
       "original_score": 13.8,
@@ -11781,7 +11839,7 @@
       "team": "TB",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -11795,7 +11853,7 @@
       "predicted_hr_probability": 0.071891,
       "predicted_hr_score": 13.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -11813,7 +11871,7 @@
       "game_pk": 824697,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 225,
       "original_rank": 225,
       "original_score": 14.2,
@@ -11836,15 +11894,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.072899,
       "predicted_hr_score": 14.2,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 113.2 mph, which points to top-end HR juice.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824697:807713:677952",
@@ -11855,7 +11913,7 @@
       "game_pk": 824697,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 226,
       "original_rank": 226,
       "original_score": 13.4,
@@ -11909,7 +11967,7 @@
       "team": "CLE",
       "opponent_team": "ATL",
       "pitcher_name": "Mart\u00edn P\u00e9rez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -11951,7 +12009,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -11965,14 +12023,16 @@
       "predicted_hr_probability": 0.071498,
       "predicted_hr_score": 12.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1806, supporting loud-contact upside.",
       "top_reason_2": "Germ\u00e1n M\u00e1rquez has allowed homers in 4.5% of plate appearances to this batter side.",
       "top_reason_3": "Germ\u00e1n M\u00e1rquez has allowed barrels on 5.9% of batted balls to this batter side.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:822830:668885:641778",
@@ -11983,7 +12043,7 @@
       "game_pk": 822830,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 229,
       "original_rank": 229,
       "original_score": 18.4,
@@ -12006,15 +12066,15 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.075282,
       "predicted_hr_score": 18.4,
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 3.2%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Eric Lauer has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824857:669236:657277",
@@ -12035,7 +12095,7 @@
       "team": "BAL",
       "opponent_team": "SF",
       "pitcher_name": "Logan Webb",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -12077,7 +12137,7 @@
       "team": "CLE",
       "opponent_team": "ATL",
       "pitcher_name": "Mart\u00edn P\u00e9rez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -12119,7 +12179,7 @@
       "team": "CLE",
       "opponent_team": "ATL",
       "pitcher_name": "Mart\u00edn P\u00e9rez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -12151,7 +12211,7 @@
       "game_pk": 824697,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 233,
       "original_rank": 233,
       "original_score": 11.1,
@@ -12174,15 +12234,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.069528,
       "predicted_hr_score": 11.1,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 95.3 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Braxton Ashcraft has allowed 92.4 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 55.6%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823155:670623:622491",
@@ -12235,7 +12295,7 @@
       "game_pk": 824294,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 235,
       "original_rank": 235,
       "original_score": 10.3,
@@ -12258,15 +12318,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.069147,
       "predicted_hr_score": 10.3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 4.0%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823967:808975:683004",
@@ -12287,7 +12347,7 @@
       "team": "LAD",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -12319,7 +12379,7 @@
       "game_pk": 824535,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 237,
       "original_rank": 237,
       "original_score": 9.6,
@@ -12343,7 +12403,7 @@
       "predicted_hr_probability": 0.068347,
       "predicted_hr_score": 9.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -12371,7 +12431,7 @@
       "team": "MIL",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -12413,7 +12473,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Kyle Leahy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -12445,7 +12505,7 @@
       "game_pk": 823480,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 240,
       "original_rank": 240,
       "original_score": 8.4,
@@ -12468,15 +12528,15 @@
       "field_bearing_deg": 28.0,
       "predicted_hr_probability": 0.065329,
       "predicted_hr_score": 8.4,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Taijuan Walker has allowed homers in 4.0% of plate appearances to this batter side.",
       "top_reason_2": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
       "top_reason_3": "Taijuan Walker has allowed homers in 3.8% of plate appearances over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:824535:672724:682227",
@@ -12487,7 +12547,7 @@
       "game_pk": 824535,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 241,
       "original_rank": 241,
       "original_score": 8.0,
@@ -12541,7 +12601,7 @@
       "team": "CLE",
       "opponent_team": "ATL",
       "pitcher_name": "Mart\u00edn P\u00e9rez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -12573,7 +12633,7 @@
       "game_pk": 823480,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 243,
       "original_rank": 243,
       "original_score": 7.3,
@@ -12596,15 +12656,15 @@
       "field_bearing_deg": 28.0,
       "predicted_hr_probability": 0.062723,
       "predicted_hr_score": 7.3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 3.8%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Taijuan Walker has allowed homers in 4.0% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:823644:676724:682052",
@@ -12615,7 +12675,7 @@
       "game_pk": 823644,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 244,
       "original_rank": 244,
       "original_score": 6.9,
@@ -12669,7 +12729,7 @@
       "team": "SEA",
       "opponent_team": "HOU",
       "pitcher_name": "Lance McCullers Jr.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -12683,14 +12743,16 @@
       "predicted_hr_probability": 0.062041,
       "predicted_hr_score": 6.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1948, supporting loud-contact upside.",
       "top_reason_2": "Lance McCullers Jr. has allowed a 52.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 93%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:823155:543877:622491",
@@ -12743,7 +12805,7 @@
       "game_pk": 823480,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 247,
       "original_rank": 247,
       "original_score": 5.7,
@@ -12797,7 +12859,7 @@
       "team": "SF",
       "opponent_team": "BAL",
       "pitcher_name": "Chris Bassitt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -12839,7 +12901,7 @@
       "team": "BAL",
       "opponent_team": "SF",
       "pitcher_name": "Logan Webb",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -12871,7 +12933,7 @@
       "game_pk": 822996,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T22:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 250,
       "original_rank": 250,
       "original_score": 4.6,
@@ -12881,7 +12943,7 @@
       "team": "TB",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -12895,7 +12957,7 @@
       "predicted_hr_probability": 0.056539,
       "predicted_hr_score": 4.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -12913,7 +12975,7 @@
       "game_pk": 822996,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T22:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 251,
       "original_rank": 251,
       "original_score": 3.8,
@@ -12923,7 +12985,7 @@
       "team": "TB",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -12937,7 +12999,7 @@
       "predicted_hr_probability": 0.056425,
       "predicted_hr_score": 3.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -12965,7 +13027,7 @@
       "team": "CLE",
       "opponent_team": "ATL",
       "pitcher_name": "Mart\u00edn P\u00e9rez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -12997,7 +13059,7 @@
       "game_pk": 824697,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 253,
       "original_rank": 253,
       "original_score": 3.4,
@@ -13041,7 +13103,7 @@
       "game_pk": 824697,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 254,
       "original_rank": 254,
       "original_score": 3.1,
@@ -13064,15 +13126,15 @@
       "field_bearing_deg": 40.0,
       "predicted_hr_probability": 0.053642,
       "predicted_hr_score": 3.1,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Braxton Ashcraft has allowed 92.4 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_2": "Braxton Ashcraft has allowed a 47.4% hard-hit rate over the last 30 days.",
       "top_reason_3": "Braxton Ashcraft has allowed 47.4% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-11:822996:810938:608331",
@@ -13083,7 +13145,7 @@
       "game_pk": 822996,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T22:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 255,
       "original_rank": 255,
       "original_score": 2.3,
@@ -13093,7 +13155,7 @@
       "team": "TB",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -13107,7 +13169,7 @@
       "predicted_hr_probability": 0.050967,
       "predicted_hr_score": 2.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -13135,7 +13197,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Kyle Harrison",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -13167,7 +13229,7 @@
       "game_pk": 822996,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T22:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 257,
       "original_rank": 257,
       "original_score": 1.9,
@@ -13177,7 +13239,7 @@
       "team": "TB",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -13191,7 +13253,7 @@
       "predicted_hr_probability": 0.04902,
       "predicted_hr_score": 1.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -13209,7 +13271,7 @@
       "game_pk": 822996,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T22:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 258,
       "original_rank": 258,
       "original_score": 1.5,
@@ -13219,7 +13281,7 @@
       "team": "TB",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -13233,14 +13295,16 @@
       "predicted_hr_probability": 0.0472,
       "predicted_hr_score": 1.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Max Fried has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824697:663968:665795",
@@ -13251,7 +13315,7 @@
       "game_pk": 824697,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 259,
       "original_rank": 259,
       "original_score": 1.1,
@@ -13305,7 +13369,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Kyle Leahy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -13319,14 +13383,16 @@
       "predicted_hr_probability": 0.042853,
       "predicted_hr_score": 0.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Kyle Leahy has allowed barrels on 7.5% of recent batted balls.",
       "top_reason_2": "Kyle Leahy has allowed 89.9 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Kyle Leahy has allowed a 43.4% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824129:671976:608379",
@@ -13337,7 +13403,7 @@
       "game_pk": 824129,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 261,
       "original_rank": 261,
       "original_score": 0.4,
@@ -13361,7 +13427,7 @@
       "predicted_hr_probability": 0.036862,
       "predicted_hr_score": 0.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -87565,8 +87631,8 @@
       "game_pk": 823480,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:05:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "AZ @ PHI",
       "teams": [
         {
@@ -87697,8 +87763,8 @@
       "game_pk": 824294,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:10:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "MIA @ DET",
       "teams": [
         {
@@ -87829,8 +87895,8 @@
       "game_pk": 824697,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T18:20:00Z",
-      "game_status": "Warmup",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "PIT @ CHC",
       "teams": [
         {
@@ -87961,8 +88027,8 @@
       "game_pk": 822830,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T19:07:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "MIN @ TOR",
       "teams": [
         {
@@ -88087,8 +88153,8 @@
       "game_pk": 824535,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "In Progress",
+      "game_state": "live",
       "matchup": "LAA @ CIN",
       "teams": [
         {
@@ -88207,8 +88273,8 @@
       "game_pk": 823644,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "In Progress",
+      "game_state": "live",
       "matchup": "OAK @ NYM",
       "teams": [
         {
@@ -88284,8 +88350,8 @@
       "game_pk": 824129,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "In Progress",
+      "game_state": "live",
       "matchup": "CWS @ KC",
       "teams": [
         {
@@ -88416,24 +88482,18 @@
       "game_pk": 822996,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T22:10:00Z",
-      "game_status": "Scheduled",
-      "game_state": "pregame",
+      "game_status": "In Progress",
+      "game_state": "live",
       "matchup": "NYY @ TB",
       "teams": [
         {
           "team": "NYY",
           "opponent_team": "TB",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 592450,
               "batter_name": "Aaron Judge",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 642708,
-              "batter_name": "Amed Rosario",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -88468,23 +88528,29 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 545341,
-              "batter_name": "Randal Grichuk",
+              "batter_id": 676609,
+              "batter_name": "Jos\u00e9 Caballero",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 641857,
               "batter_name": "Ryan McMahon",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 663757,
+              "batter_name": "Trent Grisham",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         },
         {
           "team": "TB",
           "opponent_team": "NYY",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 810938,
@@ -88495,12 +88561,6 @@
             {
               "batter_id": 656775,
               "batter_name": "Cedric Mullins",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 802415,
-              "batter_name": "Chandler Simpson",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -88529,6 +88589,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 668723,
+              "batter_name": "Ryan Vilade",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 670764,
               "batter_name": "Taylor Walls",
               "batting_order": null,
@@ -88548,14 +88614,14 @@
       "game_pk": 823805,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T23:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "WSH @ MIL",
       "teams": [
         {
           "team": "WSH",
           "opponent_team": "MIL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 691781,
@@ -88600,10 +88666,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 671277,
-              "batter_name": "Luis Garc\u00eda Jr.",
+              "batter_id": 660688,
+              "batter_name": "Keibert Ruiz",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 683083,
@@ -88616,7 +88682,7 @@
         {
           "team": "MIL",
           "opponent_team": "WSH",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 663368,
@@ -88631,20 +88697,14 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 668930,
+              "batter_name": "Brice Turang",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 592885,
               "batter_name": "Christian Yelich",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 666152,
-              "batter_name": "David Hamilton",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 669003,
-              "batter_name": "Garrett Mitchell",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -88653,6 +88713,12 @@
               "batter_name": "Gary S\u00e1nchez",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 687401,
+              "batter_name": "Joey Ortiz",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 650859,
@@ -88680,14 +88746,14 @@
       "game_pk": 824857,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T23:15:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "SF @ BAL",
       "teams": [
         {
           "team": "SF",
           "opponent_team": "BAL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 669477,
@@ -88748,20 +88814,8 @@
         {
           "team": "BAL",
           "opponent_team": "SF",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 668939,
-              "batter_name": "Adley Rutschman",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 677942,
-              "batter_name": "Blaze Alexander",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 691723,
               "batter_name": "Coby Mayo",
@@ -88769,10 +88823,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 687637,
-              "batter_name": "Dylan Beavers",
+              "batter_id": 681297,
+              "batter_name": "Colton Cowser",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 683002,
@@ -88787,10 +88841,22 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 665750,
+              "batter_name": "Leody Taveras",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 624413,
               "batter_name": "Pete Alonso",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 663624,
+              "batter_name": "Ryan Mountcastle",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 694212,
@@ -88819,7 +88885,7 @@
         {
           "team": "BOS",
           "opponent_team": "STL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 702332,
@@ -88840,16 +88906,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 643396,
-              "batter_name": "Isiah Kiner-Falefa",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 680776,
               "batter_name": "Jarren Duran",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 691785,
+              "batter_name": "Marcelo Mayer",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 701350,
@@ -88944,14 +89010,14 @@
       "game_pk": 824939,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T23:15:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "CLE @ ATL",
       "teams": [
         {
           "team": "CLE",
           "opponent_team": "ATL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682657,
@@ -89012,7 +89078,7 @@
         {
           "team": "ATL",
           "opponent_team": "CLE",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 663586,
@@ -89033,6 +89099,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 622761,
+              "batter_name": "Jorge Mateo",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 621566,
               "batter_name": "Matt Olson",
               "batting_order": null,
@@ -89041,12 +89113,6 @@
             {
               "batter_id": 643289,
               "batter_name": "Mauricio Dub\u00f3n",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 671739,
-              "batter_name": "Michael Harris II",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -89076,20 +89142,20 @@
       "game_pk": 823316,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-12T00:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "COL @ SD",
       "teams": [
         {
           "team": "COL",
           "opponent_team": "SD",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 686668,
-              "batter_name": "Brenton Doyle",
+              "batter_id": 664954,
+              "batter_name": "Brett Sullivan",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 666397,
@@ -89110,6 +89176,18 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 664983,
+              "batter_name": "Jake McCarthy",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 687597,
+              "batter_name": "Jordan Beck",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 691720,
               "batter_name": "Kyle Karros",
               "batting_order": null,
@@ -89122,20 +89200,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 681198,
-              "batter_name": "TJ Rumfield",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 687859,
               "batter_name": "Troy Johnston",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 671289,
-              "batter_name": "Tyler Freeman",
               "batting_order": null,
               "selected_for_pick": true
             }
@@ -89144,13 +89210,19 @@
         {
           "team": "SD",
           "opponent_team": "COL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 665487,
               "batter_name": "Fernando Tatis Jr.",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 666023,
+              "batter_name": "Freddy Fermin",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 657757,
@@ -89171,12 +89243,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 669134,
-              "batter_name": "Luis Campusano",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 592518,
               "batter_name": "Manny Machado",
               "batting_order": null,
@@ -89189,14 +89255,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 657656,
-              "batter_name": "Ram\u00f3n Laureano",
+              "batter_id": 592206,
+              "batter_name": "Nick Castellanos",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 593428,
-              "batter_name": "Xander Bogaerts",
+              "batter_id": 657656,
+              "batter_name": "Ram\u00f3n Laureano",
               "batting_order": null,
               "selected_for_pick": true
             }
@@ -89208,14 +89274,14 @@
       "game_pk": 823967,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-12T01:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "TEX @ LAD",
       "teams": [
         {
           "team": "TEX",
           "opponent_team": "LAD",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 607043,
@@ -89226,12 +89292,6 @@
             {
               "batter_id": 608369,
               "batter_name": "Corey Seager",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 643376,
-              "batter_name": "Danny Jansen",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -89260,23 +89320,29 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 673962,
+              "batter_name": "Josh Jung",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 669701,
               "batter_name": "Josh Smith",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 694671,
-              "batter_name": "Wyatt Langford",
+              "batter_id": 543309,
+              "batter_name": "Kyle Higashioka",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             }
           ]
         },
         {
           "team": "LAD",
           "opponent_team": "TEX",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 690976,
@@ -89340,7 +89406,7 @@
       "game_pk": 823155,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-12T01:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "HOU @ SEA",
       "teams": [
@@ -89408,14 +89474,8 @@
         {
           "team": "SEA",
           "opponent_team": "HOU",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 680977,
-              "batter_name": "Brendan Donovan",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 663728,
               "batter_name": "Cal Raleigh",
@@ -89451,6 +89511,12 @@
               "batter_name": "Julio Rodr\u00edguez",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 660844,
+              "batter_name": "Leo Rivas",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 670042,
