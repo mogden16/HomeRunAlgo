@@ -1,23 +1,11 @@
 {
-  "generated_at": "2026-04-11T06:08:04.895284+00:00",
+  "generated_at": "2026-04-11T10:59:39.015556+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
   "latest_available_date": "2026-04-10",
   "data_note": "Public dashboard tracking begins on Opening Night, March 25, 2026. Trained on 2024 and 2025 season data.",
-  "operational_alerts": [
-    {
-      "kind": "warning",
-      "code": "weather_forecast_unavailable",
-      "title": "Weather data incomplete",
-      "message": "Weather forecast data was unavailable for SD, SEA on 2026-04-10. This slate was generated with null weather inputs for those parks. Rerun later for a weather-refreshed draft.",
-      "target_date": "2026-04-10",
-      "teams": [
-        "SD",
-        "SEA"
-      ]
-    }
-  ],
+  "operational_alerts": [],
   "confidence_policy": {
     "elite_percentile_floor": 0.99,
     "elite_probability_floor": null,
@@ -2097,7 +2085,7 @@
     "summary": "28 metrics are active in the current model.",
     "model_family": "histgb",
     "feature_profile": "live_usable_candidate_v1",
-    "trained_through": "2026-04-09",
+    "trained_through": "2026-04-10",
     "feature_count": 28,
     "strength_source": "configuration",
     "features": [
@@ -76548,38 +76536,38 @@
   "lineup_panels": [],
   "season_hr_leaders_2026": [
     {
+      "batter_name": "Zach Neto",
+      "team": "LAA",
+      "home_runs_2026": 5,
+      "plate_appearances_2026": 65,
+      "games_2026": 14
+    },
+    {
       "batter_name": "Drake Baldwin",
       "team": "ATL",
       "home_runs_2026": 5,
-      "plate_appearances_2026": 59,
+      "plate_appearances_2026": 64,
+      "games_2026": 14
+    },
+    {
+      "batter_name": "Yordan Alvarez",
+      "team": "HOU",
+      "home_runs_2026": 5,
+      "plate_appearances_2026": 62,
+      "games_2026": 14
+    },
+    {
+      "batter_name": "Gunnar Henderson",
+      "team": "BAL",
+      "home_runs_2026": 5,
+      "plate_appearances_2026": 61,
       "games_2026": 13
     },
     {
       "batter_name": "Jordan Walker",
       "team": "STL",
       "home_runs_2026": 5,
-      "plate_appearances_2026": 49,
-      "games_2026": 12
-    },
-    {
-      "batter_name": "Shea Langeliers",
-      "team": "ATH",
-      "home_runs_2026": 5,
-      "plate_appearances_2026": 48,
-      "games_2026": 11
-    },
-    {
-      "batter_name": "Chase DeLauter",
-      "team": "CLE",
-      "home_runs_2026": 5,
-      "plate_appearances_2026": 45,
-      "games_2026": 12
-    },
-    {
-      "batter_name": "Zach Neto",
-      "team": "LAA",
-      "home_runs_2026": 4,
-      "plate_appearances_2026": 60,
+      "plate_appearances_2026": 53,
       "games_2026": 13
     }
   ],
