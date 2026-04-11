@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-11T12:18:15.159281+00:00",
+  "generated_at": "2026-04-11T13:24:19.434942+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2753,7 +2753,7 @@
       "team": "AZ",
       "opponent_team": "PHI",
       "pitcher_name": "Taijuan Walker",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -3341,7 +3341,7 @@
       "team": "AZ",
       "opponent_team": "PHI",
       "pitcher_name": "Taijuan Walker",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -6953,7 +6953,7 @@
       "team": "AZ",
       "opponent_team": "PHI",
       "pitcher_name": "Taijuan Walker",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -6967,14 +6967,16 @@
       "predicted_hr_probability": 0.105967,
       "predicted_hr_score": 57.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 6.7%, which the model treats as sustained power quality.",
       "top_reason_2": "Taijuan Walker has allowed homers in 4.0% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:823316:657656:663372",
@@ -9431,7 +9433,7 @@
       "team": "AZ",
       "opponent_team": "PHI",
       "pitcher_name": "Taijuan Walker",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -9599,7 +9601,7 @@
       "team": "AZ",
       "opponent_team": "PHI",
       "pitcher_name": "Taijuan Walker",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -10985,7 +10987,7 @@
       "team": "AZ",
       "opponent_team": "PHI",
       "pitcher_name": "Taijuan Walker",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -11111,7 +11113,7 @@
       "team": "AZ",
       "opponent_team": "PHI",
       "pitcher_name": "Taijuan Walker",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -11125,14 +11127,16 @@
       "predicted_hr_probability": 0.076149,
       "predicted_hr_score": 19.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Taijuan Walker has allowed homers in 4.0% of plate appearances to this batter side.",
       "top_reason_2": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
       "top_reason_3": "Taijuan Walker has allowed homers in 3.8% of plate appearances over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824697:694377:665795",
@@ -12413,7 +12417,7 @@
       "team": "AZ",
       "opponent_team": "PHI",
       "pitcher_name": "Taijuan Walker",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -12539,7 +12543,7 @@
       "team": "AZ",
       "opponent_team": "PHI",
       "pitcher_name": "Taijuan Walker",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -87513,15 +87517,21 @@
       "game_pk": 823480,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T17:05:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "AZ @ PHI",
       "teams": [
         {
           "team": "AZ",
           "opponent_team": "PHI",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 680728,
+              "batter_name": "Adrian Del Castillo",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 677950,
               "batter_name": "Alek Thomas",
@@ -87529,20 +87539,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 672515,
-              "batter_name": "Gabriel Moreno",
+              "batter_id": 682998,
+              "batter_name": "Corbin Carroll",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 672695,
               "batter_name": "Geraldo Perdomo",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 545121,
-              "batter_name": "Ildemaro Vargas",
               "batting_order": null,
               "selected_for_pick": true
             },
