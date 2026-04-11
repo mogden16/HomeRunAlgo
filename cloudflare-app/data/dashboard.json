@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-11T15:56:51.731713+00:00",
+  "generated_at": "2026-04-11T16:35:32.377024+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2711,7 +2711,7 @@
       "team": "LAA",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -2879,7 +2879,7 @@
       "team": "NYM",
       "opponent_team": "OAK",
       "pitcher_name": "Jacob Lopez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -2921,7 +2921,7 @@
       "team": "PIT",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -3089,7 +3089,7 @@
       "team": "LAA",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -3551,7 +3551,7 @@
       "team": "CWS",
       "opponent_team": "KC",
       "pitcher_name": "Michael Wacha",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -3677,7 +3677,7 @@
       "team": "LAA",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -3845,7 +3845,7 @@
       "team": "NYM",
       "opponent_team": "OAK",
       "pitcher_name": "Jacob Lopez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -4055,7 +4055,7 @@
       "team": "NYM",
       "opponent_team": "OAK",
       "pitcher_name": "Jacob Lopez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -4069,14 +4069,16 @@
       "predicted_hr_probability": 0.125762,
       "predicted_hr_score": 83.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.6 mph, which points to top-end HR juice.",
       "top_reason_2": "Jacob Lopez has allowed barrels on 7.4% of recent batted balls.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0020, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824294:690993:676083",
@@ -4391,7 +4393,7 @@
       "team": "LAA",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -5065,7 +5067,7 @@
       "team": "LAA",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -5275,7 +5277,7 @@
       "team": "NYM",
       "opponent_team": "OAK",
       "pitcher_name": "Jacob Lopez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -6117,7 +6119,7 @@
       "team": "PIT",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6201,7 +6203,7 @@
       "team": "CWS",
       "opponent_team": "KC",
       "pitcher_name": "Michael Wacha",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -6455,7 +6457,7 @@
       "team": "NYM",
       "opponent_team": "OAK",
       "pitcher_name": "Jacob Lopez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -6665,7 +6667,7 @@
       "team": "NYM",
       "opponent_team": "OAK",
       "pitcher_name": "Jacob Lopez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -7045,7 +7047,7 @@
       "team": "NYM",
       "opponent_team": "OAK",
       "pitcher_name": "Jacob Lopez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -7297,7 +7299,7 @@
       "team": "CWS",
       "opponent_team": "KC",
       "pitcher_name": "Michael Wacha",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -7311,14 +7313,16 @@
       "predicted_hr_probability": 0.104115,
       "predicted_hr_score": 53.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 5.4%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Michael Wacha has allowed homers in 4.4% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 11.4 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824697:668804:665795",
@@ -7339,7 +7343,7 @@
       "team": "PIT",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -8689,7 +8693,7 @@
       "team": "CHC",
       "opponent_team": "PIT",
       "pitcher_name": "Braxton Ashcraft",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -9195,7 +9199,7 @@
       "team": "CWS",
       "opponent_team": "KC",
       "pitcher_name": "Michael Wacha",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -9209,14 +9213,16 @@
       "predicted_hr_probability": 0.089325,
       "predicted_hr_score": 37.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 93.1 mph, a top-quartile recent batted-ball quality marker.",
       "top_reason_2": "Michael Wacha has allowed homers in 4.4% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 11.4 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824697:683737:677952",
@@ -9237,7 +9243,7 @@
       "team": "CHC",
       "opponent_team": "PIT",
       "pitcher_name": "Braxton Ashcraft",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -9575,7 +9581,7 @@
       "team": "PIT",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -9827,7 +9833,7 @@
       "team": "CHC",
       "opponent_team": "PIT",
       "pitcher_name": "Braxton Ashcraft",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -9911,7 +9917,7 @@
       "team": "CHC",
       "opponent_team": "PIT",
       "pitcher_name": "Braxton Ashcraft",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -10121,7 +10127,7 @@
       "team": "LAA",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -10163,7 +10169,7 @@
       "team": "CHC",
       "opponent_team": "PIT",
       "pitcher_name": "Braxton Ashcraft",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -10499,7 +10505,7 @@
       "team": "LAA",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -10513,14 +10519,16 @@
       "predicted_hr_probability": 0.080105,
       "predicted_hr_score": 26.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1758, supporting loud-contact upside.",
       "top_reason_2": "Brandon Williamson has allowed homers in 8.6% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 110.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824294:681393:663554",
@@ -10751,7 +10759,7 @@
       "team": "LAA",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -10793,7 +10801,7 @@
       "team": "CWS",
       "opponent_team": "KC",
       "pitcher_name": "Michael Wacha",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -10835,7 +10843,7 @@
       "team": "CWS",
       "opponent_team": "KC",
       "pitcher_name": "Michael Wacha",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -10877,7 +10885,7 @@
       "team": "CWS",
       "opponent_team": "KC",
       "pitcher_name": "Michael Wacha",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -10891,14 +10899,16 @@
       "predicted_hr_probability": 0.077951,
       "predicted_hr_score": 22.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Michael Wacha has allowed homers in 4.4% of plate appearances over the last 30 days.",
       "top_reason_2": "Projected wind speed is 11.4 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Michael Wacha has allowed barrels on 6.5% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:823155:670042:621121",
@@ -11173,7 +11183,7 @@
       "team": "PIT",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -11257,7 +11267,7 @@
       "team": "CHC",
       "opponent_team": "PIT",
       "pitcher_name": "Braxton Ashcraft",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -11271,14 +11281,16 @@
       "predicted_hr_probability": 0.075618,
       "predicted_hr_score": 18.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 61.5%, showing consistent quality contact.",
       "top_reason_2": "Braxton Ashcraft has allowed 92.4 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 61.5%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:823805:696285:690986",
@@ -11383,7 +11395,7 @@
       "team": "NYM",
       "opponent_team": "OAK",
       "pitcher_name": "Jacob Lopez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -11553,7 +11565,7 @@
       "team": "PIT",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -11567,14 +11579,16 @@
       "predicted_hr_probability": 0.074631,
       "predicted_hr_score": 17.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 4.2%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Hard-hit rate over the last 10 days is 44.4%, a above-baseline recent-contact signal.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 44.4%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824857:677942:657277",
@@ -11637,7 +11651,7 @@
       "team": "CWS",
       "opponent_team": "KC",
       "pitcher_name": "Michael Wacha",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -11805,7 +11819,7 @@
       "team": "PIT",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -11847,7 +11861,7 @@
       "team": "CHC",
       "opponent_team": "PIT",
       "pitcher_name": "Braxton Ashcraft",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -11861,14 +11875,16 @@
       "predicted_hr_probability": 0.071648,
       "predicted_hr_score": 13.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 6.9%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Braxton Ashcraft has allowed 92.4 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Barrel rate over the last 30 days is 4.9%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824939:677587:527048",
@@ -12141,7 +12157,7 @@
       "team": "CHC",
       "opponent_team": "PIT",
       "pitcher_name": "Braxton Ashcraft",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -12477,7 +12493,7 @@
       "team": "LAA",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -12491,14 +12507,16 @@
       "predicted_hr_probability": 0.065247,
       "predicted_hr_score": 8.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Brandon Williamson has allowed homers in 6.1% of plate appearances over the last 30 days.",
       "top_reason_2": "Park factor for the hitter's handedness is 114.0, which adds venue lift to the matchup.",
       "top_reason_3": "Brandon Williamson has allowed barrels on 8.2% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824939:595978:527048",
@@ -12603,7 +12621,7 @@
       "team": "NYM",
       "opponent_team": "OAK",
       "pitcher_name": "Jacob Lopez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -12617,14 +12635,16 @@
       "predicted_hr_probability": 0.062474,
       "predicted_hr_score": 6.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 55.6%, a top-quartile recent-contact signal.",
       "top_reason_2": "Jacob Lopez has allowed barrels on 7.4% of recent batted balls.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 55.6%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:823155:680977:621121",
@@ -12983,7 +13003,7 @@
       "team": "PIT",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -12997,14 +13017,16 @@
       "predicted_hr_probability": 0.055996,
       "predicted_hr_score": 3.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1685, supporting loud-contact upside.",
       "top_reason_2": "Edward Cabrera has allowed a 37.5% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 72%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824697:663538:677952",
@@ -13025,7 +13047,7 @@
       "team": "CHC",
       "opponent_team": "PIT",
       "pitcher_name": "Braxton Ashcraft",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -13235,7 +13257,7 @@
       "team": "PIT",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -13249,14 +13271,16 @@
       "predicted_hr_probability": 0.043595,
       "predicted_hr_score": 1.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Edward Cabrera has allowed barrels on 5.8% of batted balls to this batter side.",
       "top_reason_2": "Edward Cabrera has allowed homers in 3.4% of plate appearances to this batter side.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:823074:643396:681517",
@@ -13319,7 +13343,7 @@
       "team": "CWS",
       "opponent_team": "KC",
       "pitcher_name": "Michael Wacha",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -87801,14 +87825,14 @@
       "game_pk": 824697,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T18:20:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "PIT @ CHC",
       "teams": [
         {
           "team": "PIT",
           "opponent_team": "CHC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 664040,
@@ -87823,16 +87847,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 663968,
-              "batter_name": "Jake Mangum",
+              "batter_id": 680779,
+              "batter_name": "Henry Davis",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 663698,
-              "batter_name": "Joey Bart",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 804606,
@@ -87841,10 +87859,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 693304,
-              "batter_name": "Nick Gonzales",
+              "batter_id": 542303,
+              "batter_name": "Marcell Ozuna",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 694377,
@@ -87863,23 +87881,23 @@
               "batter_name": "Ryan O'Hearn",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 687462,
+              "batter_name": "Spencer Horwitz",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         },
         {
           "team": "CHC",
           "opponent_team": "PIT",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 608324,
               "batter_name": "Alex Bregman",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 608348,
-              "batter_name": "Carson Kelly",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -87890,10 +87908,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 807713,
-              "batter_name": "Matt Shaw",
+              "batter_id": 664023,
+              "batter_name": "Ian Happ",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 683737,
@@ -87906,6 +87924,12 @@
               "batter_name": "Michael Conforto",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 665804,
+              "batter_name": "Miguel Amaya",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 694208,
@@ -88066,7 +88090,7 @@
         {
           "team": "LAA",
           "opponent_team": "CIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666176,
@@ -88077,12 +88101,6 @@
             {
               "batter_id": 624585,
               "batter_name": "Jorge Soler",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 666139,
-              "batter_name": "Josh Lowe",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -88101,12 +88119,6 @@
             {
               "batter_id": 694384,
               "batter_name": "Nolan Schanuel",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 672724,
-              "batter_name": "Oswald Peraza",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -88191,7 +88203,7 @@
       "game_pk": 823644,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "OAK @ NYM",
       "teams": [
@@ -88204,17 +88216,11 @@
         {
           "team": "NYM",
           "opponent_team": "OAK",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666182,
               "batter_name": "Bo Bichette",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 683146,
-              "batter_name": "Brett Baty",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -88237,10 +88243,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 676724,
-              "batter_name": "Jared Young",
+              "batter_id": 593871,
+              "batter_name": "Jorge Polanco",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 673357,
@@ -88259,6 +88265,12 @@
               "batter_name": "Mark Vientos",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 621438,
+              "batter_name": "Tyrone Taylor",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         }
@@ -88275,7 +88287,7 @@
         {
           "team": "CWS",
           "opponent_team": "KC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 643217,
@@ -88302,28 +88314,28 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 700337,
-              "batter_name": "Edgar Quero",
+              "batter_id": 672820,
+              "batter_name": "Lenyn Sosa",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 682668,
-              "batter_name": "Luisangel Acu\u00f1a",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 678246,
-              "batter_name": "Miguel Vargas",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 808959,
               "batter_name": "Munetaka Murakami",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 624512,
+              "batter_name": "Reese McGuire",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 695020,
+              "batter_name": "Tanner Murray",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 671976,
