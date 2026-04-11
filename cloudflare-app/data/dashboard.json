@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-11T15:25:11.400376+00:00",
+  "generated_at": "2026-04-11T15:56:51.731713+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2627,7 +2627,7 @@
       "team": "KC",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -3005,7 +3005,7 @@
       "team": "KC",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -3257,7 +3257,7 @@
       "team": "CIN",
       "opponent_team": "LAA",
       "pitcher_name": "George Klassen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -3509,7 +3509,7 @@
       "team": "CIN",
       "opponent_team": "LAA",
       "pitcher_name": "George Klassen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -3761,7 +3761,7 @@
       "team": "MIN",
       "opponent_team": "TOR",
       "pitcher_name": "Eric Lauer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -4223,7 +4223,7 @@
       "team": "KC",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -4475,7 +4475,7 @@
       "team": "MIN",
       "opponent_team": "TOR",
       "pitcher_name": "Eric Lauer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -4769,7 +4769,7 @@
       "team": "MIN",
       "opponent_team": "TOR",
       "pitcher_name": "Eric Lauer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -4783,14 +4783,16 @@
       "predicted_hr_probability": 0.12408,
       "predicted_hr_score": 80.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 63.2%, a top-decile recent-contact signal.",
       "top_reason_2": "95+ EV contact rate over the last 10 days is 63.2%, which supports near-term HR upside.",
       "top_reason_3": "Average exit velocity over the last 10 days is 94.5 mph, a top-decile recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824939:663586:800048",
@@ -5483,7 +5485,7 @@
       "team": "MIN",
       "opponent_team": "TOR",
       "pitcher_name": "Eric Lauer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -5497,14 +5499,16 @@
       "predicted_hr_probability": 0.124721,
       "predicted_hr_score": 81.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 54.2%, showing consistent quality contact.",
       "top_reason_2": "Eric Lauer has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824129:695506:607200",
@@ -5525,7 +5529,7 @@
       "team": "KC",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -5693,7 +5697,7 @@
       "team": "MIN",
       "opponent_team": "TOR",
       "pitcher_name": "Eric Lauer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -5987,7 +5991,7 @@
       "team": "KC",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -6365,7 +6369,7 @@
       "team": "CIN",
       "opponent_team": "LAA",
       "pitcher_name": "George Klassen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -6379,14 +6383,16 @@
       "predicted_hr_probability": 0.109026,
       "predicted_hr_score": 62.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 4.7%, which the model treats as sustained power quality.",
       "top_reason_2": "George Klassen has allowed barrels on 15.8% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 114.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:823967:607043:686218",
@@ -6743,7 +6749,7 @@
       "team": "KC",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -7249,7 +7255,7 @@
       "team": "MIN",
       "opponent_team": "TOR",
       "pitcher_name": "Eric Lauer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -7587,7 +7593,7 @@
       "team": "CIN",
       "opponent_team": "LAA",
       "pitcher_name": "George Klassen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -8427,7 +8433,7 @@
       "team": "CIN",
       "opponent_team": "LAA",
       "pitcher_name": "George Klassen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -8441,14 +8447,16 @@
       "predicted_hr_probability": 0.09271,
       "predicted_hr_score": 44.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0088, reinforcing the power-contact fit.",
       "top_reason_2": "George Klassen has allowed barrels on 21.4% of batted balls to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 110.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:823967:643376:686218",
@@ -8511,7 +8519,7 @@
       "team": "KC",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -8525,14 +8533,16 @@
       "predicted_hr_probability": 0.094871,
       "predicted_hr_score": 47.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Erick Fedde has allowed homers in 3.8% of plate appearances to this batter side.",
       "top_reason_3": "Projected wind speed is 11.4 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:822830:807712:641778",
@@ -8553,7 +8563,7 @@
       "team": "MIN",
       "opponent_team": "TOR",
       "pitcher_name": "Eric Lauer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -8933,7 +8943,7 @@
       "team": "KC",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -8975,7 +8985,7 @@
       "team": "KC",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -9479,7 +9489,7 @@
       "team": "CIN",
       "opponent_team": "LAA",
       "pitcher_name": "George Klassen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -9691,7 +9701,7 @@
       "team": "CIN",
       "opponent_team": "LAA",
       "pitcher_name": "George Klassen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -10069,7 +10079,7 @@
       "team": "MIN",
       "opponent_team": "TOR",
       "pitcher_name": "Eric Lauer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -11711,7 +11721,7 @@
       "team": "CIN",
       "opponent_team": "LAA",
       "pitcher_name": "George Klassen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -11963,7 +11973,7 @@
       "team": "MIN",
       "opponent_team": "TOR",
       "pitcher_name": "Eric Lauer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -12299,7 +12309,7 @@
       "team": "CIN",
       "opponent_team": "LAA",
       "pitcher_name": "George Klassen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -87930,7 +87940,7 @@
         {
           "team": "MIN",
           "opponent_team": "TOR",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 668885,
@@ -87963,20 +87973,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 670242,
-              "batter_name": "Matt Wallner",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 680777,
               "batter_name": "Ryan Jeffers",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 656484,
-              "batter_name": "Tristan Gray",
+              "batter_id": 663616,
+              "batter_name": "Trevor Larnach",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -88055,7 +88059,7 @@
       "game_pk": 824535,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "LAA @ CIN",
       "teams": [
@@ -88123,7 +88127,7 @@
         {
           "team": "CIN",
           "opponent_team": "LAA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682829,
@@ -88144,10 +88148,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 680574,
-              "batter_name": "Matt McLain",
+              "batter_id": 663993,
+              "batter_name": "Nathaniel Lowe",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 682622,
+              "batter_name": "Noelvi Marte",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 701398,
@@ -88170,12 +88180,6 @@
             {
               "batter_id": 663886,
               "batter_name": "Tyler Stephenson",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 666181,
-              "batter_name": "Will Benson",
               "batting_order": null,
               "selected_for_pick": true
             }
@@ -88264,7 +88268,7 @@
       "game_pk": 824129,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T20:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "CWS @ KC",
       "teams": [
@@ -88332,7 +88336,7 @@
         {
           "team": "KC",
           "opponent_team": "CWS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 677951,
@@ -88343,12 +88347,6 @@
             {
               "batter_id": 695600,
               "batter_name": "Carter Jensen",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 686555,
-              "batter_name": "Isaac Collins",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -88375,6 +88373,12 @@
               "batter_name": "Maikel Garcia",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 686681,
+              "batter_name": "Michael Massey",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 521692,
