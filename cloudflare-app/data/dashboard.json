@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-11T14:28:47.884835+00:00",
+  "generated_at": "2026-04-11T15:25:11.400376+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -3047,7 +3047,7 @@
       "team": "TOR",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -3803,7 +3803,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Casey Mize",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -3929,7 +3929,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Casey Mize",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -4307,7 +4307,7 @@
       "team": "TOR",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -4601,7 +4601,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Casey Mize",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -5189,7 +5189,7 @@
       "team": "TOR",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -5231,7 +5231,7 @@
       "team": "TOR",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -5399,7 +5399,7 @@
       "team": "TOR",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -5903,7 +5903,7 @@
       "team": "TOR",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -7417,7 +7417,7 @@
       "team": "TOR",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -7431,14 +7431,16 @@
       "predicted_hr_probability": 0.108396,
       "predicted_hr_score": 62.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1963, supporting loud-contact upside.",
       "top_reason_2": "Joe Ryan has allowed barrels on 7.4% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:823074:680776:681517",
@@ -8173,7 +8175,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Casey Mize",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -9773,7 +9775,7 @@
       "team": "TOR",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -10445,7 +10447,7 @@
       "team": "TOR",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -10529,7 +10531,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Casey Mize",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -10571,7 +10573,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Casey Mize",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -11413,7 +11415,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Casey Mize",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -11455,7 +11457,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Casey Mize",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -11497,7 +11499,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Casey Mize",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -11511,14 +11513,16 @@
       "predicted_hr_probability": 0.074131,
       "predicted_hr_score": 16.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 90.4 mph, a above-baseline recent batted-ball quality marker.",
       "top_reason_2": "Casey Mize has allowed barrels on 10.5% of recent batted balls.",
       "top_reason_3": "Casey Mize has allowed a 50.0% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-11:824697:693304:665795",
@@ -87662,7 +87666,7 @@
         {
           "team": "MIA",
           "opponent_team": "DET",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682663,
@@ -87683,14 +87687,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 805300,
-              "batter_name": "Jakob Marsee",
+              "batter_id": 681715,
+              "batter_name": "Heriberto Hern\u00e1ndez",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 691594,
-              "batter_name": "Javier Sanoja",
+              "batter_id": 805300,
+              "batter_name": "Jakob Marsee",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -87919,7 +87923,7 @@
       "game_pk": 822830,
       "game_date": "2026-04-11",
       "game_datetime": "2026-04-11T19:07:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "MIN @ TOR",
       "teams": [
@@ -87987,7 +87991,7 @@
         {
           "team": "TOR",
           "opponent_team": "MIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 665926,
@@ -88032,10 +88036,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 672960,
-              "batter_name": "Kazuma Okamoto",
+              "batter_id": 664770,
+              "batter_name": "Nathan Lukes",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 665489,
