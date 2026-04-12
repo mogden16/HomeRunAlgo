@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-12T21:42:42.811961+00:00",
+  "generated_at": "2026-04-12T22:28:53.932209+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -83,10 +83,10 @@
     "latest_slate_size": 261,
     "tracked_dates": 18,
     "tracked_picks": 2276,
-    "settled_picks": 1862,
-    "tracked_homers": 186,
-    "tracked_hit_rate": 0.099893,
-    "open_picks": 414
+    "settled_picks": 1865,
+    "tracked_homers": 189,
+    "tracked_hit_rate": 0.10134,
+    "open_picks": 411
   },
   "confidence_summary": [
     {
@@ -112,10 +112,10 @@
     },
     {
       "confidence_tier": "longshot",
-      "picks": 1330,
-      "homers": 98,
-      "hit_rate": 0.073684,
-      "avg_probability": 0.09271
+      "picks": 1333,
+      "homers": 101,
+      "hit_rate": 0.075769,
+      "avg_probability": 0.092746
     }
   ],
   "player_leaderboard": [
@@ -267,8 +267,22 @@
       "hit_rate": 0.222222
     },
     {
+      "batter_name": "Colson Montgomery",
+      "team": "CWS",
+      "picks": 9,
+      "homers": 2,
+      "hit_rate": 0.222222
+    },
+    {
       "batter_name": "Junior Caminero",
       "team": "TB",
+      "picks": 9,
+      "homers": 2,
+      "hit_rate": 0.222222
+    },
+    {
+      "batter_name": "Ram\u00f3n Laureano",
+      "team": "SD",
       "picks": 9,
       "homers": 2,
       "hit_rate": 0.222222
@@ -283,6 +297,13 @@
     {
       "batter_name": "Evan Carter",
       "team": "TEX",
+      "picks": 8,
+      "homers": 2,
+      "hit_rate": 0.25
+    },
+    {
+      "batter_name": "Jackson Merrill",
+      "team": "SD",
       "picks": 8,
       "homers": 2,
       "hit_rate": 0.25
@@ -519,13 +540,6 @@
       "hit_rate": 0.125
     },
     {
-      "batter_name": "Colson Montgomery",
-      "team": "CWS",
-      "picks": 8,
-      "homers": 1,
-      "hit_rate": 0.125
-    },
-    {
       "batter_name": "Connor Norby",
       "team": "MIA",
       "picks": 8,
@@ -591,13 +605,6 @@
     {
       "batter_name": "Rafael Devers",
       "team": "SF",
-      "picks": 8,
-      "homers": 1,
-      "hit_rate": 0.125
-    },
-    {
-      "batter_name": "Ram\u00f3n Laureano",
-      "team": "SD",
       "picks": 8,
       "homers": 1,
       "hit_rate": 0.125
@@ -675,13 +682,6 @@
     {
       "batter_name": "Freddie Freeman",
       "team": "LAD",
-      "picks": 7,
-      "homers": 1,
-      "hit_rate": 0.142857
-    },
-    {
-      "batter_name": "Jackson Merrill",
-      "team": "SD",
       "picks": 7,
       "homers": 1,
       "hit_rate": 0.142857
@@ -5620,15 +5620,15 @@
       "field_bearing_deg": 25.0,
       "predicted_hr_probability": 0.114851,
       "predicted_hr_score": 68.2,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0029, reinforcing the power-contact fit.",
       "top_reason_2": "Noah Cameron has allowed barrels on 6.8% of batted balls to this batter side.",
       "top_reason_3": "Projected humidity is 84%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-12:823317:701538:607536",
@@ -5662,15 +5662,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.1153,
       "predicted_hr_score": 70.1,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 6.4% barrel-per-PA split.",
       "top_reason_2": "Projected humidity is 88%, a modest positive weather input in the live model.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 57.1%, a top-quartile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-12:823075:665966:669467",
@@ -8678,15 +8678,15 @@
       "field_bearing_deg": 20.0,
       "predicted_hr_probability": 0.09675,
       "predicted_hr_score": 44.4,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1974, supporting loud-contact upside.",
       "top_reason_2": "Kyle Freeland has allowed homers in 3.9% of plate appearances to this batter side.",
       "top_reason_3": "Projected humidity is 88%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-12:823154:621043:669302",
