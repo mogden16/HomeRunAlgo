@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-12T13:26:57.482182+00:00",
+  "generated_at": "2026-04-12T14:24:35.812231+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2462,7 +2462,7 @@
       "team": "STL",
       "opponent_team": "BOS",
       "pitcher_name": "Brayan Bello",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -2588,7 +2588,7 @@
       "team": "DET",
       "opponent_team": "MIA",
       "pitcher_name": "Sandy Alcantara",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -2840,7 +2840,7 @@
       "team": "DET",
       "opponent_team": "MIA",
       "pitcher_name": "Sandy Alcantara",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -2882,7 +2882,7 @@
       "team": "CIN",
       "opponent_team": "LAA",
       "pitcher_name": "Jos\u00e9 Soriano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -3134,7 +3134,7 @@
       "team": "CIN",
       "opponent_team": "LAA",
       "pitcher_name": "Jos\u00e9 Soriano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -3218,7 +3218,7 @@
       "team": "TB",
       "opponent_team": "NYY",
       "pitcher_name": "Cam Schlittler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -3638,7 +3638,7 @@
       "team": "NYM",
       "opponent_team": "OAK",
       "pitcher_name": "Aaron Civale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -3652,14 +3652,16 @@
       "predicted_hr_probability": 0.138946,
       "predicted_hr_score": 89.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 112.4 mph, which points to top-end HR juice.",
       "top_reason_2": "Aaron Civale has allowed 90.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 11.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:823966:571970:594798",
@@ -3848,7 +3850,7 @@
       "team": "AZ",
       "opponent_team": "PHI",
       "pitcher_name": "Andrew Painter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -3862,14 +3864,16 @@
       "predicted_hr_probability": 0.134838,
       "predicted_hr_score": 87.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 116.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Against this pitcher handedness, the hitter has a 6.2% barrel-per-PA split.",
       "top_reason_3": "Average exit velocity over the last 10 days is 92.7 mph, a top-quartile recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:822828:660821:671737",
@@ -4016,7 +4020,7 @@
       "team": "SF",
       "opponent_team": "BAL",
       "pitcher_name": "Cade Povich",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -4142,7 +4146,7 @@
       "team": "DET",
       "opponent_team": "MIA",
       "pitcher_name": "Sandy Alcantara",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -4184,7 +4188,7 @@
       "team": "SF",
       "opponent_team": "BAL",
       "pitcher_name": "Cade Povich",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -4226,7 +4230,7 @@
       "team": "SF",
       "opponent_team": "BAL",
       "pitcher_name": "Cade Povich",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -4268,7 +4272,7 @@
       "team": "STL",
       "opponent_team": "BOS",
       "pitcher_name": "Brayan Bello",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -4352,7 +4356,7 @@
       "team": "AZ",
       "opponent_team": "PHI",
       "pitcher_name": "Andrew Painter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -4394,7 +4398,7 @@
       "team": "MIN",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -4408,14 +4412,16 @@
       "predicted_hr_probability": 0.125994,
       "predicted_hr_score": 82.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0042, reinforcing the power-contact fit.",
       "top_reason_2": "Max Scherzer has allowed barrels on 7.4% of batted balls to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:822998:666018:693645",
@@ -4436,7 +4442,7 @@
       "team": "TB",
       "opponent_team": "NYY",
       "pitcher_name": "Cam Schlittler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -4688,7 +4694,7 @@
       "team": "STL",
       "opponent_team": "BOS",
       "pitcher_name": "Brayan Bello",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -4772,7 +4778,7 @@
       "team": "TB",
       "opponent_team": "NYY",
       "pitcher_name": "Cam Schlittler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -4940,7 +4946,7 @@
       "team": "DET",
       "opponent_team": "MIA",
       "pitcher_name": "Sandy Alcantara",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -4982,7 +4988,7 @@
       "team": "CIN",
       "opponent_team": "LAA",
       "pitcher_name": "Jos\u00e9 Soriano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -4996,14 +5002,16 @@
       "predicted_hr_probability": 0.120333,
       "predicted_hr_score": 77.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 95.8 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Jos\u00e9 Soriano has allowed barrels on 8.1% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 114.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824533:668715:667755",
@@ -5024,7 +5032,7 @@
       "team": "CIN",
       "opponent_team": "LAA",
       "pitcher_name": "Jos\u00e9 Soriano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -5234,7 +5242,7 @@
       "team": "NYM",
       "opponent_team": "OAK",
       "pitcher_name": "Aaron Civale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -5248,14 +5256,16 @@
       "predicted_hr_probability": 0.118858,
       "predicted_hr_score": 75.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 10.4%, which the model treats as sustained power quality.",
       "top_reason_2": "Aaron Civale has allowed 90.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 11.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824696:621020:696149",
@@ -5318,7 +5328,7 @@
       "team": "STL",
       "opponent_team": "BOS",
       "pitcher_name": "Brayan Bello",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -5444,7 +5454,7 @@
       "team": "NYM",
       "opponent_team": "OAK",
       "pitcher_name": "Aaron Civale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -5528,7 +5538,7 @@
       "team": "SF",
       "opponent_team": "BAL",
       "pitcher_name": "Cade Povich",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -5948,7 +5958,7 @@
       "team": "MIN",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -6074,7 +6084,7 @@
       "team": "DET",
       "opponent_team": "MIA",
       "pitcher_name": "Sandy Alcantara",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -6242,7 +6252,7 @@
       "team": "DET",
       "opponent_team": "MIA",
       "pitcher_name": "Sandy Alcantara",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -6620,7 +6630,7 @@
       "team": "MIN",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -6662,7 +6672,7 @@
       "team": "MIN",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -6788,7 +6798,7 @@
       "team": "CIN",
       "opponent_team": "LAA",
       "pitcher_name": "Jos\u00e9 Soriano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -6830,7 +6840,7 @@
       "team": "SF",
       "opponent_team": "BAL",
       "pitcher_name": "Cade Povich",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -6844,14 +6854,16 @@
       "predicted_hr_probability": 0.10952,
       "predicted_hr_score": 59.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 47.6%, a above-baseline recent-contact signal.",
       "top_reason_2": "Cade Povich has allowed homers in 3.7% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 11.7 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824696:624424:696149",
@@ -6998,7 +7010,7 @@
       "team": "NYM",
       "opponent_team": "OAK",
       "pitcher_name": "Aaron Civale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -7250,7 +7262,7 @@
       "team": "SF",
       "opponent_team": "BAL",
       "pitcher_name": "Cade Povich",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -7292,7 +7304,7 @@
       "team": "NYM",
       "opponent_team": "OAK",
       "pitcher_name": "Aaron Civale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -7460,7 +7472,7 @@
       "team": "STL",
       "opponent_team": "BOS",
       "pitcher_name": "Brayan Bello",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -7628,7 +7640,7 @@
       "team": "NYM",
       "opponent_team": "OAK",
       "pitcher_name": "Aaron Civale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -7754,7 +7766,7 @@
       "team": "NYM",
       "opponent_team": "OAK",
       "pitcher_name": "Aaron Civale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -7768,14 +7780,16 @@
       "predicted_hr_probability": 0.103252,
       "predicted_hr_score": 51.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1899, supporting loud-contact upside.",
       "top_reason_2": "Aaron Civale has allowed 90.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 11.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:823154:701358:669302",
@@ -7880,7 +7894,7 @@
       "team": "CIN",
       "opponent_team": "LAA",
       "pitcher_name": "Jos\u00e9 Soriano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -8048,7 +8062,7 @@
       "team": "AZ",
       "opponent_team": "PHI",
       "pitcher_name": "Andrew Painter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -8804,7 +8818,7 @@
       "team": "STL",
       "opponent_team": "BOS",
       "pitcher_name": "Brayan Bello",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -8846,7 +8860,7 @@
       "team": "MIN",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -8860,14 +8874,16 @@
       "predicted_hr_probability": 0.095927,
       "predicted_hr_score": 41.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0023, reinforcing the power-contact fit.",
       "top_reason_2": "Max Scherzer has allowed barrels on 7.4% of batted balls to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:823804:686894:605540",
@@ -9266,7 +9282,7 @@
       "team": "MIN",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -9560,7 +9576,7 @@
       "team": "SF",
       "opponent_team": "BAL",
       "pitcher_name": "Cade Povich",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -9854,7 +9870,7 @@
       "team": "NYM",
       "opponent_team": "OAK",
       "pitcher_name": "Aaron Civale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -9980,7 +9996,7 @@
       "team": "CIN",
       "opponent_team": "LAA",
       "pitcher_name": "Jos\u00e9 Soriano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -10358,7 +10374,7 @@
       "team": "NYM",
       "opponent_team": "OAK",
       "pitcher_name": "Aaron Civale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -10442,7 +10458,7 @@
       "team": "CIN",
       "opponent_team": "LAA",
       "pitcher_name": "Jos\u00e9 Soriano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -10456,14 +10472,16 @@
       "predicted_hr_probability": 0.085181,
       "predicted_hr_score": 27.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 8.3%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Jos\u00e9 Soriano has allowed barrels on 8.1% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 114.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824859:672275:700249",
@@ -10484,7 +10502,7 @@
       "team": "SF",
       "opponent_team": "BAL",
       "pitcher_name": "Cade Povich",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -10498,14 +10516,16 @@
       "predicted_hr_probability": 0.083968,
       "predicted_hr_score": 26.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 4.2%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Cade Povich has allowed barrels on 6.9% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 11.7 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:823317:609280:607536",
@@ -10652,7 +10672,7 @@
       "team": "MIN",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -10778,7 +10798,7 @@
       "team": "DET",
       "opponent_team": "MIA",
       "pitcher_name": "Sandy Alcantara",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -10792,14 +10812,16 @@
       "predicted_hr_probability": 0.082437,
       "predicted_hr_score": 24.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 14.3%, which the model treats as sustained power quality.",
       "top_reason_2": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Barrel rate over the last 10 days is 14.3%, a top-decile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:822828:686797:453286",
@@ -10820,7 +10842,7 @@
       "team": "MIN",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -10946,7 +10968,7 @@
       "team": "AZ",
       "opponent_team": "PHI",
       "pitcher_name": "Andrew Painter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -11030,7 +11052,7 @@
       "team": "STL",
       "opponent_team": "BOS",
       "pitcher_name": "Brayan Bello",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -11156,7 +11178,7 @@
       "team": "AZ",
       "opponent_team": "PHI",
       "pitcher_name": "Andrew Painter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -11170,14 +11192,16 @@
       "predicted_hr_probability": 0.07716,
       "predicted_hr_score": 18.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 44.4%, showing consistent quality contact.",
       "top_reason_2": "95+ EV contact rate over the last 30 days is 44.4%, a strong loud-contact input for the model.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 44.4%, a above-baseline recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824126:682668:702070",
@@ -11366,7 +11390,7 @@
       "team": "MIN",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -11380,14 +11404,16 @@
       "predicted_hr_probability": 0.07787,
       "predicted_hr_score": 19.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 3.4%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Max Scherzer has allowed barrels on 7.4% of batted balls to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:823804:687401:641793",
@@ -11534,7 +11560,7 @@
       "team": "DET",
       "opponent_team": "MIA",
       "pitcher_name": "Sandy Alcantara",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -11576,7 +11602,7 @@
       "team": "TB",
       "opponent_team": "NYY",
       "pitcher_name": "Cam Schlittler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -11590,14 +11616,16 @@
       "predicted_hr_probability": 0.076778,
       "predicted_hr_score": 17.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Cam Schlittler has allowed barrels on 5.9% of batted balls to this batter side.",
       "top_reason_2": "Projected wind speed is 12.2 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:822998:663743:693645",
@@ -11618,7 +11646,7 @@
       "team": "TB",
       "opponent_team": "NYY",
       "pitcher_name": "Cam Schlittler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -11632,14 +11660,16 @@
       "predicted_hr_probability": 0.076761,
       "predicted_hr_score": 16.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.8 mph, which points to top-end HR juice.",
       "top_reason_2": "Cam Schlittler has allowed barrels on 5.9% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 12.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824938:682877:519242",
@@ -11744,7 +11774,7 @@
       "team": "TB",
       "opponent_team": "NYY",
       "pitcher_name": "Cam Schlittler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -11828,7 +11858,7 @@
       "team": "DET",
       "opponent_team": "MIA",
       "pitcher_name": "Sandy Alcantara",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -11912,7 +11942,7 @@
       "team": "AZ",
       "opponent_team": "PHI",
       "pitcher_name": "Andrew Painter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -11954,7 +11984,7 @@
       "team": "TB",
       "opponent_team": "NYY",
       "pitcher_name": "Cam Schlittler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -11968,14 +11998,16 @@
       "predicted_hr_probability": 0.07302,
       "predicted_hr_score": 13.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Cam Schlittler has allowed barrels on 5.9% of batted balls to this batter side.",
       "top_reason_2": "Projected wind speed is 12.2 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:823966:808975:594798",
@@ -12374,7 +12406,7 @@
       "team": "STL",
       "opponent_team": "BOS",
       "pitcher_name": "Brayan Bello",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -12388,14 +12420,16 @@
       "predicted_hr_probability": 0.06769,
       "predicted_hr_score": 10.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 5.0%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Brayan Bello has allowed barrels on 6.1% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 12.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824938:595978:519242",
@@ -12542,7 +12576,7 @@
       "team": "CIN",
       "opponent_team": "LAA",
       "pitcher_name": "Jos\u00e9 Soriano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -12752,7 +12786,7 @@
       "team": "STL",
       "opponent_team": "BOS",
       "pitcher_name": "Brayan Bello",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -12920,7 +12954,7 @@
       "team": "AZ",
       "opponent_team": "PHI",
       "pitcher_name": "Andrew Painter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -13004,7 +13038,7 @@
       "team": "AZ",
       "opponent_team": "PHI",
       "pitcher_name": "Andrew Painter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -13046,7 +13080,7 @@
       "team": "TB",
       "opponent_team": "NYY",
       "pitcher_name": "Cam Schlittler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -13172,7 +13206,7 @@
       "team": "SF",
       "opponent_team": "BAL",
       "pitcher_name": "Cade Povich",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -13186,14 +13220,16 @@
       "predicted_hr_probability": 0.0533,
       "predicted_hr_score": 2.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Cade Povich has allowed barrels on 6.9% of batted balls to this batter side.",
       "top_reason_2": "Projected wind speed is 11.7 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Cade Povich has allowed homers in 4.3% of plate appearances to this batter side.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:823317:671289:601713",
@@ -13256,7 +13292,7 @@
       "team": "AZ",
       "opponent_team": "PHI",
       "pitcher_name": "Andrew Painter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -13340,7 +13376,7 @@
       "team": "TB",
       "opponent_team": "NYY",
       "pitcher_name": "Cam Schlittler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -98658,14 +98694,14 @@
       "game_pk": 824859,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T17:35:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "SF @ BAL",
       "teams": [
         {
           "team": "SF",
           "opponent_team": "BAL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 669477,
@@ -98674,10 +98710,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 664056,
-              "batter_name": "Harrison Bader",
+              "batter_id": 683766,
+              "batter_name": "Christian Koss",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 691740,
+              "batter_name": "Daniel Susac",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 671218,
@@ -98686,26 +98728,20 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 666464,
+              "batter_name": "Jerar Encarnacion",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 808982,
               "batter_name": "Jung Hoo Lee",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 650333,
-              "batter_name": "Luis Arraez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 656305,
               "batter_name": "Matt Chapman",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 672275,
-              "batter_name": "Patrick Bailey",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -98790,26 +98826,26 @@
       "game_pk": 823479,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T17:35:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "AZ @ PHI",
       "teams": [
         {
           "team": "AZ",
           "opponent_team": "PHI",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 680728,
-              "batter_name": "Adrian Del Castillo",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 677950,
               "batter_name": "Alek Thomas",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 682998,
+              "batter_name": "Corbin Carroll",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 672695,
@@ -98824,6 +98860,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 543510,
+              "batter_name": "James McCann",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 678489,
               "batter_name": "Jorge Barrosa",
               "batting_order": null,
@@ -98832,12 +98874,6 @@
             {
               "batter_id": 699912,
               "batter_name": "Jose Fernandez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 606466,
-              "batter_name": "Ketel Marte",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -98922,21 +98958,15 @@
       "game_pk": 822828,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T17:37:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "MIN @ TOR",
       "teams": [
         {
           "team": "MIN",
           "opponent_team": "TOR",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 668885,
-              "batter_name": "Austin Martin",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 686797,
               "batter_name": "Brooks Lee",
@@ -98944,16 +98974,22 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 621439,
-              "batter_name": "Byron Buxton",
+              "batter_id": 681546,
+              "batter_name": "James Outman",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 605137,
               "batter_name": "Josh Bell",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 665019,
+              "batter_name": "Kody Clemens",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 807712,
@@ -98968,16 +99004,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 680777,
-              "batter_name": "Ryan Jeffers",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 663616,
               "batter_name": "Trevor Larnach",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 656484,
+              "batter_name": "Tristan Gray",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 605170,
@@ -99054,7 +99090,7 @@
       "game_pk": 824533,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T17:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "LAA @ CIN",
       "teams": [
@@ -99122,7 +99158,7 @@
         {
           "team": "CIN",
           "opponent_team": "LAA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682829,
@@ -99137,12 +99173,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 663647,
-              "batter_name": "Ke'Bryan Hayes",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 680574,
               "batter_name": "Matt McLain",
               "batting_order": null,
@@ -99153,6 +99183,18 @@
               "batter_name": "Nathaniel Lowe",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 682622,
+              "batter_name": "Noelvi Marte",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 664731,
+              "batter_name": "P.J. Higgins",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 701398,
@@ -99171,12 +99213,6 @@
               "batter_name": "TJ Friedl",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 663886,
-              "batter_name": "Tyler Stephenson",
-              "batting_order": null,
-              "selected_for_pick": true
             }
           ]
         }
@@ -99186,7 +99222,7 @@
       "game_pk": 823642,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T17:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "OAK @ NYM",
       "teams": [
@@ -99199,7 +99235,7 @@
         {
           "team": "NYM",
           "opponent_team": "OAK",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666182,
@@ -99220,12 +99256,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 682626,
-              "batter_name": "Francisco Alvarez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 596019,
               "batter_name": "Francisco Lindor",
               "batting_order": null,
@@ -99238,10 +99268,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 673357,
-              "batter_name": "Luis Robert Jr.",
+              "batter_id": 593871,
+              "batter_name": "Jorge Polanco",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 620443,
+              "batter_name": "Luis Torrens",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 543760,
@@ -99250,10 +99286,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 668901,
-              "batter_name": "Mark Vientos",
+              "batter_id": 621438,
+              "batter_name": "Tyrone Taylor",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             }
           ]
         }
@@ -99263,7 +99299,7 @@
       "game_pk": 824293,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T17:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "MIA @ DET",
       "teams": [
@@ -99331,7 +99367,7 @@
         {
           "team": "DET",
           "opponent_team": "MIA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 690993,
@@ -99350,6 +99386,12 @@
               "batter_name": "Gleyber Torres",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 595879,
+              "batter_name": "Javier B\u00e1ez",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 681481,
@@ -99376,12 +99418,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 672761,
-              "batter_name": "Wenceel P\u00e9rez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 656716,
               "batter_name": "Zach McKinstry",
               "batting_order": null,
@@ -99395,7 +99431,7 @@
       "game_pk": 822998,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T17:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "NYY @ TB",
       "teams": [
@@ -99463,14 +99499,8 @@
         {
           "team": "TB",
           "opponent_team": "NYY",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 810938,
-              "batter_name": "Ben Williamson",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 656775,
               "batter_name": "Cedric Mullins",
@@ -99484,26 +99514,26 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 676439,
+              "batter_name": "Hunter Feduccia",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 641584,
+              "batter_name": "Jake Fraley",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 666018,
               "batter_name": "Jonathan Aranda",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 676356,
-              "batter_name": "Jonny DeLuca",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 691406,
               "batter_name": "Junior Caminero",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 663743,
-              "batter_name": "Nick Fortes",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -99791,7 +99821,7 @@
       "game_pk": 823075,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:15:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "BOS @ STL",
       "teams": [
@@ -99859,7 +99889,7 @@
         {
           "team": "STL",
           "opponent_team": "BOS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 676475,
@@ -99892,12 +99922,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 691026,
-              "batter_name": "Masyn Winn",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 669357,
               "batter_name": "Nolan Gorman",
               "batting_order": null,
@@ -99914,6 +99938,12 @@
               "batter_name": "Thomas Saggese",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 687363,
+              "batter_name": "Victor Scott II",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         }
