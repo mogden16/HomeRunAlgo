@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-12T15:18:09.704057+00:00",
+  "generated_at": "2026-04-12T16:07:15.630293+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2714,7 +2714,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -3770,7 +3770,7 @@
       "team": "TOR",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -3898,7 +3898,7 @@
       "team": "TOR",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -4530,7 +4530,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -6428,7 +6428,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -6764,7 +6764,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -7148,7 +7148,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -7162,14 +7162,16 @@
       "predicted_hr_probability": 0.108384,
       "predicted_hr_score": 58.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 95.0 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Brandon Woodruff has allowed homers in 4.1% of plate appearances to this batter side.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 60.0%, a top-decile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:822998:642708:656876",
@@ -7234,7 +7236,7 @@
       "team": "TOR",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -7248,14 +7250,16 @@
       "predicted_hr_probability": 0.106249,
       "predicted_hr_score": 56.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 98.4 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Taj Bradley has allowed 93.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824859:669477:700249",
@@ -7612,7 +7616,7 @@
       "team": "TOR",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -7738,7 +7742,7 @@
       "team": "TOR",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -8918,7 +8922,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -8932,14 +8936,16 @@
       "predicted_hr_probability": 0.095966,
       "predicted_hr_score": 42.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0027, reinforcing the power-contact fit.",
       "top_reason_2": "Brandon Woodruff has allowed homers in 4.1% of plate appearances to this batter side.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 4.7% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:822828:543807:671737",
@@ -8960,7 +8966,7 @@
       "team": "TOR",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -8974,14 +8980,16 @@
       "predicted_hr_probability": 0.095562,
       "predicted_hr_score": 41.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0023, reinforcing the power-contact fit.",
       "top_reason_2": "Taj Bradley has allowed 93.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:823317:691720:601713",
@@ -9804,7 +9812,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -10732,7 +10740,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -11328,7 +11336,7 @@
       "team": "TOR",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -11498,7 +11506,7 @@
       "team": "TOR",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -12520,7 +12528,7 @@
       "team": "TOR",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -13196,7 +13204,7 @@
       "team": "WSH",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -99060,7 +99068,7 @@
         {
           "team": "TOR",
           "opponent_team": "MIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 665926,
@@ -99077,12 +99085,6 @@
             {
               "batter_id": 662139,
               "batter_name": "Daulton Varsho",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 676914,
-              "batter_name": "Davis Schneider",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -99712,7 +99714,7 @@
         {
           "team": "WSH",
           "opponent_team": "MIL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 691781,
@@ -99727,16 +99729,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 678554,
-              "batter_name": "Curtis Mead",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 695734,
               "batter_name": "Daylen Lile",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 686452,
+              "batter_name": "Drew Millas",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 696285,
@@ -99751,10 +99753,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 686894,
-              "batter_name": "Joey Wiemer",
+              "batter_id": 678391,
+              "batter_name": "Jorbit Vivas",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 671277,
