@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-12T14:24:35.812231+00:00",
+  "generated_at": "2026-04-12T15:18:09.704057+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2672,7 +2672,7 @@
       "team": "LAA",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -2798,7 +2798,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Drew Rasmussen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -2812,14 +2812,16 @@
       "predicted_hr_probability": 0.154377,
       "predicted_hr_score": 96.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0029, reinforcing the power-contact fit.",
       "top_reason_2": "Drew Rasmussen has allowed homers in 4.6% of plate appearances to this batter side.",
       "top_reason_3": "Projected wind speed is 12.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824293:681481:645261",
@@ -2924,7 +2926,7 @@
       "team": "CWS",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -3008,7 +3010,7 @@
       "team": "LAA",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -3050,7 +3052,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Andre Pallante",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -3092,7 +3094,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Drew Rasmussen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -3106,14 +3108,16 @@
       "predicted_hr_probability": 0.151412,
       "predicted_hr_score": 94.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 116.3 mph, which points to top-end HR juice.",
       "top_reason_2": "Drew Rasmussen has allowed barrels on 6.7% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 12.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824533:682829:667755",
@@ -3176,7 +3180,7 @@
       "team": "PHI",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -3260,7 +3264,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Andre Pallante",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -3302,7 +3306,7 @@
       "team": "LAA",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -3344,7 +3348,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Drew Rasmussen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -3386,7 +3390,7 @@
       "team": "PHI",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -3428,7 +3432,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Drew Rasmussen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -3512,7 +3516,7 @@
       "team": "MIL",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -3596,7 +3600,7 @@
       "team": "MIL",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -3978,7 +3982,7 @@
       "team": "LAA",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -4062,7 +4066,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -4314,7 +4318,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Drew Rasmussen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -4484,7 +4488,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -4568,7 +4572,7 @@
       "team": "PHI",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -4652,7 +4656,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Andre Pallante",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -4736,7 +4740,7 @@
       "team": "MIL",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -4862,7 +4866,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -4876,14 +4880,16 @@
       "predicted_hr_probability": 0.121966,
       "predicted_hr_score": 78.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 13.0%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 112.6 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824938:800050:519242",
@@ -5158,7 +5164,7 @@
       "team": "KC",
       "opponent_team": "CWS",
       "pitcher_name": "Grant Taylor",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -5286,7 +5292,7 @@
       "team": "CHC",
       "opponent_team": "PIT",
       "pitcher_name": "Bubba Chandler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -5370,7 +5376,7 @@
       "team": "LAA",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -5580,7 +5586,7 @@
       "team": "CWS",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -5664,7 +5670,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Andre Pallante",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -5678,14 +5684,16 @@
       "predicted_hr_probability": 0.116066,
       "predicted_hr_score": 71.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 65.0%, a top-decile recent-contact signal.",
       "top_reason_2": "Andre Pallante has allowed a 46.9% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 12.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:823317:592518:607536",
@@ -5874,7 +5882,7 @@
       "team": "KC",
       "opponent_team": "CWS",
       "pitcher_name": "Grant Taylor",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -6126,7 +6134,7 @@
       "team": "CHC",
       "opponent_team": "PIT",
       "pitcher_name": "Bubba Chandler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6168,7 +6176,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Andre Pallante",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -6504,7 +6512,7 @@
       "team": "KC",
       "opponent_team": "CWS",
       "pitcher_name": "Grant Taylor",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -6546,7 +6554,7 @@
       "team": "CHC",
       "opponent_team": "PIT",
       "pitcher_name": "Bubba Chandler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6714,7 +6722,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Andre Pallante",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -6884,7 +6892,7 @@
       "team": "CHC",
       "opponent_team": "PIT",
       "pitcher_name": "Bubba Chandler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6898,14 +6906,16 @@
       "predicted_hr_probability": 0.10936,
       "predicted_hr_score": 59.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0036, reinforcing the power-contact fit.",
       "top_reason_2": "Bubba Chandler has allowed a 55.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 12.8 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:823804:661388:641793",
@@ -6926,7 +6936,7 @@
       "team": "MIL",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -6968,7 +6978,7 @@
       "team": "CHC",
       "opponent_team": "PIT",
       "pitcher_name": "Bubba Chandler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6982,14 +6992,16 @@
       "predicted_hr_probability": 0.109007,
       "predicted_hr_score": 58.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0041, reinforcing the power-contact fit.",
       "top_reason_2": "Bubba Chandler has allowed a 55.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 12.8 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:823642:683146:650644",
@@ -7052,7 +7064,7 @@
       "team": "PHI",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -7094,7 +7106,7 @@
       "team": "CHC",
       "opponent_team": "PIT",
       "pitcher_name": "Bubba Chandler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -7178,7 +7190,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Drew Rasmussen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -7192,14 +7204,16 @@
       "predicted_hr_probability": 0.107111,
       "predicted_hr_score": 57.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 10.5%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Drew Rasmussen has allowed barrels on 6.7% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 12.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:822828:676914:671737",
@@ -7346,7 +7360,7 @@
       "team": "CHC",
       "opponent_team": "PIT",
       "pitcher_name": "Bubba Chandler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -7430,7 +7444,7 @@
       "team": "CWS",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -7514,7 +7528,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Andre Pallante",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -7682,7 +7696,7 @@
       "team": "MIL",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -8272,7 +8286,7 @@
       "team": "KC",
       "opponent_team": "CWS",
       "pitcher_name": "Grant Taylor",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -8314,7 +8328,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Drew Rasmussen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -8398,7 +8412,7 @@
       "team": "KC",
       "opponent_team": "CWS",
       "pitcher_name": "Grant Taylor",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -8524,7 +8538,7 @@
       "team": "KC",
       "opponent_team": "CWS",
       "pitcher_name": "Grant Taylor",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -8692,7 +8706,7 @@
       "team": "PHI",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -9030,7 +9044,7 @@
       "team": "PHI",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -9072,7 +9086,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Drew Rasmussen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -9156,7 +9170,7 @@
       "team": "CHC",
       "opponent_team": "PIT",
       "pitcher_name": "Bubba Chandler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -9198,7 +9212,7 @@
       "team": "CWS",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -9212,14 +9226,16 @@
       "predicted_hr_probability": 0.091295,
       "predicted_hr_score": 33.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 63.2%, showing consistent quality contact.",
       "top_reason_2": "Noah Cameron has allowed barrels on 6.8% of batted balls to this batter side.",
       "top_reason_3": "Projected humidity is 84%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824938:643289:676440",
@@ -9702,7 +9718,7 @@
       "team": "PHI",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -9716,14 +9732,16 @@
       "predicted_hr_probability": 0.091374,
       "predicted_hr_score": 34.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 52.2%, showing consistent quality contact.",
       "top_reason_2": "Zac Gallen has allowed 90.9 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:823479:664761:668678",
@@ -9744,7 +9762,7 @@
       "team": "PHI",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -10038,7 +10056,7 @@
       "team": "CWS",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -10122,7 +10140,7 @@
       "team": "KC",
       "opponent_team": "CWS",
       "pitcher_name": "Grant Taylor",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -10164,7 +10182,7 @@
       "team": "MIL",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -10206,7 +10224,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Andre Pallante",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -10290,7 +10308,7 @@
       "team": "CWS",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -10416,7 +10434,7 @@
       "team": "CWS",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -10756,7 +10774,7 @@
       "team": "CWS",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -10770,14 +10788,16 @@
       "predicted_hr_probability": 0.08076,
       "predicted_hr_score": 23.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Noah Cameron has allowed barrels on 6.8% of batted balls to this batter side.",
       "top_reason_2": "Projected humidity is 84%, a modest positive weather input in the live model.",
       "top_reason_3": "Noah Cameron has allowed a 44.9% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824293:672761:645261",
@@ -11010,7 +11030,7 @@
       "team": "MIL",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -11024,14 +11044,16 @@
       "predicted_hr_probability": 0.079838,
       "predicted_hr_score": 22.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Zack Littell has allowed homers in 5.4% of plate appearances over the last 30 days.",
       "top_reason_2": "Zack Littell has allowed homers in 4.1% of plate appearances to this batter side.",
       "top_reason_3": "Zack Littell has allowed barrels on 6.1% of batted balls to this batter side.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:823075:695336:678394",
@@ -11094,7 +11116,7 @@
       "team": "MIL",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -11222,7 +11244,7 @@
       "team": "CWS",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -11264,7 +11286,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -11434,7 +11456,7 @@
       "team": "MIL",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -11816,7 +11838,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -12070,7 +12092,7 @@
       "team": "LAA",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -12084,14 +12106,16 @@
       "predicted_hr_probability": 0.07141,
       "predicted_hr_score": 12.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Park factor for the hitter's handedness is 114.0, which adds venue lift to the matchup.",
       "top_reason_2": "Projected wind speed is 12.7 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:823075:702332:669467",
@@ -12112,7 +12136,7 @@
       "team": "BOS",
       "opponent_team": "STL",
       "pitcher_name": "Andre Pallante",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -12154,7 +12178,7 @@
       "team": "KC",
       "opponent_team": "CWS",
       "pitcher_name": "Grant Taylor",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -12168,14 +12192,16 @@
       "predicted_hr_probability": 0.070608,
       "predicted_hr_score": 12.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 4.3%, which the model treats as sustained power quality.",
       "top_reason_2": "Grant Taylor has allowed a 62.5% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 84%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824533:694384:671096",
@@ -12196,7 +12222,7 @@
       "team": "LAA",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -12322,7 +12348,7 @@
       "team": "LAA",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -12336,14 +12362,16 @@
       "predicted_hr_probability": 0.068564,
       "predicted_hr_score": 10.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Projected wind speed is 12.7 mph, which the live model treats as favorable weather context.",
       "top_reason_2": "Park factor for the hitter's handedness is 110.0, which adds venue lift to the matchup.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824293:691594:669373",
@@ -12364,7 +12392,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -12534,7 +12562,7 @@
       "team": "CHC",
       "opponent_team": "PIT",
       "pitcher_name": "Bubba Chandler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -12660,7 +12688,7 @@
       "team": "PHI",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -12702,7 +12730,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -12716,14 +12744,16 @@
       "predicted_hr_probability": 0.065896,
       "predicted_hr_score": 6.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 4.2%, which the model treats as sustained power quality.",
       "top_reason_2": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824293:688363:669373",
@@ -12744,7 +12774,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -12758,14 +12788,16 @@
       "predicted_hr_probability": 0.064906,
       "predicted_hr_score": 6.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2246, supporting loud-contact upside.",
       "top_reason_2": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:823075:665877:678394",
@@ -12870,7 +12902,7 @@
       "team": "KC",
       "opponent_team": "CWS",
       "pitcher_name": "Grant Taylor",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -12912,7 +12944,7 @@
       "team": "MIA",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -12996,7 +13028,7 @@
       "team": "NYY",
       "opponent_team": "TB",
       "pitcher_name": "Drew Rasmussen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -13418,7 +13450,7 @@
       "team": "LAA",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -13432,14 +13464,16 @@
       "predicted_hr_probability": 0.045631,
       "predicted_hr_score": 0.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Projected wind speed is 12.7 mph, which the live model treats as favorable weather context.",
       "top_reason_2": "Park factor for the hitter's handedness is 110.0, which adds venue lift to the matchup.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     }
   ],
   "history": [
@@ -98894,7 +98928,7 @@
         {
           "team": "PHI",
           "opponent_team": "AZ",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666969,
@@ -98927,12 +98961,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 592663,
-              "batter_name": "J.T. Realmuto",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 702222,
               "batter_name": "Justin Crawford",
               "batting_order": null,
@@ -98943,6 +98971,12 @@
               "batter_name": "Kyle Schwarber",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 665561,
+              "batter_name": "Rafael March\u00e1n",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 607208,
@@ -99059,12 +99093,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 543807,
-              "batter_name": "George Springer",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 660821,
               "batter_name": "Jes\u00fas S\u00e1nchez",
               "batting_order": null,
@@ -99075,6 +99103,12 @@
               "batter_name": "Kazuma Okamoto",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 664770,
+              "batter_name": "Nathan Lukes",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 665489,
@@ -99097,13 +99131,13 @@
         {
           "team": "LAA",
           "opponent_team": "CIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 624428,
-              "batter_name": "Adam Frazier",
+              "batter_id": 669326,
+              "batter_name": "Bryce Teodosio",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 666176,
@@ -99114,12 +99148,6 @@
             {
               "batter_id": 624585,
               "batter_name": "Jorge Soler",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 666139,
-              "batter_name": "Josh Lowe",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -99142,10 +99170,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 660162,
-              "batter_name": "Yo\u00e1n Moncada",
+              "batter_id": 672724,
+              "batter_name": "Oswald Peraza",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 687093,
+              "batter_name": "Vaughn Grissom",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 687263,
@@ -99229,7 +99263,7 @@
         {
           "team": "OAK",
           "opponent_team": "NYM",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": []
         },
         {
@@ -99306,7 +99340,7 @@
         {
           "team": "MIA",
           "opponent_team": "DET",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682663,
@@ -99321,10 +99355,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 688363,
-              "batter_name": "Graham Pauley",
+              "batter_id": 681715,
+              "batter_name": "Heriberto Hern\u00e1ndez",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 805300,
@@ -99339,20 +99373,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 689414,
-              "batter_name": "Liam Hicks",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 672640,
               "batter_name": "Otto Lopez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 683357,
-              "batter_name": "Owen Caissie",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -99438,23 +99460,11 @@
         {
           "team": "NYY",
           "opponent_team": "TB",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 592450,
               "batter_name": "Aaron Judge",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 642708,
-              "batter_name": "Amed Rosario",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 669224,
-              "batter_name": "Austin Wells",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -99467,12 +99477,6 @@
             {
               "batter_id": 641355,
               "batter_name": "Cody Bellinger",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 519317,
-              "batter_name": "Giancarlo Stanton",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -99493,6 +99497,18 @@
               "batter_name": "Randal Grichuk",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 641857,
+              "batter_name": "Ryan McMahon",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 663757,
+              "batter_name": "Trent Grisham",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         },
@@ -99557,21 +99573,15 @@
       "game_pk": 824126,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "CWS @ KC",
       "teams": [
         {
           "team": "CWS",
           "opponent_team": "KC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 643217,
-              "batter_name": "Andrew Benintendi",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 805367,
               "batter_name": "Chase Meidroth",
@@ -99585,10 +99595,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 687957,
-              "batter_name": "Dustin Harris",
+              "batter_id": 656537,
+              "batter_name": "Derek Hill",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 700337,
@@ -99619,13 +99629,19 @@
               "batter_name": "Munetaka Murakami",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 695020,
+              "batter_name": "Tanner Murray",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         },
         {
           "team": "KC",
           "opponent_team": "CWS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 677951,
@@ -99652,12 +99668,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 663697,
-              "batter_name": "Jonathan India",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 664728,
               "batter_name": "Kyle Isbel",
               "batting_order": null,
@@ -99668,6 +99678,12 @@
               "batter_name": "Maikel Garcia",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 686681,
+              "batter_name": "Michael Massey",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 521692,
@@ -99689,7 +99705,7 @@
       "game_pk": 823804,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "WSH @ MIL",
       "teams": [
@@ -99757,7 +99773,7 @@
         {
           "team": "MIL",
           "opponent_team": "WSH",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 663604,
@@ -99778,6 +99794,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 666152,
+              "batter_name": "David Hamilton",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 669003,
               "batter_name": "Garrett Mitchell",
               "batting_order": null,
@@ -99792,12 +99814,6 @@
             {
               "batter_id": 687401,
               "batter_name": "Joey Ortiz",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 650859,
-              "batter_name": "Luis Rengifo",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -99828,17 +99844,11 @@
         {
           "team": "BOS",
           "opponent_team": "STL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 702332,
               "batter_name": "Caleb Durbin",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 665966,
-              "batter_name": "Carlos Narv\u00e1ez",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -99953,7 +99963,7 @@
       "game_pk": 824696,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:20:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "PIT @ CHC",
       "teams": [
@@ -100021,7 +100031,7 @@
         {
           "team": "CHC",
           "opponent_team": "PIT",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 608324,
@@ -100048,16 +100058,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 683737,
-              "batter_name": "Michael Busch",
+              "batter_id": 807713,
+              "batter_name": "Matt Shaw",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 624424,
-              "batter_name": "Michael Conforto",
+              "batter_id": 694208,
+              "batter_name": "Mois\u00e9s Ballesteros",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 663538,
