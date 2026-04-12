@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-12T16:07:15.630293+00:00",
+  "generated_at": "2026-04-12T17:03:58.870771+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2504,7 +2504,7 @@
       "team": "PIT",
       "opponent_team": "CHC",
       "pitcher_name": "Jameson Taillon",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -2546,7 +2546,7 @@
       "team": "LAD",
       "opponent_team": "TEX",
       "pitcher_name": "Jacob deGrom",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -2916,7 +2916,7 @@
       "game_pk": 824126,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 12,
       "original_rank": 12,
       "original_score": 93.5,
@@ -2940,7 +2940,7 @@
       "predicted_hr_probability": 0.149907,
       "predicted_hr_score": 93.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -2968,7 +2968,7 @@
       "team": "PIT",
       "opponent_team": "CHC",
       "pitcher_name": "Jameson Taillon",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -3474,7 +3474,7 @@
       "team": "LAD",
       "opponent_team": "TEX",
       "pitcher_name": "Jacob deGrom",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -3686,7 +3686,7 @@
       "team": "LAD",
       "opponent_team": "TEX",
       "pitcher_name": "Jacob deGrom",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -3812,7 +3812,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Kyle Freeland",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -3870,7 +3870,8 @@
       "actual_hit_hr": null,
       "current_status": "inactive",
       "alert_flags": [
-        "lineup_alert"
+        "lineup_alert",
+        "pitcher_change_alert"
       ],
       "inactive_flag": true,
       "display_style": "strikethrough",
@@ -3940,7 +3941,7 @@
       "team": "TEX",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -4108,7 +4109,7 @@
       "team": "PIT",
       "opponent_team": "CHC",
       "pitcher_name": "Jameson Taillon",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -4122,14 +4123,16 @@
       "predicted_hr_probability": 0.129147,
       "predicted_hr_score": 85.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 92.5 mph, a top-quartile recent batted-ball quality marker.",
       "top_reason_2": "Jameson Taillon has allowed homers in 4.2% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 12.8 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824293:690993:645261",
@@ -4375,7 +4378,9 @@
       "predicted_hr_score": 80.5,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0157, reinforcing the power-contact fit.",
@@ -4614,7 +4619,7 @@
       "team": "TEX",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -5080,7 +5085,7 @@
       "team": "LAD",
       "opponent_team": "TEX",
       "pitcher_name": "Jacob deGrom",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -5094,14 +5099,16 @@
       "predicted_hr_probability": 0.119789,
       "predicted_hr_score": 76.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 8.0%, which the model treats as sustained power quality.",
       "top_reason_2": "Jacob deGrom has allowed barrels on 6.7% of recent batted balls.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 110.8 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824859:683002:605288",
@@ -5122,7 +5129,7 @@
       "team": "BAL",
       "opponent_team": "SF",
       "pitcher_name": "Adrian Houser",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -5154,7 +5161,7 @@
       "game_pk": 824126,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 65,
       "original_rank": 65,
       "original_score": 67.0,
@@ -5178,7 +5185,7 @@
       "predicted_hr_probability": 0.114799,
       "predicted_hr_score": 67.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -5206,7 +5213,7 @@
       "team": "LAD",
       "opponent_team": "TEX",
       "pitcher_name": "Jacob deGrom",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -5220,14 +5227,16 @@
       "predicted_hr_probability": 0.11888,
       "predicted_hr_score": 75.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.7 mph, which points to top-end HR juice.",
       "top_reason_2": "Jacob deGrom has allowed barrels on 6.7% of recent batted balls.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0026, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:823642:682626:650644",
@@ -5418,7 +5427,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Nick Pivetta",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -5502,7 +5511,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Nick Pivetta",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -5576,7 +5585,7 @@
       "game_pk": 824126,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 75,
       "original_rank": 75,
       "original_score": 68.2,
@@ -5600,7 +5609,7 @@
       "predicted_hr_probability": 0.114851,
       "predicted_hr_score": 68.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -5628,7 +5637,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Kyle Freeland",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -5714,7 +5723,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Kyle Freeland",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -5756,7 +5765,7 @@
       "team": "BAL",
       "opponent_team": "SF",
       "pitcher_name": "Adrian Houser",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -5798,7 +5807,7 @@
       "team": "PIT",
       "opponent_team": "CHC",
       "pitcher_name": "Jameson Taillon",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -5872,7 +5881,7 @@
       "game_pk": 824126,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 82,
       "original_rank": 82,
       "original_score": 73.2,
@@ -5896,7 +5905,7 @@
       "predicted_hr_probability": 0.117129,
       "predicted_hr_score": 73.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -6008,7 +6017,7 @@
       "team": "TEX",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -6050,7 +6059,7 @@
       "team": "LAD",
       "opponent_team": "TEX",
       "pitcher_name": "Jacob deGrom",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -6218,7 +6227,7 @@
       "team": "LAD",
       "opponent_team": "TEX",
       "pitcher_name": "Jacob deGrom",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -6302,7 +6311,7 @@
       "team": "BAL",
       "opponent_team": "SF",
       "pitcher_name": "Adrian Houser",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -6386,7 +6395,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Kyle Freeland",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -6400,14 +6409,16 @@
       "predicted_hr_probability": 0.112414,
       "predicted_hr_score": 63.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 6.7%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Projected humidity is 88%, a modest positive weather input in the live model.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 4.5% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:823804:671277:605540",
@@ -6470,7 +6481,7 @@
       "team": "TEX",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -6502,7 +6513,7 @@
       "game_pk": 824126,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 97,
       "original_rank": 97,
       "original_score": 64.8,
@@ -6526,7 +6537,7 @@
       "predicted_hr_probability": 0.114202,
       "predicted_hr_score": 64.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -6596,7 +6607,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Nick Pivetta",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -7438,7 +7449,7 @@
       "game_pk": 824126,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 119,
       "original_rank": 119,
       "original_score": 52.5,
@@ -7462,7 +7473,7 @@
       "predicted_hr_probability": 0.103323,
       "predicted_hr_score": 52.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -7870,7 +7881,7 @@
       "team": "BAL",
       "opponent_team": "SF",
       "pitcher_name": "Adrian Houser",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -7954,7 +7965,7 @@
       "team": "PIT",
       "opponent_team": "CHC",
       "pitcher_name": "Jameson Taillon",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -8038,7 +8049,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Nick Pivetta",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -8095,7 +8106,9 @@
       "predicted_hr_score": 47.9,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 4.0%, a above-baseline indicator of current lift-and-damage contact.",
@@ -8164,7 +8177,7 @@
       "team": "TEX",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -8178,14 +8191,16 @@
       "predicted_hr_probability": 0.101022,
       "predicted_hr_score": 48.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0024, reinforcing the power-contact fit.",
       "top_reason_2": "Roki Sasaki has allowed barrels on 15.4% of recent batted balls.",
       "top_reason_3": "Roki Sasaki has allowed homers in 5.2% of plate appearances to this batter side.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824859:621493:605288",
@@ -8206,7 +8221,7 @@
       "team": "BAL",
       "opponent_team": "SF",
       "pitcher_name": "Adrian Houser",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -8248,7 +8263,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Nick Pivetta",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -8280,7 +8295,7 @@
       "game_pk": 824126,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 139,
       "original_rank": 139,
       "original_score": 48.3,
@@ -8304,7 +8319,7 @@
       "predicted_hr_probability": 0.100986,
       "predicted_hr_score": 48.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -8374,7 +8389,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Kyle Freeland",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -8406,7 +8421,7 @@
       "game_pk": 824126,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 142,
       "original_rank": 142,
       "original_score": 41.4,
@@ -8430,7 +8445,7 @@
       "predicted_hr_probability": 0.095923,
       "predicted_hr_score": 41.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -8458,7 +8473,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Nick Pivetta",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -8472,14 +8487,16 @@
       "predicted_hr_probability": 0.097041,
       "predicted_hr_score": 44.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0018, reinforcing the power-contact fit.",
       "top_reason_2": "Nick Pivetta has allowed barrels on 6.3% of batted balls to this batter side.",
       "top_reason_3": "Projected humidity is 88%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824938:573262:676440",
@@ -8532,7 +8549,7 @@
       "game_pk": 824126,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 145,
       "original_rank": 145,
       "original_score": 44.1,
@@ -8556,7 +8573,7 @@
       "predicted_hr_probability": 0.096731,
       "predicted_hr_score": 44.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -8626,7 +8643,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Kyle Freeland",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -9010,7 +9027,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Nick Pivetta",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -9136,7 +9153,7 @@
       "team": "PIT",
       "opponent_team": "CHC",
       "pitcher_name": "Jameson Taillon",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -9210,7 +9227,7 @@
       "game_pk": 824126,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 161,
       "original_rank": 161,
       "original_score": 33.7,
@@ -9348,7 +9365,7 @@
       "team": "TEX",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -9390,7 +9407,7 @@
       "team": "PIT",
       "opponent_team": "CHC",
       "pitcher_name": "Jameson Taillon",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -9474,7 +9491,7 @@
       "team": "BAL",
       "opponent_team": "SF",
       "pitcher_name": "Adrian Houser",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -9558,7 +9575,7 @@
       "team": "TEX",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -9642,7 +9659,7 @@
       "team": "PIT",
       "opponent_team": "CHC",
       "pitcher_name": "Jameson Taillon",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -9656,14 +9673,16 @@
       "predicted_hr_probability": 0.091561,
       "predicted_hr_score": 34.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 5.0%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Jameson Taillon has allowed homers in 4.2% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 12.8 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:823317:593428:607536",
@@ -9684,7 +9703,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Kyle Freeland",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -9854,7 +9873,7 @@
       "team": "PIT",
       "opponent_team": "CHC",
       "pitcher_name": "Jameson Taillon",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -9938,7 +9957,7 @@
       "team": "LAD",
       "opponent_team": "TEX",
       "pitcher_name": "Jacob deGrom",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -10054,7 +10073,7 @@
       "game_pk": 824126,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 181,
       "original_rank": 181,
       "original_score": 28.4,
@@ -10078,7 +10097,7 @@
       "predicted_hr_probability": 0.086345,
       "predicted_hr_score": 28.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10138,7 +10157,7 @@
       "game_pk": 824126,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 183,
       "original_rank": 183,
       "original_score": 32.2,
@@ -10162,7 +10181,7 @@
       "predicted_hr_probability": 0.089631,
       "predicted_hr_score": 32.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10274,7 +10293,7 @@
       "team": "BAL",
       "opponent_team": "SF",
       "pitcher_name": "Adrian Houser",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -10306,7 +10325,7 @@
       "game_pk": 824126,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 187,
       "original_rank": 187,
       "original_score": 28.0,
@@ -10330,7 +10349,7 @@
       "predicted_hr_probability": 0.085434,
       "predicted_hr_score": 28.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10432,7 +10451,7 @@
       "game_pk": 824126,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 190,
       "original_rank": 190,
       "original_score": 26.1,
@@ -10456,7 +10475,7 @@
       "predicted_hr_probability": 0.083614,
       "predicted_hr_score": 26.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10572,7 +10591,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Kyle Freeland",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -10586,14 +10605,16 @@
       "predicted_hr_probability": 0.083912,
       "predicted_hr_score": 26.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
       "top_reason_2": "Kyle Freeland has allowed homers in 3.9% of plate appearances to this batter side.",
       "top_reason_3": "Projected humidity is 88%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:823966:669701:808963",
@@ -10614,7 +10635,7 @@
       "team": "TEX",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -10772,7 +10793,7 @@
       "game_pk": 824126,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 198,
       "original_rank": 198,
       "original_score": 23.0,
@@ -10954,7 +10975,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Kyle Freeland",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -10968,14 +10989,16 @@
       "predicted_hr_probability": 0.081772,
       "predicted_hr_score": 23.4,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 5.7%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Projected humidity is 88%, a modest positive weather input in the live model.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:823479:694374:691725",
@@ -11011,7 +11034,9 @@
       "predicted_hr_score": 21.8,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0040, reinforcing the power-contact fit.",
@@ -11224,7 +11249,8 @@
       "actual_hit_hr": null,
       "current_status": "inactive",
       "alert_flags": [
-        "lineup_alert"
+        "lineup_alert",
+        "pitcher_change_alert"
       ],
       "inactive_flag": true,
       "display_style": "strikethrough",
@@ -11242,7 +11268,7 @@
       "game_pk": 824126,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 209,
       "original_rank": 209,
       "original_score": 16.5,
@@ -11266,7 +11292,7 @@
       "predicted_hr_probability": 0.076067,
       "predicted_hr_score": 16.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -11548,7 +11574,7 @@
       "team": "BAL",
       "opponent_team": "SF",
       "pitcher_name": "Adrian Houser",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -11562,14 +11588,16 @@
       "predicted_hr_probability": 0.076938,
       "predicted_hr_score": 18.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 56.5%, showing consistent quality contact.",
       "top_reason_2": "Adrian Houser has allowed a 50.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 11.7 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-12:824293:650402:645261",
@@ -11930,7 +11958,7 @@
       "team": "TEX",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -11987,7 +12015,9 @@
       "predicted_hr_score": 13.4,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Andrew Painter has allowed barrels on 13.3% of batted balls to this batter side.",
@@ -12058,7 +12088,7 @@
       "team": "LAD",
       "opponent_team": "TEX",
       "pitcher_name": "Jacob deGrom",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -12176,7 +12206,7 @@
       "game_pk": 824126,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 231,
       "original_rank": 231,
       "original_score": 12.3,
@@ -12272,7 +12302,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Nick Pivetta",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -12654,7 +12684,7 @@
       "team": "BAL",
       "opponent_team": "SF",
       "pitcher_name": "Adrian Houser",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -12900,7 +12930,7 @@
       "game_pk": 824126,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 248,
       "original_rank": 248,
       "original_score": 5.0,
@@ -12924,7 +12954,7 @@
       "predicted_hr_probability": 0.061507,
       "predicted_hr_score": 5.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -13009,7 +13039,9 @@
       "predicted_hr_score": 4.6,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 0.0%, a above-baseline indicator of current lift-and-damage contact.",
@@ -13093,7 +13125,9 @@
       "predicted_hr_score": 3.1,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 3.3%, a above-baseline indicator of current lift-and-damage contact.",
@@ -13290,7 +13324,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Nick Pivetta",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -13347,7 +13381,9 @@
       "predicted_hr_score": 1.1,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0024, reinforcing the power-contact fit.",
@@ -98804,19 +98840,19 @@
         {
           "team": "BAL",
           "opponent_team": "SF",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 677942,
-              "batter_name": "Blaze Alexander",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 691723,
               "batter_name": "Coby Mayo",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 681297,
+              "batter_name": "Colton Cowser",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 687637,
@@ -99575,8 +99611,8 @@
       "game_pk": 824126,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T18:10:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "Delayed Start",
+      "game_state": "live",
       "matchup": "CWS @ KC",
       "teams": [
         {
@@ -99972,7 +100008,7 @@
         {
           "team": "PIT",
           "opponent_team": "CHC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 664040,
@@ -100005,12 +100041,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 693304,
-              "batter_name": "Nick Gonzales",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 694377,
               "batter_name": "Nick Yorke",
               "batting_order": null,
@@ -100023,10 +100053,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 656811,
-              "batter_name": "Ryan O'Hearn",
+              "batter_id": 687462,
+              "batter_name": "Spencer Horwitz",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             }
           ]
         },
@@ -100097,15 +100127,21 @@
       "game_pk": 823317,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T20:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "COL @ SD",
       "teams": [
         {
           "team": "COL",
           "opponent_team": "SD",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 686668,
+              "batter_name": "Brenton Doyle",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 664954,
               "batter_name": "Brett Sullivan",
@@ -100153,19 +100189,13 @@
               "batter_name": "Tyler Freeman",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 650489,
-              "batter_name": "Willi Castro",
-              "batting_order": null,
-              "selected_for_pick": true
             }
           ]
         },
         {
           "team": "SD",
           "opponent_team": "COL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 665487,
@@ -100174,10 +100204,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 657757,
-              "batter_name": "Gavin Sheets",
+              "batter_id": 666023,
+              "batter_name": "Freddy Fermin",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 701538,
@@ -100186,20 +100216,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 630105,
-              "batter_name": "Jake Cronenworth",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 592518,
               "batter_name": "Manny Machado",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 609280,
-              "batter_name": "Miguel Andujar",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -100214,6 +100232,12 @@
               "batter_name": "Ram\u00f3n Laureano",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 664034,
+              "batter_name": "Ty France",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 593428,
@@ -100361,14 +100385,14 @@
       "game_pk": 823966,
       "game_date": "2026-04-12",
       "game_datetime": "2026-04-12T20:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "TEX @ LAD",
       "teams": [
         {
           "team": "TEX",
           "opponent_team": "LAD",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 607043,
@@ -100407,6 +100431,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 592626,
+              "batter_name": "Joc Pederson",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 673962,
               "batter_name": "Josh Jung",
               "batting_order": null,
@@ -100417,19 +100447,13 @@
               "batter_name": "Josh Smith",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 694671,
-              "batter_name": "Wyatt Langford",
-              "batting_order": null,
-              "selected_for_pick": true
             }
           ]
         },
         {
           "team": "LAD",
           "opponent_team": "TEX",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 690976,
@@ -100470,18 +100494,6 @@
             {
               "batter_id": 660271,
               "batter_name": "Shohei Ohtani",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 606192,
-              "batter_name": "Teoscar Hern\u00e1ndez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 669257,
-              "batter_name": "Will Smith",
               "batting_order": null,
               "selected_for_pick": true
             }
