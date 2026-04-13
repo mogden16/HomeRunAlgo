@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-13T20:09:47.315406+00:00",
+  "generated_at": "2026-04-13T21:21:51.495348+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -84,10 +84,10 @@
     "latest_slate_size": 171,
     "tracked_dates": 19,
     "tracked_picks": 2447,
-    "settled_picks": 1933,
-    "tracked_homers": 191,
-    "tracked_hit_rate": 0.09881,
-    "open_picks": 514
+    "settled_picks": 1934,
+    "tracked_homers": 192,
+    "tracked_hit_rate": 0.099276,
+    "open_picks": 513
   },
   "confidence_summary": [
     {
@@ -113,10 +113,10 @@
     },
     {
       "confidence_tier": "longshot",
-      "picks": 1391,
-      "homers": 103,
-      "hit_rate": 0.074047,
-      "avg_probability": 0.09287
+      "picks": 1392,
+      "homers": 104,
+      "hit_rate": 0.074713,
+      "avg_probability": 0.092859
     }
   ],
   "player_leaderboard": [
@@ -599,6 +599,13 @@
     {
       "batter_name": "Josh Bell",
       "team": "MIN",
+      "picks": 8,
+      "homers": 1,
+      "hit_rate": 0.125
+    },
+    {
+      "batter_name": "Josh Naylor",
+      "team": "SEA",
       "picks": 8,
       "homers": 1,
       "hit_rate": 0.125
@@ -1355,13 +1362,6 @@
     {
       "batter_name": "Joey Loperfido",
       "team": "HOU",
-      "picks": 7,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Josh Naylor",
-      "team": "SEA",
       "picks": 7,
       "homers": 0,
       "hit_rate": 0.0
@@ -3251,7 +3251,7 @@
       "team": "CLE",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -3265,14 +3265,16 @@
       "predicted_hr_probability": 0.14109,
       "predicted_hr_score": 89.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 17.6% barrel-per-PA split.",
       "top_reason_2": "Matthew Liberatore has allowed homers in 3.3% of plate appearances to this batter side.",
       "top_reason_3": "Projected wind speed is 11.3 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-13:823563:545361:701542",
@@ -3589,7 +3591,7 @@
       "team": "MIN",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -4137,7 +4139,7 @@
       "team": "CLE",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -5575,7 +5577,7 @@
       "team": "CLE",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -6298,7 +6300,7 @@
       "team": "MIN",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -6850,7 +6852,7 @@
       "team": "MIN",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -6976,7 +6978,7 @@
       "team": "CLE",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -7018,7 +7020,7 @@
       "team": "MIN",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -7032,14 +7034,16 @@
       "predicted_hr_probability": 0.090695,
       "predicted_hr_score": 36.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 5.9%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Projected humidity is 88%, a modest positive weather input in the live model.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 4.2% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-13:825024:592626:622663",
@@ -7102,7 +7106,7 @@
       "team": "MIN",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -7144,7 +7148,7 @@
       "team": "CLE",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -7270,7 +7274,7 @@
       "team": "CLE",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -7354,7 +7358,7 @@
       "team": "CLE",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -7570,7 +7574,7 @@
       "team": "MIN",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -7864,7 +7868,7 @@
       "team": "MIN",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -7878,14 +7882,16 @@
       "predicted_hr_probability": 0.082691,
       "predicted_hr_score": 20.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 7.7%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Projected humidity is 88%, a modest positive weather input in the live model.",
       "top_reason_3": "Barrel rate over the last 30 days is 5.9%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-13:825024:677649:622663",
@@ -8032,7 +8038,7 @@
       "team": "CLE",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -8046,14 +8052,16 @@
       "predicted_hr_probability": 0.083935,
       "predicted_hr_score": 24.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 4.5%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Matthew Liberatore has allowed homers in 3.3% of plate appearances to this batter side.",
       "top_reason_3": "Projected wind speed is 11.3 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-13:823481:592663:665871",
@@ -8540,7 +8548,7 @@
       "team": "MIN",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -8681,15 +8689,15 @@
       "field_bearing_deg": 18.0,
       "predicted_hr_probability": 0.078568,
       "predicted_hr_score": 15.2,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 5.6%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Mike Burrows has allowed homers in 5.5% of plate appearances over the last 30 days.",
       "top_reason_3": "Barrel rate over the last 30 days is 4.5%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-13:823400:687462:676917",
@@ -9220,7 +9228,7 @@
       "team": "MIN",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -9432,7 +9440,7 @@
       "team": "CLE",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -106069,7 +106077,7 @@
       "game_pk": 823153,
       "game_date": "2026-04-13",
       "game_datetime": "2026-04-13T20:10:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "matchup": "HOU @ SEA",
       "teams": [
@@ -106923,7 +106931,7 @@
         {
           "team": "MIN",
           "opponent_team": "BOS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 668885,
@@ -106962,16 +106970,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 663616,
-              "batter_name": "Trevor Larnach",
+              "batter_id": 680777,
+              "batter_name": "Ryan Jeffers",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 656484,
-              "batter_name": "Tristan Gray",
+              "batter_id": 668952,
+              "batter_name": "Ryan Kreidler",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 605170,
@@ -106994,7 +107002,7 @@
         {
           "team": "CLE",
           "opponent_team": "STL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682657,
@@ -107003,14 +107011,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 677587,
-              "batter_name": "Brayan Rocchio",
+              "batter_id": 595978,
+              "batter_name": "Austin Hedges",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 800050,
-              "batter_name": "Chase DeLauter",
+              "batter_id": 677587,
+              "batter_name": "Brayan Rocchio",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -107021,6 +107029,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 681807,
+              "batter_name": "David Fry",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 608070,
               "batter_name": "Jos\u00e9 Ram\u00edrez",
               "batting_order": null,
@@ -107029,12 +107043,6 @@
             {
               "batter_id": 682877,
               "batter_name": "Juan Brito",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 700932,
-              "batter_name": "Kyle Manzardo",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -107119,7 +107127,7 @@
       "game_pk": 825024,
       "game_date": "2026-04-13",
       "game_datetime": "2026-04-14T01:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "TEX @ OAK",
       "teams": [
@@ -107187,7 +107195,7 @@
         {
           "team": "OAK",
           "opponent_team": "TEX",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": []
         }
       ]
