@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-13T16:09:14.278747+00:00",
+  "generated_at": "2026-04-13T17:33:57.314838+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -3415,7 +3415,7 @@
       "team": "HOU",
       "opponent_team": "SEA",
       "pitcher_name": "George Kirby",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -4675,7 +4675,7 @@
       "team": "SEA",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -4843,7 +4843,7 @@
       "team": "SEA",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -5221,7 +5221,7 @@
       "team": "SEA",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -5389,7 +5389,7 @@
       "team": "SEA",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -5851,7 +5851,7 @@
       "team": "HOU",
       "opponent_team": "SEA",
       "pitcher_name": "George Kirby",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -6061,7 +6061,7 @@
       "team": "SEA",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -6075,14 +6075,16 @@
       "predicted_hr_probability": 0.104625,
       "predicted_hr_score": 50.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 7.9%, which the model treats as sustained power quality.",
       "top_reason_2": "Mike Burrows has allowed homers in 5.5% of plate appearances over the last 30 days.",
       "top_reason_3": "Average exit velocity over the last 10 days is 94.5 mph, a top-decile recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-13:825024:607043:622663",
@@ -6397,7 +6399,7 @@
       "team": "HOU",
       "opponent_team": "SEA",
       "pitcher_name": "George Kirby",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -6775,7 +6777,7 @@
       "team": "HOU",
       "opponent_team": "SEA",
       "pitcher_name": "George Kirby",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -7153,7 +7155,7 @@
       "team": "HOU",
       "opponent_team": "SEA",
       "pitcher_name": "George Kirby",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -7279,7 +7281,7 @@
       "team": "SEA",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -7363,7 +7365,7 @@
       "team": "HOU",
       "opponent_team": "SEA",
       "pitcher_name": "George Kirby",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -7377,14 +7379,16 @@
       "predicted_hr_probability": 0.08842,
       "predicted_hr_score": 32.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "George Kirby has allowed a 50.8% hard-hit rate over the last 30 days.",
       "top_reason_2": "George Kirby has allowed 50.8% 95+ EV contact over the last 30 days.",
       "top_reason_3": "George Kirby has allowed 90.9 mph average exit velocity recently, which the model flags as hittable contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-13:824937:642086:691587",
@@ -7741,7 +7745,7 @@
       "team": "HOU",
       "opponent_team": "SEA",
       "pitcher_name": "George Kirby",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -8077,7 +8081,7 @@
       "team": "HOU",
       "opponent_team": "SEA",
       "pitcher_name": "George Kirby",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -8203,7 +8207,7 @@
       "team": "SEA",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -8623,7 +8627,7 @@
       "team": "SEA",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -8707,7 +8711,7 @@
       "team": "HOU",
       "opponent_team": "SEA",
       "pitcher_name": "George Kirby",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -9631,7 +9635,7 @@
       "team": "SEA",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -9645,14 +9649,16 @@
       "predicted_hr_probability": 0.041176,
       "predicted_hr_score": 0.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Mike Burrows has allowed homers in 5.5% of plate appearances over the last 30 days.",
       "top_reason_2": "Mike Burrows has allowed barrels on 5.6% of recent batted balls.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     }
   ],
   "history": [
@@ -106012,14 +106018,14 @@
       "game_pk": 823153,
       "game_date": "2026-04-13",
       "game_datetime": "2026-04-13T20:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "HOU @ SEA",
       "teams": [
         {
           "team": "HOU",
           "opponent_team": "SEA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 701358,
@@ -106046,16 +106052,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 694388,
-              "batter_name": "Joey Loperfido",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 514888,
               "batter_name": "Jose Altuve",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 669397,
+              "batter_name": "Nick Allen",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 666211,
@@ -106080,8 +106086,14 @@
         {
           "team": "SEA",
           "opponent_team": "HOU",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 680977,
+              "batter_name": "Brendan Donovan",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 663728,
               "batter_name": "Cal Raleigh",
@@ -106091,12 +106103,6 @@
             {
               "batter_id": 702284,
               "batter_name": "Cole Young",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 686527,
-              "batter_name": "Dominic Canzone",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -106115,12 +106121,6 @@
             {
               "batter_id": 677594,
               "batter_name": "Julio Rodr\u00edguez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 660844,
-              "batter_name": "Leo Rivas",
               "batting_order": null,
               "selected_for_pick": true
             },
