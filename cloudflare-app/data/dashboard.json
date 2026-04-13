@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-13T17:33:57.314838+00:00",
+  "generated_at": "2026-04-13T18:36:07.803939+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2953,7 +2953,7 @@
       "team": "AZ",
       "opponent_team": "BAL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -3331,7 +3331,7 @@
       "team": "AZ",
       "opponent_team": "BAL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -4507,7 +4507,7 @@
       "team": "AZ",
       "opponent_team": "BAL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -4633,7 +4633,7 @@
       "team": "AZ",
       "opponent_team": "BAL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -6231,7 +6231,7 @@
       "team": "AZ",
       "opponent_team": "BAL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -6245,14 +6245,16 @@
       "predicted_hr_probability": 0.103086,
       "predicted_hr_score": 49.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 3.7%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-13:823725:605170:676979",
@@ -7451,7 +7453,7 @@
       "team": "AZ",
       "opponent_team": "BAL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -8123,7 +8125,7 @@
       "team": "AZ",
       "opponent_team": "BAL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -8291,7 +8293,7 @@
       "team": "AZ",
       "opponent_team": "BAL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -8837,7 +8839,7 @@
       "team": "AZ",
       "opponent_team": "BAL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -106144,15 +106146,21 @@
       "game_pk": 824856,
       "game_date": "2026-04-13",
       "game_datetime": "2026-04-13T22:35:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "AZ @ BAL",
       "teams": [
         {
           "team": "AZ",
           "opponent_team": "BAL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 680728,
+              "batter_name": "Adrian Del Castillo",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 677950,
               "batter_name": "Alek Thomas",
@@ -106198,12 +106206,6 @@
             {
               "batter_id": 571448,
               "batter_name": "Nolan Arenado",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 694374,
-              "batter_name": "Tim Tawa",
               "batting_order": null,
               "selected_for_pick": true
             }
