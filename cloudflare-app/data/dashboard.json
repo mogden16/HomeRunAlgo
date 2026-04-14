@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-14T18:04:41.159775+00:00",
+  "generated_at": "2026-04-14T19:04:12.024968+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2506,7 +2506,7 @@
       "team": "NYY",
       "opponent_team": "LAA",
       "pitcher_name": "Reid Detmers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -2548,7 +2548,7 @@
       "team": "STL",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -2758,7 +2758,7 @@
       "team": "CIN",
       "opponent_team": "SF",
       "pitcher_name": "Robbie Ray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -2800,7 +2800,7 @@
       "team": "CIN",
       "opponent_team": "SF",
       "pitcher_name": "Robbie Ray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -2884,7 +2884,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Riley Martin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -3178,7 +3178,7 @@
       "team": "NYY",
       "opponent_team": "LAA",
       "pitcher_name": "Reid Detmers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -3192,14 +3192,16 @@
       "predicted_hr_probability": 0.15824,
       "predicted_hr_score": 94.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 72.4%, showing consistent quality contact.",
       "top_reason_2": "Reid Detmers has allowed homers in 4.6% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 115.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-14:824292:695600:664285",
@@ -3220,7 +3222,7 @@
       "team": "KC",
       "opponent_team": "DET",
       "pitcher_name": "Framber Valdez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -3388,7 +3390,7 @@
       "team": "NYY",
       "opponent_team": "LAA",
       "pitcher_name": "Reid Detmers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -3514,7 +3516,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Riley Martin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -3640,7 +3642,7 @@
       "team": "KC",
       "opponent_team": "DET",
       "pitcher_name": "Framber Valdez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -4270,7 +4272,7 @@
       "team": "DET",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -4312,7 +4314,7 @@
       "team": "DET",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -4438,7 +4440,7 @@
       "team": "STL",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -4648,7 +4650,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Riley Martin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -4662,14 +4664,16 @@
       "predicted_hr_probability": 0.132926,
       "predicted_hr_score": 81.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 4.8% barrel-per-PA split.",
       "top_reason_2": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 108.8 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-14:823802:678218:694819",
@@ -4900,7 +4904,7 @@
       "team": "KC",
       "opponent_team": "DET",
       "pitcher_name": "Framber Valdez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -5320,7 +5324,7 @@
       "team": "KC",
       "opponent_team": "DET",
       "pitcher_name": "Framber Valdez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -5572,7 +5576,7 @@
       "team": "STL",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -5782,7 +5786,7 @@
       "team": "DET",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -5796,14 +5800,16 @@
       "predicted_hr_probability": 0.125213,
       "predicted_hr_score": 69.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 6.9% barrel-per-PA split.",
       "top_reason_2": "Cole Ragans has allowed homers in 11.3% of plate appearances over the last 30 days.",
       "top_reason_3": "Cole Ragans has allowed barrels on 9.1% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-14:824853:694212:518876",
@@ -5908,7 +5914,7 @@
       "team": "CIN",
       "opponent_team": "SF",
       "pitcher_name": "Robbie Ray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -6118,7 +6124,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Riley Martin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -6580,7 +6586,7 @@
       "team": "KC",
       "opponent_team": "DET",
       "pitcher_name": "Framber Valdez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -6594,14 +6600,16 @@
       "predicted_hr_probability": 0.119986,
       "predicted_hr_score": 63.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 116.1 mph, which points to top-end HR juice.",
       "top_reason_2": "Average exit velocity over the last 10 days is 97.2 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 61.1%, a top-decile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-14:824853:681297:518876",
@@ -7000,7 +7008,7 @@
       "team": "NYY",
       "opponent_team": "LAA",
       "pitcher_name": "Reid Detmers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -7084,7 +7092,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Riley Martin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -7294,7 +7302,7 @@
       "team": "CIN",
       "opponent_team": "SF",
       "pitcher_name": "Robbie Ray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -7378,7 +7386,7 @@
       "team": "DET",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -7714,7 +7722,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Riley Martin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -7756,7 +7764,7 @@
       "team": "NYY",
       "opponent_team": "LAA",
       "pitcher_name": "Reid Detmers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -7840,7 +7848,7 @@
       "team": "DET",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -7882,7 +7890,7 @@
       "team": "STL",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -8008,7 +8016,7 @@
       "team": "NYY",
       "opponent_team": "LAA",
       "pitcher_name": "Reid Detmers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -8022,14 +8030,16 @@
       "predicted_hr_probability": 0.109549,
       "predicted_hr_score": 50.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Reid Detmers has allowed homers in 4.6% of plate appearances to this batter side.",
       "top_reason_2": "Park factor for the hitter's handedness is 115.0, which adds venue lift to the matchup.",
       "top_reason_3": "Forecast temperature is 84F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-14:823315:686527:650633",
@@ -8134,7 +8144,7 @@
       "team": "KC",
       "opponent_team": "DET",
       "pitcher_name": "Framber Valdez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -8260,7 +8270,7 @@
       "team": "NYY",
       "opponent_team": "LAA",
       "pitcher_name": "Reid Detmers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -8274,14 +8284,16 @@
       "predicted_hr_probability": 0.10778,
       "predicted_hr_score": 47.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 5.0%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Reid Detmers has allowed homers in 4.6% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 115.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-14:823072:669357:676282",
@@ -8302,7 +8314,7 @@
       "team": "STL",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -8316,14 +8328,16 @@
       "predicted_hr_probability": 0.107615,
       "predicted_hr_score": 47.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 5.5% barrel-per-PA split.",
       "top_reason_2": "Projected wind speed is 14.2 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0025, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-14:823723:680777:543243",
@@ -8596,7 +8610,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Riley Martin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -8638,7 +8652,7 @@
       "team": "NYY",
       "opponent_team": "LAA",
       "pitcher_name": "Reid Detmers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -8680,7 +8694,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Riley Martin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -8848,7 +8862,7 @@
       "team": "CIN",
       "opponent_team": "SF",
       "pitcher_name": "Robbie Ray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -9226,7 +9240,7 @@
       "team": "CIN",
       "opponent_team": "SF",
       "pitcher_name": "Robbie Ray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -9240,14 +9254,16 @@
       "predicted_hr_probability": 0.098741,
       "predicted_hr_score": 39.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 53.3%, showing consistent quality contact.",
       "top_reason_2": "Robbie Ray has allowed barrels on 6.0% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 12.4 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-14:824292:690993:666142",
@@ -9268,7 +9284,7 @@
       "team": "DET",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -9282,14 +9298,16 @@
       "predicted_hr_probability": 0.099354,
       "predicted_hr_score": 39.8,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 66.7%, a top-decile recent-contact signal.",
       "top_reason_2": "Cole Ragans has allowed homers in 11.3% of plate appearances over the last 30 days.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 66.7%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-14:823072:682657:700241",
@@ -9436,7 +9454,7 @@
       "team": "CIN",
       "opponent_team": "SF",
       "pitcher_name": "Robbie Ray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -9982,7 +10000,7 @@
       "team": "CIN",
       "opponent_team": "SF",
       "pitcher_name": "Robbie Ray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -10444,7 +10462,7 @@
       "team": "STL",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -10570,7 +10588,7 @@
       "team": "DET",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -10612,7 +10630,7 @@
       "team": "NYY",
       "opponent_team": "LAA",
       "pitcher_name": "Reid Detmers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -11326,7 +11344,7 @@
       "team": "KC",
       "opponent_team": "DET",
       "pitcher_name": "Framber Valdez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -11340,14 +11358,16 @@
       "predicted_hr_probability": 0.080473,
       "predicted_hr_score": 19.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 107.4 mph, which points to top-end HR juice.",
       "top_reason_2": "Framber Valdez has allowed homers in 2.8% of plate appearances to this batter side.",
       "top_reason_3": "Projected wind speed is 10.1 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-14:823478:702222:702303",
@@ -11368,7 +11388,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Riley Martin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -11830,7 +11850,7 @@
       "team": "STL",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -11844,14 +11864,16 @@
       "predicted_hr_probability": 0.077069,
       "predicted_hr_score": 14.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1745, supporting loud-contact upside.",
       "top_reason_2": "Projected wind speed is 14.2 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Forecast temperature is 86F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-14:824935:689414:625643",
@@ -12082,7 +12104,7 @@
       "team": "CIN",
       "opponent_team": "SF",
       "pitcher_name": "Robbie Ray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -12096,14 +12118,16 @@
       "predicted_hr_probability": 0.074851,
       "predicted_hr_score": 12.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Robbie Ray has allowed barrels on 6.0% of batted balls to this batter side.",
       "top_reason_2": "Projected wind speed is 12.4 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Robbie Ray has allowed homers in 3.4% of plate appearances to this batter side.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-14:824210:664954:676467",
@@ -12208,7 +12232,7 @@
       "team": "DET",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -12502,7 +12526,7 @@
       "team": "DET",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -12544,7 +12568,7 @@
       "team": "KC",
       "opponent_team": "DET",
       "pitcher_name": "Framber Valdez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -13006,7 +13030,7 @@
       "team": "KC",
       "opponent_team": "DET",
       "pitcher_name": "Framber Valdez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -13020,14 +13044,16 @@
       "predicted_hr_probability": 0.060997,
       "predicted_hr_score": 4.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 50.0%, showing consistent quality contact.",
       "top_reason_2": "95+ EV contact rate over the last 30 days is 50.0%, a strong loud-contact input for the model.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-14:823802:664770:694819",
@@ -13216,7 +13242,7 @@
       "team": "STL",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -13426,7 +13452,7 @@
       "team": "STL",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -117196,14 +117222,14 @@
       "game_pk": 824292,
       "game_date": "2026-04-14",
       "game_datetime": "2026-04-14T22:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "KC @ DET",
       "teams": [
         {
           "team": "KC",
           "opponent_team": "DET",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 677951,
@@ -117224,26 +117250,20 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 695506,
-              "batter_name": "Jac Caglianone",
+              "batter_id": 663697,
+              "batter_name": "Jonathan India",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 664728,
-              "batter_name": "Kyle Isbel",
+              "batter_id": 657041,
+              "batter_name": "Lane Thomas",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 672580,
               "batter_name": "Maikel Garcia",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 686681,
-              "batter_name": "Michael Massey",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -117264,14 +117284,8 @@
         {
           "team": "DET",
           "opponent_team": "KC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 690993,
-              "batter_name": "Colt Keith",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 693307,
               "batter_name": "Dillon Dingler",
@@ -117291,16 +117305,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 681481,
-              "batter_name": "Kerry Carpenter",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 805808,
               "batter_name": "Kevin McGonigle",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 663837,
+              "batter_name": "Matt Vierling",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 682985,
@@ -117313,6 +117327,12 @@
               "batter_name": "Spencer Torkelson",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 672761,
+              "batter_name": "Wenceel P\u00e9rez",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 656716,
@@ -117460,7 +117480,7 @@
       "game_pk": 824531,
       "game_date": "2026-04-14",
       "game_datetime": "2026-04-14T22:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "SF @ CIN",
       "teams": [
@@ -117528,8 +117548,14 @@
         {
           "team": "CIN",
           "opponent_team": "SF",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 667472,
+              "batter_name": "Dane Myers",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 682829,
               "batter_name": "Elly De La Cruz",
@@ -117555,12 +117581,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 663993,
-              "batter_name": "Nathaniel Lowe",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 701398,
               "batter_name": "Sal Stewart",
               "batting_order": null,
@@ -117569,12 +117589,6 @@
             {
               "batter_id": 668715,
               "batter_name": "Spencer Steer",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 670770,
-              "batter_name": "TJ Friedl",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -117592,7 +117606,7 @@
       "game_pk": 823478,
       "game_date": "2026-04-14",
       "game_datetime": "2026-04-14T22:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "CHC @ PHI",
       "teams": [
@@ -117660,17 +117674,11 @@
         {
           "team": "PHI",
           "opponent_team": "CHC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666969,
               "batter_name": "Adolis Garc\u00eda",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 664761,
-              "batter_name": "Alec Bohm",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -117691,6 +117699,12 @@
               "batter_name": "Bryson Stott",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 624641,
+              "batter_name": "Edmundo Sosa",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 592663,
@@ -117724,7 +117738,7 @@
       "game_pk": 823562,
       "game_date": "2026-04-14",
       "game_datetime": "2026-04-14T23:05:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "LAA @ NYY",
       "teams": [
@@ -117792,7 +117806,7 @@
         {
           "team": "NYY",
           "opponent_team": "LAA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 592450,
@@ -117801,20 +117815,14 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 642708,
+              "batter_name": "Amed Rosario",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 669224,
               "batter_name": "Austin Wells",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 700250,
-              "batter_name": "Ben Rice",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 641355,
-              "batter_name": "Cody Bellinger",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -117825,16 +117833,22 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 665862,
-              "batter_name": "Jazz Chisholm Jr.",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 676609,
               "batter_name": "Jos\u00e9 Caballero",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 502671,
+              "batter_name": "Paul Goldschmidt",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 545341,
+              "batter_name": "Randal Grichuk",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 641857,
@@ -118335,10 +118349,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 592885,
-              "batter_name": "Christian Yelich",
+              "batter_id": 666152,
+              "batter_name": "David Hamilton",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 669003,
@@ -118384,7 +118398,7 @@
       "game_pk": 823072,
       "game_date": "2026-04-14",
       "game_datetime": "2026-04-14T23:45:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "CLE @ STL",
       "teams": [
@@ -118452,7 +118466,7 @@
         {
           "team": "STL",
           "opponent_team": "CLE",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 676475,
@@ -118485,10 +118499,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 669357,
-              "batter_name": "Nolan Gorman",
+              "batter_id": 691026,
+              "batter_name": "Masyn Winn",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 602104,
@@ -118497,16 +118511,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 695336,
-              "batter_name": "Thomas Saggese",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 687363,
               "batter_name": "Victor Scott II",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 650968,
+              "batter_name": "Yohel Pozo",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         }
