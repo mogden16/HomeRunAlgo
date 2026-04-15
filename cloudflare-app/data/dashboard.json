@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-15T19:10:45.463481+00:00",
+  "generated_at": "2026-04-15T20:17:00.862317+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -86,10 +86,10 @@
     "latest_slate_size": 261,
     "tracked_dates": 21,
     "tracked_picks": 2969,
-    "settled_picks": 2286,
+    "settled_picks": 2297,
     "tracked_homers": 242,
-    "tracked_hit_rate": 0.105862,
-    "open_picks": 683
+    "tracked_hit_rate": 0.105355,
+    "open_picks": 672
   },
   "confidence_summary": [
     {
@@ -108,17 +108,17 @@
     },
     {
       "confidence_tier": "watch",
-      "picks": 391,
+      "picks": 393,
       "homers": 57,
-      "hit_rate": 0.14578,
-      "avg_probability": 0.138508
+      "hit_rate": 0.145038,
+      "avg_probability": 0.138534
     },
     {
       "confidence_tier": "longshot",
-      "picks": 1662,
+      "picks": 1671,
       "homers": 137,
-      "hit_rate": 0.082431,
-      "avg_probability": 0.093816
+      "hit_rate": 0.081987,
+      "avg_probability": 0.093815
     }
   ],
   "player_leaderboard": [
@@ -179,6 +179,13 @@
       "hit_rate": 0.307692
     },
     {
+      "batter_name": "Gunnar Henderson",
+      "team": "BAL",
+      "picks": 11,
+      "homers": 4,
+      "hit_rate": 0.363636
+    },
+    {
       "batter_name": "James Wood",
       "team": "WSH",
       "picks": 11,
@@ -188,13 +195,6 @@
     {
       "batter_name": "Christian Walker",
       "team": "HOU",
-      "picks": 10,
-      "homers": 4,
-      "hit_rate": 0.4
-    },
-    {
-      "batter_name": "Gunnar Henderson",
-      "team": "BAL",
       "picks": 10,
       "homers": 4,
       "hit_rate": 0.4
@@ -550,6 +550,13 @@
       "hit_rate": 0.083333
     },
     {
+      "batter_name": "Pete Alonso",
+      "team": "BAL",
+      "picks": 12,
+      "homers": 1,
+      "hit_rate": 0.083333
+    },
+    {
       "batter_name": "Alec Burleson",
       "team": "STL",
       "picks": 11,
@@ -573,13 +580,6 @@
     {
       "batter_name": "Julio Rodr\u00edguez",
       "team": "SEA",
-      "picks": 11,
-      "homers": 1,
-      "hit_rate": 0.090909
-    },
-    {
-      "batter_name": "Pete Alonso",
-      "team": "BAL",
       "picks": 11,
       "homers": 1,
       "hit_rate": 0.090909
@@ -711,6 +711,13 @@
       "hit_rate": 0.1
     },
     {
+      "batter_name": "Nolan Arenado",
+      "team": "AZ",
+      "picks": 10,
+      "homers": 1,
+      "hit_rate": 0.1
+    },
+    {
       "batter_name": "Otto Lopez",
       "team": "MIA",
       "picks": 10,
@@ -811,13 +818,6 @@
     {
       "batter_name": "Nico Hoerner",
       "team": "CHC",
-      "picks": 9,
-      "homers": 1,
-      "hit_rate": 0.111111
-    },
-    {
-      "batter_name": "Nolan Arenado",
-      "team": "AZ",
       "picks": 9,
       "homers": 1,
       "hit_rate": 0.111111
@@ -935,6 +935,13 @@
       "hit_rate": 0.142857
     },
     {
+      "batter_name": "Ildemaro Vargas",
+      "team": "AZ",
+      "picks": 7,
+      "homers": 1,
+      "hit_rate": 0.142857
+    },
+    {
       "batter_name": "Jarren Duran",
       "team": "BOS",
       "picks": 7,
@@ -1000,13 +1007,6 @@
     {
       "batter_name": "Edouard Julien",
       "team": "COL",
-      "picks": 6,
-      "homers": 1,
-      "hit_rate": 0.166667
-    },
-    {
-      "batter_name": "Ildemaro Vargas",
-      "team": "AZ",
       "picks": 6,
       "homers": 1,
       "hit_rate": 0.166667
@@ -1138,6 +1138,13 @@
       "hit_rate": 0.5
     },
     {
+      "batter_name": "Geraldo Perdomo",
+      "team": "AZ",
+      "picks": 12,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Roman Anthony",
       "team": "BOS",
       "picks": 12,
@@ -1166,15 +1173,29 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Geraldo Perdomo",
+      "batter_name": "Jakob Marsee",
+      "team": "MIA",
+      "picks": 11,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Jorge Barrosa",
       "team": "AZ",
       "picks": 11,
       "homers": 0,
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Jakob Marsee",
-      "team": "MIA",
+      "batter_name": "Jose Fernandez",
+      "team": "AZ",
+      "picks": 11,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Taylor Ward",
+      "team": "BAL",
       "picks": 11,
       "homers": 0,
       "hit_rate": 0.0
@@ -1215,22 +1236,8 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Jorge Barrosa",
-      "team": "AZ",
-      "picks": 10,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Jose Altuve",
       "team": "HOU",
-      "picks": 10,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Jose Fernandez",
-      "team": "AZ",
       "picks": 10,
       "homers": 0,
       "hit_rate": 0.0
@@ -1252,13 +1259,6 @@
     {
       "batter_name": "Matt Chapman",
       "team": "SF",
-      "picks": 10,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Taylor Ward",
-      "team": "BAL",
       "picks": 10,
       "homers": 0,
       "hit_rate": 0.0
@@ -1530,6 +1530,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Corbin Carroll",
+      "team": "AZ",
+      "picks": 7,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Dylan Beavers",
       "team": "BAL",
       "picks": 7,
@@ -1614,8 +1621,22 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Alek Thomas",
+      "team": "AZ",
+      "picks": 6,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Blake Perkins",
       "team": "MIL",
+      "picks": 6,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Blaze Alexander",
+      "team": "BAL",
       "picks": 6,
       "homers": 0,
       "hit_rate": 0.0
@@ -1630,13 +1651,6 @@
     {
       "batter_name": "Ceddanne Rafaela",
       "team": "BOS",
-      "picks": 6,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Corbin Carroll",
-      "team": "AZ",
       "picks": 6,
       "homers": 0,
       "hit_rate": 0.0
@@ -1694,20 +1708,6 @@
       "batter_name": "Will Smith",
       "team": "LAD",
       "picks": 6,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Alek Thomas",
-      "team": "AZ",
-      "picks": 5,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Blaze Alexander",
-      "team": "BAL",
-      "picks": 5,
       "homers": 0,
       "hit_rate": 0.0
     },
@@ -2654,7 +2654,7 @@
       "team": "MIA",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -2738,7 +2738,7 @@
       "team": "ATL",
       "opponent_team": "MIA",
       "pitcher_name": "Chris Paddack",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -3160,7 +3160,7 @@
       "team": "LAA",
       "opponent_team": "NYY",
       "pitcher_name": "Luis Gil",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -3286,7 +3286,7 @@
       "team": "LAA",
       "opponent_team": "NYY",
       "pitcher_name": "Luis Gil",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -3328,7 +3328,7 @@
       "team": "MIA",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -3538,7 +3538,7 @@
       "team": "ATL",
       "opponent_team": "MIA",
       "pitcher_name": "Chris Paddack",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -3570,7 +3570,7 @@
       "game_pk": 824855,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T16:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 26,
       "original_rank": 26,
       "original_score": 90.4,
@@ -3593,15 +3593,15 @@
       "field_bearing_deg": 60.0,
       "predicted_hr_probability": 0.147635,
       "predicted_hr_score": 90.4,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 58.1%, showing consistent quality contact.",
       "top_reason_2": "Eduardo Rodriguez has allowed barrels on 6.7% of recent batted balls.",
       "top_reason_3": "Forecast temperature is 89F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-15:823722:680776:680573",
@@ -3706,7 +3706,7 @@
       "team": "ATL",
       "opponent_team": "MIA",
       "pitcher_name": "Chris Paddack",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -3790,7 +3790,7 @@
       "team": "MIA",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -3804,14 +3804,16 @@
       "predicted_hr_probability": 0.144584,
       "predicted_hr_score": 87.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Park factor for the hitter's handedness is 110.0, which adds venue lift to the matchup.",
       "top_reason_3": "The handedness-specific hard-hit matchup score is 0.2290, supporting loud-contact upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:823803:660821:694477",
@@ -3958,7 +3960,7 @@
       "team": "COL",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -4158,7 +4160,7 @@
       "game_pk": 824855,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T16:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 40,
       "original_rank": 40,
       "original_score": 85.1,
@@ -4181,15 +4183,15 @@
       "field_bearing_deg": 60.0,
       "predicted_hr_probability": 0.13944,
       "predicted_hr_score": 85.1,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0023, reinforcing the power-contact fit.",
       "top_reason_2": "Kyle Bradish has allowed barrels on 5.6% of batted balls to this batter side.",
       "top_reason_3": "Forecast temperature is 89F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-15:823963:518692:605280",
@@ -4252,7 +4254,7 @@
       "team": "TB",
       "opponent_team": "CWS",
       "pitcher_name": "Sean Burke",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -4294,7 +4296,7 @@
       "team": "COL",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -4378,7 +4380,7 @@
       "team": "ATL",
       "opponent_team": "MIA",
       "pitcher_name": "Chris Paddack",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -4462,7 +4464,7 @@
       "team": "SF",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -4632,7 +4634,7 @@
       "team": "TB",
       "opponent_team": "CWS",
       "pitcher_name": "Sean Burke",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -4716,7 +4718,7 @@
       "team": "CWS",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -4758,7 +4760,7 @@
       "team": "LAA",
       "opponent_team": "NYY",
       "pitcher_name": "Luis Gil",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -4772,14 +4774,16 @@
       "predicted_hr_probability": 0.133655,
       "predicted_hr_score": 79.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 111.3 mph, which points to top-end HR juice.",
       "top_reason_2": "Forecast temperature is 87F, a positive hitting-context input in the live model.",
       "top_reason_3": "Barrel rate over the last 10 days is 7.5%, a top-quartile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:824532:656305:695076",
@@ -4800,7 +4804,7 @@
       "team": "SF",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -5136,7 +5140,7 @@
       "team": "COL",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -5178,7 +5182,7 @@
       "team": "SF",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -5518,7 +5522,7 @@
       "team": "LAA",
       "opponent_team": "NYY",
       "pitcher_name": "Luis Gil",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -5560,7 +5564,7 @@
       "team": "MIA",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -5730,7 +5734,7 @@
       "team": "TB",
       "opponent_team": "CWS",
       "pitcher_name": "Sean Burke",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -5772,7 +5776,7 @@
       "team": "ATL",
       "opponent_team": "MIA",
       "pitcher_name": "Chris Paddack",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -5900,7 +5904,7 @@
       "team": "SF",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -5932,7 +5936,7 @@
       "game_pk": 824855,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T16:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 82,
       "original_rank": 82,
       "original_score": 68.6,
@@ -5955,15 +5959,15 @@
       "field_bearing_deg": 60.0,
       "predicted_hr_probability": 0.123177,
       "predicted_hr_score": 68.6,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 8.0% barrel-per-PA split.",
       "top_reason_2": "Kyle Bradish has allowed barrels on 5.3% of recent batted balls.",
       "top_reason_3": "Forecast temperature is 89F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-15:823963:681624:605280",
@@ -6058,7 +6062,7 @@
       "game_pk": 824855,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T16:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 85,
       "original_rank": 85,
       "original_score": 67.4,
@@ -6081,15 +6085,15 @@
       "field_bearing_deg": 60.0,
       "predicted_hr_probability": 0.121576,
       "predicted_hr_score": 67.4,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 53.8%, a top-quartile recent-contact signal.",
       "top_reason_2": "Eduardo Rodriguez has allowed barrels on 6.7% of recent batted balls.",
       "top_reason_3": "Forecast temperature is 89F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-15:823477:664761:684007",
@@ -6184,7 +6188,7 @@
       "game_pk": 824855,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T16:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 88,
       "original_rank": 88,
       "original_score": 65.5,
@@ -6238,7 +6242,7 @@
       "team": "LAA",
       "opponent_team": "NYY",
       "pitcher_name": "Luis Gil",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -6312,7 +6316,7 @@
       "game_pk": 824855,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T16:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 91,
       "original_rank": 91,
       "original_score": 65.1,
@@ -6335,15 +6339,15 @@
       "field_bearing_deg": 60.0,
       "predicted_hr_probability": 0.119663,
       "predicted_hr_score": 65.1,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0022, reinforcing the power-contact fit.",
       "top_reason_2": "Eduardo Rodriguez has allowed barrels on 6.7% of recent batted balls.",
       "top_reason_3": "Forecast temperature is 89F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-15:823071:608070:669160",
@@ -6438,7 +6442,7 @@
       "game_pk": 824855,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T16:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 94,
       "original_rank": 94,
       "original_score": 64.0,
@@ -6490,7 +6494,7 @@
       "team": "MIA",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -6826,7 +6830,7 @@
       "team": "SF",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -6840,14 +6844,16 @@
       "predicted_hr_probability": 0.115158,
       "predicted_hr_score": 61.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2032, supporting loud-contact upside.",
       "top_reason_2": "Rhett Lowder has allowed 90.6 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Park factor for the hitter's handedness is 114.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:823399:695734:",
@@ -6944,7 +6950,7 @@
       "game_pk": 824855,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T16:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 106,
       "original_rank": 106,
       "original_score": 59.0,
@@ -6998,7 +7004,7 @@
       "team": "ATL",
       "opponent_team": "MIA",
       "pitcher_name": "Chris Paddack",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -7334,7 +7340,7 @@
       "team": "CWS",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -7366,7 +7372,7 @@
       "game_pk": 824855,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T16:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 116,
       "original_rank": 116,
       "original_score": 54.8,
@@ -7672,7 +7678,7 @@
       "team": "COL",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -7686,14 +7692,16 @@
       "predicted_hr_probability": 0.110046,
       "predicted_hr_score": 52.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.4 mph, which points to top-end HR juice.",
       "top_reason_2": "Spencer Arrighetti has allowed a 49.2% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 11.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:824291:686469:656427",
@@ -8012,7 +8020,7 @@
       "team": "COL",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -8054,7 +8062,7 @@
       "team": "CWS",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -8172,7 +8180,7 @@
       "game_pk": 824855,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T16:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 135,
       "original_rank": 135,
       "original_score": 47.5,
@@ -8310,7 +8318,7 @@
       "team": "COL",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -8352,7 +8360,7 @@
       "team": "ATL",
       "opponent_team": "MIA",
       "pitcher_name": "Chris Paddack",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -8384,7 +8392,7 @@
       "game_pk": 824855,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T16:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 140,
       "original_rank": 140,
       "original_score": 44.8,
@@ -8407,15 +8415,15 @@
       "field_bearing_deg": 60.0,
       "predicted_hr_probability": 0.103959,
       "predicted_hr_score": 44.8,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0019, reinforcing the power-contact fit.",
       "top_reason_2": "Kyle Bradish has allowed barrels on 5.6% of batted balls to this batter side.",
       "top_reason_3": "Forecast temperature is 89F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-15:823071:656555:669160",
@@ -8522,7 +8530,7 @@
       "team": "SF",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -8564,7 +8572,7 @@
       "team": "COL",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -8648,7 +8656,7 @@
       "team": "TB",
       "opponent_team": "CWS",
       "pitcher_name": "Sean Burke",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -8662,14 +8670,16 @@
       "predicted_hr_probability": 0.100379,
       "predicted_hr_score": 39.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0031, reinforcing the power-contact fit.",
       "top_reason_2": "Sean Burke has allowed barrels on 6.2% of batted balls to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:823722:605170:813349",
@@ -8946,7 +8956,7 @@
       "team": "TB",
       "opponent_team": "CWS",
       "pitcher_name": "Sean Burke",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -8960,14 +8970,16 @@
       "predicted_hr_probability": 0.097394,
       "predicted_hr_score": 35.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.8 mph, which points to top-end HR juice.",
       "top_reason_2": "Sean Burke has allowed barrels on 6.2% of batted balls to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:825021:677649:669372",
@@ -9116,7 +9128,7 @@
       "team": "MIA",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -9148,7 +9160,7 @@
       "game_pk": 824855,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T16:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 158,
       "original_rank": 158,
       "original_score": 38.3,
@@ -9244,7 +9256,7 @@
       "team": "ATL",
       "opponent_team": "MIA",
       "pitcher_name": "Chris Paddack",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -9360,7 +9372,7 @@
       "game_pk": 824855,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T16:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 163,
       "original_rank": 163,
       "original_score": 37.2,
@@ -9383,15 +9395,15 @@
       "field_bearing_deg": 60.0,
       "predicted_hr_probability": 0.098512,
       "predicted_hr_score": 37.2,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 53.8%, showing consistent quality contact.",
       "top_reason_2": "Eduardo Rodriguez has allowed barrels on 6.7% of recent batted balls.",
       "top_reason_3": "Forecast temperature is 89F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-15:823071:700932:669160",
@@ -9496,7 +9508,7 @@
       "team": "TB",
       "opponent_team": "CWS",
       "pitcher_name": "Sean Burke",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -9510,14 +9522,16 @@
       "predicted_hr_probability": 0.094489,
       "predicted_hr_score": 30.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1781, supporting loud-contact upside.",
       "top_reason_2": "Sean Burke has allowed barrels on 6.2% of batted balls to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:823722:691785:680573",
@@ -9919,7 +9933,7 @@
       "team": "ATL",
       "opponent_team": "MIA",
       "pitcher_name": "Chris Paddack",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -9961,7 +9975,7 @@
       "team": "LAA",
       "opponent_team": "NYY",
       "pitcher_name": "Luis Gil",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -10089,7 +10103,7 @@
       "team": "CWS",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -10131,7 +10145,7 @@
       "team": "SF",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -10261,7 +10275,7 @@
       "team": "MIA",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -10685,7 +10699,7 @@
       "team": "SF",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -10699,14 +10713,16 @@
       "predicted_hr_probability": 0.088383,
       "predicted_hr_score": 25.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 5.0%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Rhett Lowder has allowed barrels on 6.4% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 11.8 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:823314:641487:681190",
@@ -10855,7 +10871,7 @@
       "team": "MIA",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -11235,7 +11251,7 @@
       "team": "MIA",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -11405,7 +11421,7 @@
       "team": "CWS",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -11419,14 +11435,16 @@
       "predicted_hr_probability": 0.080634,
       "predicted_hr_score": 16.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 46.2%, a above-baseline recent-contact signal.",
       "top_reason_2": "Jesse Scholtens has allowed homers in 5.9% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:823561:672724:661563",
@@ -11447,7 +11465,7 @@
       "team": "LAA",
       "opponent_team": "NYY",
       "pitcher_name": "Luis Gil",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -11566,7 +11584,7 @@
       "game_pk": 824855,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T16:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 215,
       "original_rank": 215,
       "original_score": 18.4,
@@ -11589,15 +11607,15 @@
       "field_bearing_deg": 60.0,
       "predicted_hr_probability": 0.08216,
       "predicted_hr_score": 18.4,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Kyle Bradish has allowed barrels on 5.3% of recent batted balls.",
       "top_reason_2": "Forecast temperature is 89F, a positive hitting-context input in the live model.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-15:823477:807713:666200",
@@ -11749,7 +11767,7 @@
       "team": "TB",
       "opponent_team": "CWS",
       "pitcher_name": "Sean Burke",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -11763,14 +11781,16 @@
       "predicted_hr_probability": 0.077531,
       "predicted_hr_score": 14.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Sean Burke has allowed barrels on 6.2% of batted balls to this batter side.",
       "top_reason_2": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
       "top_reason_3": "Sean Burke has allowed 90.7 mph average exit velocity recently, which the model flags as hittable contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:823803:676391:694477",
@@ -12001,7 +12021,7 @@
       "team": "COL",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -12015,14 +12035,16 @@
       "predicted_hr_probability": 0.078219,
       "predicted_hr_score": 14.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Spencer Arrighetti has allowed a 49.2% hard-hit rate over the last 30 days.",
       "top_reason_2": "Projected wind speed is 11.5 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Spencer Arrighetti has allowed 49.2% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:823399:678391:",
@@ -12077,7 +12099,7 @@
       "game_pk": 824855,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T16:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 227,
       "original_rank": 227,
       "original_score": 13.4,
@@ -12215,7 +12237,7 @@
       "team": "LAA",
       "opponent_team": "NYY",
       "pitcher_name": "Luis Gil",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -12385,7 +12407,7 @@
       "team": "CWS",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -12399,14 +12421,16 @@
       "predicted_hr_probability": 0.070529,
       "predicted_hr_score": 9.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1905, supporting loud-contact upside.",
       "top_reason_2": "Jesse Scholtens has allowed homers in 5.9% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:823803:650391:694477",
@@ -12597,7 +12621,7 @@
       "team": "TB",
       "opponent_team": "CWS",
       "pitcher_name": "Sean Burke",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -12681,7 +12705,7 @@
       "team": "LAA",
       "opponent_team": "NYY",
       "pitcher_name": "Luis Gil",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -12695,14 +12719,16 @@
       "predicted_hr_probability": 0.071472,
       "predicted_hr_score": 10.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 90.5 mph, a above-baseline recent batted-ball quality marker.",
       "top_reason_2": "Forecast temperature is 87F, a positive hitting-context input in the live model.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:824209:664954:681293",
@@ -12723,7 +12749,7 @@
       "team": "COL",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -12737,14 +12763,16 @@
       "predicted_hr_probability": 0.0699,
       "predicted_hr_score": 9.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Spencer Arrighetti has allowed a 49.2% hard-hit rate over the last 30 days.",
       "top_reason_2": "Projected wind speed is 11.5 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Spencer Arrighetti has allowed 49.2% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:824855:571448:680694",
@@ -12755,7 +12783,7 @@
       "game_pk": 824855,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T16:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 243,
       "original_rank": 243,
       "original_score": 8.4,
@@ -12778,15 +12806,15 @@
       "field_bearing_deg": 60.0,
       "predicted_hr_probability": 0.068713,
       "predicted_hr_score": 8.4,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Kyle Bradish has allowed barrels on 5.3% of recent batted balls.",
       "top_reason_2": "Forecast temperature is 89F, a positive hitting-context input in the live model.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-15:824615:695020:669947",
@@ -12807,7 +12835,7 @@
       "team": "CWS",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -12881,7 +12909,7 @@
       "game_pk": 824855,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T16:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 246,
       "original_rank": 246,
       "original_score": 6.9,
@@ -12904,15 +12932,15 @@
       "field_bearing_deg": 60.0,
       "predicted_hr_probability": 0.065925,
       "predicted_hr_score": 6.9,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Kyle Bradish has allowed barrels on 5.3% of recent batted balls.",
       "top_reason_2": "Forecast temperature is 89F, a positive hitting-context input in the live model.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-15:823071:680757:669160",
@@ -13017,7 +13045,7 @@
       "team": "CWS",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -13031,14 +13059,16 @@
       "predicted_hr_probability": 0.060087,
       "predicted_hr_score": 4.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0023, reinforcing the power-contact fit.",
       "top_reason_2": "Jesse Scholtens has allowed barrels on 7.7% of batted balls to this batter side.",
       "top_reason_3": "Projected humidity is 81%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:823314:666023:676106",
@@ -13101,7 +13131,7 @@
       "team": "CWS",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -13259,7 +13289,7 @@
       "game_pk": 824855,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T16:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 255,
       "original_rank": 255,
       "original_score": 2.7,
@@ -13282,15 +13312,15 @@
       "field_bearing_deg": 60.0,
       "predicted_hr_probability": 0.057787,
       "predicted_hr_score": 2.7,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Kyle Bradish has allowed barrels on 5.3% of recent batted balls.",
       "top_reason_2": "Forecast temperature is 89F, a positive hitting-context input in the live model.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-15:824615:802415:680732",
@@ -13311,7 +13341,7 @@
       "team": "TB",
       "opponent_team": "CWS",
       "pitcher_name": "Sean Burke",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -13353,7 +13383,7 @@
       "team": "SF",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -128272,8 +128302,8 @@
       "game_pk": 824855,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T16:35:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "AZ @ BAL",
       "teams": [
         {
@@ -128921,7 +128951,7 @@
         {
           "team": "SF",
           "opponent_team": "CIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 669477,
@@ -128932,12 +128962,6 @@
             {
               "batter_id": 691740,
               "batter_name": "Daniel Susac",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 671218,
-              "batter_name": "Heliot Ramos",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -128956,12 +128980,6 @@
             {
               "batter_id": 656305,
               "batter_name": "Matt Chapman",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 672275,
-              "batter_name": "Patrick Bailey",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -129185,11 +129203,11 @@
         {
           "team": "LAA",
           "opponent_team": "NYY",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 669326,
-              "batter_name": "Bryce Teodosio",
+              "batter_id": 624428,
+              "batter_name": "Adam Frazier",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -129198,6 +129216,12 @@
               "batter_name": "Jo Adell",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 666139,
+              "batter_name": "Josh Lowe",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 681351,
@@ -129220,12 +129244,6 @@
             {
               "batter_id": 672724,
               "batter_name": "Oswald Peraza",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 687093,
-              "batter_name": "Vaughn Grissom",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -129310,26 +129328,26 @@
       "game_pk": 824936,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T23:15:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "MIA @ ATL",
       "teams": [
         {
           "team": "MIA",
           "opponent_team": "ATL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 682663,
-              "batter_name": "Agust\u00edn Ram\u00edrez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 681393,
               "batter_name": "Connor Norby",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 691277,
+              "batter_name": "Deyvison De Los Santos",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 688363,
@@ -129378,7 +129396,7 @@
         {
           "team": "ATL",
           "opponent_team": "MIA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 663586,
@@ -129442,20 +129460,20 @@
       "game_pk": 824615,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T23:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "TB @ CWS",
       "teams": [
         {
           "team": "TB",
           "opponent_team": "CWS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 810938,
-              "batter_name": "Ben Williamson",
+              "batter_id": 656775,
+              "batter_name": "Cedric Mullins",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 802415,
@@ -129464,14 +129482,20 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 666018,
-              "batter_name": "Jonathan Aranda",
+              "batter_id": 676439,
+              "batter_name": "Hunter Feduccia",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 676356,
-              "batter_name": "Jonny DeLuca",
+              "batter_id": 641584,
+              "batter_name": "Jake Fraley",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 666018,
+              "batter_name": "Jonathan Aranda",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -129482,16 +129506,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 663743,
-              "batter_name": "Nick Fortes",
+              "batter_id": 680700,
+              "batter_name": "Richie Palacios",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 668723,
-              "batter_name": "Ryan Vilade",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 670764,
@@ -129510,7 +129528,7 @@
         {
           "team": "CWS",
           "opponent_team": "TB",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 643217,
@@ -129519,20 +129537,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 805367,
-              "batter_name": "Chase Meidroth",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 695657,
               "batter_name": "Colson Montgomery",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 700337,
-              "batter_name": "Edgar Quero",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -129553,6 +129559,12 @@
               "batter_name": "Munetaka Murakami",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 624512,
+              "batter_name": "Reese McGuire",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 695020,
@@ -129706,21 +129718,15 @@
       "game_pk": 824209,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-16T00:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "COL @ HOU",
       "teams": [
         {
           "team": "COL",
           "opponent_team": "HOU",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 664954,
-              "batter_name": "Brett Sullivan",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 666397,
               "batter_name": "Edouard Julien",
@@ -129740,14 +129746,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 687597,
-              "batter_name": "Jordan Beck",
+              "batter_id": 664983,
+              "batter_name": "Jake McCarthy",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 691720,
-              "batter_name": "Kyle Karros",
+              "batter_id": 687597,
+              "batter_name": "Jordan Beck",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -129764,10 +129770,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 671289,
-              "batter_name": "Tyler Freeman",
+              "batter_id": 687859,
+              "batter_name": "Troy Johnston",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 650489,
+              "batter_name": "Willi Castro",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         },
