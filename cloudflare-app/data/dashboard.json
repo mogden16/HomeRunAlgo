@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-15T12:03:55.029095+00:00",
+  "generated_at": "2026-04-15T13:11:24.294242+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2990,7 +2990,7 @@
       "team": "STL",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -4838,7 +4838,7 @@
       "team": "STL",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -4922,7 +4922,7 @@
       "team": "STL",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -6602,7 +6602,7 @@
       "team": "STL",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -8744,7 +8744,7 @@
       "team": "STL",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -8758,14 +8758,16 @@
       "predicted_hr_probability": 0.11216,
       "predicted_hr_score": 56.7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 8.1%, which the model treats as sustained power quality.",
       "top_reason_2": "Slade Cecconi has allowed homers in 4.4% of plate appearances to this batter side.",
       "top_reason_3": "Projected humidity is 91%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:823722:665966:680573",
@@ -10172,7 +10174,7 @@
       "team": "STL",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -10186,14 +10188,16 @@
       "predicted_hr_probability": 0.102718,
       "predicted_hr_score": 42.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 90.7 mph, a above-baseline recent batted-ball quality marker.",
       "top_reason_2": "Slade Cecconi has allowed homers in 4.4% of plate appearances to this batter side.",
       "top_reason_3": "Projected humidity is 91%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:824936:689414:693821",
@@ -10256,7 +10260,7 @@
       "team": "STL",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -10844,7 +10848,7 @@
       "team": "STL",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -13448,7 +13452,7 @@
       "team": "STL",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -13462,14 +13466,16 @@
       "predicted_hr_probability": 0.050752,
       "predicted_hr_score": 1.1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Slade Cecconi has allowed homers in 4.4% of plate appearances to this batter side.",
       "top_reason_2": "Projected humidity is 91%, a modest positive weather input in the live model.",
       "top_reason_3": "Slade Cecconi has allowed barrels on 7.7% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     }
   ],
   "history": [
@@ -128329,7 +128335,7 @@
       "game_pk": 823071,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T17:15:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "CLE @ STL",
       "teams": [
@@ -128397,7 +128403,7 @@
         {
           "team": "STL",
           "opponent_team": "CLE",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 676475,
@@ -128424,16 +128430,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 665877,
-              "batter_name": "Jos\u00e9 Ferm\u00edn",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 691026,
               "batter_name": "Masyn Winn",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 701675,
+              "batter_name": "Nathan Church",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 669357,
@@ -128442,16 +128448,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 602104,
-              "batter_name": "Ram\u00f3n Ur\u00edas",
+              "batter_id": 686780,
+              "batter_name": "Pedro Pag\u00e9s",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 695336,
-              "batter_name": "Thomas Saggese",
+              "batter_id": 687363,
+              "batter_name": "Victor Scott II",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             }
           ]
         }
