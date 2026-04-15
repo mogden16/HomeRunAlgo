@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-15T17:48:17.972382+00:00",
+  "generated_at": "2026-04-15T19:10:45.463481+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -86,10 +86,10 @@
     "latest_slate_size": 261,
     "tracked_dates": 21,
     "tracked_picks": 2969,
-    "settled_picks": 2284,
-    "tracked_homers": 240,
-    "tracked_hit_rate": 0.105079,
-    "open_picks": 685
+    "settled_picks": 2286,
+    "tracked_homers": 242,
+    "tracked_hit_rate": 0.105862,
+    "open_picks": 683
   },
   "confidence_summary": [
     {
@@ -115,10 +115,10 @@
     },
     {
       "confidence_tier": "longshot",
-      "picks": 1660,
-      "homers": 135,
-      "hit_rate": 0.081325,
-      "avg_probability": 0.093796
+      "picks": 1662,
+      "homers": 137,
+      "hit_rate": 0.082431,
+      "avg_probability": 0.093816
     }
   ],
   "player_leaderboard": [
@@ -261,6 +261,13 @@
       "picks": 9,
       "homers": 3,
       "hit_rate": 0.333333
+    },
+    {
+      "batter_name": "Jeremiah Jackson",
+      "team": "BAL",
+      "picks": 8,
+      "homers": 3,
+      "hit_rate": 0.375
     },
     {
       "batter_name": "Mickey Moniak",
@@ -480,13 +487,6 @@
       "hit_rate": 0.285714
     },
     {
-      "batter_name": "Jeremiah Jackson",
-      "team": "BAL",
-      "picks": 7,
-      "homers": 2,
-      "hit_rate": 0.285714
-    },
-    {
       "batter_name": "Teoscar Hern\u00e1ndez",
       "team": "LAD",
       "picks": 7,
@@ -594,6 +594,13 @@
     {
       "batter_name": "Salvador Perez",
       "team": "KC",
+      "picks": 11,
+      "homers": 1,
+      "hit_rate": 0.090909
+    },
+    {
+      "batter_name": "Trevor Story",
+      "team": "BOS",
       "picks": 11,
       "homers": 1,
       "hit_rate": 0.090909
@@ -1252,13 +1259,6 @@
     {
       "batter_name": "Taylor Ward",
       "team": "BAL",
-      "picks": 10,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Trevor Story",
-      "team": "BOS",
       "picks": 10,
       "homers": 0,
       "hit_rate": 0.0
@@ -2528,7 +2528,7 @@
       "team": "PIT",
       "opponent_team": "WSH",
       "pitcher_name": "Jake Irvin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -2570,7 +2570,7 @@
       "team": "NYY",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -2612,7 +2612,7 @@
       "team": "NYY",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -2780,7 +2780,7 @@
       "team": "WSH",
       "opponent_team": "PIT",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -2824,7 +2824,7 @@
       "team": "CIN",
       "opponent_team": "SF",
       "pitcher_name": "Tyler Mahle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -2866,7 +2866,7 @@
       "team": "CIN",
       "opponent_team": "SF",
       "pitcher_name": "Tyler Mahle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -2950,7 +2950,7 @@
       "team": "KC",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -3034,7 +3034,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Shota Imanaga",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -3076,7 +3076,7 @@
       "team": "NYY",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -3202,7 +3202,7 @@
       "team": "KC",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -3370,7 +3370,7 @@
       "team": "NYY",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -3412,7 +3412,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Shota Imanaga",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -3496,7 +3496,7 @@
       "team": "PIT",
       "opponent_team": "WSH",
       "pitcher_name": "Jake Irvin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -3748,7 +3748,7 @@
       "team": "NYY",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -3916,7 +3916,7 @@
       "team": "PIT",
       "opponent_team": "WSH",
       "pitcher_name": "Jake Irvin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -4084,7 +4084,7 @@
       "team": "DET",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -4336,7 +4336,7 @@
       "team": "DET",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -4420,7 +4420,7 @@
       "team": "PIT",
       "opponent_team": "WSH",
       "pitcher_name": "Jake Irvin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -4590,7 +4590,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Shota Imanaga",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -5010,7 +5010,7 @@
       "team": "NYY",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -5052,7 +5052,7 @@
       "team": "KC",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -5094,7 +5094,7 @@
       "team": "CIN",
       "opponent_team": "SF",
       "pitcher_name": "Tyler Mahle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -5264,7 +5264,7 @@
       "team": "WSH",
       "opponent_team": "PIT",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -5308,7 +5308,7 @@
       "team": "CIN",
       "opponent_team": "SF",
       "pitcher_name": "Tyler Mahle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -5644,7 +5644,7 @@
       "team": "DET",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -5658,14 +5658,16 @@
       "predicted_hr_probability": 0.127344,
       "predicted_hr_score": 71.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 57.9%, showing consistent quality contact.",
       "top_reason_2": "Seth Lugo has allowed barrels on 7.1% of recent batted balls.",
       "top_reason_3": "Projected humidity is 84%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:824532:663886:641816",
@@ -5686,7 +5688,7 @@
       "team": "CIN",
       "opponent_team": "SF",
       "pitcher_name": "Tyler Mahle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -5812,7 +5814,7 @@
       "team": "WSH",
       "opponent_team": "PIT",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -5856,7 +5858,7 @@
       "team": "PIT",
       "opponent_team": "WSH",
       "pitcher_name": "Jake Irvin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -6108,7 +6110,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Shota Imanaga",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -6150,7 +6152,7 @@
       "team": "DET",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -6459,15 +6461,15 @@
       "field_bearing_deg": 60.0,
       "predicted_hr_probability": 0.118133,
       "predicted_hr_score": 64.0,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 12.9%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Eduardo Rodriguez has allowed barrels on 6.7% of recent batted balls.",
       "top_reason_3": "Forecast temperature is 89F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-15:824936:805300:693821",
@@ -6572,7 +6574,7 @@
       "team": "CIN",
       "opponent_team": "SF",
       "pitcher_name": "Tyler Mahle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -6698,7 +6700,7 @@
       "team": "NYY",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -6740,7 +6742,7 @@
       "team": "NYY",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -6782,7 +6784,7 @@
       "team": "KC",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -6866,7 +6868,7 @@
       "team": "WSH",
       "opponent_team": "PIT",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -7080,7 +7082,7 @@
       "team": "KC",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -7122,7 +7124,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Shota Imanaga",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -7206,7 +7208,7 @@
       "team": "DET",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -7586,7 +7588,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Shota Imanaga",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -7712,7 +7714,7 @@
       "team": "KC",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -7754,7 +7756,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Shota Imanaga",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -7796,7 +7798,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Shota Imanaga",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -7810,14 +7812,16 @@
       "predicted_hr_probability": 0.108879,
       "predicted_hr_score": 51.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 50.0%, showing consistent quality contact.",
       "top_reason_2": "Shota Imanaga has allowed 92.7 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Forecast temperature is 87F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:823314:657757:676106",
@@ -7964,7 +7968,7 @@
       "team": "WSH",
       "opponent_team": "PIT",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -8134,7 +8138,7 @@
       "team": "PIT",
       "opponent_team": "WSH",
       "pitcher_name": "Jake Irvin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -8148,14 +8152,16 @@
       "predicted_hr_probability": 0.106006,
       "predicted_hr_score": 48.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 113.2 mph, which points to top-end HR juice.",
       "top_reason_2": "Jake Irvin has allowed a 50.6% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 11.9 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:824855:687637:593958",
@@ -8220,7 +8226,7 @@
       "team": "DET",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -8262,7 +8268,7 @@
       "team": "PIT",
       "opponent_team": "WSH",
       "pitcher_name": "Jake Irvin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -8856,7 +8862,7 @@
       "team": "PIT",
       "opponent_team": "WSH",
       "pitcher_name": "Jake Irvin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -8911,15 +8917,15 @@
       "field_bearing_deg": 30.0,
       "predicted_hr_probability": 0.102579,
       "predicted_hr_score": 42.1,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1947, supporting loud-contact upside.",
       "top_reason_2": "Simeon Woods Richardson has allowed homers in 5.6% of plate appearances over the last 30 days.",
       "top_reason_3": "Simeon Woods Richardson has allowed a 48.2% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-15:824615:663743:680732",
@@ -9574,7 +9580,7 @@
       "team": "WSH",
       "opponent_team": "PIT",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -9588,16 +9594,17 @@
       "predicted_hr_probability": 0.097492,
       "predicted_hr_score": 36.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "inactive",
       "alert_flags": [
+        "lineup_alert",
         "pitcher_change_alert"
       ],
-      "inactive_flag": false,
-      "display_style": "default",
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 44.0%, a above-baseline recent-contact signal.",
       "top_reason_2": "Projected wind speed is 11.9 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 44.0%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:823963:673357:660271",
@@ -9702,7 +9709,7 @@
       "team": "CIN",
       "opponent_team": "SF",
       "pitcher_name": "Tyler Mahle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -10166,7 +10173,7 @@
       "team": "KC",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -10180,14 +10187,16 @@
       "predicted_hr_probability": 0.093526,
       "predicted_hr_score": 30.3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 4.0%, which the model treats as sustained power quality.",
       "top_reason_2": "Jack Flaherty has allowed homers in 3.8% of plate appearances to this batter side.",
       "top_reason_3": "Projected humidity is 84%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:823071:695336:677944",
@@ -10378,7 +10387,7 @@
       "team": "NYY",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -10504,7 +10513,7 @@
       "team": "PIT",
       "opponent_team": "WSH",
       "pitcher_name": "Jake Irvin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -10518,14 +10527,16 @@
       "predicted_hr_probability": 0.090092,
       "predicted_hr_score": 27.2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Jake Irvin has allowed a 50.6% hard-hit rate over the last 30 days.",
       "top_reason_2": "Projected wind speed is 11.9 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Jake Irvin has allowed 50.6% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:823722:665019:813349",
@@ -10758,7 +10769,7 @@
       "team": "CIN",
       "opponent_team": "SF",
       "pitcher_name": "Tyler Mahle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -10772,14 +10783,16 @@
       "predicted_hr_probability": 0.088111,
       "predicted_hr_score": 24.9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 53.3%, showing consistent quality contact.",
       "top_reason_2": "Tyler Mahle has allowed homers in 3.6% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 11.8 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:823314:702284:681190",
@@ -10926,7 +10939,7 @@
       "team": "DET",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -11052,7 +11065,7 @@
       "team": "DET",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -11066,14 +11079,16 @@
       "predicted_hr_probability": 0.087268,
       "predicted_hr_score": 23.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 9.1%, which the model treats as sustained power quality.",
       "top_reason_2": "Seth Lugo has allowed barrels on 7.1% of recent batted balls.",
       "top_reason_3": "Projected humidity is 84%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:824291:686681:656427",
@@ -11094,7 +11109,7 @@
       "team": "KC",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -11136,7 +11151,7 @@
       "team": "KC",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -11474,7 +11489,7 @@
       "team": "WSH",
       "opponent_team": "PIT",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -11488,16 +11503,17 @@
       "predicted_hr_probability": 0.084622,
       "predicted_hr_score": 19.5,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "inactive",
       "alert_flags": [
+        "lineup_alert",
         "pitcher_change_alert"
       ],
-      "inactive_flag": false,
-      "display_style": "default",
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Projected wind speed is 11.9 mph, which the live model treats as favorable weather context.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:823071:682877:669160",
@@ -11644,7 +11660,7 @@
       "team": "WSH",
       "opponent_team": "PIT",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -11658,16 +11674,17 @@
       "predicted_hr_probability": 0.082114,
       "predicted_hr_score": 18.0,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "inactive",
       "alert_flags": [
+        "lineup_alert",
         "pitcher_change_alert"
       ],
-      "inactive_flag": false,
-      "display_style": "default",
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Projected wind speed is 11.9 mph, which the live model treats as favorable weather context.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:823477:702222:684007",
@@ -11688,7 +11705,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Shota Imanaga",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -11702,14 +11719,16 @@
       "predicted_hr_probability": 0.081758,
       "predicted_hr_score": 17.6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Shota Imanaga has allowed 92.7 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_2": "Forecast temperature is 87F, a positive hitting-context input in the live model.",
       "top_reason_3": "Shota Imanaga has allowed a 49.3% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-15:824615:676356:680732",
@@ -12024,7 +12043,7 @@
       "team": "WSH",
       "opponent_team": "PIT",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -12154,7 +12173,7 @@
       "team": "DET",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -13418,7 +13437,7 @@
       "team": "CIN",
       "opponent_team": "SF",
       "pitcher_name": "Tyler Mahle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -128637,14 +128656,14 @@
       "game_pk": 824291,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T22:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "KC @ DET",
       "teams": [
         {
           "team": "KC",
           "opponent_team": "DET",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 677951,
@@ -128665,16 +128684,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 663697,
-              "batter_name": "Jonathan India",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 664728,
               "batter_name": "Kyle Isbel",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 657041,
+              "batter_name": "Lane Thomas",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 672580,
@@ -128705,7 +128724,7 @@
         {
           "team": "DET",
           "opponent_team": "KC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 690993,
@@ -128714,16 +128733,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 693307,
-              "batter_name": "Dillon Dingler",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 650402,
               "batter_name": "Gleyber Torres",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 595879,
+              "batter_name": "Javier B\u00e1ez",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 681481,
@@ -128750,12 +128769,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 672761,
-              "batter_name": "Wenceel P\u00e9rez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 656716,
               "batter_name": "Zach McKinstry",
               "batting_order": null,
@@ -128769,14 +128782,14 @@
       "game_pk": 823399,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T22:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "WSH @ PIT",
       "teams": [
         {
           "team": "WSH",
           "opponent_team": "PIT",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 691781,
@@ -128791,14 +128804,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 695734,
-              "batter_name": "Daylen Lile",
+              "batter_id": 678554,
+              "batter_name": "Curtis Mead",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 696285,
-              "batter_name": "Jacob Young",
+              "batter_id": 695734,
+              "batter_name": "Daylen Lile",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -128809,26 +128822,26 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 686894,
+              "batter_name": "Joey Wiemer",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 678391,
               "batter_name": "Jorbit Vivas",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 677588,
-              "batter_name": "Jos\u00e9 Tena",
+              "batter_id": 660688,
+              "batter_name": "Keibert Ruiz",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 671277,
               "batter_name": "Luis Garc\u00eda Jr.",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 683083,
-              "batter_name": "Nasim Nu\u00f1ez",
               "batting_order": null,
               "selected_for_pick": true
             }
@@ -128837,7 +128850,7 @@
         {
           "team": "PIT",
           "opponent_team": "WSH",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 664040,
@@ -128852,22 +128865,22 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 663698,
-              "batter_name": "Joey Bart",
+              "batter_id": 680779,
+              "batter_name": "Henry Davis",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 804606,
-              "batter_name": "Konnor Griffin",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 542303,
               "batter_name": "Marcell Ozuna",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 693304,
+              "batter_name": "Nick Gonzales",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 694377,
@@ -128901,7 +128914,7 @@
       "game_pk": 824532,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T22:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "SF @ CIN",
       "teams": [
@@ -128969,7 +128982,7 @@
         {
           "team": "CIN",
           "opponent_team": "SF",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682829,
@@ -128996,10 +129009,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 663993,
-              "batter_name": "Nathaniel Lowe",
+              "batter_id": 677956,
+              "batter_name": "Rece Hinds",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 701398,
@@ -129033,7 +129046,7 @@
       "game_pk": 823477,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T22:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "CHC @ PHI",
       "teams": [
@@ -129101,7 +129114,7 @@
         {
           "team": "PHI",
           "opponent_team": "CHC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666969,
@@ -129128,10 +129141,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 681082,
-              "batter_name": "Bryson Stott",
+              "batter_id": 624641,
+              "batter_name": "Edmundo Sosa",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 592663,
@@ -129140,16 +129153,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 702222,
-              "batter_name": "Justin Crawford",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 656941,
               "batter_name": "Kyle Schwarber",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 805249,
+              "batter_name": "Otto Kemp",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 607208,
@@ -129165,7 +129178,7 @@
       "game_pk": 823561,
       "game_date": "2026-04-15",
       "game_datetime": "2026-04-15T23:05:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "LAA @ NYY",
       "teams": [
@@ -129233,7 +129246,7 @@
         {
           "team": "NYY",
           "opponent_team": "LAA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 592450,
@@ -129518,12 +129531,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 687957,
-              "batter_name": "Dustin Harris",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 700337,
               "batter_name": "Edgar Quero",
               "batting_order": null,
@@ -129552,6 +129559,12 @@
               "batter_name": "Tanner Murray",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 671976,
+              "batter_name": "Tristan Peters",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         }
