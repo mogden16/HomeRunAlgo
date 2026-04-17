@@ -405,12 +405,19 @@ function renderGameMeta(row) {
 function renderProbabilityCell(row) {
   const probability = formatPercent(row.predicted_hr_probability);
   const modelScore = formatScore(row.predicted_hr_score);
+  const ballparkPalScoreValue = Number(row.ballparkpal_overlay_display_score);
+  const ballparkPalScore = Number.isFinite(ballparkPalScoreValue) ? formatScore(ballparkPalScoreValue) : "";
+  const ballparkPalDirection = String(row.ballparkpal_overlay_direction || "").trim();
+  const ballparkPalText = ballparkPalScore
+    ? `Ballpark Pal ${ballparkPalScore}${ballparkPalDirection ? ` · ${ballparkPalDirection}` : ""}`
+    : "";
   return renderMobileCellStack(
     "HR chance",
     `
       <div class="probability-cell">
         <strong>${escapeHtml(probability)}</strong>
         <span class="probability-subtext">Model score ${escapeHtml(modelScore)}</span>
+        ${ballparkPalText ? `<span class="probability-subtext">${escapeHtml(ballparkPalText)}</span>` : ""}
       </div>
     `,
   );

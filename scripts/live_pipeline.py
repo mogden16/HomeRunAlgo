@@ -20,6 +20,8 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 from config import (
+    BALLPARKPAL_LATEST_SNAPSHOT_PATH,
+    BALLPARKPAL_VALIDATED_DIR,
     DEFAULT_GAME_HOUR_LOCAL,
     LIVE_CURRENT_PICKS_PATH,
     LIVE_MODEL_BUNDLE_PATH,
@@ -75,6 +77,7 @@ from weather_audit import (
     print_weather_join_contract,
     weather_join_contract,
 )
+from tools.ballparkpal.scoring import apply_ballparkpal_overlay_frame
 
 MLB_SCHEDULE_URL = "https://statsapi.mlb.com/api/v1/schedule"
 MLB_GAME_BOXSCORE_URL_TEMPLATE = "https://statsapi.mlb.com/api/v1/game/{game_pk}/boxscore"
@@ -166,6 +169,84 @@ LIVE_SHRUNK_SNAPSHOT_COLUMNS = [
     "batter_pa_vs_rhp_to_date",
     "batter_pa_vs_lhp_to_date",
 ]
+LIVE_BALLPARKPAL_SOURCE_COLUMNS = [
+    "ballparkpal_home_run_probability",
+    "ballparkpal_hit_probability",
+    "ballparkpal_runs_allowed",
+    "ballparkpal_home_runs_allowed",
+]
+
+
+def load_ballparkpal_snapshot(schedule_date: str) -> dict[str, Any] | None:
+    candidate_paths = [
+        BALLPARKPAL_VALIDATED_DIR / schedule_date / "ballparkpal_snapshot.json",
+        BALLPARKPAL_LATEST_SNAPSHOT_PATH,
+    ]
+    for path in candidate_paths:
+        if not path.exists():
+            continue
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            continue
+        if not isinstance(payload, dict):
+            continue
+        if str(payload.get("requested_date") or "") != schedule_date:
+            continue
+        if payload.get("overall_valid") is False:
+            continue
+        payload["_source_path"] = str(path)
+        return payload
+    return None
+
+
+def enrich_candidate_frame_with_ballparkpal(candidate_df: pd.DataFrame, *, schedule_date: str) -> pd.DataFrame:
+    if candidate_df.empty:
+        return candidate_df
+    snapshot = load_ballparkpal_snapshot(schedule_date)
+    enriched = candidate_df.copy()
+    enriched["game_date"] = enriched["game_date"].map(normalize_game_date)
+    if snapshot is None:
+        enriched["ballparkpal_snapshot_status"] = "unavailable"
+        enriched["ballparkpal_snapshot_date"] = schedule_date
+        enriched["ballparkpal_snapshot_path"] = ""
+        enriched["ballparkpal_snapshot_pulled_at"] = ""
+        for column in LIVE_BALLPARKPAL_SOURCE_COLUMNS:
+            if column not in enriched.columns:
+                enriched[column] = np.nan
+        return enriched
+
+    def _merge_export(frame: pd.DataFrame, export_name: str, key_columns: list[str]) -> pd.DataFrame:
+        records = snapshot.get(export_name) or []
+        if not records:
+            return frame
+        export_df = pd.DataFrame(records).copy()
+        if export_df.empty:
+            return frame
+        if "game_date" in export_df.columns:
+            export_df["game_date"] = export_df["game_date"].map(normalize_game_date)
+        join_columns = [column for column in key_columns if column in frame.columns and column in export_df.columns]
+        if not join_columns:
+            return frame
+        export_df = export_df.drop_duplicates(subset=join_columns, keep="last")
+        return frame.merge(
+            export_df,
+            on=join_columns,
+            how="left",
+            validate="many_to_one",
+            suffixes=("", f"_{export_name}"),
+        )
+
+    enriched = _merge_export(enriched, "batters", ["game_date", "game_pk", "batter_id"])
+    enriched = _merge_export(enriched, "pitchers", ["game_date", "game_pk", "pitcher_id"])
+    enriched["ballparkpal_snapshot_status"] = "loaded"
+    enriched["ballparkpal_snapshot_date"] = str(snapshot.get("requested_date") or schedule_date)
+    enriched["ballparkpal_snapshot_path"] = str(snapshot.get("_source_path") or "")
+    enriched["ballparkpal_snapshot_pulled_at"] = str(snapshot.get("pulled_at") or "")
+    for column in LIVE_BALLPARKPAL_SOURCE_COLUMNS:
+        if column not in enriched.columns:
+            enriched[column] = np.nan
+    return apply_ballparkpal_overlay_frame(enriched)
 
 
 def eastern_today() -> pd.Timestamp:
@@ -2525,6 +2606,20 @@ def score_live_candidates(
 
     ranked = ranked_source.loc[selected_indices].copy()
     ranked["rank"] = np.arange(1, len(ranked) + 1)
+    if "ballparkpal_overlay_adjusted_score" in ranked.columns and ranked["ballparkpal_overlay_adjusted_score"].notna().any():
+        overlay_rank_source = ranked.sort_values(
+            [
+                "ballparkpal_overlay_adjusted_score",
+                "predicted_hr_score",
+                "predicted_hr_probability",
+                "batter_name",
+            ],
+            ascending=[False, False, False, True],
+        )
+        overlay_rank_map = {int(idx): position for position, idx in enumerate(overlay_rank_source.index, start=1)}
+        ranked["ballparkpal_overlay_adjusted_rank"] = ranked.index.map(overlay_rank_map).astype("Int64")
+    else:
+        ranked["ballparkpal_overlay_adjusted_rank"] = ranked["rank"].astype("Int64")
     publish_time = published_at or datetime.now(timezone.utc).isoformat()
 
     rows: list[dict[str, Any]] = []
@@ -2556,6 +2651,19 @@ def score_live_candidates(
                 "confidence_tier": str(row["confidence_tier"]),
                 "predicted_hr_probability": serialize_for_json(float(row["predicted_hr_probability"])),
                 "predicted_hr_score": serialize_for_json(float(row["predicted_hr_score"])),
+                "ballparkpal_snapshot_status": str(row.get("ballparkpal_snapshot_status") or "unavailable"),
+                "ballparkpal_snapshot_date": str(row.get("ballparkpal_snapshot_date") or ""),
+                "ballparkpal_snapshot_path": str(row.get("ballparkpal_snapshot_path") or ""),
+                "ballparkpal_snapshot_pulled_at": str(row.get("ballparkpal_snapshot_pulled_at") or ""),
+                "ballparkpal_home_run_probability": serialize_for_json(row.get("ballparkpal_home_run_probability")),
+                "ballparkpal_hit_probability": serialize_for_json(row.get("ballparkpal_hit_probability")),
+                "ballparkpal_runs_allowed": serialize_for_json(row.get("ballparkpal_runs_allowed")),
+                "ballparkpal_home_runs_allowed": serialize_for_json(row.get("ballparkpal_home_runs_allowed")),
+                "ballparkpal_overlay_signed_score": serialize_for_json(row.get("ballparkpal_overlay_signed_score")),
+                "ballparkpal_overlay_display_score": serialize_for_json(row.get("ballparkpal_overlay_display_score")),
+                "ballparkpal_overlay_adjusted_score": serialize_for_json(row.get("ballparkpal_overlay_adjusted_score")),
+                "ballparkpal_overlay_adjusted_rank": _coerce_int(row.get("ballparkpal_overlay_adjusted_rank")),
+                "ballparkpal_overlay_direction": str(row.get("ballparkpal_overlay_direction") or "neutral"),
                 "top_reason_1": str(row["top_reason_1"]),
                 "top_reason_2": str(row["top_reason_2"]),
                 "top_reason_3": str(row["top_reason_3"]),

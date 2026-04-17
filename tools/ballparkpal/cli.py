@@ -11,6 +11,7 @@ from typing import Any
 from .downloader import download_ballparkpal_exports
 from .manifest import build_manifest, write_manifest
 from .overlay import build_validation_overlay, write_validation_overlay
+from .snapshot import build_ballparkpal_snapshot, write_ballparkpal_snapshot, write_latest_ballparkpal_snapshot
 from .selectors import DEFAULT_EXPORT_CENTER_URL, DEFAULT_LOGIN_URL
 from .validator import validate_workbook_file
 
@@ -90,6 +91,20 @@ def run_ballparkpal_validation(
         write_validation_overlay(overlay_payload, overlay_output)
         logger.info("Wrote validation overlay to %s", overlay_output)
 
+    snapshot_path = None
+    if manifest.overall_valid:
+        snapshot_payload = build_ballparkpal_snapshot(
+            requested_date=requested_date,
+            pulled_at=manifest.pulled_at,
+            downloads=downloads,
+            validations=validations,
+        )
+        snapshot_dir = output_root / "validated" / requested_date
+        snapshot_path = snapshot_dir / "ballparkpal_snapshot.json"
+        write_ballparkpal_snapshot(snapshot_payload, snapshot_path)
+        write_latest_ballparkpal_snapshot(snapshot_payload, output_root / "validated" / "latest_snapshot.json")
+        logger.info("Wrote normalized snapshot to %s", snapshot_path)
+
     invalid_exports = [item for item in validations if not item.valid]
     if invalid_exports:
         for item in invalid_exports:
@@ -101,6 +116,7 @@ def run_ballparkpal_validation(
         "requested_date": requested_date,
         "manifest_path": str(manifest_path),
         "log_path": str(log_path),
+        "snapshot_path": str(snapshot_path) if snapshot_path else None,
         "downloads": [item.as_manifest_row() for item in validations],
     }
 

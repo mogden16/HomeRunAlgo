@@ -9,6 +9,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+import pandas as pd
+
 ROOT_DIR = Path(__file__).resolve().parents[1]
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
@@ -41,6 +43,7 @@ from scripts.live_pipeline import (
     CONFIDENCE_TIER_ORDER,
     default_publish_date,
     fetch_schedule_games,
+    enrich_candidate_frame_with_ballparkpal,
     load_json_array,
     load_live_dataset,
     load_model_bundle,
@@ -73,6 +76,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--history-path", default=str(LIVE_PICK_HISTORY_PATH), help=argparse.SUPPRESS)
     parser.add_argument("--dashboard-output-dir", default=str(DEFAULT_OUTPUT_DIR), help=argparse.SUPPRESS)
     parser.add_argument("--schedule-date", default=None, help="Official MLB date to publish. Defaults to today in ET.")
+    parser.add_argument(
+        "--overlay-only",
+        action="store_true",
+        help="Apply the Ballpark Pal overlay to the current picks without rebuilding the base model slate.",
+    )
     parser.add_argument("--hitters-per-team", type=int, default=9, help="How many likely starters to consider for each team.")
     parser.add_argument(
         "--max-picks",
@@ -357,6 +365,7 @@ def publish_live_picks(
     max_picks_per_team: int | None = DEFAULT_MAX_PICKS_PER_TEAM,
     max_picks_per_game: int | None = DEFAULT_MAX_PICKS_PER_GAME,
     force_republish: bool = False,
+    overlay_only: bool = False,
 ) -> list[dict[str, Any]]:
     resolved_schedule_date = schedule_date or default_publish_date()
     publish_reference = _publish_reference_now()
@@ -364,6 +373,49 @@ def publish_live_picks(
         board_state_path=board_state_path,
         current_picks_path=output_path,
     )
+    schedule_games = fetch_schedule_games(resolved_schedule_date)
+    existing_rows = load_json_array(output_path)
+    if overlay_only:
+        if not existing_rows:
+            raise RuntimeError(
+                "Overlay-only publish requested, but no current picks were found. "
+                "Run the normal publish flow first so there is a board to overlay."
+            )
+        overlay_frame = enrich_candidate_frame_with_ballparkpal(pd.DataFrame(existing_rows), schedule_date=resolved_schedule_date)
+        if overlay_frame.empty:
+            raise RuntimeError("Overlay-only publish could not build an overlay frame from the current picks.")
+
+        ranked_overlay = overlay_frame.sort_values(
+            [
+                "ballparkpal_overlay_adjusted_score",
+                "predicted_hr_score",
+                "predicted_hr_probability",
+                "batter_name",
+            ],
+            ascending=[False, False, False, True],
+        ).reset_index(drop=True)
+        overlay_rows: list[dict[str, Any]] = []
+        for index, row in ranked_overlay.iterrows():
+            row_dict = dict(row)
+            row_dict["original_rank"] = int(row_dict.get("original_rank") or row_dict.get("rank") or index + 1)
+            row_dict["rank"] = index + 1
+            row_dict["ballparkpal_overlay_adjusted_rank"] = index + 1
+            row_dict["game_date"] = normalize_game_date(row_dict.get("game_date"))
+            overlay_rows.append(row_dict)
+
+        write_current_picks(overlay_rows, output_path)
+        refresh_cloudflare_dashboard(
+            output_path,
+            history_path,
+            dashboard_output_dir,
+            resolved_schedule_date,
+        )
+        print(
+            f"Applied Ballpark Pal overlay to {len(overlay_rows)} current picks and refreshed the dashboard for "
+            f"{resolved_schedule_date}"
+        )
+        return load_json_array(output_path)
+
     dataset_df = load_live_dataset(Path(dataset_path))
     model_metadata = load_model_metadata(Path(metadata_path))
     try:
@@ -383,8 +435,6 @@ def publish_live_picks(
         )
         raise
     resolved_through_date = str(dataset_df["game_date"].max().date())
-    schedule_games = fetch_schedule_games(resolved_schedule_date)
-    existing_rows = load_json_array(output_path)
     existing_same_day_rows = [
         dict(row)
         for row in existing_rows
@@ -523,6 +573,7 @@ def generate_live_picks(
             print(f"Operational alert [{alert.get('code', 'unknown')}]: {alert.get('message', '')}")
     model_metadata = persist_operational_alerts(Path(metadata_path), model_metadata, operational_alerts)
     featured = build_live_feature_frame(dataset_df, candidates)
+    featured = enrich_candidate_frame_with_ballparkpal(featured, schedule_date=resolved_schedule_date)
     return score_live_candidates(
         featured,
         bundle,
@@ -545,6 +596,7 @@ def main() -> None:
         board_state_path=LIVE_DAILY_BOARD_STATE_PATH,
         dashboard_output_dir=Path(args.dashboard_output_dir),
         schedule_date=args.schedule_date,
+        overlay_only=args.overlay_only,
         hitters_per_team=args.hitters_per_team,
         max_picks=args.max_picks,
         min_confidence_tier=args.min_confidence_tier,

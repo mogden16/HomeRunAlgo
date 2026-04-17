@@ -76,29 +76,65 @@ def _normalize_filename(filename: str, export_name: str) -> str:
 
 def _ensure_visible_export_center(page: Any) -> None:
     page.wait_for_load_state("domcontentloaded")
-    for selector in EXPORT_CENTER_SELECTORS:
-        locator = page.locator(selector)
-        if locator.count() > 0:
-            locator.first.click()
-            page.wait_for_load_state("networkidle")
-            return
+    return
 
 
 def _fill_first(page: Any, selectors: tuple[str, ...], value: str) -> None:
     for selector in selectors:
-        locator = page.locator(selector)
-        if locator.count() > 0:
-            locator.first.fill(value)
-            return
+        try:
+            locator = page.locator(selector)
+            if locator.count() > 0:
+                locator.first.fill(value)
+                return
+        except Exception:
+            pass
+    if selectors is LOGIN_EMAIL_SELECTORS:
+        for locator in (
+            page.get_by_label("Email Address", exact=False),
+            page.get_by_placeholder("Enter your email address", exact=False),
+        ):
+            try:
+                if locator.count() > 0:
+                    locator.first.fill(value)
+                    return
+            except Exception:
+                continue
+    if selectors is LOGIN_PASSWORD_SELECTORS:
+        for locator in (
+            page.get_by_label("Password", exact=False),
+            page.get_by_placeholder("Enter your password", exact=False),
+        ):
+            try:
+                if locator.count() > 0:
+                    locator.first.fill(value)
+                    return
+            except Exception:
+                continue
     raise RuntimeError(f"Could not find any matching input for selectors: {selectors}")
 
 
 def _click_first(page: Any, selectors: tuple[str, ...]) -> None:
     for selector in selectors:
-        locator = page.locator(selector)
-        if locator.count() > 0:
-            locator.first.click()
-            return
+        try:
+            locator = page.locator(selector)
+            if locator.count() > 0:
+                locator.first.click()
+                return
+        except Exception:
+            pass
+    if selectors is LOGIN_SUBMIT_SELECTORS:
+        for locator in (
+            page.get_by_role("button", name="Sign In"),
+            page.get_by_role("button", name="Login"),
+            page.get_by_role("button", name="Log in"),
+            page.get_by_text("Sign In", exact=False),
+        ):
+            try:
+                if locator.count() > 0:
+                    locator.first.click()
+                    return
+            except Exception:
+                continue
     raise RuntimeError(f"Could not find any matching button for selectors: {selectors}")
 
 
@@ -106,6 +142,11 @@ def _maybe_apply_requested_date(page: Any, requested_date: str) -> None:
     for selector in DATE_FILTER_SELECTORS:
         locator = page.locator(selector)
         if locator.count() > 0:
+            try:
+                if not locator.first.is_visible():
+                    continue
+            except Exception:
+                continue
             locator.first.fill(requested_date)
             for apply_selector in DATE_FILTER_APPLY_SELECTORS:
                 apply_locator = page.locator(apply_selector)
@@ -118,24 +159,52 @@ def _maybe_apply_requested_date(page: Any, requested_date: str) -> None:
 
 
 def _download_export(page: Any, export_name: str, requested_date: str, output_dir: Path) -> DownloadedWorkbook:
-    for text in EXPORT_LINK_TEXTS[export_name]:
-        locator = page.get_by_text(text, exact=False)
-        if locator.count() == 0:
+    form_action = f"Export{export_name.title()}.php"
+    action_locators = [
+        page.locator(f"form[action='{form_action}'] button[type='submit']"),
+        page.locator(f"form[action='{form_action}'] button"),
+    ]
+    for locator in action_locators:
+        try:
+            if locator.count() == 0:
+                continue
+            with page.expect_download() as download_info:
+                locator.first.click()
+            download = download_info.value
+            suggested_filename = download.suggested_filename
+            saved_filename = _normalize_filename(suggested_filename, export_name)
+            saved_path = output_dir / saved_filename
+            download.save_as(saved_path)
+            return DownloadedWorkbook(
+                export_name=export_name,
+                requested_date=requested_date,
+                original_filename=suggested_filename,
+                saved_path=saved_path,
+                source_url=page.url,
+            )
+        except Exception:
             continue
-        with page.expect_download() as download_info:
-            locator.first.click()
-        download = download_info.value
-        suggested_filename = download.suggested_filename
-        saved_filename = _normalize_filename(suggested_filename, export_name)
-        saved_path = output_dir / saved_filename
-        download.save_as(saved_path)
-        return DownloadedWorkbook(
-            export_name=export_name,
-            requested_date=requested_date,
-            original_filename=suggested_filename,
-            saved_path=saved_path,
-            source_url=page.url,
-        )
+    for text in EXPORT_LINK_TEXTS[export_name]:
+        try:
+            locator = page.get_by_role("button", name=text, exact=False)
+            if locator.count() == 0:
+                continue
+            with page.expect_download() as download_info:
+                locator.first.click()
+            download = download_info.value
+            suggested_filename = download.suggested_filename
+            saved_filename = _normalize_filename(suggested_filename, export_name)
+            saved_path = output_dir / saved_filename
+            download.save_as(saved_path)
+            return DownloadedWorkbook(
+                export_name=export_name,
+                requested_date=requested_date,
+                original_filename=suggested_filename,
+                saved_path=saved_path,
+                source_url=page.url,
+            )
+        except Exception:
+            continue
     raise RuntimeError(f"Could not find a download link for export '{export_name}'.")
 
 
@@ -158,6 +227,10 @@ def download_ballparkpal_exports(
     credentials = load_credentials(env_file=env_file)
     output_dir.mkdir(parents=True, exist_ok=True)
     downloads: list[DownloadedWorkbook] = []
+    export_url = export_center_url
+    if requested_date and "date=" not in export_url:
+        separator = "&" if "?" in export_url else "?"
+        export_url = f"{export_url}{separator}date={requested_date}"
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=headless, slow_mo=slow_mo_ms)
@@ -165,14 +238,14 @@ def download_ballparkpal_exports(
         page = context.new_page()
         page.set_default_timeout(navigation_timeout_ms)
 
-        page.goto(export_center_url, wait_until="domcontentloaded")
+        page.goto(export_url, wait_until="domcontentloaded")
         if not any(page.locator(selector).count() > 0 for selector in EXPORT_CENTER_SELECTORS):
             page.goto(login_url, wait_until="domcontentloaded")
             _fill_first(page, LOGIN_EMAIL_SELECTORS, credentials.email)
             _fill_first(page, LOGIN_PASSWORD_SELECTORS, credentials.password)
             _click_first(page, LOGIN_SUBMIT_SELECTORS)
             page.wait_for_load_state("networkidle")
-            page.goto(export_center_url, wait_until="domcontentloaded")
+            page.goto(export_url, wait_until="domcontentloaded")
 
         _ensure_visible_export_center(page)
         _maybe_apply_requested_date(page, requested_date)
