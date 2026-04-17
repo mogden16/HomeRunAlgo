@@ -239,6 +239,17 @@ def enrich_candidate_frame_with_ballparkpal(candidate_df: pd.DataFrame, *, sched
 
     enriched = _merge_export(enriched, "batters", ["game_date", "game_pk", "batter_id"])
     enriched = _merge_export(enriched, "pitchers", ["game_date", "game_pk", "pitcher_id"])
+    source_to_prefixed_columns = {
+        "ballparkpal_home_run_probability": "home_run_probability",
+        "ballparkpal_hit_probability": "hit_probability",
+        "ballparkpal_runs_allowed": "runs_allowed",
+        "ballparkpal_home_runs_allowed": "home_runs_allowed",
+    }
+    for prefixed_column, source_column in source_to_prefixed_columns.items():
+        if source_column in enriched.columns:
+            enriched[prefixed_column] = enriched[source_column]
+        elif prefixed_column not in enriched.columns:
+            enriched[prefixed_column] = np.nan
     enriched["ballparkpal_snapshot_status"] = "loaded"
     enriched["ballparkpal_snapshot_date"] = str(snapshot.get("requested_date") or schedule_date)
     enriched["ballparkpal_snapshot_path"] = str(snapshot.get("_source_path") or "")
@@ -590,6 +601,19 @@ def _build_pick_record_base(row: dict[str, Any]) -> dict[str, Any]:
         "wind_speed_mph": _coerce_float(row.get("wind_speed_mph")),
         "wind_direction_deg": _coerce_float(row.get("wind_direction_deg")),
         "field_bearing_deg": _coerce_float(row.get("field_bearing_deg")),
+        "ballparkpal_snapshot_status": str(row.get("ballparkpal_snapshot_status") or "unavailable"),
+        "ballparkpal_snapshot_date": str(row.get("ballparkpal_snapshot_date") or ""),
+        "ballparkpal_snapshot_path": str(row.get("ballparkpal_snapshot_path") or ""),
+        "ballparkpal_snapshot_pulled_at": str(row.get("ballparkpal_snapshot_pulled_at") or ""),
+        "ballparkpal_home_run_probability": _coerce_float(row.get("ballparkpal_home_run_probability")),
+        "ballparkpal_hit_probability": _coerce_float(row.get("ballparkpal_hit_probability")),
+        "ballparkpal_runs_allowed": _coerce_float(row.get("ballparkpal_runs_allowed")),
+        "ballparkpal_home_runs_allowed": _coerce_float(row.get("ballparkpal_home_runs_allowed")),
+        "ballparkpal_overlay_signed_score": _coerce_float(row.get("ballparkpal_overlay_signed_score")),
+        "ballparkpal_overlay_display_score": _coerce_float(row.get("ballparkpal_overlay_display_score")),
+        "ballparkpal_overlay_adjusted_score": _coerce_float(row.get("ballparkpal_overlay_adjusted_score")),
+        "ballparkpal_overlay_adjusted_rank": _coerce_int(row.get("ballparkpal_overlay_adjusted_rank")),
+        "ballparkpal_overlay_direction": str(row.get("ballparkpal_overlay_direction") or "neutral"),
         "current_status": str(row.get("current_status") or ""),
         "alert_flags": normalized_alert_flags,
         "inactive_flag": bool(row.get("inactive_flag") or row.get("is_inactive", False)),

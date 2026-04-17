@@ -250,7 +250,7 @@ def download_ballparkpal_exports(
         _ensure_visible_export_center(page)
         _maybe_apply_requested_date(page, requested_date)
 
-        requested_output_dir = output_dir / requested_date
+        requested_output_dir = output_dir
         requested_output_dir.mkdir(parents=True, exist_ok=True)
         for export_name in EXPORT_NAMES:
             downloads.append(_download_export(page, export_name, requested_date, requested_output_dir))

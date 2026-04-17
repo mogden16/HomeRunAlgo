@@ -118,9 +118,14 @@ def _get_first_present(row: list[object], header_map: dict[str, int], aliases: t
 def _extract_rows(path: Path, *, export_name: str) -> list[dict[str, Any]]:
     workbook = load_workbook(path, data_only=True, read_only=True)
     try:
-        for sheet_name in workbook.sheetnames:
-            if not _sheet_matches(sheet_name, EXPORT_SHEET_HINTS[export_name]):
-                continue
+        sheet_names = [
+            sheet_name
+            for sheet_name in workbook.sheetnames
+            if _sheet_matches(sheet_name, EXPORT_SHEET_HINTS[export_name])
+        ]
+        if not sheet_names:
+            sheet_names = list(workbook.sheetnames)
+        for sheet_name in sheet_names:
             worksheet = workbook[sheet_name]
             rows = [tuple(row) for row in worksheet.iter_rows(values_only=True)]
             if not rows:
@@ -140,13 +145,13 @@ def _extract_rows(path: Path, *, export_name: str) -> list[dict[str, Any]]:
                     normalized_row[key] = _coerce_scalar(raw_row[index])
                 if export_name == "batters":
                     normalized_row["game_date"] = _normalize_date(
-                        _get_first_present(raw_row, header_map, ("game_date", "slate_date", "date", "contest_date", "export_date"))
+                        _get_first_present(raw_row, header_map, ("game_date", "gamedate", "slate_date", "date", "contest_date", "export_date"))
                     )
                     normalized_row["game_pk"] = _normalize_number(
                         _get_first_present(raw_row, header_map, ("game_pk", "gamepk", "game", "matchup_id"))
                     )
                     normalized_row["batter_id"] = _normalize_number(
-                        _get_first_present(raw_row, header_map, ("batter_id", "player_id", "player", "id"))
+                        _get_first_present(raw_row, header_map, ("batter_id", "player_id", "playerid", "player", "id"))
                     )
                     normalized_row["team"] = str(
                         _get_first_present(raw_row, header_map, ("team", "batting_team", "club"))
@@ -164,13 +169,13 @@ def _extract_rows(path: Path, *, export_name: str) -> list[dict[str, Any]]:
                     )
                 elif export_name == "pitchers":
                     normalized_row["game_date"] = _normalize_date(
-                        _get_first_present(raw_row, header_map, ("game_date", "slate_date", "date", "contest_date", "export_date"))
+                        _get_first_present(raw_row, header_map, ("game_date", "gamedate", "slate_date", "date", "contest_date", "export_date"))
                     )
                     normalized_row["game_pk"] = _normalize_number(
                         _get_first_present(raw_row, header_map, ("game_pk", "gamepk", "game", "matchup_id"))
                     )
                     normalized_row["pitcher_id"] = _normalize_number(
-                        _get_first_present(raw_row, header_map, ("pitcher_id", "player_id", "player", "id"))
+                        _get_first_present(raw_row, header_map, ("pitcher_id", "player_id", "playerid", "player", "id"))
                     )
                     normalized_row["team"] = str(
                         _get_first_present(raw_row, header_map, ("team", "pitching_team", "club"))
@@ -188,7 +193,7 @@ def _extract_rows(path: Path, *, export_name: str) -> list[dict[str, Any]]:
                     )
                 elif export_name == "teams":
                     normalized_row["game_date"] = _normalize_date(
-                        _get_first_present(raw_row, header_map, ("game_date", "slate_date", "date", "contest_date", "export_date"))
+                        _get_first_present(raw_row, header_map, ("game_date", "gamedate", "slate_date", "date", "contest_date", "export_date"))
                     )
                     normalized_row["game_pk"] = _normalize_number(
                         _get_first_present(raw_row, header_map, ("game_pk", "gamepk", "game", "matchup_id"))
@@ -197,7 +202,7 @@ def _extract_rows(path: Path, *, export_name: str) -> list[dict[str, Any]]:
                     normalized_row["opponent"] = str(_get_first_present(raw_row, header_map, ("opponent", "opp_team")) or "")
                 elif export_name == "games":
                     normalized_row["game_date"] = _normalize_date(
-                        _get_first_present(raw_row, header_map, ("game_date", "slate_date", "date", "contest_date", "export_date"))
+                        _get_first_present(raw_row, header_map, ("game_date", "gamedate", "slate_date", "date", "contest_date", "export_date"))
                     )
                     normalized_row["game_pk"] = _normalize_number(
                         _get_first_present(raw_row, header_map, ("game_pk", "gamepk", "game", "matchup_id"))
