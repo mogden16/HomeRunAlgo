@@ -258,3 +258,15 @@ powershell -ExecutionPolicy Bypass -File .\scripts\register_dashboard_tasks.ps1
 ```
 
 The legacy Windows task helper still supports explicit local run times, but the GitHub-hosted automation now uses the 15-minute auto scheduler described above rather than fixed `02:00/04:00/11:00/13:00/15:00/18:00` slots.
+
+## Ballpark Pal validation workflow
+
+The repo now includes a validation-first Ballpark Pal workflow that downloads the daily Export Center workbooks, checks that they are real `.xlsx` files, and rejects stale or mismatched dates before anything is treated as usable.
+
+Run it with:
+
+```bash
+python -m tools.ballparkpal --requested-date 2026-04-17
+```
+
+See [`docs/ballparkpal_validation.md`](docs/ballparkpal_validation.md) for the full operator guide.
