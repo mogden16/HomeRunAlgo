@@ -1,8 +1,12 @@
 __pycache__/
 *.pyc
+.env
+.env.*
+!.env.example
 
 # Generated local data caches and derived backtest outputs.
 data/raw/
+data/ballparkpal/
 data/mlb_player_game_real.csv
 data/ranked_predictions_*.csv
 data/live/model_bundle.pkl
