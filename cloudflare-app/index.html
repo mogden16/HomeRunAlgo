@@ -59,6 +59,23 @@
             <p class="eyebrow">Today</p>
             <h2>Today's best home run looks</h2>
             <p class="section-note">Start here. The board defaults to elite and strong picks, is created once in the morning, stays in its original order through the day, and treats elite as the narrowest high-conviction subset of the public slate.</p>
+            <div class="ballpark-weight-control" aria-label="Ballpark Pal weighting control">
+              <div class="ballpark-weight-control-head">
+                <span class="ballpark-weight-control-label">Ballpark Pal weight</span>
+                <strong class="ballpark-weight-control-value" id="latest-ballpark-weight-label">90%</strong>
+              </div>
+              <input
+                class="ballpark-weight-slider"
+                id="latest-ballpark-weight"
+                type="range"
+                min="0"
+                max="100"
+                step="1"
+                value="90"
+                aria-label="Adjust Ballpark Pal weight for today's board"
+              >
+              <p class="ballpark-weight-note">Move this slider to re-rank today's board. The ranking, tiers, and HR Chance blend update live. 0% = model only, 100% = Ballpark Pal only.</p>
+            </div>
           </div>
           <div class="filters tier-filter-row" id="latest-confidence-filters" aria-label="Latest picks confidence filters"></div>
         </div>
@@ -160,17 +177,25 @@
     </main>
   </div>
 
-  <dialog class="model-dialog" id="model-explainer-dialog">
-    <div class="model-dialog-head">
-      <div>
-        <p class="eyebrow">Model Guide</p>
-        <h2 id="model-explainer-title">Metric guide</h2>
-        <p class="hero-text model-dialog-summary" id="model-explainer-summary"></p>
+    <dialog class="model-dialog" id="model-explainer-dialog">
+      <div class="model-dialog-head">
+        <div>
+          <p class="eyebrow">Model Guide</p>
+          <h2 id="model-explainer-title">Metric guide</h2>
+          <p class="hero-text model-dialog-summary" id="model-explainer-summary"></p>
+        </div>
+        <button class="dialog-close" id="model-explainer-close" type="button" aria-label="Close metric guide">Close</button>
       </div>
-      <button class="dialog-close" id="model-explainer-close" type="button" aria-label="Close metric guide">Close</button>
-    </div>
-    <div class="model-metric-list" id="model-explainer-list"></div>
-  </dialog>
+      <div class="model-metric-list" id="model-explainer-list"></div>
+      <div class="model-dialog-head model-dialog-head-secondary">
+        <div>
+          <p class="eyebrow">Ballpark Pal</p>
+          <h2 id="ballparkpal-explainer-title">Weights</h2>
+          <p class="hero-text model-dialog-summary" id="ballparkpal-explainer-summary"></p>
+        </div>
+      </div>
+      <div class="model-metric-list" id="ballparkpal-explainer-list"></div>
+    </dialog>
 
   <script src="./app.js?v=20260404-mobile-why" defer></script>
 </body>

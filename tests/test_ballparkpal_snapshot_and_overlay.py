@@ -41,8 +41,8 @@ class BallparkPalSnapshotAndOverlayTests(unittest.TestCase):
             )
             teams = self._write_workbook(
                 base / "teams.xlsx",
-                headers=["GameDate", "GamePk", "Team"],
-                rows=[["2026-04-17", 123, "NYY"]],
+                headers=["GameDate", "GamePk", "Team", "Opponent", "HomeRuns"],
+                rows=[["2026-04-17", 123, "NYY", "BOS", 1.2]],
                 sheet_name="Teams",
             )
             games = self._write_workbook(
@@ -81,6 +81,7 @@ class BallparkPalSnapshotAndOverlayTests(unittest.TestCase):
             self.assertEqual(snapshot["batters"][0]["hit_probability"], 0.54)
             self.assertEqual(snapshot["pitchers"][0]["runs_allowed"], 3.1)
             self.assertEqual(snapshot["pitchers"][0]["home_runs_allowed"], 0.4)
+            self.assertEqual(snapshot["teams"][0]["home_runs"], 1.2)
 
     def test_overlay_scoring_produces_signed_and_display_scores(self) -> None:
         overlay = compute_ballparkpal_overlay(
@@ -88,6 +89,7 @@ class BallparkPalSnapshotAndOverlayTests(unittest.TestCase):
                 "predicted_hr_score": 82.0,
                 "ballparkpal_home_run_probability": 0.23,
                 "ballparkpal_hit_probability": 0.77,
+                "ballparkpal_team_home_runs": 1.2,
                 "ballparkpal_runs_allowed": 5.2,
                 "ballparkpal_home_runs_allowed": 1.1,
             }
@@ -97,6 +99,13 @@ class BallparkPalSnapshotAndOverlayTests(unittest.TestCase):
         self.assertGreaterEqual(overlay["ballparkpal_overlay_display_score"], 50)
         self.assertLessEqual(overlay["ballparkpal_overlay_display_score"], 100)
         self.assertIsNotNone(overlay["ballparkpal_overlay_adjusted_score"])
+        self.assertEqual(overlay["ballparkpal_overlay_blend_weights"]["model"], 0.1)
+        self.assertEqual(overlay["ballparkpal_overlay_blend_weights"]["ballpark"], 0.9)
+        expected_adjusted = round(
+            0.1 * overlay["ballparkpal_overlay_model_score"] + 0.9 * overlay["ballparkpal_overlay_display_score"],
+            1,
+        )
+        self.assertEqual(overlay["ballparkpal_overlay_adjusted_score"], expected_adjusted)
 
     def test_dashboard_cleaning_preserves_ballparkpal_columns(self) -> None:
         normalized = normalize_pick(
@@ -124,4 +133,3 @@ class BallparkPalSnapshotAndOverlayTests(unittest.TestCase):
         self.assertEqual(cleaned[0]["ballparkpal_snapshot_status"], "loaded")
         self.assertEqual(cleaned[0]["ballparkpal_overlay_display_score"], 73.5)
         self.assertEqual(cleaned[0]["ballparkpal_overlay_direction"], "favorable")
-

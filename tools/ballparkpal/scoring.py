@@ -18,9 +18,13 @@ class OverlayRule:
     favor_when_above: bool = True
 
 
+BALLPARKPAL_MODEL_BLEND_WEIGHT: float = 0.10
+BALLPARKPAL_BALLPARK_BLEND_WEIGHT: float = 0.90
+
 BALLPARKPAL_OVERLAY_RULES: tuple[OverlayRule, ...] = (
     OverlayRule(field="ballparkpal_home_run_probability", neutral=0.10, scale=0.05, weight=12.0, favor_when_above=True),
     OverlayRule(field="ballparkpal_hit_probability", neutral=0.70, scale=0.10, weight=6.0, favor_when_above=True),
+    OverlayRule(field="ballparkpal_team_home_runs", neutral=0.90, scale=0.25, weight=5.0, favor_when_above=True),
     OverlayRule(field="ballparkpal_runs_allowed", neutral=4.5, scale=1.0, weight=8.0, favor_when_above=True),
     OverlayRule(field="ballparkpal_home_runs_allowed", neutral=0.80, scale=0.35, weight=4.0, favor_when_above=True),
 )
@@ -75,10 +79,17 @@ def compute_ballparkpal_overlay(row: Mapping[str, Any], *, model_score: float | 
     max_abs = sum(rule.weight for rule in BALLPARKPAL_OVERLAY_RULES)
     display_score = 50.0 if max_abs <= 0 else ((signed_score + max_abs) / (2.0 * max_abs)) * 100.0
     model_score_value = _to_float(model_score if model_score is not None else row.get("predicted_hr_score"))
-    if model_score_value is None:
+    if model_score_value is None and display_score is None:
         adjusted_score = None
+    elif model_score_value is None:
+        adjusted_score = display_score
+    elif display_score is None:
+        adjusted_score = model_score_value
     else:
-        adjusted_score = max(0.0, min(100.0, model_score_value + signed_score))
+        adjusted_score = (
+            (BALLPARKPAL_MODEL_BLEND_WEIGHT * model_score_value)
+            + (BALLPARKPAL_BALLPARK_BLEND_WEIGHT * display_score)
+        )
 
     direction = "neutral"
     if signed_score > 0:
@@ -92,6 +103,10 @@ def compute_ballparkpal_overlay(row: Mapping[str, Any], *, model_score: float | 
         "ballparkpal_overlay_adjusted_score": round(adjusted_score, 1) if adjusted_score is not None else None,
         "ballparkpal_overlay_direction": direction,
         "ballparkpal_overlay_model_score": round(model_score_value, 1) if model_score_value is not None else None,
+        "ballparkpal_overlay_blend_weights": {
+            "model": BALLPARKPAL_MODEL_BLEND_WEIGHT,
+            "ballpark": BALLPARKPAL_BALLPARK_BLEND_WEIGHT,
+        },
         "ballparkpal_overlay_factor_details": factor_details,
     }
 

@@ -2,6 +2,7 @@ const state = {
   dashboard: null,
   filteredHistory: [],
   filteredLatestPicks: [],
+  latestBallparkWeight: 90,
   latestTierFilters: new Set(["elite", "strong"]),
   historyTierFilters: new Set(["elite", "strong"]),
   selectedHistoryDate: "",
@@ -124,6 +125,102 @@ function escapeHtml(value) {
 
 function normalizeTier(value) {
   return String(value || "").trim().toLowerCase();
+}
+
+function latestBallparkWeightFraction() {
+  const percent = Number(state.latestBallparkWeight);
+  if (!Number.isFinite(percent)) {
+    return 0.9;
+  }
+  return Math.max(0, Math.min(1, percent / 100));
+}
+
+function confidenceTierFromPercentile(percentile, policy, rank, probability) {
+  const elitePercentileFloor = Number(policy?.elite_percentile_floor);
+  const strongPercentileFloor = Number(policy?.strong_percentile_floor);
+  const watchPercentileFloor = Number(policy?.watch_percentile_floor);
+  const eliteProbabilityFloor = policy?.elite_probability_floor === null || policy?.elite_probability_floor === undefined
+    ? null
+    : Number(policy.elite_probability_floor);
+  const eliteTopK = policy?.elite_top_k === null || policy?.elite_top_k === undefined
+    ? null
+    : Number(policy.elite_top_k);
+  const eliteFloor = Number.isFinite(elitePercentileFloor) ? elitePercentileFloor : 0.99;
+  const strongFloor = Number.isFinite(strongPercentileFloor) ? strongPercentileFloor : 0.95;
+  const watchFloor = Number.isFinite(watchPercentileFloor) ? watchPercentileFloor : 0.80;
+  const eliteByPercentile = percentile >= eliteFloor;
+  const eliteByProbability = eliteProbabilityFloor === null || !Number.isFinite(eliteProbabilityFloor) || probability >= eliteProbabilityFloor;
+  const eliteByRank = eliteTopK === null || !Number.isFinite(eliteTopK) || eliteTopK <= 0 || rank <= eliteTopK;
+  if (eliteByPercentile && eliteByProbability && eliteByRank) {
+    return "elite";
+  }
+  if (percentile >= strongFloor) {
+    return "strong";
+  }
+  if (percentile >= watchFloor) {
+    return "watch";
+  }
+  return "longshot";
+}
+
+function buildBlendedLatestPicks(rows, ballparkWeightPercent) {
+  const ballparkWeight = Math.max(0, Math.min(100, Number(ballparkWeightPercent) || 0)) / 100;
+  const modelWeight = 1 - ballparkWeight;
+  const sorted = (Array.isArray(rows) ? rows : []).map((row) => {
+    const modelScore = Number(row.predicted_hr_score);
+    const ballparkScore = Number(row.ballparkpal_overlay_display_score);
+    const modelScoreValue = Number.isFinite(modelScore) ? modelScore : 0;
+    const ballparkScoreValue = Number.isFinite(ballparkScore) ? ballparkScore : modelScoreValue;
+    const blendedScore = (ballparkWeight * ballparkScoreValue) + (modelWeight * modelScoreValue);
+    return {
+      ...row,
+      ballparkpal_blend_weight: ballparkWeight,
+      ballparkpal_blend_model_weight: modelWeight,
+      ballparkpal_blended_score: blendedScore,
+      ballparkpal_overlay_adjusted_score: blendedScore,
+    };
+  }).sort((left, right) => {
+    const scoreDelta = Number(right.ballparkpal_blended_score) - Number(left.ballparkpal_blended_score);
+    if (Number.isFinite(scoreDelta) && scoreDelta !== 0) {
+      return scoreDelta;
+    }
+    const modelDelta = Number(right.predicted_hr_score) - Number(left.predicted_hr_score);
+    if (Number.isFinite(modelDelta) && modelDelta !== 0) {
+      return modelDelta;
+    }
+    const probabilityDelta = Number(right.predicted_hr_probability) - Number(left.predicted_hr_probability);
+    if (Number.isFinite(probabilityDelta) && probabilityDelta !== 0) {
+      return probabilityDelta;
+    }
+    return String(left.batter_name || "").localeCompare(String(right.batter_name || ""));
+  });
+
+  const total = sorted.length;
+  const policy = state.dashboard?.confidence_policy || {};
+  return sorted.map((row, index) => {
+    const percentile = total > 0 ? (total - index) / total : 0;
+    const tier = confidenceTierFromPercentile(
+      percentile,
+      policy,
+      index + 1,
+      Number(row.predicted_hr_probability),
+    );
+    return {
+      ...row,
+      ballparkpal_blended_percentile: percentile,
+      confidence_tier: tier,
+      ballparkpal_overlay_adjusted_rank: index + 1,
+    };
+  });
+}
+
+function renderLatestBallparkWeightLabel() {
+  const target = document.getElementById("latest-ballpark-weight-label");
+  if (!target) {
+    return;
+  }
+  const percent = Math.max(0, Math.min(100, Math.round(Number(state.latestBallparkWeight) || 0)));
+  target.textContent = `${percent}%`;
 }
 
 function tierClass(value) {
@@ -407,9 +504,16 @@ function renderProbabilityCell(row) {
   const modelScore = formatScore(row.predicted_hr_score);
   const ballparkPalScoreValue = Number(row.ballparkpal_overlay_display_score);
   const ballparkPalScore = Number.isFinite(ballparkPalScoreValue) ? formatScore(ballparkPalScoreValue) : "";
+  const blendedScoreValue = Number(row.ballparkpal_blended_score ?? row.ballparkpal_overlay_adjusted_score);
+  const blendedScore = Number.isFinite(blendedScoreValue) ? formatScore(blendedScoreValue) : "";
+  const blendWeight = Number.isFinite(Number(row.ballparkpal_blend_weight)) ? Math.round(Number(row.ballparkpal_blend_weight) * 100) : null;
+  const modelWeight = Number.isFinite(Number(row.ballparkpal_blend_model_weight)) ? Math.round(Number(row.ballparkpal_blend_model_weight) * 100) : null;
   const ballparkPalDirection = String(row.ballparkpal_overlay_direction || "").trim();
   const ballparkPalText = ballparkPalScore
-    ? `Ballpark Pal ${ballparkPalScore}${ballparkPalDirection ? ` · ${ballparkPalDirection}` : ""}`
+    ? `Ballpark Pal ${ballparkPalScore}${ballparkPalDirection ? ` - ${ballparkPalDirection}` : ""}`
+    : "";
+  const blendText = blendedScore
+    ? `Composite ${blendedScore}${blendWeight !== null && modelWeight !== null ? ` / ${blendWeight}/${modelWeight}` : ""}`
     : "";
   return renderMobileCellStack(
     "HR chance",
@@ -418,11 +522,11 @@ function renderProbabilityCell(row) {
         <strong>${escapeHtml(probability)}</strong>
         <span class="probability-subtext">Model score ${escapeHtml(modelScore)}</span>
         ${ballparkPalText ? `<span class="probability-subtext">${escapeHtml(ballparkPalText)}</span>` : ""}
+        ${blendText ? `<span class="probability-subtext">${escapeHtml(blendText)}</span>` : ""}
       </div>
     `,
   );
 }
-
 function renderMobileCellStack(label, content, extraClass = "") {
   return `
     <div class="mobile-cell-stack ${extraClass}">
@@ -898,8 +1002,10 @@ function applyLatestPicksFilters() {
   if (!state.dashboard) {
     return;
   }
-  state.filteredLatestPicks = filterRowsByTierSelection(state.dashboard.latest_picks, state.latestTierFilters);
+  const blendedRows = buildBlendedLatestPicks(state.dashboard.latest_picks, state.latestBallparkWeight);
+  state.filteredLatestPicks = filterRowsByTierSelection(blendedRows, state.latestTierFilters);
   renderPicksTable("latest-picks-table", state.filteredLatestPicks, "No published picks match the selected confidence tiers.", { includeGameMeta: true });
+  renderLatestBallparkWeightLabel();
 }
 
 function renderSeasonLeaders(rows) {
@@ -1013,6 +1119,71 @@ function renderModelExplainer(explainer) {
     .join("");
 }
 
+function renderBallparkPalExplainer(explainer) {
+  const title = document.getElementById("ballparkpal-explainer-title");
+  const summary = document.getElementById("ballparkpal-explainer-summary");
+  const list = document.getElementById("ballparkpal-explainer-list");
+  const factors = Array.isArray(explainer?.factors) ? explainer.factors : [];
+
+  title.textContent = explainer?.title || "Ballpark Pal weights";
+  summary.textContent = explainer?.summary || DEFAULT_MODEL_EXPLAINER_MESSAGE;
+
+  if (!explainer?.available || !factors.length) {
+    list.innerHTML = `<p class="empty-state">${escapeHtml(DEFAULT_MODEL_EXPLAINER_MESSAGE)}</p>`;
+    return;
+  }
+
+  const blendWeights = explainer?.blend_weights || {};
+  const modelWeight = Number(blendWeights.model);
+  const ballparkWeight = Number(blendWeights.ballpark);
+  const blendSummary = [
+    Number.isFinite(modelWeight) ? `Model ${Math.round(modelWeight * 100)}%` : "",
+    Number.isFinite(ballparkWeight) ? `Ballpark Pal ${Math.round(ballparkWeight * 100)}%` : "",
+  ]
+    .filter(Boolean)
+    .join(" / ");
+
+  list.innerHTML = `
+    ${explainer?.score_note ? `<p class="empty-state">${escapeHtml(explainer.score_note)}</p>` : ""}
+    ${explainer?.blend_note ? `<p class="empty-state">${escapeHtml(explainer.blend_note)}</p>` : ""}
+    ${blendSummary ? `<p class="empty-state">${escapeHtml(blendSummary)}</p>` : ""}
+    ${factors
+      .map((factor) => {
+        const weight = Number(factor.weight);
+        const neutral = Number(factor.neutral);
+        const scale = Number(factor.scale);
+        const barWidth = Number.isFinite(weight) ? Math.max(0.08, Math.min(1, weight / 12.0)) : 0.25;
+        return `
+          <article class="model-metric-card">
+            <div class="model-metric-top">
+              <div>
+                <strong>${escapeHtml(factor.label || factor.field || "Ballpark factor")}</strong>
+                <p>${escapeHtml(factor.description || "Fixed Ballpark Pal overlay factor.")}</p>
+              </div>
+              <div class="model-metric-meta">
+                <span class="metric-strength">${escapeHtml(Number.isFinite(weight) ? `${weight.toFixed(1)} pts` : "weight n/a")}</span>
+              </div>
+            </div>
+            <div class="metric-strength-bar" aria-hidden="true">
+              <span style="width:${Math.round(barWidth * 100)}%"></span>
+            </div>
+            <p class="metric-direction">
+              ${escapeHtml(
+                [
+                  Number.isFinite(neutral) ? `Neutral ${neutral.toFixed(2)}` : "",
+                  Number.isFinite(scale) ? `Scale ${scale.toFixed(2)}` : "",
+                  factor.direction || "",
+                ]
+                  .filter(Boolean)
+                  .join(" · "),
+              )}
+            </p>
+          </article>
+        `;
+      })
+      .join("")}
+  `;
+}
 function applyHistoryFilters() {
   if (!state.dashboard) {
     return;
@@ -1093,12 +1264,18 @@ async function loadDashboard() {
   renderTierFilterControls("latest-confidence-filters", state.latestTierFilters);
   renderTierFilterControls("history-confidence-filters", state.historyTierFilters);
   renderHistoryDateOptions(state.dashboard.history_dates, state.dashboard.history_default_date);
+  const latestWeightSlider = document.getElementById("latest-ballpark-weight");
+  if (latestWeightSlider) {
+    latestWeightSlider.value = String(Math.max(0, Math.min(100, Math.round(Number(state.latestBallparkWeight) || 90))));
+  }
+  renderLatestBallparkWeightLabel();
   applyLatestPicksFilters();
   renderLineupPanels(state.dashboard.lineup_panels || []);
   renderSeasonLeaders(state.dashboard.season_hr_leaders_2026 || []);
   renderYesterdayRecap(state.dashboard);
   renderRefreshScheduleInline(state.dashboard.refresh_schedule);
   renderModelExplainer(state.dashboard.model_explainer);
+  renderBallparkPalExplainer(state.dashboard.ballparkpal_explainer);
   applyHistoryFilters();
 }
 
@@ -1180,6 +1357,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("history-date-filter").addEventListener("change", (event) => {
     state.selectedHistoryDate = event.target.value;
     applyHistoryFilters();
+  });
+  document.getElementById("latest-ballpark-weight").addEventListener("input", (event) => {
+    state.latestBallparkWeight = Number(event.target.value);
+    renderLatestBallparkWeightLabel();
+    applyLatestPicksFilters();
   });
   document.getElementById("latest-confidence-filters").addEventListener("click", handleTierFilterToggle);
   document.getElementById("history-confidence-filters").addEventListener("click", handleTierFilterToggle);

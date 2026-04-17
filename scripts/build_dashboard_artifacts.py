@@ -20,6 +20,11 @@ if str(ROOT_DIR) not in sys.path:
 
 from config import LIVE_MODEL_DATA_PATH
 from scripts.live_pipeline import build_lineup_panels, fetch_schedule_games, weather_code_label
+from tools.ballparkpal.scoring import (
+    BALLPARKPAL_BALLPARK_BLEND_WEIGHT,
+    BALLPARKPAL_MODEL_BLEND_WEIGHT,
+    BALLPARKPAL_OVERLAY_RULES,
+)
 from train_model import DEFAULT_CONFIDENCE_POLICY, extract_logistic_coefficient_map, normalized_confidence_policy
 
 DEFAULT_TRACKING_START_DATE = "2026-03-25"
@@ -95,6 +100,7 @@ DISPLAY_COLUMNS = [
     "ballparkpal_snapshot_pulled_at",
     "ballparkpal_home_run_probability",
     "ballparkpal_hit_probability",
+    "ballparkpal_team_home_runs",
     "ballparkpal_runs_allowed",
     "ballparkpal_home_runs_allowed",
     "ballparkpal_overlay_signed_score",
@@ -152,6 +158,7 @@ CURRENT_PICK_COLUMNS = [
     "ballparkpal_snapshot_pulled_at",
     "ballparkpal_home_run_probability",
     "ballparkpal_hit_probability",
+    "ballparkpal_team_home_runs",
     "ballparkpal_runs_allowed",
     "ballparkpal_home_runs_allowed",
     "ballparkpal_overlay_signed_score",
@@ -527,6 +534,7 @@ def normalize_pick(row: dict[str, Any], tracking_start_date: str) -> dict[str, A
         "ballparkpal_snapshot_pulled_at": str(row.get("ballparkpal_snapshot_pulled_at") or ""),
         "ballparkpal_home_run_probability": parse_float(row.get("ballparkpal_home_run_probability")),
         "ballparkpal_hit_probability": parse_float(row.get("ballparkpal_hit_probability")),
+        "ballparkpal_team_home_runs": parse_float(row.get("ballparkpal_team_home_runs")),
         "ballparkpal_runs_allowed": parse_float(row.get("ballparkpal_runs_allowed")),
         "ballparkpal_home_runs_allowed": parse_float(row.get("ballparkpal_home_runs_allowed")),
         "ballparkpal_overlay_signed_score": parse_float(row.get("ballparkpal_overlay_signed_score")),
@@ -1036,6 +1044,53 @@ def build_model_explainer(
     }
 
 
+def build_ballparkpal_explainer() -> dict[str, Any]:
+    factor_labels = {
+        "ballparkpal_home_run_probability": "Batters.HomeRunProbability",
+        "ballparkpal_hit_probability": "Batters.HitProbability",
+        "ballparkpal_team_home_runs": "Teams.HomeRuns",
+        "ballparkpal_runs_allowed": "Pitchers.RunsAllowed",
+        "ballparkpal_home_runs_allowed": "Pitchers.HomeRunsAllowed",
+    }
+    factor_descriptions = {
+        "ballparkpal_home_run_probability": "Direct HR-leverage signal from the batter export.",
+        "ballparkpal_hit_probability": "Broader contact signal from the batter export.",
+        "ballparkpal_team_home_runs": "Team-level home-run environment from the teams export.",
+        "ballparkpal_runs_allowed": "Pitcher run suppression or vulnerability from the pitchers export.",
+        "ballparkpal_home_runs_allowed": "Pitcher home-run allowance from the pitchers export.",
+    }
+    factors: list[dict[str, Any]] = []
+    for rule in BALLPARKPAL_OVERLAY_RULES:
+        factors.append(
+            {
+                "field": rule.field,
+                "label": factor_labels.get(rule.field, rule.field),
+                "description": factor_descriptions.get(rule.field, "Fixed Ballpark Pal overlay factor."),
+                "neutral": serialize_value(rule.neutral),
+                "scale": serialize_value(rule.scale),
+                "weight": serialize_value(rule.weight),
+                "direction": "Higher values help" if rule.favor_when_above else "Lower values help",
+            }
+        )
+    return {
+        "available": bool(factors),
+        "title": "Ballpark Pal weights",
+        "summary": (
+            "Ballpark Pal XX.X is the normalized export score. 50.0 is neutral; above 50.0 is favorable and below 50.0 is unfavorable. "
+            f"The Today slider defaults to a {int(BALLPARKPAL_BALLPARK_BLEND_WEIGHT * 100)}/{int(BALLPARKPAL_MODEL_BLEND_WEIGHT * 100)} "
+            "Ballpark Pal/model blend and can re-rank the live board."
+        ),
+        "score_note": "Ballpark Pal XX.X is the normalized export score used in the HR Chance cell. It prints as favorable above 50.0 and unfavorable below 50.0.",
+        "blend_note": "Use the Today slider to reweight the live board from 0% to 100% Ballpark Pal.",
+        "blend_weights": {
+            "model": BALLPARKPAL_MODEL_BLEND_WEIGHT,
+            "ballpark": BALLPARKPAL_BALLPARK_BLEND_WEIGHT,
+        },
+        "ranking_note": "Confidence tiers are derived from the blended score percentile on the slate.",
+        "factors": factors,
+    }
+
+
 def build_dashboard_artifacts(
     *,
     current_picks_path: Path = DEFAULT_CURRENT_PICKS_PATH,
@@ -1135,6 +1190,7 @@ def build_dashboard_artifacts(
         model_bundle_path=model_bundle_path,
         model_metadata_path=model_metadata_path,
     )
+    ballparkpal_explainer = build_ballparkpal_explainer()
     model_family = str(model_explainer.get("model_family") or DEFAULT_MODEL_FAMILY)
     feature_profile = str(model_explainer.get("feature_profile") or DEFAULT_FEATURE_PROFILE)
     lineup_panels: list[dict[str, Any]] = []
@@ -1177,6 +1233,7 @@ def build_dashboard_artifacts(
         "confidence_summary": summarize_confidence(settled_rows),
         "player_leaderboard": player_leaderboard,
         "model_explainer": model_explainer,
+        "ballparkpal_explainer": ballparkpal_explainer,
         "latest_picks": to_records(latest_picks),
         "history": to_records(dashboard_history),
         "lineup_panels": lineup_panels,

@@ -200,6 +200,9 @@ def _extract_rows(path: Path, *, export_name: str) -> list[dict[str, Any]]:
                     )
                     normalized_row["team"] = str(_get_first_present(raw_row, header_map, ("team", "club")) or "")
                     normalized_row["opponent"] = str(_get_first_present(raw_row, header_map, ("opponent", "opp_team")) or "")
+                    normalized_row["home_runs"] = _normalize_number(
+                        _get_first_present(raw_row, header_map, ("home_runs", "homeruns", "hr", "home_run"))
+                    )
                 elif export_name == "games":
                     normalized_row["game_date"] = _normalize_date(
                         _get_first_present(raw_row, header_map, ("game_date", "gamedate", "slate_date", "date", "contest_date", "export_date"))

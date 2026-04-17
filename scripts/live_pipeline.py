@@ -172,6 +172,7 @@ LIVE_SHRUNK_SNAPSHOT_COLUMNS = [
 LIVE_BALLPARKPAL_SOURCE_COLUMNS = [
     "ballparkpal_home_run_probability",
     "ballparkpal_hit_probability",
+    "ballparkpal_team_home_runs",
     "ballparkpal_runs_allowed",
     "ballparkpal_home_runs_allowed",
 ]
@@ -239,9 +240,13 @@ def enrich_candidate_frame_with_ballparkpal(candidate_df: pd.DataFrame, *, sched
 
     enriched = _merge_export(enriched, "batters", ["game_date", "game_pk", "batter_id"])
     enriched = _merge_export(enriched, "pitchers", ["game_date", "game_pk", "pitcher_id"])
+    if "opponent_team" in enriched.columns and "opponent" not in enriched.columns:
+        enriched["opponent"] = enriched["opponent_team"]
+    enriched = _merge_export(enriched, "teams", ["game_date", "game_pk", "team", "opponent"])
     source_to_prefixed_columns = {
         "ballparkpal_home_run_probability": "home_run_probability",
         "ballparkpal_hit_probability": "hit_probability",
+        "ballparkpal_team_home_runs": "home_runs",
         "ballparkpal_runs_allowed": "runs_allowed",
         "ballparkpal_home_runs_allowed": "home_runs_allowed",
     }
@@ -2580,8 +2585,8 @@ def score_live_candidates(
         date_col="game_date",
         policy=confidence_policy,
         percentile_col="predicted_hr_percentile",
-        rank_col="slate_rank",
-        tier_col="confidence_tier",
+        rank_col="original_rank",
+        tier_col="original_tier",
     )
     scored["predicted_hr_score"] = (scored["predicted_hr_percentile"] * 100.0).round(1)
 
@@ -2595,9 +2600,23 @@ def score_live_candidates(
     scored["top_reason_2"] = reasons.apply(lambda items: items[1] if len(items) > 1 else "")
     scored["top_reason_3"] = reasons.apply(lambda items: items[2] if len(items) > 2 else "")
 
+    scored["ballparkpal_combined_probability"] = (
+        scored["ballparkpal_overlay_adjusted_score"].fillna(scored["predicted_hr_score"]) / 100.0
+    ).clip(lower=0.0, upper=1.0)
+    scored = apply_confidence_policy_to_frame(
+        scored,
+        probability_col="ballparkpal_combined_probability",
+        date_col="game_date",
+        policy=confidence_policy,
+        percentile_col="ballparkpal_combined_percentile",
+        rank_col="ballparkpal_overlay_adjusted_rank",
+        tier_col="confidence_tier",
+    )
+    scored["ballparkpal_overlay_adjusted_score"] = scored["ballparkpal_combined_probability"].mul(100.0).round(1)
+
     ranked_source = scored.sort_values(
-        ["predicted_hr_score", "predicted_hr_probability", "batter_name"],
-        ascending=[False, False, True],
+        ["ballparkpal_overlay_adjusted_score", "predicted_hr_score", "predicted_hr_probability", "batter_name"],
+        ascending=[False, False, False, True],
     ).copy()
 
     min_tier_value = _confidence_tier_value(min_confidence_tier) if min_confidence_tier else -1
@@ -2630,20 +2649,7 @@ def score_live_candidates(
 
     ranked = ranked_source.loc[selected_indices].copy()
     ranked["rank"] = np.arange(1, len(ranked) + 1)
-    if "ballparkpal_overlay_adjusted_score" in ranked.columns and ranked["ballparkpal_overlay_adjusted_score"].notna().any():
-        overlay_rank_source = ranked.sort_values(
-            [
-                "ballparkpal_overlay_adjusted_score",
-                "predicted_hr_score",
-                "predicted_hr_probability",
-                "batter_name",
-            ],
-            ascending=[False, False, False, True],
-        )
-        overlay_rank_map = {int(idx): position for position, idx in enumerate(overlay_rank_source.index, start=1)}
-        ranked["ballparkpal_overlay_adjusted_rank"] = ranked.index.map(overlay_rank_map).astype("Int64")
-    else:
-        ranked["ballparkpal_overlay_adjusted_rank"] = ranked["rank"].astype("Int64")
+    ranked["ballparkpal_overlay_adjusted_rank"] = ranked["rank"].astype("Int64")
     publish_time = published_at or datetime.now(timezone.utc).isoformat()
 
     rows: list[dict[str, Any]] = []
@@ -2666,6 +2672,7 @@ def score_live_candidates(
                 "game_status": str(row.get("game_status") or ""),
                 "game_state": str(row.get("game_state") or "pregame"),
                 "rank": int(row["rank"]),
+                "original_rank": _coerce_int(row.get("original_rank")) or int(row["rank"]),
                 "batter_id": int(row["batter_id"]),
                 "batter_name": str(row["batter_name"]),
                 "team": str(row["team"]),
@@ -2673,14 +2680,17 @@ def score_live_candidates(
                 "pitcher_id": int(row["pitcher_id"]) if row.get("pitcher_id") is not None and not pd.isna(row.get("pitcher_id")) else None,
                 "pitcher_name": str(row.get("pitcher_name") or ""),
                 "confidence_tier": str(row["confidence_tier"]),
+                "original_tier": str(row.get("original_tier") or row.get("confidence_tier") or "watch"),
                 "predicted_hr_probability": serialize_for_json(float(row["predicted_hr_probability"])),
                 "predicted_hr_score": serialize_for_json(float(row["predicted_hr_score"])),
+                "original_score": serialize_for_json(float(row.get("predicted_hr_score"))),
                 "ballparkpal_snapshot_status": str(row.get("ballparkpal_snapshot_status") or "unavailable"),
                 "ballparkpal_snapshot_date": str(row.get("ballparkpal_snapshot_date") or ""),
                 "ballparkpal_snapshot_path": str(row.get("ballparkpal_snapshot_path") or ""),
                 "ballparkpal_snapshot_pulled_at": str(row.get("ballparkpal_snapshot_pulled_at") or ""),
                 "ballparkpal_home_run_probability": serialize_for_json(row.get("ballparkpal_home_run_probability")),
                 "ballparkpal_hit_probability": serialize_for_json(row.get("ballparkpal_hit_probability")),
+                "ballparkpal_team_home_runs": serialize_for_json(row.get("ballparkpal_team_home_runs")),
                 "ballparkpal_runs_allowed": serialize_for_json(row.get("ballparkpal_runs_allowed")),
                 "ballparkpal_home_runs_allowed": serialize_for_json(row.get("ballparkpal_home_runs_allowed")),
                 "ballparkpal_overlay_signed_score": serialize_for_json(row.get("ballparkpal_overlay_signed_score")),
