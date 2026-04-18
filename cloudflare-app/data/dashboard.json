@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-18T20:21:16.005191+00:00",
+  "generated_at": "2026-04-18T21:13:31.162329+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -101,10 +101,10 @@
     "latest_slate_size": 261,
     "tracked_dates": 24,
     "tracked_picks": 3662,
-    "settled_picks": 2858,
-    "tracked_homers": 312,
-    "tracked_hit_rate": 0.109167,
-    "open_picks": 804
+    "settled_picks": 2888,
+    "tracked_homers": 314,
+    "tracked_hit_rate": 0.108726,
+    "open_picks": 774
   },
   "confidence_summary": [
     {
@@ -123,17 +123,17 @@
     },
     {
       "confidence_tier": "watch",
-      "picks": 485,
+      "picks": 489,
       "homers": 74,
-      "hit_rate": 0.152577,
-      "avg_probability": 0.139015
+      "hit_rate": 0.151329,
+      "avg_probability": 0.139006
     },
     {
       "confidence_tier": "longshot",
-      "picks": 2102,
-      "homers": 178,
-      "hit_rate": 0.084681,
-      "avg_probability": 0.09475
+      "picks": 2128,
+      "homers": 180,
+      "hit_rate": 0.084586,
+      "avg_probability": 0.094763
     }
   ],
   "player_leaderboard": [
@@ -168,9 +168,9 @@
     {
       "batter_name": "Sal Stewart",
       "team": "CIN",
-      "picks": 19,
+      "picks": 20,
       "homers": 5,
-      "hit_rate": 0.263158
+      "hit_rate": 0.25
     },
     {
       "batter_name": "Munetaka Murakami",
@@ -203,9 +203,9 @@
     {
       "batter_name": "Elly De La Cruz",
       "team": "CIN",
-      "picks": 15,
+      "picks": 16,
       "homers": 4,
-      "hit_rate": 0.266667
+      "hit_rate": 0.25
     },
     {
       "batter_name": "Kyle Schwarber",
@@ -245,9 +245,9 @@
     {
       "batter_name": "Dansby Swanson",
       "team": "CHC",
-      "picks": 11,
+      "picks": 12,
       "homers": 4,
-      "hit_rate": 0.363636
+      "hit_rate": 0.333333
     },
     {
       "batter_name": "Jeremiah Jackson",
@@ -320,6 +320,13 @@
       "hit_rate": 0.25
     },
     {
+      "batter_name": "Brooks Lee",
+      "team": "MIN",
+      "picks": 12,
+      "homers": 3,
+      "hit_rate": 0.25
+    },
+    {
       "batter_name": "Daulton Varsho",
       "team": "TOR",
       "picks": 12,
@@ -341,11 +348,11 @@
       "hit_rate": 0.25
     },
     {
-      "batter_name": "Brooks Lee",
-      "team": "MIN",
-      "picks": 11,
+      "batter_name": "Nico Hoerner",
+      "team": "CHC",
+      "picks": 12,
       "homers": 3,
-      "hit_rate": 0.272727
+      "hit_rate": 0.25
     },
     {
       "batter_name": "Carter Jensen",
@@ -357,13 +364,6 @@
     {
       "batter_name": "Mickey Moniak",
       "team": "COL",
-      "picks": 11,
-      "homers": 3,
-      "hit_rate": 0.272727
-    },
-    {
-      "batter_name": "Nico Hoerner",
-      "team": "CHC",
       "picks": 11,
       "homers": 3,
       "hit_rate": 0.272727
@@ -460,6 +460,13 @@
       "hit_rate": 0.153846
     },
     {
+      "batter_name": "Byron Buxton",
+      "team": "MIN",
+      "picks": 13,
+      "homers": 2,
+      "hit_rate": 0.153846
+    },
+    {
       "batter_name": "Cal Raleigh",
       "team": "SEA",
       "picks": 13,
@@ -483,13 +490,6 @@
     {
       "batter_name": "Bryce Harper",
       "team": "PHI",
-      "picks": 12,
-      "homers": 2,
-      "hit_rate": 0.166667
-    },
-    {
-      "batter_name": "Byron Buxton",
-      "team": "MIN",
       "picks": 12,
       "homers": 2,
       "hit_rate": 0.166667
@@ -712,18 +712,18 @@
       "hit_rate": 0.066667
     },
     {
-      "batter_name": "JJ Wetherholt",
-      "team": "STL",
+      "batter_name": "Eugenio Su\u00e1rez",
+      "team": "CIN",
       "picks": 15,
       "homers": 1,
       "hit_rate": 0.066667
     },
     {
-      "batter_name": "Eugenio Su\u00e1rez",
-      "team": "CIN",
-      "picks": 14,
+      "batter_name": "JJ Wetherholt",
+      "team": "STL",
+      "picks": 15,
       "homers": 1,
-      "hit_rate": 0.071429
+      "hit_rate": 0.066667
     },
     {
       "batter_name": "Julio Rodr\u00edguez",
@@ -754,6 +754,13 @@
       "hit_rate": 0.076923
     },
     {
+      "batter_name": "Bo Bichette",
+      "team": "NYM",
+      "picks": 13,
+      "homers": 1,
+      "hit_rate": 0.076923
+    },
+    {
       "batter_name": "Brady House",
       "team": "WSH",
       "picks": 13,
@@ -775,8 +782,29 @@
       "hit_rate": 0.076923
     },
     {
+      "batter_name": "Francisco Lindor",
+      "team": "NYM",
+      "picks": 13,
+      "homers": 1,
+      "hit_rate": 0.076923
+    },
+    {
+      "batter_name": "Josh Bell",
+      "team": "MIN",
+      "picks": 13,
+      "homers": 1,
+      "hit_rate": 0.076923
+    },
+    {
       "batter_name": "Kevin McGonigle",
       "team": "DET",
+      "picks": 13,
+      "homers": 1,
+      "hit_rate": 0.076923
+    },
+    {
+      "batter_name": "Luke Keaschall",
+      "team": "MIN",
       "picks": 13,
       "homers": 1,
       "hit_rate": 0.076923
@@ -803,13 +831,6 @@
       "hit_rate": 0.083333
     },
     {
-      "batter_name": "Bo Bichette",
-      "team": "NYM",
-      "picks": 12,
-      "homers": 1,
-      "hit_rate": 0.083333
-    },
-    {
       "batter_name": "Bryan Reynolds",
       "team": "PIT",
       "picks": 12,
@@ -819,13 +840,6 @@
     {
       "batter_name": "Cam Smith",
       "team": "HOU",
-      "picks": 12,
-      "homers": 1,
-      "hit_rate": 0.083333
-    },
-    {
-      "batter_name": "Francisco Lindor",
-      "team": "NYM",
       "picks": 12,
       "homers": 1,
       "hit_rate": 0.083333
@@ -852,13 +866,6 @@
       "hit_rate": 0.083333
     },
     {
-      "batter_name": "Josh Bell",
-      "team": "MIN",
-      "picks": 12,
-      "homers": 1,
-      "hit_rate": 0.083333
-    },
-    {
       "batter_name": "Josh Naylor",
       "team": "SEA",
       "picks": 12,
@@ -868,13 +875,6 @@
     {
       "batter_name": "Jung Hoo Lee",
       "team": "SF",
-      "picks": 12,
-      "homers": 1,
-      "hit_rate": 0.083333
-    },
-    {
-      "batter_name": "Luke Keaschall",
-      "team": "MIN",
       "picks": 12,
       "homers": 1,
       "hit_rate": 0.083333
@@ -896,6 +896,13 @@
     {
       "batter_name": "Miguel Vargas",
       "team": "CWS",
+      "picks": 12,
+      "homers": 1,
+      "hit_rate": 0.083333
+    },
+    {
+      "batter_name": "Pete Crow-Armstrong",
+      "team": "CHC",
       "picks": 12,
       "homers": 1,
       "hit_rate": 0.083333
@@ -950,6 +957,13 @@
       "hit_rate": 0.090909
     },
     {
+      "batter_name": "Francisco Alvarez",
+      "team": "NYM",
+      "picks": 11,
+      "homers": 1,
+      "hit_rate": 0.090909
+    },
+    {
       "batter_name": "Kyle Tucker",
       "team": "LAD",
       "picks": 11,
@@ -964,8 +978,8 @@
       "hit_rate": 0.090909
     },
     {
-      "batter_name": "Pete Crow-Armstrong",
-      "team": "CHC",
+      "batter_name": "Luis Robert Jr.",
+      "team": "NYM",
       "picks": 11,
       "homers": 1,
       "hit_rate": 0.090909
@@ -1006,13 +1020,6 @@
       "hit_rate": 0.1
     },
     {
-      "batter_name": "Francisco Alvarez",
-      "team": "NYM",
-      "picks": 10,
-      "homers": 1,
-      "hit_rate": 0.1
-    },
-    {
       "batter_name": "Jake Cronenworth",
       "team": "SD",
       "picks": 10,
@@ -1034,15 +1041,15 @@
       "hit_rate": 0.1
     },
     {
-      "batter_name": "Luis Robert Jr.",
-      "team": "NYM",
+      "batter_name": "Nolan Gorman",
+      "team": "STL",
       "picks": 10,
       "homers": 1,
       "hit_rate": 0.1
     },
     {
-      "batter_name": "Nolan Gorman",
-      "team": "STL",
+      "batter_name": "Tyler Stephenson",
+      "team": "CIN",
       "picks": 10,
       "homers": 1,
       "hit_rate": 0.1
@@ -1085,13 +1092,6 @@
     {
       "batter_name": "Liam Hicks",
       "team": "MIA",
-      "picks": 9,
-      "homers": 1,
-      "hit_rate": 0.111111
-    },
-    {
-      "batter_name": "Tyler Stephenson",
-      "team": "CIN",
       "picks": 9,
       "homers": 1,
       "hit_rate": 0.111111
@@ -1153,6 +1153,13 @@
       "hit_rate": 0.125
     },
     {
+      "batter_name": "Marcell Ozuna",
+      "team": "PIT",
+      "picks": 8,
+      "homers": 1,
+      "hit_rate": 0.125
+    },
+    {
       "batter_name": "Mark Vientos",
       "team": "NYM",
       "picks": 8,
@@ -1172,6 +1179,13 @@
       "picks": 8,
       "homers": 1,
       "hit_rate": 0.125
+    },
+    {
+      "batter_name": "Andrew Benintendi",
+      "team": "CWS",
+      "picks": 7,
+      "homers": 1,
+      "hit_rate": 0.142857
     },
     {
       "batter_name": "Carson Kelly",
@@ -1202,6 +1216,13 @@
       "hit_rate": 0.142857
     },
     {
+      "batter_name": "Ryan Jeffers",
+      "team": "MIN",
+      "picks": 7,
+      "homers": 1,
+      "hit_rate": 0.142857
+    },
+    {
       "batter_name": "Troy Johnston",
       "team": "COL",
       "picks": 7,
@@ -1218,13 +1239,6 @@
     {
       "batter_name": "Oswald Peraza",
       "team": "LAA",
-      "picks": 6,
-      "homers": 1,
-      "hit_rate": 0.166667
-    },
-    {
-      "batter_name": "Ryan Jeffers",
-      "team": "MIN",
       "picks": 6,
       "homers": 1,
       "hit_rate": 0.166667
@@ -1279,6 +1293,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Carson Benge",
+      "team": "NYM",
+      "picks": 13,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Fernando Tatis Jr.",
       "team": "SD",
       "picks": 13,
@@ -1307,8 +1328,22 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Marcus Semien",
+      "team": "NYM",
+      "picks": 13,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Matt Chapman",
       "team": "SF",
+      "picks": 13,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "TJ Friedl",
+      "team": "CIN",
       "picks": 13,
       "homers": 0,
       "hit_rate": 0.0
@@ -1328,8 +1363,8 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Carson Benge",
-      "team": "NYM",
+      "batter_name": "Alex Bregman",
+      "team": "CHC",
       "picks": 12,
       "homers": 0,
       "hit_rate": 0.0
@@ -1384,13 +1419,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Marcus Semien",
-      "team": "NYM",
-      "picks": 12,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Matt McLain",
       "team": "CIN",
       "picks": 12,
@@ -1401,20 +1429,6 @@
       "batter_name": "Nolan Schanuel",
       "team": "LAA",
       "picks": 12,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "TJ Friedl",
-      "team": "CIN",
-      "picks": 12,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Alex Bregman",
-      "team": "CHC",
-      "picks": 11,
       "homers": 0,
       "hit_rate": 0.0
     },
@@ -1517,6 +1531,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Ke'Bryan Hayes",
+      "team": "CIN",
+      "picks": 10,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Kyle Karros",
       "team": "COL",
       "picks": 10,
@@ -1527,6 +1548,13 @@
       "batter_name": "Nasim Nu\u00f1ez",
       "team": "WSH",
       "picks": 10,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Austin Martin",
+      "team": "MIN",
+      "picks": 9,
       "homers": 0,
       "hit_rate": 0.0
     },
@@ -1552,22 +1580,22 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Ke'Bryan Hayes",
-      "team": "CIN",
+      "batter_name": "Michael Busch",
+      "team": "CHC",
       "picks": 9,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Austin Martin",
-      "team": "MIN",
-      "picks": 8,
       "homers": 0,
       "hit_rate": 0.0
     },
     {
       "batter_name": "Ben Williamson",
       "team": "TB",
+      "picks": 8,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Brett Baty",
+      "team": "NYM",
       "picks": 8,
       "homers": 0,
       "hit_rate": 0.0
@@ -1629,13 +1657,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Michael Busch",
-      "team": "CHC",
-      "picks": 8,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Nick Yorke",
       "team": "PIT",
       "picks": 8,
@@ -1687,13 +1708,6 @@
     {
       "batter_name": "Brandon Lockridge",
       "team": "MIL",
-      "picks": 7,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Brett Baty",
-      "team": "NYM",
       "picks": 7,
       "homers": 0,
       "hit_rate": 0.0
@@ -1762,13 +1776,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Marcell Ozuna",
-      "team": "PIT",
-      "picks": 7,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Ryan McMahon",
       "team": "NYY",
       "picks": 7,
@@ -1799,13 +1806,6 @@
     {
       "batter_name": "Alek Thomas",
       "team": "AZ",
-      "picks": 6,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Andrew Benintendi",
-      "team": "CWS",
       "picks": 6,
       "homers": 0,
       "hit_rate": 0.0
@@ -1916,6 +1916,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Seiya Suzuki",
+      "team": "CHC",
+      "picks": 6,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Davis Schneider",
       "team": "TOR",
       "picks": 5,
@@ -1960,13 +1967,6 @@
     {
       "batter_name": "Royce Lewis",
       "team": "MIN",
-      "picks": 5,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Seiya Suzuki",
-      "team": "CHC",
       "picks": 5,
       "homers": 0,
       "hit_rate": 0.0
@@ -2154,6 +2154,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Miguel Amaya",
+      "team": "CHC",
+      "picks": 3,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Nathan Church",
       "team": "STL",
       "picks": 3,
@@ -2273,13 +2280,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Miguel Amaya",
-      "team": "CHC",
-      "picks": 2,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Mois\u00e9s Ballesteros",
       "team": "CHC",
       "picks": 2,
@@ -2296,6 +2296,20 @@
     {
       "batter_name": "Nick Loftin",
       "team": "KC",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Rece Hinds",
+      "team": "CIN",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Ryan Kreidler",
+      "team": "MIN",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
@@ -3106,7 +3120,7 @@
       "team": "TOR",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -3152,7 +3166,7 @@
       "game_pk": 823721,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 10,
       "original_rank": 10,
       "original_score": 81.2,
@@ -3189,15 +3203,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 11.4%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Taj Bradley has allowed 92.0 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 14.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823558:695600:701542",
@@ -3442,7 +3456,7 @@
       "team": "AZ",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -3610,7 +3624,7 @@
       "team": "TOR",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -4226,7 +4240,7 @@
       "team": "AZ",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -4444,7 +4458,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 32,
       "original_rank": 32,
       "original_score": 89.7,
@@ -4481,15 +4495,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 112.4 mph, which points to top-end HR juice.",
       "top_reason_2": "Jameson Taillon has allowed homers in 5.5% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 13.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:825098:606466:453286",
@@ -4510,7 +4524,7 @@
       "team": "AZ",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -4668,7 +4682,7 @@
       "game_pk": 823721,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 36,
       "original_rank": 36,
       "original_score": 90.8,
@@ -4705,15 +4719,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 8.2% barrel-per-PA split.",
       "top_reason_2": "Taj Bradley has allowed 92.0 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 14.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824206:621043:669467",
@@ -4892,7 +4906,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 40,
       "original_rank": 40,
       "original_score": 88.9,
@@ -4929,15 +4943,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 111.3 mph, which points to top-end HR juice.",
       "top_reason_2": "Jameson Taillon has allowed homers in 5.5% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 13.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824049:593428:579328",
@@ -5620,7 +5634,7 @@
       "game_pk": 823721,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 52,
       "original_rank": 52,
       "original_score": 75.5,
@@ -5657,15 +5671,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 9.4%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Projected wind speed is 14.6 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 5.4% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824372:666160:686218",
@@ -5966,7 +5980,7 @@
       "team": "TOR",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -5994,14 +6008,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 60.0%, showing consistent quality contact.",
       "top_reason_2": "Zac Gallen has allowed 90.4 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 60.0%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:824206:676475:621121",
@@ -6124,7 +6140,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 61,
       "original_rank": 61,
       "original_score": 75.1,
@@ -6161,15 +6177,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 9.1%, which the model treats as sustained power quality.",
       "top_reason_2": "Jameson Taillon has allowed homers in 5.5% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 13.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824451:624413:668909",
@@ -6273,15 +6289,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2217, supporting loud-contact upside.",
       "top_reason_2": "Drew Rasmussen has allowed barrels on 8.6% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 14.1 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-18:824451:669236:668909",
@@ -6358,7 +6374,7 @@
       "team": "TOR",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -6386,14 +6402,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0023, reinforcing the power-contact fit.",
       "top_reason_2": "Zac Gallen has allowed 90.4 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 4.3% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:823151:663728:543135",
@@ -6553,15 +6571,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 58.3%, showing consistent quality contact.",
       "top_reason_2": "Luis Severino has allowed a 42.6% hard-hit rate over the last 30 days.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 58.3%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-18:822751:669477:676917",
@@ -6796,7 +6814,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 75,
       "original_rank": 75,
       "original_score": 79.3,
@@ -7304,7 +7322,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 83,
       "original_rank": 83,
       "original_score": 62.5,
@@ -7341,15 +7359,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 46.6%, showing consistent quality contact.",
       "top_reason_2": "Freddy Peralta has allowed homers in 3.6% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 13.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824694:593871:592791",
@@ -7360,7 +7378,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 169,
       "original_rank": 169,
       "original_score": 35.6,
@@ -7474,7 +7492,7 @@
       "game_pk": 823721,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 86,
       "original_rank": 86,
       "original_score": 71.3,
@@ -7511,15 +7529,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 6.2%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Projected wind speed is 14.6 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 48.9%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:825098:662139:668678",
@@ -7540,7 +7558,7 @@
       "team": "TOR",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -7568,14 +7586,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.2 mph, which points to top-end HR juice.",
       "top_reason_2": "Zac Gallen has allowed 90.4 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0021, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:824775:805808:678394",
@@ -7866,7 +7886,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 93,
       "original_rank": 93,
       "original_score": 60.9,
@@ -7903,15 +7923,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 52.4%, a top-quartile recent-contact signal.",
       "top_reason_2": "Jameson Taillon has allowed homers in 5.5% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 13.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823721:670242:671096",
@@ -7922,7 +7942,7 @@
       "game_pk": 823721,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 122,
       "original_rank": 122,
       "original_score": 44.1,
@@ -8148,7 +8168,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 98,
       "original_rank": 98,
       "original_score": 65.5,
@@ -8185,15 +8205,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.0 mph, which points to top-end HR juice.",
       "top_reason_2": "Freddy Peralta has allowed homers in 3.6% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 13.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824372:660271:663372",
@@ -8542,7 +8562,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 173,
       "original_rank": 173,
       "original_score": 31.4,
@@ -9510,7 +9530,7 @@
       "team": "TOR",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -9538,14 +9558,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 111.4 mph, which points to top-end HR juice.",
       "top_reason_2": "Zac Gallen has allowed 90.4 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Barrel rate over the last 10 days is 5.9%, a top-quartile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:824775:679529:678394",
@@ -9948,7 +9970,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 129,
       "original_rank": 129,
       "original_score": 12.6,
@@ -9985,15 +10007,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 5.2% barrel-per-PA split.",
       "top_reason_2": "Freddy Peralta has allowed homers in 3.6% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 13.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:825098:672960:668678",
@@ -10014,7 +10036,7 @@
       "team": "TOR",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -10060,7 +10082,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 131,
       "original_rank": 131,
       "original_score": 49.4,
@@ -10097,15 +10119,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.6 mph, which points to top-end HR juice.",
       "top_reason_2": "Jameson Taillon has allowed homers in 5.5% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 13.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824694:621020:642547",
@@ -10116,7 +10138,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 132,
       "original_rank": 132,
       "original_score": 72.0,
@@ -10153,15 +10175,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 55.0%, showing consistent quality contact.",
       "top_reason_2": "Freddy Peralta has allowed homers in 3.6% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 13.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823558:665862:702070",
@@ -10398,7 +10420,7 @@
       "game_pk": 823721,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 138,
       "original_rank": 138,
       "original_score": 41.4,
@@ -10435,15 +10457,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 96.3 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Taj Bradley has allowed 92.0 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 14.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823151:702284:543135",
@@ -10520,7 +10542,7 @@
       "team": "AZ",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -10622,7 +10644,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 141,
       "original_rank": 141,
       "original_score": 62.8,
@@ -10659,15 +10681,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 4.3% barrel-per-PA split.",
       "top_reason_2": "Freddy Peralta has allowed homers in 3.6% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 13.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823558:672580:701542",
@@ -11026,7 +11048,7 @@
       "team": "AZ",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -11072,7 +11094,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 148,
       "original_rank": 148,
       "original_score": 36.8,
@@ -11109,15 +11131,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Jameson Taillon has allowed homers in 5.5% of plate appearances over the last 30 days.",
       "top_reason_2": "Projected wind speed is 13.2 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Jameson Taillon has allowed barrels on 5.9% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823151:677649:669923",
@@ -11646,7 +11668,7 @@
       "team": "AZ",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -11806,7 +11828,7 @@
       "game_pk": 823721,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 160,
       "original_rank": 160,
       "original_score": 37.2,
@@ -11843,15 +11865,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 6.9%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Projected wind speed is 14.6 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Barrel rate over the last 30 days is 3.8%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824206:514888:669467",
@@ -12144,7 +12166,7 @@
       "game_pk": 823721,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 166,
       "original_rank": 166,
       "original_score": 30.7,
@@ -12181,15 +12203,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 9.1%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Projected wind speed is 14.6 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Barrel rate over the last 30 days is 6.0%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823474:592663:519242",
@@ -12438,7 +12460,7 @@
       "team": "AZ",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -12484,7 +12506,7 @@
       "game_pk": 823721,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 163,
       "original_rank": 163,
       "original_score": 59.0,
@@ -12710,7 +12732,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 174,
       "original_rank": 174,
       "original_score": 27.2,
@@ -12747,15 +12769,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1727, supporting loud-contact upside.",
       "top_reason_2": "Jameson Taillon has allowed homers in 5.5% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 13.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823721:605170:671096",
@@ -12766,7 +12788,7 @@
       "game_pk": 823721,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 84,
       "original_rank": 84,
       "original_score": 47.5,
@@ -12880,7 +12902,7 @@
       "game_pk": 823721,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 177,
       "original_rank": 177,
       "original_score": 42.9,
@@ -12917,15 +12939,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0019, reinforcing the power-contact fit.",
       "top_reason_2": "Taj Bradley has allowed 92.0 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 14.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824775:596115:669373",
@@ -13162,7 +13184,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 183,
       "original_rank": 183,
       "original_score": 28.0,
@@ -13668,7 +13690,7 @@
       "game_pk": 823721,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 195,
       "original_rank": 195,
       "original_score": 25.7,
@@ -13705,15 +13727,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 16.7%, which the model treats as sustained power quality.",
       "top_reason_2": "Projected wind speed is 14.6 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Barrel rate over the last 10 days is 16.7%, a top-decile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824451:682657:665152",
@@ -14468,7 +14490,7 @@
       "team": "TOR",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -14514,7 +14536,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 211,
       "original_rank": 211,
       "original_score": 6.1,
@@ -14551,15 +14573,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Freddy Peralta has allowed homers in 3.6% of plate appearances over the last 30 days.",
       "top_reason_2": "Projected wind speed is 13.2 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823882:689414:605540",
@@ -14626,7 +14648,7 @@
       "game_pk": 823721,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 159,
       "original_rank": 159,
       "original_score": 48.7,
@@ -14806,7 +14828,7 @@
       "team": "TOR",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -14852,7 +14874,7 @@
       "game_pk": 823721,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 217,
       "original_rank": 217,
       "original_score": 8.8,
@@ -14889,15 +14911,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 8.3%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Projected wind speed is 14.6 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Barrel rate over the last 30 days is 4.3%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823474:573262:650911",
@@ -15308,7 +15330,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 222,
       "original_rank": 222,
       "original_score": 15.3,
@@ -15345,15 +15367,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Freddy Peralta has allowed homers in 3.6% of plate appearances over the last 30 days.",
       "top_reason_2": "Projected wind speed is 13.2 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824451:682877:665152",
@@ -15660,7 +15682,7 @@
       "team": "AZ",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -16050,7 +16072,7 @@
       "game_pk": 823721,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 238,
       "original_rank": 238,
       "original_score": 10.3,
@@ -16087,15 +16109,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 3.2%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Projected wind speed is 14.6 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823721:663647:671737",
@@ -16106,7 +16128,7 @@
       "game_pk": 823721,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 239,
       "original_rank": 239,
       "original_score": 17.2,
@@ -16143,15 +16165,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 9.5%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Taj Bradley has allowed 92.0 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 14.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824372:808975:663372",
@@ -16512,7 +16534,7 @@
       "team": "AZ",
       "opponent_team": "TOR",
       "pitcher_name": "Max Scherzer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -16540,14 +16562,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Max Scherzer has allowed barrels on 8.9% of recent batted balls.",
       "top_reason_2": "Max Scherzer has allowed barrels on 6.4% of batted balls to this batter side.",
       "top_reason_3": "Max Scherzer has allowed homers in 4.4% of plate appearances over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:823721:677956:671737",
@@ -16558,7 +16582,7 @@
       "game_pk": 823721,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 248,
       "original_rank": 248,
       "original_score": 13.0,
@@ -16595,15 +16619,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 12.7% barrel-per-PA split.",
       "top_reason_2": "Taj Bradley has allowed 92.0 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 14.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823882:688363:605540",
@@ -16672,7 +16696,7 @@
       "game_pk": 823721,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 250,
       "original_rank": 250,
       "original_score": 0.4,
@@ -16709,15 +16733,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Taj Bradley has allowed 92.0 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_2": "Projected wind speed is 14.6 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Taj Bradley has allowed a 43.3% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:825020:682668:622663",
@@ -209126,7 +209150,7 @@
       "game_pk": 823558,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T17:35:00Z",
-      "game_status": "Game Over",
+      "game_status": "Final",
       "game_state": "final",
       "matchup": "KC @ NYY",
       "teams": [
@@ -209246,8 +209270,8 @@
       "game_pk": 823721,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:10:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Game Over",
+      "game_state": "final",
       "matchup": "CIN @ MIN",
       "teams": [
         {
@@ -209378,8 +209402,8 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "NYM @ CHC",
       "teams": [
         {
@@ -209510,7 +209534,7 @@
       "game_pk": 823394,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T19:30:00Z",
-      "game_status": "In Progress",
+      "game_status": "Delayed",
       "game_state": "live",
       "matchup": "TB @ PIT",
       "teams": [
@@ -210757,14 +210781,14 @@
       "game_pk": 825098,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-19T00:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "TOR @ AZ",
       "teams": [
         {
           "team": "TOR",
           "opponent_team": "AZ",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 665926,
@@ -210773,16 +210797,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 662139,
-              "batter_name": "Daulton Varsho",
+              "batter_id": 650391,
+              "batter_name": "Eloy Jim\u00e9nez",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 676914,
-              "batter_name": "Davis Schneider",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 676391,
@@ -210803,10 +210821,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 672820,
-              "batter_name": "Lenyn Sosa",
+              "batter_id": 664702,
+              "batter_name": "Myles Straw",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 664770,
+              "batter_name": "Nathan Lukes",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 623168,
@@ -210825,8 +210849,20 @@
         {
           "team": "AZ",
           "opponent_team": "TOR",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 680728,
+              "batter_name": "Adrian Del Castillo",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 677950,
+              "batter_name": "Alek Thomas",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
             {
               "batter_id": 682998,
               "batter_name": "Corbin Carroll",
@@ -210842,18 +210878,6 @@
             {
               "batter_id": 545121,
               "batter_name": "Ildemaro Vargas",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 543510,
-              "batter_name": "James McCann",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 678489,
-              "batter_name": "Jorge Barrosa",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -210874,12 +210898,6 @@
               "batter_name": "Nolan Arenado",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 694374,
-              "batter_name": "Tim Tawa",
-              "batting_order": null,
-              "selected_for_pick": false
             }
           ]
         }
