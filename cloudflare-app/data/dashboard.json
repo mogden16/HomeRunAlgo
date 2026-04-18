@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-18T22:04:48.056780+00:00",
+  "generated_at": "2026-04-18T22:26:39.140414+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -4184,7 +4184,7 @@
       "team": "SD",
       "opponent_team": "LAA",
       "pitcher_name": "Yusei Kikuchi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -4212,14 +4212,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 10.0%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Yusei Kikuchi has allowed barrels on 8.0% of recent batted balls.",
       "top_reason_3": "Barrel rate over the last 30 days is 5.4%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:825098:682998:453286",
@@ -4296,7 +4298,7 @@
       "team": "SD",
       "opponent_team": "LAA",
       "pitcher_name": "Yusei Kikuchi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -4972,7 +4974,7 @@
       "team": "SD",
       "opponent_team": "LAA",
       "pitcher_name": "Yusei Kikuchi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -5588,7 +5590,7 @@
       "team": "SD",
       "opponent_team": "LAA",
       "pitcher_name": "Yusei Kikuchi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -5812,7 +5814,7 @@
       "team": "SD",
       "opponent_team": "LAA",
       "pitcher_name": "Yusei Kikuchi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -7672,7 +7674,7 @@
       "team": "SD",
       "opponent_team": "LAA",
       "pitcher_name": "Yusei Kikuchi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -7840,7 +7842,7 @@
       "team": "SD",
       "opponent_team": "LAA",
       "pitcher_name": "Yusei Kikuchi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -11612,7 +11614,7 @@
       "team": "SD",
       "opponent_team": "LAA",
       "pitcher_name": "Yusei Kikuchi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -11640,14 +11642,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 5.0%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Yusei Kikuchi has allowed barrels on 8.0% of recent batted balls.",
       "top_reason_3": "Yusei Kikuchi has allowed 91.1 mph average exit velocity recently, which the model flags as hittable contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:825098:680728:453286",
@@ -14044,7 +14048,7 @@
       "team": "SD",
       "opponent_team": "LAA",
       "pitcher_name": "Yusei Kikuchi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -210141,7 +210145,7 @@
       "game_pk": 824451,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T22:10:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "matchup": "BAL @ CLE",
       "teams": [
@@ -210916,17 +210920,11 @@
         {
           "team": "SD",
           "opponent_team": "LAA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 665487,
               "batter_name": "Fernando Tatis Jr.",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 657757,
-              "batter_name": "Gavin Sheets",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -210943,26 +210941,26 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 669134,
-              "batter_name": "Luis Campusano",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 592518,
               "batter_name": "Manny Machado",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 592206,
-              "batter_name": "Nick Castellanos",
+              "batter_id": 609280,
+              "batter_name": "Miguel Andujar",
               "batting_order": null,
               "selected_for_pick": false
             },
             {
               "batter_id": 657656,
               "batter_name": "Ram\u00f3n Laureano",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 664034,
+              "batter_name": "Ty France",
               "batting_order": null,
               "selected_for_pick": true
             },
