@@ -42,6 +42,7 @@ from scripts.live_pipeline import (
     build_slate_state,
     CONFIDENCE_TIER_ORDER,
     default_publish_date,
+    enrich_ballparkpal_rows,
     fetch_schedule_games,
     enrich_candidate_frame_with_ballparkpal,
     load_json_array,
@@ -462,7 +463,10 @@ def publish_live_picks(
             schedule_games=schedule_games,
         )
         write_daily_board_state(existing_board, resolved_board_state_path)
-        stable_rows = board_entries_to_current_rows(existing_board)
+        stable_rows = enrich_ballparkpal_rows(
+            board_entries_to_current_rows(existing_board),
+            schedule_date=resolved_schedule_date,
+        )
         write_current_picks(stable_rows, output_path)
         refresh_cloudflare_dashboard(output_path, history_path, dashboard_output_dir, resolved_schedule_date)
         print(

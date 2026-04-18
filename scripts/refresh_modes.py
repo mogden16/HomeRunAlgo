@@ -31,6 +31,7 @@ from scripts.build_dashboard_artifacts import DEFAULT_OUTPUT_DIR, build_dashboar
 from scripts.live_pipeline import (
     build_slate_state,
     default_publish_date,
+    enrich_ballparkpal_rows,
     fetch_schedule_games,
     load_json_array,
     load_live_dataset,
@@ -397,7 +398,10 @@ def run_mixed_refresh(
             schedule_games=schedule_games,
         )
         write_daily_board_state(board_state, board_state_path)
-        published_rows = board_entries_to_current_rows(board_state)
+        published_rows = enrich_ballparkpal_rows(
+            board_entries_to_current_rows(board_state),
+            schedule_date=resolved_schedule_date,
+        )
         write_current_picks(published_rows, current_picks_path)
         print(
             f"Stable mixed refresh for {resolved_schedule_date}: "

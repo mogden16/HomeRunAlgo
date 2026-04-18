@@ -25,6 +25,7 @@ from scripts.board_state import (
     write_daily_board_state,
 )
 from scripts.live_pipeline import (
+    enrich_ballparkpal_rows,
     fetch_schedule_games,
     load_json_array,
     load_live_dataset,
@@ -169,7 +170,9 @@ def run_settle_live_results(
                 f"{len(finalized_board.get('entries') or [])} entries moved to history"
             )
             continue
-        settled_current.extend(settled_rows)
+        settled_current.extend(
+            enrich_ballparkpal_rows(settled_rows, schedule_date=current_date)
+        )
         write_daily_board_state(board_state, resolved_board_state_path)
         print(
             f"Updated board for {current_date}: "

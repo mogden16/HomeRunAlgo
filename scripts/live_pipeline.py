@@ -265,6 +265,16 @@ def enrich_candidate_frame_with_ballparkpal(candidate_df: pd.DataFrame, *, sched
     return apply_ballparkpal_overlay_frame(enriched)
 
 
+def enrich_ballparkpal_rows(rows: list[dict[str, Any]], *, schedule_date: str) -> list[dict[str, Any]]:
+    if not rows:
+        return rows
+    snapshot = load_ballparkpal_snapshot(schedule_date)
+    if snapshot is None:
+        return rows
+    enriched = enrich_candidate_frame_with_ballparkpal(pd.DataFrame(rows), schedule_date=schedule_date)
+    return enriched.to_dict(orient="records")
+
+
 def eastern_today() -> pd.Timestamp:
     return pd.Timestamp.now(tz="America/New_York").normalize()
 
