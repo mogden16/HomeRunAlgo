@@ -17,6 +17,7 @@ from scripts.build_dashboard_artifacts import (
     DEFAULT_TRACKING_START_DATE,
     DISPLAY_COLUMNS as PUBLIC_DISPLAY_COLUMNS,
     HISTORY_COLUMNS as PUBLIC_HISTORY_COLUMNS,
+    current_pick_sort_key as public_current_pick_sort_key,
 )
 
 TRACKING_START_DATE = DEFAULT_TRACKING_START_DATE
@@ -45,11 +46,7 @@ def score_sort_value(row: dict[str, Any]) -> float:
 
 
 def current_sort_key(row: dict[str, Any]) -> tuple[float, int, str]:
-    return (
-        float(str(row.get("game_date") or "0").replace("-", "")),
-        int(row.get("original_rank") or row.get("rank") or 999),
-        str(row.get("batter_name") or ""),
-    )
+    return public_current_pick_sort_key(row)
 
 
 def history_sort_key(row: dict[str, Any]) -> tuple[str, float, int, str]:
