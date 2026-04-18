@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-18T14:27:36.607286+00:00",
+  "generated_at": "2026-04-18T15:26:15.063946+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2938,7 +2938,7 @@
       "team": "NYY",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -3498,7 +3498,7 @@
       "team": "NYY",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -3892,7 +3892,7 @@
       "team": "NYY",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -5628,7 +5628,7 @@
       "team": "MIN",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -6860,7 +6860,7 @@
       "team": "CHC",
       "opponent_team": "NYM",
       "pitcher_name": "Freddy Peralta",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -7308,7 +7308,7 @@
       "team": "CHC",
       "opponent_team": "NYM",
       "pitcher_name": "Freddy Peralta",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -7364,7 +7364,7 @@
       "team": "MIN",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -7392,14 +7392,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 4.0% barrel-per-PA split.",
       "top_reason_2": "Projected wind speed is 14.6 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0016, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:823882:682663:605540",
@@ -7476,7 +7478,7 @@
       "team": "MIN",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -8150,7 +8152,7 @@
       "team": "CHC",
       "opponent_team": "NYM",
       "pitcher_name": "Freddy Peralta",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -8990,7 +8992,7 @@
       "team": "NYY",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -9018,14 +9020,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 55.8%, showing consistent quality contact.",
       "top_reason_2": "Noah Cameron has allowed barrels on 7.4% of batted balls to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 115.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:824206:666211:669467",
@@ -9102,7 +9106,7 @@
       "team": "NYY",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -9494,7 +9498,7 @@
       "team": "MIN",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -9522,14 +9526,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
       "top_reason_2": "Projected wind speed is 14.6 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 50.0%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:823474:624641:519242",
@@ -9662,7 +9668,7 @@
       "team": "NYY",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -9886,7 +9892,7 @@
       "team": "CHC",
       "opponent_team": "NYM",
       "pitcher_name": "Freddy Peralta",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -10054,7 +10060,7 @@
       "team": "CHC",
       "opponent_team": "NYM",
       "pitcher_name": "Freddy Peralta",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -10110,7 +10116,7 @@
       "team": "NYY",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -10502,7 +10508,7 @@
       "team": "NYY",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -10558,7 +10564,7 @@
       "team": "CHC",
       "opponent_team": "NYM",
       "pitcher_name": "Freddy Peralta",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -11680,7 +11686,7 @@
       "team": "MIN",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -12018,7 +12024,7 @@
       "team": "MIN",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -12522,7 +12528,7 @@
       "team": "CHC",
       "opponent_team": "NYM",
       "pitcher_name": "Freddy Peralta",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -12550,14 +12556,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 4.0%, which the model treats as sustained power quality.",
       "top_reason_2": "Freddy Peralta has allowed homers in 3.6% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 13.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:824694:701807:592791",
@@ -12634,7 +12642,7 @@
       "team": "NYY",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -12662,14 +12670,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
       "top_reason_2": "Noah Cameron has allowed barrels on 7.4% of batted balls to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 115.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:823474:669016:519242",
@@ -13530,7 +13540,7 @@
       "team": "MIN",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -14426,7 +14436,7 @@
       "team": "CHC",
       "opponent_team": "NYM",
       "pitcher_name": "Freddy Peralta",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -14762,7 +14772,7 @@
       "team": "MIN",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -15266,7 +15276,7 @@
       "team": "CHC",
       "opponent_team": "NYM",
       "pitcher_name": "Freddy Peralta",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -15994,7 +16004,7 @@
       "team": "MIN",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -209110,7 +209120,7 @@
         {
           "team": "NYY",
           "opponent_team": "KC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 592450,
@@ -209121,12 +209131,6 @@
             {
               "batter_id": 642708,
               "batter_name": "Amed Rosario",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 669224,
-              "batter_name": "Austin Wells",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -209149,6 +209153,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 641555,
+              "batter_name": "J.C. Escarra",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 665862,
               "batter_name": "Jazz Chisholm Jr.",
               "batting_order": null,
@@ -209157,12 +209167,6 @@
             {
               "batter_id": 676609,
               "batter_name": "Jos\u00e9 Caballero",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 663757,
-              "batter_name": "Trent Grisham",
               "batting_order": null,
               "selected_for_pick": true
             }
@@ -209242,7 +209246,7 @@
         {
           "team": "MIN",
           "opponent_team": "CIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 668885,
@@ -209275,28 +209279,28 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 670242,
-              "batter_name": "Matt Wallner",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 680777,
               "batter_name": "Ryan Jeffers",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 656484,
-              "batter_name": "Tristan Gray",
+              "batter_id": 668952,
+              "batter_name": "Ryan Kreidler",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 663616,
+              "batter_name": "Trevor Larnach",
               "batting_order": null,
               "selected_for_pick": false
             },
             {
-              "batter_id": 605170,
-              "batter_name": "Victor Caratini",
+              "batter_id": 656484,
+              "batter_name": "Tristan Gray",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             }
           ]
         }
@@ -209306,7 +209310,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "NYM @ CHC",
       "teams": [
@@ -209374,19 +209378,13 @@
         {
           "team": "CHC",
           "opponent_team": "NYM",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 608324,
               "batter_name": "Alex Bregman",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 608348,
-              "batter_name": "Carson Kelly",
-              "batting_order": null,
-              "selected_for_pick": false
             },
             {
               "batter_id": 621020,
@@ -209401,16 +209399,22 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 807713,
-              "batter_name": "Matt Shaw",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 683737,
               "batter_name": "Michael Busch",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 665804,
+              "batter_name": "Miguel Amaya",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 694208,
+              "batter_name": "Mois\u00e9s Ballesteros",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 663538,
