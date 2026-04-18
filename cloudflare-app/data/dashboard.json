@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-18T22:26:39.140414+00:00",
+  "generated_at": "2026-04-18T23:18:35.971624+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -101,10 +101,10 @@
     "latest_slate_size": 261,
     "tracked_dates": 24,
     "tracked_picks": 3662,
-    "settled_picks": 2891,
-    "tracked_homers": 317,
-    "tracked_hit_rate": 0.109651,
-    "open_picks": 771
+    "settled_picks": 2920,
+    "tracked_homers": 318,
+    "tracked_hit_rate": 0.108904,
+    "open_picks": 742
   },
   "confidence_summary": [
     {
@@ -123,17 +123,17 @@
     },
     {
       "confidence_tier": "watch",
-      "picks": 490,
+      "picks": 495,
       "homers": 75,
-      "hit_rate": 0.153061,
-      "avg_probability": 0.139002
+      "hit_rate": 0.151515,
+      "avg_probability": 0.139036
     },
     {
       "confidence_tier": "longshot",
-      "picks": 2129,
-      "homers": 181,
-      "hit_rate": 0.085016,
-      "avg_probability": 0.094768
+      "picks": 2153,
+      "homers": 182,
+      "hit_rate": 0.084533,
+      "avg_probability": 0.094748
     }
   ],
   "player_leaderboard": [
@@ -385,9 +385,9 @@
     {
       "batter_name": "Jake Bauers",
       "team": "MIL",
-      "picks": 7,
+      "picks": 8,
       "homers": 3,
-      "hit_rate": 0.428571
+      "hit_rate": 0.375
     },
     {
       "batter_name": "Jake Burger",
@@ -474,6 +474,13 @@
       "hit_rate": 0.153846
     },
     {
+      "batter_name": "Connor Norby",
+      "team": "MIA",
+      "picks": 13,
+      "homers": 2,
+      "hit_rate": 0.153846
+    },
+    {
       "batter_name": "Iv\u00e1n Herrera",
       "team": "STL",
       "picks": 13,
@@ -488,6 +495,13 @@
       "hit_rate": 0.153846
     },
     {
+      "batter_name": "Otto Lopez",
+      "team": "MIA",
+      "picks": 13,
+      "homers": 2,
+      "hit_rate": 0.153846
+    },
+    {
       "batter_name": "Bryce Harper",
       "team": "PHI",
       "picks": 12,
@@ -497,13 +511,6 @@
     {
       "batter_name": "Cody Bellinger",
       "team": "NYY",
-      "picks": 12,
-      "homers": 2,
-      "hit_rate": 0.166667
-    },
-    {
-      "batter_name": "Connor Norby",
-      "team": "MIA",
       "picks": 12,
       "homers": 2,
       "hit_rate": 0.166667
@@ -525,13 +532,6 @@
     {
       "batter_name": "Manny Machado",
       "team": "SD",
-      "picks": 12,
-      "homers": 2,
-      "hit_rate": 0.166667
-    },
-    {
-      "batter_name": "Otto Lopez",
-      "team": "MIA",
       "picks": 12,
       "homers": 2,
       "hit_rate": 0.166667
@@ -740,8 +740,22 @@
       "hit_rate": 0.066667
     },
     {
+      "batter_name": "Agust\u00edn Ram\u00edrez",
+      "team": "MIA",
+      "picks": 14,
+      "homers": 1,
+      "hit_rate": 0.071429
+    },
+    {
       "batter_name": "Julio Rodr\u00edguez",
       "team": "SEA",
+      "picks": 14,
+      "homers": 1,
+      "hit_rate": 0.071429
+    },
+    {
+      "batter_name": "Kevin McGonigle",
+      "team": "DET",
       "picks": 14,
       "homers": 1,
       "hit_rate": 0.071429
@@ -752,13 +766,6 @@
       "picks": 14,
       "homers": 1,
       "hit_rate": 0.071429
-    },
-    {
-      "batter_name": "Agust\u00edn Ram\u00edrez",
-      "team": "MIA",
-      "picks": 13,
-      "homers": 1,
-      "hit_rate": 0.076923
     },
     {
       "batter_name": "Alec Burleson",
@@ -803,15 +810,15 @@
       "hit_rate": 0.076923
     },
     {
-      "batter_name": "Josh Bell",
-      "team": "MIN",
+      "batter_name": "Gleyber Torres",
+      "team": "DET",
       "picks": 13,
       "homers": 1,
       "hit_rate": 0.076923
     },
     {
-      "batter_name": "Kevin McGonigle",
-      "team": "DET",
+      "batter_name": "Josh Bell",
+      "team": "MIN",
       "picks": 13,
       "homers": 1,
       "hit_rate": 0.076923
@@ -831,8 +838,29 @@
       "hit_rate": 0.076923
     },
     {
+      "batter_name": "Riley Greene",
+      "team": "DET",
+      "picks": 13,
+      "homers": 1,
+      "hit_rate": 0.076923
+    },
+    {
       "batter_name": "Ronald Acu\u00f1a Jr.",
       "team": "ATL",
+      "picks": 13,
+      "homers": 1,
+      "hit_rate": 0.076923
+    },
+    {
+      "batter_name": "Spencer Torkelson",
+      "team": "DET",
+      "picks": 13,
+      "homers": 1,
+      "hit_rate": 0.076923
+    },
+    {
+      "batter_name": "Trevor Story",
+      "team": "BOS",
       "picks": 13,
       "homers": 1,
       "hit_rate": 0.076923
@@ -861,13 +889,6 @@
     {
       "batter_name": "Freddie Freeman",
       "team": "LAD",
-      "picks": 12,
-      "homers": 1,
-      "hit_rate": 0.083333
-    },
-    {
-      "batter_name": "Gleyber Torres",
-      "team": "DET",
       "picks": 12,
       "homers": 1,
       "hit_rate": 0.083333
@@ -929,29 +950,15 @@
       "hit_rate": 0.083333
     },
     {
-      "batter_name": "Riley Greene",
-      "team": "DET",
-      "picks": 12,
-      "homers": 1,
-      "hit_rate": 0.083333
-    },
-    {
-      "batter_name": "Spencer Torkelson",
-      "team": "DET",
-      "picks": 12,
-      "homers": 1,
-      "hit_rate": 0.083333
-    },
-    {
-      "batter_name": "Trevor Story",
-      "team": "BOS",
-      "picks": 12,
-      "homers": 1,
-      "hit_rate": 0.083333
-    },
-    {
       "batter_name": "Vladimir Guerrero Jr.",
       "team": "TOR",
+      "picks": 12,
+      "homers": 1,
+      "hit_rate": 0.083333
+    },
+    {
+      "batter_name": "William Contreras",
+      "team": "MIL",
       "picks": 12,
       "homers": 1,
       "hit_rate": 0.083333
@@ -1020,13 +1027,6 @@
       "hit_rate": 0.090909
     },
     {
-      "batter_name": "William Contreras",
-      "team": "MIL",
-      "picks": 11,
-      "homers": 1,
-      "hit_rate": 0.090909
-    },
-    {
       "batter_name": "Brandon Marsh",
       "team": "PHI",
       "picks": 10,
@@ -1043,6 +1043,13 @@
     {
       "batter_name": "Jos\u00e9 Caballero",
       "team": "NYY",
+      "picks": 10,
+      "homers": 1,
+      "hit_rate": 0.1
+    },
+    {
+      "batter_name": "Liam Hicks",
+      "team": "MIA",
       "picks": 10,
       "homers": 1,
       "hit_rate": 0.1
@@ -1083,6 +1090,13 @@
       "hit_rate": 0.111111
     },
     {
+      "batter_name": "Gary S\u00e1nchez",
+      "team": "MIL",
+      "picks": 9,
+      "homers": 1,
+      "hit_rate": 0.111111
+    },
+    {
       "batter_name": "Jacob Young",
       "team": "WSH",
       "picks": 9,
@@ -1097,25 +1111,11 @@
       "hit_rate": 0.111111
     },
     {
-      "batter_name": "Liam Hicks",
-      "team": "MIA",
-      "picks": 9,
-      "homers": 1,
-      "hit_rate": 0.111111
-    },
-    {
       "batter_name": "Zach McKinstry",
       "team": "DET",
       "picks": 9,
       "homers": 1,
       "hit_rate": 0.111111
-    },
-    {
-      "batter_name": "Gary S\u00e1nchez",
-      "team": "MIL",
-      "picks": 8,
-      "homers": 1,
-      "hit_rate": 0.125
     },
     {
       "batter_name": "Gavin Sheets",
@@ -1127,6 +1127,13 @@
     {
       "batter_name": "Ildemaro Vargas",
       "team": "AZ",
+      "picks": 8,
+      "homers": 1,
+      "hit_rate": 0.125
+    },
+    {
+      "batter_name": "Javier B\u00e1ez",
+      "team": "DET",
       "picks": 8,
       "homers": 1,
       "hit_rate": 0.125
@@ -1148,6 +1155,13 @@
     {
       "batter_name": "Josh Jung",
       "team": "TEX",
+      "picks": 8,
+      "homers": 1,
+      "hit_rate": 0.125
+    },
+    {
+      "batter_name": "Leody Taveras",
+      "team": "BAL",
       "picks": 8,
       "homers": 1,
       "hit_rate": 0.125
@@ -1190,13 +1204,6 @@
     {
       "batter_name": "Carson Kelly",
       "team": "CHC",
-      "picks": 7,
-      "homers": 1,
-      "hit_rate": 0.142857
-    },
-    {
-      "batter_name": "Javier B\u00e1ez",
-      "team": "DET",
       "picks": 7,
       "homers": 1,
       "hit_rate": 0.142857
@@ -1288,6 +1295,20 @@
     {
       "batter_name": "Roman Anthony",
       "team": "BOS",
+      "picks": 15,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Jakob Marsee",
+      "team": "MIA",
+      "picks": 14,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Xavier Edwards",
+      "team": "MIA",
       "picks": 14,
       "homers": 0,
       "hit_rate": 0.0
@@ -1309,13 +1330,6 @@
     {
       "batter_name": "Geraldo Perdomo",
       "team": "AZ",
-      "picks": 13,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Jakob Marsee",
-      "team": "MIA",
       "picks": 13,
       "homers": 0,
       "hit_rate": 0.0
@@ -1351,13 +1365,6 @@
     {
       "batter_name": "Taylor Ward",
       "team": "BAL",
-      "picks": 13,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Xavier Edwards",
-      "team": "MIA",
       "picks": 13,
       "homers": 0,
       "hit_rate": 0.0
@@ -1433,8 +1440,22 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Wilyer Abreu",
+      "team": "BOS",
+      "picks": 12,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Alex Freeland",
       "team": "LAD",
+      "picks": 11,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Caleb Durbin",
+      "team": "BOS",
       "picks": 11,
       "homers": 0,
       "hit_rate": 0.0
@@ -1510,13 +1531,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Wilyer Abreu",
-      "team": "BOS",
-      "picks": 11,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Alec Bohm",
       "team": "PHI",
       "picks": 10,
@@ -1524,8 +1538,8 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Caleb Durbin",
-      "team": "BOS",
+      "batter_name": "Colt Keith",
+      "team": "DET",
       "picks": 10,
       "homers": 0,
       "hit_rate": 0.0
@@ -1566,8 +1580,8 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Colt Keith",
-      "team": "DET",
+      "batter_name": "Ceddanne Rafaela",
+      "team": "BOS",
       "picks": 9,
       "homers": 0,
       "hit_rate": 0.0
@@ -1587,8 +1601,22 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Sal Frelick",
+      "team": "MIL",
+      "picks": 9,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Ben Williamson",
       "team": "TB",
+      "picks": 8,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Brandon Lockridge",
+      "team": "MIL",
       "picks": 8,
       "homers": 0,
       "hit_rate": 0.0
@@ -1615,13 +1643,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Ceddanne Rafaela",
-      "team": "BOS",
-      "picks": 8,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Christian Yelich",
       "team": "MIL",
       "picks": 8,
@@ -1638,6 +1659,13 @@
     {
       "batter_name": "Ezequiel Duran",
       "team": "TEX",
+      "picks": 8,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Garrett Mitchell",
+      "team": "MIL",
       "picks": 8,
       "homers": 0,
       "hit_rate": 0.0
@@ -1671,13 +1699,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Sal Frelick",
-      "team": "MIL",
-      "picks": 8,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Trent Grisham",
       "team": "NYY",
       "picks": 8,
@@ -1706,13 +1727,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Brandon Lockridge",
-      "team": "MIL",
-      "picks": 7,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Dylan Beavers",
       "team": "BAL",
       "picks": 7,
@@ -1720,8 +1734,8 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Garrett Mitchell",
-      "team": "MIL",
+      "batter_name": "Heriberto Hern\u00e1ndez",
+      "team": "MIA",
       "picks": 7,
       "homers": 0,
       "hit_rate": 0.0
@@ -1755,6 +1769,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Joey Ortiz",
+      "team": "MIL",
+      "picks": 7,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Juan Brito",
       "team": "CLE",
       "picks": 7,
@@ -1762,15 +1783,15 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Leody Taveras",
-      "team": "BAL",
+      "batter_name": "Luis Rengifo",
+      "team": "MIL",
       "picks": 7,
       "homers": 0,
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Luis Rengifo",
-      "team": "MIL",
+      "batter_name": "Owen Caissie",
+      "team": "MIA",
       "picks": 7,
       "homers": 0,
       "hit_rate": 0.0
@@ -1853,22 +1874,8 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Heriberto Hern\u00e1ndez",
-      "team": "MIA",
-      "picks": 6,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Jerar Encarnacion",
       "team": "SF",
-      "picks": 6,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Joey Ortiz",
-      "team": "MIL",
       "picks": 6,
       "homers": 0,
       "hit_rate": 0.0
@@ -1897,13 +1904,6 @@
     {
       "batter_name": "Nick Gonzales",
       "team": "PIT",
-      "picks": 6,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Owen Caissie",
-      "team": "MIA",
       "picks": 6,
       "homers": 0,
       "hit_rate": 0.0
@@ -2324,6 +2324,13 @@
     {
       "batter_name": "Tyler O'Neill",
       "team": "BAL",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Wenceel P\u00e9rez",
+      "team": "DET",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
@@ -2886,7 +2893,7 @@
       "game_pk": 823882,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 5,
       "original_rank": 5,
       "original_score": 93.5,
@@ -2923,15 +2930,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 96.4 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Brandon Woodruff has allowed homers in 4.0% of plate appearances to this batter side.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 112.8 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823558:592450:702070",
@@ -2998,7 +3005,7 @@
       "game_pk": 824206,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 7,
       "original_rank": 7,
       "original_score": 98.9,
@@ -3036,7 +3043,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -3054,7 +3061,7 @@
       "game_pk": 824206,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 8,
       "original_rank": 8,
       "original_score": 97.3,
@@ -3092,7 +3099,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -3278,7 +3285,7 @@
       "game_pk": 823474,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 12,
       "original_rank": 12,
       "original_score": 95.8,
@@ -3316,7 +3323,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -3334,7 +3341,7 @@
       "game_pk": 823882,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 13,
       "original_rank": 13,
       "original_score": 93.9,
@@ -3371,15 +3378,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 76.5%, a top-decile recent-contact signal.",
       "top_reason_2": "Sandy Alcantara has allowed homers in 3.5% of plate appearances to this batter side.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 76.5%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824049:666176:608566",
@@ -3670,7 +3677,7 @@
       "game_pk": 824206,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 19,
       "original_rank": 19,
       "original_score": 92.0,
@@ -3708,7 +3715,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -3782,7 +3789,7 @@
       "game_pk": 823474,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 21,
       "original_rank": 21,
       "original_score": 89.3,
@@ -3820,7 +3827,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -3950,7 +3957,7 @@
       "game_pk": 823474,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 24,
       "original_rank": 24,
       "original_score": 88.1,
@@ -3988,7 +3995,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -4006,7 +4013,7 @@
       "game_pk": 824206,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 25,
       "original_rank": 25,
       "original_score": 94.3,
@@ -4044,7 +4051,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -4062,7 +4069,7 @@
       "game_pk": 823882,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 26,
       "original_rank": 26,
       "original_score": 86.6,
@@ -4740,7 +4747,7 @@
       "game_pk": 824206,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 37,
       "original_rank": 37,
       "original_score": 88.5,
@@ -4778,7 +4785,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -5076,7 +5083,7 @@
       "game_pk": 823474,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 43,
       "original_rank": 43,
       "original_score": 77.8,
@@ -5114,7 +5121,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -5244,7 +5251,7 @@
       "game_pk": 823151,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 46,
       "original_rank": 46,
       "original_score": 87.4,
@@ -5282,7 +5289,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -5300,7 +5307,7 @@
       "game_pk": 823882,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 47,
       "original_rank": 47,
       "original_score": 67.0,
@@ -5337,15 +5344,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 56.5%, a top-quartile recent-contact signal.",
       "top_reason_2": "95+ EV contact rate over the last 10 days is 56.5%, which supports near-term HR upside.",
       "top_reason_3": "The handedness-specific hard-hit matchup score is 0.1985, supporting loud-contact upside.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823474:663586:650911",
@@ -5356,7 +5363,7 @@
       "game_pk": 823474,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 48,
       "original_rank": 48,
       "original_score": 82.4,
@@ -5394,7 +5401,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -5412,7 +5419,7 @@
       "game_pk": 823882,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 49,
       "original_rank": 49,
       "original_score": 81.6,
@@ -5449,15 +5456,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 101.1 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Sandy Alcantara has allowed homers in 3.5% of plate appearances to this batter side.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 83.3%, a top-decile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823882:683357:605540",
@@ -5468,7 +5475,7 @@
       "game_pk": 823882,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 49,
       "original_rank": 49,
       "original_score": 85.4,
@@ -5505,15 +5512,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 72.7%, a top-decile recent-contact signal.",
       "top_reason_2": "Brandon Woodruff has allowed homers in 3.6% of plate appearances over the last 30 days.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 72.7%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824372:606192:663372",
@@ -5916,7 +5923,7 @@
       "game_pk": 824206,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 57,
       "original_rank": 57,
       "original_score": 78.5,
@@ -5954,7 +5961,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -6030,7 +6037,7 @@
       "game_pk": 824206,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 59,
       "original_rank": 59,
       "original_score": 80.1,
@@ -6068,7 +6075,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -6424,7 +6431,7 @@
       "game_pk": 823151,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 67,
       "original_rank": 67,
       "original_score": 69.3,
@@ -6462,7 +6469,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -6704,7 +6711,7 @@
       "game_pk": 823474,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 73,
       "original_rank": 73,
       "original_score": 70.5,
@@ -6742,7 +6749,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -7438,7 +7445,7 @@
       "game_pk": 823882,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 85,
       "original_rank": 85,
       "original_score": 60.2,
@@ -7475,15 +7482,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Brandon Woodruff has allowed homers in 4.0% of plate appearances to this batter side.",
       "top_reason_3": "The handedness-specific hard-hit matchup score is 0.2146, supporting loud-contact upside.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823721:605137:671096",
@@ -7608,7 +7615,7 @@
       "game_pk": 824775,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 88,
       "original_rank": 88,
       "original_score": 65.1,
@@ -7645,15 +7652,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 7.4% barrel-per-PA split.",
       "top_reason_2": "Brayan Bello has allowed barrels on 6.4% of recent batted balls.",
       "top_reason_3": "Projected humidity is 96%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824049:664034:579328",
@@ -7720,7 +7727,7 @@
       "game_pk": 823151,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 90,
       "original_rank": 90,
       "original_score": 57.1,
@@ -7758,7 +7765,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -7776,7 +7783,7 @@
       "game_pk": 823882,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 91,
       "original_rank": 91,
       "original_score": 65.9,
@@ -7813,15 +7820,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 7.1%, which the model treats as sustained power quality.",
       "top_reason_2": "Peak exit velocity over the last 10 days is 108.8 mph, which points to top-end HR juice.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 45.5%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824049:657656:579328",
@@ -8058,7 +8065,7 @@
       "game_pk": 823882,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 95,
       "original_rank": 95,
       "original_score": 64.0,
@@ -8095,15 +8102,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0030, reinforcing the power-contact fit.",
       "top_reason_2": "Brandon Woodruff has allowed homers in 4.0% of plate appearances to this batter side.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 5.4% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:822751:695734:605288",
@@ -8394,7 +8401,7 @@
       "game_pk": 823474,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 102,
       "original_rank": 102,
       "original_score": 52.5,
@@ -8452,7 +8459,7 @@
       "game_pk": 824775,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 103,
       "original_rank": 103,
       "original_score": 92.7,
@@ -8489,15 +8496,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 68.4%, a top-decile recent-contact signal.",
       "top_reason_2": "Brayan Bello has allowed barrels on 6.4% of recent batted balls.",
       "top_reason_3": "Projected humidity is 96%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823151:686527:543135",
@@ -8508,7 +8515,7 @@
       "game_pk": 823151,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 104,
       "original_rank": 104,
       "original_score": 78.2,
@@ -8546,7 +8553,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -8622,7 +8629,7 @@
       "game_pk": 824775,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 80,
       "original_rank": 80,
       "original_score": 76.6,
@@ -8794,7 +8801,7 @@
       "game_pk": 823151,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 106,
       "original_rank": 106,
       "original_score": 72.8,
@@ -8832,7 +8839,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -9018,7 +9025,7 @@
       "game_pk": 823474,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 110,
       "original_rank": 110,
       "original_score": 47.1,
@@ -9056,7 +9063,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -9186,7 +9193,7 @@
       "game_pk": 824206,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 114,
       "original_rank": 114,
       "original_score": 53.6,
@@ -9224,7 +9231,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -9298,7 +9305,7 @@
       "game_pk": 823474,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 116,
       "original_rank": 116,
       "original_score": 41.0,
@@ -9336,7 +9343,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -9410,7 +9417,7 @@
       "game_pk": 823474,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 119,
       "original_rank": 119,
       "original_score": 38.7,
@@ -9448,7 +9455,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -9466,7 +9473,7 @@
       "game_pk": 824775,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 120,
       "original_rank": 120,
       "original_score": 56.3,
@@ -9503,15 +9510,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 96.0 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Projected humidity is 96%, a modest positive weather input in the live model.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:825098:678218:668678",
@@ -9580,7 +9587,7 @@
       "game_pk": 824775,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 121,
       "original_rank": 121,
       "original_score": 51.3,
@@ -9617,15 +9624,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 60.0%, a top-decile recent-contact signal.",
       "top_reason_2": "Brayan Bello has allowed barrels on 6.4% of recent batted balls.",
       "top_reason_3": "Projected humidity is 96%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823474:624641:519242",
@@ -9636,7 +9643,7 @@
       "game_pk": 823474,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 123,
       "original_rank": 123,
       "original_score": 43.7,
@@ -9674,7 +9681,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -9692,7 +9699,7 @@
       "game_pk": 823151,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 124,
       "original_rank": 124,
       "original_score": 53.3,
@@ -9730,7 +9737,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -9860,7 +9867,7 @@
       "game_pk": 823151,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 127,
       "original_rank": 127,
       "original_score": 58.2,
@@ -9898,7 +9905,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -9916,7 +9923,7 @@
       "game_pk": 823151,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 128,
       "original_rank": 128,
       "original_score": 86.2,
@@ -9954,7 +9961,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10252,7 +10259,7 @@
       "game_pk": 824206,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 135,
       "original_rank": 135,
       "original_score": 49.0,
@@ -10478,7 +10485,7 @@
       "game_pk": 823151,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 139,
       "original_rank": 139,
       "original_score": 38.3,
@@ -10516,7 +10523,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10758,7 +10765,7 @@
       "game_pk": 824775,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 143,
       "original_rank": 143,
       "original_score": 45.6,
@@ -10816,7 +10823,7 @@
       "game_pk": 824206,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 144,
       "original_rank": 144,
       "original_score": 61.7,
@@ -10854,7 +10861,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10928,7 +10935,7 @@
       "game_pk": 823151,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 145,
       "original_rank": 145,
       "original_score": 50.6,
@@ -10966,7 +10973,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -11152,7 +11159,7 @@
       "game_pk": 823151,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 149,
       "original_rank": 149,
       "original_score": 43.3,
@@ -11190,7 +11197,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -11208,7 +11215,7 @@
       "game_pk": 823151,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 149,
       "original_rank": 149,
       "original_score": 59.8,
@@ -11246,7 +11253,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -11548,7 +11555,7 @@
       "game_pk": 824775,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 154,
       "original_rank": 154,
       "original_score": 62.1,
@@ -11585,15 +11592,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
       "top_reason_2": "Projected humidity is 96%, a modest positive weather input in the live model.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 50.0%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824049:669134:579328",
@@ -11718,7 +11725,7 @@
       "game_pk": 824775,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 206,
       "original_rank": 206,
       "original_score": 14.2,
@@ -11888,7 +11895,7 @@
       "game_pk": 824206,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 162,
       "original_rank": 162,
       "original_score": 42.1,
@@ -11926,7 +11933,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -11944,7 +11951,7 @@
       "game_pk": 823882,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 163,
       "original_rank": 163,
       "original_score": 37.9,
@@ -11981,15 +11988,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2058, supporting loud-contact upside.",
       "top_reason_2": "Brandon Woodruff has allowed homers in 4.0% of plate appearances to this batter side.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 108.1 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824775:807799:669373",
@@ -12000,7 +12007,7 @@
       "game_pk": 824775,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 222,
       "original_rank": 222,
       "original_score": 6.5,
@@ -12114,7 +12121,7 @@
       "game_pk": 824206,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 165,
       "original_rank": 165,
       "original_score": 46.4,
@@ -12152,7 +12159,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -12226,7 +12233,7 @@
       "game_pk": 823474,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 167,
       "original_rank": 167,
       "original_score": 23.4,
@@ -12264,7 +12271,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -12340,7 +12347,7 @@
       "game_pk": 824206,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 168,
       "original_rank": 168,
       "original_score": 56.7,
@@ -12852,7 +12859,7 @@
       "game_pk": 823474,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 175,
       "original_rank": 175,
       "original_score": 33.3,
@@ -12890,7 +12897,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -12964,7 +12971,7 @@
       "game_pk": 824775,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 178,
       "original_rank": 178,
       "original_score": 36.4,
@@ -13001,15 +13008,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 45.5%, a above-baseline recent-contact signal.",
       "top_reason_2": "Projected humidity is 96%, a modest positive weather input in the live model.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 45.5%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824775:672761:678394",
@@ -13020,7 +13027,7 @@
       "game_pk": 824775,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 179,
       "original_rank": 179,
       "original_score": 22.2,
@@ -13057,15 +13064,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 12.5%, which the model treats as sustained power quality.",
       "top_reason_2": "Brayan Bello has allowed barrels on 6.4% of recent batted balls.",
       "top_reason_3": "Projected humidity is 96%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824206:694388:669467",
@@ -13076,7 +13083,7 @@
       "game_pk": 824206,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 181,
       "original_rank": 181,
       "original_score": 36.0,
@@ -13134,7 +13141,7 @@
       "game_pk": 823474,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 182,
       "original_rank": 182,
       "original_score": 29.1,
@@ -13172,7 +13179,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -13246,7 +13253,7 @@
       "game_pk": 823151,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 184,
       "original_rank": 184,
       "original_score": 14.6,
@@ -13284,7 +13291,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -13302,7 +13309,7 @@
       "game_pk": 824775,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 185,
       "original_rank": 185,
       "original_score": 29.5,
@@ -13339,15 +13346,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 58.5%, showing consistent quality contact.",
       "top_reason_2": "Brayan Bello has allowed barrels on 6.4% of recent batted balls.",
       "top_reason_3": "Projected humidity is 96%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:822751:687551:676917",
@@ -13414,7 +13421,7 @@
       "game_pk": 823882,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 186,
       "original_rank": 186,
       "original_score": 39.1,
@@ -13451,15 +13458,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Brandon Woodruff has allowed homers in 3.6% of plate appearances over the last 30 days.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824775:677800:669373",
@@ -13470,7 +13477,7 @@
       "game_pk": 824775,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 188,
       "original_rank": 188,
       "original_score": 19.2,
@@ -13507,15 +13514,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 51.1%, showing consistent quality contact.",
       "top_reason_2": "Projected humidity is 96%, a modest positive weather input in the live model.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 51.1%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823151:669701:669923",
@@ -13526,7 +13533,7 @@
       "game_pk": 823151,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 189,
       "original_rank": 189,
       "original_score": 17.6,
@@ -13584,7 +13591,7 @@
       "game_pk": 824206,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 190,
       "original_rank": 190,
       "original_score": 34.1,
@@ -13622,7 +13629,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -13640,7 +13647,7 @@
       "game_pk": 824775,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 195,
       "original_rank": 195,
       "original_score": 31.8,
@@ -13677,15 +13684,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 4.0%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Brayan Bello has allowed barrels on 6.4% of recent batted balls.",
       "top_reason_3": "Projected humidity is 96%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823721:668952:671096",
@@ -13810,7 +13817,7 @@
       "game_pk": 823151,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 197,
       "original_rank": 197,
       "original_score": 16.5,
@@ -13848,7 +13855,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -13866,7 +13873,7 @@
       "game_pk": 823474,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 198,
       "original_rank": 198,
       "original_score": 31.0,
@@ -13924,7 +13931,7 @@
       "game_pk": 824775,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 199,
       "original_rank": 199,
       "original_score": 19.5,
@@ -13982,7 +13989,7 @@
       "game_pk": 824775,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 200,
       "original_rank": 200,
       "original_score": 27.6,
@@ -14019,15 +14026,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 3.8%, which the model treats as sustained power quality.",
       "top_reason_2": "Brayan Bello has allowed barrels on 6.4% of recent batted balls.",
       "top_reason_3": "Projected humidity is 96%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824049:630105:579328",
@@ -14150,7 +14157,7 @@
       "game_pk": 823882,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 203,
       "original_rank": 203,
       "original_score": 19.9,
@@ -14187,15 +14194,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Brandon Woodruff has allowed homers in 3.6% of plate appearances over the last 30 days.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823558:664728:701542",
@@ -14299,15 +14306,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 4.0%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Gavin Williams has allowed 92.4 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 14.0 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-18:822751:696285:605288",
@@ -14374,7 +14381,7 @@
       "game_pk": 824206,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 207,
       "original_rank": 207,
       "original_score": 29.9,
@@ -14412,7 +14419,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -14430,7 +14437,7 @@
       "game_pk": 824206,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 209,
       "original_rank": 209,
       "original_score": 24.1,
@@ -14468,7 +14475,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -14598,7 +14605,7 @@
       "game_pk": 823882,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 212,
       "original_rank": 212,
       "original_score": 18.8,
@@ -14635,15 +14642,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Brandon Woodruff has allowed homers in 3.6% of plate appearances over the last 30 days.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823721:680574:671737",
@@ -14768,7 +14775,7 @@
       "game_pk": 823882,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 214,
       "original_rank": 214,
       "original_score": 11.9,
@@ -14805,15 +14812,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Sandy Alcantara has allowed homers in 3.5% of plate appearances to this batter side.",
       "top_reason_2": "Sandy Alcantara has allowed barrels on 5.2% of batted balls to this batter side.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:825098:665926:668678",
@@ -14936,7 +14943,7 @@
       "game_pk": 823474,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 218,
       "original_rank": 218,
       "original_score": 20.3,
@@ -15052,7 +15059,7 @@
       "game_pk": 823151,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 219,
       "original_rank": 219,
       "original_score": 39.5,
@@ -15166,7 +15173,7 @@
       "game_pk": 823151,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 220,
       "original_rank": 220,
       "original_score": 26.1,
@@ -15204,7 +15211,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -15450,7 +15457,7 @@
       "game_pk": 823151,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 224,
       "original_rank": 224,
       "original_score": 20.7,
@@ -15508,7 +15515,7 @@
       "game_pk": 823882,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 225,
       "original_rank": 225,
       "original_score": 40.2,
@@ -15545,15 +15552,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 107.2 mph, which points to top-end HR juice.",
       "top_reason_2": "Sandy Alcantara has allowed barrels on 5.1% of recent batted balls.",
       "top_reason_3": "Projected humidity is 76%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823882:666152:645261",
@@ -15564,7 +15571,7 @@
       "game_pk": 823882,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 227,
       "original_rank": 227,
       "original_score": 7.3,
@@ -16304,7 +16311,7 @@
       "game_pk": 823882,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 243,
       "original_rank": 243,
       "original_score": 26.8,
@@ -16341,15 +16348,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 107.7 mph, which points to top-end HR juice.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824451:677587:665152",
@@ -16644,7 +16651,7 @@
       "game_pk": 823882,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 249,
       "original_rank": 249,
       "original_score": 6.9,
@@ -16816,7 +16823,7 @@
       "game_pk": 824775,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 252,
       "original_rank": 252,
       "original_score": 2.3,
@@ -16853,15 +16860,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Projected humidity is 96%, a modest positive weather input in the live model.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:824775:643396:669373",
@@ -16872,7 +16879,7 @@
       "game_pk": 824775,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 252,
       "original_rank": 252,
       "original_score": 3.8,
@@ -16909,15 +16916,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Projected humidity is 96%, a modest positive weather input in the live model.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-18:823474:643289:650911",
@@ -16928,7 +16935,7 @@
       "game_pk": 823474,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 253,
       "original_rank": 253,
       "original_score": 7.7,
@@ -16966,7 +16973,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -17096,7 +17103,7 @@
       "game_pk": 823474,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 257,
       "original_rank": 257,
       "original_score": 0.8,
@@ -17210,7 +17217,7 @@
       "game_pk": 824206,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:10:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 259,
       "original_rank": 259,
       "original_score": 1.1,
@@ -209540,7 +209547,7 @@
       "game_pk": 823394,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T19:30:00Z",
-      "game_status": "Delayed",
+      "game_status": "In Progress",
       "game_state": "live",
       "matchup": "TB @ PIT",
       "teams": [
@@ -209881,8 +209888,8 @@
       "game_pk": 824775,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_status": "Player challenge",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "DET @ BOS",
       "teams": [
         {
@@ -210013,8 +210020,8 @@
       "game_pk": 823882,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "MIL @ MIA",
       "teams": [
         {
@@ -210277,8 +210284,8 @@
       "game_pk": 824206,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:10:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "In Progress",
+      "game_state": "live",
       "matchup": "STL @ HOU",
       "teams": [
         {
@@ -210409,8 +210416,8 @@
       "game_pk": 823151,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "In Progress",
+      "game_state": "live",
       "matchup": "TEX @ SEA",
       "teams": [
         {
@@ -210541,8 +210548,8 @@
       "game_pk": 823474,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T23:15:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "In Progress",
+      "game_state": "live",
       "matchup": "ATL @ PHI",
       "teams": [
         {
