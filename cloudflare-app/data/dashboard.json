@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-18T15:26:15.063946+00:00",
+  "generated_at": "2026-04-18T16:11:04.450722+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2826,7 +2826,7 @@
       "team": "WSH",
       "opponent_team": "SF",
       "pitcher_name": "Adrian Houser",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -3554,7 +3554,7 @@
       "team": "WSH",
       "opponent_team": "SF",
       "pitcher_name": "Adrian Houser",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -4452,7 +4452,7 @@
       "team": "NYM",
       "opponent_team": "CHC",
       "pitcher_name": "Jameson Taillon",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -4900,7 +4900,7 @@
       "team": "NYM",
       "opponent_team": "CHC",
       "pitcher_name": "Jameson Taillon",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -5012,7 +5012,7 @@
       "team": "WSH",
       "opponent_team": "SF",
       "pitcher_name": "Adrian Houser",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -6132,7 +6132,7 @@
       "team": "NYM",
       "opponent_team": "CHC",
       "pitcher_name": "Jameson Taillon",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6636,7 +6636,7 @@
       "team": "WSH",
       "opponent_team": "SF",
       "pitcher_name": "Adrian Houser",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -6664,14 +6664,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1829, supporting loud-contact upside.",
       "top_reason_2": "Projected wind speed is 12.1 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Barrel rate over the last 30 days is 4.3%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:824372:571970:663372",
@@ -7140,7 +7142,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -7168,14 +7170,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.7 mph, which points to top-end HR juice.",
       "top_reason_2": "Projected humidity is 96%, a modest positive weather input in the live model.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 55.0%, a top-quartile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:822751:671218:676917",
@@ -7870,7 +7874,7 @@
       "team": "NYM",
       "opponent_team": "CHC",
       "pitcher_name": "Jameson Taillon",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -8038,7 +8042,7 @@
       "team": "WSH",
       "opponent_team": "SF",
       "pitcher_name": "Adrian Houser",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -9330,7 +9334,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -10004,7 +10008,7 @@
       "team": "NYM",
       "opponent_team": "CHC",
       "pitcher_name": "Jameson Taillon",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -11012,7 +11016,7 @@
       "team": "NYM",
       "opponent_team": "CHC",
       "pitcher_name": "Jameson Taillon",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -11404,7 +11408,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -12192,7 +12196,7 @@
       "team": "NYM",
       "opponent_team": "CHC",
       "pitcher_name": "Jameson Taillon",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -12220,14 +12224,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0023, reinforcing the power-contact fit.",
       "top_reason_2": "Jameson Taillon has allowed homers in 5.5% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 13.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:824049:666139:608566",
@@ -12586,7 +12592,7 @@
       "team": "NYM",
       "opponent_team": "CHC",
       "pitcher_name": "Jameson Taillon",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -12812,7 +12818,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -13036,7 +13042,7 @@
       "team": "NYM",
       "opponent_team": "CHC",
       "pitcher_name": "Jameson Taillon",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -13316,7 +13322,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -14156,7 +14162,7 @@
       "team": "WSH",
       "opponent_team": "SF",
       "pitcher_name": "Adrian Houser",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -14212,7 +14218,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -14240,14 +14246,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1928, supporting loud-contact upside.",
       "top_reason_2": "Projected humidity is 96%, a modest positive weather input in the live model.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 44.4%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:824206:701675:621121",
@@ -14716,7 +14724,7 @@
       "team": "WSH",
       "opponent_team": "SF",
       "pitcher_name": "Adrian Houser",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -14744,14 +14752,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Projected wind speed is 12.1 mph, which the live model treats as favorable weather context.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:823721:668885:671096",
@@ -15220,7 +15230,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -15248,14 +15258,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 50.0%, showing consistent quality contact.",
       "top_reason_2": "Projected humidity is 96%, a modest positive weather input in the live model.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 50.0%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:824694:665804:642547",
@@ -16732,7 +16744,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -16788,7 +16800,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -16900,7 +16912,7 @@
       "team": "WSH",
       "opponent_team": "SF",
       "pitcher_name": "Adrian Houser",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -17068,7 +17080,7 @@
       "team": "WSH",
       "opponent_team": "SF",
       "pitcher_name": "Adrian Houser",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -209317,7 +209329,7 @@
         {
           "team": "NYM",
           "opponent_team": "CHC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666182,
@@ -209442,7 +209454,7 @@
       "game_pk": 822751,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:05:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "SF @ WSH",
       "teams": [
@@ -209510,23 +209522,11 @@
         {
           "team": "WSH",
           "opponent_team": "SF",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 691781,
-              "batter_name": "Brady House",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 682928,
               "batter_name": "CJ Abrams",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 678554,
-              "batter_name": "Curtis Mead",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -209537,22 +209537,34 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 686452,
+              "batter_name": "Drew Millas",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 696285,
+              "batter_name": "Jacob Young",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
               "batter_id": 695578,
               "batter_name": "James Wood",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 686894,
-              "batter_name": "Joey Wiemer",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
               "batter_id": 678391,
               "batter_name": "Jorbit Vivas",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 677588,
+              "batter_name": "Jos\u00e9 Tena",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 671277,
@@ -209783,7 +209795,7 @@
       "game_pk": 824775,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T20:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "DET @ BOS",
       "teams": [
@@ -209851,8 +209863,14 @@
         {
           "team": "BOS",
           "opponent_team": "DET",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 655316,
+              "batter_name": "Andruw Monasterio",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 702332,
               "batter_name": "Caleb Durbin",
@@ -209872,20 +209890,8 @@
               "selected_for_pick": false
             },
             {
-              "batter_id": 680776,
-              "batter_name": "Jarren Duran",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 691785,
-              "batter_name": "Marcelo Mayer",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 807799,
-              "batter_name": "Masataka Yoshida",
+              "batter_id": 643396,
+              "batter_name": "Isiah Kiner-Falefa",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -209900,6 +209906,12 @@
               "batter_name": "Trevor Story",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 575929,
+              "batter_name": "Willson Contreras",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 677800,
