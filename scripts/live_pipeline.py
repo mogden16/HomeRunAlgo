@@ -622,6 +622,7 @@ def _build_pick_record_base(row: dict[str, Any]) -> dict[str, Any]:
         "ballparkpal_snapshot_pulled_at": str(row.get("ballparkpal_snapshot_pulled_at") or ""),
         "ballparkpal_home_run_probability": _coerce_float(row.get("ballparkpal_home_run_probability")),
         "ballparkpal_hit_probability": _coerce_float(row.get("ballparkpal_hit_probability")),
+        "ballparkpal_team_home_runs": _coerce_float(row.get("ballparkpal_team_home_runs")),
         "ballparkpal_runs_allowed": _coerce_float(row.get("ballparkpal_runs_allowed")),
         "ballparkpal_home_runs_allowed": _coerce_float(row.get("ballparkpal_home_runs_allowed")),
         "ballparkpal_overlay_signed_score": _coerce_float(row.get("ballparkpal_overlay_signed_score")),

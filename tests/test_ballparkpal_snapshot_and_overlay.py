@@ -130,6 +130,7 @@ class BallparkPalSnapshotAndOverlayTests(unittest.TestCase):
                 "predicted_hr_score": 82.0,
                 "ballparkpal_snapshot_status": "loaded",
                 "ballparkpal_snapshot_date": "2026-04-17",
+                "ballparkpal_team_home_runs": 1.42,
                 "ballparkpal_overlay_display_score": 73.5,
                 "ballparkpal_overlay_direction": "favorable",
                 "result": "Pending",
@@ -139,5 +140,6 @@ class BallparkPalSnapshotAndOverlayTests(unittest.TestCase):
         cleaned = clean_current_pick_rows([normalized])
 
         self.assertEqual(cleaned[0]["ballparkpal_snapshot_status"], "loaded")
+        self.assertEqual(cleaned[0]["ballparkpal_team_home_runs"], 1.42)
         self.assertEqual(cleaned[0]["ballparkpal_overlay_display_score"], 73.5)
         self.assertEqual(cleaned[0]["ballparkpal_overlay_direction"], "favorable")
