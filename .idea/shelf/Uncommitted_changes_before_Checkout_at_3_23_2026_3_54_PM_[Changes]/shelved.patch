@@ -1,0 +1,15 @@
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>__pycache__/\r\n*.pyc\r\n# Generated datasets and raw Statcast cache — reproducible via generate_data.py\r\ndata/\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+--- a/.gitignore	(revision 893cb5cedf50475a168f5336519abf2c1099d1bc)
++++ b/.gitignore	(date 1774293384994)
+@@ -1,4 +1,3 @@
+ __pycache__/
+ *.pyc
+ # Generated datasets and raw Statcast cache — reproducible via generate_data.py
+-data/
