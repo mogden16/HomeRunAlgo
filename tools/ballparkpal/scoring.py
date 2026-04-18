@@ -54,11 +54,13 @@ def _bounded_centered_delta(value: float, *, neutral: float, scale: float, favor
 def compute_ballparkpal_overlay(row: Mapping[str, Any], *, model_score: float | None = None) -> dict[str, Any]:
     signed_score = 0.0
     factor_details: dict[str, Any] = {}
+    has_ballpark_data = False
     for rule in BALLPARKPAL_OVERLAY_RULES:
         value = _to_float(row.get(rule.field))
         if value is None:
             factor_details[rule.field] = None
             continue
+        has_ballpark_data = True
         centered = _bounded_centered_delta(
             value,
             neutral=rule.neutral,
@@ -77,19 +79,19 @@ def compute_ballparkpal_overlay(row: Mapping[str, Any], *, model_score: float | 
         }
 
     max_abs = sum(rule.weight for rule in BALLPARKPAL_OVERLAY_RULES)
-    display_score = 50.0 if max_abs <= 0 else ((signed_score + max_abs) / (2.0 * max_abs)) * 100.0
     model_score_value = _to_float(model_score if model_score is not None else row.get("predicted_hr_score"))
-    if model_score_value is None and display_score is None:
-        adjusted_score = None
-    elif model_score_value is None:
-        adjusted_score = display_score
-    elif display_score is None:
-        adjusted_score = model_score_value
+    if not has_ballpark_data:
+        display_score = 50.0
+        adjusted_score = model_score_value if model_score_value is not None else 50.0
     else:
-        adjusted_score = (
-            (BALLPARKPAL_MODEL_BLEND_WEIGHT * model_score_value)
-            + (BALLPARKPAL_BALLPARK_BLEND_WEIGHT * display_score)
-        )
+        display_score = 50.0 if max_abs <= 0 else ((signed_score + max_abs) / (2.0 * max_abs)) * 100.0
+        if model_score_value is None:
+            adjusted_score = display_score
+        else:
+            adjusted_score = (
+                (BALLPARKPAL_MODEL_BLEND_WEIGHT * model_score_value)
+                + (BALLPARKPAL_BALLPARK_BLEND_WEIGHT * display_score)
+            )
 
     direction = "neutral"
     if signed_score > 0:

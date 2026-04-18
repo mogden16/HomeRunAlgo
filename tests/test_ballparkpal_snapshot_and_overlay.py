@@ -107,6 +107,14 @@ class BallparkPalSnapshotAndOverlayTests(unittest.TestCase):
         )
         self.assertEqual(overlay["ballparkpal_overlay_adjusted_score"], expected_adjusted)
 
+    def test_overlay_scoring_without_ballpark_data_falls_back_to_model_score(self) -> None:
+        overlay = compute_ballparkpal_overlay({"predicted_hr_score": 82.0})
+
+        self.assertEqual(overlay["ballparkpal_overlay_signed_score"], 0.0)
+        self.assertEqual(overlay["ballparkpal_overlay_display_score"], 50.0)
+        self.assertEqual(overlay["ballparkpal_overlay_adjusted_score"], 82.0)
+        self.assertEqual(overlay["ballparkpal_overlay_direction"], "neutral")
+
     def test_dashboard_cleaning_preserves_ballparkpal_columns(self) -> None:
         normalized = normalize_pick(
             {
