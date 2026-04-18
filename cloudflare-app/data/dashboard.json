@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-18T17:55:03.142010+00:00",
+  "generated_at": "2026-04-18T18:42:52.288072+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -101,10 +101,10 @@
     "latest_slate_size": 261,
     "tracked_dates": 24,
     "tracked_picks": 3662,
-    "settled_picks": 2839,
-    "tracked_homers": 303,
-    "tracked_hit_rate": 0.106728,
-    "open_picks": 823
+    "settled_picks": 2843,
+    "tracked_homers": 307,
+    "tracked_hit_rate": 0.107985,
+    "open_picks": 819
   },
   "confidence_summary": [
     {
@@ -123,17 +123,17 @@
     },
     {
       "confidence_tier": "watch",
-      "picks": 483,
-      "homers": 73,
-      "hit_rate": 0.151139,
-      "avg_probability": 0.139007
+      "picks": 484,
+      "homers": 74,
+      "hit_rate": 0.152893,
+      "avg_probability": 0.139003
     },
     {
       "confidence_tier": "longshot",
-      "picks": 2089,
-      "homers": 172,
-      "hit_rate": 0.082336,
-      "avg_probability": 0.094703
+      "picks": 2092,
+      "homers": 175,
+      "hit_rate": 0.083652,
+      "avg_probability": 0.094704
     }
   ],
   "player_leaderboard": [
@@ -194,6 +194,13 @@
       "hit_rate": 0.357143
     },
     {
+      "batter_name": "Ben Rice",
+      "team": "NYY",
+      "picks": 13,
+      "homers": 5,
+      "hit_rate": 0.384615
+    },
+    {
       "batter_name": "Elly De La Cruz",
       "team": "CIN",
       "picks": 15,
@@ -234,13 +241,6 @@
       "picks": 13,
       "homers": 4,
       "hit_rate": 0.307692
-    },
-    {
-      "batter_name": "Ben Rice",
-      "team": "NYY",
-      "picks": 12,
-      "homers": 4,
-      "hit_rate": 0.333333
     },
     {
       "batter_name": "Dansby Swanson",
@@ -476,6 +476,13 @@
     {
       "batter_name": "Byron Buxton",
       "team": "MIN",
+      "picks": 12,
+      "homers": 2,
+      "hit_rate": 0.166667
+    },
+    {
+      "batter_name": "Cody Bellinger",
+      "team": "NYY",
       "picks": 12,
       "homers": 2,
       "hit_rate": 0.166667
@@ -929,13 +936,6 @@
       "hit_rate": 0.090909
     },
     {
-      "batter_name": "Cody Bellinger",
-      "team": "NYY",
-      "picks": 11,
-      "homers": 1,
-      "hit_rate": 0.090909
-    },
-    {
       "batter_name": "Kyle Tucker",
       "team": "LAD",
       "picks": 11,
@@ -1153,6 +1153,13 @@
       "hit_rate": 0.125
     },
     {
+      "batter_name": "Mark Vientos",
+      "team": "NYM",
+      "picks": 8,
+      "homers": 1,
+      "hit_rate": 0.125
+    },
+    {
       "batter_name": "Spencer Horwitz",
       "team": "PIT",
       "picks": 8,
@@ -1228,6 +1235,13 @@
       "picks": 6,
       "homers": 1,
       "hit_rate": 0.166667
+    },
+    {
+      "batter_name": "Amed Rosario",
+      "team": "NYY",
+      "picks": 5,
+      "homers": 1,
+      "hit_rate": 0.2
     },
     {
       "batter_name": "Brenton Doyle",
@@ -1755,13 +1769,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Mark Vientos",
-      "team": "NYM",
-      "picks": 7,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Ryan McMahon",
       "team": "NYY",
       "picks": 7,
@@ -1968,13 +1975,6 @@
       "batter_name": "Tim Tawa",
       "team": "AZ",
       "picks": 5,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Amed Rosario",
-      "team": "NYY",
-      "picks": 4,
       "homers": 0,
       "hit_rate": 0.0
     },
@@ -3525,15 +3525,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 64.7%, showing consistent quality contact.",
       "top_reason_2": "Noah Cameron has allowed barrels on 7.4% of batted balls to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 115.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-18:822751:671277:605288",
@@ -4442,7 +4442,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 32,
       "original_rank": 32,
       "original_score": 89.7,
@@ -4480,7 +4480,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -4890,7 +4890,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 40,
       "original_rank": 40,
       "original_score": 88.9,
@@ -4928,7 +4928,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -5180,7 +5180,7 @@
       "team": "CLE",
       "opponent_team": "BAL",
       "pitcher_name": "Dean Kremer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -5684,7 +5684,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Emmet Sheehan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -5852,7 +5852,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Emmet Sheehan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -6122,7 +6122,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 61,
       "original_rank": 61,
       "original_score": 75.1,
@@ -6160,7 +6160,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -6468,7 +6468,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Emmet Sheehan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -6794,7 +6794,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 75,
       "original_rank": 75,
       "original_score": 79.3,
@@ -6832,7 +6832,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -7086,7 +7086,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Emmet Sheehan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -7302,7 +7302,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 83,
       "original_rank": 83,
       "original_score": 62.5,
@@ -7340,7 +7340,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -7358,7 +7358,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 169,
       "original_rank": 169,
       "original_score": 35.6,
@@ -7864,7 +7864,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 93,
       "original_rank": 93,
       "original_score": 60.9,
@@ -7902,7 +7902,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -8146,7 +8146,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 98,
       "original_rank": 98,
       "original_score": 65.5,
@@ -8184,7 +8184,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -8538,7 +8538,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 173,
       "original_rank": 173,
       "original_score": 31.4,
@@ -8890,7 +8890,7 @@
       "team": "CLE",
       "opponent_team": "BAL",
       "pitcher_name": "Dean Kremer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -9114,7 +9114,7 @@
       "team": "CLE",
       "opponent_team": "BAL",
       "pitcher_name": "Dean Kremer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -9253,15 +9253,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0020, reinforcing the power-contact fit.",
       "top_reason_2": "Noah Cameron has allowed barrels on 7.4% of batted balls to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 115.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-18:823474:664761:519242",
@@ -9757,15 +9757,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 8.8%, which the model treats as sustained power quality.",
       "top_reason_2": "Peak exit velocity over the last 10 days is 111.4 mph, which points to top-end HR juice.",
       "top_reason_3": "Barrel rate over the last 10 days is 3.8%, a above-baseline indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-18:824049:660162:608566",
@@ -9944,7 +9944,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 129,
       "original_rank": 129,
       "original_score": 12.6,
@@ -9982,7 +9982,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10056,7 +10056,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 131,
       "original_rank": 131,
       "original_score": 49.4,
@@ -10094,7 +10094,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10112,7 +10112,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 132,
       "original_rank": 132,
       "original_score": 72.0,
@@ -10150,7 +10150,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10346,7 +10346,7 @@
       "team": "CLE",
       "opponent_team": "BAL",
       "pitcher_name": "Dean Kremer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -10616,7 +10616,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 141,
       "original_rank": 141,
       "original_score": 62.8,
@@ -10654,7 +10654,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -11066,7 +11066,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 148,
       "original_rank": 148,
       "original_score": 36.8,
@@ -11104,7 +11104,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -11416,7 +11416,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Emmet Sheehan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -11754,7 +11754,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Emmet Sheehan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -12702,7 +12702,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 174,
       "original_rank": 174,
       "original_score": 27.2,
@@ -12740,7 +12740,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -13152,7 +13152,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 183,
       "original_rank": 183,
       "original_score": 28.0,
@@ -13189,15 +13189,15 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 4.2% barrel-per-PA split.",
       "top_reason_2": "Jameson Taillon has allowed homers in 5.5% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 13.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-18:823151:694497:669923",
@@ -13722,7 +13722,7 @@
       "team": "CLE",
       "opponent_team": "BAL",
       "pitcher_name": "Dean Kremer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -13750,14 +13750,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 55.2%, a top-quartile recent-contact signal.",
       "top_reason_2": "Dean Kremer has allowed homers in 12.1% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 14.0 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:823151:641487:543135",
@@ -14060,7 +14062,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Emmet Sheehan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -14498,7 +14500,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 211,
       "original_rank": 211,
       "original_score": 6.1,
@@ -14536,7 +14538,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -14958,7 +14960,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Emmet Sheehan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -14986,14 +14988,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Emmet Sheehan has allowed barrels on 8.8% of recent batted balls.",
       "top_reason_2": "Park factor for the hitter's handedness is 120.0, which adds venue lift to the matchup.",
       "top_reason_3": "Emmet Sheehan has allowed homers in 4.0% of plate appearances over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:823151:680977:543135",
@@ -15070,7 +15074,7 @@
       "team": "CLE",
       "opponent_team": "BAL",
       "pitcher_name": "Dean Kremer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -15286,7 +15290,7 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 222,
       "original_rank": 222,
       "original_score": 15.3,
@@ -15324,7 +15328,7 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -15352,7 +15356,7 @@
       "team": "CLE",
       "opponent_team": "BAL",
       "pitcher_name": "Dean Kremer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -15380,14 +15384,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Dean Kremer has allowed homers in 12.1% of plate appearances over the last 30 days.",
       "top_reason_2": "Projected wind speed is 14.0 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Dean Kremer has allowed barrels on 13.6% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:823151:643376:669923",
@@ -15690,7 +15696,7 @@
       "team": "CLE",
       "opponent_team": "BAL",
       "pitcher_name": "Dean Kremer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -15974,7 +15980,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Emmet Sheehan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -16002,14 +16008,16 @@
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 6.7%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Emmet Sheehan has allowed barrels on 8.8% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-18:823721:807712:671096",
@@ -16310,7 +16318,7 @@
       "team": "CLE",
       "opponent_team": "BAL",
       "pitcher_name": "Dean Kremer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -209208,7 +209216,7 @@
       "game_pk": 823721,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:10:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "matchup": "CIN @ MIN",
       "teams": [
@@ -209340,8 +209348,8 @@
       "game_pk": 824694,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T18:20:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "In Progress",
+      "game_state": "live",
       "matchup": "NYM @ CHC",
       "teams": [
         {
@@ -210077,7 +210085,7 @@
       "game_pk": 824451,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-18T22:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "BAL @ CLE",
       "teams": [
@@ -210145,14 +210153,8 @@
         {
           "team": "CLE",
           "opponent_team": "BAL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 682657,
-              "batter_name": "Angel Mart\u00ednez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 666310,
               "batter_name": "Bo Naylor",
@@ -210178,14 +210180,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 608070,
-              "batter_name": "Jos\u00e9 Ram\u00edrez",
+              "batter_id": 671655,
+              "batter_name": "George Valera",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 682877,
-              "batter_name": "Juan Brito",
+              "batter_id": 608070,
+              "batter_name": "Jos\u00e9 Ram\u00edrez",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -210194,6 +210196,12 @@
               "batter_name": "Kyle Manzardo",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 656555,
+              "batter_name": "Rhys Hoskins",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 680757,
@@ -210605,7 +210613,7 @@
       "game_pk": 824372,
       "game_date": "2026-04-18",
       "game_datetime": "2026-04-19T00:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "LAD @ COL",
       "teams": [
@@ -210673,7 +210681,7 @@
         {
           "team": "COL",
           "opponent_team": "LAD",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 686668,
@@ -210700,8 +210708,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 664983,
-              "batter_name": "Jake McCarthy",
+              "batter_id": 687597,
+              "batter_name": "Jordan Beck",
               "batting_order": null,
               "selected_for_pick": true
             },
