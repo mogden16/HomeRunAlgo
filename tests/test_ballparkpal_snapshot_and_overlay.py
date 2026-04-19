@@ -147,6 +147,37 @@ class BallparkPalSnapshotAndOverlayTests(unittest.TestCase):
         self.assertEqual(cleaned[0]["ballparkpal_overlay_display_score"], 73.5)
         self.assertEqual(cleaned[0]["ballparkpal_overlay_direction"], "favorable")
 
+    def test_history_cleaning_preserves_ballparkpal_columns(self) -> None:
+        from scripts.build_dashboard_artifacts import clean_history_rows
+
+        normalized = normalize_pick(
+            {
+                "game_date": "2026-04-17",
+                "game_pk": 123,
+                "batter_id": 456,
+                "batter_name": "Alpha",
+                "team": "NYY",
+                "opponent_team": "BOS",
+                "pitcher_id": 789,
+                "pitcher_name": "Pitcher A",
+                "predicted_hr_probability": 0.23,
+                "predicted_hr_score": 82.0,
+                "ballparkpal_snapshot_status": "loaded",
+                "ballparkpal_snapshot_date": "2026-04-17",
+                "ballparkpal_team_home_runs": 1.42,
+                "ballparkpal_overlay_display_score": 73.5,
+                "ballparkpal_overlay_direction": "favorable",
+                "result": "HR",
+            },
+            "2026-04-17",
+        )
+        cleaned = clean_history_rows([normalized])
+
+        self.assertEqual(cleaned[0]["ballparkpal_snapshot_status"], "loaded")
+        self.assertEqual(cleaned[0]["ballparkpal_team_home_runs"], 1.42)
+        self.assertEqual(cleaned[0]["ballparkpal_overlay_display_score"], 73.5)
+        self.assertEqual(cleaned[0]["ballparkpal_overlay_direction"], "favorable")
+
     def test_stale_latest_snapshot_is_ignored_when_requested_date_differs(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
