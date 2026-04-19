@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-19T21:25:26.012494+00:00",
+  "generated_at": "2026-04-19T21:56:08.558293+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -90,10 +90,10 @@
     "latest_slate_size": 261,
     "tracked_dates": 25,
     "tracked_picks": 3923,
-    "settled_picks": 3142,
-    "tracked_homers": 345,
-    "tracked_hit_rate": 0.109803,
-    "open_picks": 781
+    "settled_picks": 3159,
+    "tracked_homers": 349,
+    "tracked_hit_rate": 0.110478,
+    "open_picks": 764
   },
   "confidence_summary": [
     {
@@ -105,24 +105,24 @@
     },
     {
       "confidence_tier": "strong",
-      "picks": 218,
+      "picks": 219,
       "homers": 45,
-      "hit_rate": 0.206422,
-      "avg_probability": 0.191507
+      "hit_rate": 0.205479,
+      "avg_probability": 0.191446
     },
     {
       "confidence_tier": "watch",
-      "picks": 533,
+      "picks": 535,
       "homers": 79,
-      "hit_rate": 0.148218,
-      "avg_probability": 0.138903
+      "hit_rate": 0.147664,
+      "avg_probability": 0.138909
     },
     {
       "confidence_tier": "longshot",
-      "picks": 2320,
-      "homers": 201,
-      "hit_rate": 0.086638,
-      "avg_probability": 0.09494
+      "picks": 2334,
+      "homers": 205,
+      "hit_rate": 0.087832,
+      "avg_probability": 0.094947
     }
   ],
   "player_leaderboard": [
@@ -171,9 +171,9 @@
     {
       "batter_name": "Sal Stewart",
       "team": "CIN",
-      "picks": 20,
+      "picks": 21,
       "homers": 5,
-      "hit_rate": 0.25
+      "hit_rate": 0.238095
     },
     {
       "batter_name": "CJ Abrams",
@@ -213,9 +213,9 @@
     {
       "batter_name": "Elly De La Cruz",
       "team": "CIN",
-      "picks": 16,
+      "picks": 17,
       "homers": 4,
-      "hit_rate": 0.25
+      "hit_rate": 0.235294
     },
     {
       "batter_name": "Kyle Schwarber",
@@ -330,6 +330,20 @@
       "hit_rate": 0.230769
     },
     {
+      "batter_name": "Brooks Lee",
+      "team": "MIN",
+      "picks": 13,
+      "homers": 3,
+      "hit_rate": 0.230769
+    },
+    {
+      "batter_name": "Dillon Dingler",
+      "team": "DET",
+      "picks": 13,
+      "homers": 3,
+      "hit_rate": 0.230769
+    },
+    {
       "batter_name": "Matt Olson",
       "team": "ATL",
       "picks": 13,
@@ -346,13 +360,6 @@
     {
       "batter_name": "Brayan Rocchio",
       "team": "CLE",
-      "picks": 12,
-      "homers": 3,
-      "hit_rate": 0.25
-    },
-    {
-      "batter_name": "Brooks Lee",
-      "team": "MIN",
       "picks": 12,
       "homers": 3,
       "hit_rate": 0.25
@@ -456,6 +463,13 @@
       "hit_rate": 0.133333
     },
     {
+      "batter_name": "Randy Arozarena",
+      "team": "SEA",
+      "picks": 15,
+      "homers": 2,
+      "hit_rate": 0.133333
+    },
+    {
       "batter_name": "Vinnie Pasquantino",
       "team": "KC",
       "picks": 15,
@@ -465,6 +479,13 @@
     {
       "batter_name": "Brandon Nimmo",
       "team": "TEX",
+      "picks": 14,
+      "homers": 2,
+      "hit_rate": 0.142857
+    },
+    {
+      "batter_name": "Byron Buxton",
+      "team": "MIN",
       "picks": 14,
       "homers": 2,
       "hit_rate": 0.142857
@@ -526,13 +547,6 @@
       "hit_rate": 0.153846
     },
     {
-      "batter_name": "Byron Buxton",
-      "team": "MIN",
-      "picks": 13,
-      "homers": 2,
-      "hit_rate": 0.153846
-    },
-    {
       "batter_name": "Jackson Merrill",
       "team": "SD",
       "picks": 13,
@@ -582,13 +596,6 @@
       "hit_rate": 0.166667
     },
     {
-      "batter_name": "Dillon Dingler",
-      "team": "DET",
-      "picks": 12,
-      "homers": 2,
-      "hit_rate": 0.166667
-    },
-    {
       "batter_name": "Evan Carter",
       "team": "TEX",
       "picks": 12,
@@ -631,6 +638,13 @@
       "hit_rate": 0.166667
     },
     {
+      "batter_name": "Spencer Steer",
+      "team": "CIN",
+      "picks": 12,
+      "homers": 2,
+      "hit_rate": 0.166667
+    },
+    {
       "batter_name": "Cedric Mullins",
       "team": "TB",
       "picks": 11,
@@ -640,13 +654,6 @@
     {
       "batter_name": "Heliot Ramos",
       "team": "SF",
-      "picks": 11,
-      "homers": 2,
-      "hit_rate": 0.181818
-    },
-    {
-      "batter_name": "Spencer Steer",
-      "team": "CIN",
       "picks": 11,
       "homers": 2,
       "hit_rate": 0.181818
@@ -757,6 +764,13 @@
       "hit_rate": 0.0625
     },
     {
+      "batter_name": "Eugenio Su\u00e1rez",
+      "team": "CIN",
+      "picks": 16,
+      "homers": 1,
+      "hit_rate": 0.0625
+    },
+    {
       "batter_name": "Pete Alonso",
       "team": "BAL",
       "picks": 16,
@@ -766,13 +780,6 @@
     {
       "batter_name": "Agust\u00edn Ram\u00edrez",
       "team": "MIA",
-      "picks": 15,
-      "homers": 1,
-      "hit_rate": 0.066667
-    },
-    {
-      "batter_name": "Eugenio Su\u00e1rez",
-      "team": "CIN",
       "picks": 15,
       "homers": 1,
       "hit_rate": 0.066667
@@ -848,6 +855,13 @@
       "hit_rate": 0.071429
     },
     {
+      "batter_name": "Josh Bell",
+      "team": "MIN",
+      "picks": 14,
+      "homers": 1,
+      "hit_rate": 0.071429
+    },
+    {
       "batter_name": "Jung Hoo Lee",
       "team": "SF",
       "picks": 14,
@@ -862,15 +876,15 @@
       "hit_rate": 0.071429
     },
     {
-      "batter_name": "Rafael Devers",
-      "team": "SF",
+      "batter_name": "Luke Keaschall",
+      "team": "MIN",
       "picks": 14,
       "homers": 1,
       "hit_rate": 0.071429
     },
     {
-      "batter_name": "Randy Arozarena",
-      "team": "SEA",
+      "batter_name": "Rafael Devers",
+      "team": "SF",
       "picks": 14,
       "homers": 1,
       "hit_rate": 0.071429
@@ -911,13 +925,6 @@
       "hit_rate": 0.076923
     },
     {
-      "batter_name": "Josh Bell",
-      "team": "MIN",
-      "picks": 13,
-      "homers": 1,
-      "hit_rate": 0.076923
-    },
-    {
       "batter_name": "Josh Naylor",
       "team": "SEA",
       "picks": 13,
@@ -927,13 +934,6 @@
     {
       "batter_name": "Kazuma Okamoto",
       "team": "TOR",
-      "picks": 13,
-      "homers": 1,
-      "hit_rate": 0.076923
-    },
-    {
-      "batter_name": "Luke Keaschall",
-      "team": "MIN",
       "picks": 13,
       "homers": 1,
       "hit_rate": 0.076923
@@ -1044,6 +1044,13 @@
       "hit_rate": 0.083333
     },
     {
+      "batter_name": "Victor Caratini",
+      "team": "MIN",
+      "picks": 12,
+      "homers": 1,
+      "hit_rate": 0.083333
+    },
+    {
       "batter_name": "William Contreras",
       "team": "MIL",
       "picks": 12,
@@ -1093,8 +1100,8 @@
       "hit_rate": 0.090909
     },
     {
-      "batter_name": "Victor Caratini",
-      "team": "MIN",
+      "batter_name": "Tyler Stephenson",
+      "team": "CIN",
       "picks": 11,
       "homers": 1,
       "hit_rate": 0.090909
@@ -1123,13 +1130,6 @@
     {
       "batter_name": "Nick Yorke",
       "team": "PIT",
-      "picks": 10,
-      "homers": 1,
-      "hit_rate": 0.1
-    },
-    {
-      "batter_name": "Tyler Stephenson",
-      "team": "CIN",
       "picks": 10,
       "homers": 1,
       "hit_rate": 0.1
@@ -1165,6 +1165,13 @@
     {
       "batter_name": "Marcell Ozuna",
       "team": "PIT",
+      "picks": 9,
+      "homers": 1,
+      "hit_rate": 0.111111
+    },
+    {
+      "batter_name": "Trent Grisham",
+      "team": "NYY",
       "picks": 9,
       "homers": 1,
       "hit_rate": 0.111111
@@ -1401,6 +1408,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "TJ Friedl",
+      "team": "CIN",
+      "picks": 14,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Alex Bregman",
       "team": "CHC",
       "picks": 13,
@@ -1464,15 +1478,15 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Nolan Schanuel",
-      "team": "LAA",
+      "batter_name": "Matt McLain",
+      "team": "CIN",
       "picks": 13,
       "homers": 0,
       "hit_rate": 0.0
     },
     {
-      "batter_name": "TJ Friedl",
-      "team": "CIN",
+      "batter_name": "Nolan Schanuel",
+      "team": "LAA",
       "picks": 13,
       "homers": 0,
       "hit_rate": 0.0
@@ -1501,13 +1515,6 @@
     {
       "batter_name": "Josh Smith",
       "team": "TEX",
-      "picks": 12,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Matt McLain",
-      "team": "CIN",
       "picks": 12,
       "homers": 0,
       "hit_rate": 0.0
@@ -1760,13 +1767,6 @@
     {
       "batter_name": "Owen Caissie",
       "team": "MIA",
-      "picks": 8,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Trent Grisham",
-      "team": "NYY",
       "picks": 8,
       "homers": 0,
       "hit_rate": 0.0
@@ -2185,6 +2185,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Rece Hinds",
+      "team": "CIN",
+      "picks": 3,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Tanner Murray",
       "team": "CWS",
       "picks": 3,
@@ -2313,13 +2320,6 @@
     {
       "batter_name": "Nick Loftin",
       "team": "KC",
-      "picks": 2,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Rece Hinds",
-      "team": "CIN",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
@@ -6298,7 +6298,7 @@
       "game_pk": 823718,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 48,
       "original_rank": 48,
       "original_score": 82.0,
@@ -6335,15 +6335,15 @@
       "ballparkpal_overlay_adjusted_score": 43.8,
       "ballparkpal_overlay_adjusted_rank": 65,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 5.8% barrel-per-PA split.",
       "top_reason_2": "Brady Singer has allowed 91.8 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Barrel rate over the last 10 days is 8.1%, a top-quartile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:823150:607043:693433",
@@ -6410,7 +6410,7 @@
       "game_pk": 823718,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 105,
       "original_rank": 105,
       "original_score": 60.2,
@@ -7927,15 +7927,15 @@
       "ballparkpal_overlay_adjusted_score": 37.6,
       "ballparkpal_overlay_adjusted_rank": 93,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 57.4%, showing consistent quality contact.",
       "top_reason_2": "Cole Ragans has allowed homers in 7.1% of plate appearances over the last 30 days.",
       "top_reason_3": "Park factor for the hitter's handedness is 115.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-19:825018:643217:605488",
@@ -8099,15 +8099,15 @@
       "ballparkpal_overlay_adjusted_score": 37.1,
       "ballparkpal_overlay_adjusted_rank": 96,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1970, supporting loud-contact upside.",
       "top_reason_2": "MacKenzie Gore has allowed a 44.3% hard-hit rate over the last 30 days.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0022, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-19:823718:553993:641927",
@@ -8118,7 +8118,7 @@
       "game_pk": 823718,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 108,
       "original_rank": 108,
       "original_score": 59.0,
@@ -8155,15 +8155,15 @@
       "ballparkpal_overlay_adjusted_score": 37.0,
       "ballparkpal_overlay_adjusted_rank": 97,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0022, reinforcing the power-contact fit.",
       "top_reason_2": "Bailey Ober has allowed barrels on 5.7% of batted balls to this batter side.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 3.9% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:822750:671218:571945",
@@ -9145,7 +9145,7 @@
       "game_pk": 823718,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 66,
       "original_rank": 66,
       "original_score": 75.1,
@@ -9182,15 +9182,15 @@
       "ballparkpal_overlay_adjusted_score": 34.0,
       "ballparkpal_overlay_adjusted_rank": 115,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 13.3%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Bailey Ober has allowed barrels on 5.7% of batted balls to this batter side.",
       "top_reason_3": "Barrel rate over the last 30 days is 6.2%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:824691:691718:668964",
@@ -9431,7 +9431,7 @@
       "game_pk": 823718,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 187,
       "original_rank": 187,
       "original_score": 28.7,
@@ -9526,15 +9526,15 @@
       "ballparkpal_overlay_adjusted_score": 33.6,
       "ballparkpal_overlay_adjusted_rank": 121,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 9.4%, which the model treats as sustained power quality.",
       "top_reason_2": "Garrett Crochet has allowed barrels on 7.1% of recent batted balls.",
       "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-19:823718:663993:641927",
@@ -9545,7 +9545,7 @@
       "game_pk": 823718,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 194,
       "original_rank": 194,
       "original_score": 26.1,
@@ -9889,7 +9889,7 @@
       "game_pk": 823718,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 197,
       "original_rank": 197,
       "original_score": 24.9,
@@ -9926,15 +9926,15 @@
       "ballparkpal_overlay_adjusted_score": 33.3,
       "ballparkpal_overlay_adjusted_rank": 128,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Brady Singer has allowed 91.8 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_2": "Brady Singer has allowed a 49.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Brady Singer has allowed 49.0% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:825100:676391:669194",
@@ -10115,7 +10115,7 @@
       "game_pk": 823718,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 18,
       "original_rank": 18,
       "original_score": 93.5,
@@ -10152,15 +10152,15 @@
       "ballparkpal_overlay_adjusted_score": 33.1,
       "ballparkpal_overlay_adjusted_rank": 132,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 8.4% barrel-per-PA split.",
       "top_reason_2": "Bailey Ober has allowed barrels on 5.7% of batted balls to this batter side.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0048, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:825100:664702:669194",
@@ -10453,7 +10453,7 @@
       "game_pk": 823718,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 215,
       "original_rank": 215,
       "original_score": 18.0,
@@ -11197,7 +11197,7 @@
       "game_pk": 823718,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 121,
       "original_rank": 121,
       "original_score": 54.0,
@@ -11234,15 +11234,15 @@
       "ballparkpal_overlay_adjusted_score": 30.7,
       "ballparkpal_overlay_adjusted_rank": 151,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 5.6%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Brady Singer has allowed 91.8 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 48.1%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:825100:672960:669194",
@@ -11309,7 +11309,7 @@
       "game_pk": 823718,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 5,
       "original_rank": 5,
       "original_score": 98.5,
@@ -11346,15 +11346,15 @@
       "ballparkpal_overlay_adjusted_score": 30.6,
       "ballparkpal_overlay_adjusted_rank": 153,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 98.2 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Bailey Ober has allowed homers in 3.5% of plate appearances to this batter side.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 58.3%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:824205:691026:681347",
@@ -12646,15 +12646,15 @@
       "ballparkpal_overlay_adjusted_score": 26.3,
       "ballparkpal_overlay_adjusted_rank": 176,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 99.8 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Garrett Crochet has allowed barrels on 7.1% of recent batted balls.",
       "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-19:824691:682626:665871",
@@ -13341,7 +13341,7 @@
       "game_pk": 823718,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 91,
       "original_rank": 91,
       "original_score": 65.5,
@@ -13378,15 +13378,15 @@
       "ballparkpal_overlay_adjusted_score": 23.8,
       "ballparkpal_overlay_adjusted_rank": 189,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 96.2 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Bailey Ober has allowed barrels on 5.7% of batted balls to this batter side.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 60.0%, a top-decile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:824691:608324:668964",
@@ -14019,7 +14019,7 @@
       "game_pk": 823718,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 217,
       "original_rank": 217,
       "original_score": 17.2,
@@ -14056,15 +14056,15 @@
       "ballparkpal_overlay_adjusted_score": 21.1,
       "ballparkpal_overlay_adjusted_rank": 201,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 11.9% barrel-per-PA split.",
       "top_reason_2": "Bailey Ober has allowed barrels on 5.7% of batted balls to this batter side.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0067, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:824205:687363:681347",
@@ -14243,7 +14243,7 @@
       "game_pk": 823718,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 171,
       "original_rank": 171,
       "original_score": 34.9,
@@ -14280,15 +14280,15 @@
       "ballparkpal_overlay_adjusted_score": 20.4,
       "ballparkpal_overlay_adjusted_rank": 205,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0019, reinforcing the power-contact fit.",
       "top_reason_2": "Bailey Ober has allowed barrels on 5.7% of batted balls to this batter side.",
       "top_reason_3": "Barrel rate over the last 30 days is 3.6%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:825100:665926:669194",
@@ -15543,7 +15543,7 @@
       "game_pk": 823718,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 202,
       "original_rank": 202,
       "original_score": 23.0,
@@ -15580,15 +15580,15 @@
       "ballparkpal_overlay_adjusted_score": 15.9,
       "ballparkpal_overlay_adjusted_rank": 228,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 6.1%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Brady Singer has allowed 91.8 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Brady Singer has allowed a 49.0% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:823475:573262:691725",
@@ -15995,7 +15995,7 @@
       "game_pk": 823718,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 110,
       "original_rank": 110,
       "original_score": 58.2,
@@ -16557,7 +16557,7 @@
       "game_pk": 823718,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 221,
       "original_rank": 221,
       "original_score": 15.7,
@@ -16594,15 +16594,15 @@
       "ballparkpal_overlay_adjusted_score": 11.2,
       "ballparkpal_overlay_adjusted_rank": 246,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Brady Singer has allowed 91.8 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_2": "Brady Singer has allowed a 49.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Brady Singer has allowed 49.0% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:825100:623168:669194",
@@ -16955,7 +16955,7 @@
       "game_pk": 823718,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 249,
       "original_rank": 249,
       "original_score": 5.0,
@@ -16992,15 +16992,15 @@
       "ballparkpal_overlay_adjusted_score": 8.3,
       "ballparkpal_overlay_adjusted_rank": 253,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Bailey Ober has allowed homers in 3.5% of plate appearances to this batter side.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:823881:689414:694819",
@@ -224589,7 +224589,7 @@
       "game_pk": 824205,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_status": "Game Over",
+      "game_status": "Final",
       "game_state": "final",
       "matchup": "STL @ HOU",
       "teams": [
@@ -224721,8 +224721,8 @@
       "game_pk": 823718,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Game Over",
+      "game_state": "final",
       "matchup": "CIN @ MIN",
       "teams": [
         {
