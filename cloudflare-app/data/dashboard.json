@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-19T16:10:56.454852+00:00",
+  "generated_at": "2026-04-19T17:07:51.276364+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -3646,7 +3646,7 @@
       "game_pk": 823556,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 10,
       "original_rank": 10,
       "original_score": 96.6,
@@ -3684,7 +3684,7 @@
       "ballparkpal_overlay_adjusted_rank": 18,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -3824,7 +3824,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "MacKenzie Gore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -4150,7 +4150,7 @@
       "game_pk": 823556,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 43,
       "original_rank": 43,
       "original_score": 83.9,
@@ -4218,7 +4218,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "MacKenzie Gore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -4388,7 +4388,7 @@
       "team": "TOR",
       "opponent_team": "AZ",
       "pitcher_name": "Ryne Nelson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -4434,7 +4434,7 @@
       "game_pk": 823556,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 80,
       "original_rank": 80,
       "original_score": 69.7,
@@ -4472,7 +4472,7 @@
       "ballparkpal_overlay_adjusted_rank": 32,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -4724,7 +4724,7 @@
       "team": "CWS",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oakland Coliseum",
       "ballpark_region_abbr": "CA",
@@ -4892,7 +4892,7 @@
       "team": "CWS",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oakland Coliseum",
       "ballpark_region_abbr": "CA",
@@ -5118,7 +5118,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "MacKenzie Gore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -5146,14 +5146,16 @@
       "ballparkpal_overlay_adjusted_rank": 44,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 111.5 mph, which points to top-end HR juice.",
       "top_reason_2": "MacKenzie Gore has allowed barrels on 5.9% of batted balls to this batter side.",
       "top_reason_3": "Barrel rate over the last 30 days is 4.6%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:825018:678246:605488",
@@ -5174,7 +5176,7 @@
       "team": "CWS",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oakland Coliseum",
       "ballpark_region_abbr": "CA",
@@ -5388,7 +5390,7 @@
       "game_pk": 823556,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 145,
       "original_rank": 145,
       "original_score": 44.8,
@@ -5426,7 +5428,7 @@
       "ballparkpal_overlay_adjusted_rank": 49,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -5510,7 +5512,7 @@
       "team": "CWS",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oakland Coliseum",
       "ballpark_region_abbr": "CA",
@@ -5556,7 +5558,7 @@
       "game_pk": 823556,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 115,
       "original_rank": 115,
       "original_score": 56.3,
@@ -5594,7 +5596,7 @@
       "ballparkpal_overlay_adjusted_rank": 52,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -5734,7 +5736,7 @@
       "team": "TOR",
       "opponent_team": "AZ",
       "pitcher_name": "Ryne Nelson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -5780,7 +5782,7 @@
       "game_pk": 823556,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 185,
       "original_rank": 185,
       "original_score": 29.5,
@@ -6062,7 +6064,7 @@
       "game_pk": 823556,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 32,
       "original_rank": 32,
       "original_score": 88.1,
@@ -6100,7 +6102,7 @@
       "ballparkpal_overlay_adjusted_rank": 61,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -6522,7 +6524,7 @@
       "team": "TOR",
       "opponent_team": "AZ",
       "pitcher_name": "Ryne Nelson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -6550,14 +6552,16 @@
       "ballparkpal_overlay_adjusted_rank": 69,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 4.2% barrel-per-PA split.",
       "top_reason_2": "Ryne Nelson has allowed homers in 4.9% of plate appearances over the last 30 days.",
       "top_reason_3": "Forecast temperature is 88F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:824205:666211:669461",
@@ -6680,7 +6684,7 @@
       "game_pk": 823556,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 47,
       "original_rank": 47,
       "original_score": 82.4,
@@ -6718,7 +6722,7 @@
       "ballparkpal_overlay_adjusted_rank": 72,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -6802,7 +6806,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "MacKenzie Gore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -6830,14 +6834,16 @@
       "ballparkpal_overlay_adjusted_rank": 74,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "MacKenzie Gore has allowed barrels on 5.9% of batted balls to this batter side.",
       "top_reason_2": "MacKenzie Gore has allowed a 44.3% hard-hit rate over the last 30 days.",
       "top_reason_3": "MacKenzie Gore has allowed 44.3% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:823881:596142:691587",
@@ -7026,7 +7032,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "MacKenzie Gore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -7054,14 +7060,16 @@
       "ballparkpal_overlay_adjusted_rank": 78,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 8.8%, which the model treats as sustained power quality.",
       "top_reason_2": "MacKenzie Gore has allowed barrels on 5.9% of batted balls to this batter side.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 113.2 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:823556:695600:677960",
@@ -7072,7 +7080,7 @@
       "game_pk": 823556,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 20,
       "original_rank": 20,
       "original_score": 92.7,
@@ -7196,7 +7204,7 @@
       "team": "TOR",
       "opponent_team": "AZ",
       "pitcher_name": "Ryne Nelson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -7224,14 +7232,16 @@
       "ballparkpal_overlay_adjusted_rank": 81,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 111.1 mph, which points to top-end HR juice.",
       "top_reason_2": "Ryne Nelson has allowed homers in 4.9% of plate appearances over the last 30 days.",
       "top_reason_3": "Forecast temperature is 88F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:823556:672580:677960",
@@ -7242,7 +7252,7 @@
       "game_pk": 823556,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 78,
       "original_rank": 78,
       "original_score": 70.5,
@@ -7280,7 +7290,7 @@
       "ballparkpal_overlay_adjusted_rank": 82,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -7420,7 +7430,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "MacKenzie Gore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -7448,14 +7458,16 @@
       "ballparkpal_overlay_adjusted_rank": 85,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.1 mph, which points to top-end HR juice.",
       "top_reason_2": "MacKenzie Gore has allowed barrels on 5.9% of batted balls to this batter side.",
       "top_reason_3": "The handedness-specific hard-hit matchup score is 0.2375, supporting loud-contact upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:822750:671277:592662",
@@ -7578,7 +7590,7 @@
       "game_pk": 823556,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 97,
       "original_rank": 97,
       "original_score": 63.2,
@@ -7616,7 +7628,7 @@
       "ballparkpal_overlay_adjusted_rank": 88,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -7644,7 +7656,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "MacKenzie Gore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -7860,7 +7872,7 @@
       "game_pk": 823556,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 139,
       "original_rank": 139,
       "original_score": 47.1,
@@ -7898,7 +7910,7 @@
       "ballparkpal_overlay_adjusted_rank": 93,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -7926,7 +7938,7 @@
       "team": "CWS",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oakland Coliseum",
       "ballpark_region_abbr": "CA",
@@ -7954,14 +7966,16 @@
       "ballparkpal_overlay_adjusted_rank": 94,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 61.8%, showing consistent quality contact.",
       "top_reason_2": "95+ EV contact rate over the last 30 days is 61.8%, a strong loud-contact input for the model.",
       "top_reason_3": "Barrel rate over the last 10 days is 9.1%, a top-decile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:824371:686668:808963",
@@ -8040,7 +8054,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "MacKenzie Gore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -8778,7 +8792,7 @@
       "team": "CWS",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oakland Coliseum",
       "ballpark_region_abbr": "CA",
@@ -8806,14 +8820,16 @@
       "ballparkpal_overlay_adjusted_rank": 109,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 5.3%, which the model treats as sustained power quality.",
       "top_reason_2": "Barrel rate over the last 10 days is 5.3%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:824047:630105:672282",
@@ -9276,7 +9292,7 @@
       "game_pk": 823556,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 216,
       "original_rank": 216,
       "original_score": 17.6,
@@ -9460,7 +9476,7 @@
       "team": "DET",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -9564,7 +9580,7 @@
       "game_pk": 823556,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 243,
       "original_rank": 243,
       "original_score": 7.3,
@@ -9622,7 +9638,7 @@
       "game_pk": 823556,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 21,
       "original_rank": 21,
       "original_score": 92.3,
@@ -9916,7 +9932,7 @@
       "team": "TOR",
       "opponent_team": "AZ",
       "pitcher_name": "Ryne Nelson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -10020,7 +10036,7 @@
       "game_pk": 823556,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 231,
       "original_rank": 231,
       "original_score": 11.9,
@@ -10058,7 +10074,7 @@
       "ballparkpal_overlay_adjusted_rank": 131,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10142,7 +10158,7 @@
       "team": "TOR",
       "opponent_team": "AZ",
       "pitcher_name": "Ryne Nelson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -10254,7 +10270,7 @@
       "team": "SEA",
       "opponent_team": "TEX",
       "pitcher_name": "MacKenzie Gore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -11224,7 +11240,7 @@
       "team": "TOR",
       "opponent_team": "AZ",
       "pitcher_name": "Ryne Nelson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -11670,7 +11686,7 @@
       "game_pk": 823556,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 156,
       "original_rank": 156,
       "original_score": 40.6,
@@ -11708,7 +11724,7 @@
       "ballparkpal_overlay_adjusted_rank": 160,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -11960,7 +11976,7 @@
       "team": "DET",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -12016,7 +12032,7 @@
       "team": "CWS",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oakland Coliseum",
       "ballpark_region_abbr": "CA",
@@ -12576,7 +12592,7 @@
       "team": "DET",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -12802,7 +12818,7 @@
       "team": "DET",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -13016,7 +13032,7 @@
       "game_pk": 823556,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 201,
       "original_rank": 201,
       "original_score": 23.4,
@@ -13054,7 +13070,7 @@
       "ballparkpal_overlay_adjusted_rank": 184,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -14152,7 +14168,7 @@
       "team": "CWS",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oakland Coliseum",
       "ballpark_region_abbr": "CA",
@@ -14264,7 +14280,7 @@
       "team": "TOR",
       "opponent_team": "AZ",
       "pitcher_name": "Ryne Nelson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -14490,7 +14506,7 @@
       "team": "DET",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -14998,7 +15014,7 @@
       "team": "DET",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -15054,7 +15070,7 @@
       "team": "CWS",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oakland Coliseum",
       "ballpark_region_abbr": "CA",
@@ -15618,7 +15634,7 @@
       "team": "DET",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -15646,14 +15662,16 @@
       "ballparkpal_overlay_adjusted_rank": 230,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 5.8%, which the model treats as sustained power quality.",
       "top_reason_2": "Garrett Crochet has allowed barrels on 7.1% of recent batted balls.",
       "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:823475:664761:656550",
@@ -16182,7 +16200,7 @@
       "team": "DET",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -16294,7 +16312,7 @@
       "team": "DET",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -16574,7 +16592,7 @@
       "team": "TOR",
       "opponent_team": "AZ",
       "pitcher_name": "Ryne Nelson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -16602,14 +16620,16 @@
       "ballparkpal_overlay_adjusted_rank": 247,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Ryne Nelson has allowed homers in 4.9% of plate appearances over the last 30 days.",
       "top_reason_2": "Forecast temperature is 88F, a positive hitting-context input in the live model.",
       "top_reason_3": "Ryne Nelson has allowed barrels on 7.1% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:822750:696285:592662",
@@ -224164,8 +224184,8 @@
       "game_pk": 823556,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "Delayed Start",
+      "game_state": "live",
       "matchup": "KC @ NYY",
       "teams": [
         {
@@ -225046,21 +225066,15 @@
       "game_pk": 825018,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T20:05:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "CWS @ OAK",
       "teams": [
         {
           "team": "CWS",
           "opponent_team": "OAK",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 643217,
-              "batter_name": "Andrew Benintendi",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 805367,
               "batter_name": "Chase Meidroth",
@@ -225072,6 +225086,12 @@
               "batter_name": "Colson Montgomery",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 656537,
+              "batter_name": "Derek Hill",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 700337,
@@ -225104,17 +225124,17 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 803011,
-              "batter_name": "Sam Antonacci",
+              "batter_id": 695020,
+              "batter_name": "Tanner Murray",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             }
           ]
         },
         {
           "team": "OAK",
           "opponent_team": "CWS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": []
         }
       ]
@@ -225255,7 +225275,7 @@
       "game_pk": 823150,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T20:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "TEX @ SEA",
       "teams": [
@@ -225323,14 +225343,8 @@
         {
           "team": "SEA",
           "opponent_team": "TEX",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 680977,
-              "batter_name": "Brendan Donovan",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 663728,
               "batter_name": "Cal Raleigh",
@@ -225344,20 +225358,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 686527,
-              "batter_name": "Dominic Canzone",
+              "batter_id": 656582,
+              "batter_name": "Connor Joe",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 641487,
               "batter_name": "J.P. Crawford",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 647304,
-              "batter_name": "Josh Naylor",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -225368,16 +225376,28 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 670042,
-              "batter_name": "Luke Raley",
+              "batter_id": 660844,
+              "batter_name": "Leo Rivas",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 641598,
+              "batter_name": "Mitch Garver",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 668227,
               "batter_name": "Randy Arozarena",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 608701,
+              "batter_name": "Rob Refsnyder",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         }
@@ -225387,14 +225407,14 @@
       "game_pk": 825100,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T20:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "TOR @ AZ",
       "teams": [
         {
           "team": "TOR",
           "opponent_team": "AZ",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 665926,
@@ -225403,10 +225423,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 676914,
-              "batter_name": "Davis Schneider",
+              "batter_id": 650391,
+              "batter_name": "Eloy Jim\u00e9nez",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 676391,
@@ -225427,22 +225447,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 672820,
-              "batter_name": "Lenyn Sosa",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 664702,
               "batter_name": "Myles Straw",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 623168,
-              "batter_name": "Tyler Heineman",
+              "batter_id": 664770,
+              "batter_name": "Nathan Lukes",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 665489,
@@ -225526,7 +225540,7 @@
         {
           "team": "DET",
           "opponent_team": "BOS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 693307,
@@ -225541,6 +225555,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 701678,
+              "batter_name": "Hao-Yu  Lee",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 663330,
               "batter_name": "Jahmai Jones",
               "batting_order": null,
@@ -225549,12 +225569,6 @@
             {
               "batter_id": 595879,
               "batter_name": "Javier B\u00e1ez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 805808,
-              "batter_name": "Kevin McGonigle",
               "batting_order": null,
               "selected_for_pick": true
             },
