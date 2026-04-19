@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-19T14:51:36.590457+00:00",
+  "generated_at": "2026-04-19T15:31:29.423656+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -3088,7 +3088,7 @@
       "team": "HOU",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -3144,7 +3144,7 @@
       "team": "HOU",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -3256,7 +3256,7 @@
       "team": "STL",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -3312,7 +3312,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -3340,14 +3340,16 @@
       "ballparkpal_overlay_adjusted_rank": 12,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 50.9%, showing consistent quality contact.",
       "top_reason_2": "Roki Sasaki has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 120.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:824371:666160:808963",
@@ -3368,7 +3370,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -3594,7 +3596,7 @@
       "team": "STL",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -3762,7 +3764,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -3874,7 +3876,7 @@
       "team": "HOU",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -3986,7 +3988,7 @@
       "team": "STL",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -4324,7 +4326,7 @@
       "team": "SF",
       "opponent_team": "WSH",
       "pitcher_name": "Miles Mikolas",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -4550,7 +4552,7 @@
       "team": "STL",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -4830,7 +4832,7 @@
       "team": "HOU",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -4942,7 +4944,7 @@
       "team": "SF",
       "opponent_team": "WSH",
       "pitcher_name": "Miles Mikolas",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -5000,7 +5002,7 @@
       "team": "HOU",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -5056,7 +5058,7 @@
       "team": "WSH",
       "opponent_team": "SF",
       "pitcher_name": "Robbie Ray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -5280,7 +5282,7 @@
       "team": "HOU",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -5898,7 +5900,7 @@
       "team": "STL",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -6122,7 +6124,7 @@
       "team": "NYM",
       "opponent_team": "CHC",
       "pitcher_name": "Javier Assad",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6234,7 +6236,7 @@
       "team": "WSH",
       "opponent_team": "SF",
       "pitcher_name": "Robbie Ray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -6570,7 +6572,7 @@
       "team": "HOU",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -6738,7 +6740,7 @@
       "team": "NYM",
       "opponent_team": "CHC",
       "pitcher_name": "Javier Assad",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -7300,7 +7302,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -7468,7 +7470,7 @@
       "team": "WSH",
       "opponent_team": "SF",
       "pitcher_name": "Robbie Ray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -7524,7 +7526,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -7692,7 +7694,7 @@
       "team": "PIT",
       "opponent_team": "TB",
       "pitcher_name": "Shane McClanahan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -7720,14 +7722,16 @@
       "ballparkpal_overlay_adjusted_rank": 90,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 10.0%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Shane McClanahan has allowed homers in 6.1% of plate appearances to this batter side.",
       "top_reason_3": "Shane McClanahan has allowed barrels on 10.0% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:823150:543309:693433",
@@ -7804,7 +7808,7 @@
       "team": "TB",
       "opponent_team": "PIT",
       "pitcher_name": "Mitch Keller",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -7972,7 +7976,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -8000,14 +8004,16 @@
       "ballparkpal_overlay_adjusted_rank": 95,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0019, reinforcing the power-contact fit.",
       "top_reason_2": "Roki Sasaki has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 120.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:823150:668227:669022",
@@ -8140,7 +8146,7 @@
       "team": "SF",
       "opponent_team": "WSH",
       "pitcher_name": "Miles Mikolas",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -8198,7 +8204,7 @@
       "team": "SF",
       "opponent_team": "WSH",
       "pitcher_name": "Miles Mikolas",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -8368,7 +8374,7 @@
       "team": "HOU",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -8396,14 +8402,16 @@
       "ballparkpal_overlay_adjusted_rank": 102,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 90.1 mph, a above-baseline recent batted-ball quality marker.",
       "top_reason_2": "Matthew Liberatore has allowed a 47.8% hard-hit rate over the last 30 days.",
       "top_reason_3": "Matthew Liberatore has allowed 47.8% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:824452:665750:676282",
@@ -8424,7 +8432,7 @@
       "team": "BAL",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -8452,14 +8460,16 @@
       "ballparkpal_overlay_adjusted_rank": 103,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 6.1%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Joey Cantillo has allowed barrels on 5.8% of batted balls to this batter side.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 48.1%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:823393:666018:656605",
@@ -8480,7 +8490,7 @@
       "team": "TB",
       "opponent_team": "PIT",
       "pitcher_name": "Mitch Keller",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -8536,7 +8546,7 @@
       "team": "STL",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -8984,7 +8994,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -9040,7 +9050,7 @@
       "team": "BAL",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -9068,14 +9078,16 @@
       "ballparkpal_overlay_adjusted_rank": 114,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 109.3 mph, which points to top-end HR juice.",
       "top_reason_2": "Joey Cantillo has allowed barrels on 5.8% of batted balls to this batter side.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 45.5%, a above-baseline recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:823718:668715:641927",
@@ -9208,7 +9220,7 @@
       "team": "BAL",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -9236,14 +9248,16 @@
       "ballparkpal_overlay_adjusted_rank": 117,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 14.3% barrel-per-PA split.",
       "top_reason_2": "Joey Cantillo has allowed barrels on 5.8% of batted balls to this batter side.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0082, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:823556:664728:677960",
@@ -9322,7 +9336,7 @@
       "team": "BAL",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -9350,14 +9364,16 @@
       "ballparkpal_overlay_adjusted_rank": 119,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 109.8 mph, which points to top-end HR juice.",
       "top_reason_2": "Joey Cantillo has allowed barrels on 5.8% of batted balls to this batter side.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:823718:668952:663903",
@@ -10172,7 +10188,7 @@
       "team": "BAL",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -10456,7 +10472,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -10512,7 +10528,7 @@
       "team": "STL",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -10624,7 +10640,7 @@
       "team": "TB",
       "opponent_team": "PIT",
       "pitcher_name": "Mitch Keller",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -10652,14 +10668,16 @@
       "ballparkpal_overlay_adjusted_rank": 142,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 107.0 mph, which points to top-end HR juice.",
       "top_reason_2": "Mitch Keller has allowed barrels on 4.7% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 10.1 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:824452:682177:669432",
@@ -10850,7 +10868,7 @@
       "team": "HOU",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -10878,14 +10896,16 @@
       "ballparkpal_overlay_adjusted_rank": 146,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Matthew Liberatore has allowed a 47.8% hard-hit rate over the last 30 days.",
       "top_reason_2": "Matthew Liberatore has allowed 47.8% 95+ EV contact over the last 30 days.",
       "top_reason_3": "Matthew Liberatore has allowed homers in 4.0% of plate appearances over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:822750:678391:592662",
@@ -10906,7 +10926,7 @@
       "team": "WSH",
       "opponent_team": "SF",
       "pitcher_name": "Robbie Ray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -10934,14 +10954,16 @@
       "ballparkpal_overlay_adjusted_rank": 147,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Robbie Ray has allowed barrels on 6.0% of batted balls to this batter side.",
       "top_reason_2": "Projected wind speed is 13.3 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Robbie Ray has allowed barrels on 6.1% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:824691:683146:665871",
@@ -10962,7 +10984,7 @@
       "team": "NYM",
       "opponent_team": "CHC",
       "pitcher_name": "Javier Assad",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -11300,7 +11322,7 @@
       "team": "STL",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -11412,7 +11434,7 @@
       "team": "PIT",
       "opponent_team": "TB",
       "pitcher_name": "Shane McClanahan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -11440,14 +11462,16 @@
       "ballparkpal_overlay_adjusted_rank": 156,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Shane McClanahan has allowed homers in 6.1% of plate appearances to this batter side.",
       "top_reason_2": "Shane McClanahan has allowed barrels on 10.0% of recent batted balls.",
       "top_reason_3": "Shane McClanahan has allowed homers in 4.8% of plate appearances over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:825100:680728:592332",
@@ -11582,7 +11606,7 @@
       "team": "SF",
       "opponent_team": "WSH",
       "pitcher_name": "Miles Mikolas",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -11808,7 +11832,7 @@
       "team": "NYM",
       "opponent_team": "CHC",
       "pitcher_name": "Javier Assad",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -12200,7 +12224,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -12256,7 +12280,7 @@
       "team": "WSH",
       "opponent_team": "SF",
       "pitcher_name": "Robbie Ray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -12312,7 +12336,7 @@
       "team": "TB",
       "opponent_team": "PIT",
       "pitcher_name": "Mitch Keller",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -12424,7 +12448,7 @@
       "team": "PIT",
       "opponent_team": "TB",
       "pitcher_name": "Shane McClanahan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -12480,7 +12504,7 @@
       "team": "PIT",
       "opponent_team": "TB",
       "pitcher_name": "Shane McClanahan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -12592,7 +12616,7 @@
       "team": "NYM",
       "opponent_team": "CHC",
       "pitcher_name": "Javier Assad",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -12620,14 +12644,16 @@
       "ballparkpal_overlay_adjusted_rank": 177,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 7.9%, which the model treats as sustained power quality.",
       "top_reason_2": "Javier Assad has allowed homers in 4.0% of plate appearances to this batter side.",
       "top_reason_3": "The handedness-specific hard-hit matchup score is 0.2115, supporting loud-contact upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:824691:666182:665871",
@@ -12648,7 +12674,7 @@
       "team": "NYM",
       "opponent_team": "CHC",
       "pitcher_name": "Javier Assad",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -12816,7 +12842,7 @@
       "team": "NYM",
       "opponent_team": "CHC",
       "pitcher_name": "Javier Assad",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -12872,7 +12898,7 @@
       "team": "PIT",
       "opponent_team": "TB",
       "pitcher_name": "Shane McClanahan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -13152,7 +13178,7 @@
       "team": "WSH",
       "opponent_team": "SF",
       "pitcher_name": "Robbie Ray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -13180,14 +13206,16 @@
       "ballparkpal_overlay_adjusted_rank": 187,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 109.5 mph, which points to top-end HR juice.",
       "top_reason_2": "Robbie Ray has allowed barrels on 6.0% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 13.3 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:823475:607208:656550",
@@ -13376,7 +13404,7 @@
       "team": "BAL",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -13432,7 +13460,7 @@
       "team": "SF",
       "opponent_team": "WSH",
       "pitcher_name": "Miles Mikolas",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -13996,7 +14024,7 @@
       "team": "STL",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -14332,7 +14360,7 @@
       "team": "SF",
       "opponent_team": "WSH",
       "pitcher_name": "Miles Mikolas",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -14502,7 +14530,7 @@
       "team": "BAL",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -14558,7 +14586,7 @@
       "team": "NYM",
       "opponent_team": "CHC",
       "pitcher_name": "Javier Assad",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -14586,14 +14614,16 @@
       "ballparkpal_overlay_adjusted_rank": 212,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 94.0 mph, a top-quartile recent batted-ball quality marker.",
       "top_reason_2": "Javier Assad has allowed homers in 4.0% of plate appearances to this batter side.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 50.0%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:824452:621493:676282",
@@ -14614,7 +14644,7 @@
       "team": "BAL",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -14670,7 +14700,7 @@
       "team": "SF",
       "opponent_team": "WSH",
       "pitcher_name": "Miles Mikolas",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -14784,7 +14814,7 @@
       "team": "TB",
       "opponent_team": "PIT",
       "pitcher_name": "Mitch Keller",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -15064,7 +15094,7 @@
       "team": "SF",
       "opponent_team": "WSH",
       "pitcher_name": "Miles Mikolas",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -15290,7 +15320,7 @@
       "team": "TB",
       "opponent_team": "PIT",
       "pitcher_name": "Mitch Keller",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -15318,14 +15348,16 @@
       "ballparkpal_overlay_adjusted_rank": 225,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 6.2%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:824452:656555:669432",
@@ -15402,7 +15434,7 @@
       "team": "PIT",
       "opponent_team": "TB",
       "pitcher_name": "Shane McClanahan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -15682,7 +15714,7 @@
       "team": "BAL",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -15738,7 +15770,7 @@
       "team": "PIT",
       "opponent_team": "TB",
       "pitcher_name": "Shane McClanahan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -15766,14 +15798,16 @@
       "ballparkpal_overlay_adjusted_rank": 233,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 5.7%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Shane McClanahan has allowed homers in 6.1% of plate appearances to this batter side.",
       "top_reason_3": "Shane McClanahan has allowed barrels on 10.0% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:823475:642086:691725",
@@ -15850,7 +15884,7 @@
       "team": "WSH",
       "opponent_team": "SF",
       "pitcher_name": "Robbie Ray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -15964,7 +15998,7 @@
       "team": "TB",
       "opponent_team": "PIT",
       "pitcher_name": "Mitch Keller",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -16020,7 +16054,7 @@
       "team": "WSH",
       "opponent_team": "SF",
       "pitcher_name": "Robbie Ray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -16188,7 +16222,7 @@
       "team": "PIT",
       "opponent_team": "TB",
       "pitcher_name": "Shane McClanahan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -16356,7 +16390,7 @@
       "team": "NYM",
       "opponent_team": "CHC",
       "pitcher_name": "Javier Assad",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -16580,7 +16614,7 @@
       "team": "WSH",
       "opponent_team": "SF",
       "pitcher_name": "Robbie Ray",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -16748,7 +16782,7 @@
       "team": "TB",
       "opponent_team": "PIT",
       "pitcher_name": "Mitch Keller",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -16776,14 +16810,16 @@
       "ballparkpal_overlay_adjusted_rank": 251,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 44.4%, showing consistent quality contact.",
       "top_reason_2": "95+ EV contact rate over the last 30 days is 44.4%, a strong loud-contact input for the model.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:824777:655316:664285",
@@ -17028,7 +17064,7 @@
       "team": "TB",
       "opponent_team": "PIT",
       "pitcher_name": "Mitch Keller",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -17252,7 +17288,7 @@
       "team": "PIT",
       "opponent_team": "TB",
       "pitcher_name": "Shane McClanahan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -223848,14 +223884,14 @@
       "game_pk": 822750,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "SF @ WSH",
       "teams": [
         {
           "team": "SF",
           "opponent_team": "WSH",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 669477,
@@ -223916,7 +223952,7 @@
         {
           "team": "WSH",
           "opponent_team": "SF",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 691781,
@@ -223937,12 +223973,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 695734,
-              "batter_name": "Daylen Lile",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 696285,
               "batter_name": "Jacob Young",
               "batting_order": null,
@@ -223955,10 +223985,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 678391,
-              "batter_name": "Jorbit Vivas",
+              "batter_id": 686894,
+              "batter_name": "Joey Wiemer",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 660688,
+              "batter_name": "Keibert Ruiz",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 671277,
@@ -223980,21 +224016,15 @@
       "game_pk": 823393,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T17:35:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "TB @ PIT",
       "teams": [
         {
           "team": "TB",
           "opponent_team": "PIT",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 810938,
-              "batter_name": "Ben Williamson",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 656775,
               "batter_name": "Cedric Mullins",
@@ -224008,10 +224038,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 641584,
-              "batter_name": "Jake Fraley",
+              "batter_id": 676439,
+              "batter_name": "Hunter Feduccia",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 666018,
@@ -224020,16 +224050,22 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 676356,
+              "batter_name": "Jonny DeLuca",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 691406,
               "batter_name": "Junior Caminero",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 663743,
-              "batter_name": "Nick Fortes",
+              "batter_id": 680700,
+              "batter_name": "Richie Palacios",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 670764,
@@ -224048,19 +224084,31 @@
         {
           "team": "PIT",
           "opponent_team": "TB",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 664040,
-              "batter_name": "Brandon Lowe",
+              "batter_id": 695257,
+              "batter_name": "Billy Cook",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 668804,
               "batter_name": "Bryan Reynolds",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 663968,
+              "batter_name": "Jake Mangum",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 663698,
+              "batter_name": "Joey Bart",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 804606,
@@ -224089,18 +224137,6 @@
             {
               "batter_id": 665833,
               "batter_name": "Oneil Cruz",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 656811,
-              "batter_name": "Ryan O'Hearn",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 687462,
-              "batter_name": "Spencer Horwitz",
               "batting_order": null,
               "selected_for_pick": true
             }
@@ -224239,23 +224275,17 @@
         {
           "team": "BAL",
           "opponent_team": "CLE",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 677942,
+              "batter_name": "Blaze Alexander",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 691723,
               "batter_name": "Coby Mayo",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 681297,
-              "batter_name": "Colton Cowser",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 687637,
-              "batter_name": "Dylan Beavers",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -224272,10 +224302,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 665750,
-              "batter_name": "Leody Taveras",
+              "batter_id": 671286,
+              "batter_name": "Johnathan Rodr\u00edguez",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 624413,
@@ -224284,16 +224314,22 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 694212,
-              "batter_name": "Samuel Basallo",
+              "batter_id": 669087,
+              "batter_name": "Sam Huff",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 621493,
               "batter_name": "Taylor Ward",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 642215,
+              "batter_name": "Weston Wilson",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         },
@@ -224484,14 +224520,14 @@
       "game_pk": 824205,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "STL @ HOU",
       "teams": [
         {
           "team": "STL",
           "opponent_team": "HOU",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 676475,
@@ -224552,7 +224588,7 @@
         {
           "team": "HOU",
           "opponent_team": "STL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 701358,
@@ -224563,12 +224599,6 @@
             {
               "batter_id": 621043,
               "batter_name": "Carlos Correa",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 543877,
-              "batter_name": "Christian V\u00e1zquez",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -224585,22 +224615,28 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 694388,
-              "batter_name": "Joey Loperfido",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 514888,
               "batter_name": "Jose Altuve",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
+              "batter_id": 694376,
+              "batter_name": "Shay Whitcomb",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 666211,
               "batter_name": "Taylor Trammell",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 673237,
+              "batter_name": "Yainer Diaz",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 670541,
@@ -224748,14 +224784,14 @@
       "game_pk": 824691,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:20:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "NYM @ CHC",
       "teams": [
         {
           "team": "NYM",
           "opponent_team": "CHC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666182,
@@ -224772,12 +224808,6 @@
             {
               "batter_id": 701807,
               "batter_name": "Carson Benge",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 682626,
-              "batter_name": "Francisco Alvarez",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -224806,10 +224836,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 502054,
-              "batter_name": "Tommy Pham",
+              "batter_id": 668901,
+              "batter_name": "Mark Vientos",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             }
           ]
         },
@@ -224880,7 +224910,7 @@
       "game_pk": 824371,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T19:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "LAD @ COL",
       "teams": [
@@ -224902,10 +224932,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 518692,
-              "batter_name": "Freddie Freeman",
+              "batter_id": 687221,
+              "batter_name": "Dalton Rushing",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 808975,
@@ -224948,23 +224978,11 @@
         {
           "team": "COL",
           "opponent_team": "LAD",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 686668,
-              "batter_name": "Brenton Doyle",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 666397,
               "batter_name": "Edouard Julien",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 678662,
-              "batter_name": "Ezequiel Tovar",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -224973,6 +224991,12 @@
               "batter_name": "Hunter Goodman",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 664983,
+              "batter_name": "Jake McCarthy",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 691720,
