@@ -147,7 +147,7 @@ class BallparkPalSnapshotAndOverlayTests(unittest.TestCase):
         self.assertEqual(cleaned[0]["ballparkpal_overlay_display_score"], 73.5)
         self.assertEqual(cleaned[0]["ballparkpal_overlay_direction"], "favorable")
 
-    def test_latest_snapshot_is_used_even_when_requested_date_differs(self) -> None:
+    def test_stale_latest_snapshot_is_ignored_when_requested_date_differs(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
             latest_snapshot = base / "latest_snapshot.json"
@@ -167,6 +167,4 @@ class BallparkPalSnapshotAndOverlayTests(unittest.TestCase):
             ):
                 snapshot = load_ballparkpal_snapshot("2026-04-18")
 
-        self.assertIsNotNone(snapshot)
-        self.assertEqual(snapshot["requested_date"], "2026-04-17")
-        self.assertEqual(snapshot["_source_path"], str(latest_snapshot))
+        self.assertIsNone(snapshot)
