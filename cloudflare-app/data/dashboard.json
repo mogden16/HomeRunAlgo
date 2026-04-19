@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-19T15:31:29.423656+00:00",
+  "generated_at": "2026-04-19T16:10:56.454852+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2696,7 +2696,7 @@
       "team": "LAD",
       "opponent_team": "COL",
       "pitcher_name": "Michael Lorenzen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -2724,14 +2724,16 @@
       "ballparkpal_overlay_adjusted_rank": 1,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 95.0 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Michael Lorenzen has allowed a 44.9% hard-hit rate over the last 30 days.",
       "top_reason_3": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:824371:660271:547179",
@@ -2752,7 +2754,7 @@
       "team": "LAD",
       "opponent_team": "COL",
       "pitcher_name": "Michael Lorenzen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -2808,7 +2810,7 @@
       "team": "LAD",
       "opponent_team": "COL",
       "pitcher_name": "Michael Lorenzen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -2864,7 +2866,7 @@
       "team": "LAD",
       "opponent_team": "COL",
       "pitcher_name": "Michael Lorenzen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -2920,7 +2922,7 @@
       "team": "LAD",
       "opponent_team": "COL",
       "pitcher_name": "Michael Lorenzen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -2976,7 +2978,7 @@
       "team": "LAD",
       "opponent_team": "COL",
       "pitcher_name": "Michael Lorenzen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -3004,14 +3006,16 @@
       "ballparkpal_overlay_adjusted_rank": 6,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0027, reinforcing the power-contact fit.",
       "top_reason_2": "Michael Lorenzen has allowed a 44.9% hard-hit rate over the last 30 days.",
       "top_reason_3": "Park factor for the hitter's handedness is 120.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:824371:571970:547179",
@@ -3032,7 +3036,7 @@
       "team": "LAD",
       "opponent_team": "COL",
       "pitcher_name": "Michael Lorenzen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -3932,7 +3936,7 @@
       "team": "LAD",
       "opponent_team": "COL",
       "pitcher_name": "Michael Lorenzen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -5956,7 +5960,7 @@
       "team": "CHC",
       "opponent_team": "NYM",
       "pitcher_name": "Tobias Myers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6432,14 +6436,16 @@
       "ballparkpal_overlay_adjusted_rank": 67,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2173, supporting loud-contact upside.",
       "top_reason_2": "Brady Singer has allowed 91.8 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0026, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:824047:681351:650633",
@@ -6628,7 +6634,7 @@
       "team": "LAD",
       "opponent_team": "COL",
       "pitcher_name": "Michael Lorenzen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -8602,7 +8608,7 @@
       "team": "CHC",
       "opponent_team": "NYM",
       "pitcher_name": "Tobias Myers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -8658,7 +8664,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Framber Valdez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -8686,14 +8692,16 @@
       "ballparkpal_overlay_adjusted_rank": 107,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.7 mph, which points to top-end HR juice.",
       "top_reason_2": "Projected humidity is 90%, a modest positive weather input in the live model.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 47.8%, a above-baseline recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:823475:624641:656550",
@@ -9164,7 +9172,7 @@
       "team": "CHC",
       "opponent_team": "NYM",
       "pitcher_name": "Tobias Myers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -9964,7 +9972,7 @@
       "team": "CHC",
       "opponent_team": "NYM",
       "pitcher_name": "Tobias Myers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -9992,14 +10000,16 @@
       "ballparkpal_overlay_adjusted_rank": 130,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 5.7%, which the model treats as sustained power quality.",
       "top_reason_2": "Tobias Myers has allowed barrels on 5.4% of batted balls to this batter side.",
       "top_reason_3": "Barrel rate over the last 10 days is 5.6%, a top-quartile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:823556:686681:677960",
@@ -10754,7 +10764,7 @@
       "team": "CHC",
       "opponent_team": "NYM",
       "pitcher_name": "Tobias Myers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -10782,14 +10792,16 @@
       "ballparkpal_overlay_adjusted_rank": 144,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0015, reinforcing the power-contact fit.",
       "top_reason_2": "Tobias Myers has allowed barrels on 5.4% of batted balls to this batter side.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:823881:686217:691587",
@@ -11098,7 +11110,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Framber Valdez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -11126,14 +11138,16 @@
       "ballparkpal_overlay_adjusted_rank": 150,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Projected humidity is 90%, a modest positive weather input in the live model.",
       "top_reason_2": "Projected wind speed is 11.5 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:823718:605137:663903",
@@ -11378,7 +11392,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Framber Valdez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -11406,14 +11420,16 @@
       "ballparkpal_overlay_adjusted_rank": 155,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2219, supporting loud-contact upside.",
       "top_reason_2": "Projected humidity is 90%, a modest positive weather input in the live model.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 44.7%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-19:823393:687462:663556",
@@ -12056,7 +12072,7 @@
       "team": "CHC",
       "opponent_team": "NYM",
       "pitcher_name": "Tobias Myers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -12730,7 +12746,7 @@
       "team": "CHC",
       "opponent_team": "NYM",
       "pitcher_name": "Tobias Myers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -13066,7 +13082,7 @@
       "team": "CHC",
       "opponent_team": "NYM",
       "pitcher_name": "Tobias Myers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -13348,7 +13364,7 @@
       "team": "CHC",
       "opponent_team": "NYM",
       "pitcher_name": "Tobias Myers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -13686,7 +13702,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Framber Valdez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -13856,7 +13872,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Framber Valdez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -14418,7 +14434,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Framber Valdez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -14870,7 +14886,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Framber Valdez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -16840,7 +16856,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Framber Valdez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -17008,7 +17024,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Framber Valdez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -224735,6 +224751,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 681546,
+              "batter_name": "James Outman",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 605137,
               "batter_name": "Josh Bell",
               "batting_order": null,
@@ -224749,12 +224771,6 @@
             {
               "batter_id": 807712,
               "batter_name": "Luke Keaschall",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 670242,
-              "batter_name": "Matt Wallner",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -224846,13 +224862,19 @@
         {
           "team": "CHC",
           "opponent_team": "NYM",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 608324,
               "batter_name": "Alex Bregman",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 608348,
+              "batter_name": "Carson Kelly",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 621020,
@@ -224867,22 +224889,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 807713,
-              "batter_name": "Matt Shaw",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 683737,
               "batter_name": "Michael Busch",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 665804,
-              "batter_name": "Miguel Amaya",
+              "batter_id": 694208,
+              "batter_name": "Mois\u00e9s Ballesteros",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 663538,
@@ -224917,8 +224933,14 @@
         {
           "team": "LAD",
           "opponent_team": "COL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 669743,
+              "batter_name": "Alex Call",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 690976,
               "batter_name": "Alex Freeland",
@@ -224930,12 +224952,6 @@
               "batter_name": "Andy Pages",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 687221,
-              "batter_name": "Dalton Rushing",
-              "batting_order": null,
-              "selected_for_pick": false
             },
             {
               "batter_id": 808975,
@@ -224958,12 +224974,6 @@
             {
               "batter_id": 660271,
               "batter_name": "Shohei Ohtani",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 606192,
-              "batter_name": "Teoscar Hern\u00e1ndez",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -225509,7 +225519,7 @@
       "game_pk": 824777,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T20:35:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "DET @ BOS",
       "teams": [
@@ -225577,7 +225587,7 @@
         {
           "team": "BOS",
           "opponent_team": "DET",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 655316,
@@ -225586,28 +225596,22 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 702332,
+              "batter_name": "Caleb Durbin",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 678882,
               "batter_name": "Ceddanne Rafaela",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 657136,
-              "batter_name": "Connor Wong",
+              "batter_id": 643396,
+              "batter_name": "Isiah Kiner-Falefa",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 680776,
-              "batter_name": "Jarren Duran",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 691785,
-              "batter_name": "Marcelo Mayer",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 701350,
