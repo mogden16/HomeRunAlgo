@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-19T21:56:08.558293+00:00",
+  "generated_at": "2026-04-19T22:30:04.758871+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -90,10 +90,10 @@
     "latest_slate_size": 261,
     "tracked_dates": 25,
     "tracked_picks": 3923,
-    "settled_picks": 3159,
+    "settled_picks": 3171,
     "tracked_homers": 349,
-    "tracked_hit_rate": 0.110478,
-    "open_picks": 764
+    "tracked_hit_rate": 0.11006,
+    "open_picks": 752
   },
   "confidence_summary": [
     {
@@ -112,17 +112,17 @@
     },
     {
       "confidence_tier": "watch",
-      "picks": 535,
+      "picks": 540,
       "homers": 79,
-      "hit_rate": 0.147664,
-      "avg_probability": 0.138909
+      "hit_rate": 0.146296,
+      "avg_probability": 0.138906
     },
     {
       "confidence_tier": "longshot",
-      "picks": 2334,
+      "picks": 2341,
       "homers": 205,
-      "hit_rate": 0.087832,
-      "avg_probability": 0.094947
+      "hit_rate": 0.087569,
+      "avg_probability": 0.09495
     }
   ],
   "player_leaderboard": [
@@ -183,6 +183,13 @@
       "hit_rate": 0.3125
     },
     {
+      "batter_name": "Shohei Ohtani",
+      "team": "LAD",
+      "picks": 16,
+      "homers": 5,
+      "hit_rate": 0.3125
+    },
+    {
       "batter_name": "Aaron Judge",
       "team": "NYY",
       "picks": 15,
@@ -199,13 +206,6 @@
     {
       "batter_name": "Junior Caminero",
       "team": "TB",
-      "picks": 15,
-      "homers": 5,
-      "hit_rate": 0.333333
-    },
-    {
-      "batter_name": "Shohei Ohtani",
-      "team": "LAD",
       "picks": 15,
       "homers": 5,
       "hit_rate": 0.333333
@@ -302,6 +302,13 @@
       "hit_rate": 0.2
     },
     {
+      "batter_name": "Andy Pages",
+      "team": "LAD",
+      "picks": 14,
+      "homers": 3,
+      "hit_rate": 0.214286
+    },
+    {
       "batter_name": "Brandon Lowe",
       "team": "PIT",
       "picks": 14,
@@ -321,13 +328,6 @@
       "picks": 14,
       "homers": 3,
       "hit_rate": 0.214286
-    },
-    {
-      "batter_name": "Andy Pages",
-      "team": "LAD",
-      "picks": 13,
-      "homers": 3,
-      "hit_rate": 0.230769
     },
     {
       "batter_name": "Brooks Lee",
@@ -372,15 +372,15 @@
       "hit_rate": 0.25
     },
     {
-      "batter_name": "Carter Jensen",
-      "team": "KC",
-      "picks": 11,
-      "homers": 3,
-      "hit_rate": 0.272727
-    },
-    {
       "batter_name": "Hunter Goodman",
       "team": "COL",
+      "picks": 12,
+      "homers": 3,
+      "hit_rate": 0.25
+    },
+    {
+      "batter_name": "Carter Jensen",
+      "team": "KC",
       "picks": 11,
       "homers": 3,
       "hit_rate": 0.272727
@@ -554,8 +554,22 @@
       "hit_rate": 0.153846
     },
     {
+      "batter_name": "Kyle Tucker",
+      "team": "LAD",
+      "picks": 13,
+      "homers": 2,
+      "hit_rate": 0.153846
+    },
+    {
       "batter_name": "Manny Machado",
       "team": "SD",
+      "picks": 13,
+      "homers": 2,
+      "hit_rate": 0.153846
+    },
+    {
+      "batter_name": "Max Muncy",
+      "team": "LAD",
       "picks": 13,
       "homers": 2,
       "hit_rate": 0.153846
@@ -605,20 +619,6 @@
     {
       "batter_name": "Ian Happ",
       "team": "CHC",
-      "picks": 12,
-      "homers": 2,
-      "hit_rate": 0.166667
-    },
-    {
-      "batter_name": "Kyle Tucker",
-      "team": "LAD",
-      "picks": 12,
-      "homers": 2,
-      "hit_rate": 0.166667
-    },
-    {
-      "batter_name": "Max Muncy",
-      "team": "LAD",
       "picks": 12,
       "homers": 2,
       "hit_rate": 0.166667
@@ -974,6 +974,13 @@
       "hit_rate": 0.076923
     },
     {
+      "batter_name": "TJ Rumfield",
+      "team": "COL",
+      "picks": 13,
+      "homers": 1,
+      "hit_rate": 0.076923
+    },
+    {
       "batter_name": "Trevor Story",
       "team": "BOS",
       "picks": 13,
@@ -1037,13 +1044,6 @@
       "hit_rate": 0.083333
     },
     {
-      "batter_name": "TJ Rumfield",
-      "team": "COL",
-      "picks": 12,
-      "homers": 1,
-      "hit_rate": 0.083333
-    },
-    {
       "batter_name": "Victor Caratini",
       "team": "MIN",
       "picks": 12,
@@ -1067,6 +1067,13 @@
     {
       "batter_name": "Brandon Marsh",
       "team": "PHI",
+      "picks": 11,
+      "homers": 1,
+      "hit_rate": 0.090909
+    },
+    {
+      "batter_name": "Edouard Julien",
+      "team": "COL",
       "picks": 11,
       "homers": 1,
       "hit_rate": 0.090909
@@ -1105,13 +1112,6 @@
       "picks": 11,
       "homers": 1,
       "hit_rate": 0.090909
-    },
-    {
-      "batter_name": "Edouard Julien",
-      "team": "COL",
-      "picks": 10,
-      "homers": 1,
-      "hit_rate": 0.1
     },
     {
       "batter_name": "Gary S\u00e1nchez",
@@ -1240,6 +1240,13 @@
       "hit_rate": 0.125
     },
     {
+      "batter_name": "Troy Johnston",
+      "team": "COL",
+      "picks": 8,
+      "homers": 1,
+      "hit_rate": 0.125
+    },
+    {
       "batter_name": "Andrew Benintendi",
       "team": "CWS",
       "picks": 7,
@@ -1270,13 +1277,6 @@
     {
       "batter_name": "Ryan Jeffers",
       "team": "MIN",
-      "picks": 7,
-      "homers": 1,
-      "hit_rate": 0.142857
-    },
-    {
-      "batter_name": "Troy Johnston",
-      "team": "COL",
       "picks": 7,
       "homers": 1,
       "hit_rate": 0.142857
@@ -1422,6 +1422,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Alex Freeland",
+      "team": "LAD",
+      "picks": 13,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Chandler Simpson",
       "team": "TB",
       "picks": 13,
@@ -1488,13 +1495,6 @@
       "batter_name": "Nolan Schanuel",
       "team": "LAA",
       "picks": 13,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Alex Freeland",
-      "team": "LAD",
-      "picks": 12,
       "homers": 0,
       "hit_rate": 0.0
     },
@@ -1702,6 +1702,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Will Smith",
+      "team": "LAD",
+      "picks": 9,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Ben Williamson",
       "team": "TB",
       "picks": 8,
@@ -1767,13 +1774,6 @@
     {
       "batter_name": "Owen Caissie",
       "team": "MIA",
-      "picks": 8,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Will Smith",
-      "team": "LAD",
       "picks": 8,
       "homers": 0,
       "hit_rate": 0.0
@@ -1912,6 +1912,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Hyeseong Kim",
+      "team": "LAD",
+      "picks": 6,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Jerar Encarnacion",
       "team": "SF",
       "picks": 6,
@@ -1942,13 +1949,6 @@
     {
       "batter_name": "Harrison Bader",
       "team": "SF",
-      "picks": 5,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Hyeseong Kim",
-      "team": "LAD",
       "picks": 5,
       "homers": 0,
       "hit_rate": 0.0
@@ -2024,6 +2024,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Tyler Freeman",
+      "team": "COL",
+      "picks": 5,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Austin Slater",
       "team": "MIA",
       "picks": 4,
@@ -2075,13 +2082,6 @@
     {
       "batter_name": "Tristan Peters",
       "team": "CWS",
-      "picks": 4,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Tyler Freeman",
-      "team": "COL",
       "picks": 4,
       "homers": 0,
       "hit_rate": 0.0
@@ -2686,7 +2686,7 @@
       "game_pk": 824371,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T19:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 11,
       "original_rank": 11,
       "original_score": 96.2,
@@ -2744,7 +2744,7 @@
       "game_pk": 824371,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T19:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 42,
       "original_rank": 42,
       "original_score": 84.3,
@@ -2781,15 +2781,15 @@
       "ballparkpal_overlay_adjusted_score": 74.9,
       "ballparkpal_overlay_adjusted_rank": 2,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 7.8% barrel-per-PA split.",
       "top_reason_2": "Michael Lorenzen has allowed a 44.9% hard-hit rate over the last 30 days.",
       "top_reason_3": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:824371:663656:547179",
@@ -2800,7 +2800,7 @@
       "game_pk": 824371,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T19:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 44,
       "original_rank": 44,
       "original_score": 83.5,
@@ -2837,15 +2837,15 @@
       "ballparkpal_overlay_adjusted_score": 73.3,
       "ballparkpal_overlay_adjusted_rank": 3,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 8.1%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Michael Lorenzen has allowed a 44.9% hard-hit rate over the last 30 days.",
       "top_reason_3": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:824371:669257:547179",
@@ -2856,7 +2856,7 @@
       "game_pk": 824371,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T19:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 89,
       "original_rank": 89,
       "original_score": 66.3,
@@ -2893,15 +2893,15 @@
       "ballparkpal_overlay_adjusted_score": 71.9,
       "ballparkpal_overlay_adjusted_rank": 4,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.8 mph, which points to top-end HR juice.",
       "top_reason_2": "Michael Lorenzen has allowed a 44.9% hard-hit rate over the last 30 days.",
       "top_reason_3": "Park factor for the hitter's handedness is 120.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:824371:681624:547179",
@@ -2912,7 +2912,7 @@
       "game_pk": 824371,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T19:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 26,
       "original_rank": 26,
       "original_score": 90.4,
@@ -2949,15 +2949,15 @@
       "ballparkpal_overlay_adjusted_score": 71.1,
       "ballparkpal_overlay_adjusted_rank": 5,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 63.2%, a top-decile recent-contact signal.",
       "top_reason_2": "Michael Lorenzen has allowed a 44.9% hard-hit rate over the last 30 days.",
       "top_reason_3": "Park factor for the hitter's handedness is 120.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:824371:606192:547179",
@@ -2968,7 +2968,7 @@
       "game_pk": 824371,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T19:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 30,
       "original_rank": 30,
       "original_score": 88.9,
@@ -3026,7 +3026,7 @@
       "game_pk": 824371,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T19:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 19,
       "original_rank": 19,
       "original_score": 93.1,
@@ -3063,15 +3063,15 @@
       "ballparkpal_overlay_adjusted_score": 70.3,
       "ballparkpal_overlay_adjusted_rank": 7,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 12.5%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Michael Lorenzen has allowed a 44.9% hard-hit rate over the last 30 days.",
       "top_reason_3": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:824205:670541:669461",
@@ -3306,7 +3306,7 @@
       "game_pk": 824371,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T19:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 38,
       "original_rank": 38,
       "original_score": 85.8,
@@ -3364,7 +3364,7 @@
       "game_pk": 824371,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T19:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 33,
       "original_rank": 33,
       "original_score": 87.7,
@@ -3758,7 +3758,7 @@
       "game_pk": 824371,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T19:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 31,
       "original_rank": 31,
       "original_score": 88.5,
@@ -3795,15 +3795,15 @@
       "ballparkpal_overlay_adjusted_score": 57.3,
       "ballparkpal_overlay_adjusted_rank": 20,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 101.6 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Roki Sasaki has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 120.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:823150:677594:669022",
@@ -3926,7 +3926,7 @@
       "game_pk": 824371,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T19:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 151,
       "original_rank": 151,
       "original_score": 42.5,
@@ -3963,15 +3963,15 @@
       "ballparkpal_overlay_adjusted_score": 56.3,
       "ballparkpal_overlay_adjusted_rank": 23,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Michael Lorenzen has allowed a 44.9% hard-hit rate over the last 30 days.",
       "top_reason_2": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
       "top_reason_3": "Michael Lorenzen has allowed 44.9% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:824205:691023:681347",
@@ -6640,7 +6640,7 @@
       "game_pk": 824371,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T19:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 232,
       "original_rank": 232,
       "original_score": 11.5,
@@ -6677,15 +6677,15 @@
       "ballparkpal_overlay_adjusted_score": 41.8,
       "ballparkpal_overlay_adjusted_rank": 71,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 5.3%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Michael Lorenzen has allowed a 44.9% hard-hit rate over the last 30 days.",
       "top_reason_3": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:823556:700250:666142",
@@ -7324,7 +7324,7 @@
       "game_pk": 824371,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T19:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 85,
       "original_rank": 85,
       "original_score": 67.8,
@@ -7361,15 +7361,15 @@
       "ballparkpal_overlay_adjusted_score": 39.1,
       "ballparkpal_overlay_adjusted_rank": 83,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0028, reinforcing the power-contact fit.",
       "top_reason_2": "Roki Sasaki has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:825100:682998:592332",
@@ -7550,7 +7550,7 @@
       "game_pk": 824371,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T19:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 76,
       "original_rank": 76,
       "original_score": 71.3,
@@ -7587,15 +7587,15 @@
       "ballparkpal_overlay_adjusted_score": 38.0,
       "ballparkpal_overlay_adjusted_rank": 87,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0027, reinforcing the power-contact fit.",
       "top_reason_2": "Roki Sasaki has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:823556:642708:666142",
@@ -8004,7 +8004,7 @@
       "game_pk": 824371,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T19:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 164,
       "original_rank": 164,
       "original_score": 37.5,
@@ -9031,7 +9031,7 @@
       "game_pk": 824371,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T19:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 163,
       "original_rank": 163,
       "original_score": 37.9,
@@ -9068,15 +9068,15 @@
       "ballparkpal_overlay_adjusted_score": 34.4,
       "ballparkpal_overlay_adjusted_rank": 113,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Roki Sasaki has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_2": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
       "top_reason_3": "Roki Sasaki has allowed barrels on 6.8% of batted balls to this batter side.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:824452:694212:676282",
@@ -10511,7 +10511,7 @@
       "game_pk": 824371,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T19:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 242,
       "original_rank": 242,
       "original_score": 7.7,
@@ -10548,15 +10548,15 @@
       "ballparkpal_overlay_adjusted_score": 32.6,
       "ballparkpal_overlay_adjusted_rank": 139,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
       "top_reason_2": "Roki Sasaki has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 120.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-19:824205:701675:681347",
@@ -12273,7 +12273,7 @@
       "game_pk": 824371,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T19:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 131,
       "original_rank": 131,
       "original_score": 50.2,
@@ -224721,7 +224721,7 @@
       "game_pk": 823718,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T18:10:00Z",
-      "game_status": "Game Over",
+      "game_status": "Final",
       "game_state": "final",
       "matchup": "CIN @ MIN",
       "teams": [
@@ -224979,8 +224979,8 @@
       "game_pk": 824371,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T19:10:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Game Over",
+      "game_state": "final",
       "matchup": "LAD @ COL",
       "teams": [
         {
