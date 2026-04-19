@@ -1,12 +1,15 @@
 from __future__ import annotations
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from openpyxl import Workbook
 
 from scripts.build_dashboard_artifacts import clean_current_pick_rows, normalize_pick
+from scripts.live_pipeline import load_ballparkpal_snapshot
 from tools.ballparkpal.models import DownloadedWorkbook
 from tools.ballparkpal.scoring import compute_ballparkpal_overlay
 from tools.ballparkpal.snapshot import build_ballparkpal_snapshot
@@ -143,3 +146,27 @@ class BallparkPalSnapshotAndOverlayTests(unittest.TestCase):
         self.assertEqual(cleaned[0]["ballparkpal_team_home_runs"], 1.42)
         self.assertEqual(cleaned[0]["ballparkpal_overlay_display_score"], 73.5)
         self.assertEqual(cleaned[0]["ballparkpal_overlay_direction"], "favorable")
+
+    def test_latest_snapshot_is_used_even_when_requested_date_differs(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            latest_snapshot = base / "latest_snapshot.json"
+            latest_snapshot.write_text(
+                json.dumps(
+                    {
+                        "requested_date": "2026-04-17",
+                        "pulled_at": "2026-04-17T06:10:00Z",
+                        "overall_valid": True,
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            with patch("scripts.live_pipeline.BALLPARKPAL_LATEST_SNAPSHOT_PATH", latest_snapshot), patch(
+                "scripts.live_pipeline.BALLPARKPAL_VALIDATED_DIR", base / "validated"
+            ):
+                snapshot = load_ballparkpal_snapshot("2026-04-18")
+
+        self.assertIsNotNone(snapshot)
+        self.assertEqual(snapshot["requested_date"], "2026-04-17")
+        self.assertEqual(snapshot["_source_path"], str(latest_snapshot))

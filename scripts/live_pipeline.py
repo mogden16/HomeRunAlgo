@@ -180,8 +180,8 @@ LIVE_BALLPARKPAL_SOURCE_COLUMNS = [
 
 def load_ballparkpal_snapshot(schedule_date: str) -> dict[str, Any] | None:
     candidate_paths = [
-        BALLPARKPAL_VALIDATED_DIR / schedule_date / "ballparkpal_snapshot.json",
         BALLPARKPAL_LATEST_SNAPSHOT_PATH,
+        BALLPARKPAL_VALIDATED_DIR / schedule_date / "ballparkpal_snapshot.json",
     ]
     for path in candidate_paths:
         if not path.exists():
@@ -191,8 +191,6 @@ def load_ballparkpal_snapshot(schedule_date: str) -> dict[str, Any] | None:
         except json.JSONDecodeError:
             continue
         if not isinstance(payload, dict):
-            continue
-        if str(payload.get("requested_date") or "") != schedule_date:
             continue
         if payload.get("overall_valid") is False:
             continue

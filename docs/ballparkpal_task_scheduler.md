@@ -1,6 +1,6 @@
 # Ballpark Pal Morning Task
 
-Use a Windows Task Scheduler job to pull Ballpark Pal exports every morning and refresh the overlay-only dashboard update.
+Use a Windows Task Scheduler job to pull Ballpark Pal exports every morning and refresh the validated snapshot artifact.
 
 ## What it runs
 
@@ -9,7 +9,7 @@ Use a Windows Task Scheduler job to pull Ballpark Pal exports every morning and 
   - downloads the four Ballpark Pal exports for today's slate
   - validates the workbooks
   - writes the normalized snapshot under `data/ballparkpal/validated/YYYY-MM-DD/`
-  - runs the overlay-only publish step so the Cloudflare dashboard artifact is updated
+  - updates `data/ballparkpal/validated/latest_snapshot.json`
 
 ## Default schedule
 
@@ -36,7 +36,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\register_ballpar
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\run_ballparkpal_morning_refresh.ps1
 ```
 
-To pull only the exports and skip the dashboard publish step:
+To pull only the exports and write the snapshot, skipping any dashboard publish step:
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\run_ballparkpal_morning_refresh.ps1 -SkipPublish
@@ -56,5 +56,5 @@ python -m playwright install chromium
 
 - The task assumes the machine is on.
 - Because the task uses S4U, it does not require an interactive desktop session.
-- If the Ballpark Pal validation fails, the publish step is skipped.
+- The task does not publish the dashboard directly. Live refresh paths read the latest validated snapshot throughout the day.
 - The snapshot remains a daily forward archive. Historical date pulls are not assumed to be true point-in-time backfills unless the workbook content matches the requested slate date.

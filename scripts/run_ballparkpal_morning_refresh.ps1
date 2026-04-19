@@ -51,17 +51,4 @@ if ($LASTEXITCODE -ne 0) {
     throw "Ballpark Pal validation failed with exit code $LASTEXITCODE"
 }
 
-if (-not $SkipPublish) {
-    $publishArgs = @(
-        (Join-Path $repoRoot "scripts\publish_live_picks.py"),
-        "--schedule-date", $resolvedRequestedDate,
-        "--overlay-only"
-    )
-    Write-Host "Publishing overlay-only dashboard update for $resolvedRequestedDate"
-    & $resolvedPython @publishArgs
-    if ($LASTEXITCODE -ne 0) {
-        throw "Overlay-only publish failed with exit code $LASTEXITCODE"
-    }
-}
-
 Write-Host "Ballpark Pal morning refresh complete for $resolvedRequestedDate"
