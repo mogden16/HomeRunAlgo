@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-20T17:06:13.690790+00:00",
+  "generated_at": "2026-04-20T18:05:41.484830+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -8318,7 +8318,7 @@
       "team": "CLE",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -8374,7 +8374,7 @@
       "team": "CLE",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -10894,7 +10894,7 @@
       "team": "CLE",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -11062,7 +11062,7 @@
       "team": "CLE",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -11342,7 +11342,7 @@
       "team": "CLE",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -11370,14 +11370,16 @@
       "ballparkpal_overlay_adjusted_rank": 155,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 7.7%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Spencer Arrighetti has allowed barrels on 7.1% of recent batted balls.",
       "top_reason_3": "Barrel rate over the last 30 days is 6.0%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-20:824692:608324:605400",
@@ -11566,7 +11568,7 @@
       "team": "CLE",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -11902,7 +11904,7 @@
       "team": "CLE",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -12126,7 +12128,7 @@
       "team": "CLE",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -12182,7 +12184,7 @@
       "team": "CLE",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -12210,14 +12212,16 @@
       "ballparkpal_overlay_adjusted_rank": 170,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 51.9%, a top-quartile recent-contact signal.",
       "top_reason_2": "Spencer Arrighetti has allowed barrels on 7.1% of recent batted balls.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 51.9%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     }
   ],
   "history": [
@@ -233627,7 +233631,7 @@
       "game_pk": 824450,
       "game_date": "2026-04-20",
       "game_datetime": "2026-04-20T22:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "HOU @ CLE",
       "teams": [
@@ -233695,13 +233699,13 @@
         {
           "team": "CLE",
           "opponent_team": "HOU",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 682657,
-              "batter_name": "Angel Mart\u00ednez",
+              "batter_id": 666310,
+              "batter_name": "Bo Naylor",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 677587,
@@ -233716,8 +233720,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 682177,
-              "batter_name": "Daniel Schneemann",
+              "batter_id": 671655,
+              "batter_name": "George Valera",
               "batting_order": null,
               "selected_for_pick": true
             },
