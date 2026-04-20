@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-20T19:04:18.414178+00:00",
+  "generated_at": "2026-04-20T20:07:54.811815+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -3800,7 +3800,7 @@
       "team": "TB",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -4362,7 +4362,7 @@
       "team": "TB",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -5038,7 +5038,7 @@
       "team": "TB",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -5432,7 +5432,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -5546,7 +5546,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -5882,7 +5882,7 @@
       "team": "STL",
       "opponent_team": "MIA",
       "pitcher_name": "Max Meyer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -5938,7 +5938,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -6162,7 +6162,7 @@
       "team": "TB",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -6190,14 +6190,16 @@
       "ballparkpal_overlay_adjusted_rank": 62,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Rhett Lowder has allowed 90.3 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_2": "Projected wind speed is 11.9 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Rhett Lowder has allowed a 45.2% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-20:824046:676914:672282",
@@ -6274,7 +6276,7 @@
       "team": "WSH",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -6302,14 +6304,16 @@
       "ballparkpal_overlay_adjusted_rank": 64,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 43.8%, showing consistent quality contact.",
       "top_reason_2": "Projected wind speed is 11.9 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 43.8%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-20:824125:657041:680694",
@@ -6330,7 +6334,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -6358,14 +6362,16 @@
       "ballparkpal_overlay_adjusted_rank": 65,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Projected wind speed is 12.5 mph, which the live model treats as favorable weather context.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-20:822749:678391:693821",
@@ -6386,7 +6392,7 @@
       "team": "WSH",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -6414,14 +6420,16 @@
       "ballparkpal_overlay_adjusted_rank": 66,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Projected wind speed is 11.9 mph, which the live model treats as favorable weather context.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-20:824692:807713:605400",
@@ -6666,7 +6674,7 @@
       "team": "STL",
       "opponent_team": "MIA",
       "pitcher_name": "Max Meyer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -6946,7 +6954,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -7002,7 +7010,7 @@
       "team": "STL",
       "opponent_team": "MIA",
       "pitcher_name": "Max Meyer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -7956,7 +7964,7 @@
       "team": "HOU",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -8012,7 +8020,7 @@
       "team": "HOU",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -8040,14 +8048,16 @@
       "ballparkpal_overlay_adjusted_rank": 95,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 20.0%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Slade Cecconi has allowed homers in 4.3% of plate appearances to this batter side.",
       "top_reason_3": "Barrel rate over the last 30 days is 12.5%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-20:824450:543877:677944",
@@ -8068,7 +8078,7 @@
       "team": "HOU",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -8096,14 +8106,16 @@
       "ballparkpal_overlay_adjusted_rank": 96,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Slade Cecconi has allowed homers in 4.3% of plate appearances to this batter side.",
       "top_reason_2": "Slade Cecconi has allowed barrels on 6.3% of batted balls to this batter side.",
       "top_reason_3": "Slade Cecconi has allowed barrels on 6.0% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-20:824776:805808:543243",
@@ -8292,7 +8304,7 @@
       "team": "STL",
       "opponent_team": "MIA",
       "pitcher_name": "Max Meyer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -8572,7 +8584,7 @@
       "team": "TB",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -8740,7 +8752,7 @@
       "team": "STL",
       "opponent_team": "MIA",
       "pitcher_name": "Max Meyer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -9188,7 +9200,7 @@
       "team": "WSH",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -9356,7 +9368,7 @@
       "team": "TB",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -9468,7 +9480,7 @@
       "team": "WSH",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -9636,7 +9648,7 @@
       "team": "TB",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -9804,7 +9816,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -9916,7 +9928,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -10028,7 +10040,7 @@
       "team": "TB",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -10364,7 +10376,7 @@
       "team": "STL",
       "opponent_team": "MIA",
       "pitcher_name": "Max Meyer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -10392,14 +10404,16 @@
       "ballparkpal_overlay_adjusted_rank": 137,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 52.9%, a top-quartile recent-contact signal.",
       "top_reason_2": "Max Meyer has allowed homers in 4.2% of plate appearances to this batter side.",
       "top_reason_3": "Projected wind speed is 14.0 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-20:822749:643289:663623",
@@ -10478,7 +10492,7 @@
       "team": "HOU",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -10534,7 +10548,7 @@
       "team": "STL",
       "opponent_team": "MIA",
       "pitcher_name": "Max Meyer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -10562,14 +10576,16 @@
       "ballparkpal_overlay_adjusted_rank": 140,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 4.2%, which the model treats as sustained power quality.",
       "top_reason_2": "Max Meyer has allowed homers in 3.9% of plate appearances to this batter side.",
       "top_reason_3": "Projected wind speed is 14.0 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-20:822994:670764:695076",
@@ -10590,7 +10606,7 @@
       "team": "TB",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -10758,7 +10774,7 @@
       "team": "WSH",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -10814,7 +10830,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -10870,7 +10886,7 @@
       "team": "WSH",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -10982,7 +10998,7 @@
       "team": "WSH",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -11150,7 +11166,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -11262,7 +11278,7 @@
       "team": "HOU",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -11488,7 +11504,7 @@
       "team": "WSH",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -11544,7 +11560,7 @@
       "team": "WSH",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -11712,7 +11728,7 @@
       "team": "STL",
       "opponent_team": "MIA",
       "pitcher_name": "Max Meyer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -11768,7 +11784,7 @@
       "team": "STL",
       "opponent_team": "MIA",
       "pitcher_name": "Max Meyer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -11824,7 +11840,7 @@
       "team": "HOU",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -11880,7 +11896,7 @@
       "team": "HOU",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -12048,7 +12064,7 @@
       "team": "HOU",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -12076,14 +12092,16 @@
       "ballparkpal_overlay_adjusted_rank": 167,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 112.3 mph, which points to top-end HR juice.",
       "top_reason_2": "Slade Cecconi has allowed homers in 4.3% of plate appearances to this batter side.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 60.0%, a top-decile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-20:824450:666211:677944",
@@ -12104,7 +12122,7 @@
       "team": "HOU",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -233670,13 +233688,13 @@
         {
           "team": "HOU",
           "opponent_team": "CLE",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 701358,
-              "batter_name": "Cam Smith",
+              "batter_id": 694728,
+              "batter_name": "Brice Matthews",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 621043,
@@ -233685,16 +233703,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 543877,
-              "batter_name": "Christian V\u00e1zquez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 572233,
               "batter_name": "Christian Walker",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 687957,
+              "batter_name": "Dustin Harris",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 670623,
@@ -233709,16 +233727,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 694376,
-              "batter_name": "Shay Whitcomb",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 666211,
               "batter_name": "Taylor Trammell",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 673237,
+              "batter_name": "Yainer Diaz",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 670541,
@@ -233863,14 +233881,8 @@
         {
           "team": "TB",
           "opponent_team": "CIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 810938,
-              "batter_name": "Ben Williamson",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 656775,
               "batter_name": "Cedric Mullins",
@@ -233884,16 +233896,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 666018,
-              "batter_name": "Jonathan Aranda",
+              "batter_id": 641584,
+              "batter_name": "Jake Fraley",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 676356,
-              "batter_name": "Jonny DeLuca",
+              "batter_id": 666018,
+              "batter_name": "Jonathan Aranda",
               "batting_order": null,
-              "selected_for_pick": false
+              "selected_for_pick": true
             },
             {
               "batter_id": 691406,
@@ -233906,6 +233918,12 @@
               "batter_name": "Nick Fortes",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 680700,
+              "batter_name": "Richie Palacios",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 670764,
@@ -233934,7 +233952,7 @@
         {
           "team": "STL",
           "opponent_team": "MIA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 676475,
@@ -233967,22 +233985,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 701675,
-              "batter_name": "Nathan Church",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 669357,
               "batter_name": "Nolan Gorman",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 686780,
-              "batter_name": "Pedro Pag\u00e9s",
+              "batter_id": 602104,
+              "batter_name": "Ram\u00f3n Ur\u00edas",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 687363,
@@ -234127,7 +234139,7 @@
         {
           "team": "WSH",
           "opponent_team": "ATL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 691781,
@@ -234142,16 +234154,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 678554,
-              "batter_name": "Curtis Mead",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 695734,
               "batter_name": "Daylen Lile",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 686452,
+              "batter_name": "Drew Millas",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 696285,
@@ -234166,8 +234178,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 686894,
-              "batter_name": "Joey Wiemer",
+              "batter_id": 677588,
+              "batter_name": "Jos\u00e9 Tena",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -234191,7 +234203,7 @@
       "game_pk": 824125,
       "game_date": "2026-04-20",
       "game_datetime": "2026-04-20T23:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "BAL @ KC",
       "teams": [
@@ -234259,7 +234271,7 @@
         {
           "team": "KC",
           "opponent_team": "BAL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 677951,
@@ -234286,8 +234298,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 657041,
-              "batter_name": "Lane Thomas",
+              "batter_id": 664728,
+              "batter_name": "Kyle Isbel",
               "batting_order": null,
               "selected_for_pick": true
             },
