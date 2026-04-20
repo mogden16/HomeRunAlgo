@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-20T20:07:54.811815+00:00",
+  "generated_at": "2026-04-20T21:13:44.196915+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -3061,7 +3061,7 @@
       "team": "BAL",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -3117,7 +3117,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Justin Wrobleski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -3289,7 +3289,7 @@
       "team": "BAL",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -3632,7 +3632,7 @@
       "team": "BAL",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -3744,7 +3744,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Justin Wrobleski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -3856,7 +3856,7 @@
       "team": "BAL",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -4080,7 +4080,7 @@
       "team": "BAL",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -4136,7 +4136,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Justin Wrobleski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -4248,7 +4248,7 @@
       "team": "SEA",
       "opponent_team": "OAK",
       "pitcher_name": "J.T. Ginn",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -4530,7 +4530,7 @@
       "team": "BAL",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -4812,7 +4812,7 @@
       "team": "BAL",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -4840,14 +4840,16 @@
       "ballparkpal_overlay_adjusted_rank": 38,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 111.1 mph, which points to top-end HR juice.",
       "top_reason_2": "Seth Lugo has allowed barrels on 5.5% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 12.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-20:824125:687637:607625",
@@ -4868,7 +4870,7 @@
       "team": "BAL",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -4924,7 +4926,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Colin Rea",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -5094,7 +5096,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Justin Wrobleski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -5122,14 +5124,16 @@
       "ballparkpal_overlay_adjusted_rank": 43,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 7.4%, which the model treats as sustained power quality.",
       "top_reason_2": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 5.5% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-20:824370:666397:680736",
@@ -5150,7 +5154,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Justin Wrobleski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -5178,14 +5182,16 @@
       "ballparkpal_overlay_adjusted_rank": 44,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 47.1%, showing consistent quality contact.",
       "top_reason_2": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 47.1%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-20:823149:670042:669372",
@@ -5206,7 +5212,7 @@
       "team": "SEA",
       "opponent_team": "OAK",
       "pitcher_name": "J.T. Ginn",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -6450,7 +6456,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6478,14 +6484,16 @@
       "ballparkpal_overlay_adjusted_rank": 67,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 5.7%, which the model treats as sustained power quality.",
       "top_reason_2": "Barrel rate over the last 10 days is 5.6%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 107.9 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-20:824692:665804:605400",
@@ -6506,7 +6514,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6562,7 +6570,7 @@
       "team": "SEA",
       "opponent_team": "OAK",
       "pitcher_name": "J.T. Ginn",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -6730,7 +6738,7 @@
       "team": "SEA",
       "opponent_team": "OAK",
       "pitcher_name": "J.T. Ginn",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -7066,7 +7074,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Justin Wrobleski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -7404,7 +7412,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Colin Rea",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -7432,14 +7440,16 @@
       "ballparkpal_overlay_adjusted_rank": 84,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 6.2%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Colin Rea has allowed barrels on 5.5% of recent batted balls.",
       "top_reason_3": "Barrel rate over the last 30 days is 3.6%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-20:824776:575929:656427",
@@ -7516,7 +7526,7 @@
       "team": "BAL",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -7740,7 +7750,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -7796,7 +7806,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -7824,14 +7834,16 @@
       "ballparkpal_overlay_adjusted_rank": 91,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.0 mph, which points to top-end HR juice.",
       "top_reason_2": "The handedness-specific hard-hit matchup score is 0.1848, supporting loud-contact upside.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 4.0% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-20:823149:686527:669372",
@@ -7852,7 +7864,7 @@
       "team": "SEA",
       "opponent_team": "OAK",
       "pitcher_name": "J.T. Ginn",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -8192,7 +8204,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -8472,7 +8484,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Justin Wrobleski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -8640,7 +8652,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -8696,7 +8708,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -8864,7 +8876,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Colin Rea",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -8920,7 +8932,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Colin Rea",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -9032,7 +9044,7 @@
       "team": "SEA",
       "opponent_team": "OAK",
       "pitcher_name": "J.T. Ginn",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -9060,14 +9072,16 @@
       "ballparkpal_overlay_adjusted_rank": 113,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0022, reinforcing the power-contact fit.",
       "top_reason_2": "J.T. Ginn has allowed barrels on 6.7% of batted balls to this batter side.",
       "top_reason_3": "J.T. Ginn has allowed homers in 4.0% of plate appearances to this batter side.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-20:824370:687859:680736",
@@ -9088,7 +9102,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Justin Wrobleski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -9312,7 +9326,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -9536,7 +9550,7 @@
       "team": "SEA",
       "opponent_team": "OAK",
       "pitcher_name": "J.T. Ginn",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -9704,7 +9718,7 @@
       "team": "COL",
       "opponent_team": "LAD",
       "pitcher_name": "Justin Wrobleski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -9732,14 +9746,16 @@
       "ballparkpal_overlay_adjusted_rank": 125,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-20:823879:805300:700241",
@@ -9872,7 +9888,7 @@
       "team": "SEA",
       "opponent_team": "OAK",
       "pitcher_name": "J.T. Ginn",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -10096,7 +10112,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Colin Rea",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -10208,7 +10224,7 @@
       "team": "SEA",
       "opponent_team": "OAK",
       "pitcher_name": "J.T. Ginn",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -10264,7 +10280,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Colin Rea",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -11334,7 +11350,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Colin Rea",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -11448,7 +11464,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -11672,7 +11688,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Colin Rea",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -11700,14 +11716,16 @@
       "ballparkpal_overlay_adjusted_rank": 160,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1725, supporting loud-contact upside.",
       "top_reason_2": "Colin Rea has allowed barrels on 5.5% of recent batted balls.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-20:823879:691026:676974",
@@ -12008,7 +12026,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Colin Rea",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -234210,13 +234228,13 @@
         {
           "team": "BAL",
           "opponent_team": "KC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 691723,
-              "batter_name": "Coby Mayo",
+              "batter_id": 677942,
+              "batter_name": "Blaze Alexander",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 681297,
@@ -234335,14 +234353,14 @@
       "game_pk": 824692,
       "game_date": "2026-04-20",
       "game_datetime": "2026-04-20T23:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "PHI @ CHC",
       "teams": [
         {
           "team": "PHI",
           "opponent_team": "CHC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666969,
@@ -234369,10 +234387,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 624641,
-              "batter_name": "Edmundo Sosa",
+              "batter_id": 681082,
+              "batter_name": "Bryson Stott",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 702222,
@@ -234403,19 +234421,13 @@
         {
           "team": "CHC",
           "opponent_team": "PHI",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 608324,
               "batter_name": "Alex Bregman",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 608348,
-              "batter_name": "Carson Kelly",
-              "batting_order": null,
-              "selected_for_pick": false
             },
             {
               "batter_id": 621020,
@@ -234430,16 +234442,28 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 807713,
-              "batter_name": "Matt Shaw",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 683737,
               "batter_name": "Michael Busch",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 624424,
+              "batter_name": "Michael Conforto",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 665804,
+              "batter_name": "Miguel Amaya",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 694208,
+              "batter_name": "Mois\u00e9s Ballesteros",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 663538,
@@ -234452,12 +234476,6 @@
               "batter_name": "Pete Crow-Armstrong",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 673548,
-              "batter_name": "Seiya Suzuki",
-              "batting_order": null,
-              "selected_for_pick": true
             }
           ]
         }
@@ -234467,7 +234485,7 @@
       "game_pk": 824370,
       "game_date": "2026-04-20",
       "game_datetime": "2026-04-21T00:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "LAD @ COL",
       "teams": [
@@ -234535,7 +234553,7 @@
         {
           "team": "COL",
           "opponent_team": "LAD",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 686668,
@@ -234544,10 +234562,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 666397,
-              "batter_name": "Edouard Julien",
+              "batter_id": 664954,
+              "batter_name": "Brett Sullivan",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 678662,
@@ -234562,8 +234580,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 664983,
-              "batter_name": "Jake McCarthy",
+              "batter_id": 687597,
+              "batter_name": "Jordan Beck",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -234574,22 +234592,22 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 666160,
-              "batter_name": "Mickey Moniak",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 681198,
-              "batter_name": "TJ Rumfield",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 687859,
               "batter_name": "Troy Johnston",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 671289,
+              "batter_name": "Tyler Freeman",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 650489,
+              "batter_name": "Willi Castro",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         }
@@ -234731,7 +234749,7 @@
       "game_pk": 823149,
       "game_date": "2026-04-20",
       "game_datetime": "2026-04-21T01:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "OAK @ SEA",
       "teams": [
@@ -234744,7 +234762,7 @@
         {
           "team": "SEA",
           "opponent_team": "OAK",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 663728,
