@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-19T23:22:21.650850+00:00",
+  "generated_at": "2026-04-20T00:19:25.542538+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -90,10 +90,10 @@
     "latest_slate_size": 261,
     "tracked_dates": 25,
     "tracked_picks": 3923,
-    "settled_picks": 3233,
-    "tracked_homers": 349,
-    "tracked_hit_rate": 0.107949,
-    "open_picks": 690
+    "settled_picks": 3235,
+    "tracked_homers": 351,
+    "tracked_hit_rate": 0.108501,
+    "open_picks": 688
   },
   "confidence_summary": [
     {
@@ -112,16 +112,16 @@
     },
     {
       "confidence_tier": "watch",
-      "picks": 549,
-      "homers": 79,
-      "hit_rate": 0.143898,
-      "avg_probability": 0.13893
+      "picks": 550,
+      "homers": 80,
+      "hit_rate": 0.145455,
+      "avg_probability": 0.138932
     },
     {
       "confidence_tier": "longshot",
-      "picks": 2391,
-      "homers": 205,
-      "hit_rate": 0.085738,
+      "picks": 2392,
+      "homers": 206,
+      "hit_rate": 0.08612,
       "avg_probability": 0.094927
     }
   ],
@@ -176,6 +176,13 @@
       "hit_rate": 0.238095
     },
     {
+      "batter_name": "Kyle Schwarber",
+      "team": "PHI",
+      "picks": 17,
+      "homers": 5,
+      "hit_rate": 0.294118
+    },
+    {
       "batter_name": "CJ Abrams",
       "team": "WSH",
       "picks": 16,
@@ -216,13 +223,6 @@
       "picks": 17,
       "homers": 4,
       "hit_rate": 0.235294
-    },
-    {
-      "batter_name": "Kyle Schwarber",
-      "team": "PHI",
-      "picks": 16,
-      "homers": 4,
-      "hit_rate": 0.25
     },
     {
       "batter_name": "Christian Walker",
@@ -402,6 +402,13 @@
     {
       "batter_name": "Jake Bauers",
       "team": "MIL",
+      "picks": 9,
+      "homers": 3,
+      "hit_rate": 0.333333
+    },
+    {
+      "batter_name": "Michael Harris II",
+      "team": "ATL",
       "picks": 9,
       "homers": 3,
       "hit_rate": 0.333333
@@ -699,13 +706,6 @@
       "picks": 9,
       "homers": 2,
       "hit_rate": 0.222222
-    },
-    {
-      "batter_name": "Michael Harris II",
-      "team": "ATL",
-      "picks": 8,
-      "homers": 2,
-      "hit_rate": 0.25
     },
     {
       "batter_name": "Samuel Basallo",
@@ -6074,15 +6074,15 @@
       "ballparkpal_overlay_adjusted_score": 45.7,
       "ballparkpal_overlay_adjusted_rank": 60,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 6.8% barrel-per-PA split.",
       "top_reason_2": "Grant Holmes has allowed barrels on 6.9% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 11.1 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-19:823556:677951:677960",
@@ -14413,15 +14413,15 @@
       "ballparkpal_overlay_adjusted_score": 20.3,
       "ballparkpal_overlay_adjusted_rank": 207,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 9.1%, which the model treats as sustained power quality.",
       "top_reason_2": "Projected wind speed is 11.1 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Barrel rate over the last 10 days is 9.5%, a top-decile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-19:822750:650333:571945",
@@ -225581,7 +225581,7 @@
       "game_pk": 824777,
       "game_date": "2026-04-19",
       "game_datetime": "2026-04-19T20:35:00Z",
-      "game_status": "Game Over",
+      "game_status": "Final",
       "game_state": "final",
       "matchup": "DET @ BOS",
       "teams": [
