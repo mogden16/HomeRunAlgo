@@ -1,6 +1,6 @@
 # Ballpark Pal Morning Task
 
-Use a Windows Task Scheduler job to pull Ballpark Pal exports every morning and refresh the validated snapshot artifact.
+Use a Windows startup watcher to pull Ballpark Pal exports every morning and refresh the validated snapshot artifact.
 
 ## What it runs
 
@@ -14,21 +14,18 @@ Use a Windows Task Scheduler job to pull Ballpark Pal exports every morning and 
 ## Default schedule
 
 - Daily at `06:10` local time
-- Uses the current machine user with an S4U logon token so it can run unattended
+- Starts when you log into Windows and then stays alive to run daily
+- This is the no-password path for this machine
 
-## Register the task
+## Install the startup watcher
 
 From the repo root:
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\register_ballparkpal_task.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\install_ballparkpal_startup_watcher.ps1
 ```
 
-Optional overrides:
-
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\register_ballparkpal_task.ps1 -RunTime 06:30
-```
+That creates a `HomeRunAlgoBallparkPalMorning.cmd` file in your Windows Startup folder.
 
 ## Manual run
 
@@ -54,7 +51,7 @@ python -m playwright install chromium
 
 ## Notes
 
-- The task assumes the machine is on.
-- Because the task uses S4U, it does not require an interactive desktop session.
+- The watcher assumes the machine is on and you log into Windows at least once.
+- If you later want a true service-style unattended job, you will need an elevated Task Scheduler setup or a service account.
 - The task does not publish the dashboard directly. Live refresh paths read the latest validated snapshot throughout the day.
 - The snapshot remains a daily forward archive. Historical date pulls are not assumed to be true point-in-time backfills unless the workbook content matches the requested slate date.

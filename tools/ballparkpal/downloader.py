@@ -233,7 +233,22 @@ def download_ballparkpal_exports(
         export_url = f"{export_url}{separator}date={requested_date}"
 
     with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=headless, slow_mo=slow_mo_ms)
+        browser = None
+        launch_errors: list[str] = []
+        for launch_kwargs in (
+            {"channel": "chrome", "headless": headless, "slow_mo": slow_mo_ms},
+            {"headless": headless, "slow_mo": slow_mo_ms},
+        ):
+            try:
+                browser = playwright.chromium.launch(**launch_kwargs)
+                break
+            except Exception as exc:
+                launch_errors.append(f"{launch_kwargs}: {exc}")
+        if browser is None:
+            raise RuntimeError(
+                "Failed to launch a browser for Ballpark Pal download. "
+                + " | ".join(launch_errors)
+            )
         context = browser.new_context(accept_downloads=True)
         page = context.new_page()
         page.set_default_timeout(navigation_timeout_ms)
