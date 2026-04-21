@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-21T20:28:37.092703+00:00",
+  "generated_at": "2026-04-21T21:29:36.644676+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2754,7 +2754,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -2812,7 +2812,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -2926,7 +2926,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -2984,7 +2984,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -3378,7 +3378,7 @@
       "team": "PIT",
       "opponent_team": "TEX",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -3406,16 +3406,17 @@
       "ballparkpal_overlay_adjusted_rank": 12,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "inactive",
       "alert_flags": [
+        "lineup_alert",
         "pitcher_change_alert"
       ],
-      "inactive_flag": false,
-      "display_style": "default",
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 10.0%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Projected humidity is 93%, a modest positive weather input in the live model.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 5.7% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-21:824369:666160:681190",
@@ -4220,7 +4221,7 @@
       "team": "AZ",
       "opponent_team": "CWS",
       "pitcher_name": "Sean Burke",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -4388,7 +4389,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -4560,7 +4561,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -4618,7 +4619,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -4646,16 +4647,17 @@
       "ballparkpal_overlay_adjusted_rank": 34,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "inactive",
       "alert_flags": [
+        "lineup_alert",
         "pitcher_change_alert"
       ],
-      "inactive_flag": false,
-      "display_style": "default",
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-21:824127:677951:669358",
@@ -4732,7 +4734,7 @@
       "team": "PIT",
       "opponent_team": "TEX",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -4902,7 +4904,7 @@
       "team": "BAL",
       "opponent_team": "KC",
       "pitcher_name": "Kris Bubic",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -5014,7 +5016,7 @@
       "team": "SEA",
       "opponent_team": "OAK",
       "pitcher_name": "Jacob Lopez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -5070,7 +5072,7 @@
       "team": "BAL",
       "opponent_team": "KC",
       "pitcher_name": "Kris Bubic",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -5294,7 +5296,7 @@
       "team": "AZ",
       "opponent_team": "CWS",
       "pitcher_name": "Sean Burke",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -5686,7 +5688,7 @@
       "team": "PIT",
       "opponent_team": "TEX",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -5968,7 +5970,7 @@
       "team": "SEA",
       "opponent_team": "OAK",
       "pitcher_name": "Jacob Lopez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -6024,7 +6026,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -6250,7 +6252,7 @@
       "team": "AZ",
       "opponent_team": "CWS",
       "pitcher_name": "Sean Burke",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -6306,7 +6308,7 @@
       "team": "SEA",
       "opponent_team": "OAK",
       "pitcher_name": "Jacob Lopez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -6756,7 +6758,7 @@
       "team": "AZ",
       "opponent_team": "CWS",
       "pitcher_name": "Sean Burke",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -6812,7 +6814,7 @@
       "team": "PIT",
       "opponent_team": "TEX",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -7094,7 +7096,7 @@
       "team": "BAL",
       "opponent_team": "KC",
       "pitcher_name": "Kris Bubic",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -7546,7 +7548,7 @@
       "team": "PIT",
       "opponent_team": "TEX",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -7832,7 +7834,7 @@
       "team": "PIT",
       "opponent_team": "TEX",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -7890,7 +7892,7 @@
       "team": "BAL",
       "opponent_team": "KC",
       "pitcher_name": "Kris Bubic",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -8510,7 +8512,7 @@
       "team": "BAL",
       "opponent_team": "KC",
       "pitcher_name": "Kris Bubic",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -8566,7 +8568,7 @@
       "team": "SEA",
       "opponent_team": "OAK",
       "pitcher_name": "Jacob Lopez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -8594,14 +8596,16 @@
       "ballparkpal_overlay_adjusted_rank": 104,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.1 mph, which points to top-end HR juice.",
       "top_reason_2": "Jacob Lopez has allowed homers in 4.3% of plate appearances over the last 30 days.",
       "top_reason_3": "The handedness-specific hard-hit matchup score is 0.2201, supporting loud-contact upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-21:824127:687637:663460",
@@ -8622,7 +8626,7 @@
       "team": "BAL",
       "opponent_team": "KC",
       "pitcher_name": "Kris Bubic",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -8650,14 +8654,16 @@
       "ballparkpal_overlay_adjusted_rank": 105,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 14.3% barrel-per-PA split.",
       "top_reason_2": "Kris Bubic has allowed a 49.4% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 14.3 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-21:823148:670042:682052",
@@ -8678,7 +8684,7 @@
       "team": "SEA",
       "opponent_team": "OAK",
       "pitcher_name": "Jacob Lopez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -8706,14 +8712,16 @@
       "ballparkpal_overlay_adjusted_rank": 106,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 8.7%, which the model treats as sustained power quality.",
       "top_reason_2": "Jacob Lopez has allowed homers in 4.3% of plate appearances over the last 30 days.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 113.2 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-21:824127:681297:663460",
@@ -8734,7 +8742,7 @@
       "team": "BAL",
       "opponent_team": "KC",
       "pitcher_name": "Kris Bubic",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -8762,14 +8770,16 @@
       "ballparkpal_overlay_adjusted_rank": 107,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 53.3%, a top-quartile recent-contact signal.",
       "top_reason_2": "Kris Bubic has allowed a 49.4% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 14.3 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-21:824127:694212:663460",
@@ -8790,7 +8800,7 @@
       "team": "BAL",
       "opponent_team": "KC",
       "pitcher_name": "Kris Bubic",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -8818,14 +8828,16 @@
       "ballparkpal_overlay_adjusted_rank": 108,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1938, supporting loud-contact upside.",
       "top_reason_2": "Kris Bubic has allowed a 49.4% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 14.3 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-21:822995:668715:571927",
@@ -8958,7 +8970,7 @@
       "team": "SEA",
       "opponent_team": "OAK",
       "pitcher_name": "Jacob Lopez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -9014,7 +9026,7 @@
       "team": "AZ",
       "opponent_team": "CWS",
       "pitcher_name": "Sean Burke",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -9070,7 +9082,7 @@
       "team": "AZ",
       "opponent_team": "CWS",
       "pitcher_name": "Sean Burke",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -9238,7 +9250,7 @@
       "team": "AZ",
       "opponent_team": "CWS",
       "pitcher_name": "Sean Burke",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -9266,14 +9278,16 @@
       "ballparkpal_overlay_adjusted_rank": 116,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0029, reinforcing the power-contact fit.",
       "top_reason_2": "Sean Burke has allowed barrels on 6.4% of batted balls to this batter side.",
       "top_reason_3": "Forecast temperature is 85F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-21:824127:657041:669358",
@@ -9464,7 +9478,7 @@
       "team": "BAL",
       "opponent_team": "KC",
       "pitcher_name": "Kris Bubic",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -9636,7 +9650,7 @@
       "team": "SEA",
       "opponent_team": "OAK",
       "pitcher_name": "Jacob Lopez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -10656,7 +10670,7 @@
       "team": "PIT",
       "opponent_team": "TEX",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -10882,7 +10896,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -10940,7 +10954,7 @@
       "team": "PIT",
       "opponent_team": "TEX",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -10998,7 +11012,7 @@
       "team": "PIT",
       "opponent_team": "TEX",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -11792,7 +11806,7 @@
       "team": "AZ",
       "opponent_team": "CWS",
       "pitcher_name": "Sean Burke",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -11848,7 +11862,7 @@
       "team": "AZ",
       "opponent_team": "CWS",
       "pitcher_name": "Sean Burke",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -12916,7 +12930,7 @@
       "team": "SEA",
       "opponent_team": "OAK",
       "pitcher_name": "Jacob Lopez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -14434,7 +14448,7 @@
       "team": "SEA",
       "opponent_team": "OAK",
       "pitcher_name": "Jacob Lopez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -249245,7 +249259,7 @@
         {
           "team": "BAL",
           "opponent_team": "KC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 677942,
@@ -249256,12 +249270,6 @@
             {
               "batter_id": 691723,
               "batter_name": "Coby Mayo",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 687637,
-              "batter_name": "Dylan Beavers",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -249290,16 +249298,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 694212,
-              "batter_name": "Samuel Basallo",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 621493,
               "batter_name": "Taylor Ward",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 642215,
+              "batter_name": "Weston Wilson",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         },
@@ -249509,19 +249517,19 @@
         {
           "team": "PIT",
           "opponent_team": "TEX",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 664040,
-              "batter_name": "Brandon Lowe",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 668804,
               "batter_name": "Bryan Reynolds",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 680779,
+              "batter_name": "Henry Davis",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 804606,
@@ -249641,19 +249649,19 @@
         {
           "team": "SD",
           "opponent_team": "COL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 669369,
-              "batter_name": "Bryce Johnson",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 665487,
               "batter_name": "Fernando Tatis Jr.",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 666023,
+              "batter_name": "Freddy Fermin",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 657757,
@@ -249898,7 +249906,7 @@
       "game_pk": 823148,
       "game_date": "2026-04-21",
       "game_datetime": "2026-04-22T01:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "OAK @ SEA",
       "teams": [
@@ -249911,7 +249919,7 @@
         {
           "team": "SEA",
           "opponent_team": "OAK",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 663728,
@@ -249922,12 +249930,6 @@
             {
               "batter_id": 702284,
               "batter_name": "Cole Young",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 686527,
-              "batter_name": "Dominic Canzone",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -249956,16 +249958,22 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 670042,
-              "batter_name": "Luke Raley",
+              "batter_id": 641598,
+              "batter_name": "Mitch Garver",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 668227,
               "batter_name": "Randy Arozarena",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 608701,
+              "batter_name": "Rob Refsnyder",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         }
@@ -249975,7 +249983,7 @@
       "game_pk": 825099,
       "game_date": "2026-04-21",
       "game_datetime": "2026-04-22T01:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "CWS @ AZ",
       "teams": [
@@ -250043,13 +250051,19 @@
         {
           "team": "AZ",
           "opponent_team": "CWS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 680728,
               "batter_name": "Adrian Del Castillo",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 677950,
+              "batter_name": "Alek Thomas",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 682998,
@@ -250066,12 +250080,6 @@
             {
               "batter_id": 545121,
               "batter_name": "Ildemaro Vargas",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 543510,
-              "batter_name": "James McCann",
               "batting_order": null,
               "selected_for_pick": true
             },
