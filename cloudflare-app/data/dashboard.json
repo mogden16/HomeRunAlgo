@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-21T19:11:33.577694+00:00",
+  "generated_at": "2026-04-21T20:28:37.092703+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2870,7 +2870,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Shota Imanaga",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -3098,7 +3098,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Shota Imanaga",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -3154,7 +3154,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Shota Imanaga",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -3266,7 +3266,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Shota Imanaga",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -3322,7 +3322,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Shota Imanaga",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -3407,7 +3407,9 @@
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 10.0%, a top-decile indicator of current lift-and-damage contact.",
@@ -3490,7 +3492,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Shota Imanaga",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -3602,7 +3604,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Jes\u00fas Luzardo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -3714,7 +3716,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Jes\u00fas Luzardo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -3882,7 +3884,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Jes\u00fas Luzardo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -4162,7 +4164,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Shane Baz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -4330,7 +4332,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Shane Baz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -4444,7 +4446,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Shota Imanaga",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -4500,7 +4502,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Shota Imanaga",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -4528,14 +4530,16 @@
       "ballparkpal_overlay_adjusted_rank": 32,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0015, reinforcing the power-contact fit.",
       "top_reason_2": "Shota Imanaga has allowed 93.0 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Shota Imanaga has allowed a 51.2% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-21:824369:609280:",
@@ -4672,7 +4676,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Shane Baz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -4757,7 +4761,9 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 109.7 mph, which points to top-end HR juice.",
@@ -4952,7 +4958,7 @@
       "team": "MIL",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -5120,7 +5126,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Jes\u00fas Luzardo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -5624,7 +5630,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Jes\u00fas Luzardo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -5709,7 +5715,9 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 119.0 mph, which points to top-end HR juice.",
@@ -5736,7 +5744,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Jes\u00fas Luzardo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6186,7 +6194,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Jes\u00fas Luzardo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6354,7 +6362,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Shane Baz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -6833,7 +6841,9 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 8.3%, a top-decile indicator of current lift-and-damage contact.",
@@ -6860,7 +6870,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Jes\u00fas Luzardo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -7256,7 +7266,7 @@
       "team": "NYY",
       "opponent_team": "BOS",
       "pitcher_name": "Connelly Early",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -7565,7 +7575,9 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 3.6% barrel-per-PA split.",
@@ -7648,7 +7660,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Shota Imanaga",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -7676,14 +7688,16 @@
       "ballparkpal_overlay_adjusted_rank": 88,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2075, supporting loud-contact upside.",
       "top_reason_2": "Shota Imanaga has allowed 93.0 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Shota Imanaga has allowed a 51.2% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-21:824369:664983:681190",
@@ -7847,7 +7861,9 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 109.5 mph, which points to top-end HR juice.",
@@ -9278,7 +9294,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Shane Baz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -9306,14 +9322,16 @@
       "ballparkpal_overlay_adjusted_rank": 117,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1705, supporting loud-contact upside.",
       "top_reason_2": "Shane Baz has allowed barrels on 7.8% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 14.3 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-21:824448:670623:800048",
@@ -9842,7 +9860,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Jes\u00fas Luzardo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -10240,7 +10258,7 @@
       "team": "MIL",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -10667,7 +10685,9 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 4.8%, which the model treats as sustained power quality.",
@@ -10750,7 +10770,7 @@
       "team": "MIL",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -10949,7 +10969,9 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.7 mph, which points to top-end HR juice.",
@@ -11005,7 +11027,9 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 113.5 mph, which points to top-end HR juice.",
@@ -11148,7 +11172,7 @@
       "team": "NYY",
       "opponent_team": "BOS",
       "pitcher_name": "Connelly Early",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -11204,7 +11228,7 @@
       "team": "NYY",
       "opponent_team": "BOS",
       "pitcher_name": "Connelly Early",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -11232,14 +11256,16 @@
       "ballparkpal_overlay_adjusted_rank": 151,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 58.0%, showing consistent quality contact.",
       "top_reason_2": "Connelly Early has allowed barrels on 7.9% of batted balls to this batter side.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 58.0%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-21:822995:663886:571927",
@@ -11316,7 +11342,7 @@
       "team": "MIL",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -11486,7 +11512,7 @@
       "team": "TEX",
       "opponent_team": "PIT",
       "pitcher_name": "Carmen Mlodzinski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -11542,7 +11568,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Shane Baz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -11598,7 +11624,7 @@
       "team": "TEX",
       "opponent_team": "PIT",
       "pitcher_name": "Carmen Mlodzinski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -11710,7 +11736,7 @@
       "team": "MIL",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -12160,7 +12186,7 @@
       "team": "NYY",
       "opponent_team": "BOS",
       "pitcher_name": "Connelly Early",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -12722,7 +12748,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Shane Baz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -13174,7 +13200,7 @@
       "team": "MIL",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -13342,7 +13368,7 @@
       "team": "TEX",
       "opponent_team": "PIT",
       "pitcher_name": "Carmen Mlodzinski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -13510,7 +13536,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Shane Baz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -13566,7 +13592,7 @@
       "team": "TEX",
       "opponent_team": "PIT",
       "pitcher_name": "Carmen Mlodzinski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -14070,7 +14096,7 @@
       "team": "MIL",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -14126,7 +14152,7 @@
       "team": "NYY",
       "opponent_team": "BOS",
       "pitcher_name": "Connelly Early",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -14296,7 +14322,7 @@
       "team": "MIL",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -14688,7 +14714,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Shane Baz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -15472,7 +15498,7 @@
       "team": "NYY",
       "opponent_team": "BOS",
       "pitcher_name": "Connelly Early",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -15808,7 +15834,7 @@
       "team": "NYY",
       "opponent_team": "BOS",
       "pitcher_name": "Connelly Early",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -15978,7 +16004,7 @@
       "team": "TEX",
       "opponent_team": "PIT",
       "pitcher_name": "Carmen Mlodzinski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -16090,7 +16116,7 @@
       "team": "TEX",
       "opponent_team": "PIT",
       "pitcher_name": "Carmen Mlodzinski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -16202,7 +16228,7 @@
       "team": "NYY",
       "opponent_team": "BOS",
       "pitcher_name": "Connelly Early",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -16314,7 +16340,7 @@
       "team": "MIL",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -16342,14 +16368,16 @@
       "ballparkpal_overlay_adjusted_rank": 242,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Keider Montero has allowed homers in 3.7% of plate appearances to this batter side.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-21:823236:690976:694738",
@@ -16426,7 +16454,7 @@
       "team": "TEX",
       "opponent_team": "PIT",
       "pitcher_name": "Carmen Mlodzinski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -16538,7 +16566,7 @@
       "team": "NYY",
       "opponent_team": "BOS",
       "pitcher_name": "Connelly Early",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -16650,7 +16678,7 @@
       "team": "TEX",
       "opponent_team": "PIT",
       "pitcher_name": "Carmen Mlodzinski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -16930,7 +16958,7 @@
       "team": "TEX",
       "opponent_team": "PIT",
       "pitcher_name": "Carmen Mlodzinski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -248695,13 +248723,13 @@
         {
           "team": "MIL",
           "opponent_team": "DET",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 663604,
-              "batter_name": "Brandon Lockridge",
+              "batter_id": 663368,
+              "batter_name": "Blake Perkins",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 668930,
@@ -248959,7 +248987,7 @@
         {
           "team": "NYY",
           "opponent_team": "BOS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 592450,
@@ -249010,10 +249038,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 663757,
-              "batter_name": "Trent Grisham",
+              "batter_id": 545341,
+              "batter_name": "Randal Grichuk",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             }
           ]
         },
@@ -249210,7 +249238,7 @@
       "game_pk": 824127,
       "game_date": "2026-04-21",
       "game_datetime": "2026-04-21T23:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "BAL @ KC",
       "teams": [
@@ -249278,7 +249306,7 @@
         {
           "team": "KC",
           "opponent_team": "BAL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 677951,
@@ -249299,16 +249327,16 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 695506,
+              "batter_name": "Jac Caglianone",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
               "batter_id": 664728,
               "batter_name": "Kyle Isbel",
               "batting_order": null,
               "selected_for_pick": false
-            },
-            {
-              "batter_id": 657041,
-              "batter_name": "Lane Thomas",
-              "batting_order": null,
-              "selected_for_pick": true
             },
             {
               "batter_id": 672580,
@@ -249342,14 +249370,14 @@
       "game_pk": 824690,
       "game_date": "2026-04-21",
       "game_datetime": "2026-04-21T23:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "PHI @ CHC",
       "teams": [
         {
           "team": "PHI",
           "opponent_team": "CHC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666969,
@@ -249376,26 +249404,26 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 681082,
-              "batter_name": "Bryson Stott",
+              "batter_id": 624641,
+              "batter_name": "Edmundo Sosa",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 694025,
+              "batter_name": "Felix Reyes",
               "batting_order": null,
               "selected_for_pick": false
             },
             {
-              "batter_id": 702222,
-              "batter_name": "Justin Crawford",
+              "batter_id": 592663,
+              "batter_name": "J.T. Realmuto",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 656941,
               "batter_name": "Kyle Schwarber",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 665561,
-              "batter_name": "Rafael March\u00e1n",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -249410,7 +249438,7 @@
         {
           "team": "CHC",
           "opponent_team": "PHI",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 608324,
@@ -249437,16 +249465,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 683737,
-              "batter_name": "Michael Busch",
+              "batter_id": 807713,
+              "batter_name": "Matt Shaw",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 665804,
-              "batter_name": "Miguel Amaya",
+              "batter_id": 683737,
+              "batter_name": "Michael Busch",
               "batting_order": null,
-              "selected_for_pick": false
+              "selected_for_pick": true
             },
             {
               "batter_id": 663538,
@@ -249474,7 +249502,7 @@
       "game_pk": 822914,
       "game_date": "2026-04-21",
       "game_datetime": "2026-04-22T00:05:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "PIT @ TEX",
       "teams": [
@@ -249542,7 +249570,7 @@
         {
           "team": "TEX",
           "opponent_team": "PIT",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 607043,
