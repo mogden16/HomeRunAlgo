@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-22T20:20:01.130894+00:00",
+  "generated_at": "2026-04-22T21:25:07.001215+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -93,10 +93,10 @@
     "latest_slate_size": 255,
     "tracked_dates": 28,
     "tracked_picks": 4609,
-    "settled_picks": 3658,
-    "tracked_homers": 397,
-    "tracked_hit_rate": 0.108529,
-    "open_picks": 951
+    "settled_picks": 3673,
+    "tracked_homers": 399,
+    "tracked_hit_rate": 0.108631,
+    "open_picks": 936
   },
   "confidence_summary": [
     {
@@ -108,24 +108,24 @@
     },
     {
       "confidence_tier": "strong",
-      "picks": 243,
-      "homers": 52,
-      "hit_rate": 0.213992,
-      "avg_probability": 0.18955
+      "picks": 244,
+      "homers": 53,
+      "hit_rate": 0.217213,
+      "avg_probability": 0.189541
     },
     {
       "confidence_tier": "watch",
-      "picks": 620,
+      "picks": 625,
       "homers": 88,
-      "hit_rate": 0.141935,
-      "avg_probability": 0.139568
+      "hit_rate": 0.1408,
+      "avg_probability": 0.139714
     },
     {
       "confidence_tier": "longshot",
-      "picks": 2717,
-      "homers": 235,
-      "hit_rate": 0.086492,
-      "avg_probability": 0.095106
+      "picks": 2726,
+      "homers": 236,
+      "hit_rate": 0.086574,
+      "avg_probability": 0.09513
     }
   ],
   "player_leaderboard": [
@@ -142,6 +142,13 @@
       "picks": 19,
       "homers": 8,
       "hit_rate": 0.421053
+    },
+    {
+      "batter_name": "Mike Trout",
+      "team": "LAA",
+      "picks": 22,
+      "homers": 7,
+      "hit_rate": 0.318182
     },
     {
       "batter_name": "James Wood",
@@ -163,13 +170,6 @@
       "picks": 24,
       "homers": 6,
       "hit_rate": 0.25
-    },
-    {
-      "batter_name": "Mike Trout",
-      "team": "LAA",
-      "picks": 21,
-      "homers": 6,
-      "hit_rate": 0.285714
     },
     {
       "batter_name": "Kyle Schwarber",
@@ -207,8 +207,22 @@
       "hit_rate": 0.277778
     },
     {
+      "batter_name": "Cal Raleigh",
+      "team": "SEA",
+      "picks": 18,
+      "homers": 5,
+      "hit_rate": 0.277778
+    },
+    {
       "batter_name": "Christian Walker",
       "team": "HOU",
+      "picks": 18,
+      "homers": 5,
+      "hit_rate": 0.277778
+    },
+    {
+      "batter_name": "Gunnar Henderson",
+      "team": "BAL",
       "picks": 18,
       "homers": 5,
       "hit_rate": 0.277778
@@ -219,13 +233,6 @@
       "picks": 18,
       "homers": 5,
       "hit_rate": 0.277778
-    },
-    {
-      "batter_name": "Gunnar Henderson",
-      "team": "BAL",
-      "picks": 17,
-      "homers": 5,
-      "hit_rate": 0.294118
     },
     {
       "batter_name": "Aaron Judge",
@@ -256,13 +263,6 @@
       "hit_rate": 0.210526
     },
     {
-      "batter_name": "Cal Raleigh",
-      "team": "SEA",
-      "picks": 17,
-      "homers": 4,
-      "hit_rate": 0.235294
-    },
-    {
       "batter_name": "Jos\u00e9 Ram\u00edrez",
       "team": "CLE",
       "picks": 17,
@@ -277,6 +277,13 @@
       "hit_rate": 0.25
     },
     {
+      "batter_name": "Jeremiah Jackson",
+      "team": "BAL",
+      "picks": 15,
+      "homers": 4,
+      "hit_rate": 0.266667
+    },
+    {
       "batter_name": "Nico Hoerner",
       "team": "CHC",
       "picks": 15,
@@ -286,13 +293,6 @@
     {
       "batter_name": "Carter Jensen",
       "team": "KC",
-      "picks": 14,
-      "homers": 4,
-      "hit_rate": 0.285714
-    },
-    {
-      "batter_name": "Jeremiah Jackson",
-      "team": "BAL",
       "picks": 14,
       "homers": 4,
       "hit_rate": 0.285714
@@ -529,6 +529,20 @@
       "hit_rate": 0.111111
     },
     {
+      "batter_name": "Maikel Garcia",
+      "team": "KC",
+      "picks": 18,
+      "homers": 2,
+      "hit_rate": 0.111111
+    },
+    {
+      "batter_name": "Salvador Perez",
+      "team": "KC",
+      "picks": 18,
+      "homers": 2,
+      "hit_rate": 0.111111
+    },
+    {
       "batter_name": "Alec Burleson",
       "team": "STL",
       "picks": 17,
@@ -550,13 +564,6 @@
       "hit_rate": 0.117647
     },
     {
-      "batter_name": "Maikel Garcia",
-      "team": "KC",
-      "picks": 17,
-      "homers": 2,
-      "hit_rate": 0.117647
-    },
-    {
       "batter_name": "Otto Lopez",
       "team": "MIA",
       "picks": 17,
@@ -566,13 +573,6 @@
     {
       "batter_name": "Randy Arozarena",
       "team": "SEA",
-      "picks": 17,
-      "homers": 2,
-      "hit_rate": 0.117647
-    },
-    {
-      "batter_name": "Salvador Perez",
-      "team": "KC",
       "picks": 17,
       "homers": 2,
       "hit_rate": 0.117647
@@ -753,6 +753,13 @@
       "hit_rate": 0.181818
     },
     {
+      "batter_name": "Leody Taveras",
+      "team": "BAL",
+      "picks": 11,
+      "homers": 2,
+      "hit_rate": 0.181818
+    },
+    {
       "batter_name": "Casey Schmitt",
       "team": "SF",
       "picks": 10,
@@ -767,7 +774,7 @@
       "hit_rate": 0.2
     },
     {
-      "batter_name": "Leody Taveras",
+      "batter_name": "Samuel Basallo",
       "team": "BAL",
       "picks": 10,
       "homers": 2,
@@ -776,13 +783,6 @@
     {
       "batter_name": "Dominic Smith",
       "team": "ATL",
-      "picks": 9,
-      "homers": 2,
-      "hit_rate": 0.222222
-    },
-    {
-      "batter_name": "Samuel Basallo",
-      "team": "BAL",
       "picks": 9,
       "homers": 2,
       "hit_rate": 0.222222
@@ -844,6 +844,13 @@
       "hit_rate": 0.055556
     },
     {
+      "batter_name": "Taylor Ward",
+      "team": "BAL",
+      "picks": 18,
+      "homers": 1,
+      "hit_rate": 0.055556
+    },
+    {
       "batter_name": "Cole Young",
       "team": "SEA",
       "picks": 17,
@@ -867,13 +874,6 @@
     {
       "batter_name": "Ronald Acu\u00f1a Jr.",
       "team": "ATL",
-      "picks": 17,
-      "homers": 1,
-      "hit_rate": 0.058824
-    },
-    {
-      "batter_name": "Taylor Ward",
-      "team": "BAL",
       "picks": 17,
       "homers": 1,
       "hit_rate": 0.058824
@@ -951,6 +951,13 @@
     {
       "batter_name": "J.P. Crawford",
       "team": "SEA",
+      "picks": 15,
+      "homers": 1,
+      "hit_rate": 0.066667
+    },
+    {
+      "batter_name": "Jac Caglianone",
+      "team": "KC",
       "picks": 15,
       "homers": 1,
       "hit_rate": 0.066667
@@ -1035,13 +1042,6 @@
     {
       "batter_name": "Brandon Marsh",
       "team": "PHI",
-      "picks": 14,
-      "homers": 1,
-      "hit_rate": 0.071429
-    },
-    {
-      "batter_name": "Jac Caglianone",
-      "team": "KC",
       "picks": 14,
       "homers": 1,
       "hit_rate": 0.071429
@@ -1369,6 +1369,13 @@
       "hit_rate": 0.166667
     },
     {
+      "batter_name": "Michael Massey",
+      "team": "KC",
+      "picks": 6,
+      "homers": 1,
+      "hit_rate": 0.166667
+    },
+    {
       "batter_name": "Willi Castro",
       "team": "COL",
       "picks": 6,
@@ -1378,13 +1385,6 @@
     {
       "batter_name": "Jake Meyers",
       "team": "HOU",
-      "picks": 5,
-      "homers": 1,
-      "hit_rate": 0.2
-    },
-    {
-      "batter_name": "Michael Massey",
-      "team": "KC",
       "picks": 5,
       "homers": 1,
       "hit_rate": 0.2
@@ -1434,7 +1434,7 @@
     {
       "batter_name": "Bobby Witt Jr.",
       "team": "KC",
-      "picks": 18,
+      "picks": 19,
       "homers": 0,
       "hit_rate": 0.0
     },
@@ -1782,6 +1782,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Dylan Beavers",
+      "team": "BAL",
+      "picks": 9,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Ezequiel Duran",
       "team": "TEX",
       "picks": 9,
@@ -1826,13 +1833,6 @@
     {
       "batter_name": "David Hamilton",
       "team": "MIL",
-      "picks": 8,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Dylan Beavers",
-      "team": "BAL",
       "picks": 8,
       "homers": 0,
       "hit_rate": 0.0
@@ -2013,6 +2013,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Colton Cowser",
+      "team": "BAL",
+      "picks": 5,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Harrison Bader",
       "team": "SF",
       "picks": 5,
@@ -2036,6 +2043,13 @@
     {
       "batter_name": "Jorge Polanco",
       "team": "NYM",
+      "picks": 5,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Lane Thomas",
+      "team": "KC",
       "picks": 5,
       "homers": 0,
       "hit_rate": 0.0
@@ -2097,13 +2111,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Colton Cowser",
-      "team": "BAL",
-      "picks": 4,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Everson Pereira",
       "team": "CWS",
       "picks": 4,
@@ -2120,13 +2127,6 @@
     {
       "batter_name": "Jonny DeLuca",
       "team": "TB",
-      "picks": 4,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Lane Thomas",
-      "team": "KC",
       "picks": 4,
       "homers": 0,
       "hit_rate": 0.0
@@ -3238,7 +3238,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Matthew Boyd",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -3377,15 +3377,15 @@
       "ballparkpal_overlay_adjusted_score": 62.3,
       "ballparkpal_overlay_adjusted_rank": 11,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.6 mph, which points to top-end HR juice.",
       "top_reason_2": "Eric Lauer has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "Barrel rate over the last 30 days is 9.4%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-22:824688:683737:679775",
@@ -3462,7 +3462,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Matthew Boyd",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -3734,7 +3734,7 @@
       "game_pk": 824123,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 38,
       "original_rank": 38,
       "original_score": 85.5,
@@ -3771,15 +3771,15 @@
       "ballparkpal_overlay_adjusted_score": 57.9,
       "ballparkpal_overlay_adjusted_rank": 18,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 58.1%, a top-quartile recent-contact signal.",
       "top_reason_2": "Michael Wacha has allowed a 50.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 12.7 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:822748:660670:641793",
@@ -4024,7 +4024,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Matthew Boyd",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -4052,14 +4052,16 @@
       "ballparkpal_overlay_adjusted_rank": 23,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 52.7%, showing consistent quality contact.",
       "top_reason_2": "Matthew Boyd has allowed barrels on 20.0% of recent batted balls.",
       "top_reason_3": "Matthew Boyd has allowed 93.3 mph average exit velocity recently, which the model flags as hittable contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:822748:621566:641793",
@@ -4126,7 +4128,7 @@
       "game_pk": 824123,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 18,
       "original_rank": 18,
       "original_score": 93.3,
@@ -4686,7 +4688,7 @@
       "game_pk": 824123,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 20,
       "original_rank": 20,
       "original_score": 92.5,
@@ -4723,15 +4725,15 @@
       "ballparkpal_overlay_adjusted_score": 53.6,
       "ballparkpal_overlay_adjusted_rank": 35,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 6.0% barrel-per-PA split.",
       "top_reason_2": "Michael Wacha has allowed a 50.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 12.7 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:822748:671739:641793",
@@ -4798,7 +4800,7 @@
       "game_pk": 824123,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 39,
       "original_rank": 39,
       "original_score": 84.7,
@@ -4835,15 +4837,15 @@
       "ballparkpal_overlay_adjusted_score": 52.5,
       "ballparkpal_overlay_adjusted_rank": 37,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 6.1% barrel-per-PA split.",
       "top_reason_2": "Projected wind speed is 12.7 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0027, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:824286:663330:669084",
@@ -4976,7 +4978,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Matthew Boyd",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -5022,7 +5024,7 @@
       "game_pk": 824123,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 102,
       "original_rank": 102,
       "original_score": 60.4,
@@ -5059,15 +5061,15 @@
       "ballparkpal_overlay_adjusted_score": 49.6,
       "ballparkpal_overlay_adjusted_rank": 41,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 60.0%, a top-decile recent-contact signal.",
       "top_reason_2": "Michael Wacha has allowed a 50.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 12.7 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:822748:686948:641793",
@@ -5144,7 +5146,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Matthew Boyd",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -5246,7 +5248,7 @@
       "game_pk": 824123,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 56,
       "original_rank": 56,
       "original_score": 78.0,
@@ -5451,15 +5453,15 @@
       "ballparkpal_overlay_adjusted_score": 48.7,
       "ballparkpal_overlay_adjusted_rank": 48,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 6.0% barrel-per-PA split.",
       "top_reason_2": "Aaron Civale has allowed a 47.2% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 85%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-22:823147:670042:650644",
@@ -5704,7 +5706,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Matthew Boyd",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -5732,14 +5734,16 @@
       "ballparkpal_overlay_adjusted_rank": 53,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 50.0%, showing consistent quality contact.",
       "top_reason_2": "Matthew Boyd has allowed barrels on 20.0% of recent batted balls.",
       "top_reason_3": "Matthew Boyd has allowed 93.3 mph average exit velocity recently, which the model flags as hittable contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:824688:665561:571510",
@@ -5760,7 +5764,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Matthew Boyd",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -5816,7 +5820,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Matthew Boyd",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -5862,7 +5866,7 @@
       "game_pk": 824123,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 103,
       "original_rank": 103,
       "original_score": 60.0,
@@ -5899,15 +5903,15 @@
       "ballparkpal_overlay_adjusted_score": 46.2,
       "ballparkpal_overlay_adjusted_rank": 56,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 8.6%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Michael Wacha has allowed a 50.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 12.7 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:822913:665833:683004",
@@ -7376,7 +7380,7 @@
       "game_pk": 824123,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 118,
       "original_rank": 118,
       "original_score": 53.7,
@@ -7432,7 +7436,7 @@
       "game_pk": 824123,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 138,
       "original_rank": 138,
       "original_score": 45.1,
@@ -7469,15 +7473,15 @@
       "ballparkpal_overlay_adjusted_score": 40.3,
       "ballparkpal_overlay_adjusted_rank": 84,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 53.8%, a top-quartile recent-contact signal.",
       "top_reason_2": "Michael Wacha has allowed a 50.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 12.7 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:822993:553993:607259",
@@ -7992,7 +7996,7 @@
       "game_pk": 824123,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 202,
       "original_rank": 202,
       "original_score": 20.4,
@@ -8029,15 +8033,15 @@
       "ballparkpal_overlay_adjusted_score": 36.3,
       "ballparkpal_overlay_adjusted_rank": 94,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Michael Wacha has allowed a 50.0% hard-hit rate over the last 30 days.",
       "top_reason_2": "Projected wind speed is 12.7 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Michael Wacha has allowed 50.0% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:825097:677592:593958",
@@ -8396,7 +8400,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Matthew Boyd",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -9004,7 +9008,7 @@
       "game_pk": 824123,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 30,
       "original_rank": 30,
       "original_score": 88.6,
@@ -9041,15 +9045,15 @@
       "ballparkpal_overlay_adjusted_score": 41.3,
       "ballparkpal_overlay_adjusted_rank": 112,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0025, reinforcing the power-contact fit.",
       "top_reason_2": "Michael Wacha has allowed a 50.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected wind speed is 12.7 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:822913:669394:677952",
@@ -10632,7 +10636,7 @@
       "game_pk": 824123,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 241,
       "original_rank": 241,
       "original_score": 5.9,
@@ -10669,15 +10673,15 @@
       "ballparkpal_overlay_adjusted_score": 30.2,
       "ballparkpal_overlay_adjusted_rank": 141,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Projected wind speed is 12.7 mph, which the live model treats as favorable weather context.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:823641:605170:605280",
@@ -10912,7 +10916,7 @@
       "game_pk": 824123,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 14,
       "original_rank": 14,
       "original_score": 94.9,
@@ -10949,15 +10953,15 @@
       "ballparkpal_overlay_adjusted_score": 38.4,
       "ballparkpal_overlay_adjusted_rank": 146,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.2 mph, which points to top-end HR juice.",
       "top_reason_2": "Projected wind speed is 12.7 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 5.7% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:823231:681624:641816",
@@ -11304,7 +11308,7 @@
       "game_pk": 824123,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 51,
       "original_rank": 51,
       "original_score": 80.0,
@@ -14222,7 +14226,7 @@
       "game_pk": 824123,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 116,
       "original_rank": 116,
       "original_score": 54.5,
@@ -14259,15 +14263,15 @@
       "ballparkpal_overlay_adjusted_score": 23.9,
       "ballparkpal_overlay_adjusted_rank": 205,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 64.7%, a top-decile recent-contact signal.",
       "top_reason_2": "Chris Bassitt has allowed barrels on 5.1% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 12.7 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:824449:694728:676440",
@@ -14334,7 +14338,7 @@
       "game_pk": 824123,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 143,
       "original_rank": 143,
       "original_score": 43.1,
@@ -14371,15 +14375,15 @@
       "ballparkpal_overlay_adjusted_score": 22.5,
       "ballparkpal_overlay_adjusted_rank": 207,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 45.9%, showing consistent quality contact.",
       "top_reason_2": "Projected wind speed is 12.7 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 45.9%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:823641:668904:605280",
@@ -14558,7 +14562,7 @@
       "game_pk": 824123,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 74,
       "original_rank": 74,
       "original_score": 71.0,
@@ -14595,15 +14599,15 @@
       "ballparkpal_overlay_adjusted_score": 24.9,
       "ballparkpal_overlay_adjusted_rank": 211,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 115.0 mph, which points to top-end HR juice.",
       "top_reason_2": "Chris Bassitt has allowed barrels on 5.1% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 12.7 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:822748:643289:641793",
@@ -15734,7 +15738,7 @@
       "game_pk": 824123,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T18:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 225,
       "original_rank": 225,
       "original_score": 11.8,
@@ -263059,8 +263063,8 @@
       "game_pk": 824123,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T18:10:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "BAL @ KC",
       "teams": [
         {
@@ -263916,14 +263920,14 @@
       "game_pk": 824688,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T23:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "PHI @ CHC",
       "teams": [
         {
           "team": "PHI",
           "opponent_team": "CHC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666969,
@@ -263938,22 +263942,22 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 669016,
-              "batter_name": "Brandon Marsh",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 547180,
               "batter_name": "Bryce Harper",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 681082,
-              "batter_name": "Bryson Stott",
+              "batter_id": 624641,
+              "batter_name": "Edmundo Sosa",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 694025,
+              "batter_name": "Felix Reyes",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 702222,
