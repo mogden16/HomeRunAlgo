@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-22T13:09:34.025537+00:00",
+  "generated_at": "2026-04-22T15:02:11.710061+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2788,7 +2788,7 @@
       "team": "HOU",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -3068,7 +3068,7 @@
       "team": "TB",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -3348,7 +3348,7 @@
       "team": "CIN",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -3404,7 +3404,7 @@
       "team": "CIN",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -3740,7 +3740,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Chris Bassitt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -3852,7 +3852,7 @@
       "team": "STL",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -3880,14 +3880,16 @@
       "ballparkpal_overlay_adjusted_rank": 20,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 7.1%, which the model treats as sustained power quality.",
       "top_reason_2": "Peak exit velocity over the last 10 days is 111.6 mph, which points to top-end HR juice.",
       "top_reason_3": "Barrel rate over the last 10 days is 8.1%, a top-quartile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:824449:572233:676440",
@@ -3908,7 +3910,7 @@
       "team": "HOU",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -4049,7 +4051,9 @@
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 101.1 mph, a top-decile recent batted-ball quality marker.",
@@ -4468,7 +4472,7 @@
       "team": "STL",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -4972,7 +4976,7 @@
       "team": "STL",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -5000,14 +5004,16 @@
       "ballparkpal_overlay_adjusted_rank": 40,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.7 mph, which points to top-end HR juice.",
       "top_reason_2": "Barrel rate over the last 30 days is 9.6%, which the model treats as sustained power quality.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 58.9%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:822913:668804:683004",
@@ -5196,7 +5202,7 @@
       "team": "CLE",
       "opponent_team": "HOU",
       "pitcher_name": "Peter Lambert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -5308,7 +5314,7 @@
       "team": "CLE",
       "opponent_team": "HOU",
       "pitcher_name": "Peter Lambert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -5644,7 +5650,7 @@
       "team": "MIA",
       "opponent_team": "STL",
       "pitcher_name": "Kyle Leahy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -5812,7 +5818,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Chris Bassitt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -5924,7 +5930,7 @@
       "team": "HOU",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -6036,7 +6042,7 @@
       "team": "TB",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -6092,7 +6098,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Chris Bassitt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -6148,7 +6154,7 @@
       "team": "MIA",
       "opponent_team": "STL",
       "pitcher_name": "Kyle Leahy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -6260,7 +6266,7 @@
       "team": "CIN",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -6288,14 +6294,16 @@
       "ballparkpal_overlay_adjusted_rank": 63,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 83.3%, a top-decile recent-contact signal.",
       "top_reason_2": "Nick Martinez has allowed barrels on 7.8% of recent batted balls.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 83.3%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:824044:681351:641778",
@@ -6793,7 +6801,9 @@
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 10.5%, a top-decile indicator of current lift-and-damage contact.",
@@ -6961,7 +6971,9 @@
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.9 mph, which points to top-end HR juice.",
@@ -7044,7 +7056,7 @@
       "team": "STL",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -7380,7 +7392,7 @@
       "team": "MIA",
       "opponent_team": "STL",
       "pitcher_name": "Kyle Leahy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -7548,7 +7560,7 @@
       "team": "CIN",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -8108,7 +8120,7 @@
       "team": "HOU",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -8276,7 +8288,7 @@
       "team": "CIN",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -8500,7 +8512,7 @@
       "team": "CLE",
       "opponent_team": "HOU",
       "pitcher_name": "Peter Lambert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -8528,14 +8540,16 @@
       "ballparkpal_overlay_adjusted_rank": 103,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0035, reinforcing the power-contact fit.",
       "top_reason_2": "Peter Lambert has allowed barrels on 11.5% of recent batted balls.",
       "top_reason_3": "Peter Lambert has allowed barrels on 8.9% of batted balls to this batter side.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:824044:650391:667755",
@@ -8612,7 +8626,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Chris Bassitt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -8809,7 +8823,9 @@
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 113.4 mph, which points to top-end HR juice.",
@@ -8892,7 +8908,7 @@
       "team": "HOU",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -9116,7 +9132,7 @@
       "team": "CIN",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -9144,14 +9160,16 @@
       "ballparkpal_overlay_adjusted_rank": 114,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 10.3% barrel-per-PA split.",
       "top_reason_2": "Nick Martinez has allowed barrels on 7.8% of recent batted balls.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0044, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:822913:687462:683004",
@@ -9732,7 +9750,7 @@
       "team": "CLE",
       "opponent_team": "HOU",
       "pitcher_name": "Peter Lambert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -10041,7 +10059,9 @@
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 5.6%, a top-quartile indicator of current lift-and-damage contact.",
@@ -10068,7 +10088,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Chris Bassitt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -10265,7 +10285,9 @@
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 107.8 mph, which points to top-end HR juice.",
@@ -10348,7 +10370,7 @@
       "team": "TB",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -10460,7 +10482,7 @@
       "team": "CLE",
       "opponent_team": "HOU",
       "pitcher_name": "Peter Lambert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -10796,7 +10818,7 @@
       "team": "MIA",
       "opponent_team": "STL",
       "pitcher_name": "Kyle Leahy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -10824,14 +10846,16 @@
       "ballparkpal_overlay_adjusted_rank": 144,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 5.1% barrel-per-PA split.",
       "top_reason_2": "Kyle Leahy has allowed 91.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Average exit velocity over the last 10 days is 92.4 mph, a top-quartile recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:824286:663837:694477",
@@ -11076,7 +11100,7 @@
       "team": "CIN",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -11244,7 +11268,7 @@
       "team": "STL",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -11300,7 +11324,7 @@
       "team": "HOU",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -11328,14 +11352,16 @@
       "ballparkpal_overlay_adjusted_rank": 153,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1902, supporting loud-contact upside.",
       "top_reason_2": "Tanner Bibee has allowed a 59.8% hard-hit rate over the last 30 days.",
       "top_reason_3": "Tanner Bibee has allowed 59.8% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:824286:650402:694477",
@@ -11748,7 +11774,7 @@
       "team": "HOU",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -11776,14 +11802,16 @@
       "ballparkpal_overlay_adjusted_rank": 161,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 14.3%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Tanner Bibee has allowed a 59.8% hard-hit rate over the last 30 days.",
       "top_reason_3": "Barrel rate over the last 30 days is 10.0%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:823878:669065:681517",
@@ -11804,7 +11832,7 @@
       "team": "MIA",
       "opponent_team": "STL",
       "pitcher_name": "Kyle Leahy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -11832,14 +11860,16 @@
       "ballparkpal_overlay_adjusted_rank": 162,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 80.0%, showing consistent quality contact.",
       "top_reason_2": "Kyle Leahy has allowed barrels on 7.5% of batted balls to this batter side.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 80.0%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:823231:669477:660271",
@@ -11916,7 +11946,7 @@
       "team": "STL",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -11972,7 +12002,7 @@
       "team": "MIA",
       "opponent_team": "STL",
       "pitcher_name": "Kyle Leahy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -12084,7 +12114,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Chris Bassitt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -12140,7 +12170,7 @@
       "team": "MIA",
       "opponent_team": "STL",
       "pitcher_name": "Kyle Leahy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -12252,7 +12282,7 @@
       "team": "HOU",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -12308,7 +12338,7 @@
       "team": "CLE",
       "opponent_team": "HOU",
       "pitcher_name": "Peter Lambert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -12476,7 +12506,7 @@
       "team": "MIA",
       "opponent_team": "STL",
       "pitcher_name": "Kyle Leahy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -12532,7 +12562,7 @@
       "team": "CLE",
       "opponent_team": "HOU",
       "pitcher_name": "Peter Lambert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -12673,7 +12703,9 @@
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 109.6 mph, which points to top-end HR juice.",
@@ -12700,7 +12732,7 @@
       "team": "STL",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -12924,7 +12956,7 @@
       "team": "STL",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -12952,14 +12984,16 @@
       "ballparkpal_overlay_adjusted_rank": 182,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.0 mph, which points to top-end HR juice.",
       "top_reason_2": "Barrel rate over the last 10 days is 3.2%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:822748:622761:641793",
@@ -13260,7 +13294,7 @@
       "team": "TB",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -13316,7 +13350,7 @@
       "team": "TB",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -13344,14 +13378,16 @@
       "ballparkpal_overlay_adjusted_rank": 189,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Brandon Williamson has allowed homers in 7.0% of plate appearances to this batter side.",
       "top_reason_2": "Brandon Williamson has allowed barrels on 10.3% of batted balls to this batter side.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:825097:682668:593958",
@@ -13764,7 +13800,7 @@
       "team": "CIN",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -13876,7 +13912,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Chris Bassitt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -13904,14 +13940,16 @@
       "ballparkpal_overlay_adjusted_rank": 199,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 45.5%, a above-baseline recent-contact signal.",
       "top_reason_2": "Chris Bassitt has allowed barrels on 5.1% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 11.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:823231:808982:660271",
@@ -14100,7 +14138,7 @@
       "team": "TB",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -14212,7 +14250,7 @@
       "team": "TB",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -14240,14 +14278,16 @@
       "ballparkpal_overlay_adjusted_rank": 205,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1931, supporting loud-contact upside.",
       "top_reason_2": "Brandon Williamson has allowed homers in 7.0% of plate appearances to this batter side.",
       "top_reason_3": "Brandon Williamson has allowed barrels on 10.3% of batted balls to this batter side.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:824286:701678:694477",
@@ -14660,7 +14700,7 @@
       "team": "CIN",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -14688,14 +14728,16 @@
       "ballparkpal_overlay_adjusted_rank": 213,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Nick Martinez has allowed barrels on 7.8% of recent batted balls.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:823641:605170:605280",
@@ -15276,7 +15318,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Chris Bassitt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -15388,7 +15430,7 @@
       "team": "HOU",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -15416,14 +15458,16 @@
       "ballparkpal_overlay_adjusted_rank": 226,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Tanner Bibee has allowed a 59.8% hard-hit rate over the last 30 days.",
       "top_reason_2": "Tanner Bibee has allowed 59.8% 95+ EV contact over the last 30 days.",
       "top_reason_3": "Tanner Bibee has allowed 93.7 mph average exit velocity recently, which the model flags as hittable contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:823231:500743:641816",
@@ -15836,7 +15880,7 @@
       "team": "MIA",
       "opponent_team": "STL",
       "pitcher_name": "Kyle Leahy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -15921,7 +15965,9 @@
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Mart\u00edn P\u00e9rez has allowed a 42.4% hard-hit rate over the last 30 days.",
@@ -15948,7 +15994,7 @@
       "team": "CLE",
       "opponent_team": "HOU",
       "pitcher_name": "Peter Lambert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -16396,7 +16442,7 @@
       "team": "CLE",
       "opponent_team": "HOU",
       "pitcher_name": "Peter Lambert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -16732,7 +16778,7 @@
       "team": "KC",
       "opponent_team": "BAL",
       "pitcher_name": "Chris Bassitt",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -16900,7 +16946,7 @@
       "team": "STL",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -16956,7 +17002,7 @@
       "team": "TB",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -17068,7 +17114,7 @@
       "team": "TB",
       "opponent_team": "CIN",
       "pitcher_name": "Brandon Williamson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -17209,7 +17255,9 @@
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Mart\u00edn P\u00e9rez has allowed a 42.4% hard-hit rate over the last 30 days.",
@@ -263003,21 +263051,15 @@
       "game_pk": 823878,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T16:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "STL @ MIA",
       "teams": [
         {
           "team": "STL",
           "opponent_team": "MIA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 676475,
-              "batter_name": "Alec Burleson",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 671056,
               "batter_name": "Iv\u00e1n Herrera",
@@ -263031,14 +263073,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 691023,
-              "batter_name": "Jordan Walker",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 691026,
-              "batter_name": "Masyn Winn",
+              "batter_id": 665877,
+              "batter_name": "Jos\u00e9 Ferm\u00edn",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -263061,6 +263097,18 @@
               "selected_for_pick": false
             },
             {
+              "batter_id": 602104,
+              "batter_name": "Ram\u00f3n Ur\u00edas",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 695336,
+              "batter_name": "Thomas Saggese",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 687363,
               "batter_name": "Victor Scott II",
               "batting_order": null,
@@ -263071,7 +263119,7 @@
         {
           "team": "MIA",
           "opponent_team": "STL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682663,
@@ -263080,14 +263128,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 681393,
-              "batter_name": "Connor Norby",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 688363,
-              "batter_name": "Graham Pauley",
+              "batter_id": 681715,
+              "batter_name": "Heriberto Hern\u00e1ndez",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -263098,8 +263140,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 669065,
-              "batter_name": "Kyle Stowers",
+              "batter_id": 691594,
+              "batter_name": "Javier Sanoja",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -263135,14 +263177,14 @@
       "game_pk": 824449,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T17:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "HOU @ CLE",
       "teams": [
         {
           "team": "HOU",
           "opponent_team": "CLE",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 694728,
@@ -263169,10 +263211,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 687957,
-              "batter_name": "Dustin Harris",
+              "batter_id": 669288,
+              "batter_name": "Daniel Johnson",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 670623,
@@ -263187,12 +263229,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 673237,
-              "batter_name": "Yainer Diaz",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 670541,
               "batter_name": "Yordan Alvarez",
               "batting_order": null,
@@ -263203,13 +263239,13 @@
         {
           "team": "CLE",
           "opponent_team": "HOU",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 682657,
-              "batter_name": "Angel Mart\u00ednez",
+              "batter_id": 666310,
+              "batter_name": "Bo Naylor",
               "batting_order": null,
-              "selected_for_pick": false
+              "selected_for_pick": true
             },
             {
               "batter_id": 677587,
@@ -263242,14 +263278,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 700932,
-              "batter_name": "Kyle Manzardo",
+              "batter_id": 682877,
+              "batter_name": "Juan Brito",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 656555,
-              "batter_name": "Rhys Hoskins",
+              "batter_id": 700932,
+              "batter_name": "Kyle Manzardo",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -263267,14 +263303,14 @@
       "game_pk": 822993,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T17:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "CIN @ TB",
       "teams": [
         {
           "team": "CIN",
           "opponent_team": "TB",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682829,
@@ -263289,20 +263325,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 663647,
-              "batter_name": "Ke'Bryan Hayes",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 680574,
               "batter_name": "Matt McLain",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 677956,
-              "batter_name": "Rece Hinds",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -263325,35 +263349,29 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 663886,
-              "batter_name": "Tyler Stephenson",
+              "batter_id": 666181,
+              "batter_name": "Will Benson",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             }
           ]
         },
         {
           "team": "TB",
           "opponent_team": "CIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 656775,
-              "batter_name": "Cedric Mullins",
+              "batter_id": 810938,
+              "batter_name": "Ben Williamson",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 802415,
               "batter_name": "Chandler Simpson",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 676439,
-              "batter_name": "Hunter Feduccia",
-              "batting_order": null,
-              "selected_for_pick": false
             },
             {
               "batter_id": 666018,
@@ -263374,10 +263392,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 680700,
-              "batter_name": "Richie Palacios",
+              "batter_id": 663743,
+              "batter_name": "Nick Fortes",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 668723,
+              "batter_name": "Ryan Vilade",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 670764,
@@ -263399,7 +263423,7 @@
       "game_pk": 824123,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T18:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "BAL @ KC",
       "teams": [
@@ -263467,7 +263491,7 @@
         {
           "team": "KC",
           "opponent_team": "BAL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 677951,
@@ -263482,12 +263506,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 686555,
-              "batter_name": "Isaac Collins",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 695506,
               "batter_name": "Jac Caglianone",
               "batting_order": null,
@@ -263496,6 +263514,12 @@
             {
               "batter_id": 664728,
               "batter_name": "Kyle Isbel",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 657041,
+              "batter_name": "Lane Thomas",
               "batting_order": null,
               "selected_for_pick": true
             },
