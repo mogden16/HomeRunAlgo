@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-22T21:25:07.001215+00:00",
+  "generated_at": "2026-04-22T22:13:14.666693+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -93,10 +93,10 @@
     "latest_slate_size": 255,
     "tracked_dates": 28,
     "tracked_picks": 4609,
-    "settled_picks": 3673,
+    "settled_picks": 3689,
     "tracked_homers": 399,
-    "tracked_hit_rate": 0.108631,
-    "open_picks": 936
+    "tracked_hit_rate": 0.108159,
+    "open_picks": 920
   },
   "confidence_summary": [
     {
@@ -108,24 +108,24 @@
     },
     {
       "confidence_tier": "strong",
-      "picks": 244,
+      "picks": 245,
       "homers": 53,
-      "hit_rate": 0.217213,
-      "avg_probability": 0.189541
+      "hit_rate": 0.216327,
+      "avg_probability": 0.189552
     },
     {
       "confidence_tier": "watch",
-      "picks": 625,
+      "picks": 627,
       "homers": 88,
-      "hit_rate": 0.1408,
-      "avg_probability": 0.139714
+      "hit_rate": 0.140351,
+      "avg_probability": 0.139767
     },
     {
       "confidence_tier": "longshot",
-      "picks": 2726,
+      "picks": 2739,
       "homers": 236,
-      "hit_rate": 0.086574,
-      "avg_probability": 0.09513
+      "hit_rate": 0.086163,
+      "avg_probability": 0.095098
     }
   ],
   "player_leaderboard": [
@@ -307,9 +307,16 @@
     {
       "batter_name": "Jorge Soler",
       "team": "LAA",
-      "picks": 10,
+      "picks": 11,
       "homers": 4,
-      "hit_rate": 0.4
+      "hit_rate": 0.363636
+    },
+    {
+      "batter_name": "Jo Adell",
+      "team": "LAA",
+      "picks": 19,
+      "homers": 3,
+      "hit_rate": 0.157895
     },
     {
       "batter_name": "Vinnie Pasquantino",
@@ -321,13 +328,6 @@
     {
       "batter_name": "Iv\u00e1n Herrera",
       "team": "STL",
-      "picks": 18,
-      "homers": 3,
-      "hit_rate": 0.166667
-    },
-    {
-      "batter_name": "Jo Adell",
-      "team": "LAA",
       "picks": 18,
       "homers": 3,
       "hit_rate": 0.166667
@@ -356,9 +356,9 @@
     {
       "batter_name": "Zach Neto",
       "team": "LAA",
-      "picks": 17,
+      "picks": 18,
       "homers": 3,
-      "hit_rate": 0.176471
+      "hit_rate": 0.166667
     },
     {
       "batter_name": "Bryce Harper",
@@ -452,18 +452,18 @@
       "hit_rate": 0.214286
     },
     {
-      "batter_name": "Willson Contreras",
-      "team": "BOS",
+      "batter_name": "Daulton Varsho",
+      "team": "TOR",
       "picks": 13,
       "homers": 3,
       "hit_rate": 0.230769
     },
     {
-      "batter_name": "Daulton Varsho",
-      "team": "TOR",
-      "picks": 12,
+      "batter_name": "Willson Contreras",
+      "team": "BOS",
+      "picks": 13,
       "homers": 3,
-      "hit_rate": 0.25
+      "hit_rate": 0.230769
     },
     {
       "batter_name": "Teoscar Hern\u00e1ndez",
@@ -578,6 +578,13 @@
       "hit_rate": 0.117647
     },
     {
+      "batter_name": "Vladimir Guerrero Jr.",
+      "team": "TOR",
+      "picks": 17,
+      "homers": 2,
+      "hit_rate": 0.117647
+    },
+    {
       "batter_name": "Brandon Nimmo",
       "team": "TEX",
       "picks": 16,
@@ -608,13 +615,6 @@
     {
       "batter_name": "Trea Turner",
       "team": "PHI",
-      "picks": 16,
-      "homers": 2,
-      "hit_rate": 0.125
-    },
-    {
-      "batter_name": "Vladimir Guerrero Jr.",
-      "team": "TOR",
       "picks": 16,
       "homers": 2,
       "hit_rate": 0.125
@@ -900,6 +900,13 @@
       "hit_rate": 0.0625
     },
     {
+      "batter_name": "Kazuma Okamoto",
+      "team": "TOR",
+      "picks": 16,
+      "homers": 1,
+      "hit_rate": 0.0625
+    },
+    {
       "batter_name": "Kevin McGonigle",
       "team": "DET",
       "picks": 16,
@@ -926,6 +933,13 @@
       "picks": 16,
       "homers": 1,
       "hit_rate": 0.0625
+    },
+    {
+      "batter_name": "Andr\u00e9s Gim\u00e9nez",
+      "team": "TOR",
+      "picks": 15,
+      "homers": 1,
+      "hit_rate": 0.066667
     },
     {
       "batter_name": "Bo Bichette",
@@ -984,8 +998,8 @@
       "hit_rate": 0.066667
     },
     {
-      "batter_name": "Kazuma Okamoto",
-      "team": "TOR",
+      "batter_name": "Logan O'Hoppe",
+      "team": "LAA",
       "picks": 15,
       "homers": 1,
       "hit_rate": 0.066667
@@ -1033,13 +1047,6 @@
       "hit_rate": 0.066667
     },
     {
-      "batter_name": "Andr\u00e9s Gim\u00e9nez",
-      "team": "TOR",
-      "picks": 14,
-      "homers": 1,
-      "hit_rate": 0.071429
-    },
-    {
       "batter_name": "Brandon Marsh",
       "team": "PHI",
       "picks": 14,
@@ -1056,13 +1063,6 @@
     {
       "batter_name": "Liam Hicks",
       "team": "MIA",
-      "picks": 14,
-      "homers": 1,
-      "hit_rate": 0.071429
-    },
-    {
-      "batter_name": "Logan O'Hoppe",
-      "team": "LAA",
       "picks": 14,
       "homers": 1,
       "hit_rate": 0.071429
@@ -1159,6 +1159,13 @@
       "hit_rate": 0.083333
     },
     {
+      "batter_name": "Jes\u00fas S\u00e1nchez",
+      "team": "TOR",
+      "picks": 12,
+      "homers": 1,
+      "hit_rate": 0.083333
+    },
+    {
       "batter_name": "Jos\u00e9 Caballero",
       "team": "NYY",
       "picks": 12,
@@ -1189,13 +1196,6 @@
     {
       "batter_name": "Gary S\u00e1nchez",
       "team": "MIL",
-      "picks": 11,
-      "homers": 1,
-      "hit_rate": 0.090909
-    },
-    {
-      "batter_name": "Jes\u00fas S\u00e1nchez",
-      "team": "TOR",
       "picks": 11,
       "homers": 1,
       "hit_rate": 0.090909
@@ -1264,6 +1264,13 @@
       "hit_rate": 0.111111
     },
     {
+      "batter_name": "Oswald Peraza",
+      "team": "LAA",
+      "picks": 9,
+      "homers": 1,
+      "hit_rate": 0.111111
+    },
+    {
       "batter_name": "Rhys Hoskins",
       "team": "CLE",
       "picks": 9,
@@ -1301,13 +1308,6 @@
     {
       "batter_name": "Masyn Winn",
       "team": "STL",
-      "picks": 8,
-      "homers": 1,
-      "hit_rate": 0.125
-    },
-    {
-      "batter_name": "Oswald Peraza",
-      "team": "LAA",
       "picks": 8,
       "homers": 1,
       "hit_rate": 0.125
@@ -1453,15 +1453,15 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Chandler Simpson",
-      "team": "TB",
-      "picks": 16,
+      "batter_name": "Ernie Clement",
+      "team": "TOR",
+      "picks": 17,
       "homers": 0,
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Ernie Clement",
-      "team": "TOR",
+      "batter_name": "Chandler Simpson",
+      "team": "TB",
       "picks": 16,
       "homers": 0,
       "hit_rate": 0.0
@@ -2055,6 +2055,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Nathan Lukes",
+      "team": "TOR",
+      "picks": 5,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Parker Meadows",
       "team": "DET",
       "picks": 5,
@@ -2167,13 +2174,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Nathan Lukes",
-      "team": "TOR",
-      "picks": 4,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Nick Castellanos",
       "team": "SD",
       "picks": 4,
@@ -2272,6 +2272,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Lenyn Sosa",
+      "team": "TOR",
+      "picks": 3,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Myles Straw",
       "team": "TOR",
       "picks": 3,
@@ -2288,6 +2295,13 @@
     {
       "batter_name": "Ty France",
       "team": "SD",
+      "picks": 3,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Tyler Heineman",
+      "team": "TOR",
       "picks": 3,
       "homers": 0,
       "hit_rate": 0.0
@@ -2330,6 +2344,13 @@
     {
       "batter_name": "Brice Matthews",
       "team": "HOU",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Bryce Teodosio",
+      "team": "LAA",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
@@ -2384,13 +2405,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Lenyn Sosa",
-      "team": "TOR",
-      "picks": 2,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Masataka Yoshida",
       "team": "BOS",
       "picks": 2,
@@ -2433,15 +2447,15 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Tyler Heineman",
-      "team": "TOR",
+      "batter_name": "Tyler O'Neill",
+      "team": "BAL",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Tyler O'Neill",
-      "team": "BAL",
+      "batter_name": "Vaughn Grissom",
+      "team": "LAA",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
@@ -2790,7 +2804,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Tomoyuki Sugano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -2846,7 +2860,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Tomoyuki Sugano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -2902,7 +2916,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Tomoyuki Sugano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -3014,7 +3028,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Tomoyuki Sugano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -3060,7 +3074,7 @@
       "game_pk": 824044,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 9,
       "original_rank": 9,
       "original_score": 96.9,
@@ -3097,15 +3111,15 @@
       "ballparkpal_overlay_adjusted_score": 66.0,
       "ballparkpal_overlay_adjusted_rank": 6,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 6.9% barrel-per-PA split.",
       "top_reason_2": "Eric Lauer has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 61.3%, a top-decile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:824044:687263:641778",
@@ -3116,7 +3130,7 @@
       "game_pk": 824044,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 24,
       "original_rank": 24,
       "original_score": 91.0,
@@ -3153,15 +3167,15 @@
       "ballparkpal_overlay_adjusted_score": 64.3,
       "ballparkpal_overlay_adjusted_rank": 7,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 5.7% barrel-per-PA split.",
       "top_reason_2": "Eric Lauer has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0025, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:824774:592450:624133",
@@ -3294,7 +3308,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Tomoyuki Sugano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -3340,7 +3354,7 @@
       "game_pk": 824044,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 12,
       "original_rank": 12,
       "original_score": 95.7,
@@ -3406,7 +3420,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Kyle Backhus",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -3968,7 +3982,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Kyle Backhus",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -4240,7 +4254,7 @@
       "game_pk": 824044,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 63,
       "original_rank": 63,
       "original_score": 75.3,
@@ -4277,15 +4291,15 @@
       "ballparkpal_overlay_adjusted_score": 53.9,
       "ballparkpal_overlay_adjusted_rank": 27,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 93.2 mph, a top-quartile recent batted-ball quality marker.",
       "top_reason_2": "Eric Lauer has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 53.3%, a top-quartile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:824688:691718:679775",
@@ -4306,7 +4320,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Kyle Backhus",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -4362,7 +4376,7 @@
       "team": "PIT",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -4408,7 +4422,7 @@
       "game_pk": 824044,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 72,
       "original_rank": 72,
       "original_score": 71.8,
@@ -4445,15 +4459,15 @@
       "ballparkpal_overlay_adjusted_score": 52.5,
       "ballparkpal_overlay_adjusted_rank": 30,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.3 mph, which points to top-end HR juice.",
       "top_reason_2": "Eric Lauer has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "Barrel rate over the last 10 days is 5.9%, a top-quartile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:822913:542303:683004",
@@ -4474,7 +4488,7 @@
       "team": "PIT",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -4586,7 +4600,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Tomoyuki Sugano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -5314,7 +5328,7 @@
       "team": "CWS",
       "opponent_team": "AZ",
       "pitcher_name": "Eduardo Rodriguez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -5370,7 +5384,7 @@
       "team": "CWS",
       "opponent_team": "AZ",
       "pitcher_name": "Eduardo Rodriguez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -5594,7 +5608,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Kyle Backhus",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -5932,7 +5946,7 @@
       "team": "PIT",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -6046,7 +6060,7 @@
       "team": "PIT",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -6158,7 +6172,7 @@
       "team": "PIT",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -6214,7 +6228,7 @@
       "team": "PIT",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -6242,14 +6256,16 @@
       "ballparkpal_overlay_adjusted_rank": 62,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 47.4%, a above-baseline recent-contact signal.",
       "top_reason_2": "Jack Leiter has allowed barrels on 5.8% of batted balls to this batter side.",
       "top_reason_3": "Projected humidity is 80%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:824449:670541:676440",
@@ -6316,7 +6332,7 @@
       "game_pk": 824044,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 174,
       "original_rank": 174,
       "original_score": 31.8,
@@ -6662,7 +6678,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Kyle Backhus",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6830,7 +6846,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Tomoyuki Sugano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -6858,14 +6874,16 @@
       "ballparkpal_overlay_adjusted_rank": 73,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 109.0 mph, which points to top-end HR juice.",
       "top_reason_2": "Tomoyuki Sugano has allowed barrels on 10.4% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 120.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:822993:650490:682227",
@@ -7166,7 +7184,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Tomoyuki Sugano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -7194,14 +7212,16 @@
       "ballparkpal_overlay_adjusted_rank": 79,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 71.4%, a top-decile recent-contact signal.",
       "top_reason_2": "Tomoyuki Sugano has allowed barrels on 10.4% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 120.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:825097:695657:593958",
@@ -7222,7 +7242,7 @@
       "team": "CWS",
       "opponent_team": "AZ",
       "pitcher_name": "Eduardo Rodriguez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -7334,7 +7354,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Kyle Backhus",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -7716,7 +7736,7 @@
       "game_pk": 824044,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 146,
       "original_rank": 146,
       "original_score": 42.0,
@@ -7753,15 +7773,15 @@
       "ballparkpal_overlay_adjusted_score": 39.1,
       "ballparkpal_overlay_adjusted_rank": 89,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.1 mph, which points to top-end HR juice.",
       "top_reason_2": "Eric Lauer has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "Eric Lauer has allowed homers in 3.4% of plate appearances over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:823641:502054:687570",
@@ -8062,7 +8082,7 @@
       "team": "CWS",
       "opponent_team": "AZ",
       "pitcher_name": "Eduardo Rodriguez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -8174,7 +8194,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Kyle Backhus",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -8202,14 +8222,16 @@
       "ballparkpal_overlay_adjusted_rank": 97,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 7.8%, which the model treats as sustained power quality.",
       "top_reason_2": "Kyle Backhus has allowed homers in 4.3% of plate appearances to this batter side.",
       "top_reason_3": "Barrel rate over the last 10 days is 7.4%, a top-quartile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:822993:668715:607259",
@@ -8456,7 +8478,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Kyle Backhus",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -8568,7 +8590,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Tomoyuki Sugano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -8682,7 +8704,7 @@
       "team": "PIT",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -8710,14 +8732,16 @@
       "ballparkpal_overlay_adjusted_rank": 106,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 52.1%, showing consistent quality contact.",
       "top_reason_2": "Jack Leiter has allowed a 44.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 80%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:823231:687221:641816",
@@ -9186,7 +9210,7 @@
       "team": "CWS",
       "opponent_team": "AZ",
       "pitcher_name": "Eduardo Rodriguez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -9214,14 +9238,16 @@
       "ballparkpal_overlay_adjusted_rank": 115,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 61.8%, showing consistent quality contact.",
       "top_reason_2": "Eduardo Rodriguez has allowed barrels on 5.7% of batted balls to this batter side.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 61.8%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:825097:803011:593958",
@@ -9242,7 +9268,7 @@
       "team": "CWS",
       "opponent_team": "AZ",
       "pitcher_name": "Eduardo Rodriguez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -9270,14 +9296,16 @@
       "ballparkpal_overlay_adjusted_rank": 116,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 5.0%, which the model treats as sustained power quality.",
       "top_reason_2": "Eduardo Rodriguez has allowed barrels on 5.7% of batted balls to this batter side.",
       "top_reason_3": "Barrel rate over the last 10 days is 5.0%, a above-baseline indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-22:824367:650489:621111",
@@ -9468,7 +9496,7 @@
       "team": "PIT",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -9748,7 +9776,7 @@
       "team": "PIT",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -10534,7 +10562,7 @@
       "team": "SF",
       "opponent_team": "LAD",
       "pitcher_name": "Shohei Ohtani",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oracle Park",
       "ballpark_region_abbr": "CA",
@@ -10748,7 +10776,7 @@
       "game_pk": 824044,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 255,
       "original_rank": 255,
       "original_score": 0.4,
@@ -10785,15 +10813,15 @@
       "ballparkpal_overlay_adjusted_score": 29.4,
       "ballparkpal_overlay_adjusted_rank": 143,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Eric Lauer has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_2": "Eric Lauer has allowed homers in 3.4% of plate appearances over the last 30 days.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:824774:642708:624133",
@@ -11542,7 +11570,7 @@
       "team": "SF",
       "opponent_team": "LAD",
       "pitcher_name": "Shohei Ohtani",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oracle Park",
       "ballpark_region_abbr": "CA",
@@ -12488,7 +12516,7 @@
       "game_pk": 824044,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 244,
       "original_rank": 244,
       "original_score": 4.7,
@@ -12525,15 +12553,15 @@
       "ballparkpal_overlay_adjusted_score": 25.2,
       "ballparkpal_overlay_adjusted_rank": 174,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Eric Lauer has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_2": "Eric Lauer has allowed homers in 3.4% of plate appearances over the last 30 days.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:823641:605137:605280",
@@ -12656,7 +12684,7 @@
       "game_pk": 824044,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 180,
       "original_rank": 180,
       "original_score": 29.8,
@@ -12693,15 +12721,15 @@
       "ballparkpal_overlay_adjusted_score": 26.8,
       "ballparkpal_overlay_adjusted_rank": 177,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 4.2% barrel-per-PA split.",
       "top_reason_2": "Jos\u00e9 Soriano has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0019, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:824688:608324:679775",
@@ -12722,7 +12750,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Kyle Backhus",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -12768,7 +12796,7 @@
       "game_pk": 824044,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 85,
       "original_rank": 85,
       "original_score": 66.3,
@@ -12805,15 +12833,15 @@
       "ballparkpal_overlay_adjusted_score": 29.8,
       "ballparkpal_overlay_adjusted_rank": 179,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 94.8 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Jos\u00e9 Soriano has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_3": "The handedness-specific hard-hit matchup score is 0.2153, supporting loud-contact upside.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:824774:680776:608331",
@@ -13002,7 +13030,7 @@
       "team": "CWS",
       "opponent_team": "AZ",
       "pitcher_name": "Eduardo Rodriguez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -13104,7 +13132,7 @@
       "game_pk": 824044,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 22,
       "original_rank": 22,
       "original_score": 91.8,
@@ -13141,15 +13169,15 @@
       "ballparkpal_overlay_adjusted_score": 31.2,
       "ballparkpal_overlay_adjusted_rank": 185,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.6 mph, which points to top-end HR juice.",
       "top_reason_2": "Jos\u00e9 Soriano has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_3": "The handedness-specific hard-hit matchup score is 0.2146, supporting loud-contact upside.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:825097:700337:593958",
@@ -13170,7 +13198,7 @@
       "team": "CWS",
       "opponent_team": "AZ",
       "pitcher_name": "Eduardo Rodriguez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -13508,7 +13536,7 @@
       "team": "SF",
       "opponent_team": "LAD",
       "pitcher_name": "Shohei Ohtani",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oracle Park",
       "ballpark_region_abbr": "CA",
@@ -13890,7 +13918,7 @@
       "game_pk": 824044,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 124,
       "original_rank": 124,
       "original_score": 51.4,
@@ -13927,15 +13955,15 @@
       "ballparkpal_overlay_adjusted_score": 24.1,
       "ballparkpal_overlay_adjusted_rank": 199,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.2 mph, which points to top-end HR juice.",
       "top_reason_2": "Jos\u00e9 Soriano has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 4.3% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:823641:686797:605280",
@@ -15300,7 +15328,7 @@
       "team": "SF",
       "opponent_team": "LAD",
       "pitcher_name": "Shohei Ohtani",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oracle Park",
       "ballpark_region_abbr": "CA",
@@ -15468,7 +15496,7 @@
       "team": "SF",
       "opponent_team": "LAD",
       "pitcher_name": "Shohei Ohtani",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oracle Park",
       "ballpark_region_abbr": "CA",
@@ -15972,7 +16000,7 @@
       "team": "CWS",
       "opponent_team": "AZ",
       "pitcher_name": "Eduardo Rodriguez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -16186,7 +16214,7 @@
       "game_pk": 824044,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 152,
       "original_rank": 152,
       "original_score": 39.6,
@@ -16223,15 +16251,15 @@
       "ballparkpal_overlay_adjusted_score": 12.9,
       "ballparkpal_overlay_adjusted_rank": 240,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Jos\u00e9 Soriano has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:824044:672960:667755",
@@ -16242,7 +16270,7 @@
       "game_pk": 824044,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 163,
       "original_rank": 163,
       "original_score": 36.1,
@@ -16279,15 +16307,15 @@
       "ballparkpal_overlay_adjusted_score": 12.3,
       "ballparkpal_overlay_adjusted_rank": 241,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2394, supporting loud-contact upside.",
       "top_reason_2": "Jos\u00e9 Soriano has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 60.9%, a top-decile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:823878:687363:676083",
@@ -16364,7 +16392,7 @@
       "team": "SF",
       "opponent_team": "LAD",
       "pitcher_name": "Shohei Ohtani",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oracle Park",
       "ballpark_region_abbr": "CA",
@@ -16476,7 +16504,7 @@
       "team": "SF",
       "opponent_team": "LAD",
       "pitcher_name": "Shohei Ohtani",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oracle Park",
       "ballpark_region_abbr": "CA",
@@ -16532,7 +16560,7 @@
       "team": "SF",
       "opponent_team": "LAD",
       "pitcher_name": "Shohei Ohtani",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oracle Park",
       "ballpark_region_abbr": "CA",
@@ -16588,7 +16616,7 @@
       "team": "SF",
       "opponent_team": "LAD",
       "pitcher_name": "Shohei Ohtani",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oracle Park",
       "ballpark_region_abbr": "CA",
@@ -16634,7 +16662,7 @@
       "game_pk": 824044,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 204,
       "original_rank": 204,
       "original_score": 19.6,
@@ -16671,15 +16699,15 @@
       "ballparkpal_overlay_adjusted_score": 6.5,
       "ballparkpal_overlay_adjusted_rank": 248,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 91.2 mph, a above-baseline recent batted-ball quality marker.",
       "top_reason_2": "Jos\u00e9 Soriano has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:824774:678882:608331",
@@ -16746,7 +16774,7 @@
       "game_pk": 824044,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 211,
       "original_rank": 211,
       "original_score": 16.9,
@@ -16783,15 +16811,15 @@
       "ballparkpal_overlay_adjusted_score": 5.7,
       "ballparkpal_overlay_adjusted_rank": 250,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Jos\u00e9 Soriano has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:824774:655316:608331",
@@ -16914,7 +16942,7 @@
       "game_pk": 824044,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 252,
       "original_rank": 252,
       "original_score": 1.6,
@@ -16951,15 +16979,15 @@
       "ballparkpal_overlay_adjusted_score": 0.9,
       "ballparkpal_overlay_adjusted_rank": 253,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Jos\u00e9 Soriano has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-22:824774:702332:608331",
@@ -263195,8 +263223,8 @@
       "game_pk": 824044,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-22T19:07:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "TOR @ LAA",
       "teams": [
         {
@@ -263988,17 +264016,11 @@
         {
           "team": "CHC",
           "opponent_team": "PHI",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 608324,
               "batter_name": "Alex Bregman",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 608348,
-              "batter_name": "Carson Kelly",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -264025,6 +264047,12 @@
               "batter_name": "Miguel Amaya",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 694208,
+              "batter_name": "Mois\u00e9s Ballesteros",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 663538,
@@ -264059,8 +264087,14 @@
         {
           "team": "PIT",
           "opponent_team": "TEX",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 664040,
+              "batter_name": "Brandon Lowe",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 668804,
               "batter_name": "Bryan Reynolds",
@@ -264070,12 +264104,6 @@
             {
               "batter_id": 680779,
               "batter_name": "Henry Davis",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 663968,
-              "batter_name": "Jake Mangum",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -264098,12 +264126,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 694377,
-              "batter_name": "Nick Yorke",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 665833,
               "batter_name": "Oneil Cruz",
               "batting_order": null,
@@ -264114,6 +264136,12 @@
               "batter_name": "Ryan O'Hearn",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 687462,
+              "batter_name": "Spencer Horwitz",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         },
@@ -264191,17 +264219,11 @@
         {
           "team": "SD",
           "opponent_team": "COL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 665487,
               "batter_name": "Fernando Tatis Jr.",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 666023,
-              "batter_name": "Freddy Fermin",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -264224,16 +264246,22 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 669134,
+              "batter_name": "Luis Campusano",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 592518,
               "batter_name": "Manny Machado",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 609280,
-              "batter_name": "Miguel Andujar",
+              "batter_id": 592206,
+              "batter_name": "Nick Castellanos",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 657656,
@@ -264323,14 +264351,8 @@
         {
           "team": "CWS",
           "opponent_team": "AZ",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 643217,
-              "batter_name": "Andrew Benintendi",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 805367,
               "batter_name": "Chase Meidroth",
@@ -264342,6 +264364,12 @@
               "batter_name": "Colson Montgomery",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 656537,
+              "batter_name": "Derek Hill",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 700337,
@@ -264374,10 +264402,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 803011,
-              "batter_name": "Sam Antonacci",
+              "batter_id": 695020,
+              "batter_name": "Tanner Murray",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             }
           ]
         },
@@ -264448,7 +264476,7 @@
       "game_pk": 823231,
       "game_date": "2026-04-22",
       "game_datetime": "2026-04-23T01:45:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "LAD @ SF",
       "teams": [
@@ -264516,7 +264544,7 @@
         {
           "team": "SF",
           "opponent_team": "LAD",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 669477,
