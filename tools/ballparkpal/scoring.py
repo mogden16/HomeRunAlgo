@@ -1,4 +1,4 @@
-"""Fixed-weight Ballpark Pal validation and overlay scoring."""
+"""Ballpark Pal validation and overlay scoring."""
 
 from __future__ import annotations
 
@@ -22,12 +22,16 @@ BALLPARKPAL_MODEL_BLEND_WEIGHT: float = 0.10
 BALLPARKPAL_BALLPARK_BLEND_WEIGHT: float = 0.90
 
 BALLPARKPAL_OVERLAY_RULES: tuple[OverlayRule, ...] = (
-    OverlayRule(field="ballparkpal_home_run_probability", neutral=0.10, scale=0.05, weight=12.0, favor_when_above=True),
-    OverlayRule(field="ballparkpal_hit_probability", neutral=0.70, scale=0.10, weight=6.0, favor_when_above=True),
-    OverlayRule(field="ballparkpal_team_home_runs", neutral=0.90, scale=0.25, weight=5.0, favor_when_above=True),
-    OverlayRule(field="ballparkpal_runs_allowed", neutral=4.5, scale=1.0, weight=8.0, favor_when_above=True),
-    OverlayRule(field="ballparkpal_home_runs_allowed", neutral=0.80, scale=0.35, weight=4.0, favor_when_above=True),
+    OverlayRule(
+        field="ballparkpal_home_run_probability",
+        neutral=0.10,
+        scale=1.0,
+        weight=100.0,
+        favor_when_above=True,
+    ),
 )
+
+BALLPARKPAL_HOME_RUN_NEUTRAL_SCORE: float = 10.0
 
 
 def _to_float(value: Any) -> float | None:
@@ -52,39 +56,26 @@ def _bounded_centered_delta(value: float, *, neutral: float, scale: float, favor
 
 
 def compute_ballparkpal_overlay(row: Mapping[str, Any], *, model_score: float | None = None) -> dict[str, Any]:
-    signed_score = 0.0
-    factor_details: dict[str, Any] = {}
-    has_ballpark_data = False
-    for rule in BALLPARKPAL_OVERLAY_RULES:
-        value = _to_float(row.get(rule.field))
-        if value is None:
-            factor_details[rule.field] = None
-            continue
-        has_ballpark_data = True
-        centered = _bounded_centered_delta(
-            value,
-            neutral=rule.neutral,
-            scale=rule.scale,
-            favor_when_above=rule.favor_when_above,
-        )
-        contribution = centered * rule.weight
-        signed_score += contribution
-        factor_details[rule.field] = {
-            "value": value,
-            "neutral": rule.neutral,
-            "scale": rule.scale,
-            "weight": rule.weight,
-            "centered": centered,
-            "contribution": contribution,
-        }
-
-    max_abs = sum(rule.weight for rule in BALLPARKPAL_OVERLAY_RULES)
+    rule = BALLPARKPAL_OVERLAY_RULES[0]
+    factor_details: dict[str, Any] = {rule.field: None}
+    home_run_probability = _to_float(row.get(rule.field))
     model_score_value = _to_float(model_score if model_score is not None else row.get("predicted_hr_score"))
-    if not has_ballpark_data:
+
+    if home_run_probability is None:
+        signed_score = 0.0
         display_score = 50.0
         adjusted_score = model_score_value if model_score_value is not None else 50.0
     else:
-        display_score = 50.0 if max_abs <= 0 else ((signed_score + max_abs) / (2.0 * max_abs)) * 100.0
+        display_score = max(0.0, min(100.0, home_run_probability * 100.0))
+        signed_score = display_score - BALLPARKPAL_HOME_RUN_NEUTRAL_SCORE
+        factor_details[rule.field] = {
+            "value": home_run_probability,
+            "neutral": rule.neutral,
+            "scale": rule.scale,
+            "weight": rule.weight,
+            "score": display_score,
+            "delta": signed_score,
+        }
         if model_score_value is None:
             adjusted_score = display_score
         else:

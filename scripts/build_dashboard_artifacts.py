@@ -1061,17 +1061,9 @@ def build_model_explainer(
 def build_ballparkpal_explainer() -> dict[str, Any]:
     factor_labels = {
         "ballparkpal_home_run_probability": "Batters.HomeRunProbability",
-        "ballparkpal_hit_probability": "Batters.HitProbability",
-        "ballparkpal_team_home_runs": "Teams.HomeRuns",
-        "ballparkpal_runs_allowed": "Pitchers.RunsAllowed",
-        "ballparkpal_home_runs_allowed": "Pitchers.HomeRunsAllowed",
     }
     factor_descriptions = {
-        "ballparkpal_home_run_probability": "Direct HR-leverage signal from the batter export.",
-        "ballparkpal_hit_probability": "Broader contact signal from the batter export.",
-        "ballparkpal_team_home_runs": "Team-level home-run environment from the teams export.",
-        "ballparkpal_runs_allowed": "Pitcher run suppression or vulnerability from the pitchers export.",
-        "ballparkpal_home_runs_allowed": "Pitcher home-run allowance from the pitchers export.",
+        "ballparkpal_home_run_probability": "Direct Batter.HomeRunProbability value from the Batters export, shown as a 0-100 score.",
     }
     factors: list[dict[str, Any]] = []
     for rule in BALLPARKPAL_OVERLAY_RULES:
@@ -1090,11 +1082,11 @@ def build_ballparkpal_explainer() -> dict[str, Any]:
         "available": bool(factors),
         "title": "Ballpark Pal weights",
         "summary": (
-            "Ballpark Pal XX.X is the normalized export score. 50.0 is neutral; above 50.0 is favorable and below 50.0 is unfavorable. "
+            "Ballpark Pal XX.X is the Batter HomeRunProbability converted to a 0-100 score. 10.0 is neutral; above 10.0 is favorable and below 10.0 is unfavorable. "
             f"The Today slider defaults to a {int(BALLPARKPAL_BALLPARK_BLEND_WEIGHT * 100)}/{int(BALLPARKPAL_MODEL_BLEND_WEIGHT * 100)} "
             "Ballpark Pal/model blend and can re-rank the live board."
         ),
-        "score_note": "Ballpark Pal XX.X is the normalized export score used in the HR Chance cell. It prints as favorable above 50.0 and unfavorable below 50.0.",
+        "score_note": "Ballpark Pal XX.X is Batter.HomeRunProbability × 100 in the HR Chance cell.",
         "blend_note": "Use the Today slider to reweight the live board from 0% to 100% Ballpark Pal.",
         "blend_weights": {
             "model": BALLPARKPAL_MODEL_BLEND_WEIGHT,

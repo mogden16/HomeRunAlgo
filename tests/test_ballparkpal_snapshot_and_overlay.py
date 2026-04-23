@@ -91,16 +91,11 @@ class BallparkPalSnapshotAndOverlayTests(unittest.TestCase):
             {
                 "predicted_hr_score": 82.0,
                 "ballparkpal_home_run_probability": 0.23,
-                "ballparkpal_hit_probability": 0.77,
-                "ballparkpal_team_home_runs": 1.2,
-                "ballparkpal_runs_allowed": 5.2,
-                "ballparkpal_home_runs_allowed": 1.1,
             }
         )
 
-        self.assertGreater(overlay["ballparkpal_overlay_signed_score"], 0)
-        self.assertGreaterEqual(overlay["ballparkpal_overlay_display_score"], 50)
-        self.assertLessEqual(overlay["ballparkpal_overlay_display_score"], 100)
+        self.assertEqual(overlay["ballparkpal_overlay_signed_score"], 13.0)
+        self.assertEqual(overlay["ballparkpal_overlay_display_score"], 23.0)
         self.assertIsNotNone(overlay["ballparkpal_overlay_adjusted_score"])
         self.assertEqual(overlay["ballparkpal_overlay_blend_weights"]["model"], 0.1)
         self.assertEqual(overlay["ballparkpal_overlay_blend_weights"]["ballpark"], 0.9)
@@ -109,6 +104,12 @@ class BallparkPalSnapshotAndOverlayTests(unittest.TestCase):
             1,
         )
         self.assertEqual(overlay["ballparkpal_overlay_adjusted_score"], expected_adjusted)
+        self.assertEqual(overlay["ballparkpal_overlay_direction"], "favorable")
+        self.assertIn("ballparkpal_home_run_probability", overlay["ballparkpal_overlay_factor_details"])
+        self.assertEqual(
+            set(overlay["ballparkpal_overlay_factor_details"].keys()),
+            {"ballparkpal_home_run_probability"},
+        )
 
     def test_overlay_scoring_without_ballpark_data_falls_back_to_model_score(self) -> None:
         overlay = compute_ballparkpal_overlay({"predicted_hr_score": 82.0})
