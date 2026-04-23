@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-23T12:20:53.742786+00:00",
+  "generated_at": "2026-04-23T14:33:36.218975+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2860,7 +2860,7 @@
       "team": "DET",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Sproat",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -2888,14 +2888,16 @@
       "ballparkpal_overlay_adjusted_rank": 1,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 6.7%, which the model treats as sustained power quality.",
       "top_reason_2": "Brandon Sproat has allowed a 42.4% hard-hit rate over the last 30 days.",
       "top_reason_3": "Average exit velocity over the last 10 days is 94.2 mph, a top-quartile recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-23:824288:641343:669373",
@@ -3196,7 +3198,7 @@
       "team": "DET",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Sproat",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -3224,14 +3226,16 @@
       "ballparkpal_overlay_adjusted_rank": 7,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 47.4%, a above-baseline recent-contact signal.",
       "top_reason_2": "Brandon Sproat has allowed a 42.4% hard-hit rate over the last 30 days.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 47.4%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-23:822745:678554:702275",
@@ -3252,7 +3256,7 @@
       "team": "WSH",
       "opponent_team": "ATL",
       "pitcher_name": "JR Ritchie",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -3280,14 +3284,16 @@
       "ballparkpal_overlay_adjusted_rank": 8,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 109.6 mph, which points to top-end HR juice.",
       "top_reason_2": "Barrel rate over the last 10 days is 4.5%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_3": "Barrel rate over the last 30 days is 4.2%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-23:823639:683146:657746",
@@ -3588,7 +3594,7 @@
       "team": "WSH",
       "opponent_team": "ATL",
       "pitcher_name": "JR Ritchie",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -3616,14 +3622,16 @@
       "ballparkpal_overlay_adjusted_rank": 14,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 0.0%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Forecast temperature is 80F, a positive hitting-context input in the live model.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 104.7 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-23:822912:663968:594798",
@@ -4708,7 +4716,7 @@
       "team": "ATL",
       "opponent_team": "WSH",
       "pitcher_name": "Cade Cavalli",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -4820,7 +4828,7 @@
       "team": "ATL",
       "opponent_team": "WSH",
       "pitcher_name": "Cade Cavalli",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -5044,7 +5052,7 @@
       "team": "ATL",
       "opponent_team": "WSH",
       "pitcher_name": "Cade Cavalli",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -5212,7 +5220,7 @@
       "team": "WSH",
       "opponent_team": "ATL",
       "pitcher_name": "JR Ritchie",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -5884,7 +5892,7 @@
       "team": "WSH",
       "opponent_team": "ATL",
       "pitcher_name": "JR Ritchie",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -6220,7 +6228,7 @@
       "team": "ATL",
       "opponent_team": "WSH",
       "pitcher_name": "Cade Cavalli",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -7004,7 +7012,7 @@
       "team": "ATL",
       "opponent_team": "WSH",
       "pitcher_name": "Cade Cavalli",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -7340,7 +7348,7 @@
       "team": "WSH",
       "opponent_team": "ATL",
       "pitcher_name": "JR Ritchie",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -7396,7 +7404,7 @@
       "team": "ATL",
       "opponent_team": "WSH",
       "pitcher_name": "Cade Cavalli",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -7452,7 +7460,7 @@
       "team": "DET",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Sproat",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -7732,7 +7740,7 @@
       "team": "DET",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Sproat",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -8180,7 +8188,7 @@
       "team": "ATL",
       "opponent_team": "WSH",
       "pitcher_name": "Cade Cavalli",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -8572,7 +8580,7 @@
       "team": "WSH",
       "opponent_team": "ATL",
       "pitcher_name": "JR Ritchie",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -8600,14 +8608,16 @@
       "ballparkpal_overlay_adjusted_rank": 103,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 113.4 mph, which points to top-end HR juice.",
       "top_reason_2": "Barrel rate over the last 30 days is 4.5%, which the model treats as sustained power quality.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-23:824288:693307:687075",
@@ -8628,7 +8638,7 @@
       "team": "DET",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Sproat",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -8740,7 +8750,7 @@
       "team": "ATL",
       "opponent_team": "WSH",
       "pitcher_name": "Cade Cavalli",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -9076,7 +9086,7 @@
       "team": "DET",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Sproat",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -9300,7 +9310,7 @@
       "team": "WSH",
       "opponent_team": "ATL",
       "pitcher_name": "JR Ritchie",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -10140,7 +10150,7 @@
       "team": "DET",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Sproat",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -10196,7 +10206,7 @@
       "team": "DET",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Sproat",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -10756,7 +10766,7 @@
       "team": "WSH",
       "opponent_team": "ATL",
       "pitcher_name": "JR Ritchie",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -11036,7 +11046,7 @@
       "team": "WSH",
       "opponent_team": "ATL",
       "pitcher_name": "JR Ritchie",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -11260,7 +11270,7 @@
       "team": "DET",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Sproat",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -11652,7 +11662,7 @@
       "team": "ATL",
       "opponent_team": "WSH",
       "pitcher_name": "Cade Cavalli",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Nationals Park",
       "ballpark_region_abbr": "DC",
@@ -271811,14 +271821,14 @@
       "game_pk": 822745,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T17:05:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "ATL @ WSH",
       "teams": [
         {
           "team": "ATL",
           "opponent_team": "WSH",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 663586,
@@ -271827,16 +271837,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 686948,
-              "batter_name": "Drake Baldwin",
+              "batter_id": 642086,
+              "batter_name": "Dominic Smith",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 641680,
-              "batter_name": "Jonah Heim",
+              "batter_id": 686948,
+              "batter_name": "Drake Baldwin",
               "batting_order": null,
-              "selected_for_pick": false
+              "selected_for_pick": true
             },
             {
               "batter_id": 621566,
@@ -271879,14 +271889,8 @@
         {
           "team": "WSH",
           "opponent_team": "ATL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 691781,
-              "batter_name": "Brady House",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 682928,
               "batter_name": "CJ Abrams",
@@ -271894,20 +271898,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 678554,
-              "batter_name": "Curtis Mead",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 695734,
               "batter_name": "Daylen Lile",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 686452,
-              "batter_name": "Drew Millas",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -271922,6 +271914,24 @@
               "batter_name": "James Wood",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 678391,
+              "batter_name": "Jorbit Vivas",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 677588,
+              "batter_name": "Jos\u00e9 Tena",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 660688,
+              "batter_name": "Keibert Ruiz",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 671277,
@@ -271943,7 +271953,7 @@
       "game_pk": 824288,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T17:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "MIL @ DET",
       "teams": [
@@ -272011,7 +272021,7 @@
         {
           "team": "DET",
           "opponent_team": "MIL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 690993,
@@ -272032,8 +272042,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 701678,
-              "batter_name": "Hao-Yu  Lee",
+              "batter_id": 595879,
+              "batter_name": "Javier B\u00e1ez",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -272050,12 +272060,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 663837,
-              "batter_name": "Matt Vierling",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 682985,
               "batter_name": "Riley Greene",
               "batting_order": null,
@@ -272066,6 +272070,12 @@
               "batter_name": "Spencer Torkelson",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 672761,
+              "batter_name": "Wenceel P\u00e9rez",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         }
