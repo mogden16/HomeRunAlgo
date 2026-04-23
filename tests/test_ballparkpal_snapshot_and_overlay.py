@@ -115,7 +115,7 @@ class BallparkPalSnapshotAndOverlayTests(unittest.TestCase):
         overlay = compute_ballparkpal_overlay({"predicted_hr_score": 82.0})
 
         self.assertEqual(overlay["ballparkpal_overlay_signed_score"], 0.0)
-        self.assertEqual(overlay["ballparkpal_overlay_display_score"], 50.0)
+        self.assertIsNone(overlay["ballparkpal_overlay_display_score"])
         self.assertEqual(overlay["ballparkpal_overlay_adjusted_score"], 82.0)
         self.assertEqual(overlay["ballparkpal_overlay_direction"], "neutral")
 

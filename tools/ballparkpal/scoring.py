@@ -63,7 +63,7 @@ def compute_ballparkpal_overlay(row: Mapping[str, Any], *, model_score: float | 
 
     if home_run_probability is None:
         signed_score = 0.0
-        display_score = 50.0
+        display_score = None
         adjusted_score = model_score_value if model_score_value is not None else 50.0
     else:
         display_score = max(0.0, min(100.0, home_run_probability * 100.0))
@@ -92,7 +92,7 @@ def compute_ballparkpal_overlay(row: Mapping[str, Any], *, model_score: float | 
 
     return {
         "ballparkpal_overlay_signed_score": round(signed_score, 3),
-        "ballparkpal_overlay_display_score": round(max(0.0, min(100.0, display_score)), 1),
+        "ballparkpal_overlay_display_score": round(display_score, 1) if display_score is not None else None,
         "ballparkpal_overlay_adjusted_score": round(adjusted_score, 1) if adjusted_score is not None else None,
         "ballparkpal_overlay_direction": direction,
         "ballparkpal_overlay_model_score": round(model_score_value, 1) if model_score_value is not None else None,

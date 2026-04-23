@@ -53,6 +53,14 @@ function formatScore(value) {
   return Number(value).toFixed(1);
 }
 
+function parseFiniteNumber(value) {
+  if (value === null || value === undefined || value === "") {
+    return null;
+  }
+  const number = Number(value);
+  return Number.isFinite(number) ? number : null;
+}
+
 function formatDate(value) {
   if (!value) {
     return "-";
@@ -502,12 +510,14 @@ function renderGameMeta(row) {
 function renderProbabilityCell(row) {
   const probability = formatPercent(row.predicted_hr_probability);
   const modelScore = formatScore(row.predicted_hr_score);
-  const ballparkPalScoreValue = Number(row.ballparkpal_overlay_display_score);
-  const ballparkPalScore = Number.isFinite(ballparkPalScoreValue) ? formatScore(ballparkPalScoreValue) : "";
-  const blendedScoreValue = Number(row.ballparkpal_blended_score ?? row.ballparkpal_overlay_adjusted_score);
-  const blendedScore = Number.isFinite(blendedScoreValue) ? formatScore(blendedScoreValue) : "";
-  const blendWeight = Number.isFinite(Number(row.ballparkpal_blend_weight)) ? Math.round(Number(row.ballparkpal_blend_weight) * 100) : null;
-  const modelWeight = Number.isFinite(Number(row.ballparkpal_blend_model_weight)) ? Math.round(Number(row.ballparkpal_blend_model_weight) * 100) : null;
+  const ballparkPalScoreValue = parseFiniteNumber(row.ballparkpal_overlay_display_score);
+  const ballparkPalScore = ballparkPalScoreValue === null ? "" : formatScore(ballparkPalScoreValue);
+  const blendedScoreValue = parseFiniteNumber(row.ballparkpal_blended_score ?? row.ballparkpal_overlay_adjusted_score);
+  const blendedScore = blendedScoreValue === null ? "" : formatScore(blendedScoreValue);
+  const blendWeightValue = parseFiniteNumber(row.ballparkpal_blend_weight);
+  const modelWeightValue = parseFiniteNumber(row.ballparkpal_blend_model_weight);
+  const blendWeight = blendWeightValue === null ? null : Math.round(blendWeightValue * 100);
+  const modelWeight = modelWeightValue === null ? null : Math.round(modelWeightValue * 100);
   const ballparkPalDirection = String(row.ballparkpal_overlay_direction || "").trim();
   const ballparkPalText = ballparkPalScore
     ? `Ballpark Pal ${ballparkPalScore}${ballparkPalDirection ? ` - ${ballparkPalDirection}` : ""}`
