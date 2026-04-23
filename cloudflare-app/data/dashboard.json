@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-23T14:33:36.218975+00:00",
+  "generated_at": "2026-04-23T16:34:37.655448+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2918,7 +2918,7 @@
       "team": "MIL",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -2946,14 +2946,16 @@
       "ballparkpal_overlay_adjusted_rank": 2,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 54.5%, showing consistent quality contact.",
       "top_reason_2": "95+ EV contact rate over the last 30 days is 54.5%, a strong loud-contact input for the model.",
       "top_reason_3": "Barrel rate over the last 30 days is 5.3%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-23:824770:545341:801139",
@@ -3538,7 +3540,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Matt Waldron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -3566,14 +3568,16 @@
       "ballparkpal_overlay_adjusted_rank": 13,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Matt Waldron has allowed homers in 4.8% of plate appearances over the last 30 days.",
       "top_reason_2": "Park factor for the hitter's handedness is 120.0, which adds venue lift to the matchup.",
       "top_reason_3": "Projected wind speed is 16.8 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-23:822745:686452:702275",
@@ -3708,7 +3712,7 @@
       "team": "MIL",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -3736,14 +3740,16 @@
       "ballparkpal_overlay_adjusted_rank": 16,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 59.3%, showing consistent quality contact.",
       "top_reason_2": "95+ EV contact rate over the last 30 days is 59.3%, a strong loud-contact input for the model.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-23:824288:666152:669373",
@@ -3764,7 +3770,7 @@
       "team": "MIL",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -3988,7 +3994,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Cristopher S\u00e1nchez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -4044,7 +4050,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -4100,7 +4106,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Ryan Feltner",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -4156,7 +4162,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Ryan Feltner",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -4212,7 +4218,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Matt Waldron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -4240,14 +4246,16 @@
       "ballparkpal_overlay_adjusted_rank": 25,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 111.7 mph, which points to top-end HR juice.",
       "top_reason_2": "Matt Waldron has allowed homers in 4.8% of plate appearances over the last 30 days.",
       "top_reason_3": "Park factor for the hitter's handedness is 120.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-23:824770:592450:801139",
@@ -4324,7 +4332,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Ryan Feltner",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -4380,7 +4388,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Matt Waldron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -4436,7 +4444,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Ryan Feltner",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -4660,7 +4668,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -5108,7 +5116,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -5444,7 +5452,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Cristopher S\u00e1nchez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -5556,7 +5564,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Cristopher S\u00e1nchez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6060,7 +6068,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Matt Waldron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -6116,7 +6124,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Ryan Feltner",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -6172,7 +6180,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Cristopher S\u00e1nchez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6200,14 +6208,16 @@
       "ballparkpal_overlay_adjusted_rank": 60,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 109.5 mph, which points to top-end HR juice.",
       "top_reason_2": "Cristopher S\u00e1nchez has allowed barrels on 5.6% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 12.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-23:822745:663586:676917",
@@ -6284,7 +6294,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Cristopher S\u00e1nchez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6508,7 +6518,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Matt Waldron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -6564,7 +6574,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Cristopher S\u00e1nchez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6732,7 +6742,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6788,7 +6798,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6816,14 +6826,16 @@
       "ballparkpal_overlay_adjusted_rank": 71,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 93.6 mph, a top-quartile recent batted-ball quality marker.",
       "top_reason_2": "Edward Cabrera has allowed 89.5 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 12.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-23:824368:666397:663362",
@@ -6844,7 +6856,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Matt Waldron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -6900,7 +6912,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Cristopher S\u00e1nchez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6956,7 +6968,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Matt Waldron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -7180,7 +7192,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Cristopher S\u00e1nchez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -7236,7 +7248,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Ryan Feltner",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -7516,7 +7528,7 @@
       "team": "MIL",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -7796,7 +7808,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Ryan Feltner",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -7824,14 +7836,16 @@
       "ballparkpal_overlay_adjusted_rank": 89,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 55.6%, a top-quartile recent-contact signal.",
       "top_reason_2": "Ryan Feltner has allowed barrels on 7.5% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 16.8 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-23:822912:656811:594798",
@@ -8020,7 +8034,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -8132,7 +8146,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Matt Waldron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -8468,7 +8482,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -8524,7 +8538,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Ryan Feltner",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -8806,7 +8820,7 @@
       "team": "SD",
       "opponent_team": "COL",
       "pitcher_name": "Ryan Feltner",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -8918,7 +8932,7 @@
       "team": "CHC",
       "opponent_team": "PHI",
       "pitcher_name": "Cristopher S\u00e1nchez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -8974,7 +8988,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -9142,7 +9156,7 @@
       "team": "COL",
       "opponent_team": "SD",
       "pitcher_name": "Matt Waldron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -9478,7 +9492,7 @@
       "team": "MIL",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -10038,7 +10052,7 @@
       "team": "MIL",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -10318,7 +10332,7 @@
       "team": "PHI",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -10346,14 +10360,16 @@
       "ballparkpal_overlay_adjusted_rank": 134,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Edward Cabrera has allowed barrels on 5.5% of batted balls to this batter side.",
       "top_reason_2": "Projected wind speed is 12.2 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Edward Cabrera has allowed 89.5 mph average exit velocity recently, which the model flags as hittable contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-23:825096:699912:663436",
@@ -10598,7 +10614,7 @@
       "team": "MIL",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -11214,7 +11230,7 @@
       "team": "MIL",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -11242,14 +11258,16 @@
       "ballparkpal_overlay_adjusted_rank": 150,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 0.0%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Tarik Skubal has allowed 88.7 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 7.9 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-23:824288:650402:687075",
@@ -11494,7 +11512,7 @@
       "team": "MIL",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -271960,8 +271978,14 @@
         {
           "team": "MIL",
           "opponent_team": "DET",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 663368,
+              "batter_name": "Blake Perkins",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 663604,
               "batter_name": "Brandon Lockridge",
@@ -271981,32 +272005,26 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 669003,
-              "batter_name": "Garrett Mitchell",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 596142,
               "batter_name": "Gary S\u00e1nchez",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 641343,
-              "batter_name": "Jake Bauers",
+              "batter_id": 687401,
+              "batter_name": "Joey Ortiz",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 682641,
+              "batter_name": "Luis Matos",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 650859,
               "batter_name": "Luis Rengifo",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 686217,
-              "batter_name": "Sal Frelick",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -272085,21 +272103,15 @@
       "game_pk": 824689,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T18:20:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "PHI @ CHC",
       "teams": [
         {
           "team": "PHI",
           "opponent_team": "CHC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 666969,
-              "batter_name": "Adolis Garc\u00eda",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 664761,
               "batter_name": "Alec Bohm",
@@ -272115,6 +272127,12 @@
             {
               "batter_id": 547180,
               "batter_name": "Bryce Harper",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 681082,
+              "batter_name": "Bryson Stott",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -272137,12 +272155,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 665561,
-              "batter_name": "Rafael March\u00e1n",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 607208,
               "batter_name": "Trea Turner",
               "batting_order": null,
@@ -272153,11 +272165,17 @@
         {
           "team": "CHC",
           "opponent_team": "PHI",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 608324,
               "batter_name": "Alex Bregman",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 608348,
+              "batter_name": "Carson Kelly",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -272174,6 +272192,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 807713,
+              "batter_name": "Matt Shaw",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 683737,
               "batter_name": "Michael Busch",
               "batting_order": null,
@@ -272186,20 +272210,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 694208,
-              "batter_name": "Mois\u00e9s Ballesteros",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
               "batter_id": 663538,
               "batter_name": "Nico Hoerner",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 691718,
-              "batter_name": "Pete Crow-Armstrong",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -272217,14 +272229,14 @@
       "game_pk": 824368,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T19:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "SD @ COL",
       "teams": [
         {
           "team": "SD",
           "opponent_team": "COL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 665487,
@@ -272233,8 +272245,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 657757,
-              "batter_name": "Gavin Sheets",
+              "batter_id": 666023,
+              "batter_name": "Freddy Fermin",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -272249,12 +272261,6 @@
               "batter_name": "Jake Cronenworth",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 669134,
-              "batter_name": "Luis Campusano",
-              "batting_order": null,
-              "selected_for_pick": false
             },
             {
               "batter_id": 592518,
@@ -272285,8 +272291,14 @@
         {
           "team": "COL",
           "opponent_team": "SD",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 664954,
+              "batter_name": "Brett Sullivan",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 666397,
               "batter_name": "Edouard Julien",
@@ -272300,16 +272312,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 696100,
-              "batter_name": "Hunter Goodman",
+              "batter_id": 664983,
+              "batter_name": "Jake McCarthy",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 687597,
-              "batter_name": "Jordan Beck",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 691720,
