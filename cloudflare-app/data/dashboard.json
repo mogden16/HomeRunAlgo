@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-23T20:52:45.356459+00:00",
+  "generated_at": "2026-04-23T21:50:57.540454+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -94,10 +94,10 @@
     "latest_slate_size": 162,
     "tracked_dates": 29,
     "tracked_picks": 4771,
-    "settled_picks": 3891,
+    "settled_picks": 3902,
     "tracked_homers": 431,
-    "tracked_hit_rate": 0.110768,
-    "open_picks": 880
+    "tracked_hit_rate": 0.110456,
+    "open_picks": 869
   },
   "confidence_summary": [
     {
@@ -116,17 +116,17 @@
     },
     {
       "confidence_tier": "watch",
-      "picks": 659,
+      "picks": 661,
       "homers": 93,
-      "hit_rate": 0.141123,
-      "avg_probability": 0.140694
+      "hit_rate": 0.140696,
+      "avg_probability": 0.140744
     },
     {
       "confidence_tier": "longshot",
-      "picks": 2898,
+      "picks": 2907,
       "homers": 256,
-      "hit_rate": 0.088337,
-      "avg_probability": 0.095216
+      "hit_rate": 0.088063,
+      "avg_probability": 0.095171
     }
   ],
   "player_leaderboard": [
@@ -173,15 +173,15 @@
       "hit_rate": 0.25
     },
     {
-      "batter_name": "CJ Abrams",
-      "team": "WSH",
-      "picks": 20,
-      "homers": 6,
-      "hit_rate": 0.3
-    },
-    {
       "batter_name": "Kyle Schwarber",
       "team": "PHI",
+      "picks": 21,
+      "homers": 6,
+      "hit_rate": 0.285714
+    },
+    {
+      "batter_name": "CJ Abrams",
+      "team": "WSH",
       "picks": 20,
       "homers": 6,
       "hit_rate": 0.3
@@ -266,9 +266,9 @@
     {
       "batter_name": "Dansby Swanson",
       "team": "CHC",
-      "picks": 16,
+      "picks": 17,
       "homers": 5,
-      "hit_rate": 0.3125
+      "hit_rate": 0.294118
     },
     {
       "batter_name": "Mickey Moniak",
@@ -299,6 +299,13 @@
       "hit_rate": 0.235294
     },
     {
+      "batter_name": "Nico Hoerner",
+      "team": "CHC",
+      "picks": 17,
+      "homers": 4,
+      "hit_rate": 0.235294
+    },
+    {
       "batter_name": "Byron Buxton",
       "team": "MIN",
       "picks": 16,
@@ -308,13 +315,6 @@
     {
       "batter_name": "Miguel Vargas",
       "team": "CWS",
-      "picks": 16,
-      "homers": 4,
-      "hit_rate": 0.25
-    },
-    {
-      "batter_name": "Nico Hoerner",
-      "team": "CHC",
       "picks": 16,
       "homers": 4,
       "hit_rate": 0.25
@@ -376,6 +376,13 @@
       "hit_rate": 0.157895
     },
     {
+      "batter_name": "Bryce Harper",
+      "team": "PHI",
+      "picks": 18,
+      "homers": 3,
+      "hit_rate": 0.166667
+    },
+    {
       "batter_name": "Daylen Lile",
       "team": "WSH",
       "picks": 18,
@@ -409,13 +416,6 @@
       "picks": 18,
       "homers": 3,
       "hit_rate": 0.166667
-    },
-    {
-      "batter_name": "Bryce Harper",
-      "team": "PHI",
-      "picks": 17,
-      "homers": 3,
-      "hit_rate": 0.176471
     },
     {
       "batter_name": "Giancarlo Stanton",
@@ -635,6 +635,13 @@
       "hit_rate": 0.111111
     },
     {
+      "batter_name": "Trea Turner",
+      "team": "PHI",
+      "picks": 18,
+      "homers": 2,
+      "hit_rate": 0.111111
+    },
+    {
       "batter_name": "Alec Burleson",
       "team": "STL",
       "picks": 17,
@@ -658,13 +665,6 @@
     {
       "batter_name": "Otto Lopez",
       "team": "MIA",
-      "picks": 17,
-      "homers": 2,
-      "hit_rate": 0.117647
-    },
-    {
-      "batter_name": "Trea Turner",
-      "team": "PHI",
       "picks": 17,
       "homers": 2,
       "hit_rate": 0.117647
@@ -1293,6 +1293,13 @@
       "hit_rate": 0.1
     },
     {
+      "batter_name": "Carson Kelly",
+      "team": "CHC",
+      "picks": 9,
+      "homers": 1,
+      "hit_rate": 0.111111
+    },
+    {
       "batter_name": "Oswald Peraza",
       "team": "LAA",
       "picks": 9,
@@ -1330,13 +1337,6 @@
     {
       "batter_name": "Andrew Benintendi",
       "team": "CWS",
-      "picks": 8,
-      "homers": 1,
-      "hit_rate": 0.125
-    },
-    {
-      "batter_name": "Carson Kelly",
-      "team": "CHC",
       "picks": 8,
       "homers": 1,
       "hit_rate": 0.125
@@ -1482,6 +1482,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Alex Bregman",
+      "team": "CHC",
+      "picks": 17,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Ernie Clement",
       "team": "TOR",
       "picks": 17,
@@ -1503,8 +1510,8 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Alex Bregman",
-      "team": "CHC",
+      "batter_name": "Alec Bohm",
+      "team": "PHI",
       "picks": 16,
       "homers": 0,
       "hit_rate": 0.0
@@ -1566,13 +1573,6 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Alec Bohm",
-      "team": "PHI",
-      "picks": 15,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Carson Benge",
       "team": "NYM",
       "picks": 15,
@@ -1596,6 +1596,13 @@
     {
       "batter_name": "Josh Smith",
       "team": "TEX",
+      "picks": 15,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Justin Crawford",
+      "team": "PHI",
       "picks": 15,
       "homers": 0,
       "hit_rate": 0.0
@@ -1638,13 +1645,6 @@
     {
       "batter_name": "Caleb Durbin",
       "team": "BOS",
-      "picks": 14,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Justin Crawford",
-      "team": "PHI",
       "picks": 14,
       "homers": 0,
       "hit_rate": 0.0
@@ -1748,6 +1748,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Bryson Stott",
+      "team": "PHI",
+      "picks": 10,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "David Hamilton",
       "team": "MIL",
       "picks": 10,
@@ -1806,13 +1813,6 @@
     {
       "batter_name": "Brett Baty",
       "team": "NYM",
-      "picks": 9,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Bryson Stott",
-      "team": "PHI",
       "picks": 9,
       "homers": 0,
       "hit_rate": 0.0
@@ -2021,6 +2021,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Miguel Amaya",
+      "team": "CHC",
+      "picks": 6,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Royce Lewis",
       "team": "MIN",
       "picks": 6,
@@ -2093,13 +2100,6 @@
     {
       "batter_name": "Leo Rivas",
       "team": "SEA",
-      "picks": 5,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Miguel Amaya",
-      "team": "CHC",
       "picks": 5,
       "homers": 0,
       "hit_rate": 0.0
@@ -3988,7 +3988,7 @@
       "game_pk": 824689,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 161,
       "original_rank": 161,
       "original_score": 1.2,
@@ -4025,15 +4025,15 @@
       "ballparkpal_overlay_adjusted_score": 1.2,
       "ballparkpal_overlay_adjusted_rank": 21,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Cristopher S\u00e1nchez has allowed barrels on 5.6% of recent batted balls.",
       "top_reason_2": "Projected wind speed is 12.2 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Cristopher S\u00e1nchez has allowed a 42.2% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-23:824689:656941:665795",
@@ -4044,7 +4044,7 @@
       "game_pk": 824689,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 11,
       "original_rank": 11,
       "original_score": 93.8,
@@ -4081,15 +4081,15 @@
       "ballparkpal_overlay_adjusted_score": 30.0,
       "ballparkpal_overlay_adjusted_rank": 22,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2690, supporting loud-contact upside.",
       "top_reason_2": "Edward Cabrera has allowed barrels on 5.5% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 12.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-23:824368:657656:663372",
@@ -4662,7 +4662,7 @@
       "game_pk": 824689,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 55,
       "original_rank": 55,
       "original_score": 66.7,
@@ -5110,7 +5110,7 @@
       "game_pk": 824689,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 24,
       "original_rank": 24,
       "original_score": 85.8,
@@ -5147,15 +5147,15 @@
       "ballparkpal_overlay_adjusted_score": 22.2,
       "ballparkpal_overlay_adjusted_rank": 41,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 7.7%, which the model treats as sustained power quality.",
       "top_reason_2": "Edward Cabrera has allowed barrels on 5.5% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 12.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-23:822912:669394:696149",
@@ -5446,7 +5446,7 @@
       "game_pk": 824689,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 141,
       "original_rank": 141,
       "original_score": 13.6,
@@ -5558,7 +5558,7 @@
       "game_pk": 824689,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 71,
       "original_rank": 71,
       "original_score": 56.8,
@@ -6176,7 +6176,7 @@
       "game_pk": 824689,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 79,
       "original_rank": 79,
       "original_score": 51.9,
@@ -6290,7 +6290,7 @@
       "game_pk": 824689,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 28,
       "original_rank": 28,
       "original_score": 83.3,
@@ -6572,7 +6572,7 @@
       "game_pk": 824689,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 93,
       "original_rank": 93,
       "original_score": 43.2,
@@ -6609,15 +6609,15 @@
       "ballparkpal_overlay_adjusted_score": 15.6,
       "ballparkpal_overlay_adjusted_rank": 67,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 7.8%, which the model treats as sustained power quality.",
       "top_reason_2": "Cristopher S\u00e1nchez has allowed barrels on 5.6% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 12.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-23:823639:673357:657746",
@@ -6740,7 +6740,7 @@
       "game_pk": 824689,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 137,
       "original_rank": 137,
       "original_score": 16.0,
@@ -6777,15 +6777,15 @@
       "ballparkpal_overlay_adjusted_score": 12.5,
       "ballparkpal_overlay_adjusted_rank": 70,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 50.0%, showing consistent quality contact.",
       "top_reason_2": "Edward Cabrera has allowed barrels on 5.5% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 12.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-23:824689:666969:665795",
@@ -6796,7 +6796,7 @@
       "game_pk": 824689,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 76,
       "original_rank": 76,
       "original_score": 53.7,
@@ -6910,7 +6910,7 @@
       "game_pk": 824689,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 149,
       "original_rank": 149,
       "original_score": 8.6,
@@ -6947,15 +6947,15 @@
       "ballparkpal_overlay_adjusted_score": 11.6,
       "ballparkpal_overlay_adjusted_rank": 73,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 7.9%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Cristopher S\u00e1nchez has allowed barrels on 5.6% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 12.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-23:824368:687859:663362",
@@ -7190,7 +7190,7 @@
       "game_pk": 824689,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 45,
       "original_rank": 45,
       "original_score": 72.8,
@@ -7227,15 +7227,15 @@
       "ballparkpal_overlay_adjusted_score": 17.6,
       "ballparkpal_overlay_adjusted_rank": 78,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 51.9%, showing consistent quality contact.",
       "top_reason_2": "Cristopher S\u00e1nchez has allowed barrels on 5.6% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 12.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-23:824368:666023:663372",
@@ -8034,7 +8034,7 @@
       "game_pk": 824689,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 111,
       "original_rank": 111,
       "original_score": 32.1,
@@ -8071,15 +8071,15 @@
       "ballparkpal_overlay_adjusted_score": 12.8,
       "ballparkpal_overlay_adjusted_rank": 93,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 5.7%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Edward Cabrera has allowed 89.5 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 12.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-23:824770:677800:693645",
@@ -8484,7 +8484,7 @@
       "game_pk": 824689,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 126,
       "original_rank": 126,
       "original_score": 22.8,
@@ -8521,15 +8521,15 @@
       "ballparkpal_overlay_adjusted_score": 11.4,
       "ballparkpal_overlay_adjusted_rank": 101,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1941, supporting loud-contact upside.",
       "top_reason_2": "Edward Cabrera has allowed 89.5 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected wind speed is 12.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-23:824368:630105:663372",
@@ -8934,7 +8934,7 @@
       "game_pk": 824689,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 115,
       "original_rank": 115,
       "original_score": 29.6,
@@ -8971,15 +8971,15 @@
       "ballparkpal_overlay_adjusted_score": 11.4,
       "ballparkpal_overlay_adjusted_rank": 109,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 46.7%, showing consistent quality contact.",
       "top_reason_2": "Cristopher S\u00e1nchez has allowed barrels on 5.6% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 12.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-23:824689:702222:665795",
@@ -8990,7 +8990,7 @@
       "game_pk": 824689,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 154,
       "original_rank": 154,
       "original_score": 5.6,
@@ -9027,15 +9027,15 @@
       "ballparkpal_overlay_adjusted_score": 9.0,
       "ballparkpal_overlay_adjusted_rank": 110,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 91.0 mph, a above-baseline recent batted-ball quality marker.",
       "top_reason_2": "Edward Cabrera has allowed barrels on 5.5% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 12.2 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-23:824770:575929:693645",
@@ -10338,7 +10338,7 @@
       "game_pk": 824689,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T18:20:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 155,
       "original_rank": 155,
       "original_score": 4.9,
@@ -272129,8 +272129,8 @@
       "game_pk": 824689,
       "game_date": "2026-04-23",
       "game_datetime": "2026-04-23T18:20:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "PHI @ CHC",
       "teams": [
         {
