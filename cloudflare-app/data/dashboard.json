@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-24T20:05:03.648725+00:00",
+  "generated_at": "2026-04-24T20:53:00.194051+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -4058,7 +4058,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -4226,7 +4226,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -5014,7 +5014,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -6420,7 +6420,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -9506,7 +9506,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -9534,14 +9534,16 @@
       "ballparkpal_overlay_adjusted_rank": 115,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 53.3%, a top-quartile recent-contact signal.",
       "top_reason_2": "Noah Cameron has allowed barrels on 8.5% of batted balls to this batter side.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 53.3%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-24:824854:694212:678394",
@@ -11302,7 +11304,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -12316,7 +12318,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -14452,7 +14454,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -17278,7 +17280,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -17306,14 +17308,16 @@
       "ballparkpal_overlay_adjusted_rank": 233,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Noah Cameron has allowed barrels on 8.5% of batted balls to this batter side.",
       "top_reason_2": "Noah Cameron has allowed homers in 5.7% of plate appearances over the last 30 days.",
       "top_reason_3": "Noah Cameron has allowed homers in 4.5% of plate appearances to this batter side.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-24:824932:641680:691725",
@@ -17672,7 +17676,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Noah Cameron",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -17700,14 +17704,16 @@
       "ballparkpal_overlay_adjusted_rank": 238,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Noah Cameron has allowed barrels on 8.5% of batted balls to this batter side.",
       "top_reason_2": "Noah Cameron has allowed homers in 5.7% of plate appearances over the last 30 days.",
       "top_reason_3": "Noah Cameron has allowed homers in 4.5% of plate appearances to this batter side.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-24:824611:671976:571945",
@@ -287936,8 +287942,14 @@
         {
           "team": "LAA",
           "opponent_team": "KC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 669326,
+              "batter_name": "Bryce Teodosio",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 666176,
               "batter_name": "Jo Adell",
@@ -287947,12 +287959,6 @@
             {
               "batter_id": 624585,
               "batter_name": "Jorge Soler",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 666139,
-              "batter_name": "Josh Lowe",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -287981,10 +287987,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 660162,
-              "batter_name": "Yo\u00e1n Moncada",
+              "batter_id": 687093,
+              "batter_name": "Vaughn Grissom",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 687263,
@@ -288326,7 +288332,7 @@
         {
           "team": "OAK",
           "opponent_team": "TEX",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": []
         },
         {
