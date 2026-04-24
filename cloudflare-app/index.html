@@ -146,6 +146,23 @@
             <p class="eyebrow">History</p>
             <h2>Historical Picks since Mar 25, 2026</h2>
             <p class="section-note">Search by player, team, pitcher, or date to see the full public record.</p>
+            <div class="ballpark-weight-control ballpark-weight-control-history" aria-label="Ballpark Pal weighting control for history">
+              <div class="ballpark-weight-control-head">
+                <span class="ballpark-weight-control-label">Ballpark Pal weight</span>
+                <strong class="ballpark-weight-control-value" id="history-ballpark-weight-label">90%</strong>
+              </div>
+              <input
+                class="ballpark-weight-slider"
+                id="history-ballpark-weight"
+                type="range"
+                min="0"
+                max="100"
+                step="1"
+                value="90"
+                aria-label="Adjust Ballpark Pal weight for historical picks"
+              >
+              <p class="ballpark-weight-note">Move this slider to re-rank the filtered history view. The ranking, tiers, and HR Chance blend update live for the selected date.</p>
+            </div>
           </div>
           <div class="filters">
             <select id="history-date-filter" aria-label="Filter history by date"></select>
@@ -197,6 +214,6 @@
       <div class="model-metric-list" id="ballparkpal-explainer-list"></div>
     </dialog>
 
-  <script src="./app.js?v=20260404-mobile-why" defer></script>
+  <script src="./app.js?v=20260424-history-ballpark" defer></script>
 </body>
 </html>

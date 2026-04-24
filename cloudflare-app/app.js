@@ -3,6 +3,7 @@ const state = {
   filteredHistory: [],
   filteredLatestPicks: [],
   latestBallparkWeight: 90,
+  historyBallparkWeight: 90,
   latestTierFilters: new Set(["elite", "strong"]),
   historyTierFilters: new Set(["elite", "strong"]),
   selectedHistoryDate: "",
@@ -172,6 +173,10 @@ function confidenceTierFromPercentile(percentile, policy, rank, probability) {
 }
 
 function buildBlendedLatestPicks(rows, ballparkWeightPercent) {
+  return buildBlendedBallparkRows(rows, ballparkWeightPercent);
+}
+
+function buildBlendedBallparkRows(rows, ballparkWeightPercent) {
   const ballparkWeight = Math.max(0, Math.min(100, Number(ballparkWeightPercent) || 0)) / 100;
   const modelWeight = 1 - ballparkWeight;
   const sorted = (Array.isArray(rows) ? rows : []).map((row) => {
@@ -222,12 +227,25 @@ function buildBlendedLatestPicks(rows, ballparkWeightPercent) {
   });
 }
 
+function buildBlendedHistoryRows(rows, ballparkWeightPercent) {
+  return buildBlendedBallparkRows(rows, ballparkWeightPercent);
+}
+
 function renderLatestBallparkWeightLabel() {
   const target = document.getElementById("latest-ballpark-weight-label");
   if (!target) {
     return;
   }
   const percent = Math.max(0, Math.min(100, Math.round(Number(state.latestBallparkWeight) || 0)));
+  target.textContent = `${percent}%`;
+}
+
+function renderHistoryBallparkWeightLabel() {
+  const target = document.getElementById("history-ballpark-weight-label");
+  if (!target) {
+    return;
+  }
+  const percent = Math.max(0, Math.min(100, Math.round(Number(state.historyBallparkWeight) || 0)));
   target.textContent = `${percent}%`;
 }
 
@@ -1201,7 +1219,8 @@ function applyHistoryFilters() {
 
   const searchValue = document.getElementById("history-search").value.trim().toLowerCase();
   const selectedDate = state.selectedHistoryDate || state.dashboard.history_default_date || ALL_DATES_FILTER_VALUE;
-  const tierFilteredRows = filterRowsByTierSelection(state.dashboard.history, state.historyTierFilters);
+  const blendedRows = buildBlendedHistoryRows(state.dashboard.history, state.historyBallparkWeight);
+  const tierFilteredRows = filterRowsByTierSelection(blendedRows, state.historyTierFilters);
 
   state.filteredHistory = tierFilteredRows.filter((row) => {
     const matchesDate = selectedDate === ALL_DATES_FILTER_VALUE || row.game_date === selectedDate;
@@ -1278,7 +1297,12 @@ async function loadDashboard() {
   if (latestWeightSlider) {
     latestWeightSlider.value = String(Math.max(0, Math.min(100, Math.round(Number(state.latestBallparkWeight) || 90))));
   }
+  const historyWeightSlider = document.getElementById("history-ballpark-weight");
+  if (historyWeightSlider) {
+    historyWeightSlider.value = String(Math.max(0, Math.min(100, Math.round(Number(state.historyBallparkWeight) || 90))));
+  }
   renderLatestBallparkWeightLabel();
+  renderHistoryBallparkWeightLabel();
   applyLatestPicksFilters();
   renderLineupPanels(state.dashboard.lineup_panels || []);
   renderSeasonLeaders(state.dashboard.season_hr_leaders_2026 || []);
@@ -1372,6 +1396,11 @@ document.addEventListener("DOMContentLoaded", () => {
     state.latestBallparkWeight = Number(event.target.value);
     renderLatestBallparkWeightLabel();
     applyLatestPicksFilters();
+  });
+  document.getElementById("history-ballpark-weight").addEventListener("input", (event) => {
+    state.historyBallparkWeight = Number(event.target.value);
+    renderHistoryBallparkWeightLabel();
+    applyHistoryFilters();
   });
   document.getElementById("latest-confidence-filters").addEventListener("click", handleTierFilterToggle);
   document.getElementById("history-confidence-filters").addEventListener("click", handleTierFilterToggle);
