@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-24T20:53:00.194051+00:00",
+  "generated_at": "2026-04-24T21:46:53.835336+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2924,7 +2924,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Lance McCullers Jr.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -2952,14 +2952,16 @@
       "ballparkpal_overlay_adjusted_rank": 2,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 8.0%, which the model treats as sustained power quality.",
       "top_reason_2": "Lance McCullers Jr. has allowed homers in 5.9% of plate appearances to this batter side.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 112.1 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-24:824204:545341:621121",
@@ -2980,7 +2982,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Lance McCullers Jr.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -3008,14 +3010,16 @@
       "ballparkpal_overlay_adjusted_rank": 3,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2475, supporting loud-contact upside.",
       "top_reason_2": "Lance McCullers Jr. has allowed homers in 5.9% of plate appearances to this batter side.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 58.8%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-24:823962:687221:592791",
@@ -3380,7 +3384,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -3666,7 +3670,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Lance McCullers Jr.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -3722,7 +3726,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -3807,7 +3811,9 @@
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 102.9 mph, a top-decile recent batted-ball quality marker.",
@@ -4114,7 +4120,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Lance McCullers Jr.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -4199,7 +4205,9 @@
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 7.0% barrel-per-PA split.",
@@ -4311,7 +4319,9 @@
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 109.6 mph, which points to top-end HR juice.",
@@ -4368,7 +4378,8 @@
       "actual_hit_hr": null,
       "current_status": "inactive",
       "alert_flags": [
-        "lineup_alert"
+        "lineup_alert",
+        "pitcher_change_alert"
       ],
       "inactive_flag": true,
       "display_style": "strikethrough",
@@ -4564,7 +4575,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Lance McCullers Jr.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -4846,7 +4857,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -6026,7 +6037,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -6308,7 +6319,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -6560,14 +6571,16 @@
       "ballparkpal_overlay_adjusted_rank": 65,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 78.9%, a top-decile recent-contact signal.",
       "top_reason_2": "95+ EV contact rate over the last 10 days is 78.9%, which supports near-term HR upside.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 114.9 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-24:822909:607043:622663",
@@ -6673,7 +6686,9 @@
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 10.3%, which the model treats as sustained power quality.",
@@ -6812,7 +6827,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Lance McCullers Jr.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -7036,7 +7051,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Lance McCullers Jr.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -7064,14 +7079,16 @@
       "ballparkpal_overlay_adjusted_rank": 74,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 4.8% barrel-per-PA split.",
       "top_reason_2": "Lance McCullers Jr. has allowed a 47.9% hard-hit rate over the last 30 days.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0023, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-24:824529:663886:664285",
@@ -7430,7 +7447,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -7600,7 +7617,7 @@
       "team": "MIL",
       "opponent_team": "PIT",
       "pitcher_name": "Paul Skenes",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -7712,7 +7729,7 @@
       "team": "MIL",
       "opponent_team": "PIT",
       "pitcher_name": "Paul Skenes",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -7880,7 +7897,7 @@
       "team": "MIL",
       "opponent_team": "PIT",
       "pitcher_name": "Paul Skenes",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -8272,7 +8289,7 @@
       "team": "MIL",
       "opponent_team": "PIT",
       "pitcher_name": "Paul Skenes",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -8328,7 +8345,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Lance McCullers Jr.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -10012,7 +10029,7 @@
       "team": "MIL",
       "opponent_team": "PIT",
       "pitcher_name": "Paul Skenes",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -10040,14 +10057,16 @@
       "ballparkpal_overlay_adjusted_rank": 122,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 4.9%, which the model treats as sustained power quality.",
       "top_reason_2": "Paul Skenes has allowed homers in 4.5% of plate appearances over the last 30 days.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 109.1 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-24:823232:669065:605288",
@@ -11530,7 +11549,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -11558,14 +11577,16 @@
       "ballparkpal_overlay_adjusted_rank": 147,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 52.1%, showing consistent quality contact.",
       "top_reason_2": "Brandon Woodruff has allowed homers in 3.7% of plate appearances to this batter side.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 52.1%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-24:823638:678662:642547",
@@ -11642,7 +11663,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Lance McCullers Jr.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -11754,7 +11775,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -11868,7 +11889,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -12459,7 +12480,9 @@
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 6.2% barrel-per-PA split.",
@@ -12712,7 +12735,7 @@
       "team": "MIL",
       "opponent_team": "PIT",
       "pitcher_name": "Paul Skenes",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -13500,7 +13523,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -15138,7 +15161,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Woodruff",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -15166,14 +15189,16 @@
       "ballparkpal_overlay_adjusted_rank": 199,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 46.7%, a above-baseline recent-contact signal.",
       "top_reason_2": "95+ EV contact rate over the last 10 days is 46.7%, which supports near-term HR upside.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-24:824204:687957:701542",
@@ -15279,7 +15304,9 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
@@ -15731,7 +15758,9 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1752, supporting loud-contact upside.",
@@ -15926,7 +15955,7 @@
       "team": "MIL",
       "opponent_team": "PIT",
       "pitcher_name": "Paul Skenes",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -16460,7 +16489,8 @@
       "actual_hit_hr": null,
       "current_status": "inactive",
       "alert_flags": [
-        "lineup_alert"
+        "lineup_alert",
+        "pitcher_change_alert"
       ],
       "inactive_flag": true,
       "display_style": "strikethrough",
@@ -16517,7 +16547,9 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 54.5%, a top-quartile recent-contact signal.",
@@ -16944,7 +16976,7 @@
       "team": "MIL",
       "opponent_team": "PIT",
       "pitcher_name": "Paul Skenes",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -17000,7 +17032,7 @@
       "team": "MIL",
       "opponent_team": "PIT",
       "pitcher_name": "Paul Skenes",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -17763,7 +17795,9 @@
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Miles Mikolas has allowed homers in 5.5% of plate appearances over the last 30 days.",
@@ -287892,6 +287926,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 642201,
+              "batter_name": "Eli White",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 621566,
               "batter_name": "Matt Olson",
               "batting_order": null,
@@ -287900,12 +287940,6 @@
             {
               "batter_id": 643289,
               "batter_name": "Mauricio Dub\u00f3n",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 671739,
-              "batter_name": "Michael Harris II",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -288193,14 +288227,14 @@
       "game_pk": 823800,
       "game_date": "2026-04-24",
       "game_datetime": "2026-04-24T23:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "PIT @ MIL",
       "teams": [
         {
           "team": "PIT",
           "opponent_team": "MIL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 664040,
@@ -288261,7 +288295,7 @@
         {
           "team": "MIL",
           "opponent_team": "PIT",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 663604,
@@ -288284,12 +288318,6 @@
             {
               "batter_id": 669003,
               "batter_name": "Garrett Mitchell",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 596142,
-              "batter_name": "Gary S\u00e1nchez",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -288409,23 +288437,11 @@
         {
           "team": "NYY",
           "opponent_team": "HOU",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 592450,
               "batter_name": "Aaron Judge",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 642708,
-              "batter_name": "Amed Rosario",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 669224,
-              "batter_name": "Austin Wells",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -288460,10 +288476,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 545341,
-              "batter_name": "Randal Grichuk",
+              "batter_id": 641857,
+              "batter_name": "Ryan McMahon",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 663757,
+              "batter_name": "Trent Grisham",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         },
