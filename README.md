@@ -167,12 +167,12 @@ The workflow lives at `.github/workflows/manual-live-refresh.yml` and supports:
 
 ## Local refresh and publish schedule
 
-The GitHub Actions workflow now runs every 15 minutes and resolves the right mode automatically:
+The GitHub Actions workflow now runs every 5 minutes and resolves the right mode automatically:
 
 - Before `06:00` ET: only settle a prior active slate if late games are still unresolved; otherwise the workflow stays idle
 - `prepare` after `06:00` ET: runs once for the new day, refreshes historical data through yesterday, retrains the live model bundle, settles any remaining late results, and saves both a private draft slate and the fixed morning movement baseline
-- Mixed auto refresh every 15 minutes until the last scheduled first pitch: refresh today's data, update live results for started games, and keep reranking only the games that have not started yet
-- `settle` every 15 minutes after the last scheduled first pitch: keep updating results until the full slate is final, then archive the completed day into history
+- Mixed auto refresh every 5 minutes until the last scheduled first pitch: refresh today's data, update live results for started games, and keep reranking only the games that have not started yet
+- `settle` every 5 minutes after the last scheduled first pitch: keep updating results until the full slate is final, then archive the completed day into history
 
 Use the PowerShell wrapper directly:
 

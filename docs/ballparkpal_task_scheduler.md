@@ -53,5 +53,5 @@ python -m playwright install chromium
 
 - The watcher assumes the machine is on and you log into Windows at least once.
 - If you later want a true service-style unattended job, you will need an elevated Task Scheduler setup or a service account.
-- The task does not publish the dashboard directly. Live refresh paths read the latest validated snapshot throughout the day.
+- The task does not publish the dashboard directly. Live refresh paths read the latest validated snapshot throughout the day, and the GitHub Actions refresh cadence re-runs more frequently during games.
 - The snapshot remains a daily forward archive. Historical date pulls are not assumed to be true point-in-time backfills unless the workbook content matches the requested slate date.

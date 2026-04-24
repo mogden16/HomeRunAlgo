@@ -146,7 +146,7 @@ def print_operator_checklist() -> None:
     print("- Cloudflare Pages production branch is master.")
     print("- Prepare should run once after 6:00 AM ET using scripts\\refresh_dashboard.ps1 -Mode prepare.")
     print("- Scheduled mixed refreshes should update statuses and major alerts without reshuffling the morning board.")
-    print("- Settle should rerun every 15 minutes after the last scheduled first pitch until the slate is final using scripts\\refresh_dashboard.ps1 -Mode settle.")
+    print("- Settle should rerun every 5 minutes after the last scheduled first pitch until the slate is final using scripts\\refresh_dashboard.ps1 -Mode settle.")
     print("- This machine can git push to origin/master non-interactively.")
 
 
