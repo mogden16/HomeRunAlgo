@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-25T14:25:38.921422+00:00",
+  "generated_at": "2026-04-25T15:21:34.527285+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -3069,7 +3069,7 @@
       "team": "SEA",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -3097,14 +3097,16 @@
       "ballparkpal_overlay_adjusted_rank": 4,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.1 mph, which points to top-end HR juice.",
       "top_reason_2": "Matthew Liberatore has allowed a 43.7% hard-hit rate over the last 30 days.",
       "top_reason_3": "Average exit velocity over the last 10 days is 96.6 mph, a top-decile recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:824203:642708:681347",
@@ -3909,7 +3911,7 @@
       "team": "TOR",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -3937,14 +3939,16 @@
       "ballparkpal_overlay_adjusted_rank": 19,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 94.8 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Joey Cantillo has allowed barrels on 5.6% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 16.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:823637:701807:500779",
@@ -4079,7 +4083,7 @@
       "team": "TOR",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -4107,14 +4111,16 @@
       "ballparkpal_overlay_adjusted_rank": 22,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1713, supporting loud-contact upside.",
       "top_reason_2": "Joey Cantillo has allowed barrels on 5.7% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 16.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:822989:663616:663556",
@@ -4191,7 +4197,7 @@
       "team": "TOR",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -4219,14 +4225,16 @@
       "ballparkpal_overlay_adjusted_rank": 24,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 45.5%, a above-baseline recent-contact signal.",
       "top_reason_2": "Joey Cantillo has allowed barrels on 5.6% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 16.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:822910:643376:605488",
@@ -4303,7 +4311,7 @@
       "team": "STL",
       "opponent_team": "SEA",
       "pitcher_name": "Bryan Woo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -4331,14 +4339,16 @@
       "ballparkpal_overlay_adjusted_rank": 26,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 5.9%, which the model treats as sustained power quality.",
       "top_reason_2": "Bryan Woo has allowed a 44.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0015, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:824851:694212:676979",
@@ -6439,7 +6449,7 @@
       "team": "SEA",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -6775,7 +6785,7 @@
       "team": "TOR",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -8959,7 +8969,7 @@
       "team": "TOR",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -10247,7 +10257,7 @@
       "team": "TOR",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -10527,7 +10537,7 @@
       "team": "TOR",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -11199,7 +11209,7 @@
       "team": "STL",
       "opponent_team": "SEA",
       "pitcher_name": "Bryan Woo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -11255,7 +11265,7 @@
       "team": "SEA",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -11591,7 +11601,7 @@
       "team": "SEA",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -12151,7 +12161,7 @@
       "team": "STL",
       "opponent_team": "SEA",
       "pitcher_name": "Bryan Woo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -12711,7 +12721,7 @@
       "team": "STL",
       "opponent_team": "SEA",
       "pitcher_name": "Bryan Woo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -12991,7 +13001,7 @@
       "team": "SEA",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -13775,7 +13785,7 @@
       "team": "TOR",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -14671,7 +14681,7 @@
       "team": "SEA",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -14727,7 +14737,7 @@
       "team": "STL",
       "opponent_team": "SEA",
       "pitcher_name": "Bryan Woo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -15287,7 +15297,7 @@
       "team": "SEA",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -15343,7 +15353,7 @@
       "team": "TOR",
       "opponent_team": "CLE",
       "pitcher_name": "Joey Cantillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -15455,7 +15465,7 @@
       "team": "SEA",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -16127,7 +16137,7 @@
       "team": "STL",
       "opponent_team": "SEA",
       "pitcher_name": "Bryan Woo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -16463,7 +16473,7 @@
       "team": "STL",
       "opponent_team": "SEA",
       "pitcher_name": "Bryan Woo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -16855,7 +16865,7 @@
       "team": "STL",
       "opponent_team": "SEA",
       "pitcher_name": "Bryan Woo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -16911,7 +16921,7 @@
       "team": "SEA",
       "opponent_team": "STL",
       "pitcher_name": "Matthew Liberatore",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -16939,14 +16949,16 @@
       "ballparkpal_overlay_adjusted_rank": 251,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Matthew Liberatore has allowed a 43.7% hard-hit rate over the last 30 days.",
       "top_reason_2": "Matthew Liberatore has allowed 43.7% 95+ EV contact over the last 30 days.",
       "top_reason_3": "Matthew Liberatore has allowed homers in 3.7% of plate appearances over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:823637:691720:673540",
@@ -17247,7 +17259,7 @@
       "team": "STL",
       "opponent_team": "SEA",
       "pitcher_name": "Bryan Woo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -298626,14 +298638,14 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "SEA @ STL",
       "teams": [
         {
           "team": "SEA",
           "opponent_team": "STL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 663728,
@@ -298644,12 +298656,6 @@
             {
               "batter_id": 702284,
               "batter_name": "Cole Young",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 686527,
-              "batter_name": "Dominic Canzone",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -298672,10 +298678,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 660844,
-              "batter_name": "Leo Rivas",
+              "batter_id": 641598,
+              "batter_name": "Mitch Garver",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 668227,
@@ -298694,7 +298700,7 @@
         {
           "team": "STL",
           "opponent_team": "SEA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 676475,
@@ -298721,12 +298727,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 665877,
-              "batter_name": "Jos\u00e9 Ferm\u00edn",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
               "batter_id": 691026,
               "batter_name": "Masyn Winn",
               "batting_order": null,
@@ -298745,8 +298745,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 602104,
-              "batter_name": "Ram\u00f3n Ur\u00edas",
+              "batter_id": 686780,
+              "batter_name": "Pedro Pag\u00e9s",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 687363,
+              "batter_name": "Victor Scott II",
               "batting_order": null,
               "selected_for_pick": true
             }
@@ -298758,7 +298764,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "CLE @ TOR",
       "teams": [
@@ -298826,7 +298832,7 @@
         {
           "team": "TOR",
           "opponent_team": "CLE",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 665926,
@@ -298841,14 +298847,20 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 676391,
-              "batter_name": "Ernie Clement",
+              "batter_id": 676914,
+              "batter_name": "Davis Schneider",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 650391,
+              "batter_name": "Eloy Jim\u00e9nez",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 660821,
-              "batter_name": "Jes\u00fas S\u00e1nchez",
+              "batter_id": 676391,
+              "batter_name": "Ernie Clement",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -298859,16 +298871,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 672820,
-              "batter_name": "Lenyn Sosa",
+              "batter_id": 664702,
+              "batter_name": "Myles Straw",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 664770,
-              "batter_name": "Nathan Lukes",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 623168,
