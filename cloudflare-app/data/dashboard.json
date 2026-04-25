@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-25T21:40:09.026118+00:00",
+  "generated_at": "2026-04-25T22:19:57.457687+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -107,10 +107,10 @@
     "latest_slate_size": 261,
     "tracked_dates": 31,
     "tracked_picks": 5244,
-    "settled_picks": 4196,
-    "tracked_homers": 474,
-    "tracked_hit_rate": 0.112965,
-    "open_picks": 1048
+    "settled_picks": 4208,
+    "tracked_homers": 476,
+    "tracked_hit_rate": 0.113118,
+    "open_picks": 1036
   },
   "confidence_summary": [
     {
@@ -129,17 +129,17 @@
     },
     {
       "confidence_tier": "watch",
-      "picks": 701,
+      "picks": 702,
       "homers": 98,
-      "hit_rate": 0.1398,
-      "avg_probability": 0.141004
+      "hit_rate": 0.139601,
+      "avg_probability": 0.140993
     },
     {
       "confidence_tier": "longshot",
-      "picks": 3145,
-      "homers": 292,
-      "hit_rate": 0.092846,
-      "avg_probability": 0.095222
+      "picks": 3156,
+      "homers": 294,
+      "hit_rate": 0.093156,
+      "avg_probability": 0.095181
     }
   ],
   "player_leaderboard": [
@@ -307,9 +307,9 @@
     {
       "batter_name": "Jos\u00e9 Ram\u00edrez",
       "team": "CLE",
-      "picks": 18,
+      "picks": 19,
       "homers": 4,
-      "hit_rate": 0.222222
+      "hit_rate": 0.210526
     },
     {
       "batter_name": "Nico Hoerner",
@@ -529,6 +529,13 @@
       "hit_rate": 0.1875
     },
     {
+      "batter_name": "Brayan Rocchio",
+      "team": "CLE",
+      "picks": 16,
+      "homers": 3,
+      "hit_rate": 0.1875
+    },
+    {
       "batter_name": "Nolan Arenado",
       "team": "AZ",
       "picks": 16,
@@ -543,18 +550,18 @@
       "hit_rate": 0.1875
     },
     {
-      "batter_name": "Brayan Rocchio",
-      "team": "CLE",
+      "batter_name": "Daulton Varsho",
+      "team": "TOR",
       "picks": 15,
       "homers": 3,
       "hit_rate": 0.2
     },
     {
-      "batter_name": "Daulton Varsho",
-      "team": "TOR",
-      "picks": 14,
+      "batter_name": "Casey Schmitt",
+      "team": "SF",
+      "picks": 13,
       "homers": 3,
-      "hit_rate": 0.214286
+      "hit_rate": 0.230769
     },
     {
       "batter_name": "Ildemaro Vargas",
@@ -627,6 +634,13 @@
       "hit_rate": 0.086957
     },
     {
+      "batter_name": "Chase DeLauter",
+      "team": "CLE",
+      "picks": 21,
+      "homers": 2,
+      "hit_rate": 0.095238
+    },
+    {
       "batter_name": "JJ Wetherholt",
       "team": "STL",
       "picks": 21,
@@ -646,13 +660,6 @@
       "picks": 21,
       "homers": 2,
       "hit_rate": 0.095238
-    },
-    {
-      "batter_name": "Chase DeLauter",
-      "team": "CLE",
-      "picks": 20,
-      "homers": 2,
-      "hit_rate": 0.1
     },
     {
       "batter_name": "Cole Young",
@@ -699,6 +706,13 @@
     {
       "batter_name": "Randy Arozarena",
       "team": "SEA",
+      "picks": 19,
+      "homers": 2,
+      "hit_rate": 0.105263
+    },
+    {
+      "batter_name": "Vladimir Guerrero Jr.",
+      "team": "TOR",
       "picks": 19,
       "homers": 2,
       "hit_rate": 0.105263
@@ -762,13 +776,6 @@
     {
       "batter_name": "Trea Turner",
       "team": "PHI",
-      "picks": 18,
-      "homers": 2,
-      "hit_rate": 0.111111
-    },
-    {
-      "batter_name": "Vladimir Guerrero Jr.",
-      "team": "TOR",
       "picks": 18,
       "homers": 2,
       "hit_rate": 0.111111
@@ -928,13 +935,6 @@
       "hit_rate": 0.153846
     },
     {
-      "batter_name": "Casey Schmitt",
-      "team": "SF",
-      "picks": 12,
-      "homers": 2,
-      "hit_rate": 0.166667
-    },
-    {
       "batter_name": "Dominic Smith",
       "team": "ATL",
       "picks": 11,
@@ -968,6 +968,13 @@
       "picks": 9,
       "homers": 2,
       "hit_rate": 0.222222
+    },
+    {
+      "batter_name": "Drew Gilbert",
+      "team": "SF",
+      "picks": 8,
+      "homers": 2,
+      "hit_rate": 0.25
     },
     {
       "batter_name": "Josh Lowe",
@@ -1061,6 +1068,13 @@
       "hit_rate": 0.055556
     },
     {
+      "batter_name": "Andr\u00e9s Gim\u00e9nez",
+      "team": "TOR",
+      "picks": 17,
+      "homers": 1,
+      "hit_rate": 0.058824
+    },
+    {
       "batter_name": "Bo Bichette",
       "team": "NYM",
       "picks": 17,
@@ -1143,13 +1157,6 @@
       "picks": 17,
       "homers": 1,
       "hit_rate": 0.058824
-    },
-    {
-      "batter_name": "Andr\u00e9s Gim\u00e9nez",
-      "team": "TOR",
-      "picks": 16,
-      "homers": 1,
-      "hit_rate": 0.0625
     },
     {
       "batter_name": "Brady House",
@@ -1460,13 +1467,6 @@
       "hit_rate": 0.142857
     },
     {
-      "batter_name": "Drew Gilbert",
-      "team": "SF",
-      "picks": 7,
-      "homers": 1,
-      "hit_rate": 0.142857
-    },
-    {
       "batter_name": "Jonathan India",
       "team": "KC",
       "picks": 7,
@@ -1558,6 +1558,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Ernie Clement",
+      "team": "TOR",
+      "picks": 19,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Matt Chapman",
       "team": "SF",
       "picks": 19,
@@ -1581,13 +1588,6 @@
     {
       "batter_name": "Chase Meidroth",
       "team": "CWS",
-      "picks": 18,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Ernie Clement",
-      "team": "TOR",
       "picks": 18,
       "homers": 0,
       "hit_rate": 0.0
@@ -1817,6 +1817,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Juan Brito",
+      "team": "CLE",
+      "picks": 11,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Ke'Bryan Hayes",
       "team": "CIN",
       "picks": 11,
@@ -1847,13 +1854,6 @@
     {
       "batter_name": "Ezequiel Duran",
       "team": "TEX",
-      "picks": 10,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Juan Brito",
-      "team": "CLE",
       "picks": 10,
       "homers": 0,
       "hit_rate": 0.0
@@ -2097,6 +2097,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Bo Naylor",
+      "team": "CLE",
+      "picks": 5,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Colton Cowser",
       "team": "BAL",
       "picks": 5,
@@ -2197,13 +2204,6 @@
     {
       "batter_name": "Austin Slater",
       "team": "MIA",
-      "picks": 4,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Bo Naylor",
-      "team": "CLE",
       "picks": 4,
       "homers": 0,
       "hit_rate": 0.0
@@ -2456,6 +2456,13 @@
     {
       "batter_name": "Eli White",
       "team": "ATL",
+      "picks": 2,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
+      "batter_name": "Eloy Jim\u00e9nez",
+      "team": "TOR",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
@@ -3923,7 +3930,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 99,
       "original_rank": 99,
       "original_score": 33.3,
@@ -4095,7 +4102,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 141,
       "original_rank": 141,
       "original_score": 28.0,
@@ -4211,7 +4218,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 246,
       "original_rank": 246,
       "original_score": 26.1,
@@ -6819,7 +6826,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 18,
       "original_rank": 18,
       "original_score": 82.4,
@@ -6856,15 +6863,15 @@
       "ballparkpal_overlay_adjusted_score": 25.2,
       "ballparkpal_overlay_adjusted_rank": 70,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.6 mph, which points to top-end HR juice.",
       "top_reason_2": "Joey Cantillo has allowed barrels on 5.7% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 16.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:825093:593428:668678",
@@ -8837,7 +8844,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 52,
       "original_rank": 52,
       "original_score": 69.7,
@@ -8874,15 +8881,15 @@
       "ballparkpal_overlay_adjusted_score": 21.5,
       "ballparkpal_overlay_adjusted_rank": 106,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 63.2%, a top-decile recent-contact signal.",
       "top_reason_2": "Kevin Gausman has allowed barrels on 5.2% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 16.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:824933:547180:693821",
@@ -9005,7 +9012,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 145,
       "original_rank": 145,
       "original_score": 48.3,
@@ -9042,15 +9049,15 @@
       "ballparkpal_overlay_adjusted_score": 19.1,
       "ballparkpal_overlay_adjusted_rank": 109,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Joey Cantillo has allowed barrels on 5.6% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 16.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:823960:621020:808963",
@@ -9905,7 +9912,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 131,
       "original_rank": 131,
       "original_score": 54.0,
@@ -10299,7 +10306,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 247,
       "original_rank": 247,
       "original_score": 5.0,
@@ -10336,15 +10343,15 @@
       "ballparkpal_overlay_adjusted_score": 13.3,
       "ballparkpal_overlay_adjusted_rank": 132,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Joey Cantillo has allowed barrels on 5.7% of recent batted balls.",
       "top_reason_2": "Projected wind speed is 16.6 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:824851:624413:676979",
@@ -10579,7 +10586,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 81,
       "original_rank": 81,
       "original_score": 44.4,
@@ -10691,7 +10698,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 61,
       "original_rank": 61,
       "original_score": 67.4,
@@ -10728,15 +10735,15 @@
       "ballparkpal_overlay_adjusted_score": 19.1,
       "ballparkpal_overlay_adjusted_rank": 139,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 6.4%, which the model treats as sustained power quality.",
       "top_reason_2": "Kevin Gausman has allowed barrels on 5.2% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 16.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:824203:673237:677960",
@@ -11701,7 +11708,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 83,
       "original_rank": 83,
       "original_score": 41.0,
@@ -12601,7 +12608,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 112,
       "original_rank": 112,
       "original_score": 35.2,
@@ -12638,15 +12645,15 @@
       "ballparkpal_overlay_adjusted_score": 14.0,
       "ballparkpal_overlay_adjusted_rank": 173,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 5.0%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Kevin Gausman has allowed barrels on 5.2% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 16.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:824121:681351:666142",
@@ -13839,7 +13846,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 244,
       "original_rank": 244,
       "original_score": 3.8,
@@ -13876,15 +13883,15 @@
       "ballparkpal_overlay_adjusted_score": 9.4,
       "ballparkpal_overlay_adjusted_rank": 195,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Joey Cantillo has allowed barrels on 5.6% of batted balls to this batter side.",
       "top_reason_2": "Projected wind speed is 16.6 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Joey Cantillo has allowed barrels on 5.7% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:823229:669477:691587",
@@ -13932,15 +13939,15 @@
       "ballparkpal_overlay_adjusted_score": 12.4,
       "ballparkpal_overlay_adjusted_rank": 196,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 9.7%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Eury P\u00e9rez has allowed barrels on 8.8% of recent batted balls.",
       "top_reason_3": "Projected humidity is 83%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-25:824121:686681:700712",
@@ -14289,7 +14296,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 192,
       "original_rank": 192,
       "original_score": 11.1,
@@ -14326,15 +14333,15 @@
       "ballparkpal_overlay_adjusted_score": 9.8,
       "ballparkpal_overlay_adjusted_rank": 203,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Kevin Gausman has allowed barrels on 5.2% of batted balls to this batter side.",
       "top_reason_2": "Projected wind speed is 16.6 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Projected humidity is 82%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:823960:608324:808963",
@@ -14849,7 +14856,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 245,
       "original_rank": 245,
       "original_score": 6.5,
@@ -14886,15 +14893,15 @@
       "ballparkpal_overlay_adjusted_score": 8.7,
       "ballparkpal_overlay_adjusted_rank": 213,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 4.3%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Kevin Gausman has allowed barrels on 5.2% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 16.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:823960:663538:808963",
@@ -15131,7 +15138,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 220,
       "original_rank": 220,
       "original_score": 14.2,
@@ -15411,7 +15418,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 215,
       "original_rank": 215,
       "original_score": 18.0,
@@ -15448,15 +15455,15 @@
       "ballparkpal_overlay_adjusted_score": 9.5,
       "ballparkpal_overlay_adjusted_rank": 223,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 57.1%, a top-quartile recent-contact signal.",
       "top_reason_2": "Joey Cantillo has allowed barrels on 5.7% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 16.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:824933:664761:693821",
@@ -15635,7 +15642,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 258,
       "original_rank": 258,
       "original_score": 5.7,
@@ -17136,15 +17143,15 @@
       "ballparkpal_overlay_adjusted_score": 6.9,
       "ballparkpal_overlay_adjusted_rank": 253,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 3.8%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Eury P\u00e9rez has allowed barrels on 8.8% of recent batted balls.",
       "top_reason_3": "Projected humidity is 83%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-25:824933:643289:554430",
@@ -298714,7 +298721,7 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_status": "Game Over",
+      "game_status": "Final",
       "game_state": "final",
       "matchup": "SEA @ STL",
       "teams": [
@@ -298840,8 +298847,8 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "CLE @ TOR",
       "teams": [
         {
@@ -299350,7 +299357,7 @@
       "game_pk": 825093,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T22:05:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "matchup": "SD @ AZ",
       "teams": [
