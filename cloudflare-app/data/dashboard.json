@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-25T20:12:22.258569+00:00",
+  "generated_at": "2026-04-25T21:01:50.426776+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -3131,7 +3131,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -3187,7 +3187,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -3215,14 +3215,16 @@
       "ballparkpal_overlay_adjusted_rank": 6,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0051, reinforcing the power-contact fit.",
       "top_reason_2": "Mike Burrows has allowed barrels on 9.2% of batted balls to this batter side.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 60.0%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:824613:671277:702273",
@@ -3357,7 +3359,7 @@
       "team": "PHI",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -3385,14 +3387,16 @@
       "ballparkpal_overlay_adjusted_rank": 9,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 109.0 mph, which points to top-end HR juice.",
       "top_reason_2": "Park factor for the hitter's handedness is 110.0, which adds venue lift to the matchup.",
       "top_reason_3": "Average exit velocity over the last 10 days is 91.4 mph, a above-baseline recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:823799:693304:694819",
@@ -3413,7 +3417,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Jacob Misiorowski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -3871,7 +3875,7 @@
       "team": "PHI",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -3899,14 +3903,16 @@
       "ballparkpal_overlay_adjusted_rank": 18,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 111.6 mph, which points to top-end HR juice.",
       "top_reason_2": "Park factor for the hitter's handedness is 110.0, which adds venue lift to the matchup.",
       "top_reason_3": "The handedness-specific hard-hit matchup score is 0.1750, supporting loud-contact upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:822826:660821:676282",
@@ -4619,7 +4625,7 @@
       "team": "CHC",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -4675,7 +4681,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Jacob Misiorowski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -5759,7 +5765,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -5871,7 +5877,7 @@
       "team": "PHI",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -6319,7 +6325,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -6431,7 +6437,7 @@
       "team": "CHC",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -6711,7 +6717,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Jacob Misiorowski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -7271,7 +7277,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -7299,14 +7305,16 @@
       "ballparkpal_overlay_adjusted_rank": 78,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0066, reinforcing the power-contact fit.",
       "top_reason_2": "Mike Burrows has allowed barrels on 9.2% of batted balls to this batter side.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 7.2% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:824613:695657:663623",
@@ -7663,7 +7671,7 @@
       "team": "CHC",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -7887,7 +7895,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -8055,7 +8063,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -8111,7 +8119,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Jacob Misiorowski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -8447,7 +8455,7 @@
       "team": "CHC",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -8895,7 +8903,7 @@
       "team": "PHI",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -9063,7 +9071,7 @@
       "team": "CHC",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -9175,7 +9183,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -10861,7 +10869,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Jacob Misiorowski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -11029,7 +11037,7 @@
       "team": "CHC",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -11085,7 +11093,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Jacob Misiorowski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -11113,14 +11121,16 @@
       "ballparkpal_overlay_adjusted_rank": 146,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 11.4%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Projected humidity is 84%, a modest positive weather input in the live model.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 5.7% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:823960:681624:607067",
@@ -11533,7 +11543,7 @@
       "team": "PHI",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -11759,7 +11769,7 @@
       "team": "CHC",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -11787,14 +11797,16 @@
       "ballparkpal_overlay_adjusted_rank": 158,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 7.1%, which the model treats as sustained power quality.",
       "top_reason_2": "Roki Sasaki has allowed homers in 4.7% of plate appearances to this batter side.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0022, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:824203:676609:681347",
@@ -11815,7 +11827,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -12095,7 +12107,7 @@
       "team": "PHI",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -12487,7 +12499,7 @@
       "team": "PHI",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -12543,7 +12555,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Jacob Misiorowski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -14343,7 +14355,7 @@
       "team": "CHC",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -14567,7 +14579,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Jacob Misiorowski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -14903,7 +14915,7 @@
       "team": "CHC",
       "opponent_team": "LAD",
       "pitcher_name": "Roki Sasaki",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -15297,7 +15309,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Jacob Misiorowski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -15465,7 +15477,7 @@
       "team": "PHI",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -17267,7 +17279,7 @@
       "team": "PHI",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -298702,7 +298714,7 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_status": "In Progress",
+      "game_status": "Manager challenge",
       "game_state": "live",
       "matchup": "SEA @ STL",
       "teams": [
@@ -299686,11 +299698,17 @@
         {
           "team": "NYY",
           "opponent_team": "HOU",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 592450,
               "batter_name": "Aaron Judge",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 642708,
+              "batter_name": "Amed Rosario",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -299713,12 +299731,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 519317,
-              "batter_name": "Giancarlo Stanton",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 665862,
               "batter_name": "Jazz Chisholm Jr.",
               "batting_order": null,
@@ -299731,10 +299743,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 545341,
-              "batter_name": "Randal Grichuk",
+              "batter_id": 641857,
+              "batter_name": "Ryan McMahon",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 663757,
@@ -299818,7 +299830,7 @@
         {
           "team": "PIT",
           "opponent_team": "MIL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 664040,
@@ -299839,14 +299851,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 804606,
-              "batter_name": "Konnor Griffin",
+              "batter_id": 663968,
+              "batter_name": "Jake Mangum",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 542303,
-              "batter_name": "Marcell Ozuna",
+              "batter_id": 804606,
+              "batter_name": "Konnor Griffin",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -300082,17 +300094,11 @@
         {
           "team": "CHC",
           "opponent_team": "LAD",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 608324,
               "batter_name": "Alex Bregman",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 608348,
-              "batter_name": "Carson Kelly",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -300111,6 +300117,12 @@
             {
               "batter_id": 683737,
               "batter_name": "Michael Busch",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 665804,
+              "batter_name": "Miguel Amaya",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -300214,7 +300226,7 @@
         {
           "team": "PHI",
           "opponent_team": "ATL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666969,
@@ -300247,12 +300259,6 @@
               "selected_for_pick": false
             },
             {
-              "batter_id": 694025,
-              "batter_name": "Felix Reyes",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 702222,
               "batter_name": "Justin Crawford",
               "batting_order": null,
@@ -300263,6 +300269,12 @@
               "batter_name": "Kyle Schwarber",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 665561,
+              "batter_name": "Rafael March\u00e1n",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 607208,
