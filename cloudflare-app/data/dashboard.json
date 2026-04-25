@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-25T13:46:25.721036+00:00",
+  "generated_at": "2026-04-25T14:25:38.921422+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -4359,7 +4359,7 @@
       "team": "BAL",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -4387,14 +4387,16 @@
       "ballparkpal_overlay_adjusted_rank": 27,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
       "top_reason_2": "Garrett Crochet has allowed barrels on 7.1% of recent batted balls.",
       "top_reason_3": "Projected humidity is 86%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:824851:687637:676979",
@@ -4415,7 +4417,7 @@
       "team": "BAL",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -4443,14 +4445,16 @@
       "ballparkpal_overlay_adjusted_rank": 28,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 14.3% barrel-per-PA split.",
       "top_reason_2": "Garrett Crochet has allowed barrels on 7.1% of recent batted balls.",
       "top_reason_3": "Projected humidity is 86%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:823799:650859:656605",
@@ -8619,7 +8623,7 @@
       "team": "BAL",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -10299,7 +10303,7 @@
       "team": "BAL",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -11307,7 +11311,7 @@
       "team": "BAL",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -13155,7 +13159,7 @@
       "team": "BAL",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -13323,7 +13327,7 @@
       "team": "BAL",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -15675,7 +15679,7 @@
       "team": "BAL",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -16067,7 +16071,7 @@
       "team": "BAL",
       "opponent_team": "BOS",
       "pitcher_name": "Garrett Crochet",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -298564,7 +298568,7 @@
         {
           "team": "BAL",
           "opponent_team": "BOS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 668939,
@@ -298573,14 +298577,14 @@
               "selected_for_pick": false
             },
             {
-              "batter_id": 691723,
-              "batter_name": "Coby Mayo",
+              "batter_id": 677942,
+              "batter_name": "Blaze Alexander",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 687637,
-              "batter_name": "Dylan Beavers",
+              "batter_id": 691723,
+              "batter_name": "Coby Mayo",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -298605,12 +298609,6 @@
             {
               "batter_id": 624413,
               "batter_name": "Pete Alonso",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 694212,
-              "batter_name": "Samuel Basallo",
               "batting_order": null,
               "selected_for_pick": true
             },
