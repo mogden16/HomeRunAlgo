@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-25T18:28:32.859119+00:00",
+  "generated_at": "2026-04-25T19:36:27.153745+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -107,10 +107,10 @@
     "latest_slate_size": 261,
     "tracked_dates": 31,
     "tracked_picks": 5244,
-    "settled_picks": 4170,
-    "tracked_homers": 469,
-    "tracked_hit_rate": 0.11247,
-    "open_picks": 1074
+    "settled_picks": 4185,
+    "tracked_homers": 473,
+    "tracked_hit_rate": 0.113023,
+    "open_picks": 1059
   },
   "confidence_summary": [
     {
@@ -129,17 +129,17 @@
     },
     {
       "confidence_tier": "watch",
-      "picks": 697,
-      "homers": 97,
-      "hit_rate": 0.139168,
-      "avg_probability": 0.140997
+      "picks": 699,
+      "homers": 98,
+      "hit_rate": 0.1402,
+      "avg_probability": 0.140984
     },
     {
       "confidence_tier": "longshot",
-      "picks": 3124,
-      "homers": 288,
-      "hit_rate": 0.09219,
-      "avg_probability": 0.095236
+      "picks": 3137,
+      "homers": 291,
+      "hit_rate": 0.092764,
+      "avg_probability": 0.095226
     }
   ],
   "player_leaderboard": [
@@ -202,9 +202,9 @@
     {
       "batter_name": "Gunnar Henderson",
       "team": "BAL",
-      "picks": 19,
+      "picks": 20,
       "homers": 6,
-      "hit_rate": 0.315789
+      "hit_rate": 0.3
     },
     {
       "batter_name": "Colson Montgomery",
@@ -347,6 +347,13 @@
       "hit_rate": 0.235294
     },
     {
+      "batter_name": "Jeremiah Jackson",
+      "team": "BAL",
+      "picks": 17,
+      "homers": 4,
+      "hit_rate": 0.235294
+    },
+    {
       "batter_name": "Miguel Vargas",
       "team": "CWS",
       "picks": 17,
@@ -354,8 +361,8 @@
       "hit_rate": 0.235294
     },
     {
-      "batter_name": "Jeremiah Jackson",
-      "team": "BAL",
+      "batter_name": "Willson Contreras",
+      "team": "BOS",
       "picks": 16,
       "homers": 4,
       "hit_rate": 0.25
@@ -536,13 +543,6 @@
       "hit_rate": 0.2
     },
     {
-      "batter_name": "Willson Contreras",
-      "team": "BOS",
-      "picks": 15,
-      "homers": 3,
-      "hit_rate": 0.2
-    },
-    {
       "batter_name": "Daulton Varsho",
       "team": "TOR",
       "picks": 14,
@@ -571,18 +571,18 @@
       "hit_rate": 0.25
     },
     {
-      "batter_name": "Jake Bauers",
-      "team": "MIL",
+      "batter_name": "Coby Mayo",
+      "team": "BAL",
       "picks": 12,
       "homers": 3,
       "hit_rate": 0.25
     },
     {
-      "batter_name": "Coby Mayo",
-      "team": "BAL",
-      "picks": 11,
+      "batter_name": "Jake Bauers",
+      "team": "MIL",
+      "picks": 12,
       "homers": 3,
-      "hit_rate": 0.272727
+      "hit_rate": 0.25
     },
     {
       "batter_name": "Samuel Basallo",
@@ -634,6 +634,13 @@
       "hit_rate": 0.095238
     },
     {
+      "batter_name": "Pete Alonso",
+      "team": "BAL",
+      "picks": 21,
+      "homers": 2,
+      "hit_rate": 0.095238
+    },
+    {
       "batter_name": "Chase DeLauter",
       "team": "CLE",
       "picks": 20,
@@ -641,8 +648,8 @@
       "hit_rate": 0.1
     },
     {
-      "batter_name": "Pete Alonso",
-      "team": "BAL",
+      "batter_name": "Cole Young",
+      "team": "SEA",
       "picks": 20,
       "homers": 2,
       "hit_rate": 0.1
@@ -907,6 +914,13 @@
       "hit_rate": 0.153846
     },
     {
+      "batter_name": "Leody Taveras",
+      "team": "BAL",
+      "picks": 13,
+      "homers": 2,
+      "hit_rate": 0.153846
+    },
+    {
       "batter_name": "Yo\u00e1n Moncada",
       "team": "LAA",
       "picks": 13,
@@ -916,13 +930,6 @@
     {
       "batter_name": "Casey Schmitt",
       "team": "SF",
-      "picks": 12,
-      "homers": 2,
-      "hit_rate": 0.166667
-    },
-    {
-      "batter_name": "Leody Taveras",
-      "team": "BAL",
       "picks": 12,
       "homers": 2,
       "hit_rate": 0.166667
@@ -949,6 +956,13 @@
       "hit_rate": 0.222222
     },
     {
+      "batter_name": "Nathan Church",
+      "team": "STL",
+      "picks": 9,
+      "homers": 2,
+      "hit_rate": 0.222222
+    },
+    {
       "batter_name": "Ryan Jeffers",
       "team": "MIN",
       "picks": 9,
@@ -970,11 +984,18 @@
       "hit_rate": 0.333333
     },
     {
-      "batter_name": "Cole Young",
-      "team": "SEA",
-      "picks": 19,
+      "batter_name": "Taylor Ward",
+      "team": "BAL",
+      "picks": 20,
       "homers": 1,
-      "hit_rate": 0.052632
+      "hit_rate": 0.05
+    },
+    {
+      "batter_name": "Trevor Story",
+      "team": "BOS",
+      "picks": 20,
+      "homers": 1,
+      "hit_rate": 0.05
     },
     {
       "batter_name": "Eugenio Su\u00e1rez",
@@ -1000,20 +1021,6 @@
     {
       "batter_name": "Kevin McGonigle",
       "team": "DET",
-      "picks": 19,
-      "homers": 1,
-      "hit_rate": 0.052632
-    },
-    {
-      "batter_name": "Taylor Ward",
-      "team": "BAL",
-      "picks": 19,
-      "homers": 1,
-      "hit_rate": 0.052632
-    },
-    {
-      "batter_name": "Trevor Story",
-      "team": "BOS",
       "picks": 19,
       "homers": 1,
       "hit_rate": 0.052632
@@ -1049,6 +1056,13 @@
     {
       "batter_name": "Bo Bichette",
       "team": "NYM",
+      "picks": 17,
+      "homers": 1,
+      "hit_rate": 0.058824
+    },
+    {
+      "batter_name": "Caleb Durbin",
+      "team": "BOS",
       "picks": 17,
       "homers": 1,
       "hit_rate": 0.058824
@@ -1299,6 +1313,13 @@
       "hit_rate": 0.083333
     },
     {
+      "batter_name": "Jarren Duran",
+      "team": "BOS",
+      "picks": 12,
+      "homers": 1,
+      "hit_rate": 0.083333
+    },
+    {
       "batter_name": "Javier B\u00e1ez",
       "team": "DET",
       "picks": 12,
@@ -1341,13 +1362,6 @@
       "hit_rate": 0.090909
     },
     {
-      "batter_name": "Jarren Duran",
-      "team": "BOS",
-      "picks": 11,
-      "homers": 1,
-      "hit_rate": 0.090909
-    },
-    {
       "batter_name": "Nick Yorke",
       "team": "PIT",
       "picks": 11,
@@ -1383,6 +1397,13 @@
       "hit_rate": 0.1
     },
     {
+      "batter_name": "Blaze Alexander",
+      "team": "BAL",
+      "picks": 9,
+      "homers": 1,
+      "hit_rate": 0.111111
+    },
+    {
       "batter_name": "Masyn Winn",
       "team": "STL",
       "picks": 9,
@@ -1416,20 +1437,6 @@
       "picks": 9,
       "homers": 1,
       "hit_rate": 0.111111
-    },
-    {
-      "batter_name": "Blaze Alexander",
-      "team": "BAL",
-      "picks": 8,
-      "homers": 1,
-      "hit_rate": 0.125
-    },
-    {
-      "batter_name": "Nathan Church",
-      "team": "STL",
-      "picks": 8,
-      "homers": 1,
-      "hit_rate": 0.125
     },
     {
       "batter_name": "Willi Castro",
@@ -1607,6 +1614,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Wilyer Abreu",
+      "team": "BOS",
+      "picks": 18,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Alec Bohm",
       "team": "PHI",
       "picks": 17,
@@ -1649,22 +1663,8 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Wilyer Abreu",
-      "team": "BOS",
-      "picks": 17,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Alex Freeland",
       "team": "LAD",
-      "picks": 16,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Caleb Durbin",
-      "team": "BOS",
       "picks": 16,
       "homers": 0,
       "hit_rate": 0.0
@@ -1698,6 +1698,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Ceddanne Rafaela",
+      "team": "BOS",
+      "picks": 15,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Mike Yastrzemski",
       "team": "ATL",
       "picks": 15,
@@ -1707,13 +1714,6 @@
     {
       "batter_name": "Carlos Correa",
       "team": "HOU",
-      "picks": 14,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Ceddanne Rafaela",
-      "team": "BOS",
       "picks": 14,
       "homers": 0,
       "hit_rate": 0.0
@@ -2901,7 +2901,7 @@
       "team": "LAD",
       "opponent_team": "CHC",
       "pitcher_name": "Colin Rea",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -3015,7 +3015,7 @@
       "team": "TEX",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -3043,14 +3043,16 @@
       "ballparkpal_overlay_adjusted_rank": 3,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2694, supporting loud-contact upside.",
       "top_reason_2": "Projected wind speed is 14.6 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Average exit velocity over the last 10 days is 96.4 mph, a top-decile recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:823070:686527:669461",
@@ -3299,7 +3301,7 @@
       "team": "TEX",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -3631,7 +3633,7 @@
       "game_pk": 824851,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T16:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 110,
       "original_rank": 110,
       "original_score": 41.4,
@@ -3668,15 +3670,15 @@
       "ballparkpal_overlay_adjusted_score": 41.4,
       "ballparkpal_overlay_adjusted_rank": 14,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 9.5%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Projected humidity is 86%, a modest positive weather input in the live model.",
       "top_reason_3": "Barrel rate over the last 30 days is 5.1%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:823229:683357:592662",
@@ -3687,7 +3689,7 @@
       "game_pk": 823229,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 177,
       "original_rank": 177,
       "original_score": 40.2,
@@ -3915,7 +3917,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 99,
       "original_rank": 99,
       "original_score": 33.3,
@@ -4029,7 +4031,7 @@
       "game_pk": 824851,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T16:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 189,
       "original_rank": 189,
       "original_score": 28.4,
@@ -4087,7 +4089,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 141,
       "original_rank": 141,
       "original_score": 28.0,
@@ -4203,7 +4205,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 246,
       "original_rank": 246,
       "original_score": 26.1,
@@ -4271,7 +4273,7 @@
       "team": "TEX",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -4375,7 +4377,7 @@
       "game_pk": 824851,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T16:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 199,
       "original_rank": 199,
       "original_score": 24.9,
@@ -4433,7 +4435,7 @@
       "game_pk": 824851,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T16:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 209,
       "original_rank": 209,
       "original_score": 24.5,
@@ -4717,7 +4719,7 @@
       "game_pk": 823229,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 237,
       "original_rank": 237,
       "original_score": 13.4,
@@ -4899,7 +4901,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -4927,14 +4929,16 @@
       "ballparkpal_overlay_adjusted_rank": 36,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 53.8%, a top-quartile recent-contact signal.",
       "top_reason_2": "Cole Ragans has allowed homers in 7.2% of plate appearances over the last 30 days.",
       "top_reason_3": "Cole Ragans has allowed barrels on 9.0% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:824613:678391:702273",
@@ -5003,7 +5007,7 @@
       "game_pk": 824851,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T16:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 200,
       "original_rank": 200,
       "original_score": 7.7,
@@ -5071,7 +5075,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -5099,14 +5103,16 @@
       "ballparkpal_overlay_adjusted_rank": 39,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Cole Ragans has allowed homers in 7.2% of plate appearances over the last 30 days.",
       "top_reason_2": "Cole Ragans has allowed barrels on 9.0% of recent batted balls.",
       "top_reason_3": "Cole Ragans has allowed a 43.6% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:824851:691785:669432",
@@ -5117,7 +5123,7 @@
       "game_pk": 824851,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T16:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 228,
       "original_rank": 228,
       "original_score": 3.4,
@@ -5185,7 +5191,7 @@
       "team": "HOU",
       "opponent_team": "NYY",
       "pitcher_name": "Ryan Weathers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -5213,14 +5219,16 @@
       "ballparkpal_overlay_adjusted_rank": 41,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2766, supporting loud-contact upside.",
       "top_reason_2": "Ryan Weathers has allowed a 43.4% hard-hit rate over the last 30 days.",
       "top_reason_3": "Ryan Weathers has allowed 43.4% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:823229:688363:592662",
@@ -5231,7 +5239,7 @@
       "game_pk": 823229,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 255,
       "original_rank": 255,
       "original_score": 1.9,
@@ -5691,7 +5699,7 @@
       "team": "LAD",
       "opponent_team": "CHC",
       "pitcher_name": "Colin Rea",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -5803,7 +5811,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -5971,7 +5979,7 @@
       "team": "HOU",
       "opponent_team": "NYY",
       "pitcher_name": "Ryan Weathers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -6083,7 +6091,7 @@
       "team": "DET",
       "opponent_team": "CIN",
       "pitcher_name": "Brady Singer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -6139,7 +6147,7 @@
       "team": "DET",
       "opponent_team": "CIN",
       "pitcher_name": "Brady Singer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -6251,7 +6259,7 @@
       "team": "DET",
       "opponent_team": "CIN",
       "pitcher_name": "Brady Singer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -6531,7 +6539,7 @@
       "team": "DET",
       "opponent_team": "CIN",
       "pitcher_name": "Brady Singer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -6801,7 +6809,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 18,
       "original_rank": 18,
       "original_score": 82.4,
@@ -6839,7 +6847,7 @@
       "ballparkpal_overlay_adjusted_rank": 70,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -6923,7 +6931,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -6979,7 +6987,7 @@
       "team": "LAD",
       "opponent_team": "CHC",
       "pitcher_name": "Colin Rea",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -7035,7 +7043,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -7091,7 +7099,7 @@
       "team": "TEX",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -7371,7 +7379,7 @@
       "team": "DET",
       "opponent_team": "CIN",
       "pitcher_name": "Brady Singer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -7483,7 +7491,7 @@
       "team": "LAD",
       "opponent_team": "CHC",
       "pitcher_name": "Colin Rea",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -7707,7 +7715,7 @@
       "team": "HOU",
       "opponent_team": "NYY",
       "pitcher_name": "Ryan Weathers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -8155,7 +8163,7 @@
       "team": "TEX",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -8211,7 +8219,7 @@
       "team": "DET",
       "opponent_team": "CIN",
       "pitcher_name": "Brady Singer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -8649,7 +8657,7 @@
       "game_pk": 824851,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T16:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 168,
       "original_rank": 168,
       "original_score": 15.3,
@@ -8686,15 +8694,15 @@
       "ballparkpal_overlay_adjusted_score": 16.2,
       "ballparkpal_overlay_adjusted_rank": 103,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 54.5%, a top-quartile recent-contact signal.",
       "top_reason_2": "Garrett Crochet has allowed barrels on 7.1% of recent batted balls.",
       "top_reason_3": "Projected humidity is 86%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:825093:666023:668678",
@@ -8771,7 +8779,7 @@
       "team": "HOU",
       "opponent_team": "NYY",
       "pitcher_name": "Ryan Weathers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -8817,7 +8825,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 52,
       "original_rank": 52,
       "original_score": 69.7,
@@ -8855,7 +8863,7 @@
       "ballparkpal_overlay_adjusted_rank": 106,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -8985,7 +8993,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 145,
       "original_rank": 145,
       "original_score": 48.3,
@@ -9023,7 +9031,7 @@
       "ballparkpal_overlay_adjusted_rank": 109,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -9209,7 +9217,7 @@
       "game_pk": 824851,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T16:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 188,
       "original_rank": 188,
       "original_score": 22.6,
@@ -9246,15 +9254,15 @@
       "ballparkpal_overlay_adjusted_score": 16.3,
       "ballparkpal_overlay_adjusted_rank": 113,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 48.5%, showing consistent quality contact.",
       "top_reason_2": "Projected humidity is 86%, a modest positive weather input in the live model.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 48.5%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:824121:677951:700712",
@@ -9275,7 +9283,7 @@
       "team": "KC",
       "opponent_team": "LAA",
       "pitcher_name": "Walbert Urena",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -9331,7 +9339,7 @@
       "team": "LAD",
       "opponent_team": "CHC",
       "pitcher_name": "Colin Rea",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -9443,7 +9451,7 @@
       "team": "DET",
       "opponent_team": "CIN",
       "pitcher_name": "Brady Singer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -9613,7 +9621,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -9773,7 +9781,7 @@
       "game_pk": 823229,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 40,
       "original_rank": 40,
       "original_score": 85.4,
@@ -9811,7 +9819,7 @@
       "ballparkpal_overlay_adjusted_rank": 123,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -9839,7 +9847,7 @@
       "team": "LAD",
       "opponent_team": "CHC",
       "pitcher_name": "Colin Rea",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -9885,7 +9893,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 131,
       "original_rank": 131,
       "original_score": 54.0,
@@ -10065,7 +10073,7 @@
       "team": "KC",
       "opponent_team": "LAA",
       "pitcher_name": "Walbert Urena",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -10121,7 +10129,7 @@
       "team": "HOU",
       "opponent_team": "NYY",
       "pitcher_name": "Ryan Weathers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -10233,7 +10241,7 @@
       "team": "TEX",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -10279,7 +10287,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 247,
       "original_rank": 247,
       "original_score": 5.0,
@@ -10317,7 +10325,7 @@
       "ballparkpal_overlay_adjusted_rank": 132,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10335,7 +10343,7 @@
       "game_pk": 824851,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T16:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 54,
       "original_rank": 54,
       "original_score": 85.1,
@@ -10372,15 +10380,15 @@
       "ballparkpal_overlay_adjusted_score": 21.2,
       "ballparkpal_overlay_adjusted_rank": 133,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 54.1%, showing consistent quality contact.",
       "top_reason_2": "Garrett Crochet has allowed barrels on 7.1% of recent batted balls.",
       "top_reason_3": "Projected humidity is 86%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:824527:805808:663903",
@@ -10401,7 +10409,7 @@
       "team": "DET",
       "opponent_team": "CIN",
       "pitcher_name": "Brady Singer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -10447,7 +10455,7 @@
       "game_pk": 823229,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 76,
       "original_rank": 76,
       "original_score": 79.3,
@@ -10485,7 +10493,7 @@
       "ballparkpal_overlay_adjusted_rank": 135,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10559,7 +10567,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 81,
       "original_rank": 81,
       "original_score": 44.4,
@@ -10597,7 +10605,7 @@
       "ballparkpal_overlay_adjusted_rank": 137,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10671,7 +10679,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 61,
       "original_rank": 61,
       "original_score": 67.4,
@@ -10709,7 +10717,7 @@
       "ballparkpal_overlay_adjusted_rank": 139,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10737,7 +10745,7 @@
       "team": "HOU",
       "opponent_team": "NYY",
       "pitcher_name": "Ryan Weathers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -10961,7 +10969,7 @@
       "team": "KC",
       "opponent_team": "LAA",
       "pitcher_name": "Walbert Urena",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -11129,7 +11137,7 @@
       "team": "LAD",
       "opponent_team": "CHC",
       "pitcher_name": "Colin Rea",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -11343,7 +11351,7 @@
       "game_pk": 824851,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T16:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 178,
       "original_rank": 178,
       "original_score": 38.7,
@@ -11380,15 +11388,15 @@
       "ballparkpal_overlay_adjusted_score": 15.4,
       "ballparkpal_overlay_adjusted_rank": 151,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 7.4%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Garrett Crochet has allowed barrels on 7.1% of recent batted balls.",
       "top_reason_3": "Projected humidity is 86%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:824121:695600:700712",
@@ -11409,7 +11417,7 @@
       "team": "KC",
       "opponent_team": "LAA",
       "pitcher_name": "Walbert Urena",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -11679,7 +11687,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 83,
       "original_rank": 83,
       "original_score": 41.0,
@@ -11849,7 +11857,7 @@
       "game_pk": 823229,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 202,
       "original_rank": 202,
       "original_score": 5.4,
@@ -11887,7 +11895,7 @@
       "ballparkpal_overlay_adjusted_rank": 160,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -11905,7 +11913,7 @@
       "game_pk": 823229,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 211,
       "original_rank": 211,
       "original_score": 18.4,
@@ -11943,7 +11951,7 @@
       "ballparkpal_overlay_adjusted_rank": 161,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -11971,7 +11979,7 @@
       "team": "HOU",
       "opponent_team": "NYY",
       "pitcher_name": "Ryan Weathers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -12353,7 +12361,7 @@
       "game_pk": 824851,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T16:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 56,
       "original_rank": 56,
       "original_score": 82.8,
@@ -12390,15 +12398,15 @@
       "ballparkpal_overlay_adjusted_score": 18.9,
       "ballparkpal_overlay_adjusted_rank": 169,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 113.2 mph, which points to top-end HR juice.",
       "top_reason_2": "Trevor Rogers has allowed barrels on 5.1% of batted balls to this batter side.",
       "top_reason_3": "Projected humidity is 86%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-25:823229:682663:592662",
@@ -12409,7 +12417,7 @@
       "game_pk": 823229,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 104,
       "original_rank": 104,
       "original_score": 64.4,
@@ -12447,7 +12455,7 @@
       "ballparkpal_overlay_adjusted_rank": 170,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -12577,7 +12585,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 112,
       "original_rank": 112,
       "original_score": 35.2,
@@ -12615,7 +12623,7 @@
       "ballparkpal_overlay_adjusted_rank": 173,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -12643,7 +12651,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -12923,7 +12931,7 @@
       "team": "HOU",
       "opponent_team": "NYY",
       "pitcher_name": "Ryan Weathers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -13195,7 +13203,7 @@
       "game_pk": 824851,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T16:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 64,
       "original_rank": 64,
       "original_score": 78.2,
@@ -13232,15 +13240,15 @@
       "ballparkpal_overlay_adjusted_score": 17.5,
       "ballparkpal_overlay_adjusted_rank": 184,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 94.4 mph, a top-quartile recent batted-ball quality marker.",
       "top_reason_2": "Garrett Crochet has allowed barrels on 7.1% of recent batted balls.",
       "top_reason_3": "Projected humidity is 86%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:824121:672724:666142",
@@ -13261,7 +13269,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -13317,7 +13325,7 @@
       "team": "LAD",
       "opponent_team": "CHC",
       "pitcher_name": "Colin Rea",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -13363,7 +13371,7 @@
       "game_pk": 824851,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T16:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 144,
       "original_rank": 144,
       "original_score": 67.0,
@@ -13400,15 +13408,15 @@
       "ballparkpal_overlay_adjusted_score": 16.3,
       "ballparkpal_overlay_adjusted_rank": 187,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2065, supporting loud-contact upside.",
       "top_reason_2": "Garrett Crochet has allowed barrels on 7.1% of recent batted balls.",
       "top_reason_3": "Projected humidity is 86%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:823229:672640:592662",
@@ -13419,7 +13427,7 @@
       "game_pk": 823229,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 129,
       "original_rank": 129,
       "original_score": 52.1,
@@ -13457,7 +13465,7 @@
       "ballparkpal_overlay_adjusted_rank": 188,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -13653,7 +13661,7 @@
       "team": "TEX",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -13813,7 +13821,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 244,
       "original_rank": 244,
       "original_score": 3.8,
@@ -13851,7 +13859,7 @@
       "ballparkpal_overlay_adjusted_rank": 195,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -13869,7 +13877,7 @@
       "game_pk": 823229,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 187,
       "original_rank": 187,
       "original_score": 34.9,
@@ -13907,7 +13915,7 @@
       "ballparkpal_overlay_adjusted_rank": 196,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -13935,7 +13943,7 @@
       "team": "KC",
       "opponent_team": "LAA",
       "pitcher_name": "Walbert Urena",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -14047,7 +14055,7 @@
       "team": "DET",
       "opponent_team": "CIN",
       "pitcher_name": "Brady Singer",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -14075,14 +14083,16 @@
       "ballparkpal_overlay_adjusted_rank": 199,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Brady Singer has allowed 90.6 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_2": "Park factor for the hitter's handedness is 114.0, which adds venue lift to the matchup.",
       "top_reason_3": "Brady Singer has allowed a 43.8% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:823229:671218:691587",
@@ -14093,7 +14103,7 @@
       "game_pk": 823229,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 50,
       "original_rank": 50,
       "original_score": 83.9,
@@ -14131,7 +14141,7 @@
       "ballparkpal_overlay_adjusted_rank": 200,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -14215,7 +14225,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Cole Ragans",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -14261,7 +14271,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 192,
       "original_rank": 192,
       "original_score": 11.1,
@@ -14299,7 +14309,7 @@
       "ballparkpal_overlay_adjusted_rank": 203,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -14439,7 +14449,7 @@
       "team": "HOU",
       "opponent_team": "NYY",
       "pitcher_name": "Ryan Weathers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -14597,7 +14607,7 @@
       "game_pk": 824851,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T16:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 166,
       "original_rank": 166,
       "original_score": 38.3,
@@ -14634,15 +14644,15 @@
       "ballparkpal_overlay_adjusted_score": 12.0,
       "ballparkpal_overlay_adjusted_rank": 209,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 55.6%, a top-quartile recent-contact signal.",
       "top_reason_2": "Trevor Rogers has allowed barrels on 5.1% of batted balls to this batter side.",
       "top_reason_3": "Projected humidity is 86%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:823637:621438:500779",
@@ -14821,7 +14831,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 245,
       "original_rank": 245,
       "original_score": 6.5,
@@ -14859,7 +14869,7 @@
       "ballparkpal_overlay_adjusted_rank": 213,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -14943,7 +14953,7 @@
       "team": "KC",
       "opponent_team": "LAA",
       "pitcher_name": "Walbert Urena",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -14999,7 +15009,7 @@
       "team": "KC",
       "opponent_team": "LAA",
       "pitcher_name": "Walbert Urena",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -15055,7 +15065,7 @@
       "team": "KC",
       "opponent_team": "LAA",
       "pitcher_name": "Walbert Urena",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -15083,14 +15093,16 @@
       "ballparkpal_overlay_adjusted_rank": 217,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1837, supporting loud-contact upside.",
       "top_reason_2": "Walbert Urena has allowed barrels on 8.3% of batted balls to this batter side.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0017, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:822826:671655:592332",
@@ -15101,7 +15113,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 220,
       "original_rank": 220,
       "original_score": 14.2,
@@ -15223,7 +15235,7 @@
       "team": "TEX",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -15362,15 +15374,15 @@
       "ballparkpal_overlay_adjusted_score": 10.7,
       "ballparkpal_overlay_adjusted_rank": 222,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
       "top_reason_2": "Matthew Liberatore has allowed a 43.7% hard-hit rate over the last 30 days.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 50.0%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-25:822826:650391:676282",
@@ -15381,7 +15393,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 215,
       "original_rank": 215,
       "original_score": 18.0,
@@ -15419,7 +15431,7 @@
       "ballparkpal_overlay_adjusted_rank": 223,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -15605,7 +15617,7 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 258,
       "original_rank": 258,
       "original_score": 5.7,
@@ -15719,7 +15731,7 @@
       "game_pk": 824851,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T16:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 201,
       "original_rank": 201,
       "original_score": 23.4,
@@ -15756,15 +15768,15 @@
       "ballparkpal_overlay_adjusted_score": 9.6,
       "ballparkpal_overlay_adjusted_rank": 229,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0020, reinforcing the power-contact fit.",
       "top_reason_2": "Garrett Crochet has allowed barrels on 7.1% of recent batted balls.",
       "top_reason_3": "Projected humidity is 86%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:823960:808975:607067",
@@ -15785,7 +15797,7 @@
       "team": "LAD",
       "opponent_team": "CHC",
       "pitcher_name": "Colin Rea",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -15841,7 +15853,7 @@
       "team": "TEX",
       "opponent_team": "OAK",
       "pitcher_name": "Jeffrey Springs",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -15869,14 +15881,16 @@
       "ballparkpal_overlay_adjusted_rank": 231,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.1 mph, which points to top-end HR juice.",
       "top_reason_2": "Projected wind speed is 14.6 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Barrel rate over the last 10 days is 3.4%, a above-baseline indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:823637:666397:673540",
@@ -16111,7 +16125,7 @@
       "game_pk": 824851,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T16:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 71,
       "original_rank": 71,
       "original_score": 39.1,
@@ -16148,15 +16162,15 @@
       "ballparkpal_overlay_adjusted_score": 10.4,
       "ballparkpal_overlay_adjusted_rank": 236,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.2 mph, which points to top-end HR juice.",
       "top_reason_2": "Garrett Crochet has allowed barrels on 7.1% of recent batted balls.",
       "top_reason_3": "Projected humidity is 86%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:823070:802139:693433",
@@ -16289,7 +16303,7 @@
       "team": "KC",
       "opponent_team": "LAA",
       "pitcher_name": "Walbert Urena",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -16335,7 +16349,7 @@
       "game_pk": 824851,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T16:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 128,
       "original_rank": 128,
       "original_score": 61.3,
@@ -16372,15 +16386,15 @@
       "ballparkpal_overlay_adjusted_score": 12.2,
       "ballparkpal_overlay_adjusted_rank": 240,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0020, reinforcing the power-contact fit.",
       "top_reason_2": "Trevor Rogers has allowed barrels on 5.1% of batted balls to this batter side.",
       "top_reason_3": "Projected humidity is 86%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-25:824613:696285:702273",
@@ -16540,15 +16554,15 @@
       "ballparkpal_overlay_adjusted_score": 8.7,
       "ballparkpal_overlay_adjusted_rank": 243,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0015, reinforcing the power-contact fit.",
       "top_reason_2": "Bryan Woo has allowed barrels on 5.7% of batted balls to this batter side.",
       "top_reason_3": "Bryan Woo has allowed a 44.0% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-25:824613:805367:663623",
@@ -16615,7 +16629,7 @@
       "game_pk": 823229,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 204,
       "original_rank": 204,
       "original_score": 31.8,
@@ -16653,7 +16667,7 @@
       "ballparkpal_overlay_adjusted_rank": 245,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -16671,7 +16685,7 @@
       "game_pk": 824851,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T16:05:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 207,
       "original_rank": 207,
       "original_score": 16.9,
@@ -16708,15 +16722,15 @@
       "ballparkpal_overlay_adjusted_score": 7.6,
       "ballparkpal_overlay_adjusted_rank": 246,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 57.9%, a top-quartile recent-contact signal.",
       "top_reason_2": "Trevor Rogers has allowed barrels on 5.1% of batted balls to this batter side.",
       "top_reason_3": "Projected humidity is 86%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-25:822989:680700:641927",
@@ -16783,7 +16797,7 @@
       "game_pk": 823229,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 105,
       "original_rank": 105,
       "original_score": 63.2,
@@ -16821,7 +16835,7 @@
       "ballparkpal_overlay_adjusted_rank": 248,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -16839,7 +16853,7 @@
       "game_pk": 823229,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 162,
       "original_rank": 162,
       "original_score": 51.3,
@@ -17067,7 +17081,7 @@
       "game_pk": 823229,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 223,
       "original_rank": 223,
       "original_score": 16.1,
@@ -17105,7 +17119,7 @@
       "ballparkpal_overlay_adjusted_rank": 253,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -17347,7 +17361,7 @@
       "game_pk": 823229,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 182,
       "original_rank": 182,
       "original_score": 30.3,
@@ -17385,7 +17399,7 @@
       "ballparkpal_overlay_adjusted_rank": 258,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -17403,7 +17417,7 @@
       "game_pk": 823229,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 213,
       "original_rank": 213,
       "original_score": 14.6,
@@ -17441,7 +17455,7 @@
       "ballparkpal_overlay_adjusted_rank": 259,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -17459,7 +17473,7 @@
       "game_pk": 823229,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 257,
       "original_rank": 257,
       "original_score": 2.3,
@@ -17497,7 +17511,7 @@
       "ballparkpal_overlay_adjusted_rank": 260,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -298554,8 +298568,8 @@
       "game_pk": 824851,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T16:05:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "BOS @ BAL",
       "teams": [
         {
@@ -298806,8 +298820,8 @@
       "game_pk": 822826,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T19:07:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "In Progress",
+      "game_state": "live",
       "matchup": "CLE @ TOR",
       "teams": [
         {
@@ -298932,8 +298946,8 @@
       "game_pk": 823229,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:05:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "Warmup",
+      "game_state": "live",
       "matchup": "MIA @ SF",
       "teams": [
         {
@@ -299448,24 +299462,24 @@
       "game_pk": 822910,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T23:05:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "OAK @ TEX",
       "teams": [
         {
           "team": "OAK",
           "opponent_team": "TEX",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": []
         },
         {
           "team": "TEX",
           "opponent_team": "OAK",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 696030,
-              "batter_name": "Alejandro Osuna",
+              "batter_id": 457705,
+              "batter_name": "Andrew McCutchen",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -299482,8 +299496,20 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 643376,
+              "batter_name": "Danny Jansen",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
               "batter_id": 694497,
               "batter_name": "Evan Carter",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 677649,
+              "batter_name": "Ezequiel Duran",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -299494,26 +299520,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 592626,
-              "batter_name": "Joc Pederson",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 673962,
               "batter_name": "Josh Jung",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 669701,
-              "batter_name": "Josh Smith",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 543309,
-              "batter_name": "Kyle Higashioka",
+              "batter_id": 664059,
+              "batter_name": "Sam Haggerty",
               "batting_order": null,
               "selected_for_pick": false
             }
@@ -299525,14 +299539,14 @@
       "game_pk": 824121,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T23:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "LAA @ KC",
       "teams": [
         {
           "team": "LAA",
           "opponent_team": "KC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 669326,
@@ -299593,7 +299607,7 @@
         {
           "team": "KC",
           "opponent_team": "LAA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 677951,
@@ -299626,16 +299640,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 672580,
-              "batter_name": "Maikel Garcia",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 686681,
               "batter_name": "Michael Massey",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 679845,
+              "batter_name": "Nick Loftin",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 521692,
@@ -299657,7 +299671,7 @@
       "game_pk": 824203,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T23:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "NYY @ HOU",
       "teams": [
@@ -299725,7 +299739,7 @@
         {
           "team": "HOU",
           "opponent_team": "NYY",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 694728,
@@ -299746,14 +299760,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 572233,
-              "batter_name": "Christian Walker",
+              "batter_id": 543877,
+              "batter_name": "Christian V\u00e1zquez",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 669288,
-              "batter_name": "Daniel Johnson",
+              "batter_id": 572233,
+              "batter_name": "Christian Walker",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -299928,7 +299942,7 @@
         {
           "team": "DET",
           "opponent_team": "CIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 690993,
@@ -299939,12 +299953,6 @@
             {
               "batter_id": 693307,
               "batter_name": "Dillon Dingler",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 650402,
-              "batter_name": "Gleyber Torres",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -299965,6 +299973,12 @@
               "batter_name": "Kevin McGonigle",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 663837,
+              "batter_name": "Matt Vierling",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 682985,
@@ -300053,7 +300067,7 @@
       "game_pk": 823960,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T23:15:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "CHC @ LAD",
       "teams": [
@@ -300121,7 +300135,7 @@
         {
           "team": "LAD",
           "opponent_team": "CHC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 690976,
@@ -300132,6 +300146,12 @@
             {
               "batter_id": 681624,
               "batter_name": "Andy Pages",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 687221,
+              "batter_name": "Dalton Rushing",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -300170,12 +300190,6 @@
               "batter_name": "Teoscar Hern\u00e1ndez",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 669257,
-              "batter_name": "Will Smith",
-              "batting_order": null,
-              "selected_for_pick": false
             }
           ]
         }
