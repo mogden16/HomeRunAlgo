@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-25T12:16:32.679811+00:00",
+  "generated_at": "2026-04-25T13:46:25.721036+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -3629,7 +3629,7 @@
       "team": "BOS",
       "opponent_team": "BAL",
       "pitcher_name": "Trevor Rogers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -3731,7 +3731,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 174,
       "original_rank": 174,
       "original_score": 37.9,
@@ -3769,14 +3769,14 @@
       "ballparkpal_overlay_adjusted_rank": 16,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "postponed",
       "alert_flags": [],
       "inactive_flag": false,
-      "display_style": "default",
+      "display_style": "muted",
       "top_reason_1": "Average exit velocity over the last 10 days is 92.5 mph, a top-quartile recent batted-ball quality marker.",
       "top_reason_2": "Jose Quintana has allowed homers in 3.9% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Postponed"
     },
     {
       "pick_id": "2026-04-25:825093:543510:608566",
@@ -3955,7 +3955,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 240,
       "original_rank": 240,
       "original_score": 29.1,
@@ -3993,14 +3993,14 @@
       "ballparkpal_overlay_adjusted_rank": 20,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "postponed",
       "alert_flags": [],
       "inactive_flag": false,
-      "display_style": "default",
+      "display_style": "muted",
       "top_reason_1": "Average exit velocity over the last 10 days is 92.1 mph, a top-quartile recent batted-ball quality marker.",
       "top_reason_2": "Jose Quintana has allowed homers in 3.9% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Postponed"
     },
     {
       "pick_id": "2026-04-25:824851:665966:669432",
@@ -4021,7 +4021,7 @@
       "team": "BOS",
       "opponent_team": "BAL",
       "pitcher_name": "Trevor Rogers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -4049,14 +4049,16 @@
       "ballparkpal_overlay_adjusted_rank": 21,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 7.7%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Trevor Rogers has allowed barrels on 5.1% of batted balls to this batter side.",
       "top_reason_3": "Projected humidity is 86%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:822826:672820:676282",
@@ -4973,7 +4975,7 @@
       "team": "BOS",
       "opponent_team": "BAL",
       "pitcher_name": "Trevor Rogers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -5001,14 +5003,16 @@
       "ballparkpal_overlay_adjusted_rank": 38,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Projected humidity is 86%, a modest positive weather input in the live model.",
       "top_reason_2": "Projected wind speed is 12.4 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:824121:666139:666142",
@@ -5085,7 +5089,7 @@
       "team": "BOS",
       "opponent_team": "BAL",
       "pitcher_name": "Trevor Rogers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -5113,14 +5117,16 @@
       "ballparkpal_overlay_adjusted_rank": 40,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2434, supporting loud-contact upside.",
       "top_reason_2": "Projected humidity is 86%, a modest positive weather input in the live model.",
       "top_reason_3": "Barrel rate over the last 10 days is 5.6%, a top-quartile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:824203:669288:677960",
@@ -5243,7 +5249,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 238,
       "original_rank": 238,
       "original_score": 1.5,
@@ -5281,14 +5287,14 @@
       "ballparkpal_overlay_adjusted_rank": 43,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "postponed",
       "alert_flags": [],
       "inactive_flag": false,
-      "display_style": "default",
+      "display_style": "muted",
       "top_reason_1": "Kodai Senga has allowed a 47.1% hard-hit rate over the last 30 days.",
       "top_reason_2": "Projected humidity is 90%, a modest positive weather input in the live model.",
       "top_reason_3": "Kodai Senga has allowed 47.1% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Postponed"
     },
     {
       "pick_id": "2026-04-25:825093:701538:668678",
@@ -6699,7 +6705,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 47,
       "original_rank": 47,
       "original_score": 40.6,
@@ -6737,14 +6743,14 @@
       "ballparkpal_overlay_adjusted_rank": 69,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "postponed",
       "alert_flags": [],
       "inactive_flag": false,
-      "display_style": "default",
+      "display_style": "muted",
       "top_reason_1": "Hard-hit rate over the last 10 days is 66.7%, a top-decile recent-contact signal.",
       "top_reason_2": "Jose Quintana has allowed homers in 3.9% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Postponed"
     },
     {
       "pick_id": "2026-04-25:822826:665489:676282",
@@ -7931,7 +7937,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 123,
       "original_rank": 123,
       "original_score": 75.5,
@@ -7969,14 +7975,14 @@
       "ballparkpal_overlay_adjusted_rank": 91,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "postponed",
       "alert_flags": [],
       "inactive_flag": false,
-      "display_style": "default",
+      "display_style": "muted",
       "top_reason_1": "Barrel rate over the last 30 days is 8.3%, which the model treats as sustained power quality.",
       "top_reason_2": "Kodai Senga has allowed a 47.1% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Postponed"
     },
     {
       "pick_id": "2026-04-25:824203:665862:681347",
@@ -8323,7 +8329,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 159,
       "original_rank": 159,
       "original_score": 70.1,
@@ -8361,14 +8367,14 @@
       "ballparkpal_overlay_adjusted_rank": 98,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "postponed",
       "alert_flags": [],
       "inactive_flag": false,
-      "display_style": "default",
+      "display_style": "muted",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.6 mph, which points to top-end HR juice.",
       "top_reason_2": "Jose Quintana has allowed homers in 3.9% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Postponed"
     },
     {
       "pick_id": "2026-04-25:823960:664023:808963",
@@ -9173,7 +9179,7 @@
       "team": "BOS",
       "opponent_team": "BAL",
       "pitcher_name": "Trevor Rogers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -11515,7 +11521,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 115,
       "original_rank": 115,
       "original_score": 54.8,
@@ -11553,14 +11559,14 @@
       "ballparkpal_overlay_adjusted_rank": 155,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "postponed",
       "alert_flags": [],
       "inactive_flag": false,
-      "display_style": "default",
+      "display_style": "muted",
       "top_reason_1": "Barrel rate over the last 10 days is 9.7%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Kodai Senga has allowed a 47.1% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Postponed"
     },
     {
       "pick_id": "2026-04-25:823070:677594:669461",
@@ -11963,7 +11969,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 96,
       "original_rank": 96,
       "original_score": 72.4,
@@ -12001,14 +12007,14 @@
       "ballparkpal_overlay_adjusted_rank": 163,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "postponed",
       "alert_flags": [],
       "inactive_flag": false,
-      "display_style": "default",
+      "display_style": "muted",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 5.7% barrel-per-PA split.",
       "top_reason_2": "Jose Quintana has allowed homers in 3.9% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Postponed"
     },
     {
       "pick_id": "2026-04-25:824933:669016:693821",
@@ -12309,7 +12315,7 @@
       "team": "BOS",
       "opponent_team": "BAL",
       "pitcher_name": "Trevor Rogers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -12635,7 +12641,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 175,
       "original_rank": 175,
       "original_score": 44.8,
@@ -12673,14 +12679,14 @@
       "ballparkpal_overlay_adjusted_rank": 175,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "postponed",
       "alert_flags": [],
       "inactive_flag": false,
-      "display_style": "default",
+      "display_style": "muted",
       "top_reason_1": "Jose Quintana has allowed homers in 3.9% of plate appearances over the last 30 days.",
       "top_reason_2": "Projected humidity is 90%, a modest positive weather input in the live model.",
       "top_reason_3": "Jose Quintana has allowed barrels on 5.7% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Postponed"
     },
     {
       "pick_id": "2026-04-25:823070:691023:693433",
@@ -13419,7 +13425,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 197,
       "original_rank": 197,
       "original_score": 23.0,
@@ -13457,14 +13463,14 @@
       "ballparkpal_overlay_adjusted_rank": 189,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "postponed",
       "alert_flags": [],
       "inactive_flag": false,
-      "display_style": "default",
+      "display_style": "muted",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2159, supporting loud-contact upside.",
       "top_reason_2": "Kodai Senga has allowed a 47.1% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Postponed"
     },
     {
       "pick_id": "2026-04-25:824613:803011:663623",
@@ -13643,7 +13649,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 227,
       "original_rank": 227,
       "original_score": 16.5,
@@ -13681,14 +13687,14 @@
       "ballparkpal_overlay_adjusted_rank": 193,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "postponed",
       "alert_flags": [],
       "inactive_flag": false,
-      "display_style": "default",
+      "display_style": "muted",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2159, supporting loud-contact upside.",
       "top_reason_2": "Kodai Senga has allowed a 47.1% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Postponed"
     },
     {
       "pick_id": "2026-04-25:822989:670764:641927",
@@ -13923,7 +13929,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 118,
       "original_rank": 118,
       "original_score": 65.1,
@@ -13961,14 +13967,14 @@
       "ballparkpal_overlay_adjusted_rank": 198,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "postponed",
       "alert_flags": [],
       "inactive_flag": false,
-      "display_style": "default",
+      "display_style": "muted",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.2 mph, which points to top-end HR juice.",
       "top_reason_2": "Jose Quintana has allowed homers in 3.9% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Postponed"
     },
     {
       "pick_id": "2026-04-25:824527:650402:663903",
@@ -14091,7 +14097,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 155,
       "original_rank": 155,
       "original_score": 48.7,
@@ -14129,14 +14135,14 @@
       "ballparkpal_overlay_adjusted_rank": 201,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "postponed",
       "alert_flags": [],
       "inactive_flag": false,
-      "display_style": "default",
+      "display_style": "muted",
       "top_reason_1": "Barrel rate over the last 30 days is 4.3%, which the model treats as sustained power quality.",
       "top_reason_2": "Kodai Senga has allowed a 47.1% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Postponed"
     },
     {
       "pick_id": "2026-04-25:824121:694384:666142",
@@ -14315,7 +14321,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 213,
       "original_rank": 213,
       "original_score": 18.8,
@@ -14353,14 +14359,14 @@
       "ballparkpal_overlay_adjusted_rank": 205,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "postponed",
       "alert_flags": [],
       "inactive_flag": false,
-      "display_style": "default",
+      "display_style": "muted",
       "top_reason_1": "Hard-hit rate over the last 10 days is 54.5%, a top-quartile recent-contact signal.",
       "top_reason_2": "Kodai Senga has allowed a 47.1% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Postponed"
     },
     {
       "pick_id": "2026-04-25:824203:694728:677960",
@@ -14549,7 +14555,7 @@
       "team": "BOS",
       "opponent_team": "BAL",
       "pitcher_name": "Trevor Rogers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -14595,7 +14601,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 216,
       "original_rank": 216,
       "original_score": 10.7,
@@ -14633,14 +14639,14 @@
       "ballparkpal_overlay_adjusted_rank": 210,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "postponed",
       "alert_flags": [],
       "inactive_flag": false,
-      "display_style": "default",
+      "display_style": "muted",
       "top_reason_1": "Jose Quintana has allowed homers in 3.9% of plate appearances over the last 30 days.",
       "top_reason_2": "Projected humidity is 90%, a modest positive weather input in the live model.",
       "top_reason_3": "Jose Quintana has allowed barrels on 5.7% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Postponed"
     },
     {
       "pick_id": "2026-04-25:823070:668227:669461",
@@ -15827,7 +15833,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 221,
       "original_rank": 221,
       "original_score": 42.9,
@@ -15865,14 +15871,14 @@
       "ballparkpal_overlay_adjusted_rank": 232,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "postponed",
       "alert_flags": [],
       "inactive_flag": false,
-      "display_style": "default",
+      "display_style": "muted",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1935, supporting loud-contact upside.",
       "top_reason_2": "Kodai Senga has allowed a 47.1% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Postponed"
     },
     {
       "pick_id": "2026-04-25:823637:666182:500779",
@@ -15883,7 +15889,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 92,
       "original_rank": 92,
       "original_score": 74.7,
@@ -15921,14 +15927,14 @@
       "ballparkpal_overlay_adjusted_rank": 233,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "postponed",
       "alert_flags": [],
       "inactive_flag": false,
-      "display_style": "default",
+      "display_style": "muted",
       "top_reason_1": "Peak exit velocity over the last 10 days is 111.5 mph, which points to top-end HR juice.",
       "top_reason_2": "Jose Quintana has allowed homers in 3.9% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Postponed"
     },
     {
       "pick_id": "2026-04-25:824527:663647:656427",
@@ -16285,7 +16291,7 @@
       "team": "BOS",
       "opponent_team": "BAL",
       "pitcher_name": "Trevor Rogers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -16621,7 +16627,7 @@
       "team": "BOS",
       "opponent_team": "BAL",
       "pitcher_name": "Trevor Rogers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -16947,7 +16953,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T20:10:00Z",
-      "game_state": "pregame",
+      "game_state": "final",
       "rank": 147,
       "original_rank": 147,
       "original_score": 55.2,
@@ -16985,14 +16991,14 @@
       "ballparkpal_overlay_adjusted_rank": 252,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "postponed",
       "alert_flags": [],
       "inactive_flag": false,
-      "display_style": "default",
+      "display_style": "muted",
       "top_reason_1": "Peak exit velocity over the last 10 days is 111.8 mph, which points to top-end HR juice.",
       "top_reason_2": "Kodai Senga has allowed a 47.1% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 90%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Postponed"
     },
     {
       "pick_id": "2026-04-25:823229:687551:691587",
@@ -298490,24 +298496,24 @@
       "game_pk": 824851,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T16:05:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "BOS @ BAL",
       "teams": [
         {
           "team": "BOS",
           "opponent_team": "BAL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 655316,
+              "batter_name": "Andruw Monasterio",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 702332,
               "batter_name": "Caleb Durbin",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 665966,
-              "batter_name": "Carlos Narv\u00e1ez",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -298518,20 +298524,20 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 657136,
+              "batter_name": "Connor Wong",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 643396,
+              "batter_name": "Isiah Kiner-Falefa",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 680776,
               "batter_name": "Jarren Duran",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 691785,
-              "batter_name": "Marcelo Mayer",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 807799,
-              "batter_name": "Masataka Yoshida",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -299007,138 +299013,6 @@
             {
               "batter_id": 642715,
               "batter_name": "Willy Adames",
-              "batting_order": null,
-              "selected_for_pick": true
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "game_pk": 823637,
-      "game_date": "2026-04-25",
-      "game_datetime": "2026-04-25T20:10:00Z",
-      "game_status": "Scheduled",
-      "game_state": "pregame",
-      "matchup": "COL @ NYM",
-      "teams": [
-        {
-          "team": "COL",
-          "opponent_team": "NYM",
-          "lineup_source": "projected",
-          "hitters": [
-            {
-              "batter_id": 666397,
-              "batter_name": "Edouard Julien",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 678662,
-              "batter_name": "Ezequiel Tovar",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 696100,
-              "batter_name": "Hunter Goodman",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 664983,
-              "batter_name": "Jake McCarthy",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 691720,
-              "batter_name": "Kyle Karros",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 666160,
-              "batter_name": "Mickey Moniak",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 681198,
-              "batter_name": "TJ Rumfield",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 687859,
-              "batter_name": "Troy Johnston",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 671289,
-              "batter_name": "Tyler Freeman",
-              "batting_order": null,
-              "selected_for_pick": true
-            }
-          ]
-        },
-        {
-          "team": "NYM",
-          "opponent_team": "COL",
-          "lineup_source": "projected",
-          "hitters": [
-            {
-              "batter_id": 666182,
-              "batter_name": "Bo Bichette",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 683146,
-              "batter_name": "Brett Baty",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 701807,
-              "batter_name": "Carson Benge",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 682626,
-              "batter_name": "Francisco Alvarez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 665742,
-              "batter_name": "Juan Soto",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 673357,
-              "batter_name": "Luis Robert Jr.",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 543760,
-              "batter_name": "Marcus Semien",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 668901,
-              "batter_name": "Mark Vientos",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 621438,
-              "batter_name": "Tyrone Taylor",
               "batting_order": null,
               "selected_for_pick": true
             }
@@ -300404,6 +300278,138 @@
             {
               "batter_id": 660670,
               "batter_name": "Ronald Acu\u00f1a Jr.",
+              "batting_order": null,
+              "selected_for_pick": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "game_pk": 823637,
+      "game_date": "2026-04-26",
+      "game_datetime": "2026-04-25T20:10:00Z",
+      "game_status": "Postponed",
+      "game_state": "final",
+      "matchup": "COL @ NYM",
+      "teams": [
+        {
+          "team": "COL",
+          "opponent_team": "NYM",
+          "lineup_source": "projected",
+          "hitters": [
+            {
+              "batter_id": 666397,
+              "batter_name": "Edouard Julien",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 678662,
+              "batter_name": "Ezequiel Tovar",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 696100,
+              "batter_name": "Hunter Goodman",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 664983,
+              "batter_name": "Jake McCarthy",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 691720,
+              "batter_name": "Kyle Karros",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 666160,
+              "batter_name": "Mickey Moniak",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 681198,
+              "batter_name": "TJ Rumfield",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 687859,
+              "batter_name": "Troy Johnston",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 671289,
+              "batter_name": "Tyler Freeman",
+              "batting_order": null,
+              "selected_for_pick": true
+            }
+          ]
+        },
+        {
+          "team": "NYM",
+          "opponent_team": "COL",
+          "lineup_source": "projected",
+          "hitters": [
+            {
+              "batter_id": 666182,
+              "batter_name": "Bo Bichette",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 683146,
+              "batter_name": "Brett Baty",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 701807,
+              "batter_name": "Carson Benge",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 682626,
+              "batter_name": "Francisco Alvarez",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 665742,
+              "batter_name": "Juan Soto",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 673357,
+              "batter_name": "Luis Robert Jr.",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 543760,
+              "batter_name": "Marcus Semien",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 668901,
+              "batter_name": "Mark Vientos",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 621438,
+              "batter_name": "Tyrone Taylor",
               "batting_order": null,
               "selected_for_pick": true
             }
