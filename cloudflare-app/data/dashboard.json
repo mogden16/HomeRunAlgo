@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-25T17:44:07.566844+00:00",
+  "generated_at": "2026-04-25T18:28:32.859119+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -107,10 +107,10 @@
     "latest_slate_size": 261,
     "tracked_dates": 31,
     "tracked_picks": 5244,
-    "settled_picks": 4167,
-    "tracked_homers": 466,
-    "tracked_hit_rate": 0.111831,
-    "open_picks": 1077
+    "settled_picks": 4170,
+    "tracked_homers": 469,
+    "tracked_hit_rate": 0.11247,
+    "open_picks": 1074
   },
   "confidence_summary": [
     {
@@ -129,17 +129,17 @@
     },
     {
       "confidence_tier": "watch",
-      "picks": 696,
-      "homers": 96,
-      "hit_rate": 0.137931,
+      "picks": 697,
+      "homers": 97,
+      "hit_rate": 0.139168,
       "avg_probability": 0.140997
     },
     {
       "confidence_tier": "longshot",
-      "picks": 3122,
-      "homers": 286,
-      "hit_rate": 0.091608,
-      "avg_probability": 0.09523
+      "picks": 3124,
+      "homers": 288,
+      "hit_rate": 0.09219,
+      "avg_probability": 0.095236
     }
   ],
   "player_leaderboard": [
@@ -298,6 +298,13 @@
       "hit_rate": 0.294118
     },
     {
+      "batter_name": "Iv\u00e1n Herrera",
+      "team": "STL",
+      "picks": 20,
+      "homers": 4,
+      "hit_rate": 0.2
+    },
+    {
       "batter_name": "Jos\u00e9 Ram\u00edrez",
       "team": "CLE",
       "picks": 18,
@@ -412,13 +419,6 @@
     {
       "batter_name": "Giancarlo Stanton",
       "team": "NYY",
-      "picks": 19,
-      "homers": 3,
-      "hit_rate": 0.157895
-    },
-    {
-      "batter_name": "Iv\u00e1n Herrera",
-      "team": "STL",
       "picks": 19,
       "homers": 3,
       "hit_rate": 0.157895
@@ -618,6 +618,20 @@
       "picks": 23,
       "homers": 2,
       "hit_rate": 0.086957
+    },
+    {
+      "batter_name": "JJ Wetherholt",
+      "team": "STL",
+      "picks": 21,
+      "homers": 2,
+      "hit_rate": 0.095238
+    },
+    {
+      "batter_name": "Julio Rodr\u00edguez",
+      "team": "SEA",
+      "picks": 21,
+      "homers": 2,
+      "hit_rate": 0.095238
     },
     {
       "batter_name": "Chase DeLauter",
@@ -954,20 +968,6 @@
       "picks": 6,
       "homers": 2,
       "hit_rate": 0.333333
-    },
-    {
-      "batter_name": "JJ Wetherholt",
-      "team": "STL",
-      "picks": 20,
-      "homers": 1,
-      "hit_rate": 0.05
-    },
-    {
-      "batter_name": "Julio Rodr\u00edguez",
-      "team": "SEA",
-      "picks": 20,
-      "homers": 1,
-      "hit_rate": 0.05
     },
     {
       "batter_name": "Cole Young",
@@ -2957,7 +2957,7 @@
       "team": "CIN",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -2985,14 +2985,16 @@
       "ballparkpal_overlay_adjusted_rank": 2,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0019, reinforcing the power-contact fit.",
       "top_reason_2": "Jack Flaherty has allowed homers in 3.7% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 114.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:822910:592626:605488",
@@ -3059,7 +3061,7 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 121,
       "original_rank": 121,
       "original_score": 63.6,
@@ -3809,7 +3811,7 @@
       "team": "AZ",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -3837,14 +3839,16 @@
       "ballparkpal_overlay_adjusted_rank": 17,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0027, reinforcing the power-contact fit.",
       "top_reason_2": "Germ\u00e1n M\u00e1rquez has allowed homers in 4.2% of plate appearances to this batter side.",
       "top_reason_3": "The handedness-specific hard-hit matchup score is 0.2050, supporting loud-contact upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:824933:624641:693821",
@@ -4313,7 +4317,7 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 172,
       "original_rank": 172,
       "original_score": 25.3,
@@ -4553,7 +4557,7 @@
       "team": "AZ",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -4581,14 +4585,16 @@
       "ballparkpal_overlay_adjusted_rank": 30,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 5.6%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Germ\u00e1n M\u00e1rquez has allowed barrels on 6.4% of batted balls to this batter side.",
       "top_reason_3": "Germ\u00e1n M\u00e1rquez has allowed homers in 4.0% of plate appearances to this batter side.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:823960:665804:808963",
@@ -5349,7 +5355,7 @@
       "team": "SD",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -5405,7 +5411,7 @@
       "team": "SD",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -5461,7 +5467,7 @@
       "team": "SD",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -5517,7 +5523,7 @@
       "team": "SD",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -5573,7 +5579,7 @@
       "team": "AZ",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -5629,7 +5635,7 @@
       "team": "AZ",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -6189,7 +6195,7 @@
       "team": "AZ",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -6357,7 +6363,7 @@
       "team": "AZ",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -6459,7 +6465,7 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 28,
       "original_rank": 28,
       "original_score": 89.3,
@@ -6497,7 +6503,7 @@
       "ballparkpal_overlay_adjusted_rank": 64,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -6581,7 +6587,7 @@
       "team": "SD",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -6861,7 +6867,7 @@
       "team": "SD",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -7421,7 +7427,7 @@
       "team": "AZ",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -7757,7 +7763,7 @@
       "team": "CIN",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -7925,7 +7931,7 @@
       "team": "CIN",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -8261,7 +8267,7 @@
       "team": "AZ",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -8317,7 +8323,7 @@
       "team": "CIN",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -8597,7 +8603,7 @@
       "team": "CIN",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -8709,7 +8715,7 @@
       "team": "SD",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -9381,7 +9387,7 @@
       "team": "SD",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -9493,7 +9499,7 @@
       "team": "CIN",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -9521,14 +9527,16 @@
       "ballparkpal_overlay_adjusted_rank": 118,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 10.3% barrel-per-PA split.",
       "top_reason_2": "Jack Flaherty has allowed homers in 3.7% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 114.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:824613:695578:702273",
@@ -9661,7 +9669,7 @@
       "team": "AZ",
       "opponent_team": "SD",
       "pitcher_name": "Germ\u00e1n M\u00e1rquez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -9717,7 +9725,7 @@
       "team": "SD",
       "opponent_team": "AZ",
       "pitcher_name": "Zac Gallen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -9745,14 +9753,16 @@
       "ballparkpal_overlay_adjusted_rank": 122,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 109.0 mph, which points to top-end HR juice.",
       "top_reason_2": "Zac Gallen has allowed barrels on 5.4% of batted balls to this batter side.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 44.4%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:823229:646240:691587",
@@ -11221,7 +11231,7 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 34,
       "original_rank": 34,
       "original_score": 86.2,
@@ -11258,15 +11268,15 @@
       "ballparkpal_overlay_adjusted_score": 20.2,
       "ballparkpal_overlay_adjusted_rank": 149,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 12.1%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Bryan Woo has allowed a 44.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Barrel rate over the last 30 days is 5.7%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-25:823070:647304:669461",
@@ -11277,7 +11287,7 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 102,
       "original_rank": 102,
       "original_score": 49.0,
@@ -11315,7 +11325,7 @@
       "ballparkpal_overlay_adjusted_rank": 150,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -11455,7 +11465,7 @@
       "team": "CIN",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -11613,7 +11623,7 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 73,
       "original_rank": 73,
       "original_score": 75.9,
@@ -11650,15 +11660,15 @@
       "ballparkpal_overlay_adjusted_score": 18.8,
       "ballparkpal_overlay_adjusted_rank": 156,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2252, supporting loud-contact upside.",
       "top_reason_2": "Matthew Liberatore has allowed a 43.7% hard-hit rate over the last 30 days.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 5.1% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-25:822826:682177:592332",
@@ -12175,7 +12185,7 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 85,
       "original_rank": 85,
       "original_score": 47.9,
@@ -12213,7 +12223,7 @@
       "ballparkpal_overlay_adjusted_rank": 166,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -12297,7 +12307,7 @@
       "team": "CIN",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -12735,7 +12745,7 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 45,
       "original_rank": 45,
       "original_score": 95.0,
@@ -12773,7 +12783,7 @@
       "ballparkpal_overlay_adjusted_rank": 176,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -13015,7 +13025,7 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 137,
       "original_rank": 137,
       "original_score": 51.7,
@@ -13053,7 +13063,7 @@
       "ballparkpal_overlay_adjusted_rank": 181,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -14699,7 +14709,7 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 51,
       "original_rank": 51,
       "original_score": 90.8,
@@ -14737,7 +14747,7 @@
       "ballparkpal_overlay_adjusted_rank": 211,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -14755,7 +14765,7 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 79,
       "original_rank": 79,
       "original_score": 75.1,
@@ -14793,7 +14803,7 @@
       "ballparkpal_overlay_adjusted_rank": 212,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -15130,9 +15140,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
       "current_status": "inactive",
-      "alert_flags": [
-        "lineup_alert"
-      ],
+      "alert_flags": [],
       "inactive_flag": true,
       "display_style": "strikethrough",
       "top_reason_1": "Kevin Gausman has allowed barrels on 5.2% of batted balls to this batter side.",
@@ -15317,7 +15325,7 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 193,
       "original_rank": 193,
       "original_score": 30.7,
@@ -15355,7 +15363,7 @@
       "ballparkpal_overlay_adjusted_rank": 222,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -15485,7 +15493,7 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 154,
       "original_rank": 154,
       "original_score": 49.4,
@@ -15523,7 +15531,7 @@
       "ballparkpal_overlay_adjusted_rank": 225,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -15635,14 +15643,16 @@
       "ballparkpal_overlay_adjusted_rank": 227,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Kevin Gausman has allowed barrels on 5.2% of batted balls to this batter side.",
       "top_reason_2": "Projected wind speed is 16.6 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Projected humidity is 82%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-25:824613:691781:702273",
@@ -15999,7 +16009,7 @@
       "team": "CIN",
       "opponent_team": "DET",
       "pitcher_name": "Jack Flaherty",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -16157,7 +16167,7 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 210,
       "original_rank": 210,
       "original_score": 31.0,
@@ -16194,15 +16204,15 @@
       "ballparkpal_overlay_adjusted_score": 9.6,
       "ballparkpal_overlay_adjusted_rank": 237,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "pending",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 3.8%, which the model treats as sustained power quality.",
       "top_reason_2": "Bryan Woo has allowed barrels on 5.7% of batted balls to this batter side.",
       "top_reason_3": "Bryan Woo has allowed a 44.0% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-25:823799:686217:656605",
@@ -16493,7 +16503,7 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 181,
       "original_rank": 181,
       "original_score": 26.4,
@@ -16531,7 +16541,7 @@
       "ballparkpal_overlay_adjusted_rank": 243,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -16887,7 +16897,7 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 195,
       "original_rank": 195,
       "original_score": 12.3,
@@ -16925,7 +16935,7 @@
       "ballparkpal_overlay_adjusted_rank": 250,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -16943,7 +16953,7 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 254,
       "original_rank": 254,
       "original_score": 0.8,
@@ -17281,7 +17291,7 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 254,
       "original_rank": 254,
       "original_score": 3.1,
@@ -17319,7 +17329,7 @@
       "ballparkpal_overlay_adjusted_rank": 257,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -298670,8 +298680,8 @@
       "game_pk": 823070,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T18:15:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "In Progress",
+      "game_state": "live",
       "matchup": "SEA @ STL",
       "teams": [
         {
@@ -298830,6 +298840,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 671655,
+              "batter_name": "George Valera",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
               "batter_id": 608070,
               "batter_name": "Jos\u00e9 Ram\u00edrez",
               "batting_order": null,
@@ -298846,12 +298862,6 @@
               "batter_name": "Rhys Hoskins",
               "batting_order": null,
               "selected_for_pick": false
-            },
-            {
-              "batter_id": 680757,
-              "batter_name": "Steven Kwan",
-              "batting_order": null,
-              "selected_for_pick": true
             }
           ]
         },
@@ -299306,14 +299316,14 @@
       "game_pk": 825093,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T22:05:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "SD @ AZ",
       "teams": [
         {
           "team": "SD",
           "opponent_team": "AZ",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 665487,
@@ -299352,16 +299362,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 609280,
-              "batter_name": "Miguel Andujar",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 657656,
               "batter_name": "Ram\u00f3n Laureano",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 664034,
+              "batter_name": "Ty France",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 593428,
@@ -299374,11 +299384,17 @@
         {
           "team": "AZ",
           "opponent_team": "SD",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 680728,
               "batter_name": "Adrian Del Castillo",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 677950,
+              "batter_name": "Alek Thomas",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -299397,12 +299413,6 @@
             {
               "batter_id": 545121,
               "batter_name": "Ildemaro Vargas",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 678489,
-              "batter_name": "Jorge Barrosa",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -299911,7 +299921,7 @@
       "game_pk": 824527,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T23:15:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "DET @ CIN",
       "teams": [
@@ -299979,23 +299989,11 @@
         {
           "team": "CIN",
           "opponent_team": "DET",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 667472,
-              "batter_name": "Dane Myers",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
             {
               "batter_id": 682829,
               "batter_name": "Elly De La Cruz",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 553993,
-              "batter_name": "Eugenio Su\u00e1rez",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -300030,10 +300028,22 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 670770,
+              "batter_name": "TJ Friedl",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
               "batter_id": 663886,
               "batter_name": "Tyler Stephenson",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 666181,
+              "batter_name": "Will Benson",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         }
