@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-26T18:13:02.729935+00:00",
+  "generated_at": "2026-04-26T18:55:14.079510+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -97,10 +97,10 @@
     "latest_slate_size": 292,
     "tracked_dates": 32,
     "tracked_picks": 5536,
-    "settled_picks": 4361,
-    "tracked_homers": 493,
-    "tracked_hit_rate": 0.113047,
-    "open_picks": 1175
+    "settled_picks": 4365,
+    "tracked_homers": 497,
+    "tracked_hit_rate": 0.11386,
+    "open_picks": 1171
   },
   "confidence_summary": [
     {
@@ -119,17 +119,17 @@
     },
     {
       "confidence_tier": "watch",
-      "picks": 736,
-      "homers": 105,
-      "hit_rate": 0.142663,
-      "avg_probability": 0.141134
+      "picks": 738,
+      "homers": 107,
+      "hit_rate": 0.144986,
+      "avg_probability": 0.141161
     },
     {
       "confidence_tier": "longshot",
-      "picks": 3263,
-      "homers": 302,
-      "hit_rate": 0.092553,
-      "avg_probability": 0.095244
+      "picks": 3265,
+      "homers": 304,
+      "hit_rate": 0.093109,
+      "avg_probability": 0.095258
     }
   ],
   "player_leaderboard": [
@@ -167,6 +167,13 @@
       "picks": 24,
       "homers": 7,
       "hit_rate": 0.291667
+    },
+    {
+      "batter_name": "Christian Walker",
+      "team": "HOU",
+      "picks": 20,
+      "homers": 7,
+      "hit_rate": 0.35
     },
     {
       "batter_name": "Jordan Walker",
@@ -209,13 +216,6 @@
       "picks": 20,
       "homers": 6,
       "hit_rate": 0.3
-    },
-    {
-      "batter_name": "Christian Walker",
-      "team": "HOU",
-      "picks": 19,
-      "homers": 6,
-      "hit_rate": 0.315789
     },
     {
       "batter_name": "Colson Montgomery",
@@ -290,6 +290,13 @@
     {
       "batter_name": "Mickey Moniak",
       "team": "COL",
+      "picks": 17,
+      "homers": 5,
+      "hit_rate": 0.294118
+    },
+    {
+      "batter_name": "Willson Contreras",
+      "team": "BOS",
       "picks": 17,
       "homers": 5,
       "hit_rate": 0.294118
@@ -379,13 +386,6 @@
       "hit_rate": 0.25
     },
     {
-      "batter_name": "Willson Contreras",
-      "team": "BOS",
-      "picks": 16,
-      "homers": 4,
-      "hit_rate": 0.25
-    },
-    {
       "batter_name": "Hunter Goodman",
       "team": "COL",
       "picks": 15,
@@ -423,6 +423,13 @@
     {
       "batter_name": "Corey Seager",
       "team": "TEX",
+      "picks": 21,
+      "homers": 3,
+      "hit_rate": 0.142857
+    },
+    {
+      "batter_name": "Yandy D\u00edaz",
+      "team": "TB",
       "picks": 21,
       "homers": 3,
       "hit_rate": 0.142857
@@ -710,13 +717,6 @@
     {
       "batter_name": "Kevin McGonigle",
       "team": "DET",
-      "picks": 20,
-      "homers": 2,
-      "hit_rate": 0.1
-    },
-    {
-      "batter_name": "Yandy D\u00edaz",
-      "team": "TB",
       "picks": 20,
       "homers": 2,
       "hit_rate": 0.1
@@ -1539,6 +1539,13 @@
       "picks": 4,
       "homers": 1,
       "hit_rate": 0.25
+    },
+    {
+      "batter_name": "Nathaniel Lowe",
+      "team": "CIN",
+      "picks": 3,
+      "homers": 1,
+      "hit_rate": 0.333333
     },
     {
       "batter_name": "Tristan Gray",
@@ -2537,13 +2544,6 @@
     {
       "batter_name": "Miguel Rojas",
       "team": "LAD",
-      "picks": 2,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Nathaniel Lowe",
-      "team": "CIN",
       "picks": 2,
       "homers": 0,
       "hit_rate": 0.0
@@ -3591,7 +3591,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -3619,14 +3619,16 @@
       "ballparkpal_overlay_adjusted_rank": 14,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 109.1 mph, which points to top-end HR juice.",
       "top_reason_2": "Seth Lugo has allowed 90.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Seth Lugo has allowed barrels on 6.1% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:822911:677649:669372",
@@ -5110,15 +5112,15 @@
       "ballparkpal_overlay_adjusted_score": 85.3,
       "ballparkpal_overlay_adjusted_rank": 42,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 112.7 mph, which points to top-end HR juice.",
       "top_reason_2": "Park factor for the hitter's handedness is 110.0, which adds venue lift to the matchup.",
       "top_reason_3": "Barrel rate over the last 10 days is 9.5%, a top-decile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-26:823959:660271:684007",
@@ -5531,7 +5533,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -5699,7 +5701,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -6149,7 +6151,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -6744,15 +6746,15 @@
       "ballparkpal_overlay_adjusted_score": 25.5,
       "ballparkpal_overlay_adjusted_rank": 71,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 111.1 mph, which points to top-end HR juice.",
       "top_reason_2": "Luis Gil has allowed homers in 3.8% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected humidity is 85%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-26:823959:683737:680736",
@@ -6943,7 +6945,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -7615,7 +7617,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -9143,7 +9145,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -9622,15 +9624,15 @@
       "ballparkpal_overlay_adjusted_score": 18.9,
       "ballparkpal_overlay_adjusted_rank": 122,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1985, supporting loud-contact upside.",
       "top_reason_2": "Simeon Woods Richardson has allowed 90.6 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Simeon Woods Richardson has allowed homers in 4.4% of plate appearances over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-26:824934:547180:519242",
@@ -11515,7 +11517,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -11543,14 +11545,16 @@
       "ballparkpal_overlay_adjusted_rank": 154,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0024, reinforcing the power-contact fit.",
       "top_reason_2": "Seth Lugo has allowed 90.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 4.5% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:825094:680728:650633",
@@ -12863,7 +12867,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -12891,14 +12895,16 @@
       "ballparkpal_overlay_adjusted_rank": 174,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Seth Lugo has allowed 90.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_2": "Seth Lugo has allowed barrels on 6.1% of recent batted balls.",
       "top_reason_3": "Seth Lugo has allowed barrels on 5.4% of batted balls to this batter side.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824122:694384:607625",
@@ -12919,7 +12925,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -16053,15 +16059,15 @@
       "ballparkpal_overlay_adjusted_score": 14.7,
       "ballparkpal_overlay_adjusted_rank": 231,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 113.2 mph, which points to top-end HR juice.",
       "top_reason_2": "Barrel rate over the last 10 days is 6.9%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 4.8% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-26:823797:693304:690986",
@@ -19022,7 +19028,7 @@
       "team": "LAA",
       "opponent_team": "KC",
       "pitcher_name": "Seth Lugo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Kauffman Stadium",
       "ballpark_region_abbr": "MO",
@@ -19050,14 +19056,16 @@
       "ballparkpal_overlay_adjusted_rank": 276,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Seth Lugo has allowed 90.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_2": "Seth Lugo has allowed barrels on 6.1% of recent batted balls.",
       "top_reason_3": "Seth Lugo has allowed barrels on 5.4% of batted balls to this batter side.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:823230:808982:676974",
@@ -316347,7 +316355,7 @@
       "game_pk": 823068,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T18:15:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "matchup": "SEA @ STL",
       "teams": [
@@ -316479,7 +316487,7 @@
       "game_pk": 822911,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T18:35:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "matchup": "OAK @ TEX",
       "teams": [
@@ -316827,13 +316835,13 @@
         {
           "team": "LAA",
           "opponent_team": "KC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 669326,
-              "batter_name": "Bryce Teodosio",
+              "batter_id": 624428,
+              "batter_name": "Adam Frazier",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 666176,
@@ -316848,8 +316856,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 681351,
-              "batter_name": "Logan O'Hoppe",
+              "batter_id": 666139,
+              "batter_name": "Josh Lowe",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -316866,14 +316874,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 672724,
-              "batter_name": "Oswald Peraza",
+              "batter_id": 518595,
+              "batter_name": "Travis d'Arnaud",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 687093,
-              "batter_name": "Vaughn Grissom",
+              "batter_id": 660162,
+              "batter_name": "Yo\u00e1n Moncada",
               "batting_order": null,
               "selected_for_pick": true
             },
