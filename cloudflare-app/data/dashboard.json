@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-26T13:54:04.051508+00:00",
+  "generated_at": "2026-04-26T14:43:55.544760+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -3297,7 +3297,7 @@
       "team": "TB",
       "opponent_team": "MIN",
       "pitcher_name": "Simeon Woods Richardson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -3325,14 +3325,16 @@
       "ballparkpal_overlay_adjusted_rank": 8,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
       "top_reason_2": "Simeon Woods Richardson has allowed 90.6 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 50.0%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824612:671277:663542",
@@ -3409,7 +3411,7 @@
       "team": "TOR",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -3465,7 +3467,7 @@
       "team": "STL",
       "opponent_team": "SEA",
       "pitcher_name": "Emerson Hancock",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -3969,7 +3971,7 @@
       "team": "TB",
       "opponent_team": "MIN",
       "pitcher_name": "Simeon Woods Richardson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -3997,14 +3999,16 @@
       "ballparkpal_overlay_adjusted_rank": 22,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Simeon Woods Richardson has allowed 90.6 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_2": "Simeon Woods Richardson has allowed homers in 4.4% of plate appearances over the last 30 days.",
       "top_reason_3": "Simeon Woods Richardson has allowed a 45.6% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824852:687637:813349",
@@ -4137,7 +4141,7 @@
       "team": "CIN",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -4165,14 +4169,16 @@
       "ballparkpal_overlay_adjusted_rank": 25,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 4.0% barrel-per-PA split.",
       "top_reason_2": "Park factor for the hitter's handedness is 110.0, which adds venue lift to the matchup.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0017, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824934:641680:605400",
@@ -4193,7 +4199,7 @@
       "team": "ATL",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -4221,14 +4227,16 @@
       "ballparkpal_overlay_adjusted_rank": 27,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 55.6%, a top-quartile recent-contact signal.",
       "top_reason_2": "Aaron Nola has allowed homers in 3.8% of plate appearances to this batter side.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 55.6%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824852:694212:813349",
@@ -4977,7 +4985,7 @@
       "team": "PHI",
       "opponent_team": "ATL",
       "pitcher_name": "Chris Sale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -5005,14 +5013,16 @@
       "ballparkpal_overlay_adjusted_rank": 42,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 42.9%, a above-baseline recent-contact signal.",
       "top_reason_2": "Chris Sale has allowed homers in 3.0% of plate appearances over the last 30 days.",
       "top_reason_3": "Forecast temperature is 82F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824528:663993:672456",
@@ -5033,7 +5043,7 @@
       "team": "CIN",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -5705,7 +5715,7 @@
       "team": "PHI",
       "opponent_team": "ATL",
       "pitcher_name": "Chris Sale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -5873,7 +5883,7 @@
       "team": "TB",
       "opponent_team": "MIN",
       "pitcher_name": "Simeon Woods Richardson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -6489,7 +6499,7 @@
       "team": "ATL",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -6545,7 +6555,7 @@
       "team": "ATL",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -6937,7 +6947,7 @@
       "team": "CIN",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -7161,7 +7171,7 @@
       "team": "TB",
       "opponent_team": "MIN",
       "pitcher_name": "Simeon Woods Richardson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -7217,7 +7227,7 @@
       "team": "CIN",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -7385,7 +7395,7 @@
       "team": "TOR",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -7441,7 +7451,7 @@
       "team": "DET",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -7609,7 +7619,7 @@
       "team": "TOR",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -7665,7 +7675,7 @@
       "team": "TOR",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -7777,7 +7787,7 @@
       "team": "DET",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -7805,14 +7815,16 @@
       "ballparkpal_overlay_adjusted_rank": 92,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 10.0%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Park factor for the hitter's handedness is 114.0, which adds venue lift to the matchup.",
       "top_reason_3": "Barrel rate over the last 30 days is 7.7%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:823637:696100:673540",
@@ -8393,7 +8405,7 @@
       "team": "CIN",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -8421,14 +8433,16 @@
       "ballparkpal_overlay_adjusted_rank": 103,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 72.7%, a top-decile recent-contact signal.",
       "top_reason_2": "Keider Montero has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 114.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824612:695578:663542",
@@ -8617,7 +8631,7 @@
       "team": "ATL",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -8729,7 +8743,7 @@
       "team": "DET",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -9233,7 +9247,7 @@
       "team": "CIN",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -9513,7 +9527,7 @@
       "team": "TB",
       "opponent_team": "MIN",
       "pitcher_name": "Simeon Woods Richardson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -9569,7 +9583,7 @@
       "team": "PHI",
       "opponent_team": "ATL",
       "pitcher_name": "Chris Sale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -9625,7 +9639,7 @@
       "team": "TOR",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -9793,7 +9807,7 @@
       "team": "DET",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -9849,7 +9863,7 @@
       "team": "ATL",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -10129,7 +10143,7 @@
       "team": "ATL",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -10297,7 +10311,7 @@
       "team": "CIN",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -10325,14 +10339,16 @@
       "ballparkpal_overlay_adjusted_rank": 137,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 10.3% barrel-per-PA split.",
       "top_reason_2": "Keider Montero has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 114.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:823797:641343:669387",
@@ -10465,7 +10481,7 @@
       "team": "ATL",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -10493,14 +10509,16 @@
       "ballparkpal_overlay_adjusted_rank": 140,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 66.7%, a top-decile recent-contact signal.",
       "top_reason_2": "Aaron Nola has allowed homers in 3.8% of plate appearances to this batter side.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 66.7%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824612:682928:663542",
@@ -10745,7 +10763,7 @@
       "team": "CIN",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -10773,14 +10791,16 @@
       "ballparkpal_overlay_adjusted_rank": 143,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 15.0%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Keider Montero has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 114.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:825094:630105:669194",
@@ -10857,7 +10877,7 @@
       "team": "TOR",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -10913,7 +10933,7 @@
       "team": "STL",
       "opponent_team": "SEA",
       "pitcher_name": "Emerson Hancock",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -11025,7 +11045,7 @@
       "team": "DET",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -11305,7 +11325,7 @@
       "team": "STL",
       "opponent_team": "SEA",
       "pitcher_name": "Emerson Hancock",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -11865,7 +11885,7 @@
       "team": "DET",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -12033,7 +12053,7 @@
       "team": "DET",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -12201,7 +12221,7 @@
       "team": "CIN",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -12425,7 +12445,7 @@
       "team": "CIN",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -12873,7 +12893,7 @@
       "team": "ATL",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -12985,7 +13005,7 @@
       "team": "PHI",
       "opponent_team": "ATL",
       "pitcher_name": "Chris Sale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -13041,7 +13061,7 @@
       "team": "TB",
       "opponent_team": "MIN",
       "pitcher_name": "Simeon Woods Richardson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -13265,7 +13285,7 @@
       "team": "TB",
       "opponent_team": "MIN",
       "pitcher_name": "Simeon Woods Richardson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -13321,7 +13341,7 @@
       "team": "DET",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -13377,7 +13397,7 @@
       "team": "PHI",
       "opponent_team": "ATL",
       "pitcher_name": "Chris Sale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -13433,7 +13453,7 @@
       "team": "STL",
       "opponent_team": "SEA",
       "pitcher_name": "Emerson Hancock",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -13545,7 +13565,7 @@
       "team": "DET",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -13573,14 +13593,16 @@
       "ballparkpal_overlay_adjusted_rank": 188,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Park factor for the hitter's handedness is 114.0, which adds venue lift to the matchup.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824122:672580:672282",
@@ -13657,7 +13679,7 @@
       "team": "NYM",
       "opponent_team": "COL",
       "pitcher_name": "Jose Quintana",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -13993,7 +14015,7 @@
       "team": "TOR",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -14021,14 +14043,16 @@
       "ballparkpal_overlay_adjusted_rank": 196,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Slade Cecconi has allowed barrels on 7.5% of recent batted balls.",
       "top_reason_2": "Slade Cecconi has allowed homers in 3.7% of plate appearances over the last 30 days.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:822824:676914:677944",
@@ -14049,7 +14073,7 @@
       "team": "TOR",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -14329,7 +14353,7 @@
       "team": "TB",
       "opponent_team": "MIN",
       "pitcher_name": "Simeon Woods Richardson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -14385,7 +14409,7 @@
       "team": "TOR",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -14413,14 +14437,16 @@
       "ballparkpal_overlay_adjusted_rank": 201,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2141, supporting loud-contact upside.",
       "top_reason_2": "Slade Cecconi has allowed homers in 4.6% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:823959:663538:680736",
@@ -14497,7 +14523,7 @@
       "team": "PHI",
       "opponent_team": "ATL",
       "pitcher_name": "Chris Sale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -14609,7 +14635,7 @@
       "team": "PHI",
       "opponent_team": "ATL",
       "pitcher_name": "Chris Sale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -14777,7 +14803,7 @@
       "team": "NYM",
       "opponent_team": "COL",
       "pitcher_name": "Jose Quintana",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -14833,7 +14859,7 @@
       "team": "PHI",
       "opponent_team": "ATL",
       "pitcher_name": "Chris Sale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -14861,14 +14887,16 @@
       "ballparkpal_overlay_adjusted_rank": 211,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 66.7%, a top-decile recent-contact signal.",
       "top_reason_2": "95+ EV contact rate over the last 10 days is 66.7%, which supports near-term HR upside.",
       "top_reason_3": "Average exit velocity over the last 10 days is 94.6 mph, a top-decile recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:823797:669003:669387",
@@ -15113,7 +15141,7 @@
       "team": "STL",
       "opponent_team": "SEA",
       "pitcher_name": "Emerson Hancock",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -15393,7 +15421,7 @@
       "team": "ATL",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -15421,14 +15449,16 @@
       "ballparkpal_overlay_adjusted_rank": 221,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 8.7%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Aaron Nola has allowed homers in 3.8% of plate appearances to this batter side.",
       "top_reason_3": "Barrel rate over the last 30 days is 5.9%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:823230:672640:694738",
@@ -15729,7 +15759,7 @@
       "team": "STL",
       "opponent_team": "SEA",
       "pitcher_name": "Emerson Hancock",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -16009,7 +16039,7 @@
       "team": "CIN",
       "opponent_team": "DET",
       "pitcher_name": "Keider Montero",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -16345,7 +16375,7 @@
       "team": "PHI",
       "opponent_team": "ATL",
       "pitcher_name": "Chris Sale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -16457,7 +16487,7 @@
       "team": "TB",
       "opponent_team": "MIN",
       "pitcher_name": "Simeon Woods Richardson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -16485,14 +16515,16 @@
       "ballparkpal_overlay_adjusted_rank": 239,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 58.3%, a top-quartile recent-contact signal.",
       "top_reason_2": "Simeon Woods Richardson has allowed 90.6 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 58.3%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:823230:656305:676974",
@@ -16849,7 +16881,7 @@
       "team": "STL",
       "opponent_team": "SEA",
       "pitcher_name": "Emerson Hancock",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -17241,7 +17273,7 @@
       "team": "TOR",
       "opponent_team": "CLE",
       "pitcher_name": "Slade Cecconi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -17269,14 +17301,16 @@
       "ballparkpal_overlay_adjusted_rank": 252,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Slade Cecconi has allowed barrels on 7.5% of recent batted balls.",
       "top_reason_2": "Slade Cecconi has allowed homers in 3.7% of plate appearances over the last 30 days.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:822991:680700:680573",
@@ -17297,7 +17331,7 @@
       "team": "TB",
       "opponent_team": "MIN",
       "pitcher_name": "Simeon Woods Richardson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -17325,14 +17359,16 @@
       "ballparkpal_overlay_adjusted_rank": 253,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Simeon Woods Richardson has allowed 90.6 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_2": "Simeon Woods Richardson has allowed homers in 4.4% of plate appearances over the last 30 days.",
       "top_reason_3": "Simeon Woods Richardson has allowed a 45.6% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:823637:666397:673540",
@@ -17409,7 +17445,7 @@
       "team": "DET",
       "opponent_team": "CIN",
       "pitcher_name": "Rhett Lowder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -17521,7 +17557,7 @@
       "team": "ATL",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -17577,7 +17613,7 @@
       "team": "STL",
       "opponent_team": "SEA",
       "pitcher_name": "Emerson Hancock",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -17605,14 +17641,16 @@
       "ballparkpal_overlay_adjusted_rank": 257,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 63.6%, a top-decile recent-contact signal.",
       "top_reason_2": "Emerson Hancock has allowed barrels on 6.8% of recent batted balls.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 63.6%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:823797:686217:669387",
@@ -18081,7 +18119,7 @@
       "team": "PHI",
       "opponent_team": "ATL",
       "pitcher_name": "Chris Sale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -18109,14 +18147,16 @@
       "ballparkpal_overlay_adjusted_rank": 265,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 47.5%, showing consistent quality contact.",
       "top_reason_2": "95+ EV contact rate over the last 30 days is 47.5%, a strong loud-contact input for the model.",
       "top_reason_3": "Average exit velocity over the last 10 days is 91.0 mph, a above-baseline recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:823637:691720:673540",
@@ -18249,7 +18289,7 @@
       "team": "STL",
       "opponent_team": "SEA",
       "pitcher_name": "Emerson Hancock",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -18809,7 +18849,7 @@
       "team": "STL",
       "opponent_team": "SEA",
       "pitcher_name": "Emerson Hancock",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -19145,7 +19185,7 @@
       "team": "TB",
       "opponent_team": "MIN",
       "pitcher_name": "Simeon Woods Richardson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -19201,7 +19241,7 @@
       "team": "PHI",
       "opponent_team": "ATL",
       "pitcher_name": "Chris Sale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Truist Park",
       "ballpark_region_abbr": "GA",
@@ -19229,14 +19269,16 @@
       "ballparkpal_overlay_adjusted_rank": 279,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 42.9%, showing consistent quality contact.",
       "top_reason_2": "Chris Sale has allowed homers in 3.1% of plate appearances over the last 30 days.",
       "top_reason_3": "Forecast temperature is 82F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     }
   ],
   "history": [
@@ -315076,14 +315118,14 @@
       "game_pk": 824934,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T17:35:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "PHI @ ATL",
       "teams": [
         {
           "team": "PHI",
           "opponent_team": "ATL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666969,
@@ -315098,32 +315140,26 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 669016,
-              "batter_name": "Brandon Marsh",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 547180,
               "batter_name": "Bryce Harper",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 681082,
-              "batter_name": "Bryson Stott",
+              "batter_id": 664238,
+              "batter_name": "Dylan Moore",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 624641,
+              "batter_name": "Edmundo Sosa",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 596117,
-              "batter_name": "Garrett Stubbs",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 702222,
-              "batter_name": "Justin Crawford",
+              "batter_id": 694025,
+              "batter_name": "Felix Reyes",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -315132,6 +315168,12 @@
               "batter_name": "Kyle Schwarber",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 665561,
+              "batter_name": "Rafael March\u00e1n",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 607208,
@@ -315144,7 +315186,7 @@
         {
           "team": "ATL",
           "opponent_team": "PHI",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 663586,
@@ -315153,16 +315195,22 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 642086,
-              "batter_name": "Dominic Smith",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 686948,
               "batter_name": "Drake Baldwin",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 642201,
+              "batter_name": "Eli White",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 622761,
+              "batter_name": "Jorge Mateo",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 621566,
@@ -315179,12 +315227,6 @@
             {
               "batter_id": 671739,
               "batter_name": "Michael Harris II",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 573262,
-              "batter_name": "Mike Yastrzemski",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -315208,7 +315250,7 @@
       "game_pk": 822824,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T17:37:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "CLE @ TOR",
       "teams": [
@@ -315276,14 +315318,8 @@
         {
           "team": "TOR",
           "opponent_team": "CLE",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 665926,
-              "batter_name": "Andr\u00e9s Gim\u00e9nez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 662139,
               "batter_name": "Daulton Varsho",
@@ -315321,12 +315357,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 623168,
-              "batter_name": "Tyler Heineman",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 665489,
               "batter_name": "Vladimir Guerrero Jr.",
               "batting_order": null,
@@ -315340,24 +315370,18 @@
       "game_pk": 824528,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T17:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "DET @ CIN",
       "teams": [
         {
           "team": "DET",
           "opponent_team": "CIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 690993,
               "batter_name": "Colt Keith",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 693307,
-              "batter_name": "Dillon Dingler",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -315368,8 +315392,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 595879,
-              "batter_name": "Javier B\u00e1ez",
+              "batter_id": 681481,
+              "batter_name": "Kerry Carpenter",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -315408,14 +315432,8 @@
         {
           "team": "CIN",
           "opponent_team": "DET",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 667472,
-              "batter_name": "Dane Myers",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 682829,
               "batter_name": "Elly De La Cruz",
@@ -315457,12 +315475,6 @@
               "batter_name": "TJ Friedl",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 663886,
-              "batter_name": "Tyler Stephenson",
-              "batting_order": null,
-              "selected_for_pick": true
             }
           ]
         }
@@ -315472,7 +315484,7 @@
       "game_pk": 823635,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T17:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "COL @ NYM",
       "teams": [
@@ -315540,7 +315552,7 @@
         {
           "team": "NYM",
           "opponent_team": "COL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666182,
@@ -315551,18 +315563,6 @@
             {
               "batter_id": 683146,
               "batter_name": "Brett Baty",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 701807,
-              "batter_name": "Carson Benge",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
-              "batter_id": 682626,
-              "batter_name": "Francisco Alvarez",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -315589,6 +315589,12 @@
               "batter_name": "Mark Vientos",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 502054,
+              "batter_name": "Tommy Pham",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 621438,
@@ -315736,7 +315742,7 @@
       "game_pk": 822991,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T17:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "MIN @ TB",
       "teams": [
@@ -315804,7 +315810,7 @@
         {
           "team": "TB",
           "opponent_team": "MIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 810938,
@@ -315825,26 +315831,20 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 641584,
+              "batter_name": "Jake Fraley",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 666018,
               "batter_name": "Jonathan Aranda",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 676356,
-              "batter_name": "Jonny DeLuca",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 691406,
               "batter_name": "Junior Caminero",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 663743,
-              "batter_name": "Nick Fortes",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -316264,7 +316264,7 @@
       "game_pk": 823068,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T18:15:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "SEA @ STL",
       "teams": [
@@ -316332,7 +316332,7 @@
         {
           "team": "STL",
           "opponent_team": "SEA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 676475,
@@ -316359,12 +316359,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 665877,
-              "batter_name": "Jos\u00e9 Ferm\u00edn",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 691026,
               "batter_name": "Masyn Winn",
               "batting_order": null,
@@ -316385,6 +316379,12 @@
             {
               "batter_id": 602104,
               "batter_name": "Ram\u00f3n Ur\u00edas",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 687363,
+              "batter_name": "Victor Scott II",
               "batting_order": null,
               "selected_for_pick": true
             }
