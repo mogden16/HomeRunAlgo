@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-26T15:53:49.468297+00:00",
+  "generated_at": "2026-04-26T16:24:30.359872+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -4671,7 +4671,7 @@
       "team": "BOS",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -4699,14 +4699,16 @@
       "ballparkpal_overlay_adjusted_rank": 35,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Kyle Bradish has allowed barrels on 5.4% of batted balls to this batter side.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:823959:808975:684007",
@@ -6301,7 +6303,7 @@
       "team": "MIN",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -6329,16 +6331,17 @@
       "ballparkpal_overlay_adjusted_rank": 65,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "inactive",
       "alert_flags": [
+        "lineup_alert",
         "pitcher_change_alert"
       ],
-      "inactive_flag": false,
-      "display_style": "default",
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2420, supporting loud-contact upside.",
       "top_reason_2": "Jesse Scholtens has allowed 90.9 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 5.8% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824202:669224:681293",
@@ -6417,7 +6420,7 @@
       "team": "MIN",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -6445,16 +6448,17 @@
       "ballparkpal_overlay_adjusted_rank": 66,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "inactive",
       "alert_flags": [
+        "lineup_alert",
         "pitcher_change_alert"
       ],
-      "inactive_flag": false,
-      "display_style": "default",
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2243, supporting loud-contact upside.",
       "top_reason_2": "Jesse Scholtens has allowed 90.9 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 111.3 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824122:677951:672282",
@@ -7993,7 +7997,7 @@
       "team": "MIN",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -8557,7 +8561,7 @@
       "team": "MIN",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -9347,7 +9351,7 @@
       "team": "MIN",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -9405,7 +9409,7 @@
       "team": "MIN",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -12219,7 +12223,7 @@
       "team": "BOS",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -13003,7 +13007,7 @@
       "team": "MIN",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -13031,16 +13035,17 @@
       "ballparkpal_overlay_adjusted_rank": 177,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "inactive",
       "alert_flags": [
+        "lineup_alert",
         "pitcher_change_alert"
       ],
-      "inactive_flag": false,
-      "display_style": "default",
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 61.5%, a top-decile recent-contact signal.",
       "top_reason_2": "Jesse Scholtens has allowed 90.9 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 61.5%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824934:624641:519242",
@@ -13791,7 +13796,7 @@
       "team": "MIN",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -13907,7 +13912,7 @@
       "team": "MIN",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -14359,7 +14364,7 @@
       "team": "MIN",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -15601,7 +15606,7 @@
       "team": "BOS",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -15881,7 +15886,7 @@
       "team": "MIN",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -15995,7 +16000,7 @@
       "team": "BOS",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -17235,7 +17240,7 @@
       "team": "BOS",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -17263,14 +17268,16 @@
       "ballparkpal_overlay_adjusted_rank": 250,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 44.4%, showing consistent quality contact.",
       "top_reason_2": "95+ EV contact rate over the last 30 days is 44.4%, a strong loud-contact input for the model.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:823068:660844:700241",
@@ -17913,7 +17920,7 @@
       "team": "BOS",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -17969,7 +17976,7 @@
       "team": "BOS",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -17997,14 +18004,16 @@
       "ballparkpal_overlay_adjusted_rank": 261,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 54.3%, showing consistent quality contact.",
       "top_reason_2": "95+ EV contact rate over the last 30 days is 54.3%, a strong loud-contact input for the model.",
       "top_reason_3": "Barrel rate over the last 10 days is 7.7%, a top-quartile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824852:677942:813349",
@@ -18419,7 +18428,7 @@
       "team": "BOS",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -19095,7 +19104,7 @@
       "team": "BOS",
       "opponent_team": "BAL",
       "pitcher_name": "Kyle Bradish",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -315073,17 +315082,17 @@
         {
           "team": "BOS",
           "opponent_team": "BAL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 655316,
+              "batter_name": "Andruw Monasterio",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 702332,
               "batter_name": "Caleb Durbin",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 665966,
-              "batter_name": "Carlos Narv\u00e1ez",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -315094,6 +315103,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 657136,
+              "batter_name": "Connor Wong",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 680776,
               "batter_name": "Jarren Duran",
               "batting_order": null,
@@ -315102,18 +315117,6 @@
             {
               "batter_id": 691785,
               "batter_name": "Marcelo Mayer",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 807799,
-              "batter_name": "Masataka Yoshida",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 596115,
-              "batter_name": "Trevor Story",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -315823,23 +315826,11 @@
         {
           "team": "MIN",
           "opponent_team": "TB",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 668885,
-              "batter_name": "Austin Martin",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 686797,
               "batter_name": "Brooks Lee",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 621439,
-              "batter_name": "Byron Buxton",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -315862,6 +315853,18 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 670242,
+              "batter_name": "Matt Wallner",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 668904,
+              "batter_name": "Royce Lewis",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
               "batter_id": 680777,
               "batter_name": "Ryan Jeffers",
               "batting_order": null,
@@ -315870,12 +315873,6 @@
             {
               "batter_id": 663616,
               "batter_name": "Trevor Larnach",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 656484,
-              "batter_name": "Tristan Gray",
               "batting_order": null,
               "selected_for_pick": true
             }
@@ -316790,6 +316787,138 @@
       ]
     },
     {
+      "game_pk": 824122,
+      "game_date": "2026-04-26",
+      "game_datetime": "2026-04-26T20:10:00Z",
+      "game_status": "Scheduled",
+      "game_state": "pregame",
+      "matchup": "LAA @ KC",
+      "teams": [
+        {
+          "team": "LAA",
+          "opponent_team": "KC",
+          "lineup_source": "projected",
+          "hitters": [
+            {
+              "batter_id": 669326,
+              "batter_name": "Bryce Teodosio",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 666176,
+              "batter_name": "Jo Adell",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 624585,
+              "batter_name": "Jorge Soler",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 681351,
+              "batter_name": "Logan O'Hoppe",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 545361,
+              "batter_name": "Mike Trout",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 694384,
+              "batter_name": "Nolan Schanuel",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 672724,
+              "batter_name": "Oswald Peraza",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 687093,
+              "batter_name": "Vaughn Grissom",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 687263,
+              "batter_name": "Zach Neto",
+              "batting_order": null,
+              "selected_for_pick": true
+            }
+          ]
+        },
+        {
+          "team": "KC",
+          "opponent_team": "LAA",
+          "lineup_source": "projected",
+          "hitters": [
+            {
+              "batter_id": 677951,
+              "batter_name": "Bobby Witt Jr.",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 695600,
+              "batter_name": "Carter Jensen",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 686555,
+              "batter_name": "Isaac Collins",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 695506,
+              "batter_name": "Jac Caglianone",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 664728,
+              "batter_name": "Kyle Isbel",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 686681,
+              "batter_name": "Michael Massey",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 679845,
+              "batter_name": "Nick Loftin",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 521692,
+              "batter_name": "Salvador Perez",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 686469,
+              "batter_name": "Vinnie Pasquantino",
+              "batting_order": null,
+              "selected_for_pick": true
+            }
+          ]
+        }
+      ]
+    },
+    {
       "game_pk": 823959,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T20:10:00Z",
@@ -316914,138 +317043,6 @@
             {
               "batter_id": 606192,
               "batter_name": "Teoscar Hern\u00e1ndez",
-              "batting_order": null,
-              "selected_for_pick": true
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "game_pk": 824122,
-      "game_date": "2026-04-26",
-      "game_datetime": "2026-04-26T23:20:00Z",
-      "game_status": "Scheduled",
-      "game_state": "pregame",
-      "matchup": "LAA @ KC",
-      "teams": [
-        {
-          "team": "LAA",
-          "opponent_team": "KC",
-          "lineup_source": "projected",
-          "hitters": [
-            {
-              "batter_id": 669326,
-              "batter_name": "Bryce Teodosio",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 666176,
-              "batter_name": "Jo Adell",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 624585,
-              "batter_name": "Jorge Soler",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 681351,
-              "batter_name": "Logan O'Hoppe",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 545361,
-              "batter_name": "Mike Trout",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 694384,
-              "batter_name": "Nolan Schanuel",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 672724,
-              "batter_name": "Oswald Peraza",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 687093,
-              "batter_name": "Vaughn Grissom",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 687263,
-              "batter_name": "Zach Neto",
-              "batting_order": null,
-              "selected_for_pick": true
-            }
-          ]
-        },
-        {
-          "team": "KC",
-          "opponent_team": "LAA",
-          "lineup_source": "projected",
-          "hitters": [
-            {
-              "batter_id": 677951,
-              "batter_name": "Bobby Witt Jr.",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 695600,
-              "batter_name": "Carter Jensen",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 686555,
-              "batter_name": "Isaac Collins",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 695506,
-              "batter_name": "Jac Caglianone",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 664728,
-              "batter_name": "Kyle Isbel",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 686681,
-              "batter_name": "Michael Massey",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 679845,
-              "batter_name": "Nick Loftin",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 521692,
-              "batter_name": "Salvador Perez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 686469,
-              "batter_name": "Vinnie Pasquantino",
               "batting_order": null,
               "selected_for_pick": true
             }
