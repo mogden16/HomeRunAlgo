@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-25T23:49:22.349666+00:00",
+  "generated_at": "2026-04-26T00:26:47.416403+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -107,10 +107,10 @@
     "latest_slate_size": 261,
     "tracked_dates": 31,
     "tracked_picks": 5244,
-    "settled_picks": 4251,
-    "tracked_homers": 481,
-    "tracked_hit_rate": 0.11315,
-    "open_picks": 993
+    "settled_picks": 4254,
+    "tracked_homers": 484,
+    "tracked_hit_rate": 0.113775,
+    "open_picks": 990
   },
   "confidence_summary": [
     {
@@ -122,17 +122,17 @@
     },
     {
       "confidence_tier": "strong",
-      "picks": 268,
-      "homers": 60,
-      "hit_rate": 0.223881,
-      "avg_probability": 0.189264
+      "picks": 269,
+      "homers": 61,
+      "hit_rate": 0.226766,
+      "avg_probability": 0.189231
     },
     {
       "confidence_tier": "watch",
-      "picks": 708,
-      "homers": 100,
-      "hit_rate": 0.141243,
-      "avg_probability": 0.141038
+      "picks": 710,
+      "homers": 102,
+      "hit_rate": 0.143662,
+      "avg_probability": 0.141073
     },
     {
       "confidence_tier": "longshot",
@@ -184,6 +184,13 @@
       "picks": 20,
       "homers": 7,
       "hit_rate": 0.35
+    },
+    {
+      "batter_name": "Elly De La Cruz",
+      "team": "CIN",
+      "picks": 22,
+      "homers": 6,
+      "hit_rate": 0.272727
     },
     {
       "batter_name": "Kyle Schwarber",
@@ -242,13 +249,6 @@
       "hit_rate": 0.227273
     },
     {
-      "batter_name": "Elly De La Cruz",
-      "team": "CIN",
-      "picks": 21,
-      "homers": 5,
-      "hit_rate": 0.238095
-    },
-    {
       "batter_name": "Oneil Cruz",
       "team": "PIT",
       "picks": 21,
@@ -305,8 +305,22 @@
       "hit_rate": 0.2
     },
     {
+      "batter_name": "Jo Adell",
+      "team": "LAA",
+      "picks": 20,
+      "homers": 4,
+      "hit_rate": 0.2
+    },
+    {
       "batter_name": "Jos\u00e9 Ram\u00edrez",
       "team": "CLE",
+      "picks": 19,
+      "homers": 4,
+      "hit_rate": 0.210526
+    },
+    {
+      "batter_name": "Max Muncy",
+      "team": "LAD",
       "picks": 19,
       "homers": 4,
       "hit_rate": 0.210526
@@ -445,13 +459,6 @@
       "hit_rate": 0.157895
     },
     {
-      "batter_name": "Jo Adell",
-      "team": "LAA",
-      "picks": 19,
-      "homers": 3,
-      "hit_rate": 0.157895
-    },
-    {
       "batter_name": "Luke Raley",
       "team": "SEA",
       "picks": 19,
@@ -503,13 +510,6 @@
     {
       "batter_name": "Kazuma Okamoto",
       "team": "TOR",
-      "picks": 18,
-      "homers": 3,
-      "hit_rate": 0.166667
-    },
-    {
-      "batter_name": "Max Muncy",
-      "team": "LAD",
       "picks": 18,
       "homers": 3,
       "hit_rate": 0.166667
@@ -7094,15 +7094,15 @@
       "ballparkpal_overlay_adjusted_score": 26.1,
       "ballparkpal_overlay_adjusted_rank": 74,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 6.8% barrel-per-PA split.",
       "top_reason_2": "Cole Ragans has allowed homers in 7.2% of plate appearances over the last 30 days.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0031, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-25:822910:669394:605488",
@@ -7544,15 +7544,15 @@
       "ballparkpal_overlay_adjusted_score": 25.1,
       "ballparkpal_overlay_adjusted_rank": 82,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 54.4%, showing consistent quality contact.",
       "top_reason_2": "Colin Rea has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 54.4%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-25:823799:661388:656605",
@@ -11528,15 +11528,15 @@
       "ballparkpal_overlay_adjusted_score": 21.1,
       "ballparkpal_overlay_adjusted_rank": 153,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 96.1 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Jack Flaherty has allowed barrels on 5.5% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 110.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-25:824933:666969:693821",
@@ -299705,7 +299705,7 @@
       "game_pk": 824203,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T23:10:00Z",
-      "game_status": "Manager challenge",
+      "game_status": "In Progress",
       "game_state": "live",
       "matchup": "NYY @ HOU",
       "teams": [
@@ -300233,7 +300233,7 @@
       "game_pk": 824933,
       "game_date": "2026-04-25",
       "game_datetime": "2026-04-25T23:15:00Z",
-      "game_status": "Delayed Start",
+      "game_status": "In Progress",
       "game_state": "live",
       "matchup": "PHI @ ATL",
       "teams": [
