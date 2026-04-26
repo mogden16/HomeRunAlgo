@@ -1,22 +1,11 @@
 {
-  "generated_at": "2026-04-26T04:07:48.787330+00:00",
+  "generated_at": "2026-04-26T10:56:35.272794+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
   "latest_available_date": "2026-04-25",
   "data_note": "Public dashboard tracking begins on Opening Night, March 25, 2026. Trained on 2024 and 2025 season data.",
-  "operational_alerts": [
-    {
-      "kind": "warning",
-      "code": "weather_forecast_unavailable",
-      "title": "Weather data incomplete",
-      "message": "Weather forecast data was unavailable for TOR on 2026-04-25. This slate was generated with null weather inputs for those parks. Rerun later for a weather-refreshed draft.",
-      "target_date": "2026-04-25",
-      "teams": [
-        "TOR"
-      ]
-    }
-  ],
+  "operational_alerts": [],
   "confidence_policy": {
     "elite_percentile_floor": 0.99,
     "elite_probability_floor": null,
@@ -2615,7 +2604,7 @@
     "summary": "28 metrics are active in the current model.",
     "model_family": "histgb",
     "feature_profile": "live_usable_candidate_v1",
-    "trained_through": "2026-04-24",
+    "trained_through": "2026-04-25",
     "feature_count": 28,
     "strength_source": "configuration",
     "features": [
@@ -298603,36 +298592,36 @@
       "batter_name": "Yordan Alvarez",
       "team": "HOU",
       "home_runs_2026": 11,
-      "plate_appearances_2026": 121,
-      "games_2026": 27
+      "plate_appearances_2026": 125,
+      "games_2026": 28
     },
     {
       "batter_name": "Munetaka Murakami",
       "team": "CWS",
       "home_runs_2026": 11,
-      "plate_appearances_2026": 113,
-      "games_2026": 26
+      "plate_appearances_2026": 118,
+      "games_2026": 27
     },
     {
       "batter_name": "James Wood",
       "team": "WSH",
       "home_runs_2026": 10,
-      "plate_appearances_2026": 132,
+      "plate_appearances_2026": 137,
+      "games_2026": 28
+    },
+    {
+      "batter_name": "Elly De La Cruz",
+      "team": "CIN",
+      "home_runs_2026": 9,
+      "plate_appearances_2026": 122,
       "games_2026": 27
     },
     {
       "batter_name": "Aaron Judge",
       "team": "NYY",
       "home_runs_2026": 9,
-      "plate_appearances_2026": 114,
-      "games_2026": 26
-    },
-    {
-      "batter_name": "Ben Rice",
-      "team": "NYY",
-      "home_runs_2026": 9,
-      "plate_appearances_2026": 100,
-      "games_2026": 25
+      "plate_appearances_2026": 119,
+      "games_2026": 27
     }
   ],
   "recent_successes": [
