@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-26T14:43:55.544760+00:00",
+  "generated_at": "2026-04-26T15:53:49.468297+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -3073,7 +3073,7 @@
       "team": "CLE",
       "opponent_team": "TOR",
       "pitcher_name": "Patrick Corbin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -3101,14 +3101,16 @@
       "ballparkpal_overlay_adjusted_rank": 4,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 17.6% barrel-per-PA split.",
       "top_reason_2": "Patrick Corbin has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0075, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824202:642708:681293",
@@ -3129,7 +3131,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -3157,14 +3159,16 @@
       "ballparkpal_overlay_adjusted_rank": 5,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 9.1%, which the model treats as sustained power quality.",
       "top_reason_2": "Spencer Arrighetti has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "Projected humidity is 85%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824202:545341:681293",
@@ -3185,7 +3189,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -3213,14 +3217,16 @@
       "ballparkpal_overlay_adjusted_rank": 6,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 60.0%, showing consistent quality contact.",
       "top_reason_2": "Spencer Arrighetti has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "Projected humidity is 85%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:823797:664040:690986",
@@ -3241,7 +3247,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Kyle Harrison",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -3269,14 +3275,16 @@
       "ballparkpal_overlay_adjusted_rank": 7,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0032, reinforcing the power-contact fit.",
       "top_reason_2": "Kyle Harrison has allowed 91.5 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected humidity is 89%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:822991:668723:680573",
@@ -3355,7 +3363,7 @@
       "team": "WSH",
       "opponent_team": "CWS",
       "pitcher_name": "Bryan Hudson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -3523,7 +3531,7 @@
       "team": "TEX",
       "opponent_team": "OAK",
       "pitcher_name": "J.T. Ginn",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -3635,7 +3643,7 @@
       "team": "TEX",
       "opponent_team": "OAK",
       "pitcher_name": "J.T. Ginn",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -3663,14 +3671,16 @@
       "ballparkpal_overlay_adjusted_rank": 15,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 96.7 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "J.T. Ginn has allowed homers in 3.8% of plate appearances over the last 30 days.",
       "top_reason_3": "Forecast temperature is 85F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:825094:543510:650633",
@@ -3747,7 +3757,7 @@
       "team": "CWS",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -3775,14 +3785,16 @@
       "ballparkpal_overlay_adjusted_rank": 17,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 12.5%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Foster Griffin has allowed barrels on 10.0% of batted balls to this batter side.",
       "top_reason_3": "Projected humidity is 86%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824122:664728:672282",
@@ -3859,7 +3871,7 @@
       "team": "SEA",
       "opponent_team": "STL",
       "pitcher_name": "Michael McGreevy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -3887,14 +3899,16 @@
       "ballparkpal_overlay_adjusted_rank": 19,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 15.4%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Michael McGreevy has allowed barrels on 7.7% of recent batted balls.",
       "top_reason_3": "Barrel rate over the last 30 days is 6.2%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:822824:666310:571578",
@@ -3915,7 +3929,7 @@
       "team": "CLE",
       "opponent_team": "TOR",
       "pitcher_name": "Patrick Corbin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -3943,14 +3957,16 @@
       "ballparkpal_overlay_adjusted_rank": 20,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 5.9%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Patrick Corbin has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 3.7% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:822991:676356:680573",
@@ -4029,7 +4045,7 @@
       "team": "BAL",
       "opponent_team": "BOS",
       "pitcher_name": "Connelly Early",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -4085,7 +4101,7 @@
       "team": "HOU",
       "opponent_team": "NYY",
       "pitcher_name": "Luis Gil",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -4257,7 +4273,7 @@
       "team": "BAL",
       "opponent_team": "BOS",
       "pitcher_name": "Connelly Early",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -4313,7 +4329,7 @@
       "team": "CLE",
       "opponent_team": "TOR",
       "pitcher_name": "Patrick Corbin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -4341,14 +4357,16 @@
       "ballparkpal_overlay_adjusted_rank": 29,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Patrick Corbin has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_2": "Patrick Corbin has allowed a 42.6% hard-hit rate over the last 30 days.",
       "top_reason_3": "Patrick Corbin has allowed 42.6% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824122:686681:672282",
@@ -4425,7 +4443,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Kyle Harrison",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -4453,14 +4471,16 @@
       "ballparkpal_overlay_adjusted_rank": 31,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 91.8 mph, a above-baseline recent batted-ball quality marker.",
       "top_reason_2": "Kyle Harrison has allowed 91.5 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected humidity is 89%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:825094:678489:650633",
@@ -4537,7 +4557,7 @@
       "team": "CWS",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -4565,14 +4585,16 @@
       "ballparkpal_overlay_adjusted_rank": 33,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 4.5%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Foster Griffin has allowed barrels on 10.0% of batted balls to this batter side.",
       "top_reason_3": "Projected humidity is 86%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:823797:650859:669387",
@@ -4593,7 +4615,7 @@
       "team": "MIL",
       "opponent_team": "PIT",
       "pitcher_name": "Carmen Mlodzinski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -4817,7 +4839,7 @@
       "team": "WSH",
       "opponent_team": "CWS",
       "pitcher_name": "Bryan Hudson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -4845,14 +4867,16 @@
       "ballparkpal_overlay_adjusted_rank": 39,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.5 mph, which points to top-end HR juice.",
       "top_reason_2": "Projected humidity is 86%, a modest positive weather input in the live model.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:822824:671655:571578",
@@ -4873,7 +4897,7 @@
       "team": "CLE",
       "opponent_team": "TOR",
       "pitcher_name": "Patrick Corbin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -4901,14 +4925,16 @@
       "ballparkpal_overlay_adjusted_rank": 40,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Patrick Corbin has allowed barrels on 8.2% of recent batted balls.",
       "top_reason_2": "Patrick Corbin has allowed a 42.6% hard-hit rate over the last 30 days.",
       "top_reason_3": "Patrick Corbin has allowed 42.6% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:823959:665804:680736",
@@ -5379,7 +5405,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -5435,7 +5461,7 @@
       "team": "SEA",
       "opponent_team": "STL",
       "pitcher_name": "Michael McGreevy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -5547,7 +5573,7 @@
       "team": "HOU",
       "opponent_team": "NYY",
       "pitcher_name": "Luis Gil",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -6219,7 +6245,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -6304,7 +6330,9 @@
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2420, supporting loud-contact upside.",
@@ -6331,7 +6359,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -6359,14 +6387,16 @@
       "ballparkpal_overlay_adjusted_rank": 66,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 4.8% barrel-per-PA split.",
       "top_reason_2": "Projected humidity is 85%, a modest positive weather input in the live model.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0017, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:822991:656484:669947",
@@ -6416,7 +6446,9 @@
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2243, supporting loud-contact upside.",
@@ -6611,7 +6643,7 @@
       "team": "CWS",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -6667,7 +6699,7 @@
       "team": "HOU",
       "opponent_team": "NYY",
       "pitcher_name": "Luis Gil",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -6779,7 +6811,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -6807,14 +6839,16 @@
       "ballparkpal_overlay_adjusted_rank": 73,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 7.2% barrel-per-PA split.",
       "top_reason_2": "Spencer Arrighetti has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "Projected humidity is 85%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:823959:663656:684007",
@@ -7003,7 +7037,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -7115,7 +7149,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -7901,7 +7935,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Kyle Harrison",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -7929,14 +7963,16 @@
       "ballparkpal_overlay_adjusted_rank": 93,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 119.0 mph, which points to top-end HR juice.",
       "top_reason_2": "Kyle Harrison has allowed 91.5 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected humidity is 89%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:822991:670242:669947",
@@ -7986,7 +8022,9 @@
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2576, supporting loud-contact upside.",
@@ -8013,7 +8051,7 @@
       "team": "HOU",
       "opponent_team": "NYY",
       "pitcher_name": "Luis Gil",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -8125,7 +8163,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Kyle Harrison",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -8237,7 +8275,7 @@
       "team": "TEX",
       "opponent_team": "OAK",
       "pitcher_name": "J.T. Ginn",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -8349,7 +8387,7 @@
       "team": "MIL",
       "opponent_team": "PIT",
       "pitcher_name": "Carmen Mlodzinski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -8463,7 +8501,7 @@
       "team": "WSH",
       "opponent_team": "CWS",
       "pitcher_name": "Bryan Hudson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -8548,7 +8586,9 @@
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 54.5%, showing consistent quality contact.",
@@ -8687,7 +8727,7 @@
       "team": "CWS",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -8799,7 +8839,7 @@
       "team": "MIL",
       "opponent_team": "PIT",
       "pitcher_name": "Carmen Mlodzinski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -8855,7 +8895,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Kyle Harrison",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -8911,7 +8951,7 @@
       "team": "SEA",
       "opponent_team": "STL",
       "pitcher_name": "Michael McGreevy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -8939,14 +8979,16 @@
       "ballparkpal_overlay_adjusted_rank": 112,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0023, reinforcing the power-contact fit.",
       "top_reason_2": "Michael McGreevy has allowed barrels on 6.7% of batted balls to this batter side.",
       "top_reason_3": "Michael McGreevy has allowed barrels on 7.7% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824202:663757:681293",
@@ -8967,7 +9009,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -9023,7 +9065,7 @@
       "team": "HOU",
       "opponent_team": "NYY",
       "pitcher_name": "Luis Gil",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -9051,14 +9093,16 @@
       "ballparkpal_overlay_adjusted_rank": 113,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0020, reinforcing the power-contact fit.",
       "top_reason_2": "Luis Gil has allowed homers in 3.8% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected humidity is 85%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824122:666139:607625",
@@ -9191,7 +9235,7 @@
       "team": "TEX",
       "opponent_team": "OAK",
       "pitcher_name": "J.T. Ginn",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -9332,7 +9376,9 @@
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2300, supporting loud-contact upside.",
@@ -9388,7 +9434,9 @@
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2464, supporting loud-contact upside.",
@@ -9471,7 +9519,7 @@
       "team": "CLE",
       "opponent_team": "TOR",
       "pitcher_name": "Patrick Corbin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -9975,7 +10023,7 @@
       "team": "HOU",
       "opponent_team": "NYY",
       "pitcher_name": "Luis Gil",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -10003,14 +10051,16 @@
       "ballparkpal_overlay_adjusted_rank": 131,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Luis Gil has allowed homers in 3.8% of plate appearances over the last 30 days.",
       "top_reason_2": "Projected humidity is 85%, a modest positive weather input in the live model.",
       "top_reason_3": "Luis Gil has allowed barrels on 5.1% of batted balls to this batter side.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:822824:682177:571578",
@@ -10031,7 +10081,7 @@
       "team": "CLE",
       "opponent_team": "TOR",
       "pitcher_name": "Patrick Corbin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -10087,7 +10137,7 @@
       "team": "CWS",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -10199,7 +10249,7 @@
       "team": "SEA",
       "opponent_team": "STL",
       "pitcher_name": "Michael McGreevy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -10369,7 +10419,7 @@
       "team": "MIL",
       "opponent_team": "PIT",
       "pitcher_name": "Carmen Mlodzinski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -10539,7 +10589,7 @@
       "team": "WSH",
       "opponent_team": "CWS",
       "pitcher_name": "Bryan Hudson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -10651,7 +10701,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -10707,7 +10757,7 @@
       "team": "HOU",
       "opponent_team": "NYY",
       "pitcher_name": "Luis Gil",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -10735,14 +10785,16 @@
       "ballparkpal_overlay_adjusted_rank": 143,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0021, reinforcing the power-contact fit.",
       "top_reason_2": "Luis Gil has allowed homers in 3.8% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected humidity is 85%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824528:667472:672456",
@@ -11157,7 +11209,7 @@
       "team": "NYY",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -11213,7 +11265,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Kyle Harrison",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -11241,14 +11293,16 @@
       "ballparkpal_overlay_adjusted_rank": 150,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Kyle Harrison has allowed 91.5 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_2": "Projected humidity is 89%, a modest positive weather input in the live model.",
       "top_reason_3": "Kyle Harrison has allowed a 48.4% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824122:686555:672282",
@@ -11381,7 +11435,7 @@
       "team": "HOU",
       "opponent_team": "NYY",
       "pitcher_name": "Luis Gil",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -11549,7 +11603,7 @@
       "team": "COL",
       "opponent_team": "NYM",
       "pitcher_name": "Nolan McLean",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -11605,7 +11659,7 @@
       "team": "CWS",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -11661,7 +11715,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Kyle Harrison",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -11717,7 +11771,7 @@
       "team": "HOU",
       "opponent_team": "NYY",
       "pitcher_name": "Luis Gil",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -11829,7 +11883,7 @@
       "team": "TEX",
       "opponent_team": "OAK",
       "pitcher_name": "J.T. Ginn",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -11997,7 +12051,7 @@
       "team": "CLE",
       "opponent_team": "TOR",
       "pitcher_name": "Patrick Corbin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -12109,7 +12163,7 @@
       "team": "BAL",
       "opponent_team": "BOS",
       "pitcher_name": "Connelly Early",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -12277,7 +12331,7 @@
       "team": "TEX",
       "opponent_team": "OAK",
       "pitcher_name": "J.T. Ginn",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -12333,7 +12387,7 @@
       "team": "MIL",
       "opponent_team": "PIT",
       "pitcher_name": "Carmen Mlodzinski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -12613,7 +12667,7 @@
       "team": "WSH",
       "opponent_team": "CWS",
       "pitcher_name": "Bryan Hudson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -12725,7 +12779,7 @@
       "team": "CLE",
       "opponent_team": "TOR",
       "pitcher_name": "Patrick Corbin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -12978,7 +13032,9 @@
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 61.5%, a top-decile recent-contact signal.",
@@ -13117,7 +13173,7 @@
       "team": "SEA",
       "opponent_team": "STL",
       "pitcher_name": "Michael McGreevy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -13173,7 +13229,7 @@
       "team": "BAL",
       "opponent_team": "BOS",
       "pitcher_name": "Connelly Early",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -13229,7 +13285,7 @@
       "team": "WSH",
       "opponent_team": "CWS",
       "pitcher_name": "Bryan Hudson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -13509,7 +13565,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Kyle Harrison",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -13764,7 +13820,9 @@
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2292, supporting loud-contact upside.",
@@ -13791,7 +13849,7 @@
       "team": "TEX",
       "opponent_team": "OAK",
       "pitcher_name": "J.T. Ginn",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -13819,14 +13877,16 @@
       "ballparkpal_overlay_adjusted_rank": 193,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "J.T. Ginn has allowed homers in 3.8% of plate appearances over the last 30 days.",
       "top_reason_2": "Forecast temperature is 85F, a positive hitting-context input in the live model.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:822991:686797:669947",
@@ -13876,7 +13936,9 @@
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 93.2 mph, a top-quartile recent batted-ball quality marker.",
@@ -14185,7 +14247,7 @@
       "team": "CLE",
       "opponent_team": "TOR",
       "pitcher_name": "Patrick Corbin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -14326,7 +14388,9 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 6.1%, which the model treats as sustained power quality.",
@@ -14579,7 +14643,7 @@
       "team": "BAL",
       "opponent_team": "BOS",
       "pitcher_name": "Connelly Early",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -14607,14 +14671,16 @@
       "ballparkpal_overlay_adjusted_rank": 207,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 8.0%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Connelly Early has allowed barrels on 6.4% of batted balls to this batter side.",
       "top_reason_3": "Barrel rate over the last 30 days is 5.2%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824934:607208:519242",
@@ -14691,7 +14757,7 @@
       "team": "WSH",
       "opponent_team": "CWS",
       "pitcher_name": "Bryan Hudson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -14917,7 +14983,7 @@
       "team": "MIL",
       "opponent_team": "PIT",
       "pitcher_name": "Carmen Mlodzinski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -14973,7 +15039,7 @@
       "team": "CWS",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -15085,7 +15151,7 @@
       "team": "MIL",
       "opponent_team": "PIT",
       "pitcher_name": "Carmen Mlodzinski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -15197,7 +15263,7 @@
       "team": "COL",
       "opponent_team": "NYM",
       "pitcher_name": "Nolan McLean",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -15253,7 +15319,7 @@
       "team": "TEX",
       "opponent_team": "OAK",
       "pitcher_name": "J.T. Ginn",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -15309,7 +15375,7 @@
       "team": "TEX",
       "opponent_team": "OAK",
       "pitcher_name": "J.T. Ginn",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -15365,7 +15431,7 @@
       "team": "SEA",
       "opponent_team": "STL",
       "pitcher_name": "Michael McGreevy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -15647,7 +15713,7 @@
       "team": "SEA",
       "opponent_team": "STL",
       "pitcher_name": "Michael McGreevy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -15703,7 +15769,7 @@
       "team": "CLE",
       "opponent_team": "TOR",
       "pitcher_name": "Patrick Corbin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -15844,7 +15910,9 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Jesse Scholtens has allowed 90.9 mph average exit velocity recently, which the model flags as hittable contact.",
@@ -15871,7 +15939,7 @@
       "team": "WSH",
       "opponent_team": "CWS",
       "pitcher_name": "Bryan Hudson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -15983,7 +16051,7 @@
       "team": "PIT",
       "opponent_team": "MIL",
       "pitcher_name": "Kyle Harrison",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -16095,7 +16163,7 @@
       "team": "TEX",
       "opponent_team": "OAK",
       "pitcher_name": "J.T. Ginn",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -16151,7 +16219,7 @@
       "team": "BAL",
       "opponent_team": "BOS",
       "pitcher_name": "Connelly Early",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -16207,7 +16275,7 @@
       "team": "SEA",
       "opponent_team": "STL",
       "pitcher_name": "Michael McGreevy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -16263,7 +16331,7 @@
       "team": "COL",
       "opponent_team": "NYM",
       "pitcher_name": "Nolan McLean",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -16319,7 +16387,7 @@
       "team": "COL",
       "opponent_team": "NYM",
       "pitcher_name": "Nolan McLean",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -16347,14 +16415,16 @@
       "ballparkpal_overlay_adjusted_rank": 237,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
       "top_reason_2": "Kodai Senga has allowed a 47.1% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 82%, a modest positive weather input in the live model. Update: 95+ EV contact rate over the last 10 days is 50.0%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824934:664761:519242",
@@ -16431,7 +16501,7 @@
       "team": "CLE",
       "opponent_team": "TOR",
       "pitcher_name": "Patrick Corbin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -16601,7 +16671,7 @@
       "team": "BAL",
       "opponent_team": "BOS",
       "pitcher_name": "Connelly Early",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -16657,7 +16727,7 @@
       "team": "BAL",
       "opponent_team": "BOS",
       "pitcher_name": "Connelly Early",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -16769,7 +16839,7 @@
       "team": "CWS",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -16797,14 +16867,16 @@
       "ballparkpal_overlay_adjusted_rank": 243,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 46.7%, a above-baseline recent-contact signal.",
       "top_reason_2": "Foster Griffin has allowed barrels on 10.0% of batted balls to this batter side.",
       "top_reason_3": "Projected humidity is 86%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:823637:701807:",
@@ -16937,7 +17009,7 @@
       "team": "WSH",
       "opponent_team": "CWS",
       "pitcher_name": "Bryan Hudson",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -16993,7 +17065,7 @@
       "team": "CWS",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -17021,14 +17093,16 @@
       "ballparkpal_overlay_adjusted_rank": 247,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2348, supporting loud-contact upside.",
       "top_reason_2": "Foster Griffin has allowed barrels on 10.0% of batted balls to this batter side.",
       "top_reason_3": "Projected humidity is 86%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:823635:687859:690997",
@@ -17049,7 +17123,7 @@
       "team": "COL",
       "opponent_team": "NYM",
       "pitcher_name": "Nolan McLean",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -17217,7 +17291,7 @@
       "team": "SEA",
       "opponent_team": "STL",
       "pitcher_name": "Michael McGreevy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -17389,7 +17463,7 @@
       "team": "COL",
       "opponent_team": "NYM",
       "pitcher_name": "Nolan McLean",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -17501,7 +17575,7 @@
       "team": "HOU",
       "opponent_team": "NYY",
       "pitcher_name": "Luis Gil",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -17671,7 +17745,7 @@
       "team": "MIL",
       "opponent_team": "PIT",
       "pitcher_name": "Carmen Mlodzinski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -17727,7 +17801,7 @@
       "team": "CWS",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -17951,7 +18025,7 @@
       "team": "BAL",
       "opponent_team": "BOS",
       "pitcher_name": "Connelly Early",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -18063,7 +18137,7 @@
       "team": "COL",
       "opponent_team": "NYM",
       "pitcher_name": "Nolan McLean",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -18177,7 +18251,7 @@
       "team": "COL",
       "opponent_team": "NYM",
       "pitcher_name": "Nolan McLean",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citi Field",
       "ballpark_region_abbr": "NY",
@@ -18401,7 +18475,7 @@
       "team": "MIL",
       "opponent_team": "PIT",
       "pitcher_name": "Carmen Mlodzinski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -18457,7 +18531,7 @@
       "team": "MIL",
       "opponent_team": "PIT",
       "pitcher_name": "Carmen Mlodzinski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -18485,14 +18559,16 @@
       "ballparkpal_overlay_adjusted_rank": 269,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Carmen Mlodzinski has allowed a 48.1% hard-hit rate over the last 30 days.",
       "top_reason_2": "Projected humidity is 89%, a modest positive weather input in the live model.",
       "top_reason_3": "Carmen Mlodzinski has allowed 48.1% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:824852:691723:813349",
@@ -18513,7 +18589,7 @@
       "team": "BAL",
       "opponent_team": "BOS",
       "pitcher_name": "Connelly Early",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -18541,14 +18617,16 @@
       "ballparkpal_overlay_adjusted_rank": 270,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.2 mph, which points to top-end HR juice.",
       "top_reason_2": "Connelly Early has allowed barrels on 7.3% of recent batted balls.",
       "top_reason_3": "Barrel rate over the last 10 days is 9.5%, a top-decile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:823230:691594:694738",
@@ -19073,7 +19151,7 @@
       "team": "MIL",
       "opponent_team": "PIT",
       "pitcher_name": "Carmen Mlodzinski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -19101,14 +19179,16 @@
       "ballparkpal_overlay_adjusted_rank": 278,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Carmen Mlodzinski has allowed a 48.1% hard-hit rate over the last 30 days.",
       "top_reason_2": "Projected humidity is 89%, a modest positive weather input in the live model.",
       "top_reason_3": "Carmen Mlodzinski has allowed 48.1% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-26:823230:669364:694738",
@@ -314986,7 +315066,7 @@
       "game_pk": 824852,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T17:35:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "BOS @ BAL",
       "teams": [
@@ -315054,7 +315134,7 @@
         {
           "team": "BAL",
           "opponent_team": "BOS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 668939,
@@ -315063,8 +315143,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 691723,
-              "batter_name": "Coby Mayo",
+              "batter_id": 677942,
+              "batter_name": "Blaze Alexander",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -315087,12 +315167,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 665750,
-              "batter_name": "Leody Taveras",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 624413,
               "batter_name": "Pete Alonso",
               "batting_order": null,
@@ -315109,6 +315183,12 @@
               "batter_name": "Taylor Ward",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 641933,
+              "batter_name": "Tyler O'Neill",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         }
@@ -315257,17 +315337,11 @@
         {
           "team": "CLE",
           "opponent_team": "TOR",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682657,
               "batter_name": "Angel Mart\u00ednez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 666310,
-              "batter_name": "Bo Naylor",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -315278,22 +315352,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 800050,
-              "batter_name": "Chase DeLauter",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 682177,
               "batter_name": "Daniel Schneemann",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 671655,
-              "batter_name": "George Valera",
+              "batter_id": 681807,
+              "batter_name": "David Fry",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 608070,
@@ -315302,14 +315370,20 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 700932,
-              "batter_name": "Kyle Manzardo",
+              "batter_id": 682877,
+              "batter_name": "Juan Brito",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
               "batter_id": 656555,
               "batter_name": "Rhys Hoskins",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 680757,
+              "batter_name": "Steven Kwan",
               "batting_order": null,
               "selected_for_pick": true
             }
@@ -315491,8 +315565,14 @@
         {
           "team": "COL",
           "opponent_team": "NYM",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 664954,
+              "batter_name": "Brett Sullivan",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 666397,
               "batter_name": "Edouard Julien",
@@ -315506,16 +315586,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 696100,
-              "batter_name": "Hunter Goodman",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
               "batter_id": 664983,
               "batter_name": "Jake McCarthy",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 687597,
+              "batter_name": "Jordan Beck",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 691720,
@@ -315540,12 +315620,6 @@
               "batter_name": "Troy Johnston",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 671289,
-              "batter_name": "Tyler Freeman",
-              "batting_order": null,
-              "selected_for_pick": false
             }
           ]
         },
@@ -315868,14 +315942,14 @@
       "game_pk": 824612,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T18:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "WSH @ CWS",
       "teams": [
         {
           "team": "WSH",
           "opponent_team": "CWS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 691781,
@@ -315902,6 +315976,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 686452,
+              "batter_name": "Drew Millas",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 696285,
               "batter_name": "Jacob Young",
               "batting_order": null,
@@ -315910,12 +315990,6 @@
             {
               "batter_id": 695578,
               "batter_name": "James Wood",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 678391,
-              "batter_name": "Jorbit Vivas",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -315936,14 +316010,8 @@
         {
           "team": "CWS",
           "opponent_team": "WSH",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 643217,
-              "batter_name": "Andrew Benintendi",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 805367,
               "batter_name": "Chase Meidroth",
@@ -315957,16 +316025,28 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 700337,
-              "batter_name": "Edgar Quero",
+              "batter_id": 656537,
+              "batter_name": "Derek Hill",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 691011,
+              "batter_name": "Drew Romo",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 677592,
               "batter_name": "Everson Pereira",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 682668,
+              "batter_name": "Luisangel Acu\u00f1a",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 678246,
@@ -315981,16 +316061,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 803011,
-              "batter_name": "Sam Antonacci",
+              "batter_id": 695020,
+              "batter_name": "Tanner Murray",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 671976,
-              "batter_name": "Tristan Peters",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             }
           ]
         }
@@ -316000,30 +316074,18 @@
       "game_pk": 824202,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T18:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "NYY @ HOU",
       "teams": [
         {
           "team": "NYY",
           "opponent_team": "HOU",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 592450,
               "batter_name": "Aaron Judge",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 642708,
-              "batter_name": "Amed Rosario",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 669224,
-              "batter_name": "Austin Wells",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -316038,6 +316100,12 @@
               "batter_name": "Cody Bellinger",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 641555,
+              "batter_name": "J.C. Escarra",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 665862,
@@ -316068,13 +316136,13 @@
         {
           "team": "HOU",
           "opponent_team": "NYY",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 694728,
-              "batter_name": "Brice Matthews",
+              "batter_id": 669699,
+              "batter_name": "Braden Shewmake",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 701358,
@@ -316101,20 +316169,20 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 669288,
+              "batter_name": "Daniel Johnson",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 687957,
+              "batter_name": "Dustin Harris",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 670623,
               "batter_name": "Isaac Paredes",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 514888,
-              "batter_name": "Jose Altuve",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 673237,
-              "batter_name": "Yainer Diaz",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -316132,21 +316200,15 @@
       "game_pk": 823797,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T18:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "PIT @ MIL",
       "teams": [
         {
           "team": "PIT",
           "opponent_team": "MIL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 664040,
-              "batter_name": "Brandon Lowe",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 668804,
               "batter_name": "Bryan Reynolds",
@@ -316154,10 +316216,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 680779,
-              "batter_name": "Henry Davis",
+              "batter_id": 663968,
+              "batter_name": "Jake Mangum",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 663698,
+              "batter_name": "Joey Bart",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 804606,
@@ -316178,20 +316246,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 665833,
-              "batter_name": "Oneil Cruz",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 656811,
               "batter_name": "Ryan O'Hearn",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 687462,
-              "batter_name": "Spencer Horwitz",
               "batting_order": null,
               "selected_for_pick": true
             }
@@ -316200,7 +316256,7 @@
         {
           "team": "MIL",
           "opponent_team": "PIT",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 663604,
@@ -316227,14 +316283,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 641343,
-              "batter_name": "Jake Bauers",
+              "batter_id": 596142,
+              "batter_name": "Gary S\u00e1nchez",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 687401,
-              "batter_name": "Joey Ortiz",
+              "batter_id": 641343,
+              "batter_name": "Jake Bauers",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -316245,8 +316301,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 672012,
-              "batter_name": "Tyler Black",
+              "batter_id": 686217,
+              "batter_name": "Sal Frelick",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -316271,7 +316327,7 @@
         {
           "team": "SEA",
           "opponent_team": "STL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 663728,
@@ -316286,6 +316342,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 656582,
+              "batter_name": "Connor Joe",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 686527,
               "batter_name": "Dominic Canzone",
               "batting_order": null,
@@ -316294,12 +316356,6 @@
             {
               "batter_id": 641487,
               "batter_name": "J.P. Crawford",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 647304,
-              "batter_name": "Josh Naylor",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -316316,14 +316372,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 668227,
-              "batter_name": "Randy Arozarena",
+              "batter_id": 670042,
+              "batter_name": "Luke Raley",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 608701,
-              "batter_name": "Rob Refsnyder",
+              "batter_id": 668227,
+              "batter_name": "Randy Arozarena",
               "batting_order": null,
               "selected_for_pick": true
             }
@@ -316396,26 +316452,26 @@
       "game_pk": 822911,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T18:35:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "OAK @ TEX",
       "teams": [
         {
           "team": "OAK",
           "opponent_team": "TEX",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": []
         },
         {
           "team": "TEX",
           "opponent_team": "OAK",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 457705,
-              "batter_name": "Andrew McCutchen",
+              "batter_id": 696030,
+              "batter_name": "Alejandro Osuna",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 607043,
