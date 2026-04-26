@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-26T21:25:08.883238+00:00",
+  "generated_at": "2026-04-26T21:59:22.959498+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -97,10 +97,10 @@
     "latest_slate_size": 292,
     "tracked_dates": 32,
     "tracked_picks": 5536,
-    "settled_picks": 4502,
-    "tracked_homers": 513,
-    "tracked_hit_rate": 0.113949,
-    "open_picks": 1034
+    "settled_picks": 4515,
+    "tracked_homers": 518,
+    "tracked_hit_rate": 0.114729,
+    "open_picks": 1021
   },
   "confidence_summary": [
     {
@@ -112,24 +112,24 @@
     },
     {
       "confidence_tier": "strong",
-      "picks": 280,
+      "picks": 281,
       "homers": 63,
-      "hit_rate": 0.225,
-      "avg_probability": 0.188806
+      "hit_rate": 0.224199,
+      "avg_probability": 0.188789
     },
     {
       "confidence_tier": "watch",
-      "picks": 758,
-      "homers": 109,
-      "hit_rate": 0.143799,
-      "avg_probability": 0.141089
+      "picks": 762,
+      "homers": 111,
+      "hit_rate": 0.145669,
+      "avg_probability": 0.14111
     },
     {
       "confidence_tier": "longshot",
-      "picks": 3374,
-      "homers": 315,
-      "hit_rate": 0.093361,
-      "avg_probability": 0.095051
+      "picks": 3382,
+      "homers": 318,
+      "hit_rate": 0.094027,
+      "avg_probability": 0.095077
     }
   ],
   "player_leaderboard": [
@@ -309,6 +309,13 @@
       "hit_rate": 0.294118
     },
     {
+      "batter_name": "Hunter Goodman",
+      "team": "COL",
+      "picks": 16,
+      "homers": 5,
+      "hit_rate": 0.3125
+    },
+    {
       "batter_name": "Iv\u00e1n Herrera",
       "team": "STL",
       "picks": 21,
@@ -386,8 +393,15 @@
       "hit_rate": 0.25
     },
     {
-      "batter_name": "Hunter Goodman",
-      "team": "COL",
+      "batter_name": "Ildemaro Vargas",
+      "team": "AZ",
+      "picks": 15,
+      "homers": 4,
+      "hit_rate": 0.266667
+    },
+    {
+      "batter_name": "Josh Jung",
+      "team": "TEX",
       "picks": 15,
       "homers": 4,
       "hit_rate": 0.266667
@@ -400,8 +414,8 @@
       "hit_rate": 0.266667
     },
     {
-      "batter_name": "Josh Jung",
-      "team": "TEX",
+      "batter_name": "Casey Schmitt",
+      "team": "SF",
       "picks": 14,
       "homers": 4,
       "hit_rate": 0.285714
@@ -428,6 +442,13 @@
       "hit_rate": 0.333333
     },
     {
+      "batter_name": "Corey Seager",
+      "team": "TEX",
+      "picks": 22,
+      "homers": 3,
+      "hit_rate": 0.136364
+    },
+    {
       "batter_name": "JJ Wetherholt",
       "team": "STL",
       "picks": 22,
@@ -437,13 +458,6 @@
     {
       "batter_name": "Bryce Harper",
       "team": "PHI",
-      "picks": 21,
-      "homers": 3,
-      "hit_rate": 0.142857
-    },
-    {
-      "batter_name": "Corey Seager",
-      "team": "TEX",
       "picks": 21,
       "homers": 3,
       "hit_rate": 0.142857
@@ -498,6 +512,13 @@
       "hit_rate": 0.157895
     },
     {
+      "batter_name": "Evan Carter",
+      "team": "TEX",
+      "picks": 19,
+      "homers": 3,
+      "hit_rate": 0.157895
+    },
+    {
       "batter_name": "Giancarlo Stanton",
       "team": "NYY",
       "picks": 19,
@@ -542,13 +563,6 @@
     {
       "batter_name": "Dillon Dingler",
       "team": "DET",
-      "picks": 18,
-      "homers": 3,
-      "hit_rate": 0.166667
-    },
-    {
-      "batter_name": "Evan Carter",
-      "team": "TEX",
       "picks": 18,
       "homers": 3,
       "hit_rate": 0.166667
@@ -617,13 +631,6 @@
       "hit_rate": 0.1875
     },
     {
-      "batter_name": "Ildemaro Vargas",
-      "team": "AZ",
-      "picks": 14,
-      "homers": 3,
-      "hit_rate": 0.214286
-    },
-    {
       "batter_name": "Jake Bauers",
       "team": "MIL",
       "picks": 14,
@@ -640,13 +647,6 @@
     {
       "batter_name": "Angel Mart\u00ednez",
       "team": "CLE",
-      "picks": 13,
-      "homers": 3,
-      "hit_rate": 0.230769
-    },
-    {
-      "batter_name": "Casey Schmitt",
-      "team": "SF",
       "picks": 13,
       "homers": 3,
       "hit_rate": 0.230769
@@ -682,9 +682,9 @@
     {
       "batter_name": "Jake Burger",
       "team": "TEX",
-      "picks": 24,
+      "picks": 25,
       "homers": 2,
-      "hit_rate": 0.083333
+      "hit_rate": 0.08
     },
     {
       "batter_name": "Julio Rodr\u00edguez",
@@ -706,6 +706,13 @@
       "picks": 22,
       "homers": 2,
       "hit_rate": 0.090909
+    },
+    {
+      "batter_name": "Brandon Nimmo",
+      "team": "TEX",
+      "picks": 21,
+      "homers": 2,
+      "hit_rate": 0.095238
     },
     {
       "batter_name": "Chase DeLauter",
@@ -745,13 +752,6 @@
     {
       "batter_name": "Austin Riley",
       "team": "ATL",
-      "picks": 20,
-      "homers": 2,
-      "hit_rate": 0.1
-    },
-    {
-      "batter_name": "Brandon Nimmo",
-      "team": "TEX",
       "picks": 20,
       "homers": 2,
       "hit_rate": 0.1
@@ -1002,6 +1002,13 @@
       "hit_rate": 0.333333
     },
     {
+      "batter_name": "Bobby Witt Jr.",
+      "team": "KC",
+      "picks": 21,
+      "homers": 1,
+      "hit_rate": 0.047619
+    },
+    {
       "batter_name": "Taylor Ward",
       "team": "BAL",
       "picks": 21,
@@ -1123,6 +1130,13 @@
     {
       "batter_name": "Jacob Young",
       "team": "WSH",
+      "picks": 18,
+      "homers": 1,
+      "hit_rate": 0.055556
+    },
+    {
+      "batter_name": "Jose Fernandez",
+      "team": "AZ",
       "picks": 18,
       "homers": 1,
       "hit_rate": 0.055556
@@ -1282,6 +1296,13 @@
       "hit_rate": 0.071429
     },
     {
+      "batter_name": "Joc Pederson",
+      "team": "TEX",
+      "picks": 14,
+      "homers": 1,
+      "hit_rate": 0.071429
+    },
+    {
       "batter_name": "Kyle Isbel",
       "team": "KC",
       "picks": 14,
@@ -1319,13 +1340,6 @@
     {
       "batter_name": "Javier B\u00e1ez",
       "team": "DET",
-      "picks": 13,
-      "homers": 1,
-      "hit_rate": 0.076923
-    },
-    {
-      "batter_name": "Joc Pederson",
-      "team": "TEX",
       "picks": 13,
       "homers": 1,
       "hit_rate": 0.076923
@@ -1583,13 +1597,6 @@
       "hit_rate": 0.5
     },
     {
-      "batter_name": "Bobby Witt Jr.",
-      "team": "KC",
-      "picks": 20,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
       "batter_name": "Chase Meidroth",
       "team": "CWS",
       "picks": 20,
@@ -1667,6 +1674,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Josh Smith",
+      "team": "TEX",
+      "picks": 18,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Luis Arraez",
       "team": "SF",
       "picks": 18,
@@ -1697,20 +1711,6 @@
     {
       "batter_name": "Alex Freeland",
       "team": "LAD",
-      "picks": 17,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Jose Fernandez",
-      "team": "AZ",
-      "picks": 17,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Josh Smith",
-      "team": "TEX",
       "picks": 17,
       "homers": 0,
       "hit_rate": 0.0
@@ -1891,6 +1891,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Danny Jansen",
+      "team": "TEX",
+      "picks": 10,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Hyeseong Kim",
       "team": "LAD",
       "picks": 10,
@@ -1908,13 +1915,6 @@
       "batter_name": "Nick Fortes",
       "team": "TB",
       "picks": 10,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Danny Jansen",
-      "team": "TEX",
-      "picks": 9,
       "homers": 0,
       "hit_rate": 0.0
     },
@@ -3546,7 +3546,7 @@
       "game_pk": 822911,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T18:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 185,
       "original_rank": 185,
       "original_score": 43.7,
@@ -3583,15 +3583,15 @@
       "ballparkpal_overlay_adjusted_score": 43.7,
       "ballparkpal_overlay_adjusted_rank": 13,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 6.7%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "J.T. Ginn has allowed homers in 3.8% of plate appearances over the last 30 days.",
       "top_reason_3": "Forecast temperature is 85F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-26:824122:672724:607625",
@@ -3660,7 +3660,7 @@
       "game_pk": 822911,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T18:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 168,
       "original_rank": 168,
       "original_score": 40.1,
@@ -6543,15 +6543,15 @@
       "ballparkpal_overlay_adjusted_score": 25.5,
       "ballparkpal_overlay_adjusted_rank": 67,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.2 mph, which points to top-end HR juice.",
       "top_reason_2": "Hard-hit rate over the last 30 days is 53.5%, showing consistent quality contact.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 53.5%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-26:824934:621566:605400",
@@ -7947,15 +7947,15 @@
       "ballparkpal_overlay_adjusted_score": 15.3,
       "ballparkpal_overlay_adjusted_rank": 93,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 11.1%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Kodai Senga has allowed a 47.1% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 82%, a modest positive weather input in the live model. Update: Nolan McLean has allowed barrels on 5.8% of batted balls to this batter side. Update: Barrel rate over the last 10 days is 9.4%, a top-decile indicator of current lift-and-damage contact. Update: Nolan McLean has allowed barrels on 5.8% of batted balls to this batter side. Update: Projected humidity is 82%, a modest positive weather input in the live model. Update: Kodai Senga has allowed a 47.1% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-26:823797:665833:690986",
@@ -8308,7 +8308,7 @@
       "game_pk": 822911,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T18:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 37,
       "original_rank": 37,
       "original_score": 92.5,
@@ -8345,15 +8345,15 @@
       "ballparkpal_overlay_adjusted_score": 23.2,
       "ballparkpal_overlay_adjusted_rank": 99,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 5.3% barrel-per-PA split.",
       "top_reason_2": "J.T. Ginn has allowed homers in 3.8% of plate appearances over the last 30 days.",
       "top_reason_3": "Forecast temperature is 85F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-26:823959:621020:680736",
@@ -9270,7 +9270,7 @@
       "game_pk": 822911,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T18:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 16,
       "original_rank": 16,
       "original_score": 97.8,
@@ -9307,15 +9307,15 @@
       "ballparkpal_overlay_adjusted_score": 22.6,
       "ballparkpal_overlay_adjusted_rank": 116,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0040, reinforcing the power-contact fit.",
       "top_reason_2": "J.T. Ginn has allowed barrels on 6.5% of batted balls to this batter side.",
       "top_reason_3": "Forecast temperature is 85F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-26:824528:680574:672456",
@@ -9871,15 +9871,15 @@
       "ballparkpal_overlay_adjusted_score": 16.7,
       "ballparkpal_overlay_adjusted_rank": 126,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 11.1%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Max Meyer has allowed homers in 4.0% of plate appearances to this batter side.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 54.2%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-26:824528:679529:695076",
@@ -10039,15 +10039,15 @@
       "ballparkpal_overlay_adjusted_score": 20.2,
       "ballparkpal_overlay_adjusted_rank": 129,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 75.0%, a top-decile recent-contact signal.",
       "top_reason_2": "95+ EV contact rate over the last 10 days is 75.0%, which supports near-term HR upside.",
       "top_reason_3": "Average exit velocity over the last 10 days is 98.5 mph, a top-decile recent batted-ball quality marker.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-26:824202:514888:661563",
@@ -11929,7 +11929,7 @@
       "game_pk": 822911,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T18:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 66,
       "original_rank": 66,
       "original_score": 92.8,
@@ -11966,15 +11966,15 @@
       "ballparkpal_overlay_adjusted_score": 19.9,
       "ballparkpal_overlay_adjusted_rank": 160,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 69.6%, a top-decile recent-contact signal.",
       "top_reason_2": "J.T. Ginn has allowed barrels on 6.5% of batted balls to this batter side.",
       "top_reason_3": "Forecast temperature is 85F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-26:824528:672761:695076",
@@ -12377,7 +12377,7 @@
       "game_pk": 822911,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T18:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 98,
       "original_rank": 98,
       "original_score": 73.8,
@@ -12414,15 +12414,15 @@
       "ballparkpal_overlay_adjusted_score": 17.6,
       "ballparkpal_overlay_adjusted_rank": 167,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 96.4 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "J.T. Ginn has allowed barrels on 6.5% of batted balls to this batter side.",
       "top_reason_3": "Forecast temperature is 85F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-26:823797:596142:669387",
@@ -12526,15 +12526,15 @@
       "ballparkpal_overlay_adjusted_score": 13.8,
       "ballparkpal_overlay_adjusted_rank": 169,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 10.0%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Barrel rate over the last 30 days is 4.5%, which the model treats as sustained power quality.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-04-26:824528:670770:672456",
@@ -13904,7 +13904,7 @@
       "game_pk": 822911,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T18:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 190,
       "original_rank": 190,
       "original_score": 31.2,
@@ -15378,7 +15378,7 @@
       "game_pk": 822911,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T18:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 154,
       "original_rank": 154,
       "original_score": 58.1,
@@ -15415,15 +15415,15 @@
       "ballparkpal_overlay_adjusted_score": 13.3,
       "ballparkpal_overlay_adjusted_rank": 218,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
       "top_reason_2": "J.T. Ginn has allowed barrels on 6.5% of batted balls to this batter side.",
       "top_reason_3": "Forecast temperature is 85F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-26:822911:673962:669372",
@@ -15434,7 +15434,7 @@
       "game_pk": 822911,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T18:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 112,
       "original_rank": 112,
       "original_score": 67.7,
@@ -15471,15 +15471,15 @@
       "ballparkpal_overlay_adjusted_score": 14.2,
       "ballparkpal_overlay_adjusted_rank": 219,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 53.4%, showing consistent quality contact.",
       "top_reason_2": "J.T. Ginn has allowed homers in 3.8% of plate appearances over the last 30 days.",
       "top_reason_3": "Forecast temperature is 85F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-26:823068:702284:700241",
@@ -16222,7 +16222,7 @@
       "game_pk": 822911,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T18:35:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 80,
       "original_rank": 80,
       "original_score": 69.9,
@@ -16259,15 +16259,15 @@
       "ballparkpal_overlay_adjusted_score": 13.6,
       "ballparkpal_overlay_adjusted_rank": 234,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0019, reinforcing the power-contact fit.",
       "top_reason_2": "J.T. Ginn has allowed barrels on 6.5% of batted balls to this batter side.",
       "top_reason_3": "Forecast temperature is 85F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-26:824852:668939:813349",
@@ -316523,8 +316523,8 @@
       "game_pk": 822911,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T18:35:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "OAK @ TEX",
       "teams": [
         {
