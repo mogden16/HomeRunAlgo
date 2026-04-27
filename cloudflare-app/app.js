@@ -555,6 +555,12 @@ function renderProbabilityCell(row) {
     `,
   );
 }
+
+function renderTodayHrCount(row) {
+  const hrCount = Number(row.actual_hit_hr);
+  const displayCount = Number.isFinite(hrCount) ? hrCount : 0;
+  return `<span class="hr-count-badge">HRs: ${escapeHtml(displayCount)}</span>`;
+}
 function renderMobileCellStack(label, content, extraClass = "") {
   return `
     <div class="mobile-cell-stack ${extraClass}">
@@ -884,7 +890,7 @@ function renderPicksTable(targetId, rows, emptyMessage, { includeGameMeta = fals
           "Hitter",
           `
             <div class="name-block">
-              <strong class="${row.inactive_flag ? "name-inactive" : ""}">${escapeHtml(row.batter_name)}</strong>
+              <strong class="${row.inactive_flag ? "name-inactive" : ""}">${escapeHtml(row.batter_name)} ${renderTodayHrCount(row)}</strong>
               <span>${escapeHtml(row.team)} vs ${escapeHtml(row.opponent_team || "-")}</span>
               <span class="mobile-inline-pitcher">vs ${escapeHtml(row.pitcher_name || "-")}</span>
               <span>${renderLineupBadge(row.lineup_source)}${row.batting_order ? ` <span class="lineup-order">batting ${escapeHtml(row.batting_order)}</span>` : ""} <span class="lineup-separator">|</span> ${escapeHtml(formatGameState(row.game_state))}</span>

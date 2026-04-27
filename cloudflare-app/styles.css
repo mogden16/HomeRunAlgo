@@ -804,6 +804,21 @@ td {
   opacity: 0.72;
 }
 
+.hr-count-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  background: rgba(234, 179, 8, 0.12);
+  vertical-align: middle;
+}
+
 .name-block span {
   display: block;
 }
