@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-26T23:28:47.823156+00:00",
+  "generated_at": "2026-04-27T00:16:29.024691+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -97,10 +97,10 @@
     "latest_slate_size": 292,
     "tracked_dates": 32,
     "tracked_picks": 5536,
-    "settled_picks": 4558,
+    "settled_picks": 4565,
     "tracked_homers": 520,
-    "tracked_hit_rate": 0.114085,
-    "open_picks": 978
+    "tracked_hit_rate": 0.11391,
+    "open_picks": 971
   },
   "confidence_summary": [
     {
@@ -119,17 +119,17 @@
     },
     {
       "confidence_tier": "watch",
-      "picks": 769,
+      "picks": 770,
       "homers": 111,
-      "hit_rate": 0.144343,
-      "avg_probability": 0.14111
+      "hit_rate": 0.144156,
+      "avg_probability": 0.141078
     },
     {
       "confidence_tier": "longshot",
-      "picks": 3416,
+      "picks": 3422,
       "homers": 319,
-      "hit_rate": 0.093384,
-      "avg_probability": 0.095033
+      "hit_rate": 0.09322,
+      "avg_probability": 0.095037
     }
   ],
   "player_leaderboard": [
@@ -1128,6 +1128,13 @@
       "hit_rate": 0.052632
     },
     {
+      "batter_name": "Bo Bichette",
+      "team": "NYM",
+      "picks": 18,
+      "homers": 1,
+      "hit_rate": 0.055556
+    },
+    {
       "batter_name": "Brady House",
       "team": "WSH",
       "picks": 18,
@@ -1191,7 +1198,7 @@
       "hit_rate": 0.058824
     },
     {
-      "batter_name": "Bo Bichette",
+      "batter_name": "Carson Benge",
       "team": "NYM",
       "picks": 17,
       "homers": 1,
@@ -1233,7 +1240,7 @@
       "hit_rate": 0.0625
     },
     {
-      "batter_name": "Carson Benge",
+      "batter_name": "Francisco Alvarez",
       "team": "NYM",
       "picks": 16,
       "homers": 1,
@@ -1263,13 +1270,6 @@
     {
       "batter_name": "Edouard Julien",
       "team": "COL",
-      "picks": 15,
-      "homers": 1,
-      "hit_rate": 0.066667
-    },
-    {
-      "batter_name": "Francisco Alvarez",
-      "team": "NYM",
       "picks": 15,
       "homers": 1,
       "hit_rate": 0.066667
@@ -1373,18 +1373,18 @@
       "hit_rate": 0.076923
     },
     {
-      "batter_name": "Will Smith",
-      "team": "LAD",
+      "batter_name": "Brett Baty",
+      "team": "NYM",
       "picks": 12,
       "homers": 1,
       "hit_rate": 0.083333
     },
     {
-      "batter_name": "Brett Baty",
-      "team": "NYM",
-      "picks": 11,
+      "batter_name": "Will Smith",
+      "team": "LAD",
+      "picks": 12,
       "homers": 1,
-      "hit_rate": 0.090909
+      "hit_rate": 0.083333
     },
     {
       "batter_name": "Carson Kelly",
@@ -1667,6 +1667,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Marcus Semien",
+      "team": "NYM",
+      "picks": 19,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Wilyer Abreu",
       "team": "BOS",
       "picks": 19,
@@ -1690,13 +1697,6 @@
     {
       "batter_name": "Josh Smith",
       "team": "TEX",
-      "picks": 18,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Marcus Semien",
-      "team": "NYM",
       "picks": 18,
       "homers": 0,
       "hit_rate": 0.0
@@ -1954,6 +1954,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Tyler Freeman",
+      "team": "COL",
+      "picks": 9,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Alek Thomas",
       "team": "AZ",
       "picks": 8,
@@ -2026,13 +2033,6 @@
     {
       "batter_name": "Thomas Saggese",
       "team": "STL",
-      "picks": 8,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Tyler Freeman",
-      "team": "COL",
       "picks": 8,
       "homers": 0,
       "hit_rate": 0.0
@@ -4808,7 +4808,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T17:45:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 220,
       "original_rank": 220,
       "original_score": 5.7,
@@ -4845,15 +4845,15 @@
       "ballparkpal_overlay_adjusted_score": 5.7,
       "ballparkpal_overlay_adjusted_rank": 38,
       "ballparkpal_overlay_direction": "neutral",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Nolan McLean has allowed barrels on 5.8% of batted balls to this batter side.",
       "top_reason_2": "Projected humidity is 82%, a modest positive weather input in the live model.",
       "top_reason_3": "Kodai Senga has allowed a 47.1% hard-hit rate over the last 30 days. Update: Kodai Senga has allowed 47.1% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-26:824612:678391:663542",
@@ -7910,7 +7910,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T17:45:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 71,
       "original_rank": 71,
       "original_score": 67.0,
@@ -8648,7 +8648,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T17:45:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 35,
       "original_rank": 35,
       "original_score": 45.5,
@@ -8685,8 +8685,8 @@
       "ballparkpal_overlay_adjusted_score": 18.3,
       "ballparkpal_overlay_adjusted_rank": 106,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [
         "pitcher_change_alert"
       ],
@@ -8695,7 +8695,7 @@
       "top_reason_1": "Hard-hit rate over the last 10 days is 66.7%, a top-decile recent-contact signal.",
       "top_reason_2": "Jose Quintana has allowed homers in 3.9% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected humidity is 82%, a modest positive weather input in the live model. Update: 95+ EV contact rate over the last 10 days is 66.7%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-26:824934:686948:605400",
@@ -11080,7 +11080,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T17:45:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 132,
       "original_rank": 132,
       "original_score": 50.9,
@@ -12601,7 +12601,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T17:45:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 70,
       "original_rank": 70,
       "original_score": 78.1,
@@ -12638,8 +12638,8 @@
       "ballparkpal_overlay_adjusted_score": 17.8,
       "ballparkpal_overlay_adjusted_rank": 171,
       "ballparkpal_overlay_direction": "favorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [
         "pitcher_change_alert"
       ],
@@ -12648,7 +12648,7 @@
       "top_reason_1": "Against this pitcher handedness, the hitter has a 5.7% barrel-per-PA split.",
       "top_reason_2": "Jose Quintana has allowed homers in 3.9% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected humidity is 82%, a modest positive weather input in the live model. Update: Barrel rate over the last 30 days is 5.6%, which the model treats as sustained power quality. Update: Peak exit velocity over the last 10 days is 108.5 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-26:823959:691718:680736",
@@ -14076,7 +14076,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T17:45:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 125,
       "original_rank": 125,
       "original_score": 53.4,
@@ -14113,8 +14113,8 @@
       "ballparkpal_overlay_adjusted_score": 14.2,
       "ballparkpal_overlay_adjusted_rank": 195,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [
         "pitcher_change_alert"
       ],
@@ -14123,7 +14123,7 @@
       "top_reason_1": "Average exit velocity over the last 10 days is 93.4 mph, a top-quartile recent batted-ball quality marker.",
       "top_reason_2": "Projected humidity is 82%, a modest positive weather input in the live model.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 53.8%, a top-quartile recent-contact signal. Update: Jose Quintana has allowed homers in 3.9% of plate appearances over the last 30 days. Update: Average exit velocity over the last 10 days is 95.9 mph, a top-decile recent batted-ball quality marker. Update: Jose Quintana has allowed homers in 3.9% of plate appearances over the last 30 days. Update: Projected humidity is 82%, a modest positive weather input in the live model. Update: Hard-hit rate over the last 10 days is 55.6%, a top-quartile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-26:822824:665926:677944",
@@ -14248,7 +14248,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T17:45:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 121,
       "original_rank": 121,
       "original_score": 56.3,
@@ -14285,8 +14285,8 @@
       "ballparkpal_overlay_adjusted_score": 14.4,
       "ballparkpal_overlay_adjusted_rank": 197,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [
         "pitcher_change_alert"
       ],
@@ -14295,7 +14295,7 @@
       "top_reason_1": "Barrel rate over the last 10 days is 3.6%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Projected humidity is 82%, a modest positive weather input in the live model.",
       "top_reason_3": "Jose Quintana has allowed homers in 3.9% of plate appearances over the last 30 days. Update: Jose Quintana has allowed barrels on 5.7% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-26:822824:682877:571578",
@@ -16842,7 +16842,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T17:45:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 65,
       "original_rank": 65,
       "original_score": 81.4,
@@ -16879,8 +16879,8 @@
       "ballparkpal_overlay_adjusted_score": 14.3,
       "ballparkpal_overlay_adjusted_rank": 243,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [
         "pitcher_change_alert"
       ],
@@ -16889,7 +16889,7 @@
       "top_reason_1": "Peak exit velocity over the last 10 days is 111.5 mph, which points to top-end HR juice.",
       "top_reason_2": "Jose Quintana has allowed homers in 3.9% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected humidity is 82%, a modest positive weather input in the live model. Update: Hard-hit rate over the last 30 days is 46.6%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-26:824612:671976:656492",
@@ -16958,7 +16958,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T17:45:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 218,
       "original_rank": 218,
       "original_score": 23.3,
@@ -16995,8 +16995,8 @@
       "ballparkpal_overlay_adjusted_score": 8.5,
       "ballparkpal_overlay_adjusted_rank": 244,
       "ballparkpal_overlay_direction": "unfavorable",
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [
         "pitcher_change_alert"
       ],
@@ -17005,7 +17005,7 @@
       "top_reason_1": "Average exit velocity over the last 10 days is 94.9 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Projected humidity is 82%, a modest positive weather input in the live model.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 56.2%, a top-quartile recent-contact signal. Update: Jose Quintana has allowed homers in 3.9% of plate appearances over the last 30 days. Update: Average exit velocity over the last 10 days is 94.5 mph, a top-decile recent batted-ball quality marker. Update: Jose Quintana has allowed homers in 3.9% of plate appearances over the last 30 days. Update: Projected humidity is 82%, a modest positive weather input in the live model. Update: Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-04-26:823068:701675:676106",
@@ -315761,7 +315761,7 @@
       "game_pk": 823637,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T17:45:00Z",
-      "game_status": "Game Over",
+      "game_status": "Final",
       "game_state": "final",
       "matchup": "COL @ NYM",
       "teams": [
@@ -316864,7 +316864,7 @@
       "game_pk": 824122,
       "game_date": "2026-04-26",
       "game_datetime": "2026-04-26T20:10:00Z",
-      "game_status": "Delayed",
+      "game_status": "In Progress",
       "game_state": "live",
       "matchup": "LAA @ KC",
       "teams": [
