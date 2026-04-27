@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-27T16:21:29.055717+00:00",
+  "generated_at": "2026-04-27T18:04:17.114055+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2920,7 +2920,7 @@
       "team": "CLE",
       "opponent_team": "TB",
       "pitcher_name": "Steven Matz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -3032,7 +3032,7 @@
       "team": "CLE",
       "opponent_team": "TB",
       "pitcher_name": "Steven Matz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -3060,14 +3060,16 @@
       "ballparkpal_overlay_adjusted_rank": 3,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Steven Matz has allowed barrels on 9.6% of recent batted balls.",
       "top_reason_3": "Steven Matz has allowed homers in 4.4% of plate appearances over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-27:823961:687221:663978",
@@ -3704,7 +3706,7 @@
       "team": "CLE",
       "opponent_team": "TB",
       "pitcher_name": "Steven Matz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -3732,14 +3734,16 @@
       "ballparkpal_overlay_adjusted_rank": 15,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.3 mph, which points to top-end HR juice.",
       "top_reason_2": "Steven Matz has allowed barrels on 9.6% of recent batted balls.",
       "top_reason_3": "Steven Matz has allowed homers in 4.4% of plate appearances over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-27:823395:693304:669160",
@@ -4040,7 +4044,7 @@
       "team": "CLE",
       "opponent_team": "TB",
       "pitcher_name": "Steven Matz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -4068,14 +4072,16 @@
       "ballparkpal_overlay_adjusted_rank": 21,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Steven Matz has allowed barrels on 9.6% of recent batted balls.",
       "top_reason_2": "Steven Matz has allowed homers in 4.4% of plate appearances over the last 30 days.",
       "top_reason_3": "Steven Matz has allowed 90.3 mph average exit velocity recently, which the model flags as hittable contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-27:824446:656775:800048",
@@ -5160,7 +5166,7 @@
       "team": "CLE",
       "opponent_team": "TB",
       "pitcher_name": "Steven Matz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -5328,7 +5334,7 @@
       "team": "CLE",
       "opponent_team": "TB",
       "pitcher_name": "Steven Matz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -5832,7 +5838,7 @@
       "team": "CLE",
       "opponent_team": "TB",
       "pitcher_name": "Steven Matz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -6000,7 +6006,7 @@
       "team": "CLE",
       "opponent_team": "TB",
       "pitcher_name": "Steven Matz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -7344,7 +7350,7 @@
       "team": "CLE",
       "opponent_team": "TB",
       "pitcher_name": "Steven Matz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -322518,7 +322524,7 @@
       "game_pk": 824446,
       "game_date": "2026-04-27",
       "game_datetime": "2026-04-27T22:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "TB @ CLE",
       "teams": [
@@ -322586,7 +322592,7 @@
         {
           "team": "CLE",
           "opponent_team": "TB",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682657,
@@ -322595,10 +322601,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 666310,
-              "batter_name": "Bo Naylor",
+              "batter_id": 595978,
+              "batter_name": "Austin Hedges",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 677587,
@@ -322619,10 +322625,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 671655,
-              "batter_name": "George Valera",
+              "batter_id": 681807,
+              "batter_name": "David Fry",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 608070,
@@ -322631,16 +322637,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 682877,
-              "batter_name": "Juan Brito",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
               "batter_id": 656555,
               "batter_name": "Rhys Hoskins",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 680757,
+              "batter_name": "Steven Kwan",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         }
