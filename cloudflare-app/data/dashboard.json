@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-27T19:19:26.333792+00:00",
+  "generated_at": "2026-04-27T20:31:40.959330+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -3370,7 +3370,7 @@
       "team": "TEX",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -3398,14 +3398,16 @@
       "ballparkpal_overlay_adjusted_rank": 9,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2498, supporting loud-contact upside.",
       "top_reason_2": "Max Fried has allowed homers in 3.4% of plate appearances to this batter side.",
       "top_reason_3": "Forecast temperature is 92F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-27:823719:686527:687570",
@@ -3426,7 +3428,7 @@
       "team": "SEA",
       "opponent_team": "MIN",
       "pitcher_name": "Connor Prielipp",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -3454,14 +3456,16 @@
       "ballparkpal_overlay_adjusted_rank": 10,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.3889, supporting loud-contact upside.",
       "top_reason_2": "Connor Prielipp has allowed barrels on 33.3% of batted balls to this batter side.",
       "top_reason_3": "Projected humidity is 94%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-27:822825:660821:624133",
@@ -3482,7 +3486,7 @@
       "team": "TOR",
       "opponent_team": "BOS",
       "pitcher_name": "Ranger Suarez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -3538,7 +3542,7 @@
       "team": "TEX",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -3594,7 +3598,7 @@
       "team": "PIT",
       "opponent_team": "STL",
       "pitcher_name": "Dustin May",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -3764,7 +3768,7 @@
       "team": "PIT",
       "opponent_team": "STL",
       "pitcher_name": "Dustin May",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -3820,7 +3824,7 @@
       "team": "TOR",
       "opponent_team": "BOS",
       "pitcher_name": "Ranger Suarez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -4104,7 +4108,7 @@
       "team": "TB",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -4132,14 +4136,16 @@
       "ballparkpal_overlay_adjusted_rank": 22,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 89.0 mph, a above-baseline recent batted-ball quality marker.",
       "top_reason_2": "Parker Messick has allowed barrels on 5.0% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 9.3 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-27:822906:643376:608331",
@@ -4160,7 +4166,7 @@
       "team": "TEX",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -4188,14 +4194,16 @@
       "ballparkpal_overlay_adjusted_rank": 23,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 5.6%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Forecast temperature is 92F, a positive hitting-context input in the live model.",
       "top_reason_3": "Barrel rate over the last 30 days is 3.5%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-27:822825:807799:656302",
@@ -4216,7 +4224,7 @@
       "team": "BOS",
       "opponent_team": "TOR",
       "pitcher_name": "Dylan Cease",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -4244,14 +4252,16 @@
       "ballparkpal_overlay_adjusted_rank": 24,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.3 mph, which points to top-end HR juice.",
       "top_reason_2": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-27:824609:671976:686799",
@@ -4272,7 +4282,7 @@
       "team": "CWS",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -4778,7 +4788,7 @@
       "team": "SEA",
       "opponent_team": "MIN",
       "pitcher_name": "Connor Prielipp",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -4890,7 +4900,7 @@
       "team": "CWS",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -5002,7 +5012,7 @@
       "team": "CWS",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -5226,7 +5236,7 @@
       "team": "BOS",
       "opponent_team": "TOR",
       "pitcher_name": "Dylan Cease",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -5394,7 +5404,7 @@
       "team": "CWS",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -5450,7 +5460,7 @@
       "team": "TOR",
       "opponent_team": "BOS",
       "pitcher_name": "Ranger Suarez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -5562,7 +5572,7 @@
       "team": "CWS",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -5730,7 +5740,7 @@
       "team": "TEX",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -5786,7 +5796,7 @@
       "team": "TOR",
       "opponent_team": "BOS",
       "pitcher_name": "Ranger Suarez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -5814,14 +5824,16 @@
       "ballparkpal_overlay_adjusted_rank": 52,
       "ballparkpal_overlay_direction": "favorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Ranger Suarez has allowed homers in 4.8% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-27:824446:608070:571927",
@@ -6066,7 +6078,7 @@
       "team": "TB",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -6122,7 +6134,7 @@
       "team": "PIT",
       "opponent_team": "STL",
       "pitcher_name": "Dustin May",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -6234,7 +6246,7 @@
       "team": "SEA",
       "opponent_team": "MIN",
       "pitcher_name": "Connor Prielipp",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -6346,7 +6358,7 @@
       "team": "TOR",
       "opponent_team": "BOS",
       "pitcher_name": "Ranger Suarez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -6402,7 +6414,7 @@
       "team": "BOS",
       "opponent_team": "TOR",
       "pitcher_name": "Dylan Cease",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -6682,7 +6694,7 @@
       "team": "TEX",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -6794,7 +6806,7 @@
       "team": "SEA",
       "opponent_team": "MIN",
       "pitcher_name": "Connor Prielipp",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -6906,7 +6918,7 @@
       "team": "TOR",
       "opponent_team": "BOS",
       "pitcher_name": "Ranger Suarez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -7018,7 +7030,7 @@
       "team": "TEX",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -7130,7 +7142,7 @@
       "team": "TB",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -7242,7 +7254,7 @@
       "team": "CWS",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -7410,7 +7422,7 @@
       "team": "BOS",
       "opponent_team": "TOR",
       "pitcher_name": "Dylan Cease",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -7466,7 +7478,7 @@
       "team": "PIT",
       "opponent_team": "STL",
       "pitcher_name": "Dustin May",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -7578,7 +7590,7 @@
       "team": "PIT",
       "opponent_team": "STL",
       "pitcher_name": "Dustin May",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -7690,7 +7702,7 @@
       "team": "SEA",
       "opponent_team": "MIN",
       "pitcher_name": "Connor Prielipp",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -7802,7 +7814,7 @@
       "team": "TB",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -7914,7 +7926,7 @@
       "team": "SEA",
       "opponent_team": "MIN",
       "pitcher_name": "Connor Prielipp",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -7970,7 +7982,7 @@
       "team": "TOR",
       "opponent_team": "BOS",
       "pitcher_name": "Ranger Suarez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -8082,7 +8094,7 @@
       "team": "PIT",
       "opponent_team": "STL",
       "pitcher_name": "Dustin May",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -8306,7 +8318,7 @@
       "team": "TB",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -8474,7 +8486,7 @@
       "team": "BOS",
       "opponent_team": "TOR",
       "pitcher_name": "Dylan Cease",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -8754,7 +8766,7 @@
       "team": "SEA",
       "opponent_team": "MIN",
       "pitcher_name": "Connor Prielipp",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -8922,7 +8934,7 @@
       "team": "SEA",
       "opponent_team": "MIN",
       "pitcher_name": "Connor Prielipp",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -8978,7 +8990,7 @@
       "team": "TEX",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -9034,7 +9046,7 @@
       "team": "BOS",
       "opponent_team": "TOR",
       "pitcher_name": "Dylan Cease",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -9202,7 +9214,7 @@
       "team": "PIT",
       "opponent_team": "STL",
       "pitcher_name": "Dustin May",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -9258,7 +9270,7 @@
       "team": "BOS",
       "opponent_team": "TOR",
       "pitcher_name": "Dylan Cease",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -9370,7 +9382,7 @@
       "team": "TB",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -9484,7 +9496,7 @@
       "team": "BOS",
       "opponent_team": "TOR",
       "pitcher_name": "Dylan Cease",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -9652,7 +9664,7 @@
       "team": "PIT",
       "opponent_team": "STL",
       "pitcher_name": "Dustin May",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -9708,7 +9720,7 @@
       "team": "TOR",
       "opponent_team": "BOS",
       "pitcher_name": "Ranger Suarez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -9736,14 +9748,16 @@
       "ballparkpal_overlay_adjusted_rank": 122,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Ranger Suarez has allowed homers in 4.8% of plate appearances over the last 30 days.",
       "top_reason_2": "Projected wind speed is 13.5 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Ranger Suarez has allowed a 46.7% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-27:823961:683357:808967",
@@ -9820,7 +9834,7 @@
       "team": "TB",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -9932,7 +9946,7 @@
       "team": "CWS",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -10044,7 +10058,7 @@
       "team": "SEA",
       "opponent_team": "MIN",
       "pitcher_name": "Connor Prielipp",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -10100,7 +10114,7 @@
       "team": "TEX",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -10156,7 +10170,7 @@
       "team": "TEX",
       "opponent_team": "NYY",
       "pitcher_name": "Max Fried",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -10184,14 +10198,16 @@
       "ballparkpal_overlay_adjusted_rank": 130,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 93.0 mph, a top-quartile recent batted-ball quality marker.",
       "top_reason_2": "Max Fried has allowed homers in 3.4% of plate appearances to this batter side.",
       "top_reason_3": "Forecast temperature is 92F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-27:822825:702332:656302",
@@ -10212,7 +10228,7 @@
       "team": "BOS",
       "opponent_team": "TOR",
       "pitcher_name": "Dylan Cease",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -10436,7 +10452,7 @@
       "team": "TOR",
       "opponent_team": "BOS",
       "pitcher_name": "Ranger Suarez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -10492,7 +10508,7 @@
       "team": "CWS",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -10604,7 +10620,7 @@
       "team": "PIT",
       "opponent_team": "STL",
       "pitcher_name": "Dustin May",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -10716,7 +10732,7 @@
       "team": "TB",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -10772,7 +10788,7 @@
       "team": "CWS",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -10940,7 +10956,7 @@
       "team": "TB",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -322537,17 +322553,11 @@
         {
           "team": "TB",
           "opponent_team": "CLE",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 810938,
               "batter_name": "Ben Williamson",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 656775,
-              "batter_name": "Cedric Mullins",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -322558,14 +322568,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 641584,
-              "batter_name": "Jake Fraley",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
               "batter_id": 666018,
               "batter_name": "Jonathan Aranda",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 676356,
+              "batter_name": "Jonny DeLuca",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -322724,7 +322734,7 @@
         {
           "team": "PIT",
           "opponent_team": "STL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 664040,
@@ -322739,10 +322749,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 663968,
-              "batter_name": "Jake Mangum",
+              "batter_id": 680779,
+              "batter_name": "Henry Davis",
               "batting_order": null,
-              "selected_for_pick": false
+              "selected_for_pick": true
             },
             {
               "batter_id": 804606,
@@ -322788,24 +322798,24 @@
       "game_pk": 822825,
       "game_date": "2026-04-27",
       "game_datetime": "2026-04-27T23:07:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "BOS @ TOR",
       "teams": [
         {
           "team": "BOS",
           "opponent_team": "TOR",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 655316,
-              "batter_name": "Andruw Monasterio",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
             {
               "batter_id": 702332,
               "batter_name": "Caleb Durbin",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 665966,
+              "batter_name": "Carlos Narv\u00e1ez",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -322814,12 +322824,6 @@
               "batter_name": "Ceddanne Rafaela",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 657136,
-              "batter_name": "Connor Wong",
-              "batting_order": null,
-              "selected_for_pick": false
             },
             {
               "batter_id": 680776,
@@ -322832,6 +322836,12 @@
               "batter_name": "Marcelo Mayer",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 701350,
+              "batter_name": "Roman Anthony",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 596115,
@@ -322856,25 +322866,19 @@
         {
           "team": "TOR",
           "opponent_team": "BOS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 665926,
-              "batter_name": "Andr\u00e9s Gim\u00e9nez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 662139,
-              "batter_name": "Daulton Varsho",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 676914,
               "batter_name": "Davis Schneider",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 650391,
+              "batter_name": "Eloy Jim\u00e9nez",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 676391,
@@ -322899,6 +322903,12 @@
               "batter_name": "Lenyn Sosa",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 664702,
+              "batter_name": "Myles Straw",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 623168,
@@ -322927,7 +322937,7 @@
         {
           "team": "SEA",
           "opponent_team": "MIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 663728,
@@ -322938,12 +322948,6 @@
             {
               "batter_id": 702284,
               "batter_name": "Cole Young",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 686527,
-              "batter_name": "Dominic Canzone",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -322972,14 +322976,20 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 670042,
-              "batter_name": "Luke Raley",
+              "batter_id": 641598,
+              "batter_name": "Mitch Garver",
               "batting_order": null,
               "selected_for_pick": false
             },
             {
               "batter_id": 668227,
               "batter_name": "Randy Arozarena",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 608701,
+              "batter_name": "Rob Refsnyder",
               "batting_order": null,
               "selected_for_pick": true
             }
@@ -323052,7 +323062,7 @@
       "game_pk": 824609,
       "game_date": "2026-04-27",
       "game_datetime": "2026-04-27T23:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "LAA @ CWS",
       "teams": [
@@ -323120,7 +323130,7 @@
         {
           "team": "CWS",
           "opponent_team": "LAA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 643217,
@@ -323139,12 +323149,6 @@
               "batter_name": "Colson Montgomery",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 656537,
-              "batter_name": "Derek Hill",
-              "batting_order": null,
-              "selected_for_pick": false
             },
             {
               "batter_id": 700337,
@@ -323171,10 +323175,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 695020,
-              "batter_name": "Tanner Murray",
+              "batter_id": 803011,
+              "batter_name": "Sam Antonacci",
               "batting_order": null,
-              "selected_for_pick": false
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 671976,
+              "batter_name": "Tristan Peters",
+              "batting_order": null,
+              "selected_for_pick": true
             }
           ]
         }
@@ -323184,7 +323194,7 @@
       "game_pk": 822906,
       "game_date": "2026-04-27",
       "game_datetime": "2026-04-28T00:05:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "NYY @ TEX",
       "teams": [
@@ -323252,8 +323262,14 @@
         {
           "team": "TEX",
           "opponent_team": "NYY",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 457705,
+              "batter_name": "Andrew McCutchen",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
             {
               "batter_id": 607043,
               "batter_name": "Brandon Nimmo",
@@ -323267,26 +323283,20 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 643376,
-              "batter_name": "Danny Jansen",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 694497,
               "batter_name": "Evan Carter",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 669394,
-              "batter_name": "Jake Burger",
+              "batter_id": 677649,
+              "batter_name": "Ezequiel Duran",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 592626,
-              "batter_name": "Joc Pederson",
+              "batter_id": 669394,
+              "batter_name": "Jake Burger",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -323297,10 +323307,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 669701,
-              "batter_name": "Josh Smith",
+              "batter_id": 543309,
+              "batter_name": "Kyle Higashioka",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 664059,
