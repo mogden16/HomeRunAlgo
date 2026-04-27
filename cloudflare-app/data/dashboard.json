@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-27T20:31:40.959330+00:00",
+  "generated_at": "2026-04-27T21:41:44.149676+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -3202,7 +3202,7 @@
       "team": "NYY",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -3230,14 +3230,16 @@
       "ballparkpal_overlay_adjusted_rank": 6,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 8.6%, which the model treats as sustained power quality.",
       "top_reason_2": "Jack Leiter has allowed a 42.9% hard-hit rate over the last 30 days.",
       "top_reason_3": "Forecast temperature is 92F, a positive hitting-context input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-27:823395:701675:682254",
@@ -3938,7 +3940,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Anthony Kay",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -3966,14 +3968,16 @@
       "ballparkpal_overlay_adjusted_rank": 19,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 63.6%, a top-decile recent-contact signal.",
       "top_reason_2": "Anthony Kay has allowed barrels on 6.0% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 17.3 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-27:823311:630105:571510",
@@ -4564,7 +4568,7 @@
       "team": "NYY",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -4620,7 +4624,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Anthony Kay",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -4732,7 +4736,7 @@
       "team": "NYY",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -5068,7 +5072,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Anthony Kay",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -5516,7 +5520,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Anthony Kay",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -6470,7 +6474,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Anthony Kay",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -6582,7 +6586,7 @@
       "team": "NYY",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -6750,7 +6754,7 @@
       "team": "NYY",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -7198,7 +7202,7 @@
       "team": "NYY",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -7310,7 +7314,7 @@
       "team": "NYY",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -7870,7 +7874,7 @@
       "team": "NYY",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -8206,7 +8210,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Anthony Kay",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -8710,7 +8714,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Anthony Kay",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -9158,7 +9162,7 @@
       "team": "NYY",
       "opponent_team": "TEX",
       "pitcher_name": "Jack Leiter",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -10002,7 +10006,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Anthony Kay",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -10396,7 +10400,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Anthony Kay",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -323069,13 +323073,13 @@
         {
           "team": "LAA",
           "opponent_team": "CWS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 624428,
-              "batter_name": "Adam Frazier",
+              "batter_id": 669326,
+              "batter_name": "Bryce Teodosio",
               "batting_order": null,
-              "selected_for_pick": false
+              "selected_for_pick": true
             },
             {
               "batter_id": 666176,
@@ -323108,14 +323112,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 687093,
-              "batter_name": "Vaughn Grissom",
+              "batter_id": 518595,
+              "batter_name": "Travis d'Arnaud",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 660162,
-              "batter_name": "Yo\u00e1n Moncada",
+              "batter_id": 687093,
+              "batter_name": "Vaughn Grissom",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -323201,7 +323205,7 @@
         {
           "team": "NYY",
           "opponent_team": "TEX",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 592450,
@@ -323210,8 +323214,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 642708,
-              "batter_name": "Amed Rosario",
+              "batter_id": 669224,
+              "batter_name": "Austin Wells",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -323226,12 +323230,6 @@
               "batter_name": "Cody Bellinger",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 641555,
-              "batter_name": "J.C. Escarra",
-              "batting_order": null,
-              "selected_for_pick": false
             },
             {
               "batter_id": 665862,
