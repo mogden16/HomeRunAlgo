@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-27T18:04:17.114055+00:00",
+  "generated_at": "2026-04-27T19:19:26.333792+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -2976,7 +2976,7 @@
       "team": "MIN",
       "opponent_team": "SEA",
       "pitcher_name": "Luis Castillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -3146,7 +3146,7 @@
       "team": "STL",
       "opponent_team": "PIT",
       "pitcher_name": "Mason Montgomery",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -3258,7 +3258,7 @@
       "team": "STL",
       "opponent_team": "PIT",
       "pitcher_name": "Mason Montgomery",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -3876,7 +3876,7 @@
       "team": "MIN",
       "opponent_team": "SEA",
       "pitcher_name": "Luis Castillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -3904,14 +3904,16 @@
       "ballparkpal_overlay_adjusted_rank": 18,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 61.5%, a top-decile recent-contact signal.",
       "top_reason_2": "Luis Castillo has allowed a 44.0% hard-hit rate over the last 30 days.",
       "top_reason_3": "Projected humidity is 94%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-27:824609:660162:641743",
@@ -4438,7 +4440,7 @@
       "team": "STL",
       "opponent_team": "PIT",
       "pitcher_name": "Mason Montgomery",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -4466,14 +4468,16 @@
       "ballparkpal_overlay_adjusted_rank": 28,
       "ballparkpal_overlay_direction": "neutral",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 63.6%, a top-decile recent-contact signal.",
       "top_reason_2": "Projected wind speed is 11.7 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 63.6%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-27:823961:660271:663978",
@@ -4942,7 +4946,7 @@
       "team": "MIN",
       "opponent_team": "SEA",
       "pitcher_name": "Luis Castillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -6286,7 +6290,7 @@
       "team": "MIN",
       "opponent_team": "SEA",
       "pitcher_name": "Luis Castillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -6846,7 +6850,7 @@
       "team": "MIN",
       "opponent_team": "SEA",
       "pitcher_name": "Luis Castillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -6958,7 +6962,7 @@
       "team": "STL",
       "opponent_team": "PIT",
       "pitcher_name": "Mason Montgomery",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -7070,7 +7074,7 @@
       "team": "STL",
       "opponent_team": "PIT",
       "pitcher_name": "Mason Montgomery",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -7630,7 +7634,7 @@
       "team": "MIN",
       "opponent_team": "SEA",
       "pitcher_name": "Luis Castillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -8358,7 +8362,7 @@
       "team": "STL",
       "opponent_team": "PIT",
       "pitcher_name": "Mason Montgomery",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -8414,7 +8418,7 @@
       "team": "MIN",
       "opponent_team": "SEA",
       "pitcher_name": "Luis Castillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -8526,7 +8530,7 @@
       "team": "STL",
       "opponent_team": "PIT",
       "pitcher_name": "Mason Montgomery",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -9310,7 +9314,7 @@
       "team": "MIN",
       "opponent_team": "SEA",
       "pitcher_name": "Luis Castillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -9422,7 +9426,7 @@
       "team": "STL",
       "opponent_team": "PIT",
       "pitcher_name": "Mason Montgomery",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -9450,14 +9454,16 @@
       "ballparkpal_overlay_adjusted_rank": 117,
       "ballparkpal_overlay_direction": "unfavorable",
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 5.5%, which the model treats as sustained power quality.",
       "top_reason_2": "Projected wind speed is 11.7 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-27:822825:678882:656302",
@@ -10654,7 +10660,7 @@
       "team": "MIN",
       "opponent_team": "SEA",
       "pitcher_name": "Luis Castillo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -10878,7 +10884,7 @@
       "team": "STL",
       "opponent_team": "PIT",
       "pitcher_name": "Mason Montgomery",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "PNC Park",
       "ballpark_region_abbr": "PA",
@@ -322656,14 +322662,14 @@
       "game_pk": 823395,
       "game_date": "2026-04-27",
       "game_datetime": "2026-04-27T22:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "STL @ PIT",
       "teams": [
         {
           "team": "STL",
           "opponent_team": "PIT",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 676475,
@@ -322708,14 +322714,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 602104,
-              "batter_name": "Ram\u00f3n Ur\u00edas",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 687363,
-              "batter_name": "Victor Scott II",
+              "batter_id": 686780,
+              "batter_name": "Pedro Pag\u00e9s",
               "batting_order": null,
               "selected_for_pick": false
             }
@@ -322920,7 +322920,7 @@
       "game_pk": 823719,
       "game_date": "2026-04-27",
       "game_datetime": "2026-04-27T23:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "SEA @ MIN",
       "teams": [
@@ -322988,14 +322988,8 @@
         {
           "team": "MIN",
           "opponent_team": "SEA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 668885,
-              "batter_name": "Austin Martin",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 686797,
               "batter_name": "Brooks Lee",
@@ -323021,14 +323015,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 670242,
-              "batter_name": "Matt Wallner",
+              "batter_id": 807712,
+              "batter_name": "Luke Keaschall",
               "batting_order": null,
-              "selected_for_pick": false
+              "selected_for_pick": true
             },
             {
-              "batter_id": 668904,
-              "batter_name": "Royce Lewis",
+              "batter_id": 670242,
+              "batter_name": "Matt Wallner",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -323041,6 +323035,12 @@
             {
               "batter_id": 663616,
               "batter_name": "Trevor Larnach",
+              "batting_order": null,
+              "selected_for_pick": true
+            },
+            {
+              "batter_id": 656484,
+              "batter_name": "Tristan Gray",
               "batting_order": null,
               "selected_for_pick": true
             }
