@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-28T16:07:21.251651+00:00",
+  "generated_at": "2026-04-28T17:33:43.648362+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -4611,7 +4611,9 @@
       "home_runs_2026": 0,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 0.0%, a above-baseline indicator of current lift-and-damage contact.",
@@ -5124,7 +5126,9 @@
       "home_runs_2026": 5,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 95.1 mph, a top-decile recent batted-ball quality marker.",
@@ -5295,7 +5299,9 @@
       "home_runs_2026": 2,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 6.2%, a top-quartile indicator of current lift-and-damage contact.",
@@ -5637,7 +5643,9 @@
       "home_runs_2026": 4,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 54.5%, showing consistent quality contact.",
@@ -10539,7 +10547,9 @@
       "home_runs_2026": 1,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 55.2%, showing consistent quality contact.",
@@ -11394,7 +11404,9 @@
       "home_runs_2026": 0,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 107.7 mph, which points to top-end HR juice.",
@@ -12078,7 +12090,9 @@
       "home_runs_2026": 0,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 3.6%, a above-baseline indicator of current lift-and-damage contact.",
@@ -14871,7 +14885,9 @@
       "home_runs_2026": 1,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 0.0%, a above-baseline indicator of current lift-and-damage contact.",
@@ -17094,7 +17110,9 @@
       "home_runs_2026": 0,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.4 mph, which points to top-end HR juice.",
@@ -343135,6 +343153,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 595978,
+              "batter_name": "Austin Hedges",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 677587,
               "batter_name": "Brayan Rocchio",
               "batting_order": null,
@@ -343161,12 +343185,6 @@
             {
               "batter_id": 608070,
               "batter_name": "Jos\u00e9 Ram\u00edrez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 682877,
-              "batter_name": "Juan Brito",
               "batting_order": null,
               "selected_for_pick": true
             },
