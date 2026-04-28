@@ -108,6 +108,7 @@ DISPLAY_COLUMNS = [
     "ballparkpal_overlay_adjusted_score",
     "ballparkpal_overlay_adjusted_rank",
     "ballparkpal_overlay_direction",
+    "home_runs_2026",
     "actual_hit_hr",
     "current_status",
     "alert_flags",
@@ -874,6 +875,78 @@ def build_season_hr_leaders_2026(
     ]
 
 
+def build_season_hr_lookup_2026(dataset_path: Path = DEFAULT_MODEL_DATA_PATH) -> dict[str, int]:
+    if not dataset_path.exists():
+        return {}
+
+    dataset_df = pd.read_csv(dataset_path, parse_dates=["game_date"])
+    if dataset_df.empty:
+        return {}
+
+    player_id_column = "batter_id" if "batter_id" in dataset_df.columns else ("player_id" if "player_id" in dataset_df.columns else None)
+    player_name_column = "batter_name" if "batter_name" in dataset_df.columns else ("player_name" if "player_name" in dataset_df.columns else None)
+    if player_id_column is None or player_name_column is None:
+        return {}
+
+    season_df = dataset_df[pd.to_datetime(dataset_df["game_date"], errors="coerce").dt.year.eq(2026)].copy()
+    if season_df.empty:
+        return {}
+
+    season_df[player_id_column] = pd.to_numeric(season_df[player_id_column], errors="coerce")
+    sort_columns = ["game_date"]
+    if "game_pk" in season_df.columns:
+        sort_columns.append("game_pk")
+    season_df = season_df.dropna(subset=[player_id_column]).sort_values(sort_columns)
+    if season_df.empty:
+        return {}
+
+    hr_source_column = "hr_count" if "hr_count" in season_df.columns else "hit_hr"
+    season_df["season_hr_total"] = pd.to_numeric(season_df.get(hr_source_column), errors="coerce").fillna(0.0)
+    agg_kwargs: dict[str, tuple[str, str]] = {
+        "batter_name": (player_name_column, "last"),
+        "home_runs_2026": ("season_hr_total", "sum"),
+    }
+    if "team" in season_df.columns:
+        agg_kwargs["team"] = ("team", "last")
+
+    grouped = season_df.groupby(player_id_column, dropna=False).agg(**agg_kwargs).reset_index()
+    lookup: dict[str, int] = {}
+    for row in grouped.to_dict(orient="records"):
+        total = int(row["home_runs_2026"])
+        player_id = row.get(player_id_column)
+        if player_id not in (None, "") and pd.notna(player_id):
+            lookup[str(int(player_id))] = total
+        name = str(row.get("batter_name") or "").strip().lower()
+        team = str(row.get("team") or "").strip().upper()
+        if name:
+            lookup[name] = total
+            if team:
+                lookup[f"{name}|{team}"] = total
+    return lookup
+
+
+def apply_season_hr_totals(rows: list[dict[str, Any]], season_hr_lookup: dict[str, int]) -> list[dict[str, Any]]:
+    if not rows:
+        return []
+    lookup = season_hr_lookup or {}
+    enriched_rows: list[dict[str, Any]] = []
+    for row in rows:
+        name = str(row.get("batter_name") or "").strip().lower()
+        team = str(row.get("team") or "").strip().upper()
+        batter_id = row.get("batter_id")
+        total = None
+        if batter_id not in (None, "") and pd.notna(batter_id):
+            total = lookup.get(str(int(batter_id)))
+        if total is None and name and team:
+            total = lookup.get(f"{name}|{team}")
+        if total is None and name:
+            total = lookup.get(name, 0)
+        enriched_row = dict(row)
+        enriched_row["home_runs_2026"] = int(total or 0)
+        enriched_rows.append(enriched_row)
+    return enriched_rows
+
+
 def to_records(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return [{column: serialize_value(row.get(column)) for column in DISPLAY_COLUMNS} for row in rows]
 
@@ -1182,6 +1255,7 @@ def build_dashboard_artifacts(
         )
         if row["actual_hit_hr"] == 1 and str(row["game_date"]) == yesterday_value
     ][:25]
+    season_hr_lookup = build_season_hr_lookup_2026(model_data_path)
     season_hr_leaders_2026 = build_season_hr_leaders_2026(model_data_path)
 
     settled_count = len(settled_rows)
@@ -1213,6 +1287,9 @@ def build_dashboard_artifacts(
         except Exception:
             lineup_panels = []
 
+    latest_picks_records = apply_season_hr_totals(to_records(latest_picks), season_hr_lookup)
+    dashboard_history_records = apply_season_hr_totals(to_records(dashboard_history), season_hr_lookup)
+
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "tracking_start_date": tracking_start_date,
@@ -1240,8 +1317,8 @@ def build_dashboard_artifacts(
         "player_leaderboard": player_leaderboard,
         "model_explainer": model_explainer,
         "ballparkpal_explainer": ballparkpal_explainer,
-        "latest_picks": to_records(latest_picks),
-        "history": to_records(dashboard_history),
+        "latest_picks": latest_picks_records,
+        "history": dashboard_history_records,
         "lineup_panels": lineup_panels,
         "season_hr_leaders_2026": season_hr_leaders_2026,
         "recent_successes": to_records(recent_successes),
