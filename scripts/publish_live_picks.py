@@ -130,6 +130,7 @@ def refresh_cloudflare_dashboard(
         tracking_start_date=LIVE_TRACKING_START_DATE,
         persist_history=persist_history,
         latest_available_date_override=schedule_date,
+        season_hr_source="live",
     )
     print(f"Refreshed Cloudflare dashboard artifact at {dashboard_path}")
     return dashboard_path

@@ -213,6 +213,7 @@ def rebuild_and_verify_public_artifacts(
         history_path=history_path,
         draft_picks_path=morning_baseline_path,
         output_dir=dashboard_output_dir,
+        season_hr_source="live",
     )
     if verify_public_artifacts:
         verify_public_live_artifacts(

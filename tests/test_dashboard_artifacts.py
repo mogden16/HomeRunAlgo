@@ -203,6 +203,52 @@ class DashboardArtifactTests(unittest.TestCase):
             self.assertEqual(latest["wind_direction_deg"], 210.0)
             self.assertEqual(latest["field_bearing_deg"], 30.0)
 
+    @patch("scripts.build_dashboard_artifacts._fetch_current_season_hitting_totals_by_player_id")
+    def test_dashboard_payload_uses_live_season_hr_source(self, mock_fetch: object) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+            output_dir = base / "dashboard"
+            metadata_path = base / "model_metadata.json"
+            model_data_path = base / "dataset.csv"
+
+            current_rows = [self._pending_pick("2026-04-29", 1, "Juan Soto", "elite", 98.0)]
+            current_rows[0]["batter_id"] = 665742
+            current_rows[0]["team"] = "NYM"
+            current_rows[0]["opponent_team"] = "WSH"
+            current_path.write_text(json.dumps(current_rows, indent=2), encoding="utf-8")
+            history_path.write_text(json.dumps([], indent=2), encoding="utf-8")
+            metadata_path.write_text(json.dumps({}, indent=2), encoding="utf-8")
+            pd.DataFrame([self._season_row("Juan Soto", "NYM", 665742, "2026-04-28", 1, 14, 9001)]).to_csv(
+                model_data_path,
+                index=False,
+            )
+
+            mock_fetch.return_value = {
+                "665742": {
+                    "batter_name": "Juan Soto",
+                    "team": "NYM",
+                    "home_runs_2026": 2,
+                    "plate_appearances_2026": 59,
+                    "games_2026": 14,
+                }
+            }
+
+            output_path = build_dashboard_artifacts.build_dashboard_artifacts(
+                current_picks_path=current_path,
+                history_path=history_path,
+                output_dir=output_dir,
+                model_data_path=model_data_path,
+                model_metadata_path=metadata_path,
+                persist_history=False,
+                season_hr_source="live",
+            )
+
+            payload = json.loads(output_path.read_text(encoding="utf-8"))
+            self.assertEqual(payload["latest_picks"][0]["home_runs_2026"], 2)
+            self.assertEqual(payload["season_hr_leaders_2026"][0]["home_runs_2026"], 2)
+
     def test_dashboard_payload_uses_morning_snapshot_order_and_keeps_morning_baseline(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)

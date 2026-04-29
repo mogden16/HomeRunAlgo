@@ -13,6 +13,7 @@ from typing import Any
 from zoneinfo import ZoneInfo
 
 import pandas as pd
+import requests
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 if str(ROOT_DIR) not in sys.path:
@@ -38,6 +39,8 @@ DEFAULT_MODEL_METADATA_PATH = Path("data/live/model_metadata.json")
 DEFAULT_MODEL_FAMILY = "2024-25 trained"
 DEFAULT_FEATURE_PROFILE = "not available"
 DEFAULT_DATA_NOTE = "Public dashboard tracking begins on Opening Night, March 25, 2026. Trained on 2024 and 2025 season data."
+MLB_PERSONS_URL = "https://statsapi.mlb.com/api/v1/people"
+CURRENT_SEASON_STATS_BATCH_SIZE = 100
 DEFAULT_REFRESH_SCHEDULE = {
     "timezone": "ET",
     "runs": [
@@ -811,10 +814,66 @@ def resolve_default_history_date(history_dates: list[str]) -> str:
     return history_dates[0]
 
 
+def _chunked(values: list[int], chunk_size: int) -> list[list[int]]:
+    return [values[index : index + chunk_size] for index in range(0, len(values), chunk_size)]
+
+
+def _fetch_current_season_hitting_totals_by_player_id(
+    player_ids: list[int],
+    *,
+    season_year: int,
+) -> dict[str, dict[str, Any]]:
+    unique_ids = [int(player_id) for player_id in sorted({int(player_id) for player_id in player_ids if pd.notna(player_id)})]
+    if not unique_ids:
+        return {}
+
+    session = requests.Session()
+    totals: dict[str, dict[str, Any]] = {}
+    for chunk in _chunked(unique_ids, CURRENT_SEASON_STATS_BATCH_SIZE):
+        params = {
+            "personIds": ",".join(str(player_id) for player_id in chunk),
+            "hydrate": f"stats(group=[hitting],type=[season],season={season_year})",
+        }
+        response = session.get(MLB_PERSONS_URL, params=params, timeout=20)
+        response.raise_for_status()
+        payload = response.json()
+        people = payload.get("people") if isinstance(payload, dict) else []
+        if not isinstance(people, list):
+            continue
+        for person in people:
+            if not isinstance(person, dict):
+                continue
+            player_id = person.get("id")
+            if player_id in (None, "") or pd.isna(player_id):
+                continue
+            stats = person.get("stats") or []
+            split = {}
+            if stats and isinstance(stats[0], dict):
+                splits = stats[0].get("splits") or []
+                if splits and isinstance(splits[0], dict):
+                    split = splits[0]
+            stat = split.get("stat") if isinstance(split, dict) else {}
+            if not isinstance(stat, dict):
+                stat = {}
+            team = split.get("team") if isinstance(split, dict) else {}
+            if not isinstance(team, dict):
+                team = {}
+            totals[str(int(player_id))] = {
+                "batter_name": str(person.get("fullName") or "").strip(),
+                "team": str(team.get("abbreviation") or team.get("name") or "").strip(),
+                "home_runs_2026": int(float(stat.get("homeRuns") or 0)),
+                "plate_appearances_2026": int(float(stat.get("plateAppearances") or 0)),
+                "games_2026": int(float(stat.get("gamesPlayed") or 0)),
+            }
+    return totals
+
+
 def build_season_hr_leaders_2026(
     dataset_path: Path = DEFAULT_MODEL_DATA_PATH,
-    *,
     limit: int = 5,
+    *,
+    source: str = "dataset",
+    season_year: int = 2026,
 ) -> list[dict[str, Any]]:
     if not dataset_path.exists():
         return []
@@ -828,7 +887,7 @@ def build_season_hr_leaders_2026(
     if player_id_column is None or player_name_column is None:
         return []
 
-    season_df = dataset_df[pd.to_datetime(dataset_df["game_date"], errors="coerce").dt.year.eq(2026)].copy()
+    season_df = dataset_df[pd.to_datetime(dataset_df["game_date"], errors="coerce").dt.year.eq(season_year)].copy()
     if season_df.empty:
         return []
 
@@ -840,25 +899,60 @@ def build_season_hr_leaders_2026(
     if season_df.empty:
         return []
 
-    hr_source_column = "hr_count" if "hr_count" in season_df.columns else "hit_hr"
-    season_df["season_hr_total"] = pd.to_numeric(season_df.get(hr_source_column), errors="coerce").fillna(0.0)
-    season_df["season_pa_total"] = pd.to_numeric(season_df.get("pa_count"), errors="coerce").fillna(0.0)
-    agg_kwargs: dict[str, tuple[str, str]] = {
-        "batter_name": (player_name_column, "last"),
-        "home_runs_2026": ("season_hr_total", "sum"),
-        "plate_appearances_2026": ("season_pa_total", "sum"),
-    }
-    if "team" in season_df.columns:
-        agg_kwargs["team"] = ("team", "last")
-    if "game_pk" in season_df.columns:
-        agg_kwargs["games_2026"] = ("game_pk", "nunique")
-    else:
-        agg_kwargs["games_2026"] = ("game_date", "nunique")
+    grouped = season_df.groupby(player_id_column, dropna=False).agg(
+        batter_name=(player_name_column, "last"),
+        team=("team", "last") if "team" in season_df.columns else (player_name_column, "last"),
+    ).reset_index()
+    grouped[player_id_column] = pd.to_numeric(grouped[player_id_column], errors="coerce")
+    player_ids = [int(player_id) for player_id in grouped[player_id_column].dropna().astype(int).tolist()]
 
-    grouped = season_df.groupby(player_id_column, dropna=False).agg(**agg_kwargs).reset_index()
-    grouped["home_runs_2026"] = grouped["home_runs_2026"].astype(int)
-    grouped["plate_appearances_2026"] = grouped["plate_appearances_2026"].astype(int)
-    grouped["games_2026"] = grouped["games_2026"].astype(int)
+    if source == "live":
+        stats_lookup = _fetch_current_season_hitting_totals_by_player_id(player_ids, season_year=season_year)
+        records: list[dict[str, Any]] = []
+        for row in grouped.to_dict(orient="records"):
+            player_id = row.get(player_id_column)
+            if player_id in (None, "") or pd.isna(player_id):
+                continue
+            stats = stats_lookup.get(str(int(player_id)))
+            if not stats:
+                continue
+            records.append(
+                {
+                    "batter_name": str(stats.get("batter_name") or row.get("batter_name") or "Unknown hitter"),
+                    "team": str(row.get("team") or stats.get("team") or ""),
+                    "home_runs_2026": int(stats.get("home_runs_2026") or 0),
+                    "plate_appearances_2026": int(stats.get("plate_appearances_2026") or 0),
+                    "games_2026": int(stats.get("games_2026") or 0),
+                }
+            )
+        grouped = pd.DataFrame(records)
+    else:
+        hr_source_column = "hr_count" if "hr_count" in season_df.columns else "hit_hr"
+        season_df["season_hr_total"] = pd.to_numeric(season_df.get(hr_source_column), errors="coerce").fillna(0.0)
+        season_df["season_pa_total"] = pd.to_numeric(season_df.get("pa_count"), errors="coerce").fillna(0.0)
+        agg_kwargs: dict[str, tuple[str, str]] = {
+            "batter_name": (player_name_column, "last"),
+            "home_runs_2026": ("season_hr_total", "sum"),
+            "plate_appearances_2026": ("season_pa_total", "sum"),
+        }
+        if "team" in season_df.columns:
+            agg_kwargs["team"] = ("team", "last")
+        if "game_pk" in season_df.columns:
+            agg_kwargs["games_2026"] = ("game_pk", "nunique")
+        else:
+            agg_kwargs["games_2026"] = ("game_date", "nunique")
+
+        grouped = season_df.groupby(player_id_column, dropna=False).agg(**agg_kwargs).reset_index()
+        grouped["home_runs_2026"] = grouped["home_runs_2026"].astype(int)
+        grouped["plate_appearances_2026"] = grouped["plate_appearances_2026"].astype(int)
+        grouped["games_2026"] = grouped["games_2026"].astype(int)
+
+    if grouped.empty:
+        return []
+
+    grouped["home_runs_2026"] = pd.to_numeric(grouped["home_runs_2026"], errors="coerce").fillna(0).astype(int)
+    grouped["plate_appearances_2026"] = pd.to_numeric(grouped["plate_appearances_2026"], errors="coerce").fillna(0).astype(int)
+    grouped["games_2026"] = pd.to_numeric(grouped["games_2026"], errors="coerce").fillna(0).astype(int)
     grouped = grouped.sort_values(
         ["home_runs_2026", "plate_appearances_2026", "games_2026", "batter_name"],
         ascending=[False, False, False, True],
@@ -875,53 +969,99 @@ def build_season_hr_leaders_2026(
     ]
 
 
-def build_season_hr_lookup_2026(dataset_path: Path = DEFAULT_MODEL_DATA_PATH) -> dict[str, int]:
-    if not dataset_path.exists():
-        return {}
+def build_season_hr_lookup_2026(
+    rows: list[dict[str, Any]] | None = None,
+    *,
+    dataset_path: Path = DEFAULT_MODEL_DATA_PATH,
+    source: str = "dataset",
+    season_year: int = 2026,
+) -> dict[str, int]:
+    if source != "live":
+        if not dataset_path.exists():
+            return {}
 
-    dataset_df = pd.read_csv(dataset_path, parse_dates=["game_date"])
-    if dataset_df.empty:
-        return {}
+        dataset_df = pd.read_csv(dataset_path, parse_dates=["game_date"])
+        if dataset_df.empty:
+            return {}
 
-    player_id_column = "batter_id" if "batter_id" in dataset_df.columns else ("player_id" if "player_id" in dataset_df.columns else None)
-    player_name_column = "batter_name" if "batter_name" in dataset_df.columns else ("player_name" if "player_name" in dataset_df.columns else None)
-    if player_id_column is None or player_name_column is None:
-        return {}
+        player_id_column = "batter_id" if "batter_id" in dataset_df.columns else ("player_id" if "player_id" in dataset_df.columns else None)
+        player_name_column = "batter_name" if "batter_name" in dataset_df.columns else ("player_name" if "player_name" in dataset_df.columns else None)
+        if player_id_column is None or player_name_column is None:
+            return {}
 
-    season_df = dataset_df[pd.to_datetime(dataset_df["game_date"], errors="coerce").dt.year.eq(2026)].copy()
-    if season_df.empty:
-        return {}
+        season_df = dataset_df[pd.to_datetime(dataset_df["game_date"], errors="coerce").dt.year.eq(season_year)].copy()
+        if season_df.empty:
+            return {}
 
-    season_df[player_id_column] = pd.to_numeric(season_df[player_id_column], errors="coerce")
-    sort_columns = ["game_date"]
-    if "game_pk" in season_df.columns:
-        sort_columns.append("game_pk")
-    season_df = season_df.dropna(subset=[player_id_column]).sort_values(sort_columns)
-    if season_df.empty:
-        return {}
+        season_df[player_id_column] = pd.to_numeric(season_df[player_id_column], errors="coerce")
+        sort_columns = ["game_date"]
+        if "game_pk" in season_df.columns:
+            sort_columns.append("game_pk")
+        season_df = season_df.dropna(subset=[player_id_column]).sort_values(sort_columns)
+        if season_df.empty:
+            return {}
 
-    hr_source_column = "hr_count" if "hr_count" in season_df.columns else "hit_hr"
-    season_df["season_hr_total"] = pd.to_numeric(season_df.get(hr_source_column), errors="coerce").fillna(0.0)
-    agg_kwargs: dict[str, tuple[str, str]] = {
-        "batter_name": (player_name_column, "last"),
-        "home_runs_2026": ("season_hr_total", "sum"),
-    }
-    if "team" in season_df.columns:
-        agg_kwargs["team"] = ("team", "last")
+        hr_source_column = "hr_count" if "hr_count" in season_df.columns else "hit_hr"
+        season_df["season_hr_total"] = pd.to_numeric(season_df.get(hr_source_column), errors="coerce").fillna(0.0)
+        agg_kwargs: dict[str, tuple[str, str]] = {
+            "batter_name": (player_name_column, "last"),
+            "home_runs_2026": ("season_hr_total", "sum"),
+        }
+        if "team" in season_df.columns:
+            agg_kwargs["team"] = ("team", "last")
 
-    grouped = season_df.groupby(player_id_column, dropna=False).agg(**agg_kwargs).reset_index()
+        grouped = season_df.groupby(player_id_column, dropna=False).agg(**agg_kwargs).reset_index()
+        lookup: dict[str, int] = {}
+        for row in grouped.to_dict(orient="records"):
+            total = int(row["home_runs_2026"])
+            player_id = row.get(player_id_column)
+            if player_id not in (None, "") and pd.notna(player_id):
+                lookup[str(int(player_id))] = total
+            name = str(row.get("batter_name") or "").strip().lower()
+            team = str(row.get("team") or "").strip().upper()
+            if name:
+                lookup[name] = total
+                if team:
+                    lookup[f"{name}|{team}"] = total
+        return lookup
+
+    rows = rows or []
+    player_ids: list[int] = []
+    for row in rows:
+        player_id = row.get("batter_id")
+        if player_id in (None, "") or pd.isna(player_id):
+            player_id = row.get("player_id")
+        if player_id in (None, "") or pd.isna(player_id):
+            continue
+        try:
+            player_ids.append(int(player_id))
+        except (TypeError, ValueError):
+            continue
+
+    stats_lookup = _fetch_current_season_hitting_totals_by_player_id(player_ids, season_year=season_year)
     lookup: dict[str, int] = {}
-    for row in grouped.to_dict(orient="records"):
-        total = int(row["home_runs_2026"])
-        player_id = row.get(player_id_column)
-        if player_id not in (None, "") and pd.notna(player_id):
-            lookup[str(int(player_id))] = total
+    for row in rows:
+        player_id = row.get("batter_id")
+        if player_id in (None, "") or pd.isna(player_id):
+            player_id = row.get("player_id")
+        if player_id not in (None, "") and not pd.isna(player_id):
+            stats = stats_lookup.get(str(int(player_id)))
+            if stats is not None:
+                total = int(stats.get("home_runs_2026") or 0)
+                lookup[str(int(player_id))] = total
+                name = str(stats.get("batter_name") or "").strip().lower()
+                team = str(stats.get("team") or "").strip().upper()
+                if name:
+                    lookup[name] = total
+                    if team:
+                        lookup[f"{name}|{team}"] = total
+                continue
         name = str(row.get("batter_name") or "").strip().lower()
         team = str(row.get("team") or "").strip().upper()
         if name:
-            lookup[name] = total
+            lookup.setdefault(name, 0)
             if team:
-                lookup[f"{name}|{team}"] = total
+                lookup.setdefault(f"{name}|{team}", 0)
     return lookup
 
 
@@ -1185,6 +1325,7 @@ def build_dashboard_artifacts(
     min_player_picks: int = 2,
     persist_history: bool = True,
     latest_available_date_override: str | None = None,
+    season_hr_source: str = "dataset",
 ) -> Path:
     current_picks_path.parent.mkdir(parents=True, exist_ok=True)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -1255,8 +1396,19 @@ def build_dashboard_artifacts(
         )
         if row["actual_hit_hr"] == 1 and str(row["game_date"]) == yesterday_value
     ][:25]
-    season_hr_lookup = build_season_hr_lookup_2026(model_data_path)
-    season_hr_leaders_2026 = build_season_hr_leaders_2026(model_data_path)
+    season_year_text = str(latest_game_date or "")[:4]
+    season_year = int(season_year_text) if season_year_text.isdigit() else datetime.now(timezone.utc).year
+    season_hr_lookup = build_season_hr_lookup_2026(
+        tracked_rows,
+        dataset_path=model_data_path,
+        source=season_hr_source,
+        season_year=season_year,
+    )
+    season_hr_leaders_2026 = build_season_hr_leaders_2026(
+        model_data_path,
+        source=season_hr_source,
+        season_year=season_year,
+    )
 
     settled_count = len(settled_rows)
     homers = sum(int(row["actual_hit_hr"] or 0) for row in settled_rows)
@@ -1364,6 +1516,7 @@ def main() -> None:
         latest_count=args.latest_count,
         history_per_date=args.history_per_date,
         min_player_picks=args.min_player_picks,
+        season_hr_source="live",
     )
     print(f"Wrote dashboard artifact to {output_path}")
 
