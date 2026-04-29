@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-29T13:19:40.310727+00:00",
+  "generated_at": "2026-04-29T15:49:15.478780+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -3524,7 +3524,7 @@
       "team": "CLE",
       "opponent_team": "TB",
       "pitcher_name": "Drew Rasmussen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -3553,14 +3553,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
       "top_reason_2": "Drew Rasmussen has allowed homers in 4.9% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected humidity is 93%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-29:824930:663837:702275",
@@ -3695,7 +3697,7 @@
       "team": "SEA",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -3724,14 +3726,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 56.5%, showing consistent quality contact.",
       "top_reason_2": "Taj Bradley has allowed 91.1 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 56.5%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-29:824608:643217:579328",
@@ -3752,7 +3756,7 @@
       "team": "CWS",
       "opponent_team": "LAA",
       "pitcher_name": "Yusei Kikuchi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -3781,14 +3785,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 71.4%, a top-decile recent-contact signal.",
       "top_reason_2": "Yusei Kikuchi has allowed barrels on 6.5% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 16.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-29:822821:691785:641778",
@@ -4151,7 +4157,7 @@
       "team": "CWS",
       "opponent_team": "LAA",
       "pitcher_name": "Yusei Kikuchi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -4180,14 +4186,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 11.1%, which the model treats as sustained power quality.",
       "top_reason_2": "Yusei Kikuchi has allowed barrels on 6.5% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 16.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-29:823312:807713:663362",
@@ -4322,7 +4330,7 @@
       "team": "CWS",
       "opponent_team": "LAA",
       "pitcher_name": "Yusei Kikuchi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -4351,14 +4359,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 47.1%, a above-baseline recent-contact signal.",
       "top_reason_2": "Yusei Kikuchi has allowed barrels on 6.5% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 16.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-29:823471:687551:650911",
@@ -4493,7 +4503,7 @@
       "team": "CWS",
       "opponent_team": "LAA",
       "pitcher_name": "Yusei Kikuchi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -4550,7 +4560,7 @@
       "team": "TEX",
       "opponent_team": "NYY",
       "pitcher_name": "Elmer Rodr\u00edguez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -4579,14 +4589,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Projected humidity is 92%, a modest positive weather input in the live model.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-29:823392:663968:669467",
@@ -4664,7 +4676,7 @@
       "team": "CLE",
       "opponent_team": "TB",
       "pitcher_name": "Drew Rasmussen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -4693,14 +4705,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Drew Rasmussen has allowed homers in 4.9% of plate appearances over the last 30 days.",
       "top_reason_2": "Projected humidity is 93%, a modest positive weather input in the live model.",
       "top_reason_3": "Drew Rasmussen has allowed barrels on 5.6% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-29:824930:573262:669373",
@@ -4949,7 +4963,7 @@
       "team": "CLE",
       "opponent_team": "TB",
       "pitcher_name": "Drew Rasmussen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -4978,14 +4992,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Drew Rasmussen has allowed homers in 4.9% of plate appearances over the last 30 days.",
       "top_reason_2": "Projected humidity is 93%, a modest positive weather input in the live model.",
       "top_reason_3": "Drew Rasmussen has allowed barrels on 5.6% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-29:823796:672012:593958",
@@ -5063,7 +5079,7 @@
       "team": "NYY",
       "opponent_team": "TEX",
       "pitcher_name": "Nathan Eovaldi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -5177,7 +5193,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -5405,7 +5421,7 @@
       "team": "SEA",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -5576,7 +5592,7 @@
       "team": "NYY",
       "opponent_team": "TEX",
       "pitcher_name": "Nathan Eovaldi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -6203,7 +6219,7 @@
       "team": "MIN",
       "opponent_team": "SEA",
       "pitcher_name": "George Kirby",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -6659,7 +6675,7 @@
       "team": "TEX",
       "opponent_team": "NYY",
       "pitcher_name": "Elmer Rodr\u00edguez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -7343,7 +7359,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -7400,7 +7416,7 @@
       "team": "NYY",
       "opponent_team": "TEX",
       "pitcher_name": "Nathan Eovaldi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -7457,7 +7473,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -7628,7 +7644,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -8141,7 +8157,7 @@
       "team": "TEX",
       "opponent_team": "NYY",
       "pitcher_name": "Elmer Rodr\u00edguez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -8198,7 +8214,7 @@
       "team": "CWS",
       "opponent_team": "LAA",
       "pitcher_name": "Yusei Kikuchi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -8255,7 +8271,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -8312,7 +8328,7 @@
       "team": "TB",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -9110,7 +9126,7 @@
       "team": "CLE",
       "opponent_team": "TB",
       "pitcher_name": "Drew Rasmussen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -9167,7 +9183,7 @@
       "team": "NYY",
       "opponent_team": "TEX",
       "pitcher_name": "Nathan Eovaldi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -9281,7 +9297,7 @@
       "team": "SEA",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -9395,7 +9411,7 @@
       "team": "TEX",
       "opponent_team": "NYY",
       "pitcher_name": "Elmer Rodr\u00edguez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -9452,7 +9468,7 @@
       "team": "CWS",
       "opponent_team": "LAA",
       "pitcher_name": "Yusei Kikuchi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -9509,7 +9525,7 @@
       "team": "TB",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -9566,7 +9582,7 @@
       "team": "NYY",
       "opponent_team": "TEX",
       "pitcher_name": "Nathan Eovaldi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -9623,7 +9639,7 @@
       "team": "SEA",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -9680,7 +9696,7 @@
       "team": "MIN",
       "opponent_team": "SEA",
       "pitcher_name": "George Kirby",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -9794,7 +9810,7 @@
       "team": "TEX",
       "opponent_team": "NYY",
       "pitcher_name": "Elmer Rodr\u00edguez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -9908,7 +9924,7 @@
       "team": "CWS",
       "opponent_team": "LAA",
       "pitcher_name": "Yusei Kikuchi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -10022,7 +10038,7 @@
       "team": "SEA",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -10193,7 +10209,7 @@
       "team": "NYY",
       "opponent_team": "TEX",
       "pitcher_name": "Nathan Eovaldi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -10222,14 +10238,16 @@
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0028, reinforcing the power-contact fit.",
       "top_reason_2": "Nathan Eovaldi has allowed homers in 5.5% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected humidity is 92%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-29:824608:660162:607200",
@@ -10250,7 +10268,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -10763,7 +10781,7 @@
       "team": "CLE",
       "opponent_team": "TB",
       "pitcher_name": "Drew Rasmussen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -10934,7 +10952,7 @@
       "team": "MIN",
       "opponent_team": "SEA",
       "pitcher_name": "George Kirby",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -11618,7 +11636,7 @@
       "team": "TEX",
       "opponent_team": "NYY",
       "pitcher_name": "Elmer Rodr\u00edguez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -11675,7 +11693,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -11960,7 +11978,7 @@
       "team": "TB",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -12188,7 +12206,7 @@
       "team": "TEX",
       "opponent_team": "NYY",
       "pitcher_name": "Elmer Rodr\u00edguez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -12217,14 +12235,16 @@
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 3.5% barrel-per-PA split.",
       "top_reason_2": "Projected humidity is 92%, a modest positive weather input in the live model.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-29:823633:682928:656849",
@@ -12530,7 +12550,7 @@
       "team": "MIN",
       "opponent_team": "SEA",
       "pitcher_name": "George Kirby",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -13100,7 +13120,7 @@
       "team": "CWS",
       "opponent_team": "LAA",
       "pitcher_name": "Yusei Kikuchi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -13129,14 +13149,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 7.1% barrel-per-PA split.",
       "top_reason_2": "Yusei Kikuchi has allowed barrels on 6.5% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 16.6 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-29:822907:641857:543135",
@@ -13157,7 +13179,7 @@
       "team": "NYY",
       "opponent_team": "TEX",
       "pitcher_name": "Nathan Eovaldi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -13328,7 +13350,7 @@
       "team": "TEX",
       "opponent_team": "NYY",
       "pitcher_name": "Elmer Rodr\u00edguez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -13556,7 +13578,7 @@
       "team": "MIN",
       "opponent_team": "SEA",
       "pitcher_name": "George Kirby",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -13670,7 +13692,7 @@
       "team": "TEX",
       "opponent_team": "NYY",
       "pitcher_name": "Elmer Rodr\u00edguez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -13699,14 +13721,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.1 mph, which points to top-end HR juice.",
       "top_reason_2": "Projected humidity is 92%, a modest positive weather input in the live model.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 44.4%, a above-baseline recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-29:823471:669016:657277",
@@ -13784,7 +13808,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -13813,14 +13837,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Erick Fedde has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_2": "Projected wind speed is 16.6 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Projected humidity is 85%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-29:824850:669236:663567",
@@ -13955,7 +13981,7 @@
       "team": "TB",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -14069,7 +14095,7 @@
       "team": "NYY",
       "opponent_team": "TEX",
       "pitcher_name": "Nathan Eovaldi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -14411,7 +14437,7 @@
       "team": "TB",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -14468,7 +14494,7 @@
       "team": "MIN",
       "opponent_team": "SEA",
       "pitcher_name": "George Kirby",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -14582,7 +14608,7 @@
       "team": "NYY",
       "opponent_team": "TEX",
       "pitcher_name": "Nathan Eovaldi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -14810,7 +14836,7 @@
       "team": "SEA",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -14924,7 +14950,7 @@
       "team": "SEA",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -15038,7 +15064,7 @@
       "team": "CLE",
       "opponent_team": "TB",
       "pitcher_name": "Drew Rasmussen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -15551,7 +15577,7 @@
       "team": "SEA",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -15836,7 +15862,7 @@
       "team": "CWS",
       "opponent_team": "LAA",
       "pitcher_name": "Yusei Kikuchi",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -16064,7 +16090,7 @@
       "team": "CLE",
       "opponent_team": "TB",
       "pitcher_name": "Drew Rasmussen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -16235,7 +16261,7 @@
       "team": "MIN",
       "opponent_team": "SEA",
       "pitcher_name": "George Kirby",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -16349,7 +16375,7 @@
       "team": "CLE",
       "opponent_team": "TB",
       "pitcher_name": "Drew Rasmussen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -16577,7 +16603,7 @@
       "team": "MIN",
       "opponent_team": "SEA",
       "pitcher_name": "George Kirby",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -16691,7 +16717,7 @@
       "team": "CLE",
       "opponent_team": "TB",
       "pitcher_name": "Drew Rasmussen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -16748,7 +16774,7 @@
       "team": "SEA",
       "opponent_team": "MIN",
       "pitcher_name": "Taj Bradley",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -16777,14 +16803,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 3.2%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Taj Bradley has allowed 91.1 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-29:823471:664761:657277",
@@ -17147,7 +17175,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Guaranteed Rate Field",
       "ballpark_region_abbr": "IL",
@@ -17375,7 +17403,7 @@
       "team": "TB",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -17404,14 +17432,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Gavin Williams has allowed 93.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Projected humidity is 93%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-29:824445:670764:668909",
@@ -17432,7 +17462,7 @@
       "team": "TB",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -17489,7 +17519,7 @@
       "team": "TB",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -17518,14 +17548,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Gavin Williams has allowed 93.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_2": "Projected humidity is 93%, a modest positive weather input in the live model.",
       "top_reason_3": "Gavin Williams has allowed a 49.4% hard-hit rate over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-04-29:823633:686452:656849",
@@ -17660,7 +17692,7 @@
       "team": "MIN",
       "opponent_team": "SEA",
       "pitcher_name": "George Kirby",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Target Field",
       "ballpark_region_abbr": "MN",
@@ -17774,7 +17806,7 @@
       "team": "TB",
       "opponent_team": "CLE",
       "pitcher_name": "Gavin Williams",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -358116,21 +358148,15 @@
       "game_pk": 824445,
       "game_date": "2026-04-29",
       "game_datetime": "2026-04-29T17:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "TB @ CLE",
       "teams": [
         {
           "team": "TB",
           "opponent_team": "CLE",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 810938,
-              "batter_name": "Ben Williamson",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 656775,
               "batter_name": "Cedric Mullins",
@@ -358142,6 +358168,12 @@
               "batter_name": "Chandler Simpson",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 676439,
+              "batter_name": "Hunter Feduccia",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 641584,
@@ -358162,10 +358194,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 663743,
-              "batter_name": "Nick Fortes",
+              "batter_id": 680700,
+              "batter_name": "Richie Palacios",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 670764,
@@ -358184,7 +358216,7 @@
         {
           "team": "CLE",
           "opponent_team": "TB",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682657,
@@ -358193,10 +358225,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 595978,
-              "batter_name": "Austin Hedges",
+              "batter_id": 666310,
+              "batter_name": "Bo Naylor",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 677587,
@@ -358217,28 +358249,28 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 681807,
-              "batter_name": "David Fry",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 608070,
               "batter_name": "Jos\u00e9 Ram\u00edrez",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 656555,
-              "batter_name": "Rhys Hoskins",
+              "batter_id": 700932,
+              "batter_name": "Kyle Manzardo",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 680757,
               "batter_name": "Steven Kwan",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 683953,
+              "batter_name": "Travis Bazzana",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         }
@@ -358248,14 +358280,14 @@
       "game_pk": 824608,
       "game_date": "2026-04-29",
       "game_datetime": "2026-04-29T17:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "LAA @ CWS",
       "teams": [
         {
           "team": "LAA",
           "opponent_team": "CWS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 624428,
@@ -358288,16 +358320,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 694384,
-              "batter_name": "Nolan Schanuel",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 518595,
               "batter_name": "Travis d'Arnaud",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 687093,
+              "batter_name": "Vaughn Grissom",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 660162,
@@ -358316,13 +358348,13 @@
         {
           "team": "CWS",
           "opponent_team": "LAA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 643217,
-              "batter_name": "Andrew Benintendi",
+              "batter_id": 669720,
+              "batter_name": "Austin Hays",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 805367,
@@ -358337,16 +358369,22 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 691011,
-              "batter_name": "Drew Romo",
+              "batter_id": 656537,
+              "batter_name": "Derek Hill",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 677592,
-              "batter_name": "Everson Pereira",
+              "batter_id": 700337,
+              "batter_name": "Edgar Quero",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 682668,
+              "batter_name": "Luisangel Acu\u00f1a",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 678246,
@@ -358365,12 +358403,6 @@
               "batter_name": "Sam Antonacci",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 671976,
-              "batter_name": "Tristan Peters",
-              "batting_order": null,
-              "selected_for_pick": true
             }
           ]
         }
@@ -358380,14 +358412,14 @@
       "game_pk": 823717,
       "game_date": "2026-04-29",
       "game_datetime": "2026-04-29T17:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "SEA @ MIN",
       "teams": [
         {
           "team": "SEA",
           "opponent_team": "MIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 663728,
@@ -358400,6 +358432,12 @@
               "batter_name": "Cole Young",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 686527,
+              "batter_name": "Dominic Canzone",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 641487,
@@ -358420,20 +358458,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 660844,
-              "batter_name": "Leo Rivas",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 670042,
               "batter_name": "Luke Raley",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 641598,
-              "batter_name": "Mitch Garver",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -358448,7 +358474,7 @@
         {
           "team": "MIN",
           "opponent_team": "SEA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 686797,
@@ -358512,24 +358538,18 @@
       "game_pk": 822907,
       "game_date": "2026-04-29",
       "game_datetime": "2026-04-29T18:35:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "NYY @ TEX",
       "teams": [
         {
           "team": "NYY",
           "opponent_team": "TEX",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 592450,
               "batter_name": "Aaron Judge",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 669224,
-              "batter_name": "Austin Wells",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -358544,6 +358564,12 @@
               "batter_name": "Cody Bellinger",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 641555,
+              "batter_name": "J.C. Escarra",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 691176,
@@ -358580,8 +358606,14 @@
         {
           "team": "TEX",
           "opponent_team": "NYY",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
+            {
+              "batter_id": 696030,
+              "batter_name": "Alejandro Osuna",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
             {
               "batter_id": 607043,
               "batter_name": "Brandon Nimmo",
@@ -358595,16 +358627,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 643376,
-              "batter_name": "Danny Jansen",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 694497,
               "batter_name": "Evan Carter",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 677649,
+              "batter_name": "Ezequiel Duran",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 669394,
@@ -358625,16 +358657,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 669701,
-              "batter_name": "Josh Smith",
+              "batter_id": 543309,
+              "batter_name": "Kyle Higashioka",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 664059,
-              "batter_name": "Sam Haggerty",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             }
           ]
         }
