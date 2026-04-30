@@ -1,22 +1,11 @@
 {
-  "generated_at": "2026-04-30T04:25:15.000178+00:00",
+  "generated_at": "2026-04-30T12:36:03.830923+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
   "latest_available_date": "2026-04-29",
   "data_note": "Public dashboard tracking begins on Opening Night, March 25, 2026. Trained on 2024 and 2025 season data.",
-  "operational_alerts": [
-    {
-      "kind": "warning",
-      "code": "weather_forecast_unavailable",
-      "title": "Weather data incomplete",
-      "message": "Weather forecast data was unavailable for TEX on 2026-04-29. This slate was generated with null weather inputs for those parks. Rerun later for a weather-refreshed draft.",
-      "target_date": "2026-04-29",
-      "teams": [
-        "TEX"
-      ]
-    }
-  ],
+  "operational_alerts": [],
   "confidence_policy": {
     "elite_percentile_floor": 0.99,
     "elite_probability_floor": null,
@@ -2661,7 +2650,7 @@
     "summary": "28 metrics are active in the current model.",
     "model_family": "histgb",
     "feature_profile": "live_usable_candidate_v1",
-    "trained_through": "2026-04-28",
+    "trained_through": "2026-04-29",
     "feature_count": 28,
     "strength_source": "configuration",
     "features": [
