@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-04-30T13:28:55.918090+00:00",
+  "generated_at": "2026-04-30T15:57:19.984970+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
-  "feature_profile": "live_usable_candidate_v1",
+  "feature_profile": "live_usable_candidate_v2",
   "latest_available_date": "2026-04-30",
   "data_note": "Public dashboard tracking begins on Opening Night, March 25, 2026. Trained on 2024 and 2025 season data.",
   "operational_alerts": [],
   "confidence_policy": {
     "elite_percentile_floor": 0.99,
-    "elite_probability_floor": null,
-    "elite_top_k": null,
+    "elite_probability_floor": 0.18,
+    "elite_top_k": 1,
     "strong_percentile_floor": 0.95,
     "watch_percentile_floor": 0.8
   },
@@ -17,7 +17,7 @@
     {
       "confidence_tier": "elite",
       "label": "elite",
-      "description": "Most selective subset on the board. Current production policy starts at the top 99% of each slate."
+      "description": "Most selective subset on the board. Current production policy caps elite at the top 1 pick per slate. Elite picks must also clear a 18.0% probability floor."
     },
     {
       "confidence_tier": "strong",
@@ -2646,277 +2646,696 @@
   ],
   "model_explainer": {
     "available": true,
-    "title": "Model metric guide",
-    "summary": "28 metrics are active in the current model.",
+    "title": "How rankings work",
+    "summary": "61 metrics are active in the current model. The percentages below are normalized model importance weights, not literal linear coefficients.",
     "model_family": "histgb",
-    "feature_profile": "live_usable_candidate_v1",
+    "feature_profile": "live_usable_candidate_v2",
     "trained_through": "2026-04-29",
-    "feature_count": 28,
-    "strength_source": "configuration",
+    "feature_count": 61,
+    "strength_source": "permutation_importance",
     "features": [
+      {
+        "feature": "projected_lineup_rank",
+        "label": "Projected Lineup Rank",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.162448,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 16.244816,
+        "importance_delta": 0.015681,
+        "coefficient_weight": 0.015681
+      },
       {
         "feature": "pa_last_30d",
         "label": "Pa Last 30D",
         "description": "This feature is included in the current model configuration.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
-      },
-      {
-        "feature": "pa_last_10d",
-        "label": "Pa Last 10D",
-        "description": "This feature is included in the current model configuration.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
-      },
-      {
-        "feature": "barrels_per_pa_last_30d",
-        "label": "Barrel Rate, Last 30 Days",
-        "description": "Longer recent barrel trend, used as a sustained power-quality signal.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
-      },
-      {
-        "feature": "barrels_per_pa_last_10d",
-        "label": "Barrel Rate, Last 10 Days",
-        "description": "Recent barrel frequency, measuring how often the hitter is producing ideal home-run quality contact right now.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
-      },
-      {
-        "feature": "hard_hit_rate_last_30d",
-        "label": "Hard-Hit Rate, Last 30 Days",
-        "description": "30-day hard-hit trend, used as a broader measure of how consistently loud the hitter's contact has been.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
-      },
-      {
-        "feature": "hard_hit_rate_last_10d",
-        "label": "Hard-Hit Rate, Last 10 Days",
-        "description": "Share of recent batted balls hit hard. This helps the model separate live contact quality from raw outcomes.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
-      },
-      {
-        "feature": "bbe_95plus_ev_rate_last_30d",
-        "label": "95+ EV Rate, Last 30 Days",
-        "description": "30-day loud-contact rate, used to stabilize recent quality-of-contact signals.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
-      },
-      {
-        "feature": "bbe_95plus_ev_rate_last_10d",
-        "label": "95+ EV Rate, Last 10 Days",
-        "description": "How often recent contact has cleared 95 mph. It is a compact proxy for current dangerous contact.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
-      },
-      {
-        "feature": "avg_exit_velocity_last_10d",
-        "label": "Average Exit Velocity, Last 10 Days",
-        "description": "Average recent exit velocity. It measures how hard the hitter is striking the ball lately.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
-      },
-      {
-        "feature": "max_exit_velocity_last_10d",
-        "label": "Peak Exit Velocity, Last 10 Days",
-        "description": "Recent top-end exit velocity. This is used as a ceiling signal for raw home-run juice.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
-      },
-      {
-        "feature": "pitcher_hr_allowed_per_pa_last_30d",
-        "label": "Pitcher HR Allowed Rate, Last 30 Days",
-        "description": "How often the opposing pitcher has allowed homers recently. It measures matchup vulnerability.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
-      },
-      {
-        "feature": "pitcher_barrels_allowed_per_bbe_last_30d",
-        "label": "Pitcher Barrel Rate Allowed, Last 30 Days",
-        "description": "How often recent contact against the pitcher has been barreled.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
-      },
-      {
-        "feature": "pitcher_hard_hit_allowed_rate_last_30d",
-        "label": "Pitcher Hard-Hit Rate Allowed, Last 30 Days",
-        "description": "Recent hard contact allowed by the opposing pitcher.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
-      },
-      {
-        "feature": "pitcher_avg_ev_allowed_last_30d",
-        "label": "Pitcher Avg Exit Velocity Allowed, Last 30 Days",
-        "description": "Average exit velocity allowed by the opposing pitcher recently.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
-      },
-      {
-        "feature": "pitcher_95plus_ev_allowed_rate_last_30d",
-        "label": "Pitcher 95+ EV Rate Allowed, Last 30 Days",
-        "description": "Rate of very hard recent contact allowed by the pitcher.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
+        "strength": "Light",
+        "strength_score": 0.095485,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 9.548499,
+        "importance_delta": 0.009217,
+        "coefficient_weight": 0.009217
       },
       {
         "feature": "temperature_f",
         "label": "Temperature",
         "description": "Forecast game-time temperature. The live model uses weather as context, not as a primary driver.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
+        "strength": "Light",
+        "strength_score": 0.086772,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 8.677199,
+        "importance_delta": 0.008376,
+        "coefficient_weight": 0.008376
       },
       {
-        "feature": "wind_speed_mph",
-        "label": "Wind Speed",
-        "description": "Projected wind speed at the park. This gives the model weather context for carry conditions.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
+        "feature": "max_exit_velocity_last_10d",
+        "label": "Peak Exit Velocity, Last 10 Days",
+        "description": "Recent top-end exit velocity. This is used as a ceiling signal for raw home-run juice.",
+        "strength": "Light",
+        "strength_score": 0.080051,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 8.005083,
+        "importance_delta": 0.007727,
+        "coefficient_weight": 0.007727
       },
       {
-        "feature": "humidity_pct",
-        "label": "Humidity",
-        "description": "Projected humidity at the park. It is a lighter weather-context feature.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
+        "feature": "attack_angle_avg_last_30d",
+        "label": "Attack Angle Avg Last 30D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.070324,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 7.0324,
+        "importance_delta": 0.006789,
+        "coefficient_weight": 0.006789
       },
       {
-        "feature": "park_factor_hr_vs_batter_hand",
-        "label": "Park Factor vs Batter Hand",
-        "description": "Home-run environment of the park for the hitter's handedness.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
+        "feature": "platoon_advantage",
+        "label": "Platoon Advantage",
+        "description": "Whether the hitter has the handedness advantage against the pitcher.",
+        "strength": "Light",
+        "strength_score": 0.061828,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 6.182795,
+        "importance_delta": 0.005968,
+        "coefficient_weight": 0.005968
       },
       {
-        "feature": "batter_barrels_per_pa_vs_pitcher_hand",
-        "label": "Hitter Barrel Split vs Pitcher Hand",
-        "description": "The hitter's barrel rate against pitchers of this handedness.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
+        "feature": "avg_exit_velocity_last_10d",
+        "label": "Average Exit Velocity, Last 10 Days",
+        "description": "Average recent exit velocity. It measures how hard the hitter is striking the ball lately.",
+        "strength": "Light",
+        "strength_score": 0.052972,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 5.297218,
+        "importance_delta": 0.005114,
+        "coefficient_weight": 0.005114
       },
       {
-        "feature": "pitcher_hr_allowed_per_pa_vs_batter_hand",
-        "label": "Pitcher HR Split Allowed vs Batter Hand",
-        "description": "The pitcher's home-run susceptibility against hitters of this handedness.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
+        "feature": "attack_angle_avg_last_10d",
+        "label": "Attack Angle Avg Last 10D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.040472,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 4.04722,
+        "importance_delta": 0.003907,
+        "coefficient_weight": 0.003907
       },
       {
-        "feature": "pitcher_barrels_allowed_per_bbe_vs_batter_hand",
-        "label": "Pitcher Barrel Split Allowed vs Batter Hand",
-        "description": "The pitcher's barrel susceptibility against hitters of this handedness.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
+        "feature": "barrels_per_pa_last_30d",
+        "label": "Barrel Rate, Last 30 Days",
+        "description": "Longer recent barrel trend, used as a sustained power-quality signal.",
+        "strength": "Light",
+        "strength_score": 0.038671,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 3.867133,
+        "importance_delta": 0.003733,
+        "coefficient_weight": 0.003733
       },
       {
-        "feature": "split_matchup_barrel",
-        "label": "Handedness Barrel Matchup Blend",
-        "description": "Combined hitter and pitcher handedness split for barrel quality.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
+        "feature": "bat_speed_avg_last_30d",
+        "label": "Bat Speed Avg Last 30D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.030919,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 3.091936,
+        "importance_delta": 0.002985,
+        "coefficient_weight": 0.002985
+      },
+      {
+        "feature": "swing_length_avg_last_10d",
+        "label": "Swing Length Avg Last 10D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.026621,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 2.66211,
+        "importance_delta": 0.00257,
+        "coefficient_weight": 0.00257
+      },
+      {
+        "feature": "hard_hit_rate_last_30d",
+        "label": "Hard-Hit Rate, Last 30 Days",
+        "description": "30-day hard-hit trend, used as a broader measure of how consistently loud the hitter's contact has been.",
+        "strength": "Light",
+        "strength_score": 0.023738,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 2.373814,
+        "importance_delta": 0.002291,
+        "coefficient_weight": 0.002291
       },
       {
         "feature": "split_matchup_hard_hit",
         "label": "Handedness Hard-Hit Matchup Blend",
         "description": "Combined hitter and pitcher handedness split for hard-contact tendency.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
+        "strength": "Light",
+        "strength_score": 0.020464,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 2.046441,
+        "importance_delta": 0.001975,
+        "coefficient_weight": 0.001975
       },
       {
-        "feature": "expected_pa_today",
-        "label": "Expected Pa Today",
+        "feature": "fast_swing_rate_last_30d",
+        "label": "Fast Swing Rate Last 30D",
         "description": "This feature is included in the current model configuration.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
+        "strength": "Light",
+        "strength_score": 0.019432,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 1.943185,
+        "importance_delta": 0.001876,
+        "coefficient_weight": 0.001876
       },
       {
-        "feature": "batting_order_slot",
-        "label": "Batting Order Slot",
-        "description": "This feature is included in the current model configuration.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
+        "feature": "split_matchup_barrel",
+        "label": "Handedness Barrel Matchup Blend",
+        "description": "Combined hitter and pitcher handedness split for barrel quality.",
+        "strength": "Light",
+        "strength_score": 0.01843,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 1.843027,
+        "importance_delta": 0.001779,
+        "coefficient_weight": 0.001779
+      },
+      {
+        "feature": "batter_barrels_per_pa_vs_pitcher_hand",
+        "label": "Hitter Barrel Split vs Pitcher Hand",
+        "description": "The hitter's barrel rate against pitchers of this handedness.",
+        "strength": "Light",
+        "strength_score": 0.017551,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 1.755124,
+        "importance_delta": 0.001694,
+        "coefficient_weight": 0.001694
       },
       {
         "feature": "lineup_confirmation_score",
         "label": "Lineup Confirmation Score",
         "description": "This feature is included in the current model configuration.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
+        "strength": "Light",
+        "strength_score": 0.016895,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 1.689536,
+        "importance_delta": 0.001631,
+        "coefficient_weight": 0.001631
       },
       {
-        "feature": "projected_lineup_rank",
-        "label": "Projected Lineup Rank",
+        "feature": "park_factor_hr_vs_batter_hand",
+        "label": "Park Factor vs Batter Hand",
+        "description": "Home-run environment of the park for the hitter's handedness.",
+        "strength": "Light",
+        "strength_score": 0.011921,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 1.192065,
+        "importance_delta": 0.001151,
+        "coefficient_weight": 0.001151
+      },
+      {
+        "feature": "attack_direction_avg_last_30d",
+        "label": "Attack Direction Avg Last 30D",
         "description": "This feature is included in the current model configuration.",
-        "strength": "Included",
-        "strength_score": null,
-        "direction": "No coefficient detail",
-        "coefficient_weight": null
+        "strength": "Light",
+        "strength_score": 0.011578,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 1.157752,
+        "importance_delta": 0.001118,
+        "coefficient_weight": 0.001118
+      },
+      {
+        "feature": "launch_angle_sweet_spot_rate_last_30d",
+        "label": "Launch Angle Sweet Spot Rate Last 30D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.011453,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 1.145346,
+        "importance_delta": 0.001106,
+        "coefficient_weight": 0.001106
+      },
+      {
+        "feature": "fast_swing_rate_last_10d",
+        "label": "Fast Swing Rate Last 10D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.010606,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 1.060572,
+        "importance_delta": 0.001024,
+        "coefficient_weight": 0.001024
+      },
+      {
+        "feature": "pitcher_launch_angle_sweet_spot_rate_allowed_last_30d",
+        "label": "Pitcher Launch Angle Sweet Spot Rate Allowed Last 30D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.009968,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.996834,
+        "importance_delta": 0.000962,
+        "coefficient_weight": 0.000962
+      },
+      {
+        "feature": "pitcher_attack_direction_allowed_last_30d",
+        "label": "Pitcher Attack Direction Allowed Last 30D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.009801,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.980061,
+        "importance_delta": 0.000946,
+        "coefficient_weight": 0.000946
+      },
+      {
+        "feature": "swing_length_avg_last_30d",
+        "label": "Swing Length Avg Last 30D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.009642,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.96425,
+        "importance_delta": 0.000931,
+        "coefficient_weight": 0.000931
+      },
+      {
+        "feature": "pitcher_ideal_attack_angle_rate_allowed_last_30d",
+        "label": "Pitcher Ideal Attack Angle Rate Allowed Last 30D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.006759,
+        "direction": "Higher values generally lower the score",
+        "importance_weight": 0.675855,
+        "importance_delta": -0.000652,
+        "coefficient_weight": -0.000652
+      },
+      {
+        "feature": "pitcher_attack_direction_allowed_last_10d",
+        "label": "Pitcher Attack Direction Allowed Last 10D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.006411,
+        "direction": "Higher values generally lower the score",
+        "importance_weight": 0.641085,
+        "importance_delta": -0.000619,
+        "coefficient_weight": -0.000619
+      },
+      {
+        "feature": "pitcher_hr_allowed_per_pa_vs_batter_hand",
+        "label": "Pitcher HR Split Allowed vs Batter Hand",
+        "description": "The pitcher's home-run susceptibility against hitters of this handedness.",
+        "strength": "Light",
+        "strength_score": 0.00554,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.554045,
+        "importance_delta": 0.000535,
+        "coefficient_weight": 0.000535
+      },
+      {
+        "feature": "pitcher_hard_hit_allowed_rate_last_30d",
+        "label": "Pitcher Hard-Hit Rate Allowed, Last 30 Days",
+        "description": "Recent hard contact allowed by the opposing pitcher.",
+        "strength": "Light",
+        "strength_score": 0.00483,
+        "direction": "Higher values generally lower the score",
+        "importance_weight": 0.482952,
+        "importance_delta": -0.000466,
+        "coefficient_weight": -0.000466
+      },
+      {
+        "feature": "barrels_per_pa_last_10d",
+        "label": "Barrel Rate, Last 10 Days",
+        "description": "Recent barrel frequency, measuring how often the hitter is producing ideal home-run quality contact right now.",
+        "strength": "Light",
+        "strength_score": 0.004462,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.44621,
+        "importance_delta": 0.000431,
+        "coefficient_weight": 0.000431
+      },
+      {
+        "feature": "ideal_attack_angle_rate_last_10d",
+        "label": "Ideal Attack Angle Rate Last 10D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.004215,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.421512,
+        "importance_delta": 0.000407,
+        "coefficient_weight": 0.000407
+      },
+      {
+        "feature": "humidity_pct",
+        "label": "Humidity",
+        "description": "Projected humidity at the park. It is a lighter weather-context feature.",
+        "strength": "Light",
+        "strength_score": 0.003675,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.367495,
+        "importance_delta": 0.000355,
+        "coefficient_weight": 0.000355
+      },
+      {
+        "feature": "pitcher_bat_speed_allowed_last_10d",
+        "label": "Pitcher Bat Speed Allowed Last 10D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.003496,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.349637,
+        "importance_delta": 0.000338,
+        "coefficient_weight": 0.000338
+      },
+      {
+        "feature": "pitcher_ideal_attack_angle_rate_allowed_last_10d",
+        "label": "Pitcher Ideal Attack Angle Rate Allowed Last 10D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.003284,
+        "direction": "Higher values generally lower the score",
+        "importance_weight": 0.328385,
+        "importance_delta": -0.000317,
+        "coefficient_weight": -0.000317
+      },
+      {
+        "feature": "ideal_attack_angle_rate_last_30d",
+        "label": "Ideal Attack Angle Rate Last 30D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.003154,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.315384,
+        "importance_delta": 0.000304,
+        "coefficient_weight": 0.000304
+      },
+      {
+        "feature": "pitcher_swing_path_tilt_allowed_last_10d",
+        "label": "Pitcher Swing Path Tilt Allowed Last 10D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.002049,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.204872,
+        "importance_delta": 0.000198,
+        "coefficient_weight": 0.000198
+      },
+      {
+        "feature": "pitcher_swing_length_allowed_last_10d",
+        "label": "Pitcher Swing Length Allowed Last 10D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.001946,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.194556,
+        "importance_delta": 0.000188,
+        "coefficient_weight": 0.000188
+      },
+      {
+        "feature": "launch_angle_sweet_spot_rate_last_10d",
+        "label": "Launch Angle Sweet Spot Rate Last 10D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.001691,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.169114,
+        "importance_delta": 0.000163,
+        "coefficient_weight": 0.000163
+      },
+      {
+        "feature": "pa_last_10d",
+        "label": "Pa Last 10D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.001426,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.142569,
+        "importance_delta": 0.000138,
+        "coefficient_weight": 0.000138
+      },
+      {
+        "feature": "swing_path_tilt_avg_last_30d",
+        "label": "Swing Path Tilt Avg Last 30D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.001191,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.119135,
+        "importance_delta": 0.000115,
+        "coefficient_weight": 0.000115
+      },
+      {
+        "feature": "hard_hit_rate_last_10d",
+        "label": "Hard-Hit Rate, Last 10 Days",
+        "description": "Share of recent batted balls hit hard. This helps the model separate live contact quality from raw outcomes.",
+        "strength": "Light",
+        "strength_score": 0.001153,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.115252,
+        "importance_delta": 0.000111,
+        "coefficient_weight": 0.000111
+      },
+      {
+        "feature": "pitcher_attack_angle_allowed_last_30d",
+        "label": "Pitcher Attack Angle Allowed Last 30D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.001023,
+        "direction": "Higher values generally lower the score",
+        "importance_weight": 0.102328,
+        "importance_delta": -9.9e-05,
+        "coefficient_weight": -9.9e-05
+      },
+      {
+        "feature": "bat_speed_avg_last_10d",
+        "label": "Bat Speed Avg Last 10D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.000834,
+        "direction": "Higher values generally lower the score",
+        "importance_weight": 0.083387,
+        "importance_delta": -8e-05,
+        "coefficient_weight": -8e-05
+      },
+      {
+        "feature": "pitcher_avg_ev_allowed_last_30d",
+        "label": "Pitcher Avg Exit Velocity Allowed, Last 30 Days",
+        "description": "Average exit velocity allowed by the opposing pitcher recently.",
+        "strength": "Light",
+        "strength_score": 0.000778,
+        "direction": "Higher values generally lower the score",
+        "importance_weight": 0.077817,
+        "importance_delta": -7.5e-05,
+        "coefficient_weight": -7.5e-05
+      },
+      {
+        "feature": "pitcher_barrels_allowed_per_bbe_last_30d",
+        "label": "Pitcher Barrel Rate Allowed, Last 30 Days",
+        "description": "How often recent contact against the pitcher has been barreled.",
+        "strength": "Light",
+        "strength_score": 0.000724,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.072368,
+        "importance_delta": 7e-05,
+        "coefficient_weight": 7e-05
+      },
+      {
+        "feature": "pitcher_fast_swing_rate_allowed_last_10d",
+        "label": "Pitcher Fast Swing Rate Allowed Last 10D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.000591,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.059094,
+        "importance_delta": 5.7e-05,
+        "coefficient_weight": 5.7e-05
+      },
+      {
+        "feature": "pitcher_swing_length_allowed_last_30d",
+        "label": "Pitcher Swing Length Allowed Last 30D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.000562,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.056193,
+        "importance_delta": 5.4e-05,
+        "coefficient_weight": 5.4e-05
+      },
+      {
+        "feature": "pitcher_bat_speed_allowed_last_30d",
+        "label": "Pitcher Bat Speed Allowed Last 30D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.000557,
+        "direction": "Higher values generally lower the score",
+        "importance_weight": 0.055684,
+        "importance_delta": -5.4e-05,
+        "coefficient_weight": -5.4e-05
+      },
+      {
+        "feature": "attack_direction_avg_last_10d",
+        "label": "Attack Direction Avg Last 10D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.000448,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.044842,
+        "importance_delta": 4.3e-05,
+        "coefficient_weight": 4.3e-05
+      },
+      {
+        "feature": "pitcher_barrels_allowed_per_bbe_vs_batter_hand",
+        "label": "Pitcher Barrel Split Allowed vs Batter Hand",
+        "description": "The pitcher's barrel susceptibility against hitters of this handedness.",
+        "strength": "Light",
+        "strength_score": 0.000333,
+        "direction": "Higher values generally lower the score",
+        "importance_weight": 0.033255,
+        "importance_delta": -3.2e-05,
+        "coefficient_weight": -3.2e-05
+      },
+      {
+        "feature": "expected_pa_today",
+        "label": "Expected Pa Today",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.000217,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.021721,
+        "importance_delta": 2.1e-05,
+        "coefficient_weight": 2.1e-05
+      },
+      {
+        "feature": "pitcher_swing_path_tilt_allowed_last_30d",
+        "label": "Pitcher Swing Path Tilt Allowed Last 30D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.000141,
+        "direction": "Higher values generally lower the score",
+        "importance_weight": 0.014132,
+        "importance_delta": -1.4e-05,
+        "coefficient_weight": -1.4e-05
+      },
+      {
+        "feature": "swing_path_tilt_avg_last_10d",
+        "label": "Swing Path Tilt Avg Last 10D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.000116,
+        "direction": "Higher values generally lower the score",
+        "importance_weight": 0.011631,
+        "importance_delta": -1.1e-05,
+        "coefficient_weight": -1.1e-05
+      },
+      {
+        "feature": "pitcher_launch_angle_sweet_spot_rate_allowed_last_10d",
+        "label": "Pitcher Launch Angle Sweet Spot Rate Allowed Last 10D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.000103,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.010291,
+        "importance_delta": 1e-05,
+        "coefficient_weight": 1e-05
+      },
+      {
+        "feature": "pitcher_hr_allowed_per_pa_last_30d",
+        "label": "Pitcher HR Allowed Rate, Last 30 Days",
+        "description": "How often the opposing pitcher has allowed homers recently. It measures matchup vulnerability.",
+        "strength": "Light",
+        "strength_score": 9.7e-05,
+        "direction": "Higher values generally lower the score",
+        "importance_weight": 0.009732,
+        "importance_delta": -9e-06,
+        "coefficient_weight": -9e-06
+      },
+      {
+        "feature": "pitcher_fast_swing_rate_allowed_last_30d",
+        "label": "Pitcher Fast Swing Rate Allowed Last 30D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 7.9e-05,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.007904,
+        "importance_delta": 8e-06,
+        "coefficient_weight": 8e-06
+      },
+      {
+        "feature": "wind_speed_mph",
+        "label": "Wind Speed",
+        "description": "Projected wind speed at the park. This gives the model weather context for carry conditions.",
+        "strength": "Light",
+        "strength_score": 5.9e-05,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.005867,
+        "importance_delta": 6e-06,
+        "coefficient_weight": 6e-06
+      },
+      {
+        "feature": "pitcher_attack_angle_allowed_last_10d",
+        "label": "Pitcher Attack Angle Allowed Last 10D",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 1.3e-05,
+        "direction": "Higher values generally boost the score",
+        "importance_weight": 0.001282,
+        "importance_delta": 1e-06,
+        "coefficient_weight": 1e-06
+      },
+      {
+        "feature": "batting_order_slot",
+        "label": "Batting Order Slot",
+        "description": "This feature is included in the current model configuration.",
+        "strength": "Light",
+        "strength_score": 0.0,
+        "direction": "Neutral effect in the fitted model",
+        "importance_weight": 0.0,
+        "importance_delta": 0.0,
+        "coefficient_weight": 0.0
+      },
+      {
+        "feature": "bbe_95plus_ev_rate_last_10d",
+        "label": "95+ EV Rate, Last 10 Days",
+        "description": "How often recent contact has cleared 95 mph. It is a compact proxy for current dangerous contact.",
+        "strength": "Light",
+        "strength_score": 0.0,
+        "direction": "Neutral effect in the fitted model",
+        "importance_weight": 0.0,
+        "importance_delta": 0.0,
+        "coefficient_weight": 0.0
+      },
+      {
+        "feature": "bbe_95plus_ev_rate_last_30d",
+        "label": "95+ EV Rate, Last 30 Days",
+        "description": "30-day loud-contact rate, used to stabilize recent quality-of-contact signals.",
+        "strength": "Light",
+        "strength_score": 0.0,
+        "direction": "Neutral effect in the fitted model",
+        "importance_weight": 0.0,
+        "importance_delta": 0.0,
+        "coefficient_weight": 0.0
+      },
+      {
+        "feature": "pitcher_95plus_ev_allowed_rate_last_30d",
+        "label": "Pitcher 95+ EV Rate Allowed, Last 30 Days",
+        "description": "Rate of very hard recent contact allowed by the pitcher.",
+        "strength": "Light",
+        "strength_score": 0.0,
+        "direction": "Neutral effect in the fitted model",
+        "importance_weight": 0.0,
+        "importance_delta": 0.0,
+        "coefficient_weight": 0.0
       }
     ]
   },
   "ballparkpal_explainer": {
     "available": true,
     "title": "Ballpark Pal weights",
-    "summary": "Ballpark Pal XX.X is the Batter HomeRunProbability converted to a 0-100 score. 10.0 is neutral; above 10.0 is favorable and below 10.0 is unfavorable. The Today slider defaults to a 90/10 Ballpark Pal/model blend and can re-rank the live board.",
+    "summary": "Ballpark Pal XX.X is the Batter HomeRunProbability converted to a 0-100 score. 10.0 is neutral; above 10.0 is favorable and below 10.0 is unfavorable. The Today slider defaults to a 10/90 Ballpark Pal/model blend and can re-rank the live board.",
     "score_note": "Ballpark Pal XX.X is Batter.HomeRunProbability \u00d7 100 in the HR Chance cell.",
     "blend_note": "Use the Today slider to reweight the live board from 0% to 100% Ballpark Pal.",
     "blend_weights": {
-      "model": 0.1,
-      "ballpark": 0.9
+      "model": 0.9,
+      "ballpark": 0.1
     },
     "ranking_note": "Confidence tiers are derived from the blended score percentile on the slate.",
     "factors": [
@@ -366934,14 +367353,14 @@
       "game_pk": 824929,
       "game_date": "2026-04-30",
       "game_datetime": "2026-04-30T16:15:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "Warmup",
+      "game_state": "live",
       "matchup": "DET @ ATL",
       "teams": [
         {
           "team": "DET",
           "opponent_team": "ATL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 690993,
@@ -366950,16 +367369,22 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 693307,
-              "batter_name": "Dillon Dingler",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 650402,
               "batter_name": "Gleyber Torres",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 701678,
+              "batter_name": "Hao-Yu  Lee",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 668670,
+              "batter_name": "Jake Rogers",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 681481,
@@ -366988,12 +367413,6 @@
             {
               "batter_id": 679529,
               "batter_name": "Spencer Torkelson",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 672761,
-              "batter_name": "Wenceel P\u00e9rez",
               "batting_order": null,
               "selected_for_pick": true
             }
@@ -367066,24 +367485,18 @@
       "game_pk": 824848,
       "game_date": "2026-04-30",
       "game_datetime": "2026-04-30T16:35:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "HOU @ BAL",
       "teams": [
         {
           "team": "HOU",
           "opponent_team": "BAL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 694728,
               "batter_name": "Brice Matthews",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 701358,
-              "batter_name": "Cam Smith",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -367104,6 +367517,12 @@
               "batter_name": "Christian Walker",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 687957,
+              "batter_name": "Dustin Harris",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 670623,
@@ -367134,7 +367553,7 @@
         {
           "team": "BAL",
           "opponent_team": "HOU",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 668939,
@@ -367143,10 +367562,28 @@
               "selected_for_pick": false
             },
             {
+              "batter_id": 677942,
+              "batter_name": "Blaze Alexander",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 691723,
               "batter_name": "Coby Mayo",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 681297,
+              "batter_name": "Colton Cowser",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 687637,
+              "batter_name": "Dylan Beavers",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 683002,
@@ -367161,34 +367598,16 @@
               "selected_for_pick": false
             },
             {
-              "batter_id": 665750,
-              "batter_name": "Leody Taveras",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
               "batter_id": 624413,
               "batter_name": "Pete Alonso",
               "batting_order": null,
               "selected_for_pick": false
             },
             {
-              "batter_id": 694212,
-              "batter_name": "Samuel Basallo",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 621493,
               "batter_name": "Taylor Ward",
               "batting_order": null,
               "selected_for_pick": false
-            },
-            {
-              "batter_id": 641933,
-              "batter_name": "Tyler O'Neill",
-              "batting_order": null,
-              "selected_for_pick": true
             }
           ]
         }
@@ -367330,14 +367749,14 @@
       "game_pk": 823391,
       "game_date": "2026-04-30",
       "game_datetime": "2026-04-30T16:35:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "STL @ PIT",
       "teams": [
         {
           "team": "STL",
           "opponent_team": "PIT",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 676475,
@@ -367398,7 +367817,7 @@
         {
           "team": "PIT",
           "opponent_team": "STL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 664040,
@@ -367413,6 +367832,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 680779,
+              "batter_name": "Henry Davis",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 663968,
               "batter_name": "Jake Mangum",
               "batting_order": null,
@@ -367421,12 +367846,6 @@
             {
               "batter_id": 804606,
               "batter_name": "Konnor Griffin",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 542303,
-              "batter_name": "Marcell Ozuna",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -367462,14 +367881,14 @@
       "game_pk": 823472,
       "game_date": "2026-04-30",
       "game_datetime": "2026-04-30T16:35:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "SF @ PHI",
       "teams": [
         {
           "team": "SF",
           "opponent_team": "PHI",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 669477,
@@ -367478,16 +367897,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 687551,
-              "batter_name": "Drew Gilbert",
-              "batting_order": null,
-              "selected_for_pick": false
-            },
-            {
               "batter_id": 671218,
               "batter_name": "Heliot Ramos",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 666464,
+              "batter_name": "Jerar Encarnacion",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 808982,
@@ -367530,17 +367949,11 @@
         {
           "team": "PHI",
           "opponent_team": "SF",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666969,
               "batter_name": "Adolis Garc\u00eda",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 664761,
-              "batter_name": "Alec Bohm",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -367561,6 +367974,12 @@
               "batter_name": "Bryson Stott",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 624641,
+              "batter_name": "Edmundo Sosa",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 702222,
@@ -367726,24 +368145,18 @@
       "game_pk": 824524,
       "game_date": "2026-04-30",
       "game_datetime": "2026-04-30T16:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "COL @ CIN",
       "teams": [
         {
           "team": "COL",
           "opponent_team": "CIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 686668,
               "batter_name": "Brenton Doyle",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 666397,
-              "batter_name": "Edouard Julien",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -367760,14 +368173,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 691720,
-              "batter_name": "Kyle Karros",
+              "batter_id": 687597,
+              "batter_name": "Jordan Beck",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 666160,
-              "batter_name": "Mickey Moniak",
+              "batter_id": 691720,
+              "batter_name": "Kyle Karros",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -367788,13 +368201,19 @@
               "batter_name": "Tyler Freeman",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 650489,
+              "batter_name": "Willi Castro",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         },
         {
           "team": "CIN",
           "opponent_team": "COL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682829,
@@ -367805,12 +368224,6 @@
             {
               "batter_id": 668709,
               "batter_name": "JJ Bleday",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 663647,
-              "batter_name": "Ke'Bryan Hayes",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -367849,6 +368262,12 @@
               "batter_name": "Tyler Stephenson",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 666181,
+              "batter_name": "Will Benson",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         }
@@ -367858,30 +368277,18 @@
       "game_pk": 823634,
       "game_date": "2026-04-30",
       "game_datetime": "2026-04-30T17:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "WSH @ NYM",
       "teams": [
         {
           "team": "WSH",
           "opponent_team": "NYM",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 691781,
-              "batter_name": "Brady House",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 682928,
               "batter_name": "CJ Abrams",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 678554,
-              "batter_name": "Curtis Mead",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -367910,6 +368317,18 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 678391,
+              "batter_name": "Jorbit Vivas",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 677588,
+              "batter_name": "Jos\u00e9 Tena",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 671277,
               "batter_name": "Luis Garc\u00eda Jr.",
               "batting_order": null,
@@ -367926,7 +368345,7 @@
         {
           "team": "NYM",
           "opponent_team": "WSH",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666182,
@@ -367947,16 +368366,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 682626,
-              "batter_name": "Francisco Alvarez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 665742,
               "batter_name": "Juan Soto",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 620443,
+              "batter_name": "Luis Torrens",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 669004,
@@ -367971,14 +368390,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 677595,
-              "batter_name": "Ronny Mauricio",
+              "batter_id": 668901,
+              "batter_name": "Mark Vientos",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 621438,
-              "batter_name": "Tyrone Taylor",
+              "batter_id": 677595,
+              "batter_name": "Ronny Mauricio",
               "batting_order": null,
               "selected_for_pick": true
             }
@@ -367990,14 +368409,14 @@
       "game_pk": 823795,
       "game_date": "2026-04-30",
       "game_datetime": "2026-04-30T17:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "AZ @ MIL",
       "teams": [
         {
           "team": "AZ",
           "opponent_team": "MIL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 680728,
@@ -368018,6 +368437,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 672695,
+              "batter_name": "Geraldo Perdomo",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 545121,
               "batter_name": "Ildemaro Vargas",
               "batting_order": null,
@@ -368026,12 +368451,6 @@
             {
               "batter_id": 543510,
               "batter_name": "James McCann",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 699912,
-              "batter_name": "Jose Fernandez",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -368058,14 +368477,8 @@
         {
           "team": "MIL",
           "opponent_team": "AZ",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 663604,
-              "batter_name": "Brandon Lockridge",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 668930,
               "batter_name": "Brice Turang",
@@ -368085,10 +368498,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 596142,
-              "batter_name": "Gary S\u00e1nchez",
+              "batter_id": 675659,
+              "batter_name": "Greg Jones",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 641343,
@@ -368107,6 +368520,12 @@
               "batter_name": "Sal Frelick",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 672012,
+              "batter_name": "Tyler Black",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 661388,

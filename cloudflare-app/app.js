@@ -2,8 +2,8 @@ const state = {
   dashboard: null,
   filteredHistory: [],
   filteredLatestPicks: [],
-  latestBallparkWeight: 90,
-  historyBallparkWeight: 90,
+  latestBallparkWeight: 10,
+  historyBallparkWeight: 10,
   latestTierFilters: new Set(["elite", "strong"]),
   historyTierFilters: new Set(["elite", "strong"]),
   selectedHistoryDate: "",
@@ -139,7 +139,7 @@ function normalizeTier(value) {
 function latestBallparkWeightFraction() {
   const percent = Number(state.latestBallparkWeight);
   if (!Number.isFinite(percent)) {
-    return 0.9;
+    return 0.1;
   }
   return Math.max(0, Math.min(1, percent / 100));
 }
@@ -1117,7 +1117,7 @@ function renderModelExplainer(explainer) {
   const list = document.getElementById("model-explainer-list");
   const features = Array.isArray(explainer?.features) ? explainer.features : [];
 
-  title.textContent = explainer?.title || "Metric guide";
+  title.textContent = explainer?.title || "How rankings work";
   summary.textContent = explainer?.summary || DEFAULT_MODEL_EXPLAINER_MESSAGE;
 
   if (!explainer?.available || !features.length) {
@@ -1132,6 +1132,13 @@ function renderModelExplainer(explainer) {
       const strengthScore = feature.strength_score === null || feature.strength_score === undefined
         ? 0.25
         : Math.max(0.08, Math.min(1, Number(feature.strength_score)));
+      const importanceWeight = feature.importance_weight === null || feature.importance_weight === undefined
+        ? (feature.strength_score === null || feature.strength_score === undefined ? null : Number(feature.strength_score) * 100)
+        : (Number.isFinite(Number(feature.importance_weight)) ? Number(feature.importance_weight) : null);
+      const deltaValue = feature.importance_delta === null || feature.importance_delta === undefined
+        ? null
+        : (Number.isFinite(Number(feature.importance_delta)) ? Number(feature.importance_delta) : null);
+      const showSignedDelta = explainer?.strength_source !== "tree_importance" && deltaValue !== null;
       return `
         <article class="model-metric-card">
           <div class="model-metric-top">
@@ -1140,13 +1147,14 @@ function renderModelExplainer(explainer) {
               <p>${escapeHtml(feature.description || "")}</p>
             </div>
             <div class="model-metric-meta">
-              <span class="metric-strength">${escapeHtml(feature.strength || "Included")}</span>
+              <span class="metric-strength">${escapeHtml(Number.isFinite(importanceWeight) ? `${importanceWeight.toFixed(1)}% weight` : (feature.strength || "Included"))}</span>
             </div>
           </div>
           <div class="metric-strength-bar" aria-hidden="true">
             <span style="width:${Math.round(strengthScore * 100)}%"></span>
           </div>
           <p class="metric-direction">${escapeHtml(feature.direction || "")}</p>
+          ${showSignedDelta ? `<p class="metric-direction">Signed delta: ${escapeHtml(deltaValue.toFixed(4))}</p>` : ""}
         </article>
       `;
     })
@@ -1301,11 +1309,11 @@ async function loadDashboard() {
   renderHistoryDateOptions(state.dashboard.history_dates, state.dashboard.history_default_date);
   const latestWeightSlider = document.getElementById("latest-ballpark-weight");
   if (latestWeightSlider) {
-    latestWeightSlider.value = String(Math.max(0, Math.min(100, Math.round(Number(state.latestBallparkWeight) || 90))));
+    latestWeightSlider.value = String(Math.max(0, Math.min(100, Math.round(Number(state.latestBallparkWeight) || 10))));
   }
   const historyWeightSlider = document.getElementById("history-ballpark-weight");
   if (historyWeightSlider) {
-    historyWeightSlider.value = String(Math.max(0, Math.min(100, Math.round(Number(state.historyBallparkWeight) || 90))));
+    historyWeightSlider.value = String(Math.max(0, Math.min(100, Math.round(Number(state.historyBallparkWeight) || 10))));
   }
   renderLatestBallparkWeightLabel();
   renderHistoryBallparkWeightLabel();

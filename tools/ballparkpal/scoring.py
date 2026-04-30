@@ -18,8 +18,8 @@ class OverlayRule:
     favor_when_above: bool = True
 
 
-BALLPARKPAL_MODEL_BLEND_WEIGHT: float = 0.10
-BALLPARKPAL_BALLPARK_BLEND_WEIGHT: float = 0.90
+BALLPARKPAL_MODEL_BLEND_WEIGHT: float = 0.90
+BALLPARKPAL_BALLPARK_BLEND_WEIGHT: float = 0.10
 
 BALLPARKPAL_OVERLAY_RULES: tuple[OverlayRule, ...] = (
     OverlayRule(

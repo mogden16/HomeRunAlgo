@@ -14,6 +14,8 @@ from zoneinfo import ZoneInfo
 
 import pandas as pd
 import requests
+import numpy as np
+from sklearn.inspection import permutation_importance
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 if str(ROOT_DIR) not in sys.path:
@@ -26,7 +28,7 @@ from tools.ballparkpal.scoring import (
     BALLPARKPAL_MODEL_BLEND_WEIGHT,
     BALLPARKPAL_OVERLAY_RULES,
 )
-from train_model import DEFAULT_CONFIDENCE_POLICY, extract_logistic_coefficient_map, normalized_confidence_policy
+from train_model import DEFAULT_CONFIDENCE_POLICY, TARGET_COL, extract_logistic_coefficient_map, normalized_confidence_policy
 
 DEFAULT_TRACKING_START_DATE = "2026-03-25"
 DEFAULT_CURRENT_PICKS_PATH = Path("data/live/current_picks.json")
@@ -39,6 +41,9 @@ DEFAULT_MODEL_METADATA_PATH = Path("data/live/model_metadata.json")
 DEFAULT_MODEL_FAMILY = "2024-25 trained"
 DEFAULT_FEATURE_PROFILE = "not available"
 DEFAULT_DATA_NOTE = "Public dashboard tracking begins on Opening Night, March 25, 2026. Trained on 2024 and 2025 season data."
+DEFAULT_IMPORTANCE_SAMPLE_SIZE = 4000
+DEFAULT_IMPORTANCE_REPEATS = 5
+DEFAULT_IMPORTANCE_RANDOM_STATE = 42
 MLB_PERSONS_URL = "https://statsapi.mlb.com/api/v1/people"
 CURRENT_SEASON_STATS_BATCH_SIZE = 100
 DEFAULT_REFRESH_SCHEDULE = {
@@ -1124,7 +1129,9 @@ def _coefficient_strength_band(relative_weight: float | None) -> str:
     return "Light"
 
 
-def _coefficient_direction_label(weight: float | None) -> str:
+def _coefficient_direction_label(weight: float | None, source: str | None = None) -> str:
+    if source == "tree_importance":
+        return "Relative importance from fitted model"
     if weight is None:
         return "No coefficient detail"
     if weight > 0:
@@ -1144,6 +1151,100 @@ def _model_identity_from_metadata(metadata: dict[str, Any]) -> dict[str, str]:
         "model_family": str(metadata.get("model_family") or DEFAULT_MODEL_FAMILY),
         "feature_profile": str(metadata.get("feature_profile") or DEFAULT_FEATURE_PROFILE),
     }
+
+
+def _final_estimator(model: Any) -> Any:
+    if hasattr(model, "named_steps") and getattr(model, "named_steps"):
+        return list(model.named_steps.values())[-1]
+    return model
+
+
+def _importance_sample_frame(
+    model_data_path: Path,
+    feature_columns: list[str],
+    target_column: str = TARGET_COL,
+    *,
+    sample_size: int = DEFAULT_IMPORTANCE_SAMPLE_SIZE,
+) -> pd.DataFrame | None:
+    if not model_data_path.exists():
+        return None
+    frame = pd.read_csv(model_data_path)
+    required_columns = [*feature_columns, target_column]
+    frame = frame.reindex(columns=required_columns)
+    if target_column not in frame.columns:
+        return None
+    target = pd.to_numeric(frame[target_column], errors="coerce")
+    frame = frame.drop(columns=[target_column]).copy()
+    frame[target_column] = target
+    frame = frame.dropna(subset=[target_column])
+    if frame.empty:
+        return None
+    if len(frame) <= sample_size:
+        return frame.reset_index(drop=True)
+
+    positives = frame[frame[target_column] >= 1]
+    negatives = frame[frame[target_column] < 1]
+    if positives.empty or negatives.empty:
+        return frame.sample(n=sample_size, random_state=DEFAULT_IMPORTANCE_RANDOM_STATE).reset_index(drop=True)
+
+    positive_share = len(positives) / len(frame)
+    positive_target = max(1, min(len(positives), int(round(sample_size * positive_share))))
+    negative_target = max(1, min(len(negatives), sample_size - positive_target))
+
+    while positive_target + negative_target < sample_size:
+        if len(positives) - positive_target >= len(negatives) - negative_target and positive_target < len(positives):
+            positive_target += 1
+        elif negative_target < len(negatives):
+            negative_target += 1
+        else:
+            break
+
+    sample = pd.concat(
+        [
+            positives.sample(n=positive_target, random_state=DEFAULT_IMPORTANCE_RANDOM_STATE),
+            negatives.sample(n=negative_target, random_state=DEFAULT_IMPORTANCE_RANDOM_STATE + 1),
+        ],
+        ignore_index=True,
+    )
+    return sample.sample(frac=1, random_state=DEFAULT_IMPORTANCE_RANDOM_STATE).reset_index(drop=True)
+
+
+def _extract_model_importances(
+    model: Any,
+    feature_columns: list[str],
+    model_data_path: Path,
+) -> tuple[dict[str, float], str]:
+    coefficient_map: dict[str, float] = {}
+    if model is not None:
+        coefficient_map = extract_logistic_coefficient_map(model, feature_columns)
+        if coefficient_map:
+            return coefficient_map, "logistic_coefficient"
+
+    final_estimator = _final_estimator(model)
+    if final_estimator is not None and hasattr(final_estimator, "feature_importances_"):
+        raw_importances = np.asarray(getattr(final_estimator, "feature_importances_"), dtype=float)
+        if raw_importances.size == len(feature_columns) and np.any(raw_importances > 0):
+            return {feature: float(value) for feature, value in zip(feature_columns, raw_importances)}, "tree_importance"
+
+    sample_frame = _importance_sample_frame(model_data_path, feature_columns)
+    if sample_frame is None:
+        return {}, "configuration"
+
+    y = sample_frame[TARGET_COL].astype(int)
+    X = sample_frame[feature_columns]
+    try:
+        importance_result = permutation_importance(
+            model,
+            X,
+            y,
+            scoring="average_precision",
+            n_repeats=DEFAULT_IMPORTANCE_REPEATS,
+            random_state=DEFAULT_IMPORTANCE_RANDOM_STATE,
+            n_jobs=1,
+        )
+    except Exception:
+        return {}, "configuration"
+    return {feature: float(value) for feature, value in zip(feature_columns, importance_result.importances_mean)}, "permutation_importance"
 
 
 def _operational_alerts_from_metadata(metadata: dict[str, Any]) -> list[dict[str, Any]]:
@@ -1205,6 +1306,7 @@ def build_model_explainer(
     *,
     model_bundle_path: Path = DEFAULT_MODEL_BUNDLE_PATH,
     model_metadata_path: Path = DEFAULT_MODEL_METADATA_PATH,
+    model_data_path: Path = DEFAULT_MODEL_DATA_PATH,
 ) -> dict[str, Any]:
     metadata = _load_json_object(model_metadata_path) if model_metadata_path.exists() else {}
     model_identity = _model_identity_from_metadata(metadata)
@@ -1212,7 +1314,7 @@ def build_model_explainer(
     if not feature_columns:
         return {
             "available": False,
-            "title": "Model metric guide",
+            "title": "How rankings work",
             "summary": "Model feature details are not available for this build.",
             "model_family": model_identity["model_family"],
             "feature_profile": model_identity["feature_profile"],
@@ -1226,18 +1328,30 @@ def build_model_explainer(
         try:
             with model_bundle_path.open("rb") as handle:
                 bundle = pickle.load(handle)
-            coefficient_map = extract_logistic_coefficient_map(bundle.get("model"), feature_columns) if isinstance(bundle, dict) else {}
-            if coefficient_map:
-                strength_source = "logistic_coefficient"
+            model = bundle.get("model") if isinstance(bundle, dict) else bundle
+            coefficient_map, strength_source = _extract_model_importances(model, feature_columns, model_data_path)
         except Exception:
             coefficient_map = {}
+            strength_source = "configuration"
 
-    max_abs_weight = max((abs(weight) for weight in coefficient_map.values()), default=0.0)
+    raw_importance_values = [float(coefficient_map.get(feature_name, 0.0)) for feature_name in feature_columns]
+    if coefficient_map:
+        importance_magnitudes = [abs(value) for value in raw_importance_values]
+    else:
+        importance_magnitudes = [1.0 for _ in feature_columns]
+    importance_total = float(sum(importance_magnitudes))
+    if importance_total <= 0:
+        importance_magnitudes = [1.0 for _ in feature_columns]
+        importance_total = float(len(feature_columns)) if feature_columns else 1.0
+
     features: list[dict[str, Any]] = []
-    for feature_name in feature_columns:
+    for feature_name, raw_value, magnitude in sorted(
+        zip(feature_columns, raw_importance_values, importance_magnitudes),
+        key=lambda item: (-item[2], item[0]),
+    ):
         detail = _feature_detail(feature_name)
-        coefficient_weight = coefficient_map.get(feature_name)
-        relative_weight = (abs(coefficient_weight) / max_abs_weight) if coefficient_weight is not None and max_abs_weight > 0 else None
+        relative_weight = (magnitude / importance_total) if importance_total > 0 else None
+        weight_percent = (relative_weight * 100.0) if relative_weight is not None else None
         features.append(
             {
                 "feature": feature_name,
@@ -1245,23 +1359,20 @@ def build_model_explainer(
                 "description": detail["description"],
                 "strength": _coefficient_strength_band(relative_weight),
                 "strength_score": serialize_value(relative_weight),
-                "direction": _coefficient_direction_label(coefficient_weight),
-                "coefficient_weight": serialize_value(coefficient_weight),
+                "direction": _coefficient_direction_label(raw_value if coefficient_map else None, strength_source),
+                "importance_weight": serialize_value(weight_percent),
+                "importance_delta": serialize_value(raw_value if coefficient_map else None),
+                "coefficient_weight": serialize_value(raw_value if coefficient_map else None),
             }
-        )
-
-    if strength_source == "logistic_coefficient":
-        features.sort(
-            key=lambda item: (
-                -(float(item["strength_score"]) if item["strength_score"] is not None else -1.0),
-                str(item["label"]),
-            )
         )
 
     return {
         "available": True,
-        "title": "Model metric guide",
-        "summary": f"{len(features)} metrics are active in the current model.",
+        "title": "How rankings work",
+        "summary": (
+            f"{len(features)} metrics are active in the current model. "
+            "The percentages below are normalized model importance weights, not literal linear coefficients."
+        ),
         "model_family": model_identity["model_family"],
         "feature_profile": model_identity["feature_profile"],
         "trained_through": metadata.get("trained_through"),
@@ -1421,6 +1532,7 @@ def build_dashboard_artifacts(
     model_explainer = build_model_explainer(
         model_bundle_path=model_bundle_path,
         model_metadata_path=model_metadata_path,
+        model_data_path=model_data_path,
     )
     ballparkpal_explainer = build_ballparkpal_explainer()
     model_family = str(model_explainer.get("model_family") or DEFAULT_MODEL_FAMILY)
