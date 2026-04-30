@@ -74,6 +74,14 @@ NEW_CONTEXT_FEATURE_FAMILIES = {
         "breaking_matchup_hard_hit", "breaking_matchup_barrel", "offspeed_matchup_hard_hit", "offspeed_matchup_barrel",
         "slider_matchup_barrel", "changeup_matchup_barrel",
     ],
+    "bat_tracking": [
+        "bat_speed_avg_last_30d", "bat_speed_avg_last_10d", "fast_swing_rate_last_30d", "fast_swing_rate_last_10d",
+        "attack_angle_avg_last_30d", "attack_angle_avg_last_10d", "ideal_attack_angle_rate_last_30d", "ideal_attack_angle_rate_last_10d",
+        "xba_avg_last_30d", "xba_avg_last_10d", "xwoba_avg_last_30d", "xwoba_avg_last_10d",
+        "pitcher_bat_speed_allowed_last_30d", "pitcher_bat_speed_allowed_last_10d", "pitcher_fast_swing_rate_allowed_last_30d", "pitcher_fast_swing_rate_allowed_last_10d",
+        "pitcher_attack_angle_allowed_last_30d", "pitcher_attack_angle_allowed_last_10d", "pitcher_ideal_attack_angle_rate_allowed_last_30d", "pitcher_ideal_attack_angle_rate_allowed_last_10d",
+        "pitcher_xba_allowed_last_30d", "pitcher_xba_allowed_last_10d", "pitcher_xwoba_allowed_last_30d", "pitcher_xwoba_allowed_last_10d",
+    ],
 }
 REQUESTED_FEATURE_AUDIT = {
     "park": ["park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb", "park_factor_hr_vs_batter_hand"],
@@ -92,6 +100,14 @@ REQUESTED_FEATURE_AUDIT = {
         "breaking_matchup_hard_hit", "breaking_matchup_barrel", "offspeed_matchup_hard_hit", "offspeed_matchup_barrel",
         "pitcher_four_seam_pct", "pitcher_sinker_pct", "pitcher_slider_pct", "pitcher_curveball_pct", "pitcher_changeup_pct",
         "batter_hard_hit_rate_vs_slider", "batter_barrel_rate_vs_slider", "slider_matchup_barrel", "changeup_matchup_barrel",
+    ],
+    "bat_tracking": [
+        "bat_speed_avg_last_30d", "bat_speed_avg_last_10d", "fast_swing_rate_last_30d", "fast_swing_rate_last_10d",
+        "attack_angle_avg_last_30d", "attack_angle_avg_last_10d", "ideal_attack_angle_rate_last_30d", "ideal_attack_angle_rate_last_10d",
+        "xba_avg_last_30d", "xba_avg_last_10d", "xwoba_avg_last_30d", "xwoba_avg_last_10d",
+        "pitcher_bat_speed_allowed_last_30d", "pitcher_bat_speed_allowed_last_10d", "pitcher_fast_swing_rate_allowed_last_30d", "pitcher_fast_swing_rate_allowed_last_10d",
+        "pitcher_attack_angle_allowed_last_30d", "pitcher_attack_angle_allowed_last_10d", "pitcher_ideal_attack_angle_rate_allowed_last_30d", "pitcher_ideal_attack_angle_rate_allowed_last_10d",
+        "pitcher_xba_allowed_last_30d", "pitcher_xba_allowed_last_10d", "pitcher_xwoba_allowed_last_30d", "pitcher_xwoba_allowed_last_10d",
     ],
 }
 CONTACT_DESCRIPTIONS = {
@@ -139,6 +155,30 @@ BATTER_TRAILING_FEATURE_COLUMNS = [
     "bbe_95plus_ev_rate_last_10d",
     "avg_exit_velocity_last_10d",
     "max_exit_velocity_last_10d",
+    "bat_speed_avg_last_30d",
+    "bat_speed_avg_last_10d",
+    "fast_swing_rate_last_30d",
+    "fast_swing_rate_last_10d",
+    "swing_length_avg_last_30d",
+    "swing_length_avg_last_10d",
+    "attack_angle_avg_last_30d",
+    "attack_angle_avg_last_10d",
+    "attack_direction_avg_last_30d",
+    "attack_direction_avg_last_10d",
+    "swing_path_tilt_avg_last_30d",
+    "swing_path_tilt_avg_last_10d",
+    "ideal_attack_angle_rate_last_30d",
+    "ideal_attack_angle_rate_last_10d",
+    "launch_angle_sweet_spot_rate_last_30d",
+    "launch_angle_sweet_spot_rate_last_10d",
+    "xba_avg_last_30d",
+    "xba_avg_last_10d",
+    "xwoba_avg_last_30d",
+    "xwoba_avg_last_10d",
+    "ev50_avg_last_30d",
+    "ev50_avg_last_10d",
+    "adjusted_ev_avg_last_30d",
+    "adjusted_ev_avg_last_10d",
 ]
 PITCHER_TRAILING_FEATURE_COLUMNS = [
     "pitcher_hr_allowed_per_pa_last_30d",
@@ -150,6 +190,30 @@ PITCHER_TRAILING_FEATURE_COLUMNS = [
     "pitcher_bbe_allowed_last_30d",
     "pitcher_avg_ev_allowed_last_30d",
     "pitcher_95plus_ev_allowed_rate_last_30d",
+    "pitcher_bat_speed_allowed_last_30d",
+    "pitcher_bat_speed_allowed_last_10d",
+    "pitcher_fast_swing_rate_allowed_last_30d",
+    "pitcher_fast_swing_rate_allowed_last_10d",
+    "pitcher_swing_length_allowed_last_30d",
+    "pitcher_swing_length_allowed_last_10d",
+    "pitcher_attack_angle_allowed_last_30d",
+    "pitcher_attack_angle_allowed_last_10d",
+    "pitcher_attack_direction_allowed_last_30d",
+    "pitcher_attack_direction_allowed_last_10d",
+    "pitcher_swing_path_tilt_allowed_last_30d",
+    "pitcher_swing_path_tilt_allowed_last_10d",
+    "pitcher_ideal_attack_angle_rate_allowed_last_30d",
+    "pitcher_ideal_attack_angle_rate_allowed_last_10d",
+    "pitcher_launch_angle_sweet_spot_rate_allowed_last_30d",
+    "pitcher_launch_angle_sweet_spot_rate_allowed_last_10d",
+    "pitcher_xba_allowed_last_30d",
+    "pitcher_xba_allowed_last_10d",
+    "pitcher_xwoba_allowed_last_30d",
+    "pitcher_xwoba_allowed_last_10d",
+    "pitcher_ev50_allowed_last_30d",
+    "pitcher_ev50_allowed_last_10d",
+    "pitcher_adjusted_ev_allowed_last_30d",
+    "pitcher_adjusted_ev_allowed_last_10d",
 ]
 STABLE_BATTER_FEATURE_COLUMNS = [
     "hr_rate_season_to_date",
@@ -190,6 +254,34 @@ STABLE_ENGINEERED_FEATURE_COLUMNS = [
     *STABLE_BATTER_FEATURE_COLUMNS,
     *STABLE_PITCHER_CONTEXT_COLUMNS,
     *STABLE_CONTEXT_FEATURE_COLUMNS,
+]
+BAT_TRACKING_GAME_FEATURE_COLUMNS = [
+    "bat_speed_avg_game",
+    "fast_swing_rate_game",
+    "swing_length_avg_game",
+    "attack_angle_avg_game",
+    "attack_direction_avg_game",
+    "swing_path_tilt_avg_game",
+    "ideal_attack_angle_rate_game",
+    "launch_angle_sweet_spot_rate_game",
+    "xba_avg_game",
+    "xwoba_avg_game",
+    "ev50_game",
+    "adjusted_ev_game",
+]
+PITCHER_BAT_TRACKING_GAME_FEATURE_COLUMNS = [
+    "pitcher_bat_speed_allowed_game",
+    "pitcher_fast_swing_rate_allowed_game",
+    "pitcher_swing_length_allowed_game",
+    "pitcher_attack_angle_allowed_game",
+    "pitcher_attack_direction_allowed_game",
+    "pitcher_swing_path_tilt_allowed_game",
+    "pitcher_ideal_attack_angle_rate_allowed_game",
+    "pitcher_launch_angle_sweet_spot_rate_allowed_game",
+    "pitcher_xba_allowed_game",
+    "pitcher_xwoba_allowed_game",
+    "pitcher_ev50_allowed_game",
+    "pitcher_adjusted_ev_allowed_game",
 ]
 
 
@@ -335,6 +427,54 @@ FINAL_FEATURE_SPECS = {
     "pitcher_bbe_allowed_last_30d": "pitcher_trailing",
     "pitcher_avg_ev_allowed_last_30d": "pitcher_trailing",
     "pitcher_95plus_ev_allowed_rate_last_30d": "pitcher_trailing",
+    "bat_speed_avg_last_30d": "bat_tracking",
+    "bat_speed_avg_last_10d": "bat_tracking",
+    "fast_swing_rate_last_30d": "bat_tracking",
+    "fast_swing_rate_last_10d": "bat_tracking",
+    "swing_length_avg_last_30d": "bat_tracking",
+    "swing_length_avg_last_10d": "bat_tracking",
+    "attack_angle_avg_last_30d": "bat_tracking",
+    "attack_angle_avg_last_10d": "bat_tracking",
+    "attack_direction_avg_last_30d": "bat_tracking",
+    "attack_direction_avg_last_10d": "bat_tracking",
+    "swing_path_tilt_avg_last_30d": "bat_tracking",
+    "swing_path_tilt_avg_last_10d": "bat_tracking",
+    "ideal_attack_angle_rate_last_30d": "bat_tracking",
+    "ideal_attack_angle_rate_last_10d": "bat_tracking",
+    "launch_angle_sweet_spot_rate_last_30d": "bat_tracking",
+    "launch_angle_sweet_spot_rate_last_10d": "bat_tracking",
+    "xba_avg_last_30d": "bat_tracking",
+    "xba_avg_last_10d": "bat_tracking",
+    "xwoba_avg_last_30d": "bat_tracking",
+    "xwoba_avg_last_10d": "bat_tracking",
+    "ev50_avg_last_30d": "bat_tracking",
+    "ev50_avg_last_10d": "bat_tracking",
+    "adjusted_ev_avg_last_30d": "bat_tracking",
+    "adjusted_ev_avg_last_10d": "bat_tracking",
+    "pitcher_bat_speed_allowed_last_30d": "bat_tracking",
+    "pitcher_bat_speed_allowed_last_10d": "bat_tracking",
+    "pitcher_fast_swing_rate_allowed_last_30d": "bat_tracking",
+    "pitcher_fast_swing_rate_allowed_last_10d": "bat_tracking",
+    "pitcher_swing_length_allowed_last_30d": "bat_tracking",
+    "pitcher_swing_length_allowed_last_10d": "bat_tracking",
+    "pitcher_attack_angle_allowed_last_30d": "bat_tracking",
+    "pitcher_attack_angle_allowed_last_10d": "bat_tracking",
+    "pitcher_attack_direction_allowed_last_30d": "bat_tracking",
+    "pitcher_attack_direction_allowed_last_10d": "bat_tracking",
+    "pitcher_swing_path_tilt_allowed_last_30d": "bat_tracking",
+    "pitcher_swing_path_tilt_allowed_last_10d": "bat_tracking",
+    "pitcher_ideal_attack_angle_rate_allowed_last_30d": "bat_tracking",
+    "pitcher_ideal_attack_angle_rate_allowed_last_10d": "bat_tracking",
+    "pitcher_launch_angle_sweet_spot_rate_allowed_last_30d": "bat_tracking",
+    "pitcher_launch_angle_sweet_spot_rate_allowed_last_10d": "bat_tracking",
+    "pitcher_xba_allowed_last_30d": "bat_tracking",
+    "pitcher_xba_allowed_last_10d": "bat_tracking",
+    "pitcher_xwoba_allowed_last_30d": "bat_tracking",
+    "pitcher_xwoba_allowed_last_10d": "bat_tracking",
+    "pitcher_ev50_allowed_last_30d": "bat_tracking",
+    "pitcher_ev50_allowed_last_10d": "bat_tracking",
+    "pitcher_adjusted_ev_allowed_last_30d": "bat_tracking",
+    "pitcher_adjusted_ev_allowed_last_10d": "bat_tracking",
     "pitcher_fastball_pct": "pitch_type",
     "pitcher_breaking_ball_pct": "pitch_type",
     "pitcher_offspeed_pct": "pitch_type",
@@ -856,6 +996,20 @@ def aggregate_batter_games(pa_df: pd.DataFrame, batter_name_lookup: pd.Series | 
         .reset_index()
         .rename(columns={"batter": "batter_id"})
     )
+    bat_tracking_df = (
+        pa_df.groupby(["game_pk", "game_date", "batter"], dropna=False)
+        .apply(_bat_tracking_game_summary)
+        .reset_index()
+        .rename(columns={"batter": "batter_id"})
+    )
+    batter_game_df = merge_with_diagnostics(
+        batter_game_df,
+        bat_tracking_df,
+        on=["game_pk", "batter_id", "game_date"],
+        how="left",
+        step_name="attach batter bat-tracking game summaries",
+        validate="one_to_one",
+    )
     batter_game_df["hit_hr"] = (batter_game_df["hr_count"] > 0).astype(int)
     batter_game_df = merge_with_diagnostics(
         batter_game_df,
@@ -958,6 +1112,36 @@ def aggregate_pitcher_games(pa_df: pd.DataFrame) -> pd.DataFrame:
         .reset_index()
         .rename(columns={"batting_team": "team", "fielding_team": "opponent", "pitcher": "pitcher_id"})
     )
+    pitcher_tracking_df = (
+        pa_enriched.groupby(["game_pk", "game_date", "pitcher"], dropna=False)
+        .apply(_bat_tracking_game_summary)
+        .reset_index()
+        .rename(columns={"pitcher": "pitcher_id"})
+    )
+    pitcher_tracking_df = pitcher_tracking_df.rename(
+        columns={
+            "bat_speed_avg_game": "pitcher_bat_speed_allowed_game",
+            "fast_swing_rate_game": "pitcher_fast_swing_rate_allowed_game",
+            "swing_length_avg_game": "pitcher_swing_length_allowed_game",
+            "attack_angle_avg_game": "pitcher_attack_angle_allowed_game",
+            "attack_direction_avg_game": "pitcher_attack_direction_allowed_game",
+            "swing_path_tilt_avg_game": "pitcher_swing_path_tilt_allowed_game",
+            "ideal_attack_angle_rate_game": "pitcher_ideal_attack_angle_rate_allowed_game",
+            "launch_angle_sweet_spot_rate_game": "pitcher_launch_angle_sweet_spot_rate_allowed_game",
+            "xba_avg_game": "pitcher_xba_allowed_game",
+            "xwoba_avg_game": "pitcher_xwoba_allowed_game",
+            "ev50_game": "pitcher_ev50_allowed_game",
+            "adjusted_ev_game": "pitcher_adjusted_ev_allowed_game",
+        }
+    )
+    pitcher_game_df = merge_with_diagnostics(
+        pitcher_game_df,
+        pitcher_tracking_df,
+        on=["game_pk", "pitcher_id", "game_date"],
+        how="left",
+        step_name="attach pitcher bat-tracking game summaries",
+        validate="one_to_one",
+    )
     pitcher_game_df["innings_pitched_est"] = pitcher_game_df["outs_recorded"] / 3.0
     pitcher_game_df = pitcher_game_df.sort_values(["pitcher_id", "game_date", "game_pk"]).reset_index(drop=True)
     return pitcher_game_df
@@ -977,6 +1161,54 @@ def select_primary_opposing_pitchers(pitcher_game_df: pd.DataFrame) -> pd.DataFr
         )
     )
     return primary[["game_pk", "team", "opponent", "opp_pitcher_id", "opp_pitcher_name", "pitch_hand_primary", "opp_pitcher_bf"]]
+
+
+def _bat_tracking_game_summary(group: pd.DataFrame) -> pd.Series:
+    launch_speed = pd.to_numeric(group.get("launch_speed"), errors="coerce") if "launch_speed" in group.columns else pd.Series(dtype=float)
+    launch_angle = pd.to_numeric(group.get("launch_angle"), errors="coerce") if "launch_angle" in group.columns else pd.Series(dtype=float)
+    bat_speed = pd.to_numeric(group.get("bat_speed"), errors="coerce") if "bat_speed" in group.columns else pd.Series(dtype=float)
+    swing_length = pd.to_numeric(group.get("swing_length"), errors="coerce") if "swing_length" in group.columns else pd.Series(dtype=float)
+    attack_angle = pd.to_numeric(group.get("attack_angle"), errors="coerce") if "attack_angle" in group.columns else pd.Series(dtype=float)
+    attack_direction = pd.to_numeric(group.get("attack_direction"), errors="coerce") if "attack_direction" in group.columns else pd.Series(dtype=float)
+    swing_path_tilt = pd.to_numeric(group.get("swing_path_tilt"), errors="coerce") if "swing_path_tilt" in group.columns else pd.Series(dtype=float)
+    xba = pd.to_numeric(group.get("estimated_ba_using_speedangle"), errors="coerce") if "estimated_ba_using_speedangle" in group.columns else pd.Series(dtype=float)
+    xwoba = pd.to_numeric(group.get("estimated_woba_using_speedangle"), errors="coerce") if "estimated_woba_using_speedangle" in group.columns else pd.Series(dtype=float)
+
+    def _mean(series: pd.Series) -> float:
+        series = series.dropna()
+        return float(series.mean()) if not series.empty else np.nan
+
+    def _rate(mask: pd.Series, denom: pd.Series) -> float:
+        denom = denom.dropna()
+        if denom.empty:
+            return np.nan
+        return float(mask.loc[denom.index].mean())
+
+    launch_speed_values = launch_speed.dropna().to_numpy(dtype=float).copy() if not launch_speed.empty else np.array([], dtype=float)
+    if launch_speed_values.size:
+        launch_speed_values = np.sort(launch_speed_values)
+        top_half = max(int(np.ceil(launch_speed_values.size / 2.0)), 1)
+        ev50 = float(np.mean(launch_speed_values[-top_half:]))
+        adjusted_ev = float(np.mean(np.maximum(launch_speed_values, 88.0)))
+    else:
+        ev50 = np.nan
+        adjusted_ev = np.nan
+
+    summary = {
+        "bat_speed_avg_game": _mean(bat_speed),
+        "fast_swing_rate_game": _rate(bat_speed.ge(75), bat_speed),
+        "swing_length_avg_game": _mean(swing_length),
+        "attack_angle_avg_game": _mean(attack_angle),
+        "attack_direction_avg_game": _mean(attack_direction),
+        "swing_path_tilt_avg_game": _mean(swing_path_tilt),
+        "ideal_attack_angle_rate_game": _rate(attack_angle.between(5, 20, inclusive="both"), attack_angle),
+        "launch_angle_sweet_spot_rate_game": _rate(launch_angle.between(8, 32, inclusive="both"), launch_angle),
+        "xba_avg_game": _mean(xba),
+        "xwoba_avg_game": _mean(xwoba),
+        "ev50_game": ev50,
+        "adjusted_ev_game": adjusted_ev,
+    }
+    return pd.Series(summary)
 
 
 def add_leakage_safe_features(
@@ -1203,6 +1435,29 @@ def compute_batter_trailing_features(batter_game_df: pd.DataFrame) -> pd.DataFra
             entity_label="batter",
             configs=[("30D", "30d"), ("10D", "10d")],
         )
+        rolled = grp.set_index("game_date")
+        bat_tracking_map = {
+            "bat_speed_avg_game": "bat_speed_avg",
+            "fast_swing_rate_game": "fast_swing_rate",
+            "swing_length_avg_game": "swing_length_avg",
+            "attack_angle_avg_game": "attack_angle_avg",
+            "attack_direction_avg_game": "attack_direction_avg",
+            "swing_path_tilt_avg_game": "swing_path_tilt_avg",
+            "ideal_attack_angle_rate_game": "ideal_attack_angle_rate",
+            "launch_angle_sweet_spot_rate_game": "launch_angle_sweet_spot_rate",
+            "xba_avg_game": "xba_avg",
+            "xwoba_avg_game": "xwoba_avg",
+            "ev50_game": "ev50_avg",
+            "adjusted_ev_game": "adjusted_ev_avg",
+        }
+        for game_col, feature_prefix in bat_tracking_map.items():
+            if game_col not in grp.columns:
+                continue
+            grp[f"{feature_prefix}_last_30d"] = rolled[game_col].rolling("30D", closed="left", min_periods=1).mean().reset_index(drop=True).to_numpy()
+            grp[f"{feature_prefix}_last_10d"] = rolled[game_col].rolling("10D", closed="left", min_periods=1).mean().reset_index(drop=True).to_numpy()
+        for feature_column in BATTER_TRAILING_FEATURE_COLUMNS:
+            if feature_column not in grp.columns:
+                grp[feature_column] = 0.0
         feature_frames.append(grp[["batter_id", "game_pk"] + BATTER_TRAILING_FEATURE_COLUMNS])
 
         if sample_idx <= 3:
@@ -1267,6 +1522,28 @@ def compute_pitcher_trailing_features(pitcher_game_df: pd.DataFrame) -> pd.DataF
         grp["pitcher_hard_hit_allowed_rate_last_30d"] = safe_rate(hard_hit_last_30, bbe_last_30).to_numpy()
         grp["pitcher_avg_ev_allowed_last_30d"] = safe_rate(ev_num_last_30, bbe_last_30).to_numpy()
         grp["pitcher_95plus_ev_allowed_rate_last_30d"] = safe_rate(ev95_last_30, bbe_last_30).to_numpy()
+        pitcher_bat_tracking_map = {
+            "pitcher_bat_speed_allowed_game": "pitcher_bat_speed_allowed",
+            "pitcher_fast_swing_rate_allowed_game": "pitcher_fast_swing_rate_allowed",
+            "pitcher_swing_length_allowed_game": "pitcher_swing_length_allowed",
+            "pitcher_attack_angle_allowed_game": "pitcher_attack_angle_allowed",
+            "pitcher_attack_direction_allowed_game": "pitcher_attack_direction_allowed",
+            "pitcher_swing_path_tilt_allowed_game": "pitcher_swing_path_tilt_allowed",
+            "pitcher_ideal_attack_angle_rate_allowed_game": "pitcher_ideal_attack_angle_rate_allowed",
+            "pitcher_launch_angle_sweet_spot_rate_allowed_game": "pitcher_launch_angle_sweet_spot_rate_allowed",
+            "pitcher_xba_allowed_game": "pitcher_xba_allowed",
+            "pitcher_xwoba_allowed_game": "pitcher_xwoba_allowed",
+            "pitcher_ev50_allowed_game": "pitcher_ev50_allowed",
+            "pitcher_adjusted_ev_allowed_game": "pitcher_adjusted_ev_allowed",
+        }
+        for game_col, feature_prefix in pitcher_bat_tracking_map.items():
+            if game_col not in grp.columns:
+                continue
+            grp[f"{feature_prefix}_last_30d"] = rolled[game_col].rolling("30D", closed="left", min_periods=1).mean().reset_index(drop=True).to_numpy()
+            grp[f"{feature_prefix}_last_10d"] = rolled[game_col].rolling("10D", closed="left", min_periods=1).mean().reset_index(drop=True).to_numpy()
+        for feature_column in PITCHER_TRAILING_FEATURE_COLUMNS:
+            if feature_column not in grp.columns:
+                grp[feature_column] = 0.0
         feature_frames.append(grp[["pitcher_id", "game_pk"] + PITCHER_TRAILING_FEATURE_COLUMNS])
 
         if sample_idx <= 3:
