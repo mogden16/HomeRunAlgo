@@ -111,6 +111,7 @@ DISPLAY_COLUMNS = [
     "ballparkpal_team_home_runs",
     "ballparkpal_runs_allowed",
     "ballparkpal_home_runs_allowed",
+    "ballparkpal_overlay_raw_score",
     "ballparkpal_overlay_signed_score",
     "ballparkpal_overlay_display_score",
     "ballparkpal_overlay_adjusted_score",
@@ -170,6 +171,7 @@ CURRENT_PICK_COLUMNS = [
     "ballparkpal_team_home_runs",
     "ballparkpal_runs_allowed",
     "ballparkpal_home_runs_allowed",
+    "ballparkpal_overlay_raw_score",
     "ballparkpal_overlay_signed_score",
     "ballparkpal_overlay_display_score",
     "ballparkpal_overlay_adjusted_score",
@@ -228,6 +230,7 @@ HISTORY_COLUMNS = [
     "ballparkpal_team_home_runs",
     "ballparkpal_runs_allowed",
     "ballparkpal_home_runs_allowed",
+    "ballparkpal_overlay_raw_score",
     "ballparkpal_overlay_signed_score",
     "ballparkpal_overlay_display_score",
     "ballparkpal_overlay_adjusted_score",
@@ -560,6 +563,7 @@ def normalize_pick(row: dict[str, Any], tracking_start_date: str) -> dict[str, A
         "ballparkpal_team_home_runs": parse_float(row.get("ballparkpal_team_home_runs")),
         "ballparkpal_runs_allowed": parse_float(row.get("ballparkpal_runs_allowed")),
         "ballparkpal_home_runs_allowed": parse_float(row.get("ballparkpal_home_runs_allowed")),
+        "ballparkpal_overlay_raw_score": parse_float(row.get("ballparkpal_overlay_raw_score")),
         "ballparkpal_overlay_signed_score": parse_float(row.get("ballparkpal_overlay_signed_score")),
         "ballparkpal_overlay_display_score": parse_float(row.get("ballparkpal_overlay_display_score")),
         "ballparkpal_overlay_adjusted_score": parse_float(row.get("ballparkpal_overlay_adjusted_score")),
@@ -1411,12 +1415,12 @@ def build_ballparkpal_explainer() -> dict[str, Any]:
         "available": bool(factors),
         "title": "Ballpark Pal weights",
         "summary": (
-            "Ballpark Pal XX.X is the Batter HomeRunProbability converted to a 0-100 score. 10.0 is neutral; above 10.0 is favorable and below 10.0 is unfavorable. "
+            "Ballpark Pal XX.X is the slate-normalized Batter HomeRunProbability score on a 0-100 scale. 50.0 is neutral; above 50.0 is favorable and below 50.0 is unfavorable. "
             f"The Today slider defaults to a {int(BALLPARKPAL_BALLPARK_BLEND_WEIGHT * 100)}/{int(BALLPARKPAL_MODEL_BLEND_WEIGHT * 100)} "
             "Ballpark Pal/model blend and can re-rank the live board."
         ),
-        "score_note": "Ballpark Pal XX.X is Batter.HomeRunProbability × 100 in the HR Chance cell.",
-        "blend_note": "Use the Today slider to reweight the live board from 0% to 100% Ballpark Pal.",
+        "score_note": "Ballpark Pal XX.X is the slate-normalized Batter.HomeRunProbability score in the HR Chance cell.",
+        "blend_note": "Use the Today slider to reweight the live board from 0% to 100% Ballpark Pal against the model.",
         "blend_weights": {
             "model": BALLPARKPAL_MODEL_BLEND_WEIGHT,
             "ballpark": BALLPARKPAL_BALLPARK_BLEND_WEIGHT,

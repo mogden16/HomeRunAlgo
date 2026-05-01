@@ -182,6 +182,7 @@ LIVE_BALLPARKPAL_SOURCE_COLUMNS = [
     "ballparkpal_team_home_runs",
     "ballparkpal_runs_allowed",
     "ballparkpal_home_runs_allowed",
+    "ballparkpal_overlay_raw_score",
 ]
 
 
@@ -630,6 +631,7 @@ def _build_pick_record_base(row: dict[str, Any]) -> dict[str, Any]:
         "ballparkpal_team_home_runs": _coerce_float(row.get("ballparkpal_team_home_runs")),
         "ballparkpal_runs_allowed": _coerce_float(row.get("ballparkpal_runs_allowed")),
         "ballparkpal_home_runs_allowed": _coerce_float(row.get("ballparkpal_home_runs_allowed")),
+        "ballparkpal_overlay_raw_score": _coerce_float(row.get("ballparkpal_overlay_raw_score")),
         "ballparkpal_overlay_signed_score": _coerce_float(row.get("ballparkpal_overlay_signed_score")),
         "ballparkpal_overlay_display_score": _coerce_float(row.get("ballparkpal_overlay_display_score")),
         "ballparkpal_overlay_adjusted_score": _coerce_float(row.get("ballparkpal_overlay_adjusted_score")),
@@ -2734,6 +2736,7 @@ def score_live_candidates(
                 "ballparkpal_team_home_runs": serialize_for_json(row.get("ballparkpal_team_home_runs")),
                 "ballparkpal_runs_allowed": serialize_for_json(row.get("ballparkpal_runs_allowed")),
                 "ballparkpal_home_runs_allowed": serialize_for_json(row.get("ballparkpal_home_runs_allowed")),
+                "ballparkpal_overlay_raw_score": serialize_for_json(row.get("ballparkpal_overlay_raw_score")),
                 "ballparkpal_overlay_signed_score": serialize_for_json(row.get("ballparkpal_overlay_signed_score")),
                 "ballparkpal_overlay_display_score": serialize_for_json(row.get("ballparkpal_overlay_display_score")),
                 "ballparkpal_overlay_adjusted_score": serialize_for_json(row.get("ballparkpal_overlay_adjusted_score")),
