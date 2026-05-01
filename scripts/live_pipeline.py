@@ -48,6 +48,8 @@ from generate_data import generate_mlb_dataset
 from train_model import (
     DEFAULT_CONFIDENCE_POLICY,
     LIVE_USABLE_CANDIDATE_PROFILE,
+    LIVE_USABLE_CANDIDATE_V2_PROFILE,
+    LIVE_USABLE_CANDIDATE_V2_SEED_COLUMNS,
     LIVE_USABLE_CANDIDATE_SEED_COLUMNS,
     LIVE_PLUS_FEATURE_COLUMNS,
     LIVE_PRODUCTION_FEATURE_COLUMNS,
@@ -68,6 +70,7 @@ from train_model import (
     maybe_calibrate_logistic,
     prepare_feature_matrix,
     prune_model_features_by_training_missingness,
+    normalized_confidence_policy,
     resolve_reason_weight_map,
     run_backtest,
 )
@@ -132,6 +135,9 @@ LIVE_SHRUNK_PRECISE_ONLY_FEATURE_COLUMNS = [
 LIVE_USABLE_CANDIDATE_ONLY_FEATURE_COLUMNS = [
     feature for feature in LIVE_USABLE_CANDIDATE_SEED_COLUMNS if feature not in LIVE_PLUS_FEATURE_COLUMNS
 ]
+LIVE_USABLE_CANDIDATE_V2_ONLY_FEATURE_COLUMNS = [
+    feature for feature in LIVE_USABLE_CANDIDATE_V2_SEED_COLUMNS if feature not in LIVE_PLUS_FEATURE_COLUMNS
+]
 LIVE_COMPATIBLE_FEATURE_COLUMNS = list(
     dict.fromkeys(
         [
@@ -139,6 +145,7 @@ LIVE_COMPATIBLE_FEATURE_COLUMNS = list(
             *LIVE_SHRUNK_FEATURE_COLUMNS,
             *LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS,
             *LIVE_USABLE_CANDIDATE_SEED_COLUMNS,
+            *LIVE_USABLE_CANDIDATE_V2_SEED_COLUMNS,
         ]
     )
 )
@@ -762,6 +769,15 @@ def _confidence_tier_value(tier: str | None) -> int:
     return CONFIDENCE_TIER_ORDER.get(str(tier or "").strip().lower(), -1)
 
 
+def public_confidence_policy(policy: dict[str, Any] | None = None) -> dict[str, Any]:
+    resolved = normalized_confidence_policy(policy)
+    # Keep the public slate tiering purely rank-based so the elite label still
+    # appears on the top of the board even when raw model probabilities are low.
+    resolved["elite_probability_floor"] = None
+    resolved["elite_top_k"] = None
+    return resolved
+
+
 def latest_non_null(series: pd.Series, default: Any = None) -> Any:
     non_null = series.dropna()
     if non_null.empty:
@@ -962,13 +978,16 @@ def _fit_live_bundle_fast_refit(
         "live_shrunk": LIVE_SHRUNK_FEATURE_COLUMNS,
         "live_shrunk_precise": LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS,
         LIVE_USABLE_CANDIDATE_PROFILE: LIVE_USABLE_CANDIDATE_SEED_COLUMNS,
+        LIVE_USABLE_CANDIDATE_V2_PROFILE: LIVE_USABLE_CANDIDATE_V2_SEED_COLUMNS,
     }
     metadata_feature_columns = existing_metadata.get("feature_columns")
     configured_features = (
         [
             str(column)
             for column in metadata_feature_columns
-            if isinstance(column, str) and column in df.columns
+            if isinstance(column, str)
+            and column in df.columns
+            and str(existing_metadata.get("feature_profile") or "") == feature_profile
         ]
         if isinstance(metadata_feature_columns, list)
         else []
@@ -1095,7 +1114,7 @@ def train_live_model_bundle(
     metadata_path: Path = LIVE_MODEL_METADATA_PATH,
     model_name: str = "histgb",
     calibration: str = "sigmoid",
-    feature_profile: str = "live_usable_candidate_v1",
+    feature_profile: str = "live_usable_candidate_v2",
     selection_metric: str = "pr_auc",
     missingness_threshold: float | None = None,
     training_mode: str = "search",
@@ -1113,7 +1132,7 @@ def train_live_model_bundle(
     if training_mode == "fast_refit":
         if existing_metadata:
             resolved_model_family = str(existing_metadata.get("model_family") or model_name or "logistic")
-            resolved_feature_profile = str(existing_metadata.get("feature_profile") or feature_profile or "live_shrunk")
+            resolved_feature_profile = str(feature_profile or existing_metadata.get("feature_profile") or "live_shrunk")
             resolved_missingness_threshold = float(
                 existing_metadata.get("missingness_threshold")
                 if existing_metadata.get("missingness_threshold") is not None
@@ -1158,19 +1177,22 @@ def train_live_model_bundle(
         print(f"Model family requested     : {model_name}")
         print(f"Feature profile requested  : {feature_profile}")
 
+    if feature_profile == LIVE_USABLE_CANDIDATE_PROFILE:
+        compare_against_profile = "live_shrunk"
+    elif feature_profile == LIVE_USABLE_CANDIDATE_V2_PROFILE:
+        compare_against_profile = LIVE_USABLE_CANDIDATE_PROFILE
+    elif feature_profile in {"live_shrunk", "live_shrunk_precise"}:
+        compare_against_profile = "live_plus"
+    elif feature_profile == "live_plus":
+        compare_against_profile = "live"
+    else:
+        compare_against_profile = None
+
     backtest = run_backtest(
         str(dataset_path),
         model_name=model_name,
         feature_profile=feature_profile,
-        compare_against=(
-            "live_shrunk"
-            if feature_profile == LIVE_USABLE_CANDIDATE_PROFILE
-            else (
-            "live_plus"
-            if feature_profile in {"live_shrunk", "live_shrunk_precise"}
-            else ("live" if feature_profile == "live_plus" else None)
-            )
-        ),
+        compare_against=compare_against_profile,
         selection_metric=selection_metric,
         missingness_threshold=missingness_threshold,
         calibration=calibration,
@@ -1181,7 +1203,12 @@ def train_live_model_bundle(
     train_df = backtest["train_df"]
     test_df = backtest["test_df"]
 
-    baseline_profile = "live_shrunk" if feature_profile == LIVE_USABLE_CANDIDATE_PROFILE else "live"
+    if feature_profile == LIVE_USABLE_CANDIDATE_PROFILE:
+        baseline_profile = "live_shrunk"
+    elif feature_profile == LIVE_USABLE_CANDIDATE_V2_PROFILE:
+        baseline_profile = LIVE_USABLE_CANDIDATE_PROFILE
+    else:
+        baseline_profile = "live"
     if feature_profile == LIVE_USABLE_CANDIDATE_PROFILE and isinstance(backtest.get("baseline_holdout"), dict):
         baseline_holdout = backtest["baseline_holdout"]
         baseline_candidate = evaluate_training_candidate(
@@ -1238,7 +1265,7 @@ def train_live_model_bundle(
         backtest.get("report", {}).get("promotion_candidate_rank", {}).get("passes_promotion_gates", winner_beats_baseline)
     )
     should_promote_selected = winner_is_compatible and winner_beats_baseline
-    if feature_profile == LIVE_USABLE_CANDIDATE_PROFILE:
+    if feature_profile in {LIVE_USABLE_CANDIDATE_PROFILE, LIVE_USABLE_CANDIDATE_V2_PROFILE}:
         should_promote_selected = should_promote_selected and winner_passes_promotion
     if should_promote_selected:
         promoted_candidate = selected_candidate
@@ -1249,7 +1276,7 @@ def train_live_model_bundle(
         promoted_holdout = baseline_holdout
         promotion_reason = (
             "baseline_fallback_after_failed_promotion_gate"
-            if feature_profile == LIVE_USABLE_CANDIDATE_PROFILE
+            if feature_profile in {LIVE_USABLE_CANDIDATE_PROFILE, LIVE_USABLE_CANDIDATE_V2_PROFILE}
             else "baseline_fallback"
         )
 
@@ -2567,6 +2594,10 @@ def score_live_candidates(
         required_live_features = [
             feature for feature in feature_columns if feature in LIVE_USABLE_CANDIDATE_ONLY_FEATURE_COLUMNS
         ]
+    elif feature_profile == LIVE_USABLE_CANDIDATE_V2_PROFILE:
+        required_live_features = [
+            feature for feature in feature_columns if feature in LIVE_USABLE_CANDIDATE_V2_ONLY_FEATURE_COLUMNS
+        ]
     else:
         required_live_features = []
     if required_live_features:
@@ -2588,6 +2619,7 @@ def score_live_candidates(
         if isinstance(bundle.get("confidence_policy"), dict)
         else DEFAULT_CONFIDENCE_POLICY
     )
+    confidence_policy = public_confidence_policy(confidence_policy)
     scored = apply_confidence_policy_to_frame(
         scored,
         probability_col="predicted_hr_probability",

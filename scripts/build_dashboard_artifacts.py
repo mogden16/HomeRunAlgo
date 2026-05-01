@@ -1257,6 +1257,11 @@ def _operational_alerts_from_metadata(metadata: dict[str, Any]) -> list[dict[str
 def _confidence_policy_from_metadata(metadata: dict[str, Any]) -> dict[str, Any]:
     policy_payload = metadata.get("confidence_policy") if isinstance(metadata.get("confidence_policy"), dict) else {}
     resolved_policy = normalized_confidence_policy(policy_payload)
+    # The public dashboard should tier by rank/percentile only. The raw model
+    # metadata can keep its training-time floor, but the board should not hide
+    # elite labels when the slate probabilities are compressed.
+    resolved_policy["elite_probability_floor"] = None
+    resolved_policy["elite_top_k"] = None
     return {key: serialize_value(value) for key, value in resolved_policy.items()}
 
 

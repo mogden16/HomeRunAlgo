@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-01T11:23:30.043917+00:00",
+  "generated_at": "2026-05-01T11:39:21.486221+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v2",
@@ -8,8 +8,8 @@
   "operational_alerts": [],
   "confidence_policy": {
     "elite_percentile_floor": 0.99,
-    "elite_probability_floor": 0.18,
-    "elite_top_k": 1,
+    "elite_probability_floor": null,
+    "elite_top_k": null,
     "strong_percentile_floor": 0.95,
     "watch_percentile_floor": 0.8
   },
@@ -3355,7 +3355,7 @@
     {
       "pick_id": "2026-05-01:823557:663757:",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823557,
@@ -3412,7 +3412,7 @@
     {
       "pick_id": "2026-05-01:823557:641857:",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823557,
@@ -3469,7 +3469,7 @@
     {
       "pick_id": "2026-05-01:823066:571970:669461",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823066,
@@ -3526,7 +3526,7 @@
     {
       "pick_id": "2026-05-01:824686:624424:668678",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824686,
@@ -3583,7 +3583,7 @@
     {
       "pick_id": "2026-05-01:824041:687093:681035",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824041,
@@ -3640,7 +3640,7 @@
     {
       "pick_id": "2026-05-01:822990:641584:592662",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822990,
@@ -3697,7 +3697,7 @@
     {
       "pick_id": "2026-05-01:824287:681481:669022",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824287,
@@ -3754,7 +3754,7 @@
     {
       "pick_id": "2026-05-01:823713:656484:571578",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823713,
@@ -3811,7 +3811,7 @@
     {
       "pick_id": "2026-05-01:823146:686527:666142",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823146,
@@ -3868,7 +3868,7 @@
     {
       "pick_id": "2026-05-01:823713:665019:571578",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823713,
@@ -3925,7 +3925,7 @@
     {
       "pick_id": "2026-05-01:823146:670042:666142",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823146,
@@ -3982,7 +3982,7 @@
     {
       "pick_id": "2026-05-01:823713:663616:571578",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823713,
@@ -4039,7 +4039,7 @@
     {
       "pick_id": "2026-05-01:824287:690993:669022",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824287,
@@ -4096,7 +4096,7 @@
     {
       "pick_id": "2026-05-01:823557:641933:701542",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823557,
@@ -4153,7 +4153,7 @@
     {
       "pick_id": "2026-05-01:823066:687221:669461",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823066,
@@ -4210,7 +4210,7 @@
     {
       "pick_id": "2026-05-01:822744:678554:694819",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822744,
@@ -4267,7 +4267,7 @@
     {
       "pick_id": "2026-05-01:824686:807713:668678",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824686,
@@ -4324,7 +4324,7 @@
     {
       "pick_id": "2026-05-01:823146:657041:693433",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823146,
@@ -4381,7 +4381,7 @@
     {
       "pick_id": "2026-05-01:824287:543309:656427",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824287,
@@ -4438,7 +4438,7 @@
     {
       "pick_id": "2026-05-01:824366:686668:656550",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824366,
@@ -4495,7 +4495,7 @@
     {
       "pick_id": "2026-05-01:823713:664702:680573",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823713,
@@ -4552,7 +4552,7 @@
     {
       "pick_id": "2026-05-01:823713:676914:680573",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823713,
@@ -4609,7 +4609,7 @@
     {
       "pick_id": "2026-05-01:824366:573262:500779",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824366,
@@ -4666,7 +4666,7 @@
     {
       "pick_id": "2026-05-01:824686:543510:607067",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824686,
@@ -4723,7 +4723,7 @@
     {
       "pick_id": "2026-05-01:822744:596142:663623",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822744,
@@ -4780,7 +4780,7 @@
     {
       "pick_id": "2026-05-01:822990:656775:592662",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822990,
@@ -4837,7 +4837,7 @@
     {
       "pick_id": "2026-05-01:823146:679845:693433",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823146,
@@ -4894,7 +4894,7 @@
     {
       "pick_id": "2026-05-01:822990:687551:663556",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822990,
@@ -4951,7 +4951,7 @@
     {
       "pick_id": "2026-05-01:823389:663968:663903",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823389,
@@ -5008,7 +5008,7 @@
     {
       "pick_id": "2026-05-01:824366:671289:656550",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824366,
@@ -5065,7 +5065,7 @@
     {
       "pick_id": "2026-05-01:822744:686452:694819",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822744,
@@ -5122,7 +5122,7 @@
     {
       "pick_id": "2026-05-01:823066:808975:669461",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823066,
@@ -5179,7 +5179,7 @@
     {
       "pick_id": "2026-05-01:822990:680700:592662",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822990,
@@ -5236,7 +5236,7 @@
     {
       "pick_id": "2026-05-01:824287:677649:656427",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824287,
@@ -5293,7 +5293,7 @@
     {
       "pick_id": "2026-05-01:823066:660271:669461",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823066,
@@ -5350,7 +5350,7 @@
     {
       "pick_id": "2026-05-01:823557:592450:",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823557,
@@ -5407,7 +5407,7 @@
     {
       "pick_id": "2026-05-01:824366:621566:500779",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824366,
@@ -5464,7 +5464,7 @@
     {
       "pick_id": "2026-05-01:824366:660670:500779",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824366,
@@ -5521,7 +5521,7 @@
     {
       "pick_id": "2026-05-01:823877:656941:691587",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823877,
@@ -5531,7 +5531,7 @@
       "rank": 1,
       "original_rank": 1,
       "original_score": 100.0,
-      "original_tier": "strong",
+      "original_tier": "elite",
       "morning_rank": null,
       "batter_name": "Kyle Schwarber",
       "team": "PHI",
@@ -5541,7 +5541,7 @@
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
-      "confidence_tier": "strong",
+      "confidence_tier": "elite",
       "weather_code": 0,
       "weather_label": "Clear",
       "temperature_f": 81.9,
@@ -5578,7 +5578,7 @@
     {
       "pick_id": "2026-05-01:824366:696100:656550",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824366,
@@ -5635,7 +5635,7 @@
     {
       "pick_id": "2026-05-01:823146:663728:666142",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823146,
@@ -5692,7 +5692,7 @@
     {
       "pick_id": "2026-05-01:823557:700250:",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823557,
@@ -5749,7 +5749,7 @@
     {
       "pick_id": "2026-05-01:824366:666160:656550",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824366,
@@ -5806,7 +5806,7 @@
     {
       "pick_id": "2026-05-01:823309:657656:702273",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823309,
@@ -5863,7 +5863,7 @@
     {
       "pick_id": "2026-05-01:824041:665742:700712",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824041,
@@ -5920,7 +5920,7 @@
     {
       "pick_id": "2026-05-01:823309:678246:608566",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823309,
@@ -5977,7 +5977,7 @@
     {
       "pick_id": "2026-05-01:823309:695657:608566",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823309,
@@ -6034,7 +6034,7 @@
     {
       "pick_id": "2026-05-01:824366:645277:500779",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824366,
@@ -6091,7 +6091,7 @@
     {
       "pick_id": "2026-05-01:822744:661388:663623",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822744,
@@ -6148,7 +6148,7 @@
     {
       "pick_id": "2026-05-01:822744:668930:663623",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822744,
@@ -6205,7 +6205,7 @@
     {
       "pick_id": "2026-05-01:822744:641343:663623",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822744,
@@ -6262,7 +6262,7 @@
     {
       "pick_id": "2026-05-01:823557:624413:701542",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823557,
@@ -6319,7 +6319,7 @@
     {
       "pick_id": "2026-05-01:822990:646240:663556",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822990,
@@ -6376,7 +6376,7 @@
     {
       "pick_id": "2026-05-01:823713:660821:680573",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823713,
@@ -6433,7 +6433,7 @@
     {
       "pick_id": "2026-05-01:824041:624585:681035",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824041,
@@ -6490,7 +6490,7 @@
     {
       "pick_id": "2026-05-01:822744:669003:663623",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822744,
@@ -6547,7 +6547,7 @@
     {
       "pick_id": "2026-05-01:824366:686948:500779",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824366,
@@ -6604,7 +6604,7 @@
     {
       "pick_id": "2026-05-01:823557:668939:701542",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823557,
@@ -6661,7 +6661,7 @@
     {
       "pick_id": "2026-05-01:823557:665750:701542",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823557,
@@ -6718,7 +6718,7 @@
     {
       "pick_id": "2026-05-01:823557:683002:701542",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823557,
@@ -6775,7 +6775,7 @@
     {
       "pick_id": "2026-05-01:824041:545361:681035",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824041,
@@ -6832,7 +6832,7 @@
     {
       "pick_id": "2026-05-01:824366:663586:500779",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824366,
@@ -6889,7 +6889,7 @@
     {
       "pick_id": "2026-05-01:824366:642201:500779",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824366,
@@ -6946,7 +6946,7 @@
     {
       "pick_id": "2026-05-01:823713:621439:571578",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823713,
@@ -7003,7 +7003,7 @@
     {
       "pick_id": "2026-05-01:825012:700932:669372",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 825012,
@@ -7060,7 +7060,7 @@
     {
       "pick_id": "2026-05-01:822744:695578:694819",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822744,
@@ -7117,7 +7117,7 @@
     {
       "pick_id": "2026-05-01:823557:694212:701542",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823557,
@@ -7174,7 +7174,7 @@
     {
       "pick_id": "2026-05-01:824366:666397:656550",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824366,
@@ -7231,7 +7231,7 @@
     {
       "pick_id": "2026-05-01:823066:518692:669461",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823066,
@@ -7288,7 +7288,7 @@
     {
       "pick_id": "2026-05-01:823146:647304:666142",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823146,
@@ -7345,7 +7345,7 @@
     {
       "pick_id": "2026-05-01:824041:682626:700712",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824041,
@@ -7402,7 +7402,7 @@
     {
       "pick_id": "2026-05-01:823389:542303:663903",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823389,
@@ -7459,7 +7459,7 @@
     {
       "pick_id": "2026-05-01:824041:669004:700712",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824041,
@@ -7516,7 +7516,7 @@
     {
       "pick_id": "2026-05-01:823877:547180:691587",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823877,
@@ -7526,7 +7526,7 @@
       "rank": 2,
       "original_rank": 2,
       "original_score": 99.6,
-      "original_tier": "strong",
+      "original_tier": "elite",
       "morning_rank": null,
       "batter_name": "Bryce Harper",
       "team": "PHI",
@@ -7536,7 +7536,7 @@
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
-      "confidence_tier": "strong",
+      "confidence_tier": "elite",
       "weather_code": 0,
       "weather_label": "Clear",
       "temperature_f": 81.9,
@@ -7573,7 +7573,7 @@
     {
       "pick_id": "2026-05-01:822990:691406:592662",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822990,
@@ -7583,7 +7583,7 @@
       "rank": 3,
       "original_rank": 3,
       "original_score": 99.2,
-      "original_tier": "strong",
+      "original_tier": "elite",
       "morning_rank": null,
       "batter_name": "Junior Caminero",
       "team": "TB",
@@ -7593,7 +7593,7 @@
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
-      "confidence_tier": "strong",
+      "confidence_tier": "elite",
       "weather_code": 1,
       "weather_label": "Clear",
       "temperature_f": 78.7,
@@ -7630,7 +7630,7 @@
     {
       "pick_id": "2026-05-01:823557:641355:",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823557,
@@ -7687,7 +7687,7 @@
     {
       "pick_id": "2026-05-01:825012:608070:669372",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 825012,
@@ -7744,7 +7744,7 @@
     {
       "pick_id": "2026-05-01:824041:660162:681035",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824041,
@@ -7801,7 +7801,7 @@
     {
       "pick_id": "2026-05-01:823309:665487:702273",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823309,
@@ -7858,7 +7858,7 @@
     {
       "pick_id": "2026-05-01:824772:670541:",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824772,
@@ -7915,7 +7915,7 @@
     {
       "pick_id": "2026-05-01:823877:669065:554430",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823877,
@@ -7972,7 +7972,7 @@
     {
       "pick_id": "2026-05-01:824041:687263:681035",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824041,
@@ -8029,7 +8029,7 @@
     {
       "pick_id": "2026-05-01:825012:682177:669372",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 825012,
@@ -8086,7 +8086,7 @@
     {
       "pick_id": "2026-05-01:823309:592518:702273",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823309,
@@ -8143,7 +8143,7 @@
     {
       "pick_id": "2026-05-01:824772:677800:681347",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824772,
@@ -8200,7 +8200,7 @@
     {
       "pick_id": "2026-05-01:822990:642715:663556",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822990,
@@ -8257,7 +8257,7 @@
     {
       "pick_id": "2026-05-01:824041:666176:681035",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824041,
@@ -8314,7 +8314,7 @@
     {
       "pick_id": "2026-05-01:823713:665489:680573",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823713,
@@ -8371,7 +8371,7 @@
     {
       "pick_id": "2026-05-01:823309:643217:608566",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823309,
@@ -8428,7 +8428,7 @@
     {
       "pick_id": "2026-05-01:823309:669720:608566",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823309,
@@ -8485,7 +8485,7 @@
     {
       "pick_id": "2026-05-01:823877:666969:691587",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823877,
@@ -8542,7 +8542,7 @@
     {
       "pick_id": "2026-05-01:824366:678662:656550",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824366,
@@ -8599,7 +8599,7 @@
     {
       "pick_id": "2026-05-01:823146:677594:666142",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823146,
@@ -8656,7 +8656,7 @@
     {
       "pick_id": "2026-05-01:822990:669477:663556",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822990,
@@ -8713,7 +8713,7 @@
     {
       "pick_id": "2026-05-01:822744:671277:694819",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822744,
@@ -8770,7 +8770,7 @@
     {
       "pick_id": "2026-05-01:824366:671739:500779",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824366,
@@ -8827,7 +8827,7 @@
     {
       "pick_id": "2026-05-01:823309:701538:702273",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823309,
@@ -8884,7 +8884,7 @@
     {
       "pick_id": "2026-05-01:823389:665833:663903",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823389,
@@ -8941,7 +8941,7 @@
     {
       "pick_id": "2026-05-01:823309:808959:608566",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823309,
@@ -8998,7 +8998,7 @@
     {
       "pick_id": "2026-05-01:822990:666018:592662",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822990,
@@ -9055,7 +9055,7 @@
     {
       "pick_id": "2026-05-01:824287:608369:656427",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824287,
@@ -9112,7 +9112,7 @@
     {
       "pick_id": "2026-05-01:822990:650490:592662",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822990,
@@ -9169,7 +9169,7 @@
     {
       "pick_id": "2026-05-01:824772:621043:",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824772,
@@ -9226,7 +9226,7 @@
     {
       "pick_id": "2026-05-01:823146:521692:693433",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823146,
@@ -9283,7 +9283,7 @@
     {
       "pick_id": "2026-05-01:823713:662139:680573",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823713,
@@ -9340,7 +9340,7 @@
     {
       "pick_id": "2026-05-01:823713:605137:571578",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823713,
@@ -9397,7 +9397,7 @@
     {
       "pick_id": "2026-05-01:824772:575929:681347",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824772,
@@ -9454,7 +9454,7 @@
     {
       "pick_id": "2026-05-01:824772:701350:681347",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824772,
@@ -9511,7 +9511,7 @@
     {
       "pick_id": "2026-05-01:824287:669394:656427",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824287,
@@ -9568,7 +9568,7 @@
     {
       "pick_id": "2026-05-01:823146:695600:693433",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823146,
@@ -9625,7 +9625,7 @@
     {
       "pick_id": "2026-05-01:823389:701398:656605",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823389,
@@ -9682,7 +9682,7 @@
     {
       "pick_id": "2026-05-01:823713:672960:680573",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823713,
@@ -9739,7 +9739,7 @@
     {
       "pick_id": "2026-05-01:824041:683146:700712",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824041,
@@ -9796,7 +9796,7 @@
     {
       "pick_id": "2026-05-01:824287:679529:669022",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824287,
@@ -9853,7 +9853,7 @@
     {
       "pick_id": "2026-05-01:824041:518595:681035",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824041,
@@ -9910,7 +9910,7 @@
     {
       "pick_id": "2026-05-01:822990:671218:663556",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822990,
@@ -9967,7 +9967,7 @@
     {
       "pick_id": "2026-05-01:823389:664040:663903",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823389,
@@ -10024,7 +10024,7 @@
     {
       "pick_id": "2026-05-01:824041:666139:681035",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824041,
@@ -10081,7 +10081,7 @@
     {
       "pick_id": "2026-05-01:823389:682829:656605",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823389,
@@ -10138,7 +10138,7 @@
     {
       "pick_id": "2026-05-01:823557:669224:",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823557,
@@ -10195,7 +10195,7 @@
     {
       "pick_id": "2026-05-01:824772:572233:",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824772,
@@ -10252,7 +10252,7 @@
     {
       "pick_id": "2026-05-01:824686:683737:668678",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824686,
@@ -10309,7 +10309,7 @@
     {
       "pick_id": "2026-05-01:824772:514888:",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824772,
@@ -10366,7 +10366,7 @@
     {
       "pick_id": "2026-05-01:824287:682985:669022",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824287,
@@ -10423,7 +10423,7 @@
     {
       "pick_id": "2026-05-01:824772:670623:",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824772,
@@ -10480,7 +10480,7 @@
     {
       "pick_id": "2026-05-01:824772:680776:681347",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824772,
@@ -10537,7 +10537,7 @@
     {
       "pick_id": "2026-05-01:824041:543760:700712",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824041,
@@ -10594,7 +10594,7 @@
     {
       "pick_id": "2026-05-01:823146:641487:666142",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823146,
@@ -10651,7 +10651,7 @@
     {
       "pick_id": "2026-05-01:823146:702284:666142",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823146,
@@ -10708,7 +10708,7 @@
     {
       "pick_id": "2026-05-01:823309:592206:702273",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823309,
@@ -10765,7 +10765,7 @@
     {
       "pick_id": "2026-05-01:823557:665862:",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823557,
@@ -10822,7 +10822,7 @@
     {
       "pick_id": "2026-05-01:824772:665966:681347",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824772,
@@ -10879,7 +10879,7 @@
     {
       "pick_id": "2026-05-01:824287:693307:669022",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824287,
@@ -10936,7 +10936,7 @@
     {
       "pick_id": "2026-05-01:823389:668715:656605",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823389,
@@ -10993,7 +10993,7 @@
     {
       "pick_id": "2026-05-01:824366:687859:656550",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824366,
@@ -11050,7 +11050,7 @@
     {
       "pick_id": "2026-05-01:823066:671056:686218",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823066,
@@ -11107,7 +11107,7 @@
     {
       "pick_id": "2026-05-01:823309:593428:702273",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823309,
@@ -11164,7 +11164,7 @@
     {
       "pick_id": "2026-05-01:824041:666182:700712",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824041,
@@ -11221,7 +11221,7 @@
     {
       "pick_id": "2026-05-01:823713:668904:571578",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823713,
@@ -11278,7 +11278,7 @@
     {
       "pick_id": "2026-05-01:822744:666152:663623",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822744,
@@ -11335,7 +11335,7 @@
     {
       "pick_id": "2026-05-01:822744:650859:663623",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822744,
@@ -11392,7 +11392,7 @@
     {
       "pick_id": "2026-05-01:825012:666310:669372",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 825012,
@@ -11449,7 +11449,7 @@
     {
       "pick_id": "2026-05-01:824686:691718:668678",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824686,
@@ -11506,7 +11506,7 @@
     {
       "pick_id": "2026-05-01:823066:669357:686218",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823066,
@@ -11563,7 +11563,7 @@
     {
       "pick_id": "2026-05-01:823066:669257:669461",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823066,
@@ -11620,7 +11620,7 @@
     {
       "pick_id": "2026-05-01:823557:691723:701542",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823557,
@@ -11677,7 +11677,7 @@
     {
       "pick_id": "2026-05-01:823389:663886:656605",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823389,
@@ -11734,7 +11734,7 @@
     {
       "pick_id": "2026-05-01:824772:694728:",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824772,
@@ -11791,7 +11791,7 @@
     {
       "pick_id": "2026-05-01:824772:673237:",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824772,
@@ -11848,7 +11848,7 @@
     {
       "pick_id": "2026-05-01:824772:596115:681347",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824772,
@@ -11905,7 +11905,7 @@
     {
       "pick_id": "2026-05-01:825012:677587:669372",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 825012,
@@ -11962,7 +11962,7 @@
     {
       "pick_id": "2026-05-01:824366:681198:656550",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824366,
@@ -12019,7 +12019,7 @@
     {
       "pick_id": "2026-05-01:825012:800050:669372",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 825012,
@@ -12076,7 +12076,7 @@
     {
       "pick_id": "2026-05-01:824287:805808:669022",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824287,
@@ -12133,7 +12133,7 @@
     {
       "pick_id": "2026-05-01:824041:677595:700712",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824041,
@@ -12190,7 +12190,7 @@
     {
       "pick_id": "2026-05-01:824686:664023:668678",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824686,
@@ -12247,7 +12247,7 @@
     {
       "pick_id": "2026-05-01:824772:701358:",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824772,
@@ -12304,7 +12304,7 @@
     {
       "pick_id": "2026-05-01:824041:621438:700712",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824041,
@@ -12361,7 +12361,7 @@
     {
       "pick_id": "2026-05-01:822744:682928:694819",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822744,
@@ -12418,7 +12418,7 @@
     {
       "pick_id": "2026-05-01:824686:682998:607067",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824686,
@@ -12475,7 +12475,7 @@
     {
       "pick_id": "2026-05-01:823389:668709:656605",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823389,
@@ -12532,7 +12532,7 @@
     {
       "pick_id": "2026-05-01:823557:621493:701542",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823557,
@@ -12589,7 +12589,7 @@
     {
       "pick_id": "2026-05-01:824287:672761:669022",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824287,
@@ -12646,7 +12646,7 @@
     {
       "pick_id": "2026-05-01:823389:804606:663903",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823389,
@@ -12703,7 +12703,7 @@
     {
       "pick_id": "2026-05-01:825012:682657:669372",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 825012,
@@ -12760,7 +12760,7 @@
     {
       "pick_id": "2026-05-01:823066:676475:686218",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823066,
@@ -12817,7 +12817,7 @@
     {
       "pick_id": "2026-05-01:823877:672640:554430",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823877,
@@ -12874,7 +12874,7 @@
     {
       "pick_id": "2026-05-01:823389:663993:656605",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823389,
@@ -12931,7 +12931,7 @@
     {
       "pick_id": "2026-05-01:824041:701807:700712",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824041,
@@ -12988,7 +12988,7 @@
     {
       "pick_id": "2026-05-01:823146:686681:693433",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823146,
@@ -13045,7 +13045,7 @@
     {
       "pick_id": "2026-05-01:823557:669236:701542",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823557,
@@ -13102,7 +13102,7 @@
     {
       "pick_id": "2026-05-01:823146:668227:666142",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823146,
@@ -13159,7 +13159,7 @@
     {
       "pick_id": "2026-05-01:823066:691023:686218",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823066,
@@ -13216,7 +13216,7 @@
     {
       "pick_id": "2026-05-01:823389:680574:656605",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823389,
@@ -13273,7 +13273,7 @@
     {
       "pick_id": "2026-05-01:824287:673962:656427",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824287,
@@ -13330,7 +13330,7 @@
     {
       "pick_id": "2026-05-01:824041:694384:681035",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824041,
@@ -13387,7 +13387,7 @@
     {
       "pick_id": "2026-05-01:823146:677951:693433",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823146,
@@ -13444,7 +13444,7 @@
     {
       "pick_id": "2026-05-01:824287:663837:669022",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824287,
@@ -13501,7 +13501,7 @@
     {
       "pick_id": "2026-05-01:823877:681393:554430",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823877,
@@ -13558,7 +13558,7 @@
     {
       "pick_id": "2026-05-01:823066:802139:686218",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823066,
@@ -13615,7 +13615,7 @@
     {
       "pick_id": "2026-05-01:823066:663656:669461",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823066,
@@ -13672,7 +13672,7 @@
     {
       "pick_id": "2026-05-01:824287:592626:656427",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824287,
@@ -13729,7 +13729,7 @@
     {
       "pick_id": "2026-05-01:824686:673548:668678",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824686,
@@ -13786,7 +13786,7 @@
     {
       "pick_id": "2026-05-01:823877:669016:691587",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823877,
@@ -13843,7 +13843,7 @@
     {
       "pick_id": "2026-05-01:823877:607208:691587",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823877,
@@ -13900,7 +13900,7 @@
     {
       "pick_id": "2026-05-01:822744:686217:663623",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822744,
@@ -13957,7 +13957,7 @@
     {
       "pick_id": "2026-05-01:824287:607043:656427",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824287,
@@ -14014,7 +14014,7 @@
     {
       "pick_id": "2026-05-01:823389:656811:663903",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823389,
@@ -14071,7 +14071,7 @@
     {
       "pick_id": "2026-05-01:822990:672275:663556",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822990,
@@ -14128,7 +14128,7 @@
     {
       "pick_id": "2026-05-01:823146:660844:666142",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823146,
@@ -14185,7 +14185,7 @@
     {
       "pick_id": "2026-05-01:823557:676609:",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823557,
@@ -14242,7 +14242,7 @@
     {
       "pick_id": "2026-05-01:824366:643289:500779",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824366,
@@ -14299,7 +14299,7 @@
     {
       "pick_id": "2026-05-01:822744:691781:694819",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822744,
@@ -14356,7 +14356,7 @@
     {
       "pick_id": "2026-05-01:823309:664034:702273",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823309,
@@ -14413,7 +14413,7 @@
     {
       "pick_id": "2026-05-01:823309:669134:702273",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823309,
@@ -14470,7 +14470,7 @@
     {
       "pick_id": "2026-05-01:822990:656305:663556",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822990,
@@ -14527,7 +14527,7 @@
     {
       "pick_id": "2026-05-01:824686:694208:668678",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824686,
@@ -14584,7 +14584,7 @@
     {
       "pick_id": "2026-05-01:825012:683953:669372",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 825012,
@@ -14641,7 +14641,7 @@
     {
       "pick_id": "2026-05-01:823309:609280:702273",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823309,
@@ -14698,7 +14698,7 @@
     {
       "pick_id": "2026-05-01:824366:691720:656550",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824366,
@@ -14755,7 +14755,7 @@
     {
       "pick_id": "2026-05-01:824686:606466:607067",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824686,
@@ -14812,7 +14812,7 @@
     {
       "pick_id": "2026-05-01:824772:691785:681347",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824772,
@@ -14869,7 +14869,7 @@
     {
       "pick_id": "2026-05-01:823066:681624:669461",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823066,
@@ -14926,7 +14926,7 @@
     {
       "pick_id": "2026-05-01:823309:671976:608566",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823309,
@@ -14983,7 +14983,7 @@
     {
       "pick_id": "2026-05-01:823557:691176:",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823557,
@@ -15040,7 +15040,7 @@
     {
       "pick_id": "2026-05-01:823877:681082:691587",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823877,
@@ -15097,7 +15097,7 @@
     {
       "pick_id": "2026-05-01:822744:695734:694819",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822744,
@@ -15154,7 +15154,7 @@
     {
       "pick_id": "2026-05-01:823713:680777:571578",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823713,
@@ -15211,7 +15211,7 @@
     {
       "pick_id": "2026-05-01:824772:678882:681347",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824772,
@@ -15268,7 +15268,7 @@
     {
       "pick_id": "2026-05-01:823146:672580:693433",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823146,
@@ -15325,7 +15325,7 @@
     {
       "pick_id": "2026-05-01:823713:676391:680573",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823713,
@@ -15382,7 +15382,7 @@
     {
       "pick_id": "2026-05-01:823389:670770:656605",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823389,
@@ -15439,7 +15439,7 @@
     {
       "pick_id": "2026-05-01:823066:686780:686218",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823066,
@@ -15496,7 +15496,7 @@
     {
       "pick_id": "2026-05-01:823389:668804:663903",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823389,
@@ -15553,7 +15553,7 @@
     {
       "pick_id": "2026-05-01:823389:687462:663903",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823389,
@@ -15610,7 +15610,7 @@
     {
       "pick_id": "2026-05-01:823877:682663:554430",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823877,
@@ -15667,7 +15667,7 @@
     {
       "pick_id": "2026-05-01:824287:650402:669022",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824287,
@@ -15724,7 +15724,7 @@
     {
       "pick_id": "2026-05-01:824287:696030:656427",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824287,
@@ -15781,7 +15781,7 @@
     {
       "pick_id": "2026-05-01:822990:663743:592662",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822990,
@@ -15838,7 +15838,7 @@
     {
       "pick_id": "2026-05-01:823066:690976:669461",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823066,
@@ -15895,7 +15895,7 @@
     {
       "pick_id": "2026-05-01:823713:686797:571578",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823713,
@@ -15952,7 +15952,7 @@
     {
       "pick_id": "2026-05-01:823146:695506:693433",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823146,
@@ -16009,7 +16009,7 @@
     {
       "pick_id": "2026-05-01:822990:808982:663556",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822990,
@@ -16066,7 +16066,7 @@
     {
       "pick_id": "2026-05-01:824772:543877:",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824772,
@@ -16123,7 +16123,7 @@
     {
       "pick_id": "2026-05-01:823877:688363:554430",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823877,
@@ -16180,7 +16180,7 @@
     {
       "pick_id": "2026-05-01:823877:689414:554430",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823877,
@@ -16237,7 +16237,7 @@
     {
       "pick_id": "2026-05-01:824686:680728:607067",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824686,
@@ -16294,7 +16294,7 @@
     {
       "pick_id": "2026-05-01:824287:694497:656427",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824287,
@@ -16351,7 +16351,7 @@
     {
       "pick_id": "2026-05-01:823066:701675:686218",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823066,
@@ -16408,7 +16408,7 @@
     {
       "pick_id": "2026-05-01:823877:664761:691587",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823877,
@@ -16465,7 +16465,7 @@
     {
       "pick_id": "2026-05-01:823877:665561:691587",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823877,
@@ -16522,7 +16522,7 @@
     {
       "pick_id": "2026-05-01:823146:686555:693433",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823146,
@@ -16579,7 +16579,7 @@
     {
       "pick_id": "2026-05-01:823877:683357:554430",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823877,
@@ -16636,7 +16636,7 @@
     {
       "pick_id": "2026-05-01:823309:803011:608566",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823309,
@@ -16693,7 +16693,7 @@
     {
       "pick_id": "2026-05-01:822990:650333:663556",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822990,
@@ -16750,7 +16750,7 @@
     {
       "pick_id": "2026-05-01:824686:608324:668678",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824686,
@@ -16807,7 +16807,7 @@
     {
       "pick_id": "2026-05-01:822744:663604:663623",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822744,
@@ -16864,7 +16864,7 @@
     {
       "pick_id": "2026-05-01:823713:665926:680573",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823713,
@@ -16921,7 +16921,7 @@
     {
       "pick_id": "2026-05-01:824686:666971:607067",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824686,
@@ -16978,7 +16978,7 @@
     {
       "pick_id": "2026-05-01:822990:670764:592662",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822990,
@@ -17035,7 +17035,7 @@
     {
       "pick_id": "2026-05-01:824772:702332:681347",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824772,
@@ -17092,7 +17092,7 @@
     {
       "pick_id": "2026-05-01:824686:699912:607067",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824686,
@@ -17149,7 +17149,7 @@
     {
       "pick_id": "2026-05-01:823389:663647:656605",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823389,
@@ -17206,7 +17206,7 @@
     {
       "pick_id": "2026-05-01:824686:571448:607067",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824686,
@@ -17263,7 +17263,7 @@
     {
       "pick_id": "2026-05-01:823877:805300:554430",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823877,
@@ -17320,7 +17320,7 @@
     {
       "pick_id": "2026-05-01:823389:693304:663903",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823389,
@@ -17377,7 +17377,7 @@
     {
       "pick_id": "2026-05-01:822744:683083:694819",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822744,
@@ -17434,7 +17434,7 @@
     {
       "pick_id": "2026-05-01:823309:805367:608566",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823309,
@@ -17491,7 +17491,7 @@
     {
       "pick_id": "2026-05-01:825012:680757:669372",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 825012,
@@ -17548,7 +17548,7 @@
     {
       "pick_id": "2026-05-01:822744:696285:694819",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822744,
@@ -17605,7 +17605,7 @@
     {
       "pick_id": "2026-05-01:823713:623168:680573",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823713,
@@ -17662,7 +17662,7 @@
     {
       "pick_id": "2026-05-01:823309:700337:608566",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823309,
@@ -17719,7 +17719,7 @@
     {
       "pick_id": "2026-05-01:824686:677950:607067",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824686,
@@ -17776,7 +17776,7 @@
     {
       "pick_id": "2026-05-01:823877:702222:691587",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823877,
@@ -17833,7 +17833,7 @@
     {
       "pick_id": "2026-05-01:823877:669364:554430",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823877,
@@ -17890,7 +17890,7 @@
     {
       "pick_id": "2026-05-01:824686:545121:607067",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824686,
@@ -17947,7 +17947,7 @@
     {
       "pick_id": "2026-05-01:823713:807712:571578",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823713,
@@ -18004,7 +18004,7 @@
     {
       "pick_id": "2026-05-01:824686:663538:668678",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 824686,
@@ -18061,7 +18061,7 @@
     {
       "pick_id": "2026-05-01:823066:691026:686218",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823066,
@@ -18118,7 +18118,7 @@
     {
       "pick_id": "2026-05-01:823066:687363:686218",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 823066,
@@ -18175,7 +18175,7 @@
     {
       "pick_id": "2026-05-01:822990:802415:592662",
       "board_date": "2026-05-01",
-      "created_at": "2026-05-01T11:20:56.858599+00:00",
+      "created_at": "2026-05-01T11:37:15.402176+00:00",
       "finalized_at": null,
       "is_finalized": false,
       "game_pk": 822990,
