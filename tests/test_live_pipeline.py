@@ -184,6 +184,36 @@ class LivePipelineTests(unittest.TestCase):
         self.assertEqual(first.iloc[0]["weather_label"], "Cloudy")
         self.assertEqual(second.iloc[0]["weather_label"], "Cloudy")
 
+    def test_neutralize_weather_features_for_roofed_parks_clears_weather_columns(self) -> None:
+        frame = pd.DataFrame(
+            [
+                {
+                    "roofed_park": True,
+                    "temperature_f": 70.0,
+                    "humidity_pct": 55.0,
+                    "wind_speed_mph": 12.0,
+                    "wind_direction_deg": 210.0,
+                    "pressure_hpa": 1014.0,
+                    "wind_out_to_cf_mph": 5.0,
+                    "crosswind_mph": -3.0,
+                    "air_density_index": 1.18,
+                    "weather_code": 2,
+                }
+            ]
+        )
+
+        neutralized = feature_engineering.neutralize_weather_features_for_roofed_parks(frame)
+
+        self.assertTrue(pd.isna(neutralized.iloc[0]["temperature_f"]))
+        self.assertTrue(pd.isna(neutralized.iloc[0]["humidity_pct"]))
+        self.assertTrue(pd.isna(neutralized.iloc[0]["wind_speed_mph"]))
+        self.assertTrue(pd.isna(neutralized.iloc[0]["wind_direction_deg"]))
+        self.assertTrue(pd.isna(neutralized.iloc[0]["pressure_hpa"]))
+        self.assertTrue(pd.isna(neutralized.iloc[0]["wind_out_to_cf_mph"]))
+        self.assertTrue(pd.isna(neutralized.iloc[0]["crosswind_mph"]))
+        self.assertTrue(pd.isna(neutralized.iloc[0]["air_density_index"]))
+        self.assertTrue(pd.isna(neutralized.iloc[0]["weather_code"]))
+
     def test_fill_missing_game_meta_replaces_unknown_weather_label(self) -> None:
         updated = publish_live_picks._fill_missing_game_meta(
             {

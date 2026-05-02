@@ -19,6 +19,8 @@ class FeatureProfilePlumbingTests(unittest.TestCase):
         self.assertIn("live_shrunk", train_model.FEATURE_PROFILE_CHOICES)
         self.assertIn("live_shrunk_precise", train_model.FEATURE_PROFILE_CHOICES)
         self.assertIn("live_usable_candidate_v1", train_model.FEATURE_PROFILE_CHOICES)
+        self.assertIn("live_usable_candidate_v2", train_model.FEATURE_PROFILE_CHOICES)
+        self.assertIn("live_usable_candidate_v3", train_model.FEATURE_PROFILE_CHOICES)
 
     def test_feature_columns_for_profile_returns_shrunk_sets(self) -> None:
         self.assertEqual(

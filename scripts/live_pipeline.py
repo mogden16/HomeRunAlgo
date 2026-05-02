@@ -23,6 +23,8 @@ from config import (
     BALLPARKPAL_LATEST_SNAPSHOT_PATH,
     BALLPARKPAL_VALIDATED_DIR,
     DEFAULT_GAME_HOUR_LOCAL,
+    PARK_ROOF_TYPE_LABELS,
+    PARK_ROOF_TYPES,
     LIVE_CURRENT_PICKS_PATH,
     LIVE_MODEL_BUNDLE_PATH,
     LIVE_MODEL_DATA_PATH,
@@ -43,6 +45,7 @@ from feature_engineering import (
     compute_pitcher_trailing_features,
     estimate_expected_pa_from_slot,
     estimate_lineup_confirmation_score,
+    neutralize_weather_features_for_roofed_parks,
 )
 from generate_data import generate_mlb_dataset
 from train_model import (
@@ -93,8 +96,8 @@ OPEN_METEO_FORECAST_TIMEOUT_SECONDS = 20
 OPEN_METEO_FORECAST_MAX_ATTEMPTS = 3
 OPEN_METEO_FORECAST_RETRY_BACKOFF_SECONDS = 2
 OPEN_METEO_FORECAST_CACHE_PATH = LIVE_DATA_DIR / "forecast_weather_cache.json"
-OPEN_METEO_FORECAST_CACHE_TTL_SECONDS = 30 * 60
-OPEN_METEO_FORECAST_FAILURE_CACHE_TTL_SECONDS = 5 * 60
+OPEN_METEO_FORECAST_CACHE_TTL_SECONDS = 5 * 60
+OPEN_METEO_FORECAST_FAILURE_CACHE_TTL_SECONDS = 2 * 60
 LIVE_PUBLISH_FRESHNESS_TOLERANCE_DAYS = 7
 OFFSEASON_LINEUP_FALLBACK_DAYS = 210
 TERMINAL_GAME_STATUS_TOKENS = (
@@ -564,11 +567,18 @@ def park_game_meta(home_team: Any) -> dict[str, Any]:
             "ballpark_name": "",
             "ballpark_region_abbr": "",
             "field_bearing_deg": None,
+            "roof_type": "open_air",
+            "roof_label": PARK_ROOF_TYPE_LABELS.get("open_air", "Open air"),
+            "roofed_park": False,
         }
+    roof_type = str(PARK_ROOF_TYPES.get(normalize_team_code(home_team), "open_air"))
     return {
         "ballpark_name": str(park.get("ballpark") or ""),
         "ballpark_region_abbr": str(park.get("region_abbr") or ""),
         "field_bearing_deg": _coerce_float(park.get("field_bearing_deg")),
+        "roof_type": roof_type,
+        "roof_label": str(PARK_ROOF_TYPE_LABELS.get(roof_type, "Open air")),
+        "roofed_park": roof_type != "open_air",
     }
 
 
@@ -622,6 +632,9 @@ def _build_pick_record_base(row: dict[str, Any]) -> dict[str, Any]:
         "batting_order": _coerce_int(row.get("batting_order")),
         "ballpark_name": str(row.get("ballpark_name") or row.get("ballpark") or ""),
         "ballpark_region_abbr": str(row.get("ballpark_region_abbr") or ""),
+        "roof_type": str(row.get("roof_type") or "open_air"),
+        "roof_label": str(row.get("roof_label") or ""),
+        "roofed_park": bool(row.get("roofed_park") or False),
         "weather_code": _coerce_int(row.get("weather_code")),
         "weather_label": str(row.get("weather_label") or weather_code_label(row.get("weather_code"))),
         "temperature_f": _coerce_float(row.get("temperature_f")),
@@ -731,9 +744,15 @@ def _merge_same_day_player_row(existing: dict[str, Any], incoming: dict[str, Any
     merged["predicted_hr_score"] = merged.get("original_score", merged.get("predicted_hr_score"))
     merged["original_tier"] = str(existing.get("original_tier") or existing.get("confidence_tier") or incoming.get("original_tier") or incoming.get("confidence_tier") or "watch")
     merged["confidence_tier"] = str(merged.get("original_tier") or merged.get("confidence_tier") or "watch")
+    merged["roof_type"] = str(merged.get("roof_type") or incoming.get("roof_type") or existing.get("roof_type") or "open_air")
+    merged["roof_label"] = str(merged.get("roof_label") or incoming.get("roof_label") or existing.get("roof_label") or "")
+    merged["roofed_park"] = bool(merged.get("roofed_park") or incoming.get("roofed_park") or existing.get("roofed_park") or False)
     merged["weather_label"] = str(merged.get("weather_label") or "").strip()
     if merged["weather_label"].lower() in {"", "unknown", "n/a", "na"}:
-        merged["weather_label"] = weather_code_label(merged.get("weather_code")) or "Weather unavailable"
+        if merged["roofed_park"] and merged["roof_label"]:
+            merged["weather_label"] = str(merged["roof_label"])
+        else:
+            merged["weather_label"] = weather_code_label(merged.get("weather_code")) or "Weather unavailable"
     merged_reasons = _merge_reason_columns(_reason_columns(existing), _reason_columns(incoming))
     return _apply_reason_columns(merged, merged_reasons)
 
@@ -989,6 +1008,9 @@ def _fit_live_bundle_fast_refit(
         LIVE_USABLE_CANDIDATE_V2_PROFILE: LIVE_USABLE_CANDIDATE_V2_SEED_COLUMNS,
         LIVE_USABLE_CANDIDATE_V3_PROFILE: LIVE_USABLE_CANDIDATE_V3_SEED_COLUMNS,
     }
+    configured_profile_features = [
+        column for column in configured_feature_map.get(feature_profile, []) if column in df.columns
+    ]
     metadata_feature_columns = existing_metadata.get("feature_columns")
     configured_features = (
         [
@@ -997,14 +1019,14 @@ def _fit_live_bundle_fast_refit(
             if isinstance(column, str)
             and column in df.columns
             and str(existing_metadata.get("feature_profile") or "") == feature_profile
+            and [str(item) for item in metadata_feature_columns if isinstance(item, str) and item in df.columns]
+            == configured_profile_features
         ]
         if isinstance(metadata_feature_columns, list)
         else []
     )
     if not configured_features:
-        configured_features = [
-            column for column in configured_feature_map.get(feature_profile, []) if column in df.columns
-        ]
+        configured_features = list(configured_profile_features)
     if not configured_features:
         from train_model import available_feature_columns
 
@@ -1912,9 +1934,13 @@ def build_pitcher_history_table(dataset_df: pd.DataFrame) -> pd.DataFrame:
 def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFrame:
     def _empty_weather_row(home_team: str) -> dict[str, Any]:
         park = PARKS.get(home_team)
+        roof_type = str(PARK_ROOF_TYPES.get(home_team, "open_air"))
         return {
             "game_date": target_date,
             "home_team": home_team,
+            "roof_type": roof_type,
+            "roof_label": str(PARK_ROOF_TYPE_LABELS.get(roof_type, "Open air")),
+            "roofed_park": roof_type != "open_air",
             "field_bearing_deg": _coerce_float(park.get("field_bearing_deg")) if park else None,
             "temperature_f": None,
             "humidity_pct": None,
@@ -1950,6 +1976,48 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
                     detail="missing_park_metadata",
                 )
             )
+            continue
+        roof_type = str(PARK_ROOF_TYPES.get(home_team, "open_air"))
+        roof_label = str(PARK_ROOF_TYPE_LABELS.get(roof_type, "Open air"))
+        if roof_type != "open_air":
+            roofed_row = {
+                "game_date": target_date,
+                "home_team": home_team,
+                "roof_type": roof_type,
+                "roof_label": roof_label,
+                "roofed_park": True,
+                "field_bearing_deg": _coerce_float(park.get("field_bearing_deg")),
+                "temperature_f": None,
+                "humidity_pct": None,
+                "wind_speed_mph": None,
+                "wind_direction_deg": None,
+                "weather_code": None,
+                "weather_label": roof_label,
+                "pressure_hpa": None,
+                "wind_out_to_cf_mph": None,
+                "crosswind_mph": None,
+                "air_density_index": None,
+            }
+            rows.append(roofed_row)
+            debug_events.append(
+                _weather_row_debug_event(
+                    home_team=home_team,
+                    target_date=target_date,
+                    source="roofed_park",
+                    status="neutralized",
+                    detail=roof_type,
+                )
+            )
+            _store_cached_weather_row(
+                cache_payload,
+                home_team=home_team,
+                target_date=target_date,
+                row=roofed_row,
+                status="roofed",
+                detail=roof_type,
+                now_utc=now_utc,
+            )
+            cache_updated = True
             continue
         if historical_target:
             fallback_row = _empty_weather_row(home_team)
@@ -2234,6 +2302,9 @@ def build_live_candidate_frame(
                         "ballpark_name": game_meta["ballpark_name"],
                         "ballpark_region_abbr": game_meta["ballpark_region_abbr"],
                         "field_bearing_deg": game_meta["field_bearing_deg"],
+                        "roof_type": game_meta["roof_type"],
+                        "roof_label": game_meta["roof_label"],
+                        "roofed_park": game_meta["roofed_park"],
                     }
                 )
     candidate_df = pd.DataFrame(rows)
@@ -2253,6 +2324,7 @@ def build_live_candidate_frame(
             candidate_df["field_bearing_deg_forecast"],
         )
         candidate_df = candidate_df.drop(columns=["field_bearing_deg_forecast"])
+    candidate_df = neutralize_weather_features_for_roofed_parks(candidate_df)
     candidate_df = append_weather_carry_features(candidate_df)
     candidate_df["platoon_advantage"] = np.where(
         candidate_df["bat_side"].notna() & candidate_df["pitch_hand_primary"].notna(),
@@ -2354,7 +2426,7 @@ def build_lineup_panels(
     return panels
 
 
-LIVE_CONTEXT_FEATURES = {"temperature_f", "wind_speed_mph", "humidity_pct", "platoon_advantage"}
+LIVE_CONTEXT_FEATURES = {"temperature_f", "wind_speed_mph", "humidity_pct", "roofed_park", "platoon_advantage"}
 LIVE_DERIVED_FEATURES = {
     "park_factor_hr_vs_batter_hand",
     "batter_hr_per_pa_vs_pitcher_hand",

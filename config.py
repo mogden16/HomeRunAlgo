@@ -101,10 +101,39 @@ STATCAST_COLUMNS = [
     "launch_speed",
     "launch_angle",
     "bb_type",
+    "launch_speed_angle",
     "hc_x",
     "hc_y",
     "release_speed",
+    "effective_speed",
+    "release_pos_x",
+    "release_pos_y",
+    "release_pos_z",
+    "release_spin_rate",
+    "release_extension",
+    "pfx_x",
+    "pfx_z",
+    "plate_x",
+    "plate_z",
+    "zone",
+    "spin_axis",
+    "sz_top",
+    "sz_bot",
+    "balls",
+    "strikes",
+    "type",
     "pitch_type",
+    "estimated_ba_using_speedangle",
+    "estimated_woba_using_speedangle",
+    "bat_speed",
+    "swing_length",
+    "attack_angle",
+    "attack_direction",
+    "swing_path_tilt",
+    "hyper_speed",
+    "api_break_z_with_gravity",
+    "api_break_x_arm",
+    "api_break_x_batter_in",
 ]
 
 PARKS = {
@@ -140,3 +169,22 @@ PARKS = {
     "TOR": {"ballpark": "Rogers Centre", "region_abbr": "ON", "field_bearing_deg": 30.0, "lat": 43.6414, "lon": -79.3894, "tz": "America/Toronto"},
     "WSH": {"ballpark": "Nationals Park", "region_abbr": "DC", "field_bearing_deg": 30.0, "lat": 38.873, "lon": -77.0074, "tz": "America/New_York"},
 }
+
+PARK_ROOF_TYPES = {
+    "AZ": "retractable_roof",
+    "MIA": "retractable_roof",
+    "MIL": "retractable_roof",
+    "SEA": "retractable_roof",
+    "TEX": "retractable_roof",
+    "TOR": "retractable_roof",
+    "TB": "dome",
+}
+
+PARK_ROOF_TYPE_LABELS = {
+    "dome": "Dome",
+    "retractable_roof": "Retractable roof",
+    "open_air": "Open air",
+}
+
+ROOFED_PARKS = frozenset(PARK_ROOF_TYPES)
+DOME_PARKS = frozenset(team for team, roof_type in PARK_ROOF_TYPES.items() if roof_type == "dome")

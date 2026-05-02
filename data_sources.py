@@ -18,6 +18,8 @@ from pybaseball import cache, statcast
 from config import (
     DATA_DIR,
     DEFAULT_GAME_HOUR_LOCAL,
+    PARK_ROOF_TYPE_LABELS,
+    PARK_ROOF_TYPES,
     PARKS,
     RAW_DATA_DIR,
     STATCAST_CHUNK_DAYS,
@@ -33,6 +35,9 @@ cache.enable()
 class WeatherLookupRow:
     game_date: pd.Timestamp
     home_team: str
+    roof_type: str
+    roof_label: str
+    roofed_park: bool
     field_bearing_deg: float | None
     temperature_f: float | None
     humidity_pct: float | None
@@ -97,7 +102,7 @@ def _normalize_weather_schedule(game_schedule: pd.DataFrame) -> pd.DataFrame:
 
 
 def _weather_cache_is_healthy(weather_df: pd.DataFrame, normalized_schedule: pd.DataFrame) -> bool:
-    required_cols = {"game_date", "home_team", *PRIMARY_WEATHER_FEATURE_COLUMNS}
+    required_cols = {"game_date", "home_team", "roof_type", "roof_label", "roofed_park", *PRIMARY_WEATHER_FEATURE_COLUMNS}
     if not required_cols.issubset(weather_df.columns):
         return False
 
@@ -128,10 +133,29 @@ def _park_field_bearing_deg(home_team: str) -> float | None:
     return _safe_float(park.get("field_bearing_deg"))
 
 
+def _park_roof_type(home_team: str) -> str:
+    return str(PARK_ROOF_TYPES.get(home_team, "open_air"))
+
+
+def _park_roof_label(home_team: str) -> str:
+    roof_type = _park_roof_type(home_team)
+    return str(PARK_ROOF_TYPE_LABELS.get(roof_type, "Open air"))
+
+
+def _park_is_roofed(home_team: str) -> bool:
+    return _park_roof_type(home_team) != "open_air"
+
+
 def _augment_weather_carry_fields(weather_df: pd.DataFrame) -> pd.DataFrame:
     if weather_df.empty:
         return weather_df.copy()
     augmented = weather_df.copy()
+    if "roof_type" not in augmented.columns:
+        augmented["roof_type"] = "open_air"
+    if "roof_label" not in augmented.columns:
+        augmented["roof_label"] = "Open air"
+    if "roofed_park" not in augmented.columns:
+        augmented["roofed_park"] = False
     if "field_bearing_deg" not in augmented.columns:
         augmented["field_bearing_deg"] = pd.NA
     if augmented["field_bearing_deg"].isna().any():
@@ -272,6 +296,9 @@ def _build_null_weather_row(game_date: pd.Timestamp, home_team: str) -> WeatherL
     return WeatherLookupRow(
         game_date=pd.Timestamp(game_date).normalize(),
         home_team=home_team,
+        roof_type=_park_roof_type(home_team),
+        roof_label=_park_roof_label(home_team),
+        roofed_park=_park_is_roofed(home_team),
         field_bearing_deg=_park_field_bearing_deg(home_team),
         temperature_f=None,
         humidity_pct=None,
@@ -317,6 +344,9 @@ def _cached_weather_rows_for_team(
             WeatherLookupRow(
                 game_date=normalized_game_date,
                 home_team=home_team,
+                roof_type=_park_roof_type(home_team),
+                roof_label=_park_roof_label(home_team),
+                roofed_park=_park_is_roofed(home_team),
                 field_bearing_deg=_park_field_bearing_deg(home_team),
                 temperature_f=_safe_float(cached_row.get("temperature_f")),
                 humidity_pct=_safe_float(cached_row.get("humidity_pct")),
@@ -361,9 +391,45 @@ def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False
         if home_team not in PARKS:
             raise KeyError(f"No park mapping configured for home team '{home_team}'.")
         park = PARKS[home_team]
+        roof_type = _park_roof_type(home_team)
+        roof_label = _park_roof_label(home_team)
+        roofed_park = roof_type != "open_air"
         tz_name = park["tz"]
         local_dates = pd.to_datetime(park_games["game_date"]).dt.normalize().drop_duplicates().sort_values()
         if local_dates.empty:
+            continue
+
+        if roofed_park:
+            for game_date in local_dates:
+                normalized_game_date = pd.Timestamp(game_date).normalize()
+                rows.append(
+                    WeatherLookupRow(
+                        game_date=normalized_game_date,
+                        home_team=home_team,
+                        roof_type=roof_type,
+                        roof_label=roof_label,
+                        roofed_park=True,
+                        field_bearing_deg=_park_field_bearing_deg(home_team),
+                        temperature_f=None,
+                        humidity_pct=None,
+                        wind_speed_mph=None,
+                        wind_direction_deg=None,
+                        pressure_hpa=None,
+                        wind_out_to_cf_mph=None,
+                        crosswind_mph=None,
+                        air_density_index=None,
+                    )
+                )
+            operational_alerts.append(
+                {
+                    "kind": "info",
+                    "code": "roofed_park_weather_suppressed",
+                    "team": home_team,
+                    "roof_type": roof_type,
+                    "roof_label": roof_label,
+                    "dates": [str(pd.Timestamp(game_date).date()) for game_date in local_dates],
+                }
+            )
             continue
 
         start_str = local_dates.min().strftime("%Y-%m-%d")
@@ -436,6 +502,9 @@ def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False
                 WeatherLookupRow(
                     game_date=normalized_game_date,
                     home_team=home_team,
+                    roof_type=roof_type,
+                    roof_label=roof_label,
+                    roofed_park=roofed_park,
                     field_bearing_deg=_park_field_bearing_deg(home_team),
                     temperature_f=_safe_float(best.get("temperature_2m")),
                     humidity_pct=_safe_float(best.get("relative_humidity_2m")),
@@ -453,6 +522,9 @@ def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False
         columns=[
             "game_date",
             "home_team",
+            "roof_type",
+            "roof_label",
+            "roofed_park",
             "field_bearing_deg",
             "temperature_f",
             "humidity_pct",

@@ -351,6 +351,17 @@ function formatStadium(row) {
   return region ? `${name}, ${region}` : name;
 }
 
+function formatRoofStatus(row) {
+  const roofLabel = String(row.roof_label || "").trim();
+  if (roofLabel) {
+    return roofLabel;
+  }
+  if (row.roofed_park) {
+    return "Roofed";
+  }
+  return "";
+}
+
 function weatherIcon(value) {
   const token = String(value || "").trim().toLowerCase();
   if (token === "clear") {
@@ -496,9 +507,10 @@ function windArrow(windDirectionDeg, fieldBearingDeg) {
 
 function renderGameMeta(row) {
   const weatherAvailable = hasWeatherData(row);
+  const roofLabel = formatRoofStatus(row);
   const weatherLabel = weatherAvailable
     ? (String(row.weather_label || "").trim() || "Conditions available")
-    : "Weather unavailable";
+    : (roofLabel || "Weather unavailable");
   const temperatureText = formatTemperature(row.temperature_f);
   const weatherMeta = weatherAvailable
     ? [weatherIcon(weatherLabel), weatherLabel, temperatureText].filter(Boolean).join(" ")
@@ -510,7 +522,7 @@ function renderGameMeta(row) {
     ? [weatherIcon(weatherLabel), temperatureText || weatherLabel, formatWind(row)]
         .filter((value) => value && value !== "-")
         .join(" | ") || "Weather unavailable"
-    : "Weather unavailable";
+    : weatherLabel;
   return `
     <div class="pick-meta-block pick-meta-block-desktop">
       <div class="pick-meta-line"><span class="pick-meta-label">Gametime</span><span class="pick-meta-value">${escapeHtml(formatGameTime(row.game_datetime))}</span></div>

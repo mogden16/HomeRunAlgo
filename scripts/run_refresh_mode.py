@@ -45,7 +45,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--refresh-results-before-publish", action="store_true", help="Refresh the historical results dataset before publish.")
     parser.add_argument("--force-refresh", action="store_true", help="Ignore caches and re-fetch remote data.")
     parser.add_argument("--model", default="histgb", choices=["logistic", "histgb", "xgboost", "all"], help="Model family search space for prepare.")
-    parser.add_argument("--feature-profile", default="live_usable_candidate_v1", choices=["stable", "live", "live_plus", "live_shrunk", "live_shrunk_precise", "live_usable_candidate_v1", "expanded", "all"], help="Feature profile search space for prepare.")
+    parser.add_argument("--feature-profile", default="live_usable_candidate_v3", choices=["stable", "live", "live_plus", "live_shrunk", "live_shrunk_precise", "live_usable_candidate_v1", "live_usable_candidate_v2", "live_usable_candidate_v3", "live_xstats_v1", "live_bat_tracking_v1", "expanded", "all"], help="Feature profile search space for prepare.")
     parser.add_argument("--calibration", default="sigmoid", choices=["disabled", "sigmoid", "isotonic"], help="Calibration mode for prepare.")
     parser.add_argument("--selection-metric", default="pr_auc", choices=["pr_auc", "roc_auc", "neg_log_loss", "neg_brier"], help="Primary CV metric for prepare.")
     parser.add_argument("--missingness-threshold", type=float, default=None, help="Optional fixed feature-missingness threshold for prepare.")

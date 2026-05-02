@@ -13,6 +13,27 @@ import generate_data
 
 
 class HistoricalWeatherResilienceTests(unittest.TestCase):
+    def test_build_weather_table_neutralizes_roofed_parks_without_fetching_forecast(self) -> None:
+        schedule = pd.DataFrame([{"game_date": "2024-03-28", "home_team": "TB"}])
+
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_path = Path(tmp_dir)
+            raw_dir = tmp_path / "raw"
+            raw_dir.mkdir(parents=True, exist_ok=True)
+            with patch.object(data_sources, "DATA_DIR", tmp_path):
+                with patch.object(data_sources, "RAW_DATA_DIR", raw_dir):
+                    with patch.object(data_sources, "_fetch_open_meteo") as fetch_mock:
+                        weather = data_sources.build_weather_table(schedule, force_refresh=False)
+
+        fetch_mock.assert_not_called()
+        self.assertEqual(len(weather), 1)
+        self.assertEqual(weather.iloc[0]["home_team"], "TB")
+        self.assertEqual(weather.iloc[0]["roof_type"], "dome")
+        self.assertEqual(weather.iloc[0]["roof_label"], "Dome")
+        self.assertTrue(pd.isna(weather.iloc[0]["temperature_f"]))
+        self.assertTrue(pd.isna(weather.iloc[0]["wind_speed_mph"]))
+        self.assertTrue(pd.isna(weather.iloc[0]["air_density_index"]))
+
     def test_build_weather_table_rebuilds_malformed_cache(self) -> None:
         def fake_fetch_open_meteo(lat: float, lon: float, start_date: str, end_date: str, tz: str) -> pd.DataFrame:
             hours = pd.date_range("2024-03-28 00:00", periods=24, freq="h", tz=tz)
@@ -33,7 +54,7 @@ class HistoricalWeatherResilienceTests(unittest.TestCase):
             raw_dir.mkdir(parents=True, exist_ok=True)
             bad_cache = raw_dir / "weather_2024-03-28_2024-03-28.csv"
             bad_cache.write_text("bad_header_only\nvalue1,value2\n", encoding="utf-8")
-            schedule = pd.DataFrame([{"game_date": "2024-03-28", "home_team": "ARI"}])
+            schedule = pd.DataFrame([{"game_date": "2024-03-28", "home_team": "ATL"}])
 
             with patch.object(data_sources, "DATA_DIR", tmp_path):
                 with patch.object(data_sources, "RAW_DATA_DIR", raw_dir):
@@ -42,7 +63,7 @@ class HistoricalWeatherResilienceTests(unittest.TestCase):
 
         self.assertEqual(fetch_mock.call_count, 1)
         self.assertEqual(len(weather), 1)
-        self.assertEqual(weather.iloc[0]["home_team"], "AZ")
+        self.assertEqual(weather.iloc[0]["home_team"], "ATL")
         self.assertAlmostEqual(float(weather.iloc[0]["temperature_f"]), 69.0)
 
     def test_fetch_open_meteo_retries_then_succeeds(self) -> None:
@@ -89,9 +110,18 @@ class HistoricalWeatherResilienceTests(unittest.TestCase):
                 [
                     {
                         "game_date": "2024-03-28",
-                        "home_team": "AZ",
-                        "temperature_f": 72.0,
+                        "home_team": "ATL",
+                        "temperature_f": None,
                         "humidity_pct": None,
+                        "wind_speed_mph": None,
+                        "wind_direction_deg": None,
+                        "pressure_hpa": None,
+                    },
+                    {
+                        "game_date": "2024-03-28",
+                        "home_team": "ATL",
+                        "temperature_f": 72.0,
+                        "humidity_pct": 50.0,
                         "wind_speed_mph": 8.0,
                         "wind_direction_deg": 180.0,
                         "pressure_hpa": 1014.0,
@@ -99,7 +129,7 @@ class HistoricalWeatherResilienceTests(unittest.TestCase):
                 ]
             ).to_csv(stale_cache, index=False)
 
-            schedule = pd.DataFrame([{"game_date": "2024-03-28", "home_team": "ARI"}])
+            schedule = pd.DataFrame([{"game_date": "2024-03-28", "home_team": "ATL"}])
 
             with patch.object(data_sources, "DATA_DIR", tmp_path):
                 with patch.object(data_sources, "RAW_DATA_DIR", raw_dir):
@@ -111,9 +141,9 @@ class HistoricalWeatherResilienceTests(unittest.TestCase):
                         weather = data_sources.build_weather_table(schedule, force_refresh=False)
 
         self.assertEqual(len(weather), 1)
-        self.assertEqual(weather.iloc[0]["home_team"], "AZ")
+        self.assertEqual(weather.iloc[0]["home_team"], "ATL")
         self.assertAlmostEqual(float(weather.iloc[0]["temperature_f"]), 72.0)
-        self.assertEqual(float(weather.iloc[0]["field_bearing_deg"]), 20.0)
+        self.assertEqual(float(weather.iloc[0]["field_bearing_deg"]), 32.0)
         self.assertIn("wind_out_to_cf_mph", weather.columns)
         self.assertIn("crosswind_mph", weather.columns)
         self.assertIn("air_density_index", weather.columns)
@@ -127,7 +157,7 @@ class HistoricalWeatherResilienceTests(unittest.TestCase):
             tmp_path = Path(tmp_dir)
             raw_dir = tmp_path / "raw"
             raw_dir.mkdir(parents=True, exist_ok=True)
-            schedule = pd.DataFrame([{"game_date": "2024-03-28", "home_team": "ARI"}])
+            schedule = pd.DataFrame([{"game_date": "2024-03-28", "home_team": "ATL"}])
 
             with patch.object(data_sources, "DATA_DIR", tmp_path):
                 with patch.object(data_sources, "RAW_DATA_DIR", raw_dir):
@@ -139,7 +169,7 @@ class HistoricalWeatherResilienceTests(unittest.TestCase):
                         weather = data_sources.build_weather_table(schedule, force_refresh=False)
 
         self.assertEqual(len(weather), 1)
-        self.assertEqual(weather.iloc[0]["home_team"], "AZ")
+        self.assertEqual(weather.iloc[0]["home_team"], "ATL")
         self.assertTrue(pd.isna(weather.iloc[0]["temperature_f"]))
         self.assertEqual(weather.attrs["operational_alerts"][0]["code"], "historical_weather_null_fallback")
 
@@ -161,7 +191,7 @@ class HistoricalWeatherResilienceTests(unittest.TestCase):
             tmp_path = Path(tmp_dir)
             raw_dir = tmp_path / "raw"
             raw_dir.mkdir(parents=True, exist_ok=True)
-            schedule = pd.DataFrame([{"game_date": "2024-03-28", "home_team": "ARI"}])
+            schedule = pd.DataFrame([{"game_date": "2024-03-28", "home_team": "ATL"}])
 
             with patch.object(data_sources, "DATA_DIR", tmp_path):
                 with patch.object(data_sources, "RAW_DATA_DIR", raw_dir):
@@ -169,8 +199,8 @@ class HistoricalWeatherResilienceTests(unittest.TestCase):
                         weather = data_sources.build_weather_table(schedule, force_refresh=False)
 
         self.assertEqual(len(weather), 1)
-        self.assertEqual(weather.iloc[0]["home_team"], "AZ")
-        self.assertEqual(float(weather.iloc[0]["field_bearing_deg"]), 20.0)
+        self.assertEqual(weather.iloc[0]["home_team"], "ATL")
+        self.assertEqual(float(weather.iloc[0]["field_bearing_deg"]), 32.0)
         self.assertEqual(weather.iloc[0]["wind_out_to_cf_mph"], 0.0)
         self.assertEqual(weather.iloc[0]["crosswind_mph"], 0.0)
         self.assertIsNotNone(weather.iloc[0]["air_density_index"])

@@ -56,13 +56,13 @@ DEFAULT_REFRESH_SCHEDULE = {
             "description": "Runs once after 6:00 AM ET, refreshes data, retrains the model for the day, settles any remaining prior results, and saves the fixed morning baseline slate.",
         },
         {
-            "time_et": "Every 15 minutes until last first pitch",
+            "time_et": "Every 5 minutes until last first pitch",
             "type": "mixed",
             "label": "Mixed refresh",
             "description": "Keeps the morning board fixed while updating statuses and annotating only major alerts such as scratches or severe weather.",
         },
         {
-            "time_et": "Every 15 minutes in-game",
+            "time_et": "Every 5 minutes in-game",
             "type": "settle",
             "label": "Settle",
             "description": "Checks today's board from first pitch through final, updates each entry in place, and archives the whole slate only after every tracked game is complete.",
@@ -93,6 +93,9 @@ DISPLAY_COLUMNS = [
     "batting_order",
     "ballpark_name",
     "ballpark_region_abbr",
+    "roof_type",
+    "roof_label",
+    "roofed_park",
     "confidence_tier",
     "weather_code",
     "weather_label",
@@ -152,6 +155,9 @@ CURRENT_PICK_COLUMNS = [
     "batting_order",
     "ballpark_name",
     "ballpark_region_abbr",
+    "roof_type",
+    "roof_label",
+    "roofed_park",
     "weather_code",
     "weather_label",
     "temperature_f",
@@ -211,6 +217,9 @@ HISTORY_COLUMNS = [
     "batting_order",
     "ballpark_name",
     "ballpark_region_abbr",
+    "roof_type",
+    "roof_label",
+    "roofed_park",
     "weather_code",
     "weather_label",
     "temperature_f",
@@ -319,6 +328,10 @@ MODEL_FEATURE_DETAILS = {
     "humidity_pct": {
         "label": "Humidity",
         "description": "Projected humidity at the park. It is a lighter weather-context feature.",
+    },
+    "roofed_park": {
+        "label": "Roofed Park",
+        "description": "Whether the game is in a dome or retractable-roof venue. Weather inputs are neutralized there.",
     },
     "platoon_advantage": {
         "label": "Platoon Advantage",
@@ -544,10 +557,18 @@ def normalize_pick(row: dict[str, Any], tracking_start_date: str) -> dict[str, A
         "batting_order": parse_int(row.get("batting_order")),
         "ballpark_name": str(row.get("ballpark_name") or row.get("ballpark") or ""),
         "ballpark_region_abbr": str(row.get("ballpark_region_abbr") or ""),
+        "roof_type": str(row.get("roof_type") or "open_air"),
+        "roof_label": str(row.get("roof_label") or ""),
+        "roofed_park": bool(row.get("roofed_park") or False),
         "confidence_tier": str(row.get("original_tier") or row.get("confidence_tier") or "watch").lower(),
         "original_tier": str(row.get("original_tier") or row.get("confidence_tier") or "watch").lower(),
         "weather_code": parse_int(row.get("weather_code")),
-        "weather_label": str(row.get("weather_label") or weather_code_label(row.get("weather_code")) or "Weather unavailable"),
+        "weather_label": str(
+            row.get("weather_label")
+            or (str(row.get("roof_label") or "") if bool(row.get("roofed_park") or False) else "")
+            or weather_code_label(row.get("weather_code"))
+            or "Weather unavailable"
+        ),
         "temperature_f": parse_float(row.get("temperature_f")),
         "wind_speed_mph": parse_float(row.get("wind_speed_mph")),
         "wind_direction_deg": parse_float(row.get("wind_direction_deg")),
@@ -661,10 +682,18 @@ def _merge_same_player_day_rows(primary: dict[str, Any], incoming: dict[str, Any
     merged["predicted_hr_score"] = merged.get("original_score", merged.get("predicted_hr_score"))
     merged["original_tier"] = str(primary.get("original_tier") or primary.get("confidence_tier") or incoming.get("original_tier") or incoming.get("confidence_tier") or "watch")
     merged["confidence_tier"] = str(merged.get("original_tier") or merged.get("confidence_tier") or "watch")
+    merged["roof_type"] = str(merged.get("roof_type") or incoming.get("roof_type") or primary.get("roof_type") or "open_air")
+    merged["roof_label"] = str(merged.get("roof_label") or incoming.get("roof_label") or primary.get("roof_label") or "")
+    merged["roofed_park"] = bool(merged.get("roofed_park") or incoming.get("roofed_park") or primary.get("roofed_park") or False)
     existing_weather_label = str(merged.get("weather_label") or "").strip()
     if existing_weather_label.lower() in {"", "unknown", "n/a", "na"}:
         existing_weather_label = ""
-    merged["weather_label"] = existing_weather_label or weather_code_label(merged.get("weather_code")) or "Weather unavailable"
+    merged["weather_label"] = (
+        existing_weather_label
+        or (merged["roof_label"] if merged.get("roofed_park") else "")
+        or weather_code_label(merged.get("weather_code"))
+        or "Weather unavailable"
+    )
     merged_reasons = _merge_reason_lists(_reason_list(primary), _reason_list(incoming))
     return _apply_reason_list(merged, merged_reasons)
 

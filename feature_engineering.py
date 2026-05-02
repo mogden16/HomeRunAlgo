@@ -55,6 +55,7 @@ TEAM_VENUE_KEY_ALIASES = {
 }
 NEW_CONTEXT_FEATURE_FAMILIES = {
     "park": ["park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb"],
+    "venue": ["roofed_park"],
     "opportunity": ["expected_pa_today", "batting_order_slot", "lineup_confirmation_score", "projected_lineup_rank"],
     "handedness_split": [
         "batter_hr_per_pa_vs_rhp", "batter_hr_per_pa_vs_lhp", "batter_barrels_per_pa_vs_rhp", "batter_barrels_per_pa_vs_lhp",
@@ -64,6 +65,26 @@ NEW_CONTEXT_FEATURE_FAMILIES = {
         "pitcher_hard_hit_allowed_rate_vs_rhb", "pitcher_hard_hit_allowed_rate_vs_lhb", "pitcher_95plus_ev_allowed_rate_vs_rhb", "pitcher_95plus_ev_allowed_rate_vs_lhb",
         "pitcher_hr_allowed_per_pa_vs_batter_hand", "pitcher_barrels_allowed_per_bbe_vs_batter_hand", "pitcher_hard_hit_allowed_rate_vs_batter_hand", "pitcher_95plus_ev_allowed_rate_vs_batter_hand",
         "split_matchup_hr", "split_matchup_barrel", "split_matchup_hard_hit",
+    ],
+    "pitcher_shape_command": [
+        "pitcher_release_speed_avg_last_30d", "pitcher_release_speed_avg_last_10d",
+        "pitcher_release_spin_rate_avg_last_30d", "pitcher_release_spin_rate_avg_last_10d",
+        "pitcher_release_extension_avg_last_30d", "pitcher_release_extension_avg_last_10d",
+        "pitcher_release_pos_x_avg_last_30d", "pitcher_release_pos_x_avg_last_10d",
+        "pitcher_release_pos_z_avg_last_30d", "pitcher_release_pos_z_avg_last_10d",
+        "pitcher_pfx_x_avg_last_30d", "pitcher_pfx_x_avg_last_10d",
+        "pitcher_pfx_z_avg_last_30d", "pitcher_pfx_z_avg_last_10d",
+        "pitcher_plate_x_avg_last_30d", "pitcher_plate_x_avg_last_10d",
+        "pitcher_plate_z_avg_last_30d", "pitcher_plate_z_avg_last_10d",
+        "pitcher_spin_axis_avg_last_30d", "pitcher_spin_axis_avg_last_10d",
+        "pitcher_effective_speed_avg_last_30d", "pitcher_effective_speed_avg_last_10d",
+        "pitcher_zone_rate_last_30d", "pitcher_zone_rate_last_10d",
+        "pitcher_swing_rate_last_30d", "pitcher_swing_rate_last_10d",
+        "pitcher_whiff_rate_last_30d", "pitcher_whiff_rate_last_10d",
+        "pitcher_called_strike_rate_last_30d", "pitcher_called_strike_rate_last_10d",
+        "pitcher_chase_rate_last_30d", "pitcher_chase_rate_last_10d",
+        "pitcher_csw_rate_last_30d", "pitcher_csw_rate_last_10d",
+        "pitcher_first_pitch_strike_rate_last_30d", "pitcher_first_pitch_strike_rate_last_10d",
     ],
     "pitch_type_matchup": [
         "pitcher_four_seam_pct", "pitcher_sinker_pct", "pitcher_cutter_pct", "pitcher_slider_pct", "pitcher_curveball_pct", "pitcher_changeup_pct",
@@ -82,9 +103,30 @@ NEW_CONTEXT_FEATURE_FAMILIES = {
         "pitcher_attack_angle_allowed_last_30d", "pitcher_attack_angle_allowed_last_10d", "pitcher_ideal_attack_angle_rate_allowed_last_30d", "pitcher_ideal_attack_angle_rate_allowed_last_10d",
         "pitcher_xba_allowed_last_30d", "pitcher_xba_allowed_last_10d", "pitcher_xwoba_allowed_last_30d", "pitcher_xwoba_allowed_last_10d",
     ],
+    "pitcher_shape_command": [
+        "pitcher_release_speed_avg_last_30d", "pitcher_release_speed_avg_last_10d",
+        "pitcher_release_spin_rate_avg_last_30d", "pitcher_release_spin_rate_avg_last_10d",
+        "pitcher_release_extension_avg_last_30d", "pitcher_release_extension_avg_last_10d",
+        "pitcher_release_pos_x_avg_last_30d", "pitcher_release_pos_x_avg_last_10d",
+        "pitcher_release_pos_z_avg_last_30d", "pitcher_release_pos_z_avg_last_10d",
+        "pitcher_pfx_x_avg_last_30d", "pitcher_pfx_x_avg_last_10d",
+        "pitcher_pfx_z_avg_last_30d", "pitcher_pfx_z_avg_last_10d",
+        "pitcher_plate_x_avg_last_30d", "pitcher_plate_x_avg_last_10d",
+        "pitcher_plate_z_avg_last_30d", "pitcher_plate_z_avg_last_10d",
+        "pitcher_spin_axis_avg_last_30d", "pitcher_spin_axis_avg_last_10d",
+        "pitcher_effective_speed_avg_last_30d", "pitcher_effective_speed_avg_last_10d",
+        "pitcher_zone_rate_last_30d", "pitcher_zone_rate_last_10d",
+        "pitcher_swing_rate_last_30d", "pitcher_swing_rate_last_10d",
+        "pitcher_whiff_rate_last_30d", "pitcher_whiff_rate_last_10d",
+        "pitcher_called_strike_rate_last_30d", "pitcher_called_strike_rate_last_10d",
+        "pitcher_chase_rate_last_30d", "pitcher_chase_rate_last_10d",
+        "pitcher_csw_rate_last_30d", "pitcher_csw_rate_last_10d",
+        "pitcher_first_pitch_strike_rate_last_30d", "pitcher_first_pitch_strike_rate_last_10d",
+    ],
 }
 REQUESTED_FEATURE_AUDIT = {
     "park": ["park_factor_hr", "park_factor_hr_vs_lhb", "park_factor_hr_vs_rhb", "park_factor_hr_vs_batter_hand"],
+    "venue": ["roofed_park"],
     "handedness": [
         "batter_hr_per_pa_vs_rhp", "batter_hr_per_pa_vs_lhp", "batter_barrels_per_pa_vs_rhp", "batter_barrels_per_pa_vs_lhp",
         "batter_hard_hit_rate_vs_rhp", "batter_hard_hit_rate_vs_lhp", "batter_95plus_ev_rate_vs_rhp", "batter_95plus_ev_rate_vs_lhp",
@@ -109,6 +151,26 @@ REQUESTED_FEATURE_AUDIT = {
         "pitcher_attack_angle_allowed_last_30d", "pitcher_attack_angle_allowed_last_10d", "pitcher_ideal_attack_angle_rate_allowed_last_30d", "pitcher_ideal_attack_angle_rate_allowed_last_10d",
         "pitcher_xba_allowed_last_30d", "pitcher_xba_allowed_last_10d", "pitcher_xwoba_allowed_last_30d", "pitcher_xwoba_allowed_last_10d",
     ],
+    "pitcher_shape_command": [
+        "pitcher_release_speed_avg_last_30d", "pitcher_release_speed_avg_last_10d",
+        "pitcher_release_spin_rate_avg_last_30d", "pitcher_release_spin_rate_avg_last_10d",
+        "pitcher_release_extension_avg_last_30d", "pitcher_release_extension_avg_last_10d",
+        "pitcher_release_pos_x_avg_last_30d", "pitcher_release_pos_x_avg_last_10d",
+        "pitcher_release_pos_z_avg_last_30d", "pitcher_release_pos_z_avg_last_10d",
+        "pitcher_pfx_x_avg_last_30d", "pitcher_pfx_x_avg_last_10d",
+        "pitcher_pfx_z_avg_last_30d", "pitcher_pfx_z_avg_last_10d",
+        "pitcher_plate_x_avg_last_30d", "pitcher_plate_x_avg_last_10d",
+        "pitcher_plate_z_avg_last_30d", "pitcher_plate_z_avg_last_10d",
+        "pitcher_spin_axis_avg_last_30d", "pitcher_spin_axis_avg_last_10d",
+        "pitcher_effective_speed_avg_last_30d", "pitcher_effective_speed_avg_last_10d",
+        "pitcher_zone_rate_last_30d", "pitcher_zone_rate_last_10d",
+        "pitcher_swing_rate_last_30d", "pitcher_swing_rate_last_10d",
+        "pitcher_whiff_rate_last_30d", "pitcher_whiff_rate_last_10d",
+        "pitcher_called_strike_rate_last_30d", "pitcher_called_strike_rate_last_10d",
+        "pitcher_chase_rate_last_30d", "pitcher_chase_rate_last_10d",
+        "pitcher_csw_rate_last_30d", "pitcher_csw_rate_last_10d",
+        "pitcher_first_pitch_strike_rate_last_30d", "pitcher_first_pitch_strike_rate_last_10d",
+    ],
 }
 CONTACT_DESCRIPTIONS = {
     "foul",
@@ -123,6 +185,11 @@ SWING_DESCRIPTIONS = CONTACT_DESCRIPTIONS | {
     "foul_bunt",
     "missed_bunt",
     "foul_pitchout",
+}
+WHIFF_DESCRIPTIONS = {
+    "swinging_strike",
+    "swinging_strike_blocked",
+    "missed_bunt",
 }
 MLB_PEOPLE_LOOKUP_URL = "https://statsapi.mlb.com/api/v1/people"
 MLB_PEOPLE_BATCH_SIZE = 100
@@ -214,6 +281,42 @@ PITCHER_TRAILING_FEATURE_COLUMNS = [
     "pitcher_ev50_allowed_last_10d",
     "pitcher_adjusted_ev_allowed_last_30d",
     "pitcher_adjusted_ev_allowed_last_10d",
+    "pitcher_release_speed_avg_last_30d",
+    "pitcher_release_speed_avg_last_10d",
+    "pitcher_release_spin_rate_avg_last_30d",
+    "pitcher_release_spin_rate_avg_last_10d",
+    "pitcher_release_extension_avg_last_30d",
+    "pitcher_release_extension_avg_last_10d",
+    "pitcher_release_pos_x_avg_last_30d",
+    "pitcher_release_pos_x_avg_last_10d",
+    "pitcher_release_pos_z_avg_last_30d",
+    "pitcher_release_pos_z_avg_last_10d",
+    "pitcher_pfx_x_avg_last_30d",
+    "pitcher_pfx_x_avg_last_10d",
+    "pitcher_pfx_z_avg_last_30d",
+    "pitcher_pfx_z_avg_last_10d",
+    "pitcher_plate_x_avg_last_30d",
+    "pitcher_plate_x_avg_last_10d",
+    "pitcher_plate_z_avg_last_30d",
+    "pitcher_plate_z_avg_last_10d",
+    "pitcher_spin_axis_avg_last_30d",
+    "pitcher_spin_axis_avg_last_10d",
+    "pitcher_effective_speed_avg_last_30d",
+    "pitcher_effective_speed_avg_last_10d",
+    "pitcher_zone_rate_last_30d",
+    "pitcher_zone_rate_last_10d",
+    "pitcher_swing_rate_last_30d",
+    "pitcher_swing_rate_last_10d",
+    "pitcher_whiff_rate_last_30d",
+    "pitcher_whiff_rate_last_10d",
+    "pitcher_called_strike_rate_last_30d",
+    "pitcher_called_strike_rate_last_10d",
+    "pitcher_chase_rate_last_30d",
+    "pitcher_chase_rate_last_10d",
+    "pitcher_csw_rate_last_30d",
+    "pitcher_csw_rate_last_10d",
+    "pitcher_first_pitch_strike_rate_last_30d",
+    "pitcher_first_pitch_strike_rate_last_10d",
 ]
 STABLE_BATTER_FEATURE_COLUMNS = [
     "hr_rate_season_to_date",
@@ -377,6 +480,34 @@ def append_weather_carry_features(
         featured[column] = carry_df[column]
     return featured
 
+
+def neutralize_weather_features_for_roofed_parks(
+    frame: pd.DataFrame,
+    *,
+    roofed_column: str = "roofed_park",
+) -> pd.DataFrame:
+    if frame.empty or roofed_column not in frame.columns:
+        return frame
+    neutralized = frame.copy()
+    roofed_mask = neutralized[roofed_column].fillna(False).astype(bool)
+    if not bool(roofed_mask.any()):
+        return neutralized
+    for column in [
+        "temperature_f",
+        "humidity_pct",
+        "wind_speed_mph",
+        "wind_direction_deg",
+        "pressure_hpa",
+        "wind_out_to_cf_mph",
+        "crosswind_mph",
+        "air_density_index",
+    ]:
+        if column in neutralized.columns:
+            neutralized.loc[roofed_mask, column] = np.nan
+    if "weather_code" in neutralized.columns:
+        neutralized.loc[roofed_mask, "weather_code"] = pd.NA
+    return neutralized
+
 FINAL_FEATURE_SPECS = {
     "hr_rate_season_to_date": "stable",
     "hr_per_pa_last_30d": "stable",
@@ -402,6 +533,7 @@ FINAL_FEATURE_SPECS = {
     "pitcher_fb_rate_allowed_last_50_bbe": "stable",
     "pitcher_k_rate_season_to_date": "stable",
     "pitcher_bb_rate_season_to_date": "stable",
+    "roofed_park": "stable",
     "hr_per_pa_last_30d": "batter_trailing",
     "hr_per_pa_last_10d": "batter_trailing",
     "hr_count_last_30d": "batter_trailing",
@@ -427,6 +559,42 @@ FINAL_FEATURE_SPECS = {
     "pitcher_bbe_allowed_last_30d": "pitcher_trailing",
     "pitcher_avg_ev_allowed_last_30d": "pitcher_trailing",
     "pitcher_95plus_ev_allowed_rate_last_30d": "pitcher_trailing",
+    "pitcher_release_speed_avg_last_30d": "pitcher_trailing",
+    "pitcher_release_speed_avg_last_10d": "pitcher_trailing",
+    "pitcher_release_spin_rate_avg_last_30d": "pitcher_trailing",
+    "pitcher_release_spin_rate_avg_last_10d": "pitcher_trailing",
+    "pitcher_release_extension_avg_last_30d": "pitcher_trailing",
+    "pitcher_release_extension_avg_last_10d": "pitcher_trailing",
+    "pitcher_release_pos_x_avg_last_30d": "pitcher_trailing",
+    "pitcher_release_pos_x_avg_last_10d": "pitcher_trailing",
+    "pitcher_release_pos_z_avg_last_30d": "pitcher_trailing",
+    "pitcher_release_pos_z_avg_last_10d": "pitcher_trailing",
+    "pitcher_pfx_x_avg_last_30d": "pitcher_trailing",
+    "pitcher_pfx_x_avg_last_10d": "pitcher_trailing",
+    "pitcher_pfx_z_avg_last_30d": "pitcher_trailing",
+    "pitcher_pfx_z_avg_last_10d": "pitcher_trailing",
+    "pitcher_plate_x_avg_last_30d": "pitcher_trailing",
+    "pitcher_plate_x_avg_last_10d": "pitcher_trailing",
+    "pitcher_plate_z_avg_last_30d": "pitcher_trailing",
+    "pitcher_plate_z_avg_last_10d": "pitcher_trailing",
+    "pitcher_spin_axis_avg_last_30d": "pitcher_trailing",
+    "pitcher_spin_axis_avg_last_10d": "pitcher_trailing",
+    "pitcher_effective_speed_avg_last_30d": "pitcher_trailing",
+    "pitcher_effective_speed_avg_last_10d": "pitcher_trailing",
+    "pitcher_zone_rate_last_30d": "pitcher_trailing",
+    "pitcher_zone_rate_last_10d": "pitcher_trailing",
+    "pitcher_swing_rate_last_30d": "pitcher_trailing",
+    "pitcher_swing_rate_last_10d": "pitcher_trailing",
+    "pitcher_whiff_rate_last_30d": "pitcher_trailing",
+    "pitcher_whiff_rate_last_10d": "pitcher_trailing",
+    "pitcher_called_strike_rate_last_30d": "pitcher_trailing",
+    "pitcher_called_strike_rate_last_10d": "pitcher_trailing",
+    "pitcher_chase_rate_last_30d": "pitcher_trailing",
+    "pitcher_chase_rate_last_10d": "pitcher_trailing",
+    "pitcher_csw_rate_last_30d": "pitcher_trailing",
+    "pitcher_csw_rate_last_10d": "pitcher_trailing",
+    "pitcher_first_pitch_strike_rate_last_30d": "pitcher_trailing",
+    "pitcher_first_pitch_strike_rate_last_10d": "pitcher_trailing",
     "bat_speed_avg_last_30d": "bat_tracking",
     "bat_speed_avg_last_10d": "bat_tracking",
     "fast_swing_rate_last_30d": "bat_tracking",
@@ -663,7 +831,7 @@ def build_player_game_dataset(statcast_df: pd.DataFrame, debug_feature_audit: bo
     pa_df = extract_plate_appearances(raw_df)
     batter_name_lookup, batter_lookup_status = build_batter_name_lookup(raw_df, pa_df)
     batter_game_df = aggregate_batter_games(pa_df, batter_name_lookup=batter_name_lookup)
-    pitcher_game_df = aggregate_pitcher_games(pa_df)
+    pitcher_game_df = aggregate_pitcher_games(pa_df, raw_df=raw_df)
     primary_pitchers = select_primary_opposing_pitchers(pitcher_game_df)
     batter_game_df = merge_with_diagnostics(
         batter_game_df,
@@ -1066,7 +1234,7 @@ def aggregate_batter_games(pa_df: pd.DataFrame, batter_name_lookup: pd.Series | 
     return batter_game_df
 
 
-def aggregate_pitcher_games(pa_df: pd.DataFrame) -> pd.DataFrame:
+def aggregate_pitcher_games(pa_df: pd.DataFrame, raw_df: pd.DataFrame | None = None) -> pd.DataFrame:
     pa_enriched = pa_df.copy()
     pa_enriched["is_rhb"] = pa_enriched["stand"].eq("R").astype(int)
     pa_enriched["is_lhb"] = pa_enriched["stand"].eq("L").astype(int)
@@ -1142,6 +1310,22 @@ def aggregate_pitcher_games(pa_df: pd.DataFrame) -> pd.DataFrame:
         step_name="attach pitcher bat-tracking game summaries",
         validate="one_to_one",
     )
+    if raw_df is not None and {"game_pk", "game_date", "pitcher"}.issubset(raw_df.columns):
+        pitcher_shape_df = (
+            raw_df.copy()
+            .groupby(["game_pk", "game_date", "pitcher"], dropna=False)
+            .apply(_pitcher_shape_command_game_summary)
+            .reset_index()
+            .rename(columns={"pitcher": "pitcher_id"})
+        )
+        pitcher_game_df = merge_with_diagnostics(
+            pitcher_game_df,
+            pitcher_shape_df,
+            on=["game_pk", "game_date", "pitcher_id"],
+            how="left",
+            step_name="attach pitcher shape and command game summaries",
+            validate="one_to_one",
+        )
     pitcher_game_df["innings_pitched_est"] = pitcher_game_df["outs_recorded"] / 3.0
     pitcher_game_df = pitcher_game_df.sort_values(["pitcher_id", "game_date", "game_pk"]).reset_index(drop=True)
     return pitcher_game_df
@@ -1207,6 +1391,67 @@ def _bat_tracking_game_summary(group: pd.DataFrame) -> pd.Series:
         "xwoba_avg_game": _mean(xwoba),
         "ev50_game": ev50,
         "adjusted_ev_game": adjusted_ev,
+    }
+    return pd.Series(summary)
+
+
+def _pitcher_shape_command_game_summary(group: pd.DataFrame) -> pd.Series:
+    def _numeric(column: str) -> pd.Series:
+        if column not in group.columns:
+            return pd.Series(dtype=float)
+        return pd.to_numeric(group.get(column), errors="coerce")
+
+    release_speed = _numeric("release_speed")
+    release_spin_rate = _numeric("release_spin_rate")
+    release_extension = _numeric("release_extension")
+    release_pos_x = _numeric("release_pos_x")
+    release_pos_z = _numeric("release_pos_z")
+    pfx_x = _numeric("pfx_x")
+    pfx_z = _numeric("pfx_z")
+    plate_x = _numeric("plate_x")
+    plate_z = _numeric("plate_z")
+    spin_axis = _numeric("spin_axis")
+    effective_speed = _numeric("effective_speed")
+    zone = _numeric("zone")
+    pitch_number = _numeric("pitch_number")
+    pitch_type = group["type"] if "type" in group.columns else pd.Series(dtype=object)
+    description = group["description"] if "description" in group.columns else pd.Series(dtype=object)
+
+    pitch_count = int(len(group))
+    first_pitch_mask = pitch_number.eq(1)
+    in_zone_mask = zone.between(1, 9, inclusive="both")
+    out_zone_mask = zone.between(11, 14, inclusive="both")
+    swing_mask = description.isin(SWING_DESCRIPTIONS)
+    whiff_mask = description.isin(WHIFF_DESCRIPTIONS)
+    called_strike_mask = description.eq("called_strike")
+    chase_mask = swing_mask & out_zone_mask
+    csw_mask = called_strike_mask | whiff_mask
+
+    summary = {
+        "pitch_count_game": pitch_count,
+        "release_speed_sum_game": float(release_speed.sum(skipna=True)) if not release_speed.empty else np.nan,
+        "release_spin_rate_sum_game": float(release_spin_rate.sum(skipna=True)) if not release_spin_rate.empty else np.nan,
+        "release_extension_sum_game": float(release_extension.sum(skipna=True)) if not release_extension.empty else np.nan,
+        "release_pos_x_sum_game": float(release_pos_x.sum(skipna=True)) if not release_pos_x.empty else np.nan,
+        "release_pos_z_sum_game": float(release_pos_z.sum(skipna=True)) if not release_pos_z.empty else np.nan,
+        "pfx_x_sum_game": float(pfx_x.sum(skipna=True)) if not pfx_x.empty else np.nan,
+        "pfx_z_sum_game": float(pfx_z.sum(skipna=True)) if not pfx_z.empty else np.nan,
+        "plate_x_sum_game": float(plate_x.sum(skipna=True)) if not plate_x.empty else np.nan,
+        "plate_z_sum_game": float(plate_z.sum(skipna=True)) if not plate_z.empty else np.nan,
+        "spin_axis_sum_game": float(spin_axis.sum(skipna=True)) if not spin_axis.empty else np.nan,
+        "effective_speed_sum_game": float(effective_speed.sum(skipna=True)) if not effective_speed.empty else np.nan,
+        "zone_pitch_count_game": int(in_zone_mask.sum()),
+        "out_zone_pitch_count_game": int(out_zone_mask.sum()),
+        "swing_count_game": int(swing_mask.sum()),
+        "whiff_count_game": int(whiff_mask.sum()),
+        "called_strike_count_game": int(called_strike_mask.sum()),
+        "chase_swing_count_game": int(chase_mask.sum()),
+        "first_pitch_count_game": int(first_pitch_mask.sum()) if pitch_number.notna().any() else 0,
+        "first_pitch_strike_count_game": int((first_pitch_mask & pitch_type.eq("S")).sum()),
+        "ball_count_game": int(pitch_type.eq("B").sum()),
+        "strike_count_game": int(pitch_type.eq("S").sum()),
+        "in_play_count_game": int(pitch_type.eq("X").sum()),
+        "csw_count_game": int((called_strike_mask | whiff_mask).sum()),
     }
     return pd.Series(summary)
 
@@ -1522,6 +1767,46 @@ def compute_pitcher_trailing_features(pitcher_game_df: pd.DataFrame) -> pd.DataF
         grp["pitcher_hard_hit_allowed_rate_last_30d"] = safe_rate(hard_hit_last_30, bbe_last_30).to_numpy()
         grp["pitcher_avg_ev_allowed_last_30d"] = safe_rate(ev_num_last_30, bbe_last_30).to_numpy()
         grp["pitcher_95plus_ev_allowed_rate_last_30d"] = safe_rate(ev95_last_30, bbe_last_30).to_numpy()
+
+        def _rolling_sum(column: str, window: str) -> pd.Series:
+            if column not in rolled.columns:
+                return pd.Series(np.nan, index=grp.index)
+            return rolled[column].fillna(0).rolling(window, closed="left", min_periods=1).sum().reset_index(drop=True)
+
+        for window, suffix in [("30D", "30d"), ("10D", "10d")]:
+            pitch_total = _rolling_sum("pitch_count_game", window)
+            zone_total = _rolling_sum("zone_pitch_count_game", window)
+            out_zone_total = _rolling_sum("out_zone_pitch_count_game", window)
+            swing_total = _rolling_sum("swing_count_game", window)
+            whiff_total = _rolling_sum("whiff_count_game", window)
+            called_strike_total = _rolling_sum("called_strike_count_game", window)
+            chase_total = _rolling_sum("chase_swing_count_game", window)
+            first_pitch_total = _rolling_sum("first_pitch_count_game", window)
+            first_pitch_strike_total = _rolling_sum("first_pitch_strike_count_game", window)
+
+            for column_name, game_column in [
+                ("pitcher_release_speed_avg", "release_speed_sum_game"),
+                ("pitcher_release_spin_rate_avg", "release_spin_rate_sum_game"),
+                ("pitcher_release_extension_avg", "release_extension_sum_game"),
+                ("pitcher_release_pos_x_avg", "release_pos_x_sum_game"),
+                ("pitcher_release_pos_z_avg", "release_pos_z_sum_game"),
+                ("pitcher_pfx_x_avg", "pfx_x_sum_game"),
+                ("pitcher_pfx_z_avg", "pfx_z_sum_game"),
+                ("pitcher_plate_x_avg", "plate_x_sum_game"),
+                ("pitcher_plate_z_avg", "plate_z_sum_game"),
+                ("pitcher_spin_axis_avg", "spin_axis_sum_game"),
+                ("pitcher_effective_speed_avg", "effective_speed_sum_game"),
+            ]:
+                grp[f"{column_name}_last_{suffix}"] = safe_rate(_rolling_sum(game_column, window), pitch_total).to_numpy()
+
+            grp[f"pitcher_zone_rate_last_{suffix}"] = safe_rate(zone_total, pitch_total).to_numpy()
+            grp[f"pitcher_swing_rate_last_{suffix}"] = safe_rate(swing_total, pitch_total).to_numpy()
+            grp[f"pitcher_whiff_rate_last_{suffix}"] = safe_rate(whiff_total, swing_total).to_numpy()
+            grp[f"pitcher_called_strike_rate_last_{suffix}"] = safe_rate(called_strike_total, pitch_total).to_numpy()
+            grp[f"pitcher_chase_rate_last_{suffix}"] = safe_rate(chase_total, out_zone_total).to_numpy()
+            grp[f"pitcher_csw_rate_last_{suffix}"] = safe_rate(called_strike_total + whiff_total, pitch_total).to_numpy()
+            grp[f"pitcher_first_pitch_strike_rate_last_{suffix}"] = safe_rate(first_pitch_strike_total, first_pitch_total).to_numpy()
+
         pitcher_bat_tracking_map = {
             "pitcher_bat_speed_allowed_game": "pitcher_bat_speed_allowed",
             "pitcher_fast_swing_rate_allowed_game": "pitcher_fast_swing_rate_allowed",
@@ -1918,6 +2203,25 @@ def validate_required_raw_fields(statcast_df: pd.DataFrame | None) -> dict[str, 
         "park_mapping_fields": {"game_pk", "game_date", "home_team", "away_team"},
         "handedness_fields": {"stand", "p_throws", "batter", "pitcher"},
         "pitch_type_fields": {"pitch_type", "description", "batter", "pitcher"},
+        "pitch_shape_fields": {
+            "release_speed",
+            "effective_speed",
+            "release_pos_x",
+            "release_pos_z",
+            "release_spin_rate",
+            "release_extension",
+            "pfx_x",
+            "pfx_z",
+            "plate_x",
+            "plate_z",
+            "zone",
+            "spin_axis",
+            "sz_top",
+            "sz_bot",
+            "balls",
+            "strikes",
+            "type",
+        },
         "key_fields": {"game_pk", "game_date", "batter", "pitcher"},
     }
     status: dict[str, bool] = {}

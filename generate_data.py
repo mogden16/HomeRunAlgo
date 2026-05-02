@@ -13,6 +13,7 @@ from feature_engineering import (
     add_leakage_safe_features,
     build_player_game_dataset,
     print_source_summary,
+    neutralize_weather_features_for_roofed_parks,
     validate_dataset,
     validate_final_model_df,
 )
@@ -64,6 +65,7 @@ def generate_mlb_dataset(
     )
     dataset["home_team"] = dataset.apply(lambda row: row["team"] if row["is_home"] else row["opponent"], axis=1)
     dataset = dataset.merge(weather_df, on=["game_date", "home_team"], how="left", validate="many_to_one")
+    dataset = neutralize_weather_features_for_roofed_parks(dataset)
     dataset = dataset.drop(columns=["home_team"])
     audit_weather_feature_coverage(
         dataset,

@@ -65,6 +65,7 @@ STABLE_FEATURE_COLUMNS = [
     "wind_speed_mph",
     "wind_direction_deg",
     "pressure_hpa",
+    "roofed_park",
     "platoon_advantage",
 ]
 STABLE_AUDIT_COLUMNS = [
@@ -96,6 +97,7 @@ STABLE_AUDIT_COLUMNS = [
     "wind_speed_mph",
     "wind_direction_deg",
     "pressure_hpa",
+    "roofed_park",
     "platoon_advantage",
 ]
 LIVE_PRODUCTION_FEATURE_COLUMNS = [
@@ -117,6 +119,7 @@ LIVE_PRODUCTION_FEATURE_COLUMNS = [
     "temperature_f",
     "wind_speed_mph",
     "humidity_pct",
+    "roofed_park",
     "platoon_advantage",
 ]
 LIVE_PLUS_FEATURE_COLUMNS = [
@@ -153,6 +156,7 @@ LIVE_SHRUNK_FEATURE_COLUMNS = [
     "temperature_f",
     "wind_speed_mph",
     "humidity_pct",
+    "roofed_park",
     "platoon_advantage",
     "park_factor_hr_vs_batter_hand",
     "batter_hr_per_pa_vs_pitcher_hand_shrunk",
@@ -185,6 +189,7 @@ LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS = [
     "temperature_f",
     "wind_speed_mph",
     "humidity_pct",
+    "roofed_park",
     "park_factor_hr_vs_batter_hand",
     "batter_hr_per_pa_vs_pitcher_hand",
     "batter_hr_per_pa_vs_pitcher_hand_shrunk",
@@ -206,10 +211,136 @@ LIVE_USABLE_CANDIDATE_PROFILE = "live_usable_candidate_v1"
 LIVE_USABLE_CANDIDATE_SEED_COLUMNS = list(
     dict.fromkeys([*LIVE_SHRUNK_FEATURE_COLUMNS, *OPPORTUNITY_FEATURE_COLUMNS])
 )
+LIVE_XSTAT_FEATURE_PREFIXES = (
+    "xba_avg_",
+    "xwoba_avg_",
+    "ev50_avg_",
+    "adjusted_ev_avg_",
+    "pitcher_xba_allowed_",
+    "pitcher_xwoba_allowed_",
+    "pitcher_ev50_allowed_",
+    "pitcher_adjusted_ev_allowed_",
+)
+LIVE_XSTATS_PROFILE = "live_xstats_v1"
+LIVE_XSTATS_SEED_COLUMNS = list(
+    dict.fromkeys(
+        [
+            *LIVE_USABLE_CANDIDATE_SEED_COLUMNS,
+            "xba_avg_last_30d",
+            "xba_avg_last_10d",
+            "xwoba_avg_last_30d",
+            "xwoba_avg_last_10d",
+            "ev50_avg_last_30d",
+            "ev50_avg_last_10d",
+            "adjusted_ev_avg_last_30d",
+            "adjusted_ev_avg_last_10d",
+            "pitcher_xba_allowed_last_30d",
+            "pitcher_xba_allowed_last_10d",
+            "pitcher_xwoba_allowed_last_30d",
+            "pitcher_xwoba_allowed_last_10d",
+            "pitcher_ev50_allowed_last_30d",
+            "pitcher_ev50_allowed_last_10d",
+            "pitcher_adjusted_ev_allowed_last_30d",
+            "pitcher_adjusted_ev_allowed_last_10d",
+        ]
+    )
+)
+LIVE_BAT_TRACKING_PROFILE = "live_bat_tracking_v1"
+LIVE_BAT_TRACKING_SEED_COLUMNS = list(
+    dict.fromkeys(
+        [
+            *LIVE_USABLE_CANDIDATE_SEED_COLUMNS,
+            "bat_speed_avg_last_30d",
+            "bat_speed_avg_last_10d",
+            "fast_swing_rate_last_30d",
+            "fast_swing_rate_last_10d",
+            "swing_length_avg_last_30d",
+            "swing_length_avg_last_10d",
+            "attack_angle_avg_last_30d",
+            "attack_angle_avg_last_10d",
+            "attack_direction_avg_last_30d",
+            "attack_direction_avg_last_10d",
+            "swing_path_tilt_avg_last_30d",
+            "swing_path_tilt_avg_last_10d",
+            "ideal_attack_angle_rate_last_30d",
+            "ideal_attack_angle_rate_last_10d",
+            "launch_angle_sweet_spot_rate_last_30d",
+            "launch_angle_sweet_spot_rate_last_10d",
+            "xba_avg_last_30d",
+            "xba_avg_last_10d",
+            "xwoba_avg_last_30d",
+            "xwoba_avg_last_10d",
+            "ev50_avg_last_30d",
+            "ev50_avg_last_10d",
+            "adjusted_ev_avg_last_30d",
+            "adjusted_ev_avg_last_10d",
+            "pitcher_bat_speed_allowed_last_30d",
+            "pitcher_bat_speed_allowed_last_10d",
+            "pitcher_fast_swing_rate_allowed_last_30d",
+            "pitcher_fast_swing_rate_allowed_last_10d",
+            "pitcher_swing_length_allowed_last_30d",
+            "pitcher_swing_length_allowed_last_10d",
+            "pitcher_attack_angle_allowed_last_30d",
+            "pitcher_attack_angle_allowed_last_10d",
+            "pitcher_attack_direction_allowed_last_30d",
+            "pitcher_attack_direction_allowed_last_10d",
+            "pitcher_swing_path_tilt_allowed_last_30d",
+            "pitcher_swing_path_tilt_allowed_last_10d",
+            "pitcher_ideal_attack_angle_rate_allowed_last_30d",
+            "pitcher_ideal_attack_angle_rate_allowed_last_10d",
+            "pitcher_launch_angle_sweet_spot_rate_allowed_last_30d",
+            "pitcher_launch_angle_sweet_spot_rate_allowed_last_10d",
+            "pitcher_xba_allowed_last_30d",
+            "pitcher_xba_allowed_last_10d",
+            "pitcher_xwoba_allowed_last_30d",
+            "pitcher_xwoba_allowed_last_10d",
+            "pitcher_ev50_allowed_last_30d",
+            "pitcher_ev50_allowed_last_10d",
+            "pitcher_adjusted_ev_allowed_last_30d",
+            "pitcher_adjusted_ev_allowed_last_10d",
+        ]
+    )
+)
+LIVE_USABLE_CANDIDATE_V2_PROFILE = "live_usable_candidate_v2"
+LIVE_USABLE_CANDIDATE_V2_SEED_COLUMNS = list(
+    dict.fromkeys(
+        [
+            column
+            for column in LIVE_BAT_TRACKING_SEED_COLUMNS
+            if not any(column.startswith(prefix) for prefix in LIVE_XSTAT_FEATURE_PREFIXES)
+        ]
+    )
+)
+LIVE_USABLE_CANDIDATE_V3_PROFILE = "live_usable_candidate_v3"
+LIVE_USABLE_CANDIDATE_V3_SEED_COLUMNS = list(
+    dict.fromkeys(
+        [
+            *LIVE_USABLE_CANDIDATE_V2_SEED_COLUMNS,
+            "pitcher_release_speed_avg_last_30d",
+            "pitcher_release_speed_avg_last_10d",
+            "pitcher_zone_rate_last_30d",
+            "pitcher_zone_rate_last_10d",
+            "pitcher_swing_rate_last_30d",
+            "pitcher_swing_rate_last_10d",
+            "pitcher_whiff_rate_last_30d",
+            "pitcher_whiff_rate_last_10d",
+            "pitcher_called_strike_rate_last_30d",
+            "pitcher_called_strike_rate_last_10d",
+            "pitcher_chase_rate_last_30d",
+            "pitcher_chase_rate_last_10d",
+            "pitcher_csw_rate_last_30d",
+            "pitcher_csw_rate_last_10d",
+            "pitcher_first_pitch_strike_rate_last_30d",
+            "pitcher_first_pitch_strike_rate_last_10d",
+        ]
+    )
+)
 EXPERIMENTAL_FEATURE_COLUMNS = [
     *LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS,
     *LIVE_SHRUNK_FEATURE_COLUMNS,
     *LIVE_PLUS_FEATURE_COLUMNS,
+    *LIVE_BAT_TRACKING_SEED_COLUMNS,
+    *LIVE_USABLE_CANDIDATE_V3_SEED_COLUMNS,
     "hr_count_last_30d",
     "hr_count_last_10d",
     "pa_last_30d",
@@ -295,6 +426,10 @@ FEATURE_PROFILE_CHOICES = [
     "live_shrunk",
     "live_shrunk_precise",
     LIVE_USABLE_CANDIDATE_PROFILE,
+    LIVE_USABLE_CANDIDATE_V2_PROFILE,
+    LIVE_USABLE_CANDIDATE_V3_PROFILE,
+    LIVE_XSTATS_PROFILE,
+    LIVE_BAT_TRACKING_PROFILE,
     "expanded",
     "all",
 ]
@@ -372,9 +507,28 @@ REASON_TEXT_BY_FEATURE = {
     "pitcher_hard_hit_allowed_rate_last_30d": "pitcher_hard_hit_allowed_30d",
     "pitcher_avg_ev_allowed_last_30d": "pitcher_avg_ev_allowed_30d",
     "pitcher_95plus_ev_allowed_rate_last_30d": "pitcher_95plus_ev_allowed_30d",
+    "pitcher_release_speed_avg_last_30d": "pitcher_release_speed_30d",
+    "pitcher_release_spin_rate_avg_last_30d": "pitcher_release_spin_rate_30d",
+    "pitcher_release_extension_avg_last_30d": "pitcher_release_extension_30d",
+    "pitcher_release_pos_x_avg_last_30d": "pitcher_release_pos_x_30d",
+    "pitcher_release_pos_z_avg_last_30d": "pitcher_release_pos_z_30d",
+    "pitcher_pfx_x_avg_last_30d": "pitcher_pfx_x_30d",
+    "pitcher_pfx_z_avg_last_30d": "pitcher_pfx_z_30d",
+    "pitcher_plate_x_avg_last_30d": "pitcher_plate_x_30d",
+    "pitcher_plate_z_avg_last_30d": "pitcher_plate_z_30d",
+    "pitcher_spin_axis_avg_last_30d": "pitcher_spin_axis_30d",
+    "pitcher_effective_speed_avg_last_30d": "pitcher_effective_speed_30d",
+    "pitcher_zone_rate_last_30d": "pitcher_zone_rate_30d",
+    "pitcher_swing_rate_last_30d": "pitcher_swing_rate_30d",
+    "pitcher_whiff_rate_last_30d": "pitcher_whiff_rate_30d",
+    "pitcher_called_strike_rate_last_30d": "pitcher_called_strike_rate_30d",
+    "pitcher_chase_rate_last_30d": "pitcher_chase_rate_30d",
+    "pitcher_csw_rate_last_30d": "pitcher_csw_rate_30d",
+    "pitcher_first_pitch_strike_rate_last_30d": "pitcher_first_pitch_strike_rate_30d",
     "temperature_f": "temperature",
     "wind_speed_mph": "wind_speed",
     "humidity_pct": "humidity",
+    "roofed_park": "roofed_park",
     "platoon_advantage": "platoon_advantage",
     "park_factor_hr_vs_batter_hand": "park_factor_hr_vs_batter_hand",
     "batter_hr_per_pa_vs_pitcher_hand": "batter_hr_per_pa_vs_pitcher_hand",
@@ -456,6 +610,14 @@ def feature_columns_for_profile(profile: str) -> list[str]:
         return list(LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS)
     if profile == LIVE_USABLE_CANDIDATE_PROFILE:
         return list(LIVE_USABLE_CANDIDATE_SEED_COLUMNS)
+    if profile == LIVE_USABLE_CANDIDATE_V2_PROFILE:
+        return list(LIVE_USABLE_CANDIDATE_V2_SEED_COLUMNS)
+    if profile == LIVE_USABLE_CANDIDATE_V3_PROFILE:
+        return list(LIVE_USABLE_CANDIDATE_V3_SEED_COLUMNS)
+    if profile == LIVE_XSTATS_PROFILE:
+        return list(LIVE_XSTATS_SEED_COLUMNS)
+    if profile == LIVE_BAT_TRACKING_PROFILE:
+        return list(LIVE_BAT_TRACKING_SEED_COLUMNS)
     if profile == "expanded":
         return list(dict.fromkeys(EXPERIMENTAL_FEATURE_COLUMNS))
     raise ValueError(f"Unknown feature profile: {profile}")
@@ -470,6 +632,7 @@ def prepare_feature_matrix(df: pd.DataFrame, feature_columns: list[str]) -> pd.D
     binary_maps = {
         "pitch_hand_primary": {"L": 0.0, "R": 1.0},
         "starter_or_bullpen_proxy": {"bullpen_like": 0.0, "starter_like": 1.0},
+        "roofed_park": {False: 0.0, True: 1.0},
     }
     for column, value_map in binary_maps.items():
         if column in X.columns:
@@ -648,6 +811,10 @@ def resolve_feature_profiles(feature_profile: str, compare_against: str | None =
             "live_shrunk",
             "live_shrunk_precise",
             LIVE_USABLE_CANDIDATE_PROFILE,
+            LIVE_USABLE_CANDIDATE_V2_PROFILE,
+            LIVE_USABLE_CANDIDATE_V3_PROFILE,
+            LIVE_XSTATS_PROFILE,
+            LIVE_BAT_TRACKING_PROFILE,
             "expanded",
         ]
     profiles = [feature_profile]
@@ -1586,6 +1753,7 @@ def _feature_reason_bucket(feature: str) -> str:
         "temperature_f",
         "wind_speed_mph",
         "humidity_pct",
+        "roofed_park",
         "platoon_advantage",
         "park_factor_hr_vs_batter_hand",
     }:
@@ -1632,6 +1800,9 @@ def _build_feature_reason(feature: str, value: float, percentile: float, row: pd
         return f"Projected wind speed is {_format_mph(value)}, which the live model treats as favorable weather context."
     if feature == "humidity_pct":
         return f"Projected humidity is {value:.0f}%, a modest positive weather input in the live model."
+    if feature == "roofed_park":
+        roof_text = "roofed" if value >= 1 else "open-air"
+        return f"This game is in a {roof_text} park, so weather inputs are suppressed there."
     if feature == "platoon_advantage":
         return "The hitter has the platoon advantage in this matchup."
     if feature == "park_factor_hr_vs_batter_hand":
@@ -1670,6 +1841,9 @@ def generate_reason_strings(
         series = reference_df[feature].dropna()
         if series.empty:
             continue
+        if pd.api.types.is_bool_dtype(series):
+            series = series.astype(float)
+            value = float(value)
         q60 = float(series.quantile(0.60))
         q75 = float(series.quantile(0.75))
         q90 = float(series.quantile(0.90))
@@ -3611,6 +3785,14 @@ def run_backtest(
             "report": report,
             "baseline_holdout": usability_search["baseline_holdout"],
         }
+    if feature_profile == LIVE_BAT_TRACKING_PROFILE and compare_against is None:
+        compare_against = LIVE_USABLE_CANDIDATE_PROFILE
+    if feature_profile == LIVE_USABLE_CANDIDATE_V2_PROFILE and compare_against is None:
+        compare_against = LIVE_USABLE_CANDIDATE_PROFILE
+    if feature_profile == LIVE_USABLE_CANDIDATE_V3_PROFILE and compare_against is None:
+        compare_against = LIVE_USABLE_CANDIDATE_V2_PROFILE
+    if feature_profile == LIVE_XSTATS_PROFILE and compare_against is None:
+        compare_against = LIVE_USABLE_CANDIDATE_PROFILE
 
     candidate_results = search_training_candidates(
         train_df,

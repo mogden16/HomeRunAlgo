@@ -25,8 +25,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--model", default="histgb", choices=["logistic", "histgb", "xgboost", "all"], help="Model family search space.")
     parser.add_argument(
         "--feature-profile",
-        default="live_usable_candidate_v1",
-        choices=["stable", "live", "live_plus", "live_shrunk", "live_shrunk_precise", "live_usable_candidate_v1", "expanded", "all"],
+        default="live_usable_candidate_v3",
+        choices=["stable", "live", "live_plus", "live_shrunk", "live_shrunk_precise", "live_usable_candidate_v1", "live_usable_candidate_v2", "live_usable_candidate_v3", "live_xstats_v1", "live_bat_tracking_v1", "expanded", "all"],
         help="Feature profile search space.",
     )
     parser.add_argument("--calibration", default="sigmoid", choices=["disabled", "sigmoid", "isotonic"], help="Calibration mode.")

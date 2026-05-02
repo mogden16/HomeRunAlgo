@@ -12,6 +12,13 @@ from scripts import build_dashboard_artifacts
 
 
 class DashboardArtifactTests(unittest.TestCase):
+    def test_refresh_schedule_matches_five_minute_runtime_cadence(self) -> None:
+        schedule = build_dashboard_artifacts.build_refresh_schedule()
+        run_labels = [run["time_et"] for run in schedule["runs"]]
+
+        self.assertEqual(run_labels[1], "Every 5 minutes until last first pitch")
+        self.assertEqual(run_labels[2], "Every 5 minutes in-game")
+
     def test_dashboard_payload_removes_top_k_and_adds_date_filtered_sections(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
