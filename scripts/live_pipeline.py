@@ -49,7 +49,9 @@ from train_model import (
     DEFAULT_CONFIDENCE_POLICY,
     LIVE_USABLE_CANDIDATE_PROFILE,
     LIVE_USABLE_CANDIDATE_V2_PROFILE,
+    LIVE_USABLE_CANDIDATE_V3_PROFILE,
     LIVE_USABLE_CANDIDATE_V2_SEED_COLUMNS,
+    LIVE_USABLE_CANDIDATE_V3_SEED_COLUMNS,
     LIVE_USABLE_CANDIDATE_SEED_COLUMNS,
     LIVE_PLUS_FEATURE_COLUMNS,
     LIVE_PRODUCTION_FEATURE_COLUMNS,
@@ -138,6 +140,9 @@ LIVE_USABLE_CANDIDATE_ONLY_FEATURE_COLUMNS = [
 LIVE_USABLE_CANDIDATE_V2_ONLY_FEATURE_COLUMNS = [
     feature for feature in LIVE_USABLE_CANDIDATE_V2_SEED_COLUMNS if feature not in LIVE_PLUS_FEATURE_COLUMNS
 ]
+LIVE_USABLE_CANDIDATE_V3_ONLY_FEATURE_COLUMNS = [
+    feature for feature in LIVE_USABLE_CANDIDATE_V3_SEED_COLUMNS if feature not in LIVE_PLUS_FEATURE_COLUMNS
+]
 LIVE_COMPATIBLE_FEATURE_COLUMNS = list(
     dict.fromkeys(
         [
@@ -146,6 +151,7 @@ LIVE_COMPATIBLE_FEATURE_COLUMNS = list(
             *LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS,
             *LIVE_USABLE_CANDIDATE_SEED_COLUMNS,
             *LIVE_USABLE_CANDIDATE_V2_SEED_COLUMNS,
+            *LIVE_USABLE_CANDIDATE_V3_SEED_COLUMNS,
         ]
     )
 )
@@ -981,6 +987,7 @@ def _fit_live_bundle_fast_refit(
         "live_shrunk_precise": LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS,
         LIVE_USABLE_CANDIDATE_PROFILE: LIVE_USABLE_CANDIDATE_SEED_COLUMNS,
         LIVE_USABLE_CANDIDATE_V2_PROFILE: LIVE_USABLE_CANDIDATE_V2_SEED_COLUMNS,
+        LIVE_USABLE_CANDIDATE_V3_PROFILE: LIVE_USABLE_CANDIDATE_V3_SEED_COLUMNS,
     }
     metadata_feature_columns = existing_metadata.get("feature_columns")
     configured_features = (
@@ -1116,7 +1123,7 @@ def train_live_model_bundle(
     metadata_path: Path = LIVE_MODEL_METADATA_PATH,
     model_name: str = "histgb",
     calibration: str = "sigmoid",
-    feature_profile: str = "live_usable_candidate_v2",
+    feature_profile: str = "live_usable_candidate_v3",
     selection_metric: str = "pr_auc",
     missingness_threshold: float | None = None,
     training_mode: str = "search",
@@ -1183,6 +1190,8 @@ def train_live_model_bundle(
         compare_against_profile = "live_shrunk"
     elif feature_profile == LIVE_USABLE_CANDIDATE_V2_PROFILE:
         compare_against_profile = LIVE_USABLE_CANDIDATE_PROFILE
+    elif feature_profile == LIVE_USABLE_CANDIDATE_V3_PROFILE:
+        compare_against_profile = LIVE_USABLE_CANDIDATE_V2_PROFILE
     elif feature_profile in {"live_shrunk", "live_shrunk_precise"}:
         compare_against_profile = "live_plus"
     elif feature_profile == "live_plus":
@@ -1209,6 +1218,8 @@ def train_live_model_bundle(
         baseline_profile = "live_shrunk"
     elif feature_profile == LIVE_USABLE_CANDIDATE_V2_PROFILE:
         baseline_profile = LIVE_USABLE_CANDIDATE_PROFILE
+    elif feature_profile == LIVE_USABLE_CANDIDATE_V3_PROFILE:
+        baseline_profile = LIVE_USABLE_CANDIDATE_V2_PROFILE
     else:
         baseline_profile = "live"
     if feature_profile == LIVE_USABLE_CANDIDATE_PROFILE and isinstance(backtest.get("baseline_holdout"), dict):
@@ -1267,7 +1278,7 @@ def train_live_model_bundle(
         backtest.get("report", {}).get("promotion_candidate_rank", {}).get("passes_promotion_gates", winner_beats_baseline)
     )
     should_promote_selected = winner_is_compatible and winner_beats_baseline
-    if feature_profile in {LIVE_USABLE_CANDIDATE_PROFILE, LIVE_USABLE_CANDIDATE_V2_PROFILE}:
+    if feature_profile in {LIVE_USABLE_CANDIDATE_PROFILE, LIVE_USABLE_CANDIDATE_V2_PROFILE, LIVE_USABLE_CANDIDATE_V3_PROFILE}:
         should_promote_selected = should_promote_selected and winner_passes_promotion
     if should_promote_selected:
         promoted_candidate = selected_candidate
@@ -1278,7 +1289,7 @@ def train_live_model_bundle(
         promoted_holdout = baseline_holdout
         promotion_reason = (
             "baseline_fallback_after_failed_promotion_gate"
-            if feature_profile in {LIVE_USABLE_CANDIDATE_PROFILE, LIVE_USABLE_CANDIDATE_V2_PROFILE}
+            if feature_profile in {LIVE_USABLE_CANDIDATE_PROFILE, LIVE_USABLE_CANDIDATE_V2_PROFILE, LIVE_USABLE_CANDIDATE_V3_PROFILE}
             else "baseline_fallback"
         )
 
@@ -2359,7 +2370,11 @@ LIVE_BATTER_FEATURES = [
     for feature in LIVE_PRODUCTION_FEATURE_COLUMNS
     if feature not in LIVE_CONTEXT_FEATURES and not feature.startswith("pitcher_")
 ]
-LIVE_PITCHER_FEATURES = [feature for feature in LIVE_PRODUCTION_FEATURE_COLUMNS if feature.startswith("pitcher_")]
+LIVE_PITCHER_FEATURES = [
+    feature
+    for feature in LIVE_COMPATIBLE_FEATURE_COLUMNS
+    if feature.startswith("pitcher_")
+]
 
 
 def build_latest_feature_snapshot(
@@ -2599,6 +2614,10 @@ def score_live_candidates(
     elif feature_profile == LIVE_USABLE_CANDIDATE_V2_PROFILE:
         required_live_features = [
             feature for feature in feature_columns if feature in LIVE_USABLE_CANDIDATE_V2_ONLY_FEATURE_COLUMNS
+        ]
+    elif feature_profile == LIVE_USABLE_CANDIDATE_V3_PROFILE:
+        required_live_features = [
+            feature for feature in feature_columns if feature in LIVE_USABLE_CANDIDATE_V3_ONLY_FEATURE_COLUMNS
         ]
     else:
         required_live_features = []

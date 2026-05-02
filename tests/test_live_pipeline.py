@@ -2306,6 +2306,12 @@ class LivePipelineTests(unittest.TestCase):
                     "max_exit_velocity_last_10d": 108.0,
                     "pitcher_hard_hit_allowed_rate_last_30d": 0.37,
                     "pitcher_hr_allowed_per_pa_last_30d": 0.05,
+                    "pitcher_release_speed_avg_last_30d": 94.1,
+                    "pitcher_release_speed_avg_last_10d": 94.0,
+                    "pitcher_zone_rate_last_30d": 0.52,
+                    "pitcher_zone_rate_last_10d": 0.51,
+                    "pitcher_first_pitch_strike_rate_last_30d": 0.64,
+                    "pitcher_first_pitch_strike_rate_last_10d": 0.63,
                 },
                 {
                     "game_pk": 10,
@@ -2338,6 +2344,12 @@ class LivePipelineTests(unittest.TestCase):
                     "max_exit_velocity_last_10d": 112.0,
                     "pitcher_hard_hit_allowed_rate_last_30d": 0.44,
                     "pitcher_hr_allowed_per_pa_last_30d": 0.07,
+                    "pitcher_release_speed_avg_last_30d": 95.2,
+                    "pitcher_release_speed_avg_last_10d": 95.0,
+                    "pitcher_zone_rate_last_30d": 0.58,
+                    "pitcher_zone_rate_last_10d": 0.57,
+                    "pitcher_first_pitch_strike_rate_last_30d": 0.68,
+                    "pitcher_first_pitch_strike_rate_last_10d": 0.67,
                 }
             ]
         )
@@ -2386,6 +2398,12 @@ class LivePipelineTests(unittest.TestCase):
         self.assertEqual(float(featured.iloc[0]["pitcher_hard_hit_allowed_rate_last_30d"]), 0.44)
         self.assertEqual(float(featured.iloc[0]["pitcher_hr_allowed_per_pa_last_30d"]), 0.07)
         self.assertEqual(float(featured.iloc[0]["park_factor_hr_vs_batter_hand"]), 110.0)
+        self.assertEqual(float(featured.iloc[0]["pitcher_release_speed_avg_last_30d"]), 95.2)
+        self.assertEqual(float(featured.iloc[0]["pitcher_release_speed_avg_last_10d"]), 95.0)
+        self.assertEqual(float(featured.iloc[0]["pitcher_zone_rate_last_30d"]), 0.58)
+        self.assertEqual(float(featured.iloc[0]["pitcher_zone_rate_last_10d"]), 0.57)
+        self.assertEqual(float(featured.iloc[0]["pitcher_first_pitch_strike_rate_last_30d"]), 0.68)
+        self.assertEqual(float(featured.iloc[0]["pitcher_first_pitch_strike_rate_last_10d"]), 0.67)
         for feature in LIVE_PLUS_FEATURE_COLUMNS:
             self.assertIn(feature, featured.columns)
         self.assertTrue(pd.notna(featured.iloc[0]["batter_hr_per_pa_vs_pitcher_hand"]))
