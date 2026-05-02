@@ -21,7 +21,7 @@ ROOT_DIR = Path(__file__).resolve().parents[1]
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
-from config import LIVE_MODEL_DATA_PATH
+from config import LIVE_MODEL_DATA_PATH, PARKS, PARK_ROOF_TYPE_LABELS, PARK_ROOF_TYPES
 from scripts.live_pipeline import build_lineup_panels, fetch_schedule_games, weather_code_label
 from tools.ballparkpal.scoring import (
     BALLPARKPAL_BALLPARK_BLEND_WEIGHT,
@@ -465,6 +465,24 @@ def parse_float(value: Any) -> float | None:
         return None
 
 
+BALLPARK_ROOF_TYPES_BY_NAME = {
+    str(park.get("ballpark") or "").strip().lower(): str(PARK_ROOF_TYPES.get(team, "open_air"))
+    for team, park in PARKS.items()
+}
+
+
+def roof_type_for_ballpark_name(ballpark_name: Any) -> str:
+    key = str(ballpark_name or "").strip().lower()
+    if not key:
+        return "open_air"
+    return BALLPARK_ROOF_TYPES_BY_NAME.get(key, "open_air")
+
+
+def roof_label_for_ballpark_name(ballpark_name: Any) -> str:
+    roof_type = roof_type_for_ballpark_name(ballpark_name)
+    return str(PARK_ROOF_TYPE_LABELS.get(roof_type, "Open air"))
+
+
 def parse_int(value: Any) -> int | None:
     if value in (None, ""):
         return None
@@ -532,6 +550,35 @@ def normalize_pick(row: dict[str, Any], tracking_start_date: str) -> dict[str, A
         score = probability * 100.0
 
     result_label, actual_hit_hr = normalize_result(row.get("result") or row.get("result_label"))
+    ballpark_name = str(row.get("ballpark_name") or row.get("ballpark") or "").strip()
+    roof_type = str(row.get("roof_type") or "open_air")
+    roof_label = str(row.get("roof_label") or "")
+    roofed_park = bool(row.get("roofed_park") or False)
+    if not roofed_park and ballpark_name:
+        inferred_roof_type = roof_type_for_ballpark_name(ballpark_name)
+        if inferred_roof_type != "open_air":
+            roof_type = inferred_roof_type
+            roof_label = roof_label_for_ballpark_name(ballpark_name)
+            roofed_park = True
+
+    weather_code = parse_int(row.get("weather_code"))
+    weather_label = str(
+        row.get("weather_label")
+        or (roof_label if roofed_park else "")
+        or weather_code_label(weather_code)
+        or "Weather unavailable"
+    )
+    if roofed_park:
+        weather_code = None
+        weather_label = roof_label or "Weather unavailable"
+        temperature_f = None
+        wind_speed_mph = None
+        wind_direction_deg = None
+    else:
+        temperature_f = parse_float(row.get("temperature_f"))
+        wind_speed_mph = parse_float(row.get("wind_speed_mph"))
+        wind_direction_deg = parse_float(row.get("wind_direction_deg"))
+
     normalized = {
         "pick_id": build_pick_id(row),
         "published_at": str(row.get("published_at") or datetime.now(timezone.utc).isoformat()),
@@ -555,23 +602,18 @@ def normalize_pick(row: dict[str, Any], tracking_start_date: str) -> dict[str, A
         "pitcher_name": str(row.get("pitcher_name") or ""),
         "lineup_source": str(row.get("lineup_source") or "projected"),
         "batting_order": parse_int(row.get("batting_order")),
-        "ballpark_name": str(row.get("ballpark_name") or row.get("ballpark") or ""),
+        "ballpark_name": ballpark_name,
         "ballpark_region_abbr": str(row.get("ballpark_region_abbr") or ""),
-        "roof_type": str(row.get("roof_type") or "open_air"),
-        "roof_label": str(row.get("roof_label") or ""),
-        "roofed_park": bool(row.get("roofed_park") or False),
+        "roof_type": roof_type,
+        "roof_label": roof_label,
+        "roofed_park": roofed_park,
         "confidence_tier": str(row.get("original_tier") or row.get("confidence_tier") or "watch").lower(),
         "original_tier": str(row.get("original_tier") or row.get("confidence_tier") or "watch").lower(),
-        "weather_code": parse_int(row.get("weather_code")),
-        "weather_label": str(
-            row.get("weather_label")
-            or (str(row.get("roof_label") or "") if bool(row.get("roofed_park") or False) else "")
-            or weather_code_label(row.get("weather_code"))
-            or "Weather unavailable"
-        ),
-        "temperature_f": parse_float(row.get("temperature_f")),
-        "wind_speed_mph": parse_float(row.get("wind_speed_mph")),
-        "wind_direction_deg": parse_float(row.get("wind_direction_deg")),
+        "weather_code": weather_code,
+        "weather_label": weather_label,
+        "temperature_f": temperature_f,
+        "wind_speed_mph": wind_speed_mph,
+        "wind_direction_deg": wind_direction_deg,
         "field_bearing_deg": parse_float(row.get("field_bearing_deg")),
         "predicted_hr_probability": probability,
         "predicted_hr_score": parse_float(row.get("original_score")) if parse_float(row.get("original_score")) is not None else score,

@@ -506,8 +506,9 @@ function windArrow(windDirectionDeg, fieldBearingDeg) {
 }
 
 function renderGameMeta(row) {
-  const weatherAvailable = hasWeatherData(row);
   const roofLabel = formatRoofStatus(row);
+  const roofedPark = Boolean(row.roofed_park);
+  const weatherAvailable = hasWeatherData(row) && !roofedPark;
   const weatherLabel = weatherAvailable
     ? (String(row.weather_label || "").trim() || "Conditions available")
     : (roofLabel || "Weather unavailable");

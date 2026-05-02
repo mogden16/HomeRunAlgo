@@ -210,6 +210,56 @@ class DashboardArtifactTests(unittest.TestCase):
             self.assertEqual(latest["wind_direction_deg"], 210.0)
             self.assertEqual(latest["field_bearing_deg"], 30.0)
 
+    def test_dashboard_payload_infers_roofed_parks_from_ballpark_name(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+            output_dir = base / "dashboard"
+            metadata_path = base / "model_metadata.json"
+            model_data_path = base / "dataset.csv"
+
+            current_row = self._pending_pick("2026-05-02", 1, "Alpha", "elite", 72.0)
+            current_row.update(
+                {
+                    "ballpark_name": "loanDepot park",
+                    "ballpark_region_abbr": "FL",
+                    "weather_code": 0,
+                    "weather_label": "Clear",
+                    "temperature_f": 89.1,
+                    "wind_speed_mph": 13.2,
+                    "wind_direction_deg": 242.0,
+                    "field_bearing_deg": 37.0,
+                }
+            )
+            current_path.write_text(json.dumps([current_row], indent=2), encoding="utf-8")
+            history_path.write_text(json.dumps([], indent=2), encoding="utf-8")
+            metadata_path.write_text(json.dumps({}, indent=2), encoding="utf-8")
+            pd.DataFrame([self._season_row("Slugger A", "MIA", 1, "2026-05-01", 1, 4, 1)]).to_csv(
+                model_data_path,
+                index=False,
+            )
+
+            output_path = build_dashboard_artifacts.build_dashboard_artifacts(
+                current_picks_path=current_path,
+                history_path=history_path,
+                output_dir=output_dir,
+                model_data_path=model_data_path,
+                model_metadata_path=metadata_path,
+                persist_history=False,
+            )
+
+            payload = json.loads(output_path.read_text(encoding="utf-8"))
+            latest = payload["latest_picks"][0]
+            self.assertTrue(latest["roofed_park"])
+            self.assertEqual(latest["roof_type"], "retractable_roof")
+            self.assertEqual(latest["roof_label"], "Retractable roof")
+            self.assertIsNone(latest["weather_code"])
+            self.assertEqual(latest["weather_label"], "Retractable roof")
+            self.assertIsNone(latest["temperature_f"])
+            self.assertIsNone(latest["wind_speed_mph"])
+            self.assertIsNone(latest["wind_direction_deg"])
+
     @patch("scripts.build_dashboard_artifacts._fetch_current_season_hitting_totals_by_player_id")
     def test_dashboard_payload_uses_live_season_hr_source(self, mock_fetch: object) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
