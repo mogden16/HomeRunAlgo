@@ -70,24 +70,15 @@ jobs:
           import os
           import subprocess
           import sys
+          from scripts.live_refresh_artifacts import (
+              LIVE_REFRESH_FORCE_ADD_BY_MODE,
+              LIVE_REFRESH_TRACKED_ARTIFACTS,
+          )
 
           mode = os.environ["REFRESH_MODE"]
           target_branch = os.environ.get("TARGET_BRANCH") or "master"
-          tracked = [
-              "data/live/current_picks.json",
-              "data/live/pick_history.json",
-              "data/live/morning_baseline_picks.json",
-              "cloudflare-app/data/dashboard.json",
-          ]
-          force_add = []
-          if mode in {"prepare", "auto"}:
-              force_add.extend(
-                  [
-                      "data/live/model_bundle.pkl",
-                      "data/live/model_metadata.json",
-                      "data/live/draft_picks.json",
-                  ]
-              )
+          tracked = list(LIVE_REFRESH_TRACKED_ARTIFACTS)
+          force_add = list(LIVE_REFRESH_FORCE_ADD_BY_MODE.get(mode, ()))
 
           subprocess.run(["git", "config", "user.name", "github-actions[bot]"], check=True)
           subprocess.run(["git", "config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com"], check=True)
