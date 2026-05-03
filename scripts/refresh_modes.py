@@ -284,7 +284,7 @@ def run_prepare_refresh(
     publish_date: str | None = None,
     force_refresh: bool = False,
     model: str = "histgb",
-    feature_profile: str = "live_usable_candidate_v1",
+    feature_profile: str = "live_usable_candidate_v3",
     calibration: str = "sigmoid",
     selection_metric: str = "pr_auc",
     missingness_threshold: float | None = None,

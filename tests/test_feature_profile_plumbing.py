@@ -10,7 +10,7 @@ from unittest.mock import patch
 import pandas as pd
 
 from scripts import live_pipeline
-from scripts import prepare_live_board, train_live_model
+from scripts import prepare_live_board, run_daily_live_refresh, train_live_model
 import train_model
 
 
@@ -39,7 +39,19 @@ class FeatureProfilePlumbingTests(unittest.TestCase):
     def test_resolve_feature_profiles_all_includes_shrunk_variants(self) -> None:
         self.assertEqual(
             train_model.resolve_feature_profiles("all"),
-            ["stable", "live", "live_plus", "live_shrunk", "live_shrunk_precise", "live_usable_candidate_v1", "expanded"],
+            [
+                "stable",
+                "live",
+                "live_plus",
+                "live_shrunk",
+                "live_shrunk_precise",
+                "live_usable_candidate_v1",
+                "live_usable_candidate_v2",
+                "live_usable_candidate_v3",
+                "live_xstats_v1",
+                "live_bat_tracking_v1",
+                "expanded",
+            ],
         )
 
     def test_live_training_cli_accepts_live_shrunk_precise(self) -> None:
@@ -57,16 +69,19 @@ class FeatureProfilePlumbingTests(unittest.TestCase):
             args = prepare_live_board.parse_args()
         self.assertEqual(args.feature_profile, "live_shrunk")
 
-    def test_live_entrypoints_default_to_live_shrunk(self) -> None:
+    def test_live_entrypoints_default_to_live_usable_candidate_v3(self) -> None:
         with patch.object(sys, "argv", ["train_live_model.py"]):
             train_args = train_live_model.parse_args()
         with patch.object(sys, "argv", ["prepare_live_board.py"]):
             prepare_args = prepare_live_board.parse_args()
+        with patch.object(sys, "argv", ["run_daily_live_refresh.py"]):
+            daily_args = run_daily_live_refresh.parse_args()
 
-        self.assertEqual(train_args.feature_profile, "live_shrunk")
-        self.assertEqual(prepare_args.feature_profile, "live_shrunk")
+        self.assertEqual(train_args.feature_profile, "live_usable_candidate_v3")
+        self.assertEqual(prepare_args.feature_profile, "live_usable_candidate_v3")
+        self.assertEqual(daily_args.feature_profile, "live_usable_candidate_v3")
 
-    def test_fast_refit_prefers_requested_profile_over_existing_metadata(self) -> None:
+    def test_fast_refit_reuses_metadata_model_family_but_respects_requested_profile(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
             dataset_path = base / "dataset.csv"
@@ -144,7 +159,7 @@ class FeatureProfilePlumbingTests(unittest.TestCase):
                                         training_mode="fast_refit",
                                     )
 
-            self.assertEqual(captured["model_family"], "logistic")
+            self.assertEqual(captured["model_family"], "xgboost")
             self.assertEqual(captured["feature_profile"], "live_shrunk")
 
 
