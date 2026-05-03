@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-03T22:48:42.213335+00:00",
+  "generated_at": "2026-05-03T23:17:06.149980+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v1",
@@ -104,10 +104,10 @@
     "latest_slate_size": 261,
     "tracked_dates": 39,
     "tracked_picks": 7125,
-    "settled_picks": 5826,
+    "settled_picks": 5841,
     "tracked_homers": 650,
-    "tracked_hit_rate": 0.111569,
-    "open_picks": 1299
+    "tracked_hit_rate": 0.111282,
+    "open_picks": 1284
   },
   "confidence_summary": [
     {
@@ -119,24 +119,24 @@
     },
     {
       "confidence_tier": "strong",
-      "picks": 349,
+      "picks": 350,
       "homers": 79,
-      "hit_rate": 0.226361,
-      "avg_probability": 0.1787
+      "hit_rate": 0.225714,
+      "avg_probability": 0.178485
     },
     {
       "confidence_tier": "watch",
-      "picks": 991,
+      "picks": 993,
       "homers": 139,
-      "hit_rate": 0.140262,
-      "avg_probability": 0.1349
+      "hit_rate": 0.13998,
+      "avg_probability": 0.134804
     },
     {
       "confidence_tier": "longshot",
-      "picks": 4379,
+      "picks": 4391,
       "homers": 402,
-      "hit_rate": 0.091802,
-      "avg_probability": 0.090618
+      "hit_rate": 0.091551,
+      "avg_probability": 0.090535
     }
   ],
   "player_leaderboard": [
@@ -421,6 +421,13 @@
       "hit_rate": 0.153846
     },
     {
+      "batter_name": "Salvador Perez",
+      "team": "KC",
+      "picks": 26,
+      "homers": 4,
+      "hit_rate": 0.153846
+    },
+    {
       "batter_name": "Ian Happ",
       "team": "CHC",
       "picks": 25,
@@ -430,13 +437,6 @@
     {
       "batter_name": "Max Muncy",
       "team": "LAD",
-      "picks": 25,
-      "homers": 4,
-      "hit_rate": 0.16
-    },
-    {
-      "batter_name": "Salvador Perez",
-      "team": "KC",
       "picks": 25,
       "homers": 4,
       "hit_rate": 0.16
@@ -484,6 +484,13 @@
       "hit_rate": 0.166667
     },
     {
+      "batter_name": "Carter Jensen",
+      "team": "KC",
+      "picks": 22,
+      "homers": 4,
+      "hit_rate": 0.181818
+    },
+    {
       "batter_name": "Daulton Varsho",
       "team": "TOR",
       "picks": 22,
@@ -510,13 +517,6 @@
       "picks": 22,
       "homers": 4,
       "hit_rate": 0.181818
-    },
-    {
-      "batter_name": "Carter Jensen",
-      "team": "KC",
-      "picks": 21,
-      "homers": 4,
-      "hit_rate": 0.190476
     },
     {
       "batter_name": "Ildemaro Vargas",
@@ -589,6 +589,13 @@
       "hit_rate": 0.1
     },
     {
+      "batter_name": "Julio Rodr\u00edguez",
+      "team": "SEA",
+      "picks": 28,
+      "homers": 3,
+      "hit_rate": 0.107143
+    },
+    {
       "batter_name": "Chase DeLauter",
       "team": "CLE",
       "picks": 27,
@@ -605,13 +612,6 @@
     {
       "batter_name": "Daylen Lile",
       "team": "WSH",
-      "picks": 27,
-      "homers": 3,
-      "hit_rate": 0.111111
-    },
-    {
-      "batter_name": "Julio Rodr\u00edguez",
-      "team": "SEA",
       "picks": 27,
       "homers": 3,
       "hit_rate": 0.111111
@@ -645,6 +645,13 @@
       "hit_rate": 0.115385
     },
     {
+      "batter_name": "Randy Arozarena",
+      "team": "SEA",
+      "picks": 26,
+      "homers": 3,
+      "hit_rate": 0.115385
+    },
+    {
       "batter_name": "Jazz Chisholm Jr.",
       "team": "NYY",
       "picks": 25,
@@ -654,13 +661,6 @@
     {
       "batter_name": "Pete Crow-Armstrong",
       "team": "CHC",
-      "picks": 25,
-      "homers": 3,
-      "hit_rate": 0.12
-    },
-    {
-      "batter_name": "Randy Arozarena",
-      "team": "SEA",
       "picks": 25,
       "homers": 3,
       "hit_rate": 0.12
@@ -682,6 +682,13 @@
     {
       "batter_name": "Evan Carter",
       "team": "TEX",
+      "picks": 24,
+      "homers": 3,
+      "hit_rate": 0.125
+    },
+    {
+      "batter_name": "Josh Naylor",
+      "team": "SEA",
       "picks": 24,
       "homers": 3,
       "hit_rate": 0.125
@@ -715,8 +722,8 @@
       "hit_rate": 0.130435
     },
     {
-      "batter_name": "Josh Naylor",
-      "team": "SEA",
+      "batter_name": "Vinnie Pasquantino",
+      "team": "KC",
       "picks": 23,
       "homers": 3,
       "hit_rate": 0.130435
@@ -729,7 +736,7 @@
       "hit_rate": 0.136364
     },
     {
-      "batter_name": "Vinnie Pasquantino",
+      "batter_name": "Maikel Garcia",
       "team": "KC",
       "picks": 22,
       "homers": 3,
@@ -745,13 +752,6 @@
     {
       "batter_name": "Luke Raley",
       "team": "SEA",
-      "picks": 21,
-      "homers": 3,
-      "hit_rate": 0.142857
-    },
-    {
-      "batter_name": "Maikel Garcia",
-      "team": "KC",
       "picks": 21,
       "homers": 3,
       "hit_rate": 0.142857
@@ -827,8 +827,22 @@
       "hit_rate": 0.333333
     },
     {
+      "batter_name": "Bobby Witt Jr.",
+      "team": "KC",
+      "picks": 27,
+      "homers": 2,
+      "hit_rate": 0.074074
+    },
+    {
       "batter_name": "Bryan Reynolds",
       "team": "PIT",
+      "picks": 27,
+      "homers": 2,
+      "hit_rate": 0.074074
+    },
+    {
+      "batter_name": "Cole Young",
+      "team": "SEA",
       "picks": 27,
       "homers": 2,
       "hit_rate": 0.074074
@@ -846,20 +860,6 @@
       "picks": 27,
       "homers": 2,
       "hit_rate": 0.074074
-    },
-    {
-      "batter_name": "Bobby Witt Jr.",
-      "team": "KC",
-      "picks": 26,
-      "homers": 2,
-      "hit_rate": 0.076923
-    },
-    {
-      "batter_name": "Cole Young",
-      "team": "SEA",
-      "picks": 26,
-      "homers": 2,
-      "hit_rate": 0.076923
     },
     {
       "batter_name": "Kevin McGonigle",
@@ -904,6 +904,13 @@
       "hit_rate": 0.08
     },
     {
+      "batter_name": "J.P. Crawford",
+      "team": "SEA",
+      "picks": 25,
+      "homers": 2,
+      "hit_rate": 0.08
+    },
+    {
       "batter_name": "Jung Hoo Lee",
       "team": "SF",
       "picks": 25,
@@ -920,13 +927,6 @@
     {
       "batter_name": "Bo Bichette",
       "team": "NYM",
-      "picks": 24,
-      "homers": 2,
-      "hit_rate": 0.083333
-    },
-    {
-      "batter_name": "J.P. Crawford",
-      "team": "SEA",
       "picks": 24,
       "homers": 2,
       "hit_rate": 0.083333
@@ -1037,6 +1037,13 @@
       "hit_rate": 0.095238
     },
     {
+      "batter_name": "Jac Caglianone",
+      "team": "KC",
+      "picks": 20,
+      "homers": 2,
+      "hit_rate": 0.1
+    },
+    {
       "batter_name": "Cedric Mullins",
       "team": "TB",
       "picks": 19,
@@ -1046,13 +1053,6 @@
     {
       "batter_name": "Isaac Paredes",
       "team": "HOU",
-      "picks": 19,
-      "homers": 2,
-      "hit_rate": 0.105263
-    },
-    {
-      "batter_name": "Jac Caglianone",
-      "team": "KC",
       "picks": 19,
       "homers": 2,
       "hit_rate": 0.105263
@@ -1429,6 +1429,27 @@
       "hit_rate": 0.055556
     },
     {
+      "batter_name": "Isaac Collins",
+      "team": "KC",
+      "picks": 17,
+      "homers": 1,
+      "hit_rate": 0.055556
+    },
+    {
+      "batter_name": "Troy Johnston",
+      "team": "COL",
+      "picks": 18,
+      "homers": 1,
+      "hit_rate": 0.055556
+    },
+    {
+      "batter_name": "Tyler Stephenson",
+      "team": "CIN",
+      "picks": 18,
+      "homers": 1,
+      "hit_rate": 0.055556
+    },
+    {
       "batter_name": "Jake Cronenworth",
       "team": "SD",
       "picks": 17,
@@ -1443,25 +1464,18 @@
       "hit_rate": 0.058824
     },
     {
-      "batter_name": "Logan O'Hoppe",
-      "team": "LAA",
+      "batter_name": "Kyle Isbel",
+      "team": "KC",
       "picks": 17,
       "homers": 1,
       "hit_rate": 0.058824
     },
     {
-      "batter_name": "Isaac Collins",
-      "team": "KC",
-      "picks": 16,
+      "batter_name": "Logan O'Hoppe",
+      "team": "LAA",
+      "picks": 17,
       "homers": 1,
-      "hit_rate": 0.0625
-    },
-    {
-      "batter_name": "Kyle Isbel",
-      "team": "KC",
-      "picks": 16,
-      "homers": 1,
-      "hit_rate": 0.0625
+      "hit_rate": 0.058824
     },
     {
       "batter_name": "Luis Robert Jr.",
@@ -1506,6 +1520,13 @@
       "hit_rate": 0.071429
     },
     {
+      "batter_name": "Michael Massey",
+      "team": "KC",
+      "picks": 13,
+      "homers": 1,
+      "hit_rate": 0.076923
+    },
+    {
       "batter_name": "Victor Caratini",
       "team": "MIN",
       "picks": 13,
@@ -1529,13 +1550,6 @@
     {
       "batter_name": "Kyle Manzardo",
       "team": "CLE",
-      "picks": 12,
-      "homers": 1,
-      "hit_rate": 0.083333
-    },
-    {
-      "batter_name": "Michael Massey",
-      "team": "KC",
       "picks": 12,
       "homers": 1,
       "hit_rate": 0.083333
@@ -2045,6 +2059,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Leo Rivas",
+      "team": "SEA",
+      "picks": 12,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Ben Williamson",
       "team": "TB",
       "picks": 11,
@@ -2061,13 +2082,6 @@
     {
       "batter_name": "Joey Loperfido",
       "team": "HOU",
-      "picks": 11,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Leo Rivas",
-      "team": "SEA",
       "picks": 11,
       "homers": 0,
       "hit_rate": 0.0
@@ -3611,7 +3625,7 @@
       "game_pk": 823145,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 10,
       "original_rank": 10,
       "original_score": 96.6,
@@ -3653,15 +3667,15 @@
       "ballparkpal_overlay_adjusted_rank": 10,
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 4,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 8.3%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 5.6% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-03:823711:672960:657746",
@@ -3855,7 +3869,7 @@
       "game_pk": 824285,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T23:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 14,
       "original_rank": 14,
       "original_score": 95.0,
@@ -3898,7 +3912,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 4,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -5022,7 +5036,7 @@
       "game_pk": 824285,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T23:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 33,
       "original_rank": 33,
       "original_score": 87.7,
@@ -5065,7 +5079,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 6,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -5327,7 +5341,7 @@
       "game_pk": 824285,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T23:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 38,
       "original_rank": 38,
       "original_score": 85.8,
@@ -5370,7 +5384,7 @@
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 6,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -5817,7 +5831,7 @@
       "game_pk": 823145,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 46,
       "original_rank": 46,
       "original_score": 82.8,
@@ -5859,15 +5873,15 @@
       "ballparkpal_overlay_adjusted_rank": 46,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 6,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 7.7% barrel-per-PA split.",
       "top_reason_2": "Luis Castillo has allowed a 45.6% hard-hit rate over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-03:824364:663586:607536",
@@ -6247,7 +6261,7 @@
       "game_pk": 823145,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 53,
       "original_rank": 53,
       "original_score": 80.1,
@@ -6289,15 +6303,15 @@
       "ballparkpal_overlay_adjusted_rank": 53,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 68.8%, a top-decile recent-contact signal.",
       "top_reason_2": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 68.8%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-03:824285:805808:683004",
@@ -6308,7 +6322,7 @@
       "game_pk": 824285,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T23:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 54,
       "original_rank": 54,
       "original_score": 79.7,
@@ -6351,7 +6365,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -6491,7 +6505,7 @@
       "game_pk": 823145,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 57,
       "original_rank": 57,
       "original_score": 78.5,
@@ -6676,7 +6690,7 @@
       "game_pk": 823145,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 60,
       "original_rank": 60,
       "original_score": 77.4,
@@ -6718,15 +6732,15 @@
       "ballparkpal_overlay_adjusted_rank": 60,
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 5,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 6.2% barrel-per-PA split.",
       "top_reason_2": "Luis Castillo has allowed a 45.6% hard-hit rate over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-03:823145:677951:622491",
@@ -6737,7 +6751,7 @@
       "game_pk": 823145,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 61,
       "original_rank": 61,
       "original_score": 77.0,
@@ -6779,15 +6793,15 @@
       "ballparkpal_overlay_adjusted_rank": 61,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 2,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 5.7% barrel-per-PA split.",
       "top_reason_2": "Luis Castillo has allowed a 45.6% hard-hit rate over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-03:824687:608324:518876",
@@ -6981,7 +6995,7 @@
       "game_pk": 824285,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T23:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 65,
       "original_rank": 65,
       "original_score": 75.5,
@@ -7024,7 +7038,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 5,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -7595,7 +7609,7 @@
       "game_pk": 823145,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 75,
       "original_rank": 75,
       "original_score": 71.6,
@@ -7637,15 +7651,15 @@
       "ballparkpal_overlay_adjusted_rank": 75,
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 4,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1986, supporting loud-contact upside.",
       "top_reason_2": "Luis Castillo has allowed a 45.6% hard-hit rate over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-03:824285:592626:663947",
@@ -7656,7 +7670,7 @@
       "game_pk": 824285,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T23:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 76,
       "original_rank": 76,
       "original_score": 71.3,
@@ -9745,7 +9759,7 @@
       "game_pk": 823145,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 110,
       "original_rank": 110,
       "original_score": 58.2,
@@ -9787,15 +9801,15 @@
       "ballparkpal_overlay_adjusted_rank": 110,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 58.3%, showing consistent quality contact.",
       "top_reason_2": "Luis Castillo has allowed a 45.6% hard-hit rate over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-03:824769:680776:675989",
@@ -10117,7 +10131,7 @@
       "game_pk": 823145,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 116,
       "original_rank": 116,
       "original_score": 55.9,
@@ -10159,15 +10173,15 @@
       "ballparkpal_overlay_adjusted_rank": 116,
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 4,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 10.0%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_3": "Barrel rate over the last 30 days is 5.8%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-03:822742:695734:",
@@ -10241,7 +10255,7 @@
       "game_pk": 824285,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T23:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 118,
       "original_rank": 118,
       "original_score": 55.2,
@@ -10284,7 +10298,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 4,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10363,7 +10377,7 @@
       "game_pk": 824285,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T23:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 120,
       "original_rank": 120,
       "original_score": 54.4,
@@ -10406,7 +10420,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 4,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10485,7 +10499,7 @@
       "game_pk": 824285,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T23:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 122,
       "original_rank": 122,
       "original_score": 53.6,
@@ -10853,7 +10867,7 @@
       "game_pk": 823145,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 128,
       "original_rank": 128,
       "original_score": 51.3,
@@ -10895,15 +10909,15 @@
       "ballparkpal_overlay_adjusted_rank": 128,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 1,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Luis Castillo has allowed a 45.6% hard-hit rate over the last 30 days.",
       "top_reason_2": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_3": "Luis Castillo has allowed 45.6% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-03:824364:642201:607536",
@@ -11160,7 +11174,7 @@
       "game_pk": 824285,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T23:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 133,
       "original_rank": 133,
       "original_score": 49.4,
@@ -11203,7 +11217,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 6,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -11282,7 +11296,7 @@
       "game_pk": 823145,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 135,
       "original_rank": 135,
       "original_score": 48.7,
@@ -11324,15 +11338,15 @@
       "ballparkpal_overlay_adjusted_rank": 135,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 2,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.4 mph, which points to top-end HR juice.",
       "top_reason_2": "Luis Castillo has allowed a 45.6% hard-hit rate over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-03:824043:683146:686799",
@@ -12025,7 +12039,7 @@
       "game_pk": 823145,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 147,
       "original_rank": 147,
       "original_score": 44.1,
@@ -12067,15 +12081,15 @@
       "ballparkpal_overlay_adjusted_rank": 147,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 6.2%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 109.9 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-03:824364:686668:675911",
@@ -12212,7 +12226,7 @@
       "game_pk": 823145,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 150,
       "original_rank": 150,
       "original_score": 42.9,
@@ -12584,7 +12598,7 @@
       "game_pk": 824285,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T23:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 156,
       "original_rank": 156,
       "original_score": 40.6,
@@ -12627,7 +12641,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 3,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -13137,7 +13151,7 @@
       "game_pk": 824285,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T23:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 165,
       "original_rank": 165,
       "original_score": 37.2,
@@ -13324,7 +13338,7 @@
       "game_pk": 823145,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 168,
       "original_rank": 168,
       "original_score": 36.0,
@@ -13366,15 +13380,15 @@
       "ballparkpal_overlay_adjusted_rank": 168,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 2,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-03:823387:687462:695505",
@@ -14127,7 +14141,7 @@
       "game_pk": 823145,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 181,
       "original_rank": 181,
       "original_score": 31.0,
@@ -14932,7 +14946,7 @@
       "game_pk": 823145,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 194,
       "original_rank": 194,
       "original_score": 26.1,
@@ -14974,15 +14988,15 @@
       "ballparkpal_overlay_adjusted_rank": 194,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1794, supporting loud-contact upside.",
       "top_reason_2": "Luis Castillo has allowed a 45.6% hard-hit rate over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-03:823307:669720:656288",
@@ -15430,7 +15444,7 @@
       "game_pk": 824285,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T23:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 202,
       "original_rank": 202,
       "original_score": 23.0,
@@ -15473,7 +15487,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -16473,7 +16487,7 @@
       "game_pk": 823145,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 219,
       "original_rank": 219,
       "original_score": 16.5,
@@ -16515,15 +16529,15 @@
       "ballparkpal_overlay_adjusted_rank": 219,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 5.0%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Luis Castillo has allowed a 45.6% hard-hit rate over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-03:824364:643289:607536",
@@ -16656,7 +16670,7 @@
       "game_pk": 824285,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T23:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 222,
       "original_rank": 222,
       "original_score": 15.3,
@@ -16719,7 +16733,7 @@
       "game_pk": 824285,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T23:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 223,
       "original_rank": 223,
       "original_score": 14.9,
@@ -17771,7 +17785,7 @@
       "game_pk": 824285,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T23:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 240,
       "original_rank": 240,
       "original_score": 8.4,
@@ -17814,7 +17828,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -18143,7 +18157,7 @@
       "game_pk": 824285,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T23:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 246,
       "original_rank": 246,
       "original_score": 6.1,
@@ -18186,7 +18200,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -18635,7 +18649,7 @@
       "game_pk": 824285,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T23:20:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 254,
       "original_rank": 254,
       "original_score": 3.1,
@@ -18678,7 +18692,7 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -18696,7 +18710,7 @@
       "game_pk": 823145,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 255,
       "original_rank": 255,
       "original_score": 2.7,
@@ -18738,15 +18752,15 @@
       "ballparkpal_overlay_adjusted_rank": 255,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 0,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 4.2%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-03:824769:687957:624133",
@@ -441965,7 +441979,7 @@
       "game_pk": 824043,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:07:00Z",
-      "game_status": "Game Over",
+      "game_status": "Final",
       "game_state": "final",
       "matchup": "NYM @ LAA",
       "teams": [
@@ -442091,7 +442105,7 @@
       "game_pk": 823145,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:10:00Z",
-      "game_status": "Game Over",
+      "game_status": "Final",
       "game_state": "final",
       "matchup": "KC @ SEA",
       "teams": [
@@ -442217,7 +442231,7 @@
       "game_pk": 823307,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T20:10:00Z",
-      "game_status": "Game Over",
+      "game_status": "Final",
       "game_state": "final",
       "matchup": "CWS @ SD",
       "teams": [
@@ -442349,8 +442363,8 @@
       "game_pk": 824285,
       "game_date": "2026-05-03",
       "game_datetime": "2026-05-03T23:20:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "Warmup",
+      "game_state": "live",
       "matchup": "TEX @ DET",
       "teams": [
         {
