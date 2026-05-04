@@ -383,40 +383,55 @@ def publish_live_picks(
                 "Overlay-only publish requested, but no current picks were found. "
                 "Run the normal publish flow first so there is a board to overlay."
             )
-        overlay_frame = enrich_candidate_frame_with_ballparkpal(pd.DataFrame(existing_rows), schedule_date=resolved_schedule_date)
-        if overlay_frame.empty:
-            raise RuntimeError("Overlay-only publish could not build an overlay frame from the current picks.")
-
-        ranked_overlay = overlay_frame.sort_values(
-            [
-                "ballparkpal_overlay_adjusted_score",
-                "predicted_hr_score",
-                "predicted_hr_probability",
-                "batter_name",
-            ],
-            ascending=[False, False, False, True],
-        ).reset_index(drop=True)
-        overlay_rows: list[dict[str, Any]] = []
-        for index, row in ranked_overlay.iterrows():
-            row_dict = dict(row)
-            row_dict["original_rank"] = int(row_dict.get("original_rank") or row_dict.get("rank") or index + 1)
-            row_dict["rank"] = index + 1
-            row_dict["ballparkpal_overlay_adjusted_rank"] = index + 1
-            row_dict["game_date"] = normalize_game_date(row_dict.get("game_date"))
-            overlay_rows.append(row_dict)
-
-        write_current_picks(overlay_rows, output_path)
-        refresh_cloudflare_dashboard(
-            output_path,
-            history_path,
-            dashboard_output_dir,
-            resolved_schedule_date,
+        existing_dates = sorted(
+            {
+                normalize_game_date(row.get("game_date"))
+                for row in existing_rows
+                if normalize_game_date(row.get("game_date"))
+            }
         )
-        print(
-            f"Applied Ballpark Pal overlay to {len(overlay_rows)} current picks and refreshed the dashboard for "
-            f"{resolved_schedule_date}"
-        )
-        return load_json_array(output_path)
+        if resolved_schedule_date not in existing_dates:
+            print(
+                "Overlay-only publish requested for "
+                f"{resolved_schedule_date}, but current board dates are {existing_dates}. "
+                "Running full publish instead."
+            )
+            overlay_only = False
+        else:
+            overlay_frame = enrich_candidate_frame_with_ballparkpal(pd.DataFrame(existing_rows), schedule_date=resolved_schedule_date)
+            if overlay_frame.empty:
+                raise RuntimeError("Overlay-only publish could not build an overlay frame from the current picks.")
+
+            ranked_overlay = overlay_frame.sort_values(
+                [
+                    "ballparkpal_overlay_adjusted_score",
+                    "predicted_hr_score",
+                    "predicted_hr_probability",
+                    "batter_name",
+                ],
+                ascending=[False, False, False, True],
+            ).reset_index(drop=True)
+            overlay_rows: list[dict[str, Any]] = []
+            for index, row in ranked_overlay.iterrows():
+                row_dict = dict(row)
+                row_dict["original_rank"] = int(row_dict.get("original_rank") or row_dict.get("rank") or index + 1)
+                row_dict["rank"] = index + 1
+                row_dict["ballparkpal_overlay_adjusted_rank"] = index + 1
+                row_dict["game_date"] = normalize_game_date(row_dict.get("game_date"))
+                overlay_rows.append(row_dict)
+
+            write_current_picks(overlay_rows, output_path)
+            refresh_cloudflare_dashboard(
+                output_path,
+                history_path,
+                dashboard_output_dir,
+                resolved_schedule_date,
+            )
+            print(
+                f"Applied Ballpark Pal overlay to {len(overlay_rows)} current picks and refreshed the dashboard for "
+                f"{resolved_schedule_date}"
+            )
+            return load_json_array(output_path)
 
     dataset_df = load_live_dataset(Path(dataset_path))
     model_metadata = load_model_metadata(Path(metadata_path))

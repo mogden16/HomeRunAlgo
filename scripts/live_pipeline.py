@@ -231,8 +231,9 @@ def enrich_candidate_frame_with_ballparkpal(candidate_df: pd.DataFrame, *, sched
         enriched["ballparkpal_snapshot_path"] = ""
         enriched["ballparkpal_snapshot_pulled_at"] = ""
         for column in LIVE_BALLPARKPAL_SOURCE_COLUMNS:
-            if column not in enriched.columns:
-                enriched[column] = np.nan
+            # Always clear stale Ballpark Pal feature values when no matching
+            # snapshot is available for this schedule date.
+            enriched[column] = np.nan
         return apply_ballparkpal_overlay_frame(enriched)
 
     def _merge_export(frame: pd.DataFrame, export_name: str, key_columns: list[str]) -> pd.DataFrame:
