@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-04T12:27:33.146238+00:00",
+  "generated_at": "2026-05-04T16:57:48.936789+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v3",
@@ -3712,7 +3712,9 @@
       "home_runs_2026": 9,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 58.8%, showing consistent quality contact.",
@@ -3956,7 +3958,9 @@
       "home_runs_2026": 11,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 8.7%, which the model treats as sustained power quality.",
@@ -5420,7 +5424,9 @@
       "home_runs_2026": 1,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 53.3%, a top-quartile recent-contact signal.",
@@ -5969,7 +5975,9 @@
       "home_runs_2026": 2,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 94.5 mph, a top-decile recent batted-ball quality marker.",
@@ -6091,7 +6099,9 @@
       "home_runs_2026": 1,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 3.6% barrel-per-PA split.",
@@ -6579,7 +6589,9 @@
       "home_runs_2026": 4,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
@@ -6701,7 +6713,9 @@
       "home_runs_2026": 2,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
@@ -10849,7 +10863,9 @@
       "home_runs_2026": 0,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
@@ -12801,7 +12817,9 @@
       "home_runs_2026": 0,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
@@ -454798,12 +454816,6 @@
           "lineup_source": "projected",
           "hitters": [
             {
-              "batter_id": 682663,
-              "batter_name": "Agust\u00edn Ram\u00edrez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 666624,
               "batter_name": "Christopher Morel",
               "batting_order": null,
@@ -454814,6 +454826,12 @@
               "batter_name": "Connor Norby",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 665923,
+              "batter_name": "Esteury Ruiz",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 805300,
@@ -454990,7 +455008,7 @@
     {
       "game_pk": 824684,
       "game_date": "2026-05-04",
-      "game_datetime": "2026-05-04T23:40:00Z",
+      "game_datetime": "2026-05-04T23:10:00Z",
       "game_status": "Scheduled",
       "game_state": "pregame",
       "matchup": "CIN @ CHC",
