@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-04T16:57:48.936789+00:00",
+  "generated_at": "2026-05-04T18:27:43.282610+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v3",
@@ -3678,7 +3678,7 @@
       "team": "COL",
       "opponent_team": "NYM",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -3741,7 +3741,7 @@
       "team": "NYM",
       "opponent_team": "COL",
       "pitcher_name": "Tomoyuki Sugano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -3924,7 +3924,7 @@
       "team": "COL",
       "opponent_team": "NYM",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -5390,7 +5390,7 @@
       "team": "COL",
       "opponent_team": "NYM",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -5453,7 +5453,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -5487,7 +5487,9 @@
       "home_runs_2026": 7,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 12.2%, a top-decile indicator of current lift-and-damage contact.",
@@ -5941,7 +5943,7 @@
       "team": "COL",
       "opponent_team": "NYM",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -5974,16 +5976,17 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "inactive",
       "alert_flags": [
+        "lineup_alert",
         "pitcher_change_alert"
       ],
-      "inactive_flag": false,
-      "display_style": "default",
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 94.5 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
       "top_reason_3": "Barrel rate over the last 10 days is 7.7%, a top-quartile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-04:823874:669016:676083",
@@ -6065,7 +6068,7 @@
       "team": "COL",
       "opponent_team": "NYM",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -6555,7 +6558,7 @@
       "team": "COL",
       "opponent_team": "NYM",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -6679,7 +6682,7 @@
       "team": "COL",
       "opponent_team": "NYM",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -6712,16 +6715,17 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "inactive",
       "alert_flags": [
+        "lineup_alert",
         "pitcher_change_alert"
       ],
-      "inactive_flag": false,
-      "display_style": "default",
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-04:824684:668709:665795",
@@ -8633,7 +8637,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -8667,7 +8671,9 @@
       "home_runs_2026": 3,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 7.4%, which the model treats as sustained power quality.",
@@ -8816,7 +8822,7 @@
       "team": "NYM",
       "opponent_team": "COL",
       "pitcher_name": "Tomoyuki Sugano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -8877,7 +8883,7 @@
       "team": "NYM",
       "opponent_team": "COL",
       "pitcher_name": "Tomoyuki Sugano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -9365,7 +9371,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -9399,7 +9405,9 @@
       "home_runs_2026": 1,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 47.8%, a above-baseline recent-contact signal.",
@@ -9487,7 +9495,7 @@
       "team": "NYM",
       "opponent_team": "COL",
       "pitcher_name": "Tomoyuki Sugano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -10829,7 +10837,7 @@
       "team": "COL",
       "opponent_team": "NYM",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -10862,16 +10870,17 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "inactive",
       "alert_flags": [
+        "lineup_alert",
         "pitcher_change_alert"
       ],
-      "inactive_flag": false,
-      "display_style": "default",
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-04:824684:683737:695534",
@@ -11502,7 +11511,7 @@
       "team": "NYM",
       "opponent_team": "COL",
       "pitcher_name": "Tomoyuki Sugano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -11624,7 +11633,7 @@
       "team": "NYM",
       "opponent_team": "COL",
       "pitcher_name": "Tomoyuki Sugano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -11807,7 +11816,7 @@
       "team": "NYM",
       "opponent_team": "COL",
       "pitcher_name": "Tomoyuki Sugano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -11840,14 +11849,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0015, reinforcing the power-contact fit.",
       "top_reason_2": "Tomoyuki Sugano has allowed barrels on 7.0% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 120.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-04:822984:670764:",
@@ -12539,7 +12550,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -12573,7 +12584,9 @@
       "home_runs_2026": 1,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.7 mph, which points to top-end HR juice.",
@@ -12600,7 +12613,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -12634,7 +12647,9 @@
       "home_runs_2026": 2,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 52.5%, showing consistent quality contact.",
@@ -12783,7 +12798,7 @@
       "team": "COL",
       "opponent_team": "NYM",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -12816,16 +12831,17 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "inactive",
       "alert_flags": [
+        "lineup_alert",
         "pitcher_change_alert"
       ],
-      "inactive_flag": false,
-      "display_style": "default",
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Park factor for the hitter's handedness is 116.0, which adds venue lift to the matchup.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-04:824120:664728:676440",
@@ -14005,7 +14021,7 @@
       "team": "NYM",
       "opponent_team": "COL",
       "pitcher_name": "Tomoyuki Sugano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -14371,7 +14387,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -14405,7 +14421,9 @@
       "home_runs_2026": 2,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The hitter has the platoon advantage in this matchup.",
@@ -14920,7 +14938,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -14954,7 +14972,9 @@
       "home_runs_2026": 4,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 4.9%, a above-baseline indicator of current lift-and-damage contact.",
@@ -15530,7 +15550,7 @@
       "team": "NYM",
       "opponent_team": "COL",
       "pitcher_name": "Tomoyuki Sugano",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -15563,14 +15583,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1850, supporting loud-contact upside.",
       "top_reason_2": "Tomoyuki Sugano has allowed barrels on 7.0% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 120.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-04:822984:623168:607259",
@@ -16262,7 +16284,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -16296,7 +16318,9 @@
       "home_runs_2026": 1,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 56.5%, a top-quartile recent-contact signal.",
@@ -16323,7 +16347,7 @@
       "team": "BOS",
       "opponent_team": "DET",
       "pitcher_name": "Tarik Skubal",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -16356,14 +16380,17 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert",
+        "pitcher_change_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The hitter has the platoon advantage in this matchup.",
       "top_reason_2": "Projected wind speed is 14.3 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-04:824039:805367:667755",
@@ -454349,21 +454376,15 @@
       "game_pk": 824363,
       "game_date": "2026-05-04",
       "game_datetime": "2026-05-04T21:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "NYM @ COL",
       "teams": [
         {
           "team": "NYM",
           "opponent_team": "COL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 596103,
-              "batter_name": "Austin Slater",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 666182,
               "batter_name": "Bo Bichette",
@@ -454395,6 +454416,18 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 620443,
+              "batter_name": "Luis Torrens",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 669004,
+              "batter_name": "MJ Melendez",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 543760,
               "batter_name": "Marcus Semien",
               "batting_order": null,
@@ -454405,31 +454438,19 @@
               "batter_name": "Mark Vientos",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 621438,
-              "batter_name": "Tyrone Taylor",
-              "batting_order": null,
-              "selected_for_pick": true
             }
           ]
         },
         {
           "team": "COL",
           "opponent_team": "NYM",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 664954,
-              "batter_name": "Brett Sullivan",
+              "batter_id": 686668,
+              "batter_name": "Brenton Doyle",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 666397,
-              "batter_name": "Edouard Julien",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 678662,
@@ -454444,10 +454465,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 664983,
-              "batter_name": "Jake McCarthy",
+              "batter_id": 687597,
+              "batter_name": "Jordan Beck",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 691720,
+              "batter_name": "Kyle Karros",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 666160,
@@ -454462,10 +454489,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 687859,
-              "batter_name": "Troy Johnston",
+              "batter_id": 671289,
+              "batter_name": "Tyler Freeman",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 650489,
@@ -454480,21 +454507,21 @@
     {
       "game_pk": 824283,
       "game_date": "2026-05-04",
-      "game_datetime": "2026-05-04T22:40:00Z",
-      "game_status": "Scheduled",
+      "game_datetime": "2026-05-04T22:10:00Z",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "BOS @ DET",
       "teams": [
         {
           "team": "BOS",
           "opponent_team": "DET",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 702332,
-              "batter_name": "Caleb Durbin",
+              "batter_id": 655316,
+              "batter_name": "Andruw Monasterio",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 665966,
