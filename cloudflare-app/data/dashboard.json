@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-04T18:27:43.282610+00:00",
+  "generated_at": "2026-05-04T20:14:13.626301+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v3",
@@ -3617,7 +3617,7 @@
       "team": "TB",
       "opponent_team": "TOR",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -3651,7 +3651,9 @@
       "home_runs_2026": 9,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.1 mph, which points to top-end HR juice.",
@@ -3802,7 +3804,7 @@
       "team": "STL",
       "opponent_team": "MIL",
       "pitcher_name": "Chad Patrick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -3863,7 +3865,7 @@
       "team": "PHI",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -4231,7 +4233,7 @@
       "team": "NYY",
       "opponent_team": "BAL",
       "pitcher_name": "Shane Baz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -4414,7 +4416,7 @@
       "team": "STL",
       "opponent_team": "MIL",
       "pitcher_name": "Chad Patrick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -4475,7 +4477,7 @@
       "team": "NYY",
       "opponent_team": "BAL",
       "pitcher_name": "Shane Baz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -4597,7 +4599,7 @@
       "team": "CIN",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -4719,7 +4721,7 @@
       "team": "STL",
       "opponent_team": "MIL",
       "pitcher_name": "Chad Patrick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -4841,7 +4843,7 @@
       "team": "PHI",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -4902,7 +4904,7 @@
       "team": "TOR",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -5024,7 +5026,7 @@
       "team": "STL",
       "opponent_team": "MIL",
       "pitcher_name": "Chad Patrick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -5085,7 +5087,7 @@
       "team": "TB",
       "opponent_team": "TOR",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -5119,7 +5121,9 @@
       "home_runs_2026": 7,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 4.9% barrel-per-PA split.",
@@ -5268,7 +5272,7 @@
       "team": "TOR",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -5329,7 +5333,7 @@
       "team": "STL",
       "opponent_team": "MIL",
       "pitcher_name": "Chad Patrick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -5577,7 +5581,7 @@
       "team": "NYY",
       "opponent_team": "BAL",
       "pitcher_name": "Shane Baz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -5610,14 +5614,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 12,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 7.2% barrel-per-PA split.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "Barrel rate over the last 30 days is 8.3%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-04:824201:606192:595345",
@@ -5821,7 +5827,7 @@
       "team": "STL",
       "opponent_team": "MIL",
       "pitcher_name": "Chad Patrick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -6007,7 +6013,7 @@
       "team": "PHI",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -6253,7 +6259,7 @@
       "team": "NYY",
       "opponent_team": "BAL",
       "pitcher_name": "Shane Baz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -6497,7 +6503,7 @@
       "team": "TOR",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -6746,7 +6752,7 @@
       "team": "CIN",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6807,7 +6813,7 @@
       "team": "NYY",
       "opponent_team": "BAL",
       "pitcher_name": "Shane Baz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -7112,7 +7118,7 @@
       "team": "MIA",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -7145,14 +7151,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.2 mph, which points to top-end HR juice.",
       "top_reason_2": "Aaron Nola has allowed homers in 3.4% of plate appearances over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-04:822984:668723:",
@@ -7173,7 +7181,7 @@
       "team": "TB",
       "opponent_team": "TOR",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -7207,7 +7215,9 @@
       "home_runs_2026": 0,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 3.6% barrel-per-PA split.",
@@ -7234,7 +7244,7 @@
       "team": "MIA",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -7356,7 +7366,7 @@
       "team": "TOR",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -7539,7 +7549,7 @@
       "team": "CIN",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -7722,7 +7732,7 @@
       "team": "MIA",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -7783,7 +7793,7 @@
       "team": "BAL",
       "opponent_team": "NYY",
       "pitcher_name": "Cam Schlittler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -7966,7 +7976,7 @@
       "team": "CIN",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -8088,7 +8098,7 @@
       "team": "NYY",
       "opponent_team": "BAL",
       "pitcher_name": "Shane Baz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -8149,7 +8159,7 @@
       "team": "DET",
       "opponent_team": "BOS",
       "pitcher_name": "Payton Tolle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -8210,7 +8220,7 @@
       "team": "NYY",
       "opponent_team": "BAL",
       "pitcher_name": "Shane Baz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -8393,7 +8403,7 @@
       "team": "DET",
       "opponent_team": "BOS",
       "pitcher_name": "Payton Tolle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -8454,7 +8464,7 @@
       "team": "TB",
       "opponent_team": "TOR",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -8488,7 +8498,9 @@
       "home_runs_2026": 2,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.0 mph, which points to top-end HR juice.",
@@ -8515,7 +8527,7 @@
       "team": "PHI",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -8761,7 +8773,7 @@
       "team": "TB",
       "opponent_team": "TOR",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -8795,7 +8807,9 @@
       "home_runs_2026": 1,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.9 mph, which points to top-end HR juice.",
@@ -9249,7 +9263,7 @@
       "team": "CIN",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -9310,7 +9324,7 @@
       "team": "NYY",
       "opponent_team": "BAL",
       "pitcher_name": "Shane Baz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -9434,7 +9448,7 @@
       "team": "MIA",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -9467,14 +9481,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 5.0% barrel-per-PA split.",
       "top_reason_2": "Aaron Nola has allowed homers in 3.4% of plate appearances over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-04:824363:666182:608372",
@@ -9556,7 +9572,7 @@
       "team": "BAL",
       "opponent_team": "NYY",
       "pitcher_name": "Cam Schlittler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -9617,7 +9633,7 @@
       "team": "PHI",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -9922,7 +9938,7 @@
       "team": "MIA",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -10044,7 +10060,7 @@
       "team": "TOR",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -10077,14 +10093,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 4.1% barrel-per-PA split.",
       "top_reason_2": "Nick Martinez has allowed barrels on 7.1% of recent batted balls.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-04:824120:677587:608379",
@@ -10227,7 +10245,7 @@
       "team": "CIN",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -10288,7 +10306,7 @@
       "team": "TB",
       "opponent_team": "TOR",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -10321,14 +10339,17 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert",
+        "pitcher_change_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-04:823228:593428:686790",
@@ -10776,7 +10797,7 @@
       "team": "TB",
       "opponent_team": "TOR",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -10810,7 +10831,9 @@
       "home_runs_2026": 0,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 91.5 mph, a above-baseline recent batted-ball quality marker.",
@@ -10962,7 +10985,7 @@
       "team": "MIA",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -11328,7 +11351,7 @@
       "team": "STL",
       "opponent_team": "MIL",
       "pitcher_name": "Chad Patrick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -11879,7 +11902,7 @@
       "team": "TB",
       "opponent_team": "TOR",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -11913,7 +11936,9 @@
       "home_runs_2026": 0,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "This game is in a roofed park, so weather inputs are suppressed there.",
@@ -12306,7 +12331,7 @@
       "team": "TB",
       "opponent_team": "TOR",
       "pitcher_name": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -12340,7 +12365,9 @@
       "home_runs_2026": 0,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "This game is in a roofed park, so weather inputs are suppressed there.",
@@ -12367,7 +12394,7 @@
       "team": "CIN",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -12400,14 +12427,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 5.6%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Edward Cabrera has allowed 89.7 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Barrel rate over the last 30 days is 3.6%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-04:823143:573262:669302",
@@ -12489,7 +12518,7 @@
       "team": "PHI",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -12737,7 +12766,7 @@
       "team": "MIA",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -12984,7 +13013,7 @@
       "team": "DET",
       "opponent_team": "BOS",
       "pitcher_name": "Payton Tolle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -13045,7 +13074,7 @@
       "team": "STL",
       "opponent_team": "MIL",
       "pitcher_name": "Chad Patrick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -13350,7 +13379,7 @@
       "team": "BAL",
       "opponent_team": "NYY",
       "pitcher_name": "Cam Schlittler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -13533,7 +13562,7 @@
       "team": "PHI",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -13594,7 +13623,7 @@
       "team": "NYY",
       "opponent_team": "BAL",
       "pitcher_name": "Shane Baz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -13716,7 +13745,7 @@
       "team": "TOR",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -13899,7 +13928,7 @@
       "team": "BAL",
       "opponent_team": "NYY",
       "pitcher_name": "Cam Schlittler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -13932,14 +13961,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0026, reinforcing the power-contact fit.",
       "top_reason_2": "Cam Schlittler has allowed barrels on 5.8% of batted balls to this batter side.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 4.6% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-04:823874:689414:605400",
@@ -13960,7 +13991,7 @@
       "team": "MIA",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -14082,7 +14113,7 @@
       "team": "CIN",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -14204,7 +14235,7 @@
       "team": "DET",
       "opponent_team": "BOS",
       "pitcher_name": "Payton Tolle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -14265,7 +14296,7 @@
       "team": "STL",
       "opponent_team": "MIL",
       "pitcher_name": "Chad Patrick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -14450,7 +14481,7 @@
       "team": "CIN",
       "opponent_team": "CHC",
       "pitcher_name": "Edward Cabrera",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -14511,7 +14542,7 @@
       "team": "DET",
       "opponent_team": "BOS",
       "pitcher_name": "Payton Tolle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -15001,7 +15032,7 @@
       "team": "DET",
       "opponent_team": "BOS",
       "pitcher_name": "Payton Tolle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -15034,14 +15065,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0036, reinforcing the power-contact fit.",
       "top_reason_2": "Payton Tolle has allowed homers in 6.7% of plate appearances to this batter side.",
       "top_reason_3": "Projected wind speed is 14.3 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-04:824283:805808:801139",
@@ -15062,7 +15095,7 @@
       "team": "DET",
       "opponent_team": "BOS",
       "pitcher_name": "Payton Tolle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -15095,14 +15128,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 7.1%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Payton Tolle has allowed homers in 6.7% of plate appearances to this batter side.",
       "top_reason_3": "Projected wind speed is 14.3 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-04:823064:663604:681517",
@@ -15306,7 +15341,7 @@
       "team": "TOR",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -15367,7 +15402,7 @@
       "team": "PHI",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -15489,7 +15524,7 @@
       "team": "BAL",
       "opponent_team": "NYY",
       "pitcher_name": "Cam Schlittler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -15613,7 +15648,7 @@
       "team": "TOR",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -15646,14 +15681,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Nick Martinez has allowed barrels on 7.1% of recent batted balls.",
       "top_reason_2": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-04:823228:650333:681190",
@@ -15857,7 +15894,7 @@
       "team": "PHI",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -15890,14 +15927,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 110.3 mph, which points to top-end HR juice.",
       "top_reason_2": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-04:824283:663837:801139",
@@ -15918,7 +15957,7 @@
       "team": "DET",
       "opponent_team": "BOS",
       "pitcher_name": "Payton Tolle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -16040,7 +16079,7 @@
       "team": "TOR",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -16162,7 +16201,7 @@
       "team": "MIA",
       "opponent_team": "PHI",
       "pitcher_name": "Aaron Nola",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -16195,14 +16234,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Aaron Nola has allowed homers in 3.4% of plate appearances over the last 30 days.",
       "top_reason_2": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-04:823552:668939:693645",
@@ -16223,7 +16264,7 @@
       "team": "BAL",
       "opponent_team": "NYY",
       "pitcher_name": "Cam Schlittler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -16533,7 +16574,7 @@
       "team": "BAL",
       "opponent_team": "NYY",
       "pitcher_name": "Cam Schlittler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -16594,7 +16635,7 @@
       "team": "DET",
       "opponent_team": "BOS",
       "pitcher_name": "Payton Tolle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Comerica Park",
       "ballpark_region_abbr": "MI",
@@ -16655,7 +16696,7 @@
       "team": "BAL",
       "opponent_team": "NYY",
       "pitcher_name": "Cam Schlittler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -16777,7 +16818,7 @@
       "team": "BAL",
       "opponent_team": "NYY",
       "pitcher_name": "Cam Schlittler",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Yankee Stadium",
       "ballpark_region_abbr": "NY",
@@ -16810,14 +16851,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 77.8%, a top-decile recent-contact signal.",
       "top_reason_2": "Cam Schlittler has allowed barrels on 5.8% of batted balls to this batter side.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 77.8%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     }
   ],
   "history": [
@@ -454576,7 +454619,7 @@
         {
           "team": "DET",
           "opponent_team": "BOS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 690993,
@@ -454597,16 +454640,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 681481,
-              "batter_name": "Kerry Carpenter",
+              "batter_id": 663330,
+              "batter_name": "Jahmai Jones",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 805808,
-              "batter_name": "Kevin McGonigle",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 663837,
@@ -454640,20 +454677,26 @@
       "game_pk": 822984,
       "game_date": "2026-05-04",
       "game_datetime": "2026-05-04T22:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "TOR @ TB",
       "teams": [
         {
           "team": "TOR",
           "opponent_team": "TB",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 665926,
               "batter_name": "Andr\u00e9s Gim\u00e9nez",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 678218,
+              "batter_name": "Brandon Valenzuela",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 662139,
@@ -454680,16 +454723,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 672820,
-              "batter_name": "Lenyn Sosa",
+              "batter_id": 664702,
+              "batter_name": "Myles Straw",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 623168,
-              "batter_name": "Tyler Heineman",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 665489,
@@ -454708,17 +454745,11 @@
         {
           "team": "TB",
           "opponent_team": "TOR",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 810938,
               "batter_name": "Ben Williamson",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 656775,
-              "batter_name": "Cedric Mullins",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -454763,6 +454794,12 @@
               "batter_name": "Taylor Walls",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 650490,
+              "batter_name": "Yandy D\u00edaz",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         }
@@ -454772,14 +454809,14 @@
       "game_pk": 823874,
       "game_date": "2026-05-04",
       "game_datetime": "2026-05-04T22:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "PHI @ MIA",
       "teams": [
         {
           "team": "PHI",
           "opponent_team": "MIA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666969,
@@ -454812,10 +454849,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 694025,
-              "batter_name": "Felix Reyes",
+              "batter_id": 596117,
+              "batter_name": "Garrett Stubbs",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 702222,
@@ -454840,7 +454877,7 @@
         {
           "team": "MIA",
           "opponent_team": "PHI",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666624,
@@ -454849,26 +454886,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 681393,
-              "batter_name": "Connor Norby",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 665923,
-              "batter_name": "Esteury Ruiz",
+              "batter_id": 688363,
+              "batter_name": "Graham Pauley",
               "batting_order": null,
               "selected_for_pick": false
             },
             {
               "batter_id": 805300,
               "batter_name": "Jakob Marsee",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 691594,
-              "batter_name": "Javier Sanoja",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -454891,6 +454916,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 683357,
+              "batter_name": "Owen Caissie",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 669364,
               "batter_name": "Xavier Edwards",
               "batting_order": null,
@@ -454904,14 +454935,14 @@
       "game_pk": 823552,
       "game_date": "2026-05-04",
       "game_datetime": "2026-05-04T23:05:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "BAL @ NYY",
       "teams": [
         {
           "team": "BAL",
           "opponent_team": "NYY",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 668939,
@@ -454924,6 +454955,18 @@
               "batter_name": "Blaze Alexander",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 681297,
+              "batter_name": "Colton Cowser",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 687637,
+              "batter_name": "Dylan Beavers",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 683002,
@@ -454954,25 +454997,13 @@
               "batter_name": "Samuel Basallo",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 621493,
-              "batter_name": "Taylor Ward",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 641933,
-              "batter_name": "Tyler O'Neill",
-              "batting_order": null,
-              "selected_for_pick": true
             }
           ]
         },
         {
           "team": "NYY",
           "opponent_team": "BAL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 592450,
@@ -454983,12 +455014,6 @@
             {
               "batter_id": 669224,
               "batter_name": "Austin Wells",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 700250,
-              "batter_name": "Ben Rice",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -455017,6 +455042,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 502671,
+              "batter_name": "Paul Goldschmidt",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 641857,
               "batter_name": "Ryan McMahon",
               "batting_order": null,
@@ -455036,14 +455067,14 @@
       "game_pk": 824684,
       "game_date": "2026-05-04",
       "game_datetime": "2026-05-04T23:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "CIN @ CHC",
       "teams": [
         {
           "team": "CIN",
           "opponent_team": "CHC",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682829,
@@ -455058,10 +455089,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 680574,
-              "batter_name": "Matt McLain",
+              "batter_id": 663647,
+              "batter_name": "Ke'Bryan Hayes",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 663993,
@@ -455300,7 +455331,7 @@
       "game_pk": 823064,
       "game_date": "2026-05-04",
       "game_datetime": "2026-05-04T23:45:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "MIL @ STL",
       "teams": [
@@ -455368,7 +455399,7 @@
         {
           "team": "STL",
           "opponent_team": "MIL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 676475,
