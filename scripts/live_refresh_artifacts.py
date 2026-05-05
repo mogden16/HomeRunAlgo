@@ -8,6 +8,7 @@ LIVE_REFRESH_TRACKED_ARTIFACTS: tuple[str, ...] = (
     "data/live/pick_history.json",
     "data/live/morning_baseline_picks.json",
     "data/live/daily_board_state.json",
+    "data/ballparkpal/validated/latest_snapshot.json",
     "cloudflare-app/data/dashboard.json",
 )
 
@@ -23,4 +24,3 @@ LIVE_REFRESH_FORCE_ADD_BY_MODE: dict[str, tuple[str, ...]] = {
         "data/live/draft_picks.json",
     ),
 }
-

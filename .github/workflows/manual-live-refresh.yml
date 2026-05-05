@@ -53,6 +53,69 @@ jobs:
             echo "Manual refresh mode=${INPUT_MODE}"
           fi
 
+      - name: Decide whether Ballpark Pal refresh is needed
+        env:
+          REFRESH_MODE: ${{ env.REFRESH_MODE }}
+          BALLPARKPAL_EMAIL: ${{ secrets.BALLPARKPAL_EMAIL }}
+          BALLPARKPAL_PASSWORD: ${{ secrets.BALLPARKPAL_PASSWORD }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+
+          env_path = Path(os.environ["GITHUB_ENV"])
+          refresh_mode = os.environ.get("REFRESH_MODE", "")
+          if refresh_mode not in {"auto", "prepare", "publish"}:
+              with env_path.open("a", encoding="utf-8") as handle:
+                  handle.write("RUN_BPP_REFRESH=false\n")
+                  handle.write("BPP_REQUESTED_DATE=\n")
+              raise SystemExit(0)
+
+          email = os.environ.get("BALLPARKPAL_EMAIL", "").strip()
+          password = os.environ.get("BALLPARKPAL_PASSWORD", "").strip()
+          if not email or not password:
+              with env_path.open("a", encoding="utf-8") as handle:
+                  handle.write("RUN_BPP_REFRESH=false\n")
+                  handle.write("BPP_REQUESTED_DATE=\n")
+              print("Ballpark Pal refresh skipped: missing credentials.")
+              raise SystemExit(0)
+
+          now_et = datetime.now(ZoneInfo("America/New_York"))
+          requested_date = now_et.date().isoformat()
+          should_run = now_et.hour >= 6
+          latest_snapshot = Path("data/ballparkpal/validated/latest_snapshot.json")
+          latest_date = ""
+          if latest_snapshot.exists():
+              try:
+                  payload = json.loads(latest_snapshot.read_text(encoding="utf-8"))
+              except json.JSONDecodeError:
+                  payload = {}
+              latest_date = str(payload.get("requested_date") or payload.get("snapshot_date") or "").strip()
+          if latest_date == requested_date:
+              should_run = False
+          with env_path.open("a", encoding="utf-8") as handle:
+              handle.write(f"BPP_REQUESTED_DATE={requested_date}\n")
+              handle.write(f"RUN_BPP_REFRESH={'true' if should_run else 'false'}\n")
+          print(f"Ballpark Pal refresh requested_date={requested_date} should_run={should_run}")
+          PY
+
+      - name: Install Playwright browser for Ballpark Pal refresh
+        if: env.RUN_BPP_REFRESH == 'true'
+        run: python -m playwright install --with-deps chromium
+
+      - name: Refresh Ballpark Pal snapshot
+        if: env.RUN_BPP_REFRESH == 'true'
+        env:
+          BALLPARKPAL_EMAIL: ${{ secrets.BALLPARKPAL_EMAIL }}
+          BALLPARKPAL_PASSWORD: ${{ secrets.BALLPARKPAL_PASSWORD }}
+        run: |
+          python -m tools.ballparkpal \
+            --requested-date "${BPP_REQUESTED_DATE}" \
+            --output-root data/ballparkpal
+
       - name: Run shared refresh mode
         run: |
           extra_args=""
