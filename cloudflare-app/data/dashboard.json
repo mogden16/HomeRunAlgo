@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-05T20:24:30.423431+00:00",
+  "generated_at": "2026-05-05T21:30:58.208726+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v3",
@@ -3991,7 +3991,7 @@
       "team": "STL",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Sproat",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -4052,7 +4052,7 @@
       "team": "CHC",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -4418,7 +4418,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -4540,7 +4540,7 @@
       "team": "LAD",
       "opponent_team": "HOU",
       "pitcher_name": "Peter Lambert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -4573,14 +4573,16 @@
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 7.7% barrel-per-PA split.",
       "top_reason_2": "Peter Lambert has allowed barrels on 6.9% of recent batted balls.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-05:823062:676475:687075",
@@ -4601,7 +4603,7 @@
       "team": "STL",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Sproat",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -4906,7 +4908,7 @@
       "team": "SEA",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -5089,7 +5091,7 @@
       "team": "SEA",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -5150,7 +5152,7 @@
       "team": "STL",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Sproat",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -5272,7 +5274,7 @@
       "team": "STL",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Sproat",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -5394,7 +5396,7 @@
       "team": "HOU",
       "opponent_team": "LAD",
       "pitcher_name": "Shohei Ohtani",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -5455,7 +5457,7 @@
       "team": "STL",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Sproat",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -5699,7 +5701,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -5760,7 +5762,7 @@
       "team": "CHC",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -6370,7 +6372,7 @@
       "team": "SEA",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -6431,7 +6433,7 @@
       "team": "LAD",
       "opponent_team": "HOU",
       "pitcher_name": "Peter Lambert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -6492,7 +6494,7 @@
       "team": "LAD",
       "opponent_team": "HOU",
       "pitcher_name": "Peter Lambert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -6675,7 +6677,7 @@
       "team": "LAD",
       "opponent_team": "HOU",
       "pitcher_name": "Peter Lambert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -6736,7 +6738,7 @@
       "team": "LAD",
       "opponent_team": "HOU",
       "pitcher_name": "Peter Lambert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -7348,7 +7350,7 @@
       "team": "STL",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Sproat",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -8019,7 +8021,7 @@
       "team": "SEA",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -8690,7 +8692,7 @@
       "team": "CHC",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -8814,7 +8816,7 @@
       "team": "SEA",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -8847,14 +8849,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 99.0 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Bryce Elder has allowed 89.9 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-05:824040:666139:607200",
@@ -8875,7 +8879,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -9552,7 +9556,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -9979,7 +9983,7 @@
       "team": "CHC",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -10040,7 +10044,7 @@
       "team": "CHC",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -10162,7 +10166,7 @@
       "team": "HOU",
       "opponent_team": "LAD",
       "pitcher_name": "Shohei Ohtani",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -10223,7 +10227,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -10469,7 +10473,7 @@
       "team": "CHC",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -10502,14 +10506,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 52.5%, showing consistent quality contact.",
       "top_reason_2": "95+ EV contact rate over the last 30 days is 52.5%, a strong loud-contact input for the model.",
       "top_reason_3": "Barrel rate over the last 30 days is 5.3%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-05:823142:641487:693821",
@@ -10530,7 +10536,7 @@
       "team": "SEA",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -10774,7 +10780,7 @@
       "team": "CHC",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -10896,7 +10902,7 @@
       "team": "SEA",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -11752,7 +11758,7 @@
       "team": "HOU",
       "opponent_team": "LAD",
       "pitcher_name": "Shohei Ohtani",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -12057,7 +12063,7 @@
       "team": "LAD",
       "opponent_team": "HOU",
       "pitcher_name": "Peter Lambert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -12179,7 +12185,7 @@
       "team": "CHC",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -12212,14 +12218,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 5.7% barrel-per-PA split.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "The handedness-specific barrel matchup score is 0.0023, reinforcing the power-contact fit.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-05:825092:606466:696149",
@@ -13344,7 +13352,7 @@
       "team": "LAD",
       "opponent_team": "HOU",
       "pitcher_name": "Peter Lambert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -14082,7 +14090,7 @@
       "team": "SEA",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -14204,7 +14212,7 @@
       "team": "STL",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Sproat",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -14237,14 +14245,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 6.9%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Brandon Sproat has allowed homers in 4.7% of plate appearances over the last 30 days.",
       "top_reason_3": "Projected humidity is 89%, a modest positive weather input in the live model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-05:823553:643376:695684",
@@ -14572,7 +14582,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -14755,7 +14765,7 @@
       "team": "LAD",
       "opponent_team": "HOU",
       "pitcher_name": "Peter Lambert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -15060,7 +15070,7 @@
       "team": "STL",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Sproat",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -15304,7 +15314,7 @@
       "team": "HOU",
       "opponent_team": "LAD",
       "pitcher_name": "Shohei Ohtani",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -15426,7 +15436,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -15459,14 +15469,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 4,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Erick Fedde has allowed homers in 3.9% of plate appearances over the last 30 days.",
       "top_reason_2": "Erick Fedde has allowed 89.5 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-05:823553:696030:695684",
@@ -15672,7 +15684,7 @@
       "team": "STL",
       "opponent_team": "MIL",
       "pitcher_name": "Brandon Sproat",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Busch Stadium",
       "ballpark_region_abbr": "MO",
@@ -15979,7 +15991,7 @@
       "team": "CHC",
       "opponent_team": "CIN",
       "pitcher_name": "Andrew Abbott",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Wrigley Field",
       "ballpark_region_abbr": "IL",
@@ -16040,7 +16052,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -16073,14 +16085,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0017, reinforcing the power-contact fit.",
       "top_reason_2": "Erick Fedde has allowed homers in 3.9% of plate appearances over the last 30 days.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 3.5% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-05:824362:621438:547179",
@@ -16284,7 +16298,7 @@
       "team": "SEA",
       "opponent_team": "ATL",
       "pitcher_name": "Bryce Elder",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "T-Mobile Park",
       "ballpark_region_abbr": "WA",
@@ -16467,7 +16481,7 @@
       "team": "LAA",
       "opponent_team": "CWS",
       "pitcher_name": "Erick Fedde",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -17260,7 +17274,7 @@
       "team": "LAD",
       "opponent_team": "HOU",
       "pitcher_name": "Peter Lambert",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -17293,14 +17307,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peter Lambert has allowed barrels on 6.9% of recent batted balls.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "Peter Lambert has allowed homers in 3.5% of plate appearances over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-05:825092:687462:593958",
@@ -17382,7 +17398,7 @@
       "team": "HOU",
       "opponent_team": "LAD",
       "pitcher_name": "Shohei Ohtani",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -17443,7 +17459,7 @@
       "team": "HOU",
       "opponent_team": "LAD",
       "pitcher_name": "Shohei Ohtani",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -18120,7 +18136,7 @@
       "team": "HOU",
       "opponent_team": "LAD",
       "pitcher_name": "Shohei Ohtani",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -18153,14 +18169,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 109.8 mph, which points to top-end HR juice.",
       "top_reason_2": "Projected humidity is 83%, a modest positive weather input in the live model.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-05:823553:502671:594798",
@@ -19289,7 +19307,7 @@
       "team": "HOU",
       "opponent_team": "LAD",
       "pitcher_name": "Shohei Ohtani",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -19322,14 +19340,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The hitter has the platoon advantage in this matchup.",
       "top_reason_2": "Projected humidity is 83%, a modest positive weather input in the live model.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-05:825092:666971:696149",
@@ -19535,7 +19555,7 @@
       "team": "HOU",
       "opponent_team": "LAD",
       "pitcher_name": "Shohei Ohtani",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Daikin Park",
       "ballpark_region_abbr": "TX",
@@ -470954,17 +470974,11 @@
         {
           "team": "CHC",
           "opponent_team": "CIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 608324,
               "batter_name": "Alex Bregman",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 608348,
-              "batter_name": "Carson Kelly",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -470981,16 +470995,22 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 807713,
+              "batter_name": "Matt Shaw",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 683737,
               "batter_name": "Michael Busch",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 694208,
-              "batter_name": "Mois\u00e9s Ballesteros",
+              "batter_id": 665804,
+              "batter_name": "Miguel Amaya",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 663538,
@@ -471150,7 +471170,7 @@
       "game_pk": 823062,
       "game_date": "2026-05-05",
       "game_datetime": "2026-05-05T23:45:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "MIL @ STL",
       "teams": [
@@ -471218,7 +471238,7 @@
         {
           "team": "STL",
           "opponent_team": "MIL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 676475,
@@ -471263,12 +471283,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 686780,
-              "batter_name": "Pedro Pag\u00e9s",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 687363,
               "batter_name": "Victor Scott II",
               "batting_order": null,
@@ -471282,14 +471296,14 @@
       "game_pk": 824200,
       "game_date": "2026-05-05",
       "game_datetime": "2026-05-06T00:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "LAD @ HOU",
       "teams": [
         {
           "team": "LAD",
           "opponent_team": "HOU",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 690976,
@@ -471304,14 +471318,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 518692,
-              "batter_name": "Freddie Freeman",
+              "batter_id": 687221,
+              "batter_name": "Dalton Rushing",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 808975,
-              "batter_name": "Hyeseong Kim",
+              "batter_id": 518692,
+              "batter_name": "Freddie Freeman",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -471328,10 +471342,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 660271,
-              "batter_name": "Shohei Ohtani",
+              "batter_id": 500743,
+              "batter_name": "Miguel Rojas",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 606192,
@@ -471350,14 +471364,8 @@
         {
           "team": "HOU",
           "opponent_team": "LAD",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 694728,
-              "batter_name": "Brice Matthews",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 701358,
               "batter_name": "Cam Smith",
@@ -471383,12 +471391,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 687957,
-              "batter_name": "Dustin Harris",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 670623,
               "batter_name": "Isaac Paredes",
               "batting_order": null,
@@ -471405,6 +471407,12 @@
               "batter_name": "Yordan Alvarez",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 805904,
+              "batter_name": "Zach Cole",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         }
@@ -471414,7 +471422,7 @@
       "game_pk": 824040,
       "game_date": "2026-05-05",
       "game_datetime": "2026-05-06T01:38:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "CWS @ LAA",
       "teams": [
@@ -471482,7 +471490,7 @@
         {
           "team": "LAA",
           "opponent_team": "CWS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666176,
@@ -471515,22 +471523,22 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 672724,
-              "batter_name": "Oswald Peraza",
+              "batter_id": 665861,
+              "batter_name": "Sebasti\u00e1n Rivero",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 518595,
-              "batter_name": "Travis d'Arnaud",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 687093,
               "batter_name": "Vaughn Grissom",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 660162,
+              "batter_name": "Yo\u00e1n Moncada",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 687263,
@@ -471678,7 +471686,7 @@
       "game_pk": 823142,
       "game_date": "2026-05-05",
       "game_datetime": "2026-05-06T01:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "ATL @ SEA",
       "teams": [
@@ -471746,17 +471754,11 @@
         {
           "team": "SEA",
           "opponent_team": "ATL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 702284,
               "batter_name": "Cole Young",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 686527,
-              "batter_name": "Dominic Canzone",
               "batting_order": null,
               "selected_for_pick": true
             },
