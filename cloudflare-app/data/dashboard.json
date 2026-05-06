@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-06T22:21:51.981160+00:00",
+  "generated_at": "2026-05-06T22:59:30.649807+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v3",
@@ -107,10 +107,10 @@
     "latest_slate_size": 261,
     "tracked_dates": 42,
     "tracked_picks": 7860,
-    "settled_picks": 6285,
-    "tracked_homers": 709,
-    "tracked_hit_rate": 0.112808,
-    "open_picks": 1575
+    "settled_picks": 6314,
+    "tracked_homers": 710,
+    "tracked_hit_rate": 0.112449,
+    "open_picks": 1546
   },
   "confidence_summary": [
     {
@@ -129,26 +129,26 @@
     },
     {
       "confidence_tier": "watch",
-      "picks": 1071,
-      "homers": 149,
-      "hit_rate": 0.139122,
-      "avg_probability": 0.131747
+      "picks": 1078,
+      "homers": 150,
+      "hit_rate": 0.139147,
+      "avg_probability": 0.131497
     },
     {
       "confidence_tier": "longshot",
-      "picks": 4726,
+      "picks": 4748,
       "homers": 443,
-      "hit_rate": 0.093737,
-      "avg_probability": 0.088195
+      "hit_rate": 0.093302,
+      "avg_probability": 0.088034
     }
   ],
   "player_leaderboard": [
     {
       "batter_name": "Munetaka Murakami",
       "team": "CWS",
-      "picks": 31,
+      "picks": 32,
       "homers": 13,
-      "hit_rate": 0.419355
+      "hit_rate": 0.40625
     },
     {
       "batter_name": "Yordan Alvarez",
@@ -160,16 +160,16 @@
     {
       "batter_name": "Matt Olson",
       "team": "ATL",
-      "picks": 29,
+      "picks": 30,
       "homers": 11,
-      "hit_rate": 0.37931
+      "hit_rate": 0.366667
     },
     {
       "batter_name": "Mike Trout",
       "team": "LAA",
-      "picks": 33,
+      "picks": 34,
       "homers": 10,
-      "hit_rate": 0.30303
+      "hit_rate": 0.294118
     },
     {
       "batter_name": "Aaron Judge",
@@ -223,9 +223,9 @@
     {
       "batter_name": "Colson Montgomery",
       "team": "CWS",
-      "picks": 28,
+      "picks": 29,
       "homers": 8,
-      "hit_rate": 0.285714
+      "hit_rate": 0.275862
     },
     {
       "batter_name": "Sal Stewart",
@@ -237,9 +237,9 @@
     {
       "batter_name": "Drake Baldwin",
       "team": "ATL",
-      "picks": 32,
+      "picks": 33,
       "homers": 7,
-      "hit_rate": 0.21875
+      "hit_rate": 0.212121
     },
     {
       "batter_name": "Elly De La Cruz",
@@ -300,9 +300,23 @@
     {
       "batter_name": "Jorge Soler",
       "team": "LAA",
-      "picks": 21,
+      "picks": 22,
       "homers": 7,
-      "hit_rate": 0.333333
+      "hit_rate": 0.318182
+    },
+    {
+      "batter_name": "Ozzie Albies",
+      "team": "ATL",
+      "picks": 30,
+      "homers": 6,
+      "hit_rate": 0.2
+    },
+    {
+      "batter_name": "Pete Alonso",
+      "team": "BAL",
+      "picks": 30,
+      "homers": 6,
+      "hit_rate": 0.2
     },
     {
       "batter_name": "Shohei Ohtani",
@@ -310,13 +324,6 @@
       "picks": 30,
       "homers": 6,
       "hit_rate": 0.2
-    },
-    {
-      "batter_name": "Ozzie Albies",
-      "team": "ATL",
-      "picks": 29,
-      "homers": 6,
-      "hit_rate": 0.206897
     },
     {
       "batter_name": "Xander Bogaerts",
@@ -328,9 +335,9 @@
     {
       "batter_name": "Miguel Vargas",
       "team": "CWS",
-      "picks": 26,
+      "picks": 27,
       "homers": 6,
-      "hit_rate": 0.230769
+      "hit_rate": 0.222222
     },
     {
       "batter_name": "Dansby Swanson",
@@ -366,13 +373,6 @@
       "picks": 31,
       "homers": 5,
       "hit_rate": 0.16129
-    },
-    {
-      "batter_name": "Pete Alonso",
-      "team": "BAL",
-      "picks": 29,
-      "homers": 5,
-      "hit_rate": 0.172414
     },
     {
       "batter_name": "Bryce Harper",
@@ -424,6 +424,20 @@
       "hit_rate": 0.133333
     },
     {
+      "batter_name": "Jo Adell",
+      "team": "LAA",
+      "picks": 30,
+      "homers": 4,
+      "hit_rate": 0.133333
+    },
+    {
+      "batter_name": "Zach Neto",
+      "team": "LAA",
+      "picks": 30,
+      "homers": 4,
+      "hit_rate": 0.133333
+    },
+    {
       "batter_name": "Alec Burleson",
       "team": "STL",
       "picks": 29,
@@ -438,8 +452,8 @@
       "hit_rate": 0.137931
     },
     {
-      "batter_name": "Jo Adell",
-      "team": "LAA",
+      "batter_name": "Austin Riley",
+      "team": "ATL",
       "picks": 29,
       "homers": 4,
       "hit_rate": 0.137931
@@ -452,15 +466,8 @@
       "hit_rate": 0.137931
     },
     {
-      "batter_name": "Zach Neto",
-      "team": "LAA",
-      "picks": 29,
-      "homers": 4,
-      "hit_rate": 0.137931
-    },
-    {
-      "batter_name": "Austin Riley",
-      "team": "ATL",
+      "batter_name": "J.P. Crawford",
+      "team": "SEA",
       "picks": 28,
       "homers": 4,
       "hit_rate": 0.142857
@@ -489,13 +496,6 @@
     {
       "batter_name": "Ian Happ",
       "team": "CHC",
-      "picks": 27,
-      "homers": 4,
-      "hit_rate": 0.148148
-    },
-    {
-      "batter_name": "J.P. Crawford",
-      "team": "SEA",
       "picks": 27,
       "homers": 4,
       "hit_rate": 0.148148
@@ -629,9 +629,9 @@
     {
       "batter_name": "Michael Harris II",
       "team": "ATL",
-      "picks": 19,
+      "picks": 20,
       "homers": 4,
-      "hit_rate": 0.210526
+      "hit_rate": 0.2
     },
     {
       "batter_name": "Samuel Basallo",
@@ -669,6 +669,13 @@
       "hit_rate": 0.103448
     },
     {
+      "batter_name": "Randy Arozarena",
+      "team": "SEA",
+      "picks": 29,
+      "homers": 3,
+      "hit_rate": 0.103448
+    },
+    {
       "batter_name": "Chase DeLauter",
       "team": "CLE",
       "picks": 28,
@@ -697,13 +704,6 @@
       "hit_rate": 0.107143
     },
     {
-      "batter_name": "Randy Arozarena",
-      "team": "SEA",
-      "picks": 28,
-      "homers": 3,
-      "hit_rate": 0.107143
-    },
-    {
       "batter_name": "Riley Greene",
       "team": "DET",
       "picks": 28,
@@ -718,6 +718,13 @@
       "hit_rate": 0.111111
     },
     {
+      "batter_name": "Josh Naylor",
+      "team": "SEA",
+      "picks": 27,
+      "homers": 3,
+      "hit_rate": 0.111111
+    },
+    {
       "batter_name": "Pete Crow-Armstrong",
       "team": "CHC",
       "picks": 27,
@@ -727,13 +734,6 @@
     {
       "batter_name": "Evan Carter",
       "team": "TEX",
-      "picks": 26,
-      "homers": 3,
-      "hit_rate": 0.115385
-    },
-    {
-      "batter_name": "Josh Naylor",
-      "team": "SEA",
       "picks": 26,
       "homers": 3,
       "hit_rate": 0.115385
@@ -923,9 +923,9 @@
     {
       "batter_name": "Cole Young",
       "team": "SEA",
-      "picks": 29,
+      "picks": 30,
       "homers": 2,
-      "hit_rate": 0.068966
+      "hit_rate": 0.066667
     },
     {
       "batter_name": "Vladimir Guerrero Jr.",
@@ -1131,6 +1131,13 @@
       "hit_rate": 0.105263
     },
     {
+      "batter_name": "Andrew Benintendi",
+      "team": "CWS",
+      "picks": 18,
+      "homers": 2,
+      "hit_rate": 0.111111
+    },
+    {
       "batter_name": "Spencer Horwitz",
       "team": "PIT",
       "picks": 18,
@@ -1150,13 +1157,6 @@
       "picks": 18,
       "homers": 2,
       "hit_rate": 0.111111
-    },
-    {
-      "batter_name": "Andrew Benintendi",
-      "team": "CWS",
-      "picks": 17,
-      "homers": 2,
-      "hit_rate": 0.117647
     },
     {
       "batter_name": "Edouard Julien",
@@ -1287,9 +1287,23 @@
     {
       "batter_name": "Chase Meidroth",
       "team": "CWS",
-      "picks": 27,
+      "picks": 28,
       "homers": 1,
-      "hit_rate": 0.037037
+      "hit_rate": 0.035714
+    },
+    {
+      "batter_name": "Mauricio Dub\u00f3n",
+      "team": "ATL",
+      "picks": 28,
+      "homers": 1,
+      "hit_rate": 0.035714
+    },
+    {
+      "batter_name": "Nolan Schanuel",
+      "team": "LAA",
+      "picks": 28,
+      "homers": 1,
+      "hit_rate": 0.035714
     },
     {
       "batter_name": "Jakob Marsee",
@@ -1301,20 +1315,6 @@
     {
       "batter_name": "Luke Keaschall",
       "team": "MIN",
-      "picks": 27,
-      "homers": 1,
-      "hit_rate": 0.037037
-    },
-    {
-      "batter_name": "Mauricio Dub\u00f3n",
-      "team": "ATL",
-      "picks": 27,
-      "homers": 1,
-      "hit_rate": 0.037037
-    },
-    {
-      "batter_name": "Nolan Schanuel",
-      "team": "LAA",
       "picks": 27,
       "homers": 1,
       "hit_rate": 0.037037
@@ -1581,9 +1581,9 @@
     {
       "batter_name": "Sam Antonacci",
       "team": "CWS",
-      "picks": 13,
+      "picks": 14,
       "homers": 1,
-      "hit_rate": 0.076923
+      "hit_rate": 0.071429
     },
     {
       "batter_name": "Tyler Freeman",
@@ -1635,6 +1635,13 @@
       "hit_rate": 0.083333
     },
     {
+      "batter_name": "Oswald Peraza",
+      "team": "LAA",
+      "picks": 12,
+      "homers": 1,
+      "hit_rate": 0.083333
+    },
+    {
       "batter_name": "Graham Pauley",
       "team": "MIA",
       "picks": 11,
@@ -1651,13 +1658,6 @@
     {
       "batter_name": "Nick Yorke",
       "team": "PIT",
-      "picks": 11,
-      "homers": 1,
-      "hit_rate": 0.090909
-    },
-    {
-      "batter_name": "Oswald Peraza",
-      "team": "LAA",
       "picks": 11,
       "homers": 1,
       "hit_rate": 0.090909
@@ -1922,15 +1922,15 @@
       "hit_rate": 0.0
     },
     {
-      "batter_name": "David Hamilton",
-      "team": "MIL",
-      "picks": 19,
+      "batter_name": "Mike Yastrzemski",
+      "team": "ATL",
+      "picks": 20,
       "homers": 0,
       "hit_rate": 0.0
     },
     {
-      "batter_name": "Mike Yastrzemski",
-      "team": "ATL",
+      "batter_name": "David Hamilton",
+      "team": "MIL",
       "picks": 19,
       "homers": 0,
       "hit_rate": 0.0
@@ -1999,6 +1999,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Leo Rivas",
+      "team": "SEA",
+      "picks": 15,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Pedro Pag\u00e9s",
       "team": "STL",
       "picks": 15,
@@ -2029,13 +2036,6 @@
     {
       "batter_name": "Edgar Quero",
       "team": "CWS",
-      "picks": 14,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Leo Rivas",
-      "team": "SEA",
       "picks": 14,
       "homers": 0,
       "hit_rate": 0.0
@@ -2111,6 +2111,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Tristan Peters",
+      "team": "CWS",
+      "picks": 11,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Everson Pereira",
       "team": "CWS",
       "picks": 10,
@@ -2134,13 +2141,6 @@
     {
       "batter_name": "Lourdes Gurriel Jr.",
       "team": "AZ",
-      "picks": 10,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Tristan Peters",
-      "team": "CWS",
       "picks": 10,
       "homers": 0,
       "hit_rate": 0.0
@@ -2286,6 +2286,13 @@
       "hit_rate": 0.0
     },
     {
+      "batter_name": "Vaughn Grissom",
+      "team": "LAA",
+      "picks": 7,
+      "homers": 0,
+      "hit_rate": 0.0
+    },
+    {
       "batter_name": "Blake Perkins",
       "team": "MIL",
       "picks": 6,
@@ -2344,13 +2351,6 @@
     {
       "batter_name": "Tyler Heineman",
       "team": "TOR",
-      "picks": 6,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Vaughn Grissom",
-      "team": "LAA",
       "picks": 6,
       "homers": 0,
       "hit_rate": 0.0
@@ -3693,7 +3693,7 @@
       "game_pk": 823550,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T23:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 2,
       "original_rank": 2,
       "original_score": 99.6,
@@ -3736,7 +3736,7 @@
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 5,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -3876,7 +3876,7 @@
       "game_pk": 823141,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 5,
       "original_rank": 5,
       "original_score": 98.5,
@@ -4132,7 +4132,7 @@
       "team": "NYM",
       "opponent_team": "COL",
       "pitcher_name": "Michael Lorenzen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -4183,7 +4183,7 @@
       "game_pk": 823550,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T23:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 10,
       "original_rank": 10,
       "original_score": 96.6,
@@ -4226,7 +4226,7 @@
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 14,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -4429,7 +4429,7 @@
       "game_pk": 823550,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T23:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 14,
       "original_rank": 14,
       "original_score": 95.0,
@@ -4472,7 +4472,7 @@
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 4,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -4551,7 +4551,7 @@
       "game_pk": 823550,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T23:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 16,
       "original_rank": 16,
       "original_score": 94.3,
@@ -4594,7 +4594,7 @@
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 6,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -4673,7 +4673,7 @@
       "game_pk": 823141,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 18,
       "original_rank": 18,
       "original_score": 93.5,
@@ -4715,15 +4715,15 @@
       "ballparkpal_overlay_adjusted_rank": 18,
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 13,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 97.6 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Bryan Woo has allowed a 47.3% hard-hit rate over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:824282:680776:656427",
@@ -5163,7 +5163,7 @@
       "game_pk": 823141,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 25,
       "original_rank": 25,
       "original_score": 90.4,
@@ -5205,15 +5205,15 @@
       "ballparkpal_overlay_adjusted_rank": 26,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 70.6%, a top-decile recent-contact signal.",
       "top_reason_2": "Mart\u00edn P\u00e9rez has allowed barrels on 5.4% of batted balls to this batter side.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:824683:664023:663903",
@@ -5407,7 +5407,7 @@
       "game_pk": 823470,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T22:40:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 29,
       "original_rank": 29,
       "original_score": 88.9,
@@ -5450,7 +5450,7 @@
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 11,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -5529,7 +5529,7 @@
       "game_pk": 824036,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 32,
       "original_rank": 32,
       "original_score": 88.1,
@@ -5571,15 +5571,15 @@
       "ballparkpal_overlay_adjusted_rank": 32,
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 14,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 66.7%, showing consistent quality contact.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 66.7%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:823141:686948:693433",
@@ -5590,7 +5590,7 @@
       "game_pk": 823141,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 33,
       "original_rank": 33,
       "original_score": 87.7,
@@ -5632,15 +5632,15 @@
       "ballparkpal_overlay_adjusted_rank": 33,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 9,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 94.9 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Bryan Woo has allowed a 47.3% hard-hit rate over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:822740:665019:571945",
@@ -5956,7 +5956,7 @@
       "game_pk": 824036,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 39,
       "original_rank": 39,
       "original_score": 85.4,
@@ -5998,15 +5998,15 @@
       "ballparkpal_overlay_adjusted_rank": 39,
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 9,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 6.7% barrel-per-PA split.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "Barrel rate over the last 30 days is 7.0%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:823226:593428:605288",
@@ -6141,7 +6141,7 @@
       "game_pk": 823470,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T22:40:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 42,
       "original_rank": 42,
       "original_score": 84.3,
@@ -6184,7 +6184,7 @@
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 9,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -6365,16 +6365,16 @@
       "ballparkpal_overlay_adjusted_score": 79.956667,
       "ballparkpal_overlay_adjusted_rank": 45,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 6,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "home_runs_2026": 7,
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 114.6 mph, which points to top-end HR juice.",
       "top_reason_2": "Eury P\u00e9rez has allowed barrels on 6.5% of batted balls to this batter side.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-05-06:824198:660271:621121",
@@ -6507,7 +6507,7 @@
       "game_pk": 823550,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T23:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 49,
       "original_rank": 49,
       "original_score": 82.0,
@@ -6550,7 +6550,7 @@
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 5,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -6690,7 +6690,7 @@
       "game_pk": 824036,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 51,
       "original_rank": 51,
       "original_score": 80.8,
@@ -6732,15 +6732,15 @@
       "ballparkpal_overlay_adjusted_rank": 51,
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 11,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 9.2%, which the model treats as sustained power quality.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 63.2%, a top-decile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:823063:701675:687075",
@@ -7127,7 +7127,7 @@
       "team": "NYM",
       "opponent_team": "COL",
       "pitcher_name": "Michael Lorenzen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -7544,7 +7544,7 @@
       "game_pk": 823550,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T23:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 64,
       "original_rank": 64,
       "original_score": 75.5,
@@ -7587,7 +7587,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -7910,7 +7910,7 @@
       "game_pk": 823470,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T22:40:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 70,
       "original_rank": 70,
       "original_score": 73.2,
@@ -7953,7 +7953,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 4,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -8280,7 +8280,7 @@
       "game_pk": 823550,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T23:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 77,
       "original_rank": 77,
       "original_score": 70.9,
@@ -8323,7 +8323,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 3,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -8341,7 +8341,7 @@
       "game_pk": 823550,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T23:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 78,
       "original_rank": 78,
       "original_score": 70.5,
@@ -8384,7 +8384,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 3,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -8402,7 +8402,7 @@
       "game_pk": 823550,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T23:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 79,
       "original_rank": 79,
       "original_score": 70.1,
@@ -8445,7 +8445,7 @@
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 6,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -8463,7 +8463,7 @@
       "game_pk": 823470,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T22:40:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 80,
       "original_rank": 80,
       "original_score": 69.7,
@@ -8506,7 +8506,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -8646,7 +8646,7 @@
       "game_pk": 824036,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 83,
       "original_rank": 83,
       "original_score": 68.6,
@@ -8688,15 +8688,15 @@
       "ballparkpal_overlay_adjusted_rank": 83,
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 8,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 7.5%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "Barrel rate over the last 30 days is 6.1%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:823063:669003:669467",
@@ -8894,7 +8894,7 @@
       "game_pk": 823141,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 87,
       "original_rank": 87,
       "original_score": 67.0,
@@ -8957,7 +8957,7 @@
       "game_pk": 823141,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 88,
       "original_rank": 88,
       "original_score": 66.7,
@@ -8999,15 +8999,15 @@
       "ballparkpal_overlay_adjusted_rank": 88,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 4,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 5.9%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Mart\u00edn P\u00e9rez has allowed a 42.5% hard-hit rate over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:823141:663586:693433",
@@ -9018,7 +9018,7 @@
       "game_pk": 823141,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 89,
       "original_rank": 89,
       "original_score": 66.3,
@@ -9060,15 +9060,15 @@
       "ballparkpal_overlay_adjusted_rank": 89,
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 5,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 52.0%, showing consistent quality contact.",
       "top_reason_2": "Bryan Woo has allowed a 47.3% hard-hit rate over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:823063:669357:687075",
@@ -9628,7 +9628,7 @@
       "game_pk": 824036,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 98,
       "original_rank": 98,
       "original_score": 62.5,
@@ -9670,15 +9670,15 @@
       "ballparkpal_overlay_adjusted_rank": 99,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 4,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 6.7% barrel-per-PA split.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 108.7 mph, which points to top-end HR juice.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:822985:672820:663556",
@@ -9935,7 +9935,7 @@
       "game_pk": 823470,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T22:40:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 104,
       "original_rank": 104,
       "original_score": 60.5,
@@ -9978,7 +9978,7 @@
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 3,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -10179,7 +10179,7 @@
       "game_pk": 824036,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 108,
       "original_rank": 108,
       "original_score": 59.0,
@@ -10221,15 +10221,15 @@
       "ballparkpal_overlay_adjusted_rank": 108,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 6,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 5.2% barrel-per-PA split.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:825091:682998:694973",
@@ -10301,7 +10301,7 @@
       "game_pk": 824036,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 110,
       "original_rank": 110,
       "original_score": 58.2,
@@ -10343,15 +10343,15 @@
       "ballparkpal_overlay_adjusted_rank": 110,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 1,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Peak exit velocity over the last 10 days is 108.4 mph, which points to top-end HR juice.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 3.7% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:822740:677588:641927",
@@ -10433,7 +10433,7 @@
       "team": "NYM",
       "opponent_team": "COL",
       "pitcher_name": "Michael Lorenzen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -10545,7 +10545,7 @@
       "game_pk": 824036,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 114,
       "original_rank": 114,
       "original_score": 56.7,
@@ -10587,15 +10587,15 @@
       "ballparkpal_overlay_adjusted_rank": 114,
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 7,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 7.6%, which the model treats as sustained power quality.",
       "top_reason_2": "Walbert Ure\u00f1a has allowed barrels on 5.3% of batted balls to this batter side.",
       "top_reason_3": "Barrel rate over the last 10 days is 7.7%, a top-quartile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:823226:805811:663362",
@@ -10852,7 +10852,7 @@
       "game_pk": 823141,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 118,
       "original_rank": 118,
       "original_score": 54.8,
@@ -10894,15 +10894,15 @@
       "ballparkpal_overlay_adjusted_rank": 119,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 7,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 97.2 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Bryan Woo has allowed a 47.3% hard-hit rate over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:824282:681481:543243",
@@ -11283,7 +11283,7 @@
       "game_pk": 823550,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T23:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 124,
       "original_rank": 124,
       "original_score": 52.1,
@@ -11346,7 +11346,7 @@
       "game_pk": 824036,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 125,
       "original_rank": 125,
       "original_score": 51.7,
@@ -11388,15 +11388,15 @@
       "ballparkpal_overlay_adjusted_rank": 127,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 2,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 53.3%, showing consistent quality contact.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 53.3%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:822740:680777:571945",
@@ -12457,7 +12457,7 @@
       "game_pk": 824036,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 146,
       "original_rank": 146,
       "original_score": 44.8,
@@ -12499,15 +12499,15 @@
       "ballparkpal_overlay_adjusted_rank": 145,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 0,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 94.5 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "Barrel rate over the last 30 days is 6.7%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:823141:641487:527048",
@@ -12518,7 +12518,7 @@
       "game_pk": 823141,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 147,
       "original_rank": 147,
       "original_score": 44.4,
@@ -12560,15 +12560,15 @@
       "ballparkpal_overlay_adjusted_rank": 146,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 4,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 4.9%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Mart\u00edn P\u00e9rez has allowed a 42.5% hard-hit rate over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:822985:662139:663556",
@@ -12703,7 +12703,7 @@
       "game_pk": 823470,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T22:40:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 150,
       "original_rank": 150,
       "original_score": 43.3,
@@ -12746,7 +12746,7 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 4,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -12886,7 +12886,7 @@
       "game_pk": 823141,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 152,
       "original_rank": 152,
       "original_score": 42.1,
@@ -13010,7 +13010,7 @@
       "game_pk": 823141,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 154,
       "original_rank": 154,
       "original_score": 41.4,
@@ -13073,7 +13073,7 @@
       "game_pk": 823550,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T23:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 155,
       "original_rank": 155,
       "original_score": 41.0,
@@ -13116,7 +13116,7 @@
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 3,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -13266,7 +13266,7 @@
       "team": "NYM",
       "opponent_team": "COL",
       "pitcher_name": "Michael Lorenzen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -13317,7 +13317,7 @@
       "game_pk": 823470,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T22:40:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 159,
       "original_rank": 159,
       "original_score": 39.5,
@@ -13360,7 +13360,7 @@
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -13451,7 +13451,7 @@
       "team": "NYM",
       "opponent_team": "COL",
       "pitcher_name": "Michael Lorenzen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -13502,7 +13502,7 @@
       "game_pk": 823550,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T23:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 162,
       "original_rank": 162,
       "original_score": 38.3,
@@ -13545,7 +13545,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 4,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -13573,7 +13573,7 @@
       "team": "NYM",
       "opponent_team": "COL",
       "pitcher_name": "Michael Lorenzen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -14116,7 +14116,7 @@
       "game_pk": 823550,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T23:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 172,
       "original_rank": 172,
       "original_score": 34.5,
@@ -14159,7 +14159,7 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -14177,7 +14177,7 @@
       "game_pk": 824036,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 173,
       "original_rank": 173,
       "original_score": 34.1,
@@ -14219,15 +14219,15 @@
       "ballparkpal_overlay_adjusted_rank": 173,
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 9.5%, which the model treats as sustained power quality.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "Barrel rate over the last 10 days is 10.0%, a top-decile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:824118:656555:666142",
@@ -14309,7 +14309,7 @@
       "team": "NYM",
       "opponent_team": "COL",
       "pitcher_name": "Michael Lorenzen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -14360,7 +14360,7 @@
       "game_pk": 823141,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 176,
       "original_rank": 176,
       "original_score": 33.0,
@@ -14402,15 +14402,15 @@
       "ballparkpal_overlay_adjusted_rank": 176,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 8,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 7.7%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Bryan Woo has allowed a 47.3% hard-hit rate over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:823872:805300:687064",
@@ -14482,7 +14482,7 @@
       "game_pk": 823550,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T23:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 178,
       "original_rank": 178,
       "original_score": 32.2,
@@ -14555,7 +14555,7 @@
       "team": "NYM",
       "opponent_team": "COL",
       "pitcher_name": "Michael Lorenzen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -14913,7 +14913,7 @@
       "game_pk": 823141,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 183,
       "original_rank": 183,
       "original_score": 29.5,
@@ -14955,15 +14955,15 @@
       "ballparkpal_overlay_adjusted_rank": 185,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 0,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0021, reinforcing the power-contact fit.",
       "top_reason_2": "Bryan Woo has allowed a 47.3% hard-hit rate over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:823226:650333:663362",
@@ -15530,7 +15530,7 @@
       "game_pk": 823141,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 195,
       "original_rank": 195,
       "original_score": 25.7,
@@ -15572,15 +15572,15 @@
       "ballparkpal_overlay_adjusted_rank": 195,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Mart\u00edn P\u00e9rez has allowed a 42.5% hard-hit rate over the last 30 days.",
       "top_reason_2": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_3": "Mart\u00edn P\u00e9rez has allowed 42.5% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:823141:642201:693433",
@@ -15591,7 +15591,7 @@
       "game_pk": 823141,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 196,
       "original_rank": 196,
       "original_score": 25.3,
@@ -16329,7 +16329,7 @@
       "game_pk": 823550,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T23:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 208,
       "original_rank": 208,
       "original_score": 20.7,
@@ -16372,7 +16372,7 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -16390,7 +16390,7 @@
       "game_pk": 824036,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 209,
       "original_rank": 209,
       "original_score": 20.3,
@@ -16432,15 +16432,15 @@
       "ballparkpal_overlay_adjusted_rank": 209,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 4,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The hitter has the platoon advantage in this matchup.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:825091:699912:694973",
@@ -16638,7 +16638,7 @@
       "game_pk": 824036,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 213,
       "original_rank": 213,
       "original_score": 18.8,
@@ -16680,15 +16680,15 @@
       "ballparkpal_overlay_adjusted_rank": 213,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 1,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Average exit velocity over the last 10 days is 92.8 mph, a top-quartile recent batted-ball quality marker.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 52.4%, a top-quartile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:823550:676609:543135",
@@ -16699,7 +16699,7 @@
       "game_pk": 823550,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T23:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 214,
       "original_rank": 214,
       "original_score": 18.4,
@@ -16742,7 +16742,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 4,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -16770,7 +16770,7 @@
       "team": "NYM",
       "opponent_team": "COL",
       "pitcher_name": "Michael Lorenzen",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Coors Field",
       "ballpark_region_abbr": "CO",
@@ -16803,14 +16803,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Michael Lorenzen has allowed homers in 3.5% of plate appearances to this batter side.",
       "top_reason_2": "Park factor for the hitter's handedness is 120.0, which adds venue lift to the matchup.",
       "top_reason_3": "Michael Lorenzen has allowed barrels on 5.3% of batted balls to this batter side.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-06:825091:672515:694973",
@@ -17500,7 +17502,7 @@
       "game_pk": 823550,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T23:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 227,
       "original_rank": 227,
       "original_score": 13.4,
@@ -17543,7 +17545,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -17561,7 +17563,7 @@
       "game_pk": 824036,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 228,
       "original_rank": 228,
       "original_score": 13.0,
@@ -17994,7 +17996,7 @@
       "game_pk": 823470,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T22:40:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 233,
       "original_rank": 233,
       "original_score": 10.3,
@@ -18118,7 +18120,7 @@
       "game_pk": 823141,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 235,
       "original_rank": 235,
       "original_score": 9.6,
@@ -18181,7 +18183,7 @@
       "game_pk": 823141,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 236,
       "original_rank": 236,
       "original_score": 9.2,
@@ -18223,15 +18225,15 @@
       "ballparkpal_overlay_adjusted_rank": 238,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 0,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Mart\u00edn P\u00e9rez has allowed a 42.5% hard-hit rate over the last 30 days.",
       "top_reason_2": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_3": "Mart\u00edn P\u00e9rez has allowed 42.5% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:822740:668885:571945",
@@ -18305,7 +18307,7 @@
       "game_pk": 824036,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 237,
       "original_rank": 237,
       "original_score": 8.4,
@@ -18347,15 +18349,15 @@
       "ballparkpal_overlay_adjusted_rank": 240,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 2,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Walbert Ure\u00f1a has allowed barrels on 5.3% of batted balls to this batter side.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:824361:691720:642547",
@@ -18740,7 +18742,7 @@
       "game_pk": 824036,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 246,
       "original_rank": 246,
       "original_score": 5.7,
@@ -18803,7 +18805,7 @@
       "game_pk": 824036,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 248,
       "original_rank": 248,
       "original_score": 5.4,
@@ -18845,15 +18847,15 @@
       "ballparkpal_overlay_adjusted_rank": 248,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Noah Schultz has allowed barrels on 7.1% of batted balls to this batter side.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:822985:665926:663556",
@@ -19177,7 +19179,7 @@
       "game_pk": 823470,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T22:40:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 254,
       "original_rank": 254,
       "original_score": 3.1,
@@ -19240,7 +19242,7 @@
       "game_pk": 823550,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T23:05:00Z",
-      "game_state": "pregame",
+      "game_state": "live",
       "rank": 255,
       "original_rank": 255,
       "original_score": 2.7,
@@ -19283,7 +19285,7 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
+      "current_status": "game_in_progress",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
@@ -19301,7 +19303,7 @@
       "game_pk": 824036,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:07:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 256,
       "original_rank": 256,
       "original_score": 2.3,
@@ -19343,15 +19345,15 @@
       "ballparkpal_overlay_adjusted_rank": 256,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 0,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The hitter has the platoon advantage in this matchup.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:823141:643289:693433",
@@ -19362,7 +19364,7 @@
       "game_pk": 823141,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:10:00Z",
-      "game_state": "live",
+      "game_state": "final",
       "rank": 257,
       "original_rank": 257,
       "original_score": 1.9,
@@ -19404,15 +19406,15 @@
       "ballparkpal_overlay_adjusted_rank": 257,
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 2,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "actual_hit_hr": 0,
+      "current_status": "no_home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Bryan Woo has allowed a 47.3% hard-hit rate over the last 30 days.",
       "top_reason_2": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_3": "Bryan Woo has allowed 47.3% 95+ EV contact over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "No HR"
     },
     {
       "pick_id": "2026-05-06:825091:571448:694973",
@@ -21428,7 +21430,7 @@
       "ballparkpal_overlay_adjusted_score": 89.3,
       "ballparkpal_overlay_adjusted_rank": 29,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -36711,7 +36713,7 @@
       "ballparkpal_overlay_adjusted_score": 92.5,
       "ballparkpal_overlay_adjusted_rank": 17,
       "ballparkpal_overlay_direction": "unfavorable",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -52315,7 +52317,7 @@
       "ballparkpal_overlay_adjusted_score": 77.8,
       "ballparkpal_overlay_adjusted_rank": 59,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -68796,7 +68798,7 @@
       "ballparkpal_overlay_adjusted_score": 73.360751,
       "ballparkpal_overlay_adjusted_rank": 66,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 1,
       "current_status": "pending",
       "alert_flags": [],
@@ -86710,7 +86712,7 @@
       "ballparkpal_overlay_adjusted_score": 64.187692,
       "ballparkpal_overlay_adjusted_rank": 92,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 1,
       "current_status": "home_run",
       "alert_flags": [],
@@ -97739,7 +97741,7 @@
       "ballparkpal_overlay_adjusted_score": 16.1,
       "ballparkpal_overlay_adjusted_rank": 44,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -107679,7 +107681,7 @@
       "ballparkpal_overlay_adjusted_score": 24.4,
       "ballparkpal_overlay_adjusted_rank": 73,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": null,
       "current_status": "postponed",
       "alert_flags": [],
@@ -129192,7 +129194,7 @@
       "ballparkpal_overlay_adjusted_score": 14.1,
       "ballparkpal_overlay_adjusted_rank": 89,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 1,
       "current_status": "home_run",
       "alert_flags": [],
@@ -152540,7 +152542,7 @@
       "ballparkpal_overlay_adjusted_score": 17.5,
       "ballparkpal_overlay_adjusted_rank": 164,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -167683,7 +167685,7 @@
       "ballparkpal_overlay_adjusted_score": 21.2,
       "ballparkpal_overlay_adjusted_rank": 133,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -181447,7 +181449,7 @@
       "ballparkpal_overlay_adjusted_score": 15.9,
       "ballparkpal_overlay_adjusted_rank": 82,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -204407,7 +204409,7 @@
       "ballparkpal_overlay_adjusted_score": 91.4,
       "ballparkpal_overlay_adjusted_rank": 23,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 1,
       "current_status": "home_run",
       "alert_flags": [],
@@ -223464,7 +223466,7 @@
       "ballparkpal_overlay_adjusted_score": 49.0,
       "ballparkpal_overlay_adjusted_rank": 39,
       "ballparkpal_overlay_direction": "unfavorable",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -236567,7 +236569,7 @@
       "ballparkpal_overlay_adjusted_score": 53.8,
       "ballparkpal_overlay_adjusted_rank": 7,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -249236,7 +249238,7 @@
       "ballparkpal_overlay_adjusted_score": 23.4,
       "ballparkpal_overlay_adjusted_rank": 191,
       "ballparkpal_overlay_direction": "unfavorable",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -264127,7 +264129,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -281807,7 +281809,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -295402,7 +295404,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -305612,7 +305614,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -321483,7 +321485,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -337124,7 +337126,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 1,
       "current_status": "home_run",
       "alert_flags": [],
@@ -352291,7 +352293,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -367791,7 +367793,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -380689,7 +380691,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -401459,7 +401461,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -418715,7 +418717,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -434157,7 +434159,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -451273,7 +451275,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -463979,7 +463981,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -478619,7 +478621,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 6,
+      "home_runs_2026": 7,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -486765,8 +486767,8 @@
       "game_pk": 824036,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:07:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "CWS @ LAA",
       "teams": [
         {
@@ -486891,8 +486893,8 @@
       "game_pk": 823141,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T20:10:00Z",
-      "game_status": "In Progress",
-      "game_state": "live",
+      "game_status": "Final",
+      "game_state": "final",
       "matchup": "ATL @ SEA",
       "teams": [
         {
@@ -487017,7 +487019,7 @@
       "game_pk": 824282,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T22:40:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "matchup": "BOS @ DET",
       "teams": [
@@ -487143,7 +487145,7 @@
       "game_pk": 823470,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T22:40:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "matchup": "OAK @ PHI",
       "teams": [
@@ -487214,7 +487216,7 @@
       "game_pk": 823872,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T22:40:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "matchup": "BAL @ MIA",
       "teams": [
@@ -487346,7 +487348,7 @@
       "game_pk": 822740,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T22:45:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "matchup": "MIN @ WSH",
       "teams": [
@@ -487472,8 +487474,8 @@
       "game_pk": 823550,
       "game_date": "2026-05-06",
       "game_datetime": "2026-05-06T23:05:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "Warmup",
+      "game_state": "live",
       "matchup": "TEX @ NYY",
       "teams": [
         {
@@ -487863,7 +487865,7 @@
         {
           "team": "NYM",
           "opponent_team": "COL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666182,
@@ -487896,6 +487898,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 620443,
+              "batter_name": "Luis Torrens",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 669004,
               "batter_name": "MJ Melendez",
               "batting_order": null,
@@ -487910,12 +487918,6 @@
             {
               "batter_id": 668901,
               "batter_name": "Mark Vientos",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 621438,
-              "batter_name": "Tyrone Taylor",
               "batting_order": null,
               "selected_for_pick": true
             }
@@ -487995,7 +487997,7 @@
         {
           "team": "PIT",
           "opponent_team": "AZ",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 664040,
@@ -488010,10 +488012,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 663968,
-              "batter_name": "Jake Mangum",
+              "batter_id": 680779,
+              "batter_name": "Henry Davis",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 804606,
@@ -488136,7 +488138,7 @@
       "batter_name": "Matt Olson",
       "team": "ATL",
       "home_runs_2026": 13,
-      "plate_appearances_2026": 169,
+      "plate_appearances_2026": 170,
       "games_2026": 38
     },
     {
