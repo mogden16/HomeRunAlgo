@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-08T17:40:07.263363+00:00",
+  "generated_at": "2026-05-08T19:21:29.446845+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v3",
@@ -3790,7 +3790,7 @@
       "team": "TOR",
       "opponent_team": "LAA",
       "pitcher_name": "Reid Detmers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -4461,7 +4461,7 @@
       "team": "BOS",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -4705,7 +4705,7 @@
       "team": "BOS",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -4888,7 +4888,7 @@
       "team": "MIN",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -5254,7 +5254,7 @@
       "team": "BOS",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -6108,7 +6108,7 @@
       "team": "CIN",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -6230,7 +6230,7 @@
       "team": "PHI",
       "opponent_team": "COL",
       "pitcher_name": "Chase Dollander",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -6291,7 +6291,7 @@
       "team": "TOR",
       "opponent_team": "LAA",
       "pitcher_name": "Reid Detmers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -6840,7 +6840,7 @@
       "team": "MIA",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -7450,7 +7450,7 @@
       "team": "COL",
       "opponent_team": "PHI",
       "pitcher_name": "Jes\u00fas Luzardo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -7511,7 +7511,7 @@
       "team": "PHI",
       "opponent_team": "COL",
       "pitcher_name": "Chase Dollander",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -7633,7 +7633,7 @@
       "team": "CIN",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -7938,7 +7938,7 @@
       "team": "MIN",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -8182,7 +8182,7 @@
       "team": "CLE",
       "opponent_team": "MIN",
       "pitcher_name": "Connor Prielipp",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -8215,14 +8215,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0118, reinforcing the power-contact fit.",
       "top_reason_2": "Connor Prielipp has allowed barrels on 11.8% of batted balls to this batter side.",
       "top_reason_3": "Against this pitcher handedness, the hitter has a 10.0% barrel-per-PA split.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:824116:672761:663460",
@@ -8365,7 +8367,7 @@
       "team": "MIA",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -8731,7 +8733,7 @@
       "team": "MIN",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -9280,7 +9282,7 @@
       "team": "CLE",
       "opponent_team": "MIN",
       "pitcher_name": "Connor Prielipp",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -9341,7 +9343,7 @@
       "team": "CIN",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -9646,7 +9648,7 @@
       "team": "COL",
       "opponent_team": "PHI",
       "pitcher_name": "Jes\u00fas Luzardo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -9707,7 +9709,7 @@
       "team": "TOR",
       "opponent_team": "LAA",
       "pitcher_name": "Reid Detmers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -10012,7 +10014,7 @@
       "team": "CIN",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -10195,7 +10197,7 @@
       "team": "BOS",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -10439,7 +10441,7 @@
       "team": "CIN",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -10744,7 +10746,7 @@
       "team": "MIA",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -10927,7 +10929,7 @@
       "team": "COL",
       "opponent_team": "PHI",
       "pitcher_name": "Jes\u00fas Luzardo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -10960,14 +10962,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 11,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 61.9%, a top-decile recent-contact signal.",
       "top_reason_2": "95+ EV contact rate over the last 10 days is 61.9%, which supports near-term HR upside.",
       "top_reason_3": "Barrel rate over the last 10 days is 8.6%, a top-decile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:823794:694192:608331",
@@ -11049,7 +11053,7 @@
       "team": "BOS",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -11354,7 +11358,7 @@
       "team": "CIN",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -11537,7 +11541,7 @@
       "team": "CLE",
       "opponent_team": "MIN",
       "pitcher_name": "Connor Prielipp",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -11570,14 +11574,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 4,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0032, reinforcing the power-contact fit.",
       "top_reason_2": "Connor Prielipp has allowed barrels on 11.8% of batted balls to this batter side.",
       "top_reason_3": "Barrel rate over the last 30 days is 4.9%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:825088:683146:669194",
@@ -11781,7 +11787,7 @@
       "team": "PHI",
       "opponent_team": "COL",
       "pitcher_name": "Chase Dollander",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -11964,7 +11970,7 @@
       "team": "TOR",
       "opponent_team": "LAA",
       "pitcher_name": "Reid Detmers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -11997,14 +12003,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 111.1 mph, which points to top-end HR juice.",
       "top_reason_2": "Reid Detmers has allowed homers in 4.0% of plate appearances to this batter side.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:823871:677588:702281",
@@ -12147,7 +12155,7 @@
       "team": "CLE",
       "opponent_team": "MIN",
       "pitcher_name": "Connor Prielipp",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -12208,7 +12216,7 @@
       "team": "TOR",
       "opponent_team": "LAA",
       "pitcher_name": "Reid Detmers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -12574,7 +12582,7 @@
       "team": "MIA",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -12607,14 +12615,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 9,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 47.4%, a above-baseline recent-contact signal.",
       "top_reason_2": "Foster Griffin has allowed barrels on 8.9% of batted balls to this batter side.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:823225:805811:669387",
@@ -13123,7 +13133,7 @@
       "team": "MIA",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -13245,7 +13255,7 @@
       "team": "COL",
       "opponent_team": "PHI",
       "pitcher_name": "Jes\u00fas Luzardo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -13278,14 +13288,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 96.0 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "Hard-hit rate over the last 10 days is 61.5%, a top-decile recent-contact signal.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 61.5%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:822822:660821:672282",
@@ -13306,7 +13318,7 @@
       "team": "TOR",
       "opponent_team": "LAA",
       "pitcher_name": "Reid Detmers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -13339,14 +13351,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 4,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 48.6%, showing consistent quality contact.",
       "top_reason_2": "Reid Detmers has allowed homers in 4.0% of plate appearances to this batter side.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:825088:677950:690997",
@@ -13672,7 +13686,7 @@
       "team": "BOS",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -13733,7 +13747,7 @@
       "team": "MIN",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -13766,14 +13780,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 109.1 mph, which points to top-end HR juice.",
       "top_reason_2": "Parker Messick has allowed barrels on 6.7% of recent batted balls.",
       "top_reason_3": "Barrel rate over the last 30 days is 3.9%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:822822:664702:672282",
@@ -13794,7 +13810,7 @@
       "team": "TOR",
       "opponent_team": "LAA",
       "pitcher_name": "Reid Detmers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -13916,7 +13932,7 @@
       "team": "CLE",
       "opponent_team": "MIN",
       "pitcher_name": "Connor Prielipp",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -14221,7 +14237,7 @@
       "team": "MIN",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -14254,14 +14270,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 30 days is 3.9%, which the model treats as sustained power quality.",
       "top_reason_2": "Parker Messick has allowed barrels on 6.7% of recent batted balls.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:822822:687263:656302",
@@ -14465,7 +14483,7 @@
       "team": "CIN",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -14587,7 +14605,7 @@
       "team": "MIN",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -14709,7 +14727,7 @@
       "team": "PHI",
       "opponent_team": "COL",
       "pitcher_name": "Chase Dollander",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -15502,7 +15520,7 @@
       "team": "CLE",
       "opponent_team": "MIN",
       "pitcher_name": "Connor Prielipp",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -15535,14 +15553,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 10.7%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Connor Prielipp has allowed barrels on 11.8% of batted balls to this batter side.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 60.0%, a top-decile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:824443:663616:800048",
@@ -15563,7 +15583,7 @@
       "team": "MIN",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -15596,14 +15616,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Parker Messick has allowed barrels on 6.7% of recent batted balls.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:823794:691176:694819",
@@ -15807,7 +15829,7 @@
       "team": "MIA",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -15840,14 +15862,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Foster Griffin has allowed barrels on 8.9% of batted balls to this batter side.",
       "top_reason_2": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_3": "Foster Griffin has allowed barrels on 5.5% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:824443:690984:687570",
@@ -15868,7 +15892,7 @@
       "team": "CLE",
       "opponent_team": "MIN",
       "pitcher_name": "Connor Prielipp",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -15990,7 +16014,7 @@
       "team": "MIN",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -16051,7 +16075,7 @@
       "team": "MIA",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -16234,7 +16258,7 @@
       "team": "TOR",
       "opponent_team": "LAA",
       "pitcher_name": "Reid Detmers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -16295,7 +16319,7 @@
       "team": "MIA",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -16328,14 +16352,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2857, supporting loud-contact upside.",
       "top_reason_2": "Foster Griffin has allowed barrels on 8.9% of batted balls to this batter side.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:824522:670770:681347",
@@ -16356,7 +16382,7 @@
       "team": "CIN",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -16478,7 +16504,7 @@
       "team": "PHI",
       "opponent_team": "COL",
       "pitcher_name": "Chase Dollander",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -16722,7 +16748,7 @@
       "team": "BOS",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -16783,7 +16809,7 @@
       "team": "MIA",
       "opponent_team": "WSH",
       "pitcher_name": "Foster Griffin",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -17027,7 +17053,7 @@
       "team": "BOS",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -17060,14 +17086,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 107.9 mph, which points to top-end HR juice.",
       "top_reason_2": "Jesse Scholtens has allowed homers in 3.3% of plate appearances to this batter side.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:824607:671976:676106",
@@ -17149,7 +17177,7 @@
       "team": "MIN",
       "opponent_team": "CLE",
       "pitcher_name": "Parker Messick",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -17210,7 +17238,7 @@
       "team": "COL",
       "opponent_team": "PHI",
       "pitcher_name": "Jes\u00fas Luzardo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -17393,7 +17421,7 @@
       "team": "BOS",
       "opponent_team": "TB",
       "pitcher_name": "Jesse Scholtens",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -17698,7 +17726,7 @@
       "team": "CIN",
       "opponent_team": "HOU",
       "pitcher_name": "Mike Burrows",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -17820,7 +17848,7 @@
       "team": "COL",
       "opponent_team": "PHI",
       "pitcher_name": "Jes\u00fas Luzardo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -17942,7 +17970,7 @@
       "team": "CLE",
       "opponent_team": "MIN",
       "pitcher_name": "Connor Prielipp",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -18064,7 +18092,7 @@
       "team": "COL",
       "opponent_team": "PHI",
       "pitcher_name": "Jes\u00fas Luzardo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -18796,7 +18824,7 @@
       "team": "CLE",
       "opponent_team": "MIN",
       "pitcher_name": "Connor Prielipp",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -18857,7 +18885,7 @@
       "team": "COL",
       "opponent_team": "PHI",
       "pitcher_name": "Jes\u00fas Luzardo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -18890,14 +18918,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 10.0%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Barrel rate over the last 30 days is 5.7%, which the model treats as sustained power quality.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:822822:665926:672282",
@@ -18918,7 +18948,7 @@
       "team": "TOR",
       "opponent_team": "LAA",
       "pitcher_name": "Reid Detmers",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -18979,7 +19009,7 @@
       "team": "PHI",
       "opponent_team": "COL",
       "pitcher_name": "Chase Dollander",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -19162,7 +19192,7 @@
       "team": "COL",
       "opponent_team": "PHI",
       "pitcher_name": "Jes\u00fas Luzardo",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -19195,14 +19225,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 44.4%, a above-baseline recent-contact signal.",
       "top_reason_2": "95+ EV contact rate over the last 10 days is 44.4%, which supports near-term HR upside.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:824522:543877:666157",
@@ -19284,7 +19316,7 @@
       "team": "PHI",
       "opponent_team": "COL",
       "pitcher_name": "Chase Dollander",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -19345,7 +19377,7 @@
       "team": "PHI",
       "opponent_team": "COL",
       "pitcher_name": "Chase Dollander",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -19528,7 +19560,7 @@
       "team": "PHI",
       "opponent_team": "COL",
       "pitcher_name": "Chase Dollander",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -512735,7 +512767,7 @@
       "game_pk": 824522,
       "game_date": "2026-05-08",
       "game_datetime": "2026-05-08T22:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "HOU @ CIN",
       "teams": [
@@ -512803,7 +512835,7 @@
         {
           "team": "CIN",
           "opponent_team": "HOU",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682829,
@@ -512867,20 +512899,32 @@
       "game_pk": 823466,
       "game_date": "2026-05-08",
       "game_datetime": "2026-05-08T22:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "COL @ PHI",
       "teams": [
         {
           "team": "COL",
           "opponent_team": "PHI",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 666397,
-              "batter_name": "Edouard Julien",
+              "batter_id": 686668,
+              "batter_name": "Brenton Doyle",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 664954,
+              "batter_name": "Brett Sullivan",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 678662,
+              "batter_name": "Ezequiel Tovar",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 696100,
@@ -512889,10 +512933,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 664983,
-              "batter_name": "Jake McCarthy",
+              "batter_id": 687597,
+              "batter_name": "Jordan Beck",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 691720,
@@ -512901,20 +512945,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 666160,
-              "batter_name": "Mickey Moniak",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 681198,
               "batter_name": "TJ Rumfield",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 687859,
-              "batter_name": "Troy Johnston",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -512935,7 +512967,7 @@
         {
           "team": "PHI",
           "opponent_team": "COL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666969,
@@ -513076,7 +513108,7 @@
       "game_pk": 822822,
       "game_date": "2026-05-08",
       "game_datetime": "2026-05-08T23:07:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "LAA @ TOR",
       "teams": [
@@ -513144,7 +513176,7 @@
         {
           "team": "TOR",
           "opponent_team": "LAA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 665926,
@@ -513153,10 +513185,22 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 678218,
+              "batter_name": "Brandon Valenzuela",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 662139,
               "batter_name": "Daulton Varsho",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 676914,
+              "batter_name": "Davis Schneider",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 676391,
@@ -513167,12 +513211,6 @@
             {
               "batter_id": 543807,
               "batter_name": "George Springer",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 660821,
-              "batter_name": "Jes\u00fas S\u00e1nchez",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -513193,12 +513231,6 @@
               "batter_name": "Vladimir Guerrero Jr.",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 682818,
-              "batter_name": "Yohendrick Pi\u00f1ango",
-              "batting_order": null,
-              "selected_for_pick": true
             }
           ]
         }
@@ -513208,7 +513240,7 @@
       "game_pk": 824768,
       "game_date": "2026-05-08",
       "game_datetime": "2026-05-08T23:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "TB @ BOS",
       "teams": [
@@ -513276,7 +513308,7 @@
         {
           "team": "BOS",
           "opponent_team": "TB",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 702332,
@@ -513285,14 +513317,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 678882,
-              "batter_name": "Ceddanne Rafaela",
+              "batter_id": 665966,
+              "batter_name": "Carlos Narv\u00e1ez",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 657136,
-              "batter_name": "Connor Wong",
+              "batter_id": 678882,
+              "batter_name": "Ceddanne Rafaela",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -513340,7 +513372,7 @@
       "game_pk": 823871,
       "game_date": "2026-05-08",
       "game_datetime": "2026-05-08T23:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "WSH @ MIA",
       "teams": [
@@ -513408,7 +513440,7 @@
         {
           "team": "MIA",
           "opponent_team": "WSH",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666624,
@@ -513423,10 +513455,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 805300,
-              "batter_name": "Jakob Marsee",
+              "batter_id": 665923,
+              "batter_name": "Esteury Ruiz",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 691594,
@@ -513435,26 +513467,26 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 691788,
+              "batter_name": "Joe Mack",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 669065,
               "batter_name": "Kyle Stowers",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 689414,
-              "batter_name": "Liam Hicks",
+              "batter_id": 677870,
+              "batter_name": "Leo Jim\u00e9nez",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 672640,
               "batter_name": "Otto Lopez",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 683357,
-              "batter_name": "Owen Caissie",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -513472,14 +513504,14 @@
       "game_pk": 824443,
       "game_date": "2026-05-08",
       "game_datetime": "2026-05-08T23:15:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "MIN @ CLE",
       "teams": [
         {
           "team": "MIN",
           "opponent_team": "CLE",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 668885,
@@ -513506,16 +513538,22 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 665019,
-              "batter_name": "Kody Clemens",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 807712,
               "batter_name": "Luke Keaschall",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 670242,
+              "batter_name": "Matt Wallner",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
+              "batter_id": 668904,
+              "batter_name": "Royce Lewis",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 680777,
@@ -513524,23 +513562,17 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 663616,
-              "batter_name": "Trevor Larnach",
+              "batter_id": 605170,
+              "batter_name": "Victor Caratini",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 656484,
-              "batter_name": "Tristan Gray",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             }
           ]
         },
         {
           "team": "CLE",
           "opponent_team": "MIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682657,
@@ -513549,22 +513581,22 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 595978,
+              "batter_name": "Austin Hedges",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 677587,
               "batter_name": "Brayan Rocchio",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 800050,
-              "batter_name": "Chase DeLauter",
+              "batter_id": 681807,
+              "batter_name": "David Fry",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 682177,
-              "batter_name": "Daniel Schneemann",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 608070,
@@ -513573,16 +513605,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 700932,
-              "batter_name": "Kyle Manzardo",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 690984,
               "batter_name": "Petey Halpin",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 656555,
+              "batter_name": "Rhys Hoskins",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 680757,
