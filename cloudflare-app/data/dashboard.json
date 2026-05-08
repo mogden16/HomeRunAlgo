@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-08T20:32:15.351947+00:00",
+  "generated_at": "2026-05-08T21:48:21.601693+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v3",
@@ -4095,7 +4095,7 @@
       "team": "CHC",
       "opponent_team": "TEX",
       "pitcher_name": "Kumar Rocker",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -4766,7 +4766,7 @@
       "team": "CHC",
       "opponent_team": "TEX",
       "pitcher_name": "Kumar Rocker",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -4949,7 +4949,7 @@
       "team": "SD",
       "opponent_team": "STL",
       "pitcher_name": "Michael McGreevy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -5376,7 +5376,7 @@
       "team": "CHC",
       "opponent_team": "TEX",
       "pitcher_name": "Kumar Rocker",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -5864,7 +5864,7 @@
       "team": "AZ",
       "opponent_team": "NYM",
       "pitcher_name": "Nolan McLean",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -6047,7 +6047,7 @@
       "team": "SD",
       "opponent_team": "STL",
       "pitcher_name": "Michael McGreevy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -6352,7 +6352,7 @@
       "team": "SD",
       "opponent_team": "STL",
       "pitcher_name": "Michael McGreevy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -6903,7 +6903,7 @@
       "team": "SD",
       "opponent_team": "STL",
       "pitcher_name": "Michael McGreevy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -6964,7 +6964,7 @@
       "team": "CHC",
       "opponent_team": "TEX",
       "pitcher_name": "Kumar Rocker",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -6997,14 +6997,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 6,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0023, reinforcing the power-contact fit.",
       "top_reason_2": "Kumar Rocker has allowed a 48.1% hard-hit rate over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:823957:663586:686218",
@@ -7391,7 +7393,7 @@
       "team": "CHC",
       "opponent_team": "TEX",
       "pitcher_name": "Kumar Rocker",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -7759,7 +7761,7 @@
       "team": "CHC",
       "opponent_team": "TEX",
       "pitcher_name": "Kumar Rocker",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -7820,7 +7822,7 @@
       "team": "NYY",
       "opponent_team": "MIL",
       "pitcher_name": "Jacob Misiorowski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -7881,7 +7883,7 @@
       "team": "NYY",
       "opponent_team": "MIL",
       "pitcher_name": "Jacob Misiorowski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -8125,7 +8127,7 @@
       "team": "AZ",
       "opponent_team": "NYM",
       "pitcher_name": "Nolan McLean",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -8310,7 +8312,7 @@
       "team": "CHC",
       "opponent_team": "TEX",
       "pitcher_name": "Kumar Rocker",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -8493,7 +8495,7 @@
       "team": "NYY",
       "opponent_team": "MIL",
       "pitcher_name": "Jacob Misiorowski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -8676,7 +8678,7 @@
       "team": "NYY",
       "opponent_team": "MIL",
       "pitcher_name": "Jacob Misiorowski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -8859,7 +8861,7 @@
       "team": "SD",
       "opponent_team": "STL",
       "pitcher_name": "Michael McGreevy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -8983,7 +8985,7 @@
       "team": "SD",
       "opponent_team": "STL",
       "pitcher_name": "Michael McGreevy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -9776,7 +9778,7 @@
       "team": "SD",
       "opponent_team": "STL",
       "pitcher_name": "Michael McGreevy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -9809,14 +9811,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 4.8%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Projected humidity is 90%, a modest positive weather input in the live model.",
       "top_reason_3": "Barrel rate over the last 30 days is 3.6%, which the model treats as sustained power quality.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:824607:691011:676106",
@@ -10144,7 +10148,7 @@
       "team": "AZ",
       "opponent_team": "NYM",
       "pitcher_name": "Nolan McLean",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -12348,7 +12352,7 @@
       "team": "SD",
       "opponent_team": "STL",
       "pitcher_name": "Michael McGreevy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -13391,7 +13395,7 @@
       "team": "AZ",
       "opponent_team": "NYM",
       "pitcher_name": "Nolan McLean",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -13424,14 +13428,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_2": "The hitter has the platoon advantage in this matchup.",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:824768:810938:813349",
@@ -13513,7 +13519,7 @@
       "team": "AZ",
       "opponent_team": "NYM",
       "pitcher_name": "Nolan McLean",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -14064,7 +14070,7 @@
       "team": "NYY",
       "opponent_team": "MIL",
       "pitcher_name": "Jacob Misiorowski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -14371,7 +14377,7 @@
       "team": "AZ",
       "opponent_team": "NYM",
       "pitcher_name": "Nolan McLean",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -14554,7 +14560,7 @@
       "team": "CHC",
       "opponent_team": "TEX",
       "pitcher_name": "Kumar Rocker",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -14587,14 +14593,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 6.2%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Kumar Rocker has allowed a 48.1% hard-hit rate over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:824443:686797:800048",
@@ -14981,7 +14989,7 @@
       "team": "CHC",
       "opponent_team": "TEX",
       "pitcher_name": "Kumar Rocker",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Globe Life Field",
       "ballpark_region_abbr": "TX",
@@ -15164,7 +15172,7 @@
       "team": "NYY",
       "opponent_team": "MIL",
       "pitcher_name": "Jacob Misiorowski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -15658,7 +15666,7 @@
       "team": "NYY",
       "opponent_team": "MIL",
       "pitcher_name": "Jacob Misiorowski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -15691,14 +15699,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 94.6 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_3": "The handedness-specific hard-hit matchup score is 0.2107, supporting loud-contact upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:823957:622761:686218",
@@ -15780,7 +15790,7 @@
       "team": "AZ",
       "opponent_team": "NYM",
       "pitcher_name": "Nolan McLean",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -16699,7 +16709,7 @@
       "team": "AZ",
       "opponent_team": "NYM",
       "pitcher_name": "Nolan McLean",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -17807,7 +17817,7 @@
       "team": "AZ",
       "opponent_team": "NYM",
       "pitcher_name": "Nolan McLean",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Chase Field",
       "ballpark_region_abbr": "AZ",
@@ -18175,7 +18185,7 @@
       "team": "SD",
       "opponent_team": "STL",
       "pitcher_name": "Michael McGreevy",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Petco Park",
       "ballpark_region_abbr": "CA",
@@ -19155,7 +19165,7 @@
       "team": "NYY",
       "opponent_team": "MIL",
       "pitcher_name": "Jacob Misiorowski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -19188,14 +19198,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 95.1 mph, a top-decile recent batted-ball quality marker.",
       "top_reason_2": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 55.2%, showing consistent quality contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-08:823466:687859:666200",
@@ -19462,7 +19474,7 @@
       "team": "NYY",
       "opponent_team": "MIL",
       "pitcher_name": "Jacob Misiorowski",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "American Family Field",
       "ballpark_region_abbr": "WI",
@@ -512791,8 +512803,8 @@
       "game_pk": 824522,
       "game_date": "2026-05-08",
       "game_datetime": "2026-05-08T22:10:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "Warmup",
+      "game_state": "live",
       "matchup": "HOU @ CIN",
       "teams": [
         {
@@ -513912,26 +513924,20 @@
       "game_pk": 823794,
       "game_date": "2026-05-08",
       "game_datetime": "2026-05-08T23:40:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "NYY @ MIL",
       "teams": [
         {
           "team": "NYY",
           "opponent_team": "MIL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 592450,
               "batter_name": "Aaron Judge",
               "batting_order": null,
               "selected_for_pick": true
-            },
-            {
-              "batter_id": 642708,
-              "batter_name": "Amed Rosario",
-              "batting_order": null,
-              "selected_for_pick": false
             },
             {
               "batter_id": 669224,
@@ -513954,12 +513960,6 @@
             {
               "batter_id": 676609,
               "batter_name": "Jos\u00e9 Caballero",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 502671,
-              "batter_name": "Paul Goldschmidt",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -514051,13 +514051,19 @@
         {
           "team": "CHC",
           "opponent_team": "TEX",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 608324,
               "batter_name": "Alex Bregman",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 608348,
+              "batter_name": "Carson Kelly",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 621020,
@@ -514078,16 +514084,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 665804,
-              "batter_name": "Miguel Amaya",
+              "batter_id": 624424,
+              "batter_name": "Michael Conforto",
               "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 694208,
-              "batter_name": "Mois\u00e9s Ballesteros",
-              "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 663538,
@@ -514244,7 +514244,7 @@
         {
           "team": "AZ",
           "opponent_team": "NYM",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 680728,
@@ -514277,8 +514277,8 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 699912,
-              "batter_name": "Jose Fernandez",
+              "batter_id": 678489,
+              "batter_name": "Jorge Barrosa",
               "batting_order": null,
               "selected_for_pick": false
             },
@@ -514308,7 +514308,7 @@
       "game_pk": 823303,
       "game_date": "2026-05-08",
       "game_datetime": "2026-05-09T01:45:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "STL @ SD",
       "teams": [
@@ -514376,13 +514376,19 @@
         {
           "team": "SD",
           "opponent_team": "STL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 665487,
               "batter_name": "Fernando Tatis Jr.",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 666023,
+              "batter_name": "Freddy Fermin",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 657757,
@@ -514405,12 +514411,6 @@
             {
               "batter_id": 609280,
               "batter_name": "Miguel Andujar",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 592206,
-              "batter_name": "Nick Castellanos",
               "batting_order": null,
               "selected_for_pick": true
             },
