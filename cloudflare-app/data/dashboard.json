@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-09T17:39:52.511839+00:00",
+  "generated_at": "2026-05-09T18:37:38.812461+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v3",
@@ -4654,7 +4654,7 @@
       "team": "MIN",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -5203,7 +5203,7 @@
       "team": "CLE",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -5236,14 +5236,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0035, reinforcing the power-contact fit.",
       "top_reason_2": "Joe Ryan has allowed barrels on 5.9% of batted balls to this batter side.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-09:823468:666969:607536",
@@ -5264,7 +5266,7 @@
       "team": "PHI",
       "opponent_team": "COL",
       "pitcher_name": "Kyle Freeland",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -5420,7 +5422,9 @@
       "home_runs_2026": 4,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 8.1%, a top-quartile indicator of current lift-and-damage contact.",
@@ -5996,7 +6000,7 @@
       "team": "PHI",
       "opponent_team": "COL",
       "pitcher_name": "Kyle Freeland",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -6179,7 +6183,7 @@
       "team": "MIN",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -6301,7 +6305,7 @@
       "team": "TB",
       "opponent_team": "BOS",
       "pitcher_name": "Payton Tolle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -6423,7 +6427,7 @@
       "team": "PHI",
       "opponent_team": "COL",
       "pitcher_name": "Kyle Freeland",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -7094,7 +7098,7 @@
       "team": "MIN",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -7338,7 +7342,7 @@
       "team": "MIN",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -7371,14 +7375,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 5,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 112.0 mph, which points to top-end HR juice.",
       "top_reason_2": "Projected wind speed is 14.3 mph, which the live model treats as favorable weather context.",
       "top_reason_3": "Barrel rate over the last 10 days is 9.1%, a top-decile indicator of current lift-and-damage contact.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-09:822820:682818:686799",
@@ -7767,7 +7773,7 @@
       "team": "CLE",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -7889,7 +7895,7 @@
       "team": "MIN",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -8411,7 +8417,9 @@
       "home_runs_2026": 0,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2296, supporting loud-contact upside.",
@@ -8682,7 +8690,7 @@
       "team": "CLE",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -8743,7 +8751,7 @@
       "team": "PHI",
       "opponent_team": "COL",
       "pitcher_name": "Kyle Freeland",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -8804,7 +8812,7 @@
       "team": "CLE",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -9204,7 +9212,9 @@
       "home_runs_2026": 3,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0031, reinforcing the power-contact fit.",
@@ -9693,7 +9703,8 @@
       "actual_hit_hr": null,
       "current_status": "inactive",
       "alert_flags": [
-        "lineup_alert"
+        "lineup_alert",
+        "pitcher_change_alert"
       ],
       "inactive_flag": true,
       "display_style": "strikethrough",
@@ -9938,7 +9949,9 @@
       "home_runs_2026": 9,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 10 days is 45.0%, a above-baseline recent-contact signal.",
@@ -11673,7 +11686,7 @@
       "team": "PHI",
       "opponent_team": "COL",
       "pitcher_name": "Kyle Freeland",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -11734,7 +11747,7 @@
       "team": "TB",
       "opponent_team": "BOS",
       "pitcher_name": "Payton Tolle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -11856,7 +11869,7 @@
       "team": "MIN",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -12039,7 +12052,7 @@
       "team": "PHI",
       "opponent_team": "COL",
       "pitcher_name": "Kyle Freeland",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -13448,7 +13461,7 @@
       "team": "CLE",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -13509,7 +13522,7 @@
       "team": "PHI",
       "opponent_team": "COL",
       "pitcher_name": "Kyle Freeland",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -13877,7 +13890,7 @@
       "team": "MIN",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -14304,7 +14317,7 @@
       "team": "CLE",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -14399,7 +14412,9 @@
       "home_runs_2026": 1,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1828, supporting loud-contact upside.",
@@ -14704,7 +14719,9 @@
       "home_runs_2026": 3,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 10 days is 5.9%, a top-quartile indicator of current lift-and-damage contact.",
@@ -14853,7 +14870,7 @@
       "team": "CLE",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -14886,14 +14903,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 3,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 6.2%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Joe Ryan has allowed barrels on 5.4% of batted balls to this batter side.",
       "top_reason_3": "Projected wind speed is 14.3 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-09:822905:673962:665795",
@@ -15036,7 +15055,7 @@
       "team": "CLE",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -15497,7 +15516,9 @@
       "home_runs_2026": 0,
       "actual_hit_hr": null,
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Hard-hit rate over the last 30 days is 57.1%, showing consistent quality contact.",
@@ -15524,7 +15545,7 @@
       "team": "CLE",
       "opponent_team": "MIN",
       "pitcher_name": "Joe Ryan",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -15829,7 +15850,7 @@
       "team": "TB",
       "opponent_team": "BOS",
       "pitcher_name": "Payton Tolle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -16134,7 +16155,7 @@
       "team": "MIN",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -16535,7 +16556,8 @@
       "actual_hit_hr": null,
       "current_status": "inactive",
       "alert_flags": [
-        "lineup_alert"
+        "lineup_alert",
+        "pitcher_change_alert"
       ],
       "inactive_flag": true,
       "display_style": "strikethrough",
@@ -16563,7 +16585,7 @@
       "team": "MIN",
       "opponent_team": "CLE",
       "pitcher_name": "Tanner Bibee",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Progressive Field",
       "ballpark_region_abbr": "OH",
@@ -16596,14 +16618,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Projected wind speed is 14.3 mph, which the live model treats as favorable weather context.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-09:825089:571448:605280",
@@ -16807,7 +16831,7 @@
       "team": "TB",
       "opponent_team": "BOS",
       "pitcher_name": "Payton Tolle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -17112,7 +17136,7 @@
       "team": "TB",
       "opponent_team": "BOS",
       "pitcher_name": "Payton Tolle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -17145,14 +17169,16 @@
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 7,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2212, supporting loud-contact upside.",
       "top_reason_2": "Payton Tolle has allowed homers in 5.4% of plate appearances to this batter side.",
       "top_reason_3": "Projected wind speed is 17.1 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-09:822905:677649:665795",
@@ -17539,7 +17565,7 @@
       "team": "TB",
       "opponent_team": "BOS",
       "pitcher_name": "Payton Tolle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -17846,7 +17872,7 @@
       "team": "PHI",
       "opponent_team": "COL",
       "pitcher_name": "Kyle Freeland",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -18397,7 +18423,7 @@
       "team": "PHI",
       "opponent_team": "COL",
       "pitcher_name": "Kyle Freeland",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Citizens Bank Park",
       "ballpark_region_abbr": "PA",
@@ -18430,14 +18456,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Kyle Freeland has allowed barrels on 9.6% of recent batted balls.",
       "top_reason_2": "Projected humidity is 84%, a modest positive weather input in the live model.",
       "top_reason_3": "Kyle Freeland has allowed homers in 5.3% of plate appearances over the last 30 days.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-09:823955:573262:605483",
@@ -18519,7 +18547,7 @@
       "team": "TB",
       "opponent_team": "BOS",
       "pitcher_name": "Payton Tolle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -19007,7 +19035,7 @@
       "team": "TB",
       "opponent_team": "BOS",
       "pitcher_name": "Payton Tolle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -19129,7 +19157,7 @@
       "team": "TB",
       "opponent_team": "BOS",
       "pitcher_name": "Payton Tolle",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -529141,7 +529169,7 @@
         {
           "team": "TB",
           "opponent_team": "BOS",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 810938,
@@ -529150,14 +529178,14 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 802415,
-              "batter_name": "Chandler Simpson",
+              "batter_id": 656775,
+              "batter_name": "Cedric Mullins",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
-              "batter_id": 666018,
-              "batter_name": "Jonathan Aranda",
+              "batter_id": 802415,
+              "batter_name": "Chandler Simpson",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -529392,7 +529420,7 @@
       "game_pk": 823468,
       "game_date": "2026-05-09",
       "game_datetime": "2026-05-09T22:05:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "COL @ PHI",
       "teams": [
@@ -529460,13 +529488,19 @@
         {
           "team": "PHI",
           "opponent_team": "COL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666969,
               "batter_name": "Adolis Garc\u00eda",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 664761,
+              "batter_name": "Alec Bohm",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 669016,
@@ -529499,12 +529533,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 702222,
-              "batter_name": "Justin Crawford",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 656941,
               "batter_name": "Kyle Schwarber",
               "batting_order": null,
@@ -529524,21 +529552,15 @@
       "game_pk": 824444,
       "game_date": "2026-05-09",
       "game_datetime": "2026-05-09T22:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "MIN @ CLE",
       "teams": [
         {
           "team": "MIN",
           "opponent_team": "CLE",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 668885,
-              "batter_name": "Austin Martin",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 686797,
               "batter_name": "Brooks Lee",
@@ -529558,6 +529580,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 665019,
+              "batter_name": "Kody Clemens",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 807712,
               "batter_name": "Luke Keaschall",
               "batting_order": null,
@@ -529570,10 +529598,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 680777,
-              "batter_name": "Ryan Jeffers",
+              "batter_id": 668904,
+              "batter_name": "Royce Lewis",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 663616,
@@ -529592,13 +529620,19 @@
         {
           "team": "CLE",
           "opponent_team": "MIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682657,
               "batter_name": "Angel Mart\u00ednez",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 595978,
+              "batter_name": "Austin Hedges",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 677587,
@@ -529619,22 +529653,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 681807,
-              "batter_name": "David Fry",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 608070,
               "batter_name": "Jos\u00e9 Ram\u00edrez",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 690984,
-              "batter_name": "Petey Halpin",
+              "batter_id": 700932,
+              "batter_name": "Kyle Manzardo",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 680757,
