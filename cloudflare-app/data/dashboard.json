@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-09T15:45:19.341335+00:00",
+  "generated_at": "2026-05-09T16:46:28.917248+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v3",
@@ -3861,7 +3861,7 @@
       "team": "WSH",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -4044,7 +4044,7 @@
       "team": "BOS",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -4166,7 +4166,7 @@
       "team": "BOS",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -4532,7 +4532,7 @@
       "team": "CIN",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -4593,7 +4593,7 @@
       "team": "WSH",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -5447,7 +5447,7 @@
       "team": "BOS",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -6240,7 +6240,7 @@
       "team": "TOR",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -6667,7 +6667,7 @@
       "team": "CIN",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -6972,7 +6972,7 @@
       "team": "CIN",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -7216,7 +7216,7 @@
       "team": "TOR",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -7399,7 +7399,7 @@
       "team": "TOR",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -7432,14 +7432,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Peak exit velocity over the last 10 days is 111.1 mph, which points to top-end HR juice.",
       "top_reason_2": "Jack Kochanowicz has allowed homers in 3.9% of plate appearances to this batter side.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-09:824606:672284:622491",
@@ -7704,7 +7706,7 @@
       "team": "LAA",
       "opponent_team": "TOR",
       "pitcher_name": "Trey Yesavage",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -8131,7 +8133,7 @@
       "team": "WSH",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -8253,7 +8255,7 @@
       "team": "CIN",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -8924,7 +8926,7 @@
       "team": "CIN",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -9107,7 +9109,7 @@
       "team": "CIN",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -9290,7 +9292,7 @@
       "team": "BOS",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -9473,7 +9475,7 @@
       "team": "CIN",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -9961,7 +9963,7 @@
       "team": "LAA",
       "opponent_team": "TOR",
       "pitcher_name": "Trey Yesavage",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -10083,7 +10085,7 @@
       "team": "LAA",
       "opponent_team": "TOR",
       "pitcher_name": "Trey Yesavage",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -10388,7 +10390,7 @@
       "team": "TOR",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -10632,7 +10634,7 @@
       "team": "WSH",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -11242,7 +11244,7 @@
       "team": "WSH",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -11486,7 +11488,7 @@
       "team": "BOS",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -11974,7 +11976,7 @@
       "team": "LAA",
       "opponent_team": "TOR",
       "pitcher_name": "Trey Yesavage",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -12218,7 +12220,7 @@
       "team": "TOR",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -12584,7 +12586,7 @@
       "team": "BOS",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -12617,14 +12619,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 5.6%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Nick Martinez has allowed barrels on 6.1% of recent batted balls.",
       "top_reason_3": "Projected wind speed is 17.1 mph, which the live model treats as favorable weather context.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-09:825089:701807:518876",
@@ -12706,7 +12710,7 @@
       "team": "LAA",
       "opponent_team": "TOR",
       "pitcher_name": "Trey Yesavage",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -12767,7 +12771,7 @@
       "team": "CIN",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -12800,14 +12804,16 @@
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 10.3%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Spencer Arrighetti has allowed homers in 3.6% of plate appearances to this batter side.",
       "top_reason_3": "Park factor for the hitter's handedness is 114.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-09:824847:641933:650644",
@@ -12889,7 +12895,7 @@
       "team": "LAA",
       "opponent_team": "TOR",
       "pitcher_name": "Trey Yesavage",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -13743,7 +13749,7 @@
       "team": "WSH",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -13776,14 +13782,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 4,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 8.8%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 52.2%, a top-quartile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-09:825089:543760:518876",
@@ -14048,7 +14056,7 @@
       "team": "TOR",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -14475,7 +14483,7 @@
       "team": "BOS",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -14719,7 +14727,7 @@
       "team": "LAA",
       "opponent_team": "TOR",
       "pitcher_name": "Trey Yesavage",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -15085,7 +15093,7 @@
       "team": "CIN",
       "opponent_team": "HOU",
       "pitcher_name": "Spencer Arrighetti",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -15573,7 +15581,7 @@
       "team": "BOS",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -16000,7 +16008,7 @@
       "team": "WSH",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -16915,7 +16923,7 @@
       "team": "TOR",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -17220,7 +17228,7 @@
       "team": "BOS",
       "opponent_team": "TB",
       "pitcher_name": "Nick Martinez",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Fenway Park",
       "ballpark_region_abbr": "MA",
@@ -17342,7 +17350,7 @@
       "team": "LAA",
       "opponent_team": "TOR",
       "pitcher_name": "Trey Yesavage",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -17586,7 +17594,7 @@
       "team": "WSH",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -17619,14 +17627,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 92.7 mph, a top-quartile recent batted-ball quality marker.",
       "top_reason_2": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-09:823224:656305:677952",
@@ -18135,7 +18145,7 @@
       "team": "TOR",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -18257,7 +18267,7 @@
       "team": "WSH",
       "opponent_team": "MIA",
       "pitcher_name": "Janson Junk",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -18318,7 +18328,7 @@
       "team": "TOR",
       "opponent_team": "LAA",
       "pitcher_name": "Jack Kochanowicz",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -18351,14 +18361,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 9.5%, a top-decile indicator of current lift-and-damage contact.",
       "top_reason_2": "Jack Kochanowicz has allowed barrels on 6.6% of recent batted balls.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-09:823468:702222:607536",
@@ -19050,7 +19062,7 @@
       "team": "LAA",
       "opponent_team": "TOR",
       "pitcher_name": "Trey Yesavage",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Rogers Centre",
       "ballpark_region_abbr": "ON",
@@ -528779,14 +528791,14 @@
       "game_pk": 822820,
       "game_date": "2026-05-09",
       "game_datetime": "2026-05-09T19:07:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "LAA @ TOR",
       "teams": [
         {
           "team": "LAA",
           "opponent_team": "TOR",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 666176,
@@ -528847,7 +528859,7 @@
         {
           "team": "TOR",
           "opponent_team": "LAA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 665926,
@@ -528880,26 +528892,20 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 660821,
+              "batter_name": "Jes\u00fas S\u00e1nchez",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 672960,
               "batter_name": "Kazuma Okamoto",
               "batting_order": null,
               "selected_for_pick": true
             },
             {
-              "batter_id": 664702,
-              "batter_name": "Myles Straw",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 665489,
               "batter_name": "Vladimir Guerrero Jr.",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 682818,
-              "batter_name": "Yohendrick Pi\u00f1ango",
               "batting_order": null,
               "selected_for_pick": true
             }
@@ -528988,7 +528994,7 @@
       "game_pk": 824523,
       "game_date": "2026-05-09",
       "game_datetime": "2026-05-09T20:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "HOU @ CIN",
       "teams": [
@@ -529056,7 +529062,7 @@
         {
           "team": "CIN",
           "opponent_team": "HOU",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 682829,
@@ -529069,6 +529075,12 @@
               "batter_name": "JJ Bleday",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 624431,
+              "batter_name": "Jose Trevino",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 680574,
@@ -529101,12 +529113,6 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 663886,
-              "batter_name": "Tyler Stephenson",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 666181,
               "batter_name": "Will Benson",
               "batting_order": null,
@@ -529120,7 +529126,7 @@
       "game_pk": 824766,
       "game_date": "2026-05-09",
       "game_datetime": "2026-05-09T20:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "TB @ BOS",
       "teams": [
@@ -529188,17 +529194,11 @@
         {
           "team": "BOS",
           "opponent_team": "TB",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 702332,
               "batter_name": "Caleb Durbin",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 665966,
-              "batter_name": "Carlos Narv\u00e1ez",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -529252,14 +529252,14 @@
       "game_pk": 823869,
       "game_date": "2026-05-09",
       "game_datetime": "2026-05-09T20:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "WSH @ MIA",
       "teams": [
         {
           "team": "WSH",
           "opponent_team": "MIA",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 691781,
@@ -529274,16 +529274,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 678554,
-              "batter_name": "Curtis Mead",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 695734,
               "batter_name": "Daylen Lile",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 686452,
+              "batter_name": "Drew Millas",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 696285,
@@ -529304,10 +529304,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 660688,
-              "batter_name": "Keibert Ruiz",
+              "batter_id": 671277,
+              "batter_name": "Luis Garc\u00eda Jr.",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 683083,
