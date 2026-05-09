@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-09T16:46:28.917248+00:00",
+  "generated_at": "2026-05-09T17:39:52.511839+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v3",
@@ -3800,7 +3800,7 @@
       "team": "BAL",
       "opponent_team": "OAK",
       "pitcher_name": "Aaron Civale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -4898,7 +4898,7 @@
       "team": "BAL",
       "opponent_team": "OAK",
       "pitcher_name": "Aaron Civale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -5386,7 +5386,7 @@
       "team": "MIA",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -6118,7 +6118,7 @@
       "team": "BAL",
       "opponent_team": "OAK",
       "pitcher_name": "Aaron Civale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -6789,7 +6789,7 @@
       "team": "HOU",
       "opponent_team": "CIN",
       "pitcher_name": "Chase Burns",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -8011,7 +8011,7 @@
       "team": "BAL",
       "opponent_team": "OAK",
       "pitcher_name": "Aaron Civale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -8377,7 +8377,7 @@
       "team": "MIA",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -9048,7 +9048,7 @@
       "team": "BAL",
       "opponent_team": "OAK",
       "pitcher_name": "Aaron Civale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -9170,7 +9170,7 @@
       "team": "MIA",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -9658,7 +9658,7 @@
       "team": "MIA",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -9691,14 +9691,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "The handedness-specific barrel matchup score is 0.0031, reinforcing the power-contact fit.",
       "top_reason_2": "Zack Littell has allowed homers in 7.0% of plate appearances over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-09:823304:657656:669160",
@@ -9841,7 +9843,7 @@
       "team": "BAL",
       "opponent_team": "OAK",
       "pitcher_name": "Aaron Civale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -9902,7 +9904,7 @@
       "team": "MIA",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -11427,7 +11429,7 @@
       "team": "BAL",
       "opponent_team": "OAK",
       "pitcher_name": "Aaron Civale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -11549,7 +11551,7 @@
       "team": "BAL",
       "opponent_team": "OAK",
       "pitcher_name": "Aaron Civale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -12281,7 +12283,7 @@
       "team": "HOU",
       "opponent_team": "CIN",
       "pitcher_name": "Chase Burns",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -12834,7 +12836,7 @@
       "team": "BAL",
       "opponent_team": "OAK",
       "pitcher_name": "Aaron Civale",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Oriole Park at Camden Yards",
       "ballpark_region_abbr": "MD",
@@ -12867,14 +12869,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 1,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 58.8%, showing consistent quality contact.",
       "top_reason_2": "Aaron Civale has allowed 90.7 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 58.8%, a strong loud-contact input for the model.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-09:822820:660162:702056",
@@ -14361,7 +14365,7 @@
       "team": "MIA",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -14666,7 +14670,7 @@
       "team": "MIA",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -15459,7 +15463,7 @@
       "team": "MIA",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -15642,7 +15646,7 @@
       "team": "HOU",
       "opponent_team": "CIN",
       "pitcher_name": "Chase Burns",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -16496,7 +16500,7 @@
       "team": "MIA",
       "opponent_team": "WSH",
       "pitcher_name": "Zack Littell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "loanDepot park",
       "ballpark_region_abbr": "FL",
@@ -16529,14 +16533,16 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Zack Littell has allowed homers in 7.0% of plate appearances over the last 30 days.",
       "top_reason_2": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_3": "Zack Littell has allowed barrels on 10.7% of recent batted balls.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-09:824444:668885:676440",
@@ -18635,7 +18641,7 @@
       "team": "HOU",
       "opponent_team": "CIN",
       "pitcher_name": "Chase Burns",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -18696,7 +18702,7 @@
       "team": "HOU",
       "opponent_team": "CIN",
       "pitcher_name": "Chase Burns",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -18757,7 +18763,7 @@
       "team": "HOU",
       "opponent_team": "CIN",
       "pitcher_name": "Chase Burns",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -19184,7 +19190,7 @@
       "team": "HOU",
       "opponent_team": "CIN",
       "pitcher_name": "Chase Burns",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -19489,7 +19495,7 @@
       "team": "HOU",
       "opponent_team": "CIN",
       "pitcher_name": "Chase Burns",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -19550,7 +19556,7 @@
       "team": "HOU",
       "opponent_team": "CIN",
       "pitcher_name": "Chase Burns",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Great American Ball Park",
       "ballpark_region_abbr": "OH",
@@ -19583,14 +19589,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 10 days is 44.4%, a above-baseline recent-contact signal.",
       "top_reason_2": "Chase Burns has allowed barrels on 5.5% of recent batted balls.",
       "top_reason_3": "Park factor for the hitter's handedness is 114.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     }
   ],
   "history": [
@@ -528917,20 +528925,20 @@
       "game_pk": 824847,
       "game_date": "2026-05-09",
       "game_datetime": "2026-05-09T20:05:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "OAK @ BAL",
       "teams": [
         {
           "team": "OAK",
           "opponent_team": "BAL",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": []
         },
         {
           "team": "BAL",
           "opponent_team": "OAK",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 668939,
@@ -528963,6 +528971,12 @@
               "selected_for_pick": true
             },
             {
+              "batter_id": 665750,
+              "batter_name": "Leody Taveras",
+              "batting_order": null,
+              "selected_for_pick": false
+            },
+            {
               "batter_id": 624413,
               "batter_name": "Pete Alonso",
               "batting_order": null,
@@ -528977,12 +528991,6 @@
             {
               "batter_id": 621493,
               "batter_name": "Taylor Ward",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 641933,
-              "batter_name": "Tyler O'Neill",
               "batting_order": null,
               "selected_for_pick": true
             }
@@ -529001,7 +529009,7 @@
         {
           "team": "HOU",
           "opponent_team": "CIN",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 669699,
@@ -529040,10 +529048,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 669397,
-              "batter_name": "Nick Allen",
+              "batter_id": 514888,
+              "batter_name": "Jose Altuve",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 670541,
@@ -529320,14 +529328,8 @@
         {
           "team": "MIA",
           "opponent_team": "WSH",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
-            {
-              "batter_id": 666624,
-              "batter_name": "Christopher Morel",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
             {
               "batter_id": 681393,
               "batter_name": "Connor Norby",
@@ -529341,10 +529343,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 691594,
-              "batter_name": "Javier Sanoja",
+              "batter_id": 691788,
+              "batter_name": "Joe Mack",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 669065,
@@ -529369,6 +529371,12 @@
               "batter_name": "Otto Lopez",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 683357,
+              "batter_name": "Owen Caissie",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 669364,
