@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-09T20:42:44.708296+00:00",
+  "generated_at": "2026-05-09T21:27:06.854746+00:00",
   "tracking_start_date": "2026-03-25",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v3",
@@ -110,10 +110,10 @@
     "latest_slate_size": 261,
     "tracked_dates": 45,
     "tracked_picks": 8553,
-    "settled_picks": 6774,
-    "tracked_homers": 758,
-    "tracked_hit_rate": 0.111898,
-    "open_picks": 1779
+    "settled_picks": 6778,
+    "tracked_homers": 762,
+    "tracked_hit_rate": 0.112423,
+    "open_picks": 1775
   },
   "confidence_summary": [
     {
@@ -139,10 +139,10 @@
     },
     {
       "confidence_tier": "longshot",
-      "picks": 5102,
-      "homers": 468,
-      "hit_rate": 0.091729,
-      "avg_probability": 0.085785
+      "picks": 5106,
+      "homers": 472,
+      "hit_rate": 0.09244,
+      "avg_probability": 0.085755
     }
   ],
   "player_leaderboard": [
@@ -980,6 +980,13 @@
       "hit_rate": 0.064516
     },
     {
+      "batter_name": "Ernie Clement",
+      "team": "TOR",
+      "picks": 31,
+      "homers": 2,
+      "hit_rate": 0.064516
+    },
+    {
       "batter_name": "Xavier Edwards",
       "team": "MIA",
       "picks": 31,
@@ -1323,11 +1330,11 @@
       "hit_rate": 0.222222
     },
     {
-      "batter_name": "Ernie Clement",
+      "batter_name": "Brandon Valenzuela",
       "team": "TOR",
-      "picks": 30,
-      "homers": 1,
-      "hit_rate": 0.033333
+      "picks": 8,
+      "homers": 2,
+      "hit_rate": 0.25
     },
     {
       "batter_name": "Luke Keaschall",
@@ -1638,6 +1645,13 @@
       "hit_rate": 0.076923
     },
     {
+      "batter_name": "Kyle Stowers",
+      "team": "MIA",
+      "picks": 13,
+      "homers": 1,
+      "hit_rate": 0.076923
+    },
+    {
       "batter_name": "Victor Caratini",
       "team": "MIN",
       "picks": 13,
@@ -1741,13 +1755,6 @@
       "picks": 8,
       "homers": 1,
       "hit_rate": 0.125
-    },
-    {
-      "batter_name": "Brandon Valenzuela",
-      "team": "TOR",
-      "picks": 7,
-      "homers": 1,
-      "hit_rate": 0.142857
     },
     {
       "batter_name": "Jasson Dom\u00ednguez",
@@ -2130,13 +2137,6 @@
     {
       "batter_name": "Juan Brito",
       "team": "CLE",
-      "picks": 12,
-      "homers": 0,
-      "hit_rate": 0.0
-    },
-    {
-      "batter_name": "Kyle Stowers",
-      "team": "MIA",
       "picks": 12,
       "homers": 0,
       "hit_rate": 0.0
@@ -7037,7 +7037,7 @@
       "team": "ATL",
       "opponent_team": "LAD",
       "pitcher_name": "Blake Snell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -8113,14 +8113,16 @@
       "ballparkpal_overlay_direction": "favorable",
       "home_runs_2026": 2,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Hard-hit rate over the last 30 days is 53.3%, showing consistent quality contact.",
       "top_reason_2": "Luis Castillo has allowed 91.7 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-09:823869:691781:676083",
@@ -8416,9 +8418,9 @@
       "ballparkpal_overlay_adjusted_score": 69.340411,
       "ballparkpal_overlay_adjusted_rank": 78,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 0,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "home_runs_2026": 1,
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [
         "pitcher_change_alert"
       ],
@@ -8427,7 +8429,7 @@
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2296, supporting loud-contact upside.",
       "top_reason_2": "Zack Littell has allowed homers in 7.0% of plate appearances over the last 30 days.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-05-09:823304:671056:681190",
@@ -9428,7 +9430,7 @@
       "team": "ATL",
       "opponent_team": "LAD",
       "pitcher_name": "Blake Snell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -10960,7 +10962,7 @@
       "team": "ATL",
       "opponent_team": "LAD",
       "pitcher_name": "Blake Snell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -14122,16 +14124,16 @@
       "ballparkpal_overlay_adjusted_score": 34.046986,
       "ballparkpal_overlay_adjusted_rank": 171,
       "ballparkpal_overlay_direction": "unfavorable",
-      "home_runs_2026": 3,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "home_runs_2026": 4,
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Against this pitcher handedness, the hitter has a 4.0% barrel-per-PA split.",
       "top_reason_2": "Jack Kochanowicz has allowed barrels on 6.6% of recent batted balls.",
       "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-05-09:825089:672695:605280",
@@ -14276,7 +14278,7 @@
       "team": "ATL",
       "opponent_team": "LAD",
       "pitcher_name": "Blake Snell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -16370,7 +16372,7 @@
       "team": "ATL",
       "opponent_team": "LAD",
       "pitcher_name": "Blake Snell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -18152,7 +18154,7 @@
       "team": "ATL",
       "opponent_team": "LAD",
       "pitcher_name": "Blake Snell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -18244,16 +18246,16 @@
       "ballparkpal_overlay_adjusted_score": 11.088219,
       "ballparkpal_overlay_adjusted_rank": 238,
       "ballparkpal_overlay_direction": "unfavorable",
-      "home_runs_2026": 1,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "home_runs_2026": 2,
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Jack Kochanowicz has allowed barrels on 6.6% of recent batted balls.",
       "top_reason_2": "This game is in a roofed park, so weather inputs are suppressed there.",
       "top_reason_3": "Park factor for the hitter's handedness is 111.0, which adds venue lift to the matchup.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-05-09:823792:683734:693645",
@@ -18524,7 +18526,7 @@
       "team": "ATL",
       "opponent_team": "LAD",
       "pitcher_name": "Blake Snell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -18557,14 +18559,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 0.0%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Blake Snell has allowed barrels on 4.1% of recent batted balls.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-09:824766:663743:801139",
@@ -18860,16 +18864,16 @@
       "ballparkpal_overlay_adjusted_score": 7.496986,
       "ballparkpal_overlay_adjusted_rank": 248,
       "ballparkpal_overlay_direction": "unfavorable",
-      "home_runs_2026": 2,
-      "actual_hit_hr": null,
-      "current_status": "game_in_progress",
+      "home_runs_2026": 3,
+      "actual_hit_hr": 1,
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
       "top_reason_1": "Barrel rate over the last 30 days is 5.6%, which the model treats as sustained power quality.",
       "top_reason_2": "Chase Burns has allowed barrels on 5.5% of recent batted balls.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "result_label": "Pending"
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-05-09:823955:642086:605483",
@@ -18890,7 +18894,7 @@
       "team": "ATL",
       "opponent_team": "LAD",
       "pitcher_name": "Blake Snell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -18923,14 +18927,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 4,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Barrel rate over the last 10 days is 7.7%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Hard-hit rate over the last 10 days is 55.6%, a top-quartile recent-contact signal.",
       "top_reason_3": "95+ EV contact rate over the last 10 days is 55.6%, which supports near-term HR upside.",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-09:823955:805347:605483",
@@ -18951,7 +18957,7 @@
       "team": "ATL",
       "opponent_team": "LAD",
       "pitcher_name": "Blake Snell",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Dodger Stadium",
       "ballpark_region_abbr": "CA",
@@ -18984,14 +18990,16 @@
       "ballparkpal_overlay_direction": "neutral",
       "home_runs_2026": 0,
       "actual_hit_hr": null,
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
       "top_reason_1": "Average exit velocity over the last 10 days is 91.2 mph, a above-baseline recent batted-ball quality marker.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-05-09:823304:666023:669160",
@@ -32186,7 +32194,7 @@
       "ballparkpal_overlay_adjusted_score": 22.2,
       "ballparkpal_overlay_adjusted_rank": 204,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 0,
+      "home_runs_2026": 1,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -32369,7 +32377,7 @@
       "ballparkpal_overlay_adjusted_score": 21.1,
       "ballparkpal_overlay_adjusted_rank": 207,
       "ballparkpal_overlay_direction": "unfavorable",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -33725,7 +33733,7 @@
       "ballparkpal_overlay_adjusted_score": 12.6,
       "ballparkpal_overlay_adjusted_rank": 229,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 2,
+      "home_runs_2026": 3,
       "actual_hit_hr": null,
       "current_status": "inactive",
       "alert_flags": [
@@ -44293,7 +44301,7 @@
       "ballparkpal_overlay_adjusted_score": 18.7,
       "ballparkpal_overlay_adjusted_rank": 140,
       "ballparkpal_overlay_direction": "unfavorable",
-      "home_runs_2026": 0,
+      "home_runs_2026": 1,
       "actual_hit_hr": null,
       "current_status": "inactive",
       "alert_flags": [
@@ -50252,7 +50260,7 @@
       "ballparkpal_overlay_adjusted_score": 75.1,
       "ballparkpal_overlay_adjusted_rank": 66,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 0,
+      "home_runs_2026": 1,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -57499,7 +57507,7 @@
       "ballparkpal_overlay_adjusted_score": 29.9,
       "ballparkpal_overlay_adjusted_rank": 184,
       "ballparkpal_overlay_direction": "unfavorable",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -59222,7 +59230,7 @@
       "ballparkpal_overlay_adjusted_score": 19.2,
       "ballparkpal_overlay_adjusted_rank": 212,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 3,
+      "home_runs_2026": 4,
       "actual_hit_hr": null,
       "current_status": "inactive",
       "alert_flags": [
@@ -64890,7 +64898,7 @@
       "ballparkpal_overlay_adjusted_score": 83.9,
       "ballparkpal_overlay_adjusted_rank": 43,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 0,
+      "home_runs_2026": 1,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -70709,7 +70717,7 @@
       "ballparkpal_overlay_adjusted_score": 47.5,
       "ballparkpal_overlay_adjusted_rank": 138,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 3,
+      "home_runs_2026": 4,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -77664,7 +77672,7 @@
       "ballparkpal_overlay_adjusted_score": 4.2,
       "ballparkpal_overlay_adjusted_rank": 251,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -82432,7 +82440,7 @@
       "ballparkpal_overlay_adjusted_score": 68.5,
       "ballparkpal_overlay_adjusted_rank": 68,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 0,
+      "home_runs_2026": 1,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -83290,7 +83298,7 @@
       "ballparkpal_overlay_adjusted_score": 62.0,
       "ballparkpal_overlay_adjusted_rank": 82,
       "ballparkpal_overlay_direction": "unfavorable",
-      "home_runs_2026": 3,
+      "home_runs_2026": 4,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -90140,7 +90148,7 @@
       "ballparkpal_overlay_adjusted_score": 9.4,
       "ballparkpal_overlay_adjusted_rank": 194,
       "ballparkpal_overlay_direction": "unfavorable",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -98175,7 +98183,7 @@
       "ballparkpal_overlay_adjusted_score": 57.5,
       "ballparkpal_overlay_adjusted_rank": 112,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 3,
+      "home_runs_2026": 4,
       "actual_hit_hr": null,
       "current_status": "inactive",
       "alert_flags": [
@@ -105334,7 +105342,7 @@
       "ballparkpal_overlay_adjusted_score": 13.0,
       "ballparkpal_overlay_adjusted_rank": 228,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -106512,7 +106520,7 @@
       "ballparkpal_overlay_adjusted_score": 5.7,
       "ballparkpal_overlay_adjusted_rank": 247,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 0,
+      "home_runs_2026": 1,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -113978,7 +113986,7 @@
       "ballparkpal_overlay_adjusted_score": 58.475494,
       "ballparkpal_overlay_adjusted_rank": 108,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 0,
+      "home_runs_2026": 1,
       "actual_hit_hr": 0,
       "current_status": "pending",
       "alert_flags": [],
@@ -119680,7 +119688,7 @@
       "ballparkpal_overlay_adjusted_score": 23.4,
       "ballparkpal_overlay_adjusted_rank": 201,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 3,
+      "home_runs_2026": 4,
       "actual_hit_hr": 1,
       "current_status": "pending",
       "alert_flags": [],
@@ -121638,7 +121646,7 @@
       "ballparkpal_overlay_adjusted_score": 13.428735,
       "ballparkpal_overlay_adjusted_rank": 233,
       "ballparkpal_overlay_direction": "unfavorable",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "pending",
       "alert_flags": [],
@@ -125768,7 +125776,7 @@
       "ballparkpal_overlay_adjusted_score": 83.099316,
       "ballparkpal_overlay_adjusted_rank": 38,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 0,
+      "home_runs_2026": 1,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -136519,7 +136527,7 @@
       "ballparkpal_overlay_adjusted_score": 19.850598,
       "ballparkpal_overlay_adjusted_rank": 213,
       "ballparkpal_overlay_direction": "unfavorable",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": null,
       "current_status": "inactive",
       "alert_flags": [
@@ -148394,7 +148402,7 @@
       "ballparkpal_overlay_adjusted_score": 7.2,
       "ballparkpal_overlay_adjusted_rank": 165,
       "ballparkpal_overlay_direction": "unfavorable",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -155067,7 +155075,7 @@
       "ballparkpal_overlay_adjusted_score": 23.4,
       "ballparkpal_overlay_adjusted_rank": 52,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 0,
+      "home_runs_2026": 1,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -163610,7 +163618,7 @@
       "ballparkpal_overlay_adjusted_score": 10.4,
       "ballparkpal_overlay_adjusted_rank": 166,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 1,
       "current_status": "home_run",
       "alert_flags": [],
@@ -173828,7 +173836,7 @@
       "ballparkpal_overlay_adjusted_score": 13.6,
       "ballparkpal_overlay_adjusted_rank": 102,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 0,
+      "home_runs_2026": 1,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -179993,7 +180001,7 @@
       "ballparkpal_overlay_adjusted_score": 10.7,
       "ballparkpal_overlay_adjusted_rank": 169,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -188949,7 +188957,7 @@
       "ballparkpal_overlay_adjusted_score": 10.8,
       "ballparkpal_overlay_adjusted_rank": 91,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -204834,7 +204842,7 @@
       "ballparkpal_overlay_adjusted_score": 50.0,
       "ballparkpal_overlay_adjusted_rank": 245,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -204958,7 +204966,7 @@
       "ballparkpal_overlay_adjusted_score": 11.8,
       "ballparkpal_overlay_adjusted_rank": 162,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 0,
+      "home_runs_2026": 1,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -219257,7 +219265,7 @@
       "ballparkpal_overlay_adjusted_score": 11.6,
       "ballparkpal_overlay_adjusted_rank": 160,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 0,
+      "home_runs_2026": 1,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -222394,7 +222402,7 @@
       "ballparkpal_overlay_adjusted_score": 13.3,
       "ballparkpal_overlay_adjusted_rank": 132,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -227615,7 +227623,7 @@
       "ballparkpal_overlay_adjusted_score": 12.4,
       "ballparkpal_overlay_adjusted_rank": 134,
       "ballparkpal_overlay_direction": "favorable",
-      "home_runs_2026": 0,
+      "home_runs_2026": 1,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -234306,7 +234314,7 @@
       "ballparkpal_overlay_adjusted_score": 9.4,
       "ballparkpal_overlay_adjusted_rank": 187,
       "ballparkpal_overlay_direction": "unfavorable",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -258422,7 +258430,7 @@
       "ballparkpal_overlay_adjusted_score": 18.0,
       "ballparkpal_overlay_adjusted_rank": 210,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -275419,7 +275427,7 @@
       "ballparkpal_overlay_adjusted_score": 25.6,
       "ballparkpal_overlay_adjusted_rank": 188,
       "ballparkpal_overlay_direction": "unfavorable",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -286180,7 +286188,7 @@
       "ballparkpal_overlay_adjusted_score": 31.5,
       "ballparkpal_overlay_adjusted_rank": 74,
       "ballparkpal_overlay_direction": "unfavorable",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -300280,7 +300288,7 @@
       "ballparkpal_overlay_adjusted_score": 33.3,
       "ballparkpal_overlay_adjusted_rank": 129,
       "ballparkpal_overlay_direction": "unfavorable",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -311448,7 +311456,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 3,
+      "home_runs_2026": 4,
       "actual_hit_hr": null,
       "current_status": "inactive",
       "alert_flags": [
@@ -317169,7 +317177,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -326615,7 +326623,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 3,
+      "home_runs_2026": 4,
       "actual_hit_hr": null,
       "current_status": "inactive",
       "alert_flags": [
@@ -332641,7 +332649,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -341998,7 +342006,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 3,
+      "home_runs_2026": 4,
       "actual_hit_hr": null,
       "current_status": "inactive",
       "alert_flags": [
@@ -345392,7 +345400,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -356389,7 +356397,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 3,
+      "home_runs_2026": 4,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -360153,7 +360161,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -365938,7 +365946,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 3,
+      "home_runs_2026": 4,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -378012,7 +378020,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -396993,7 +397001,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 3,
+      "home_runs_2026": 4,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -402227,7 +402235,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -409476,7 +409484,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 3,
+      "home_runs_2026": 4,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -417151,7 +417159,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -432920,7 +432928,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -455792,7 +455800,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -458809,7 +458817,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 3,
+      "home_runs_2026": 4,
       "actual_hit_hr": null,
       "current_status": "inactive",
       "alert_flags": [
@@ -470725,7 +470733,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -488251,7 +488259,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -498464,7 +498472,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -517994,7 +518002,7 @@
       "ballparkpal_overlay_adjusted_score": null,
       "ballparkpal_overlay_adjusted_rank": null,
       "ballparkpal_overlay_direction": "neutral",
-      "home_runs_2026": 1,
+      "home_runs_2026": 2,
       "actual_hit_hr": 0,
       "current_status": "no_home_run",
       "alert_flags": [],
@@ -529468,8 +529476,8 @@
       "game_pk": 824444,
       "game_date": "2026-05-09",
       "game_datetime": "2026-05-09T22:10:00Z",
-      "game_status": "Pre-Game",
-      "game_state": "pregame",
+      "game_status": "Delayed Start",
+      "game_state": "live",
       "matchup": "MIN @ CLE",
       "teams": [
         {
@@ -529929,12 +529937,6 @@
           "lineup_source": "confirmed",
           "hitters": [
             {
-              "batter_id": 643217,
-              "batter_name": "Andrew Benintendi",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 805367,
               "batter_name": "Chase Meidroth",
               "batting_order": null,
@@ -529969,6 +529971,12 @@
               "batter_name": "Munetaka Murakami",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 545341,
+              "batter_name": "Randal Grichuk",
+              "batting_order": null,
+              "selected_for_pick": false
             },
             {
               "batter_id": 803011,
@@ -530506,24 +530514,18 @@
       "game_pk": 823955,
       "game_date": "2026-05-09",
       "game_datetime": "2026-05-10T01:10:00Z",
-      "game_status": "Scheduled",
+      "game_status": "Pre-Game",
       "game_state": "pregame",
       "matchup": "ATL @ LAD",
       "teams": [
         {
           "team": "ATL",
           "opponent_team": "LAD",
-          "lineup_source": "projected",
+          "lineup_source": "confirmed",
           "hitters": [
             {
               "batter_id": 663586,
               "batter_name": "Austin Riley",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
-              "batter_id": 642086,
-              "batter_name": "Dominic Smith",
               "batting_order": null,
               "selected_for_pick": true
             },
@@ -530534,10 +530536,10 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 805347,
-              "batter_name": "Jim Jarvis",
+              "batter_id": 622761,
+              "batter_name": "Jorge Mateo",
               "batting_order": null,
-              "selected_for_pick": true
+              "selected_for_pick": false
             },
             {
               "batter_id": 621566,
@@ -530558,16 +530560,16 @@
               "selected_for_pick": true
             },
             {
-              "batter_id": 573262,
-              "batter_name": "Mike Yastrzemski",
-              "batting_order": null,
-              "selected_for_pick": true
-            },
-            {
               "batter_id": 645277,
               "batter_name": "Ozzie Albies",
               "batting_order": null,
               "selected_for_pick": true
+            },
+            {
+              "batter_id": 669221,
+              "batter_name": "Sean Murphy",
+              "batting_order": null,
+              "selected_for_pick": false
             }
           ]
         },
@@ -530790,18 +530792,18 @@
       "games_2026": 39
     },
     {
+      "batter_name": "Yordan Alvarez",
+      "team": "HOU",
+      "home_runs_2026": 13,
+      "plate_appearances_2026": 174,
+      "games_2026": 40
+    },
+    {
       "batter_name": "Matt Olson",
       "team": "ATL",
       "home_runs_2026": 13,
       "plate_appearances_2026": 174,
       "games_2026": 39
-    },
-    {
-      "batter_name": "Yordan Alvarez",
-      "team": "HOU",
-      "home_runs_2026": 13,
-      "plate_appearances_2026": 173,
-      "games_2026": 40
     }
   ],
   "recent_successes": [
