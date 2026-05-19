@@ -1574,8 +1574,9 @@ def build_dashboard_artifacts(
     )
     latest_picks = list(active_current_rows)
     tracked_rows = [*dashboard_history, *active_current_rows]
+    public_dashboard_history = top_k_by_date(dashboard_history, history_per_date)
     settled_rows = [row for row in tracked_rows if row["actual_hit_hr"] is not None]
-    history_dates = build_history_date_options(dashboard_history)
+    history_dates = build_history_date_options(public_dashboard_history)
     default_history_date = resolve_default_history_date(history_dates)
     yesterday_value = eastern_yesterday()
     recent_successes = [
@@ -1632,7 +1633,7 @@ def build_dashboard_artifacts(
             lineup_panels = []
 
     latest_picks_records = apply_season_hr_totals(to_records(latest_picks), season_hr_lookup)
-    dashboard_history_records = apply_season_hr_totals(to_records(dashboard_history), season_hr_lookup)
+    dashboard_history_records = apply_season_hr_totals(to_records(public_dashboard_history), season_hr_lookup)
 
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -1669,7 +1670,7 @@ def build_dashboard_artifacts(
     }
 
     output_path = output_dir / "dashboard.json"
-    output_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    output_path.write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
     return output_path
 
 

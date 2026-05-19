@@ -395,6 +395,44 @@ class DashboardArtifactTests(unittest.TestCase):
             self.assertEqual(payload["history_default_date"], "2026-03-27")
             self.assertEqual(payload["recent_successes"], [])
 
+    def test_dashboard_history_per_date_caps_public_payload_only(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+            output_dir = base / "dashboard"
+            metadata_path = base / "model_metadata.json"
+            model_data_path = base / "dataset.csv"
+
+            current_path.write_text(json.dumps([], indent=2), encoding="utf-8")
+            history_rows = [
+                self._settled_pick("2026-03-27", 1, "Alpha", "elite", 90.0, "HR"),
+                self._settled_pick("2026-03-27", 2, "Bravo", "strong", 80.0, "No HR"),
+                self._settled_pick("2026-03-27", 3, "Charlie", "watch", 70.0, "No HR"),
+                self._settled_pick("2026-03-26", 1, "Delta", "elite", 85.0, "HR"),
+                self._settled_pick("2026-03-26", 2, "Echo", "strong", 75.0, "No HR"),
+                self._settled_pick("2026-03-26", 3, "Foxtrot", "watch", 65.0, "No HR"),
+            ]
+            history_path.write_text(json.dumps(history_rows, indent=2), encoding="utf-8")
+            metadata_path.write_text(json.dumps({}, indent=2), encoding="utf-8")
+            pd.DataFrame([self._season_row("Slugger A", "NYY", 1, "2026-03-27", 1, 4, 1)]).to_csv(model_data_path, index=False)
+
+            output_path = build_dashboard_artifacts.build_dashboard_artifacts(
+                current_picks_path=current_path,
+                history_path=history_path,
+                output_dir=output_dir,
+                model_data_path=model_data_path,
+                model_metadata_path=metadata_path,
+                persist_history=False,
+                history_per_date=2,
+            )
+
+            payload = json.loads(output_path.read_text(encoding="utf-8"))
+            self.assertEqual([row["batter_name"] for row in payload["history"]], ["Delta", "Echo", "Alpha", "Bravo"])
+            self.assertEqual(payload["overview"]["tracked_picks"], 6)
+            self.assertEqual(payload["overview"]["settled_picks"], 6)
+            self.assertLess(output_path.read_text(encoding="utf-8").count("\n"), 2)
+
     @staticmethod
     def _pending_pick(game_date: str, rank: int, batter_name: str, tier: str, score: float) -> dict[str, object]:
         return {
