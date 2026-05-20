@@ -80,8 +80,9 @@ class DashboardArtifactTests(unittest.TestCase):
             payload = json.loads(output_path.read_text(encoding="utf-8"))
             self.assertNotIn("top_k_summary", payload)
             self.assertEqual([row["batter_name"] for row in payload["latest_picks"]], ["Alpha", "Bravo", "Charlie"])
-            self.assertEqual(payload["history_dates"], ["2026-03-29", "2026-03-28"])
+            self.assertEqual(payload["history_dates"], ["2026-03-29"])
             self.assertEqual(payload["history_default_date"], "2026-03-29")
+            self.assertEqual([row["batter_name"] for row in payload["history"]], ["Yesterday HR", "Yesterday Miss"])
             self.assertEqual(payload["yesterday_homer_date"], "2026-03-29")
             self.assertEqual([row["batter_name"] for row in payload["recent_successes"]], ["Yesterday HR"])
             self.assertEqual([row["batter_name"] for row in payload["season_hr_leaders_2026"]], ["Slugger A", "Slugger B", "Slugger C", "Slugger D", "Slugger E"])
@@ -306,6 +307,74 @@ class DashboardArtifactTests(unittest.TestCase):
             self.assertEqual(payload["latest_picks"][0]["home_runs_2026"], 2)
             self.assertEqual(payload["season_hr_leaders_2026"][0]["home_runs_2026"], 2)
 
+    @patch("scripts.build_dashboard_artifacts._fetch_current_season_hitting_totals_by_player_id")
+    def test_live_season_hr_leaders_fall_back_to_dataset_when_lookup_empty(self, mock_fetch: object) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            model_data_path = base / "dataset.csv"
+            pd.DataFrame(
+                [
+                    self._season_row("Slugger A", "NYY", 1, "2026-04-28", 3, 14, 9001),
+                    self._season_row("Slugger B", "LAD", 2, "2026-04-28", 2, 12, 9002),
+                ]
+            ).to_csv(model_data_path, index=False)
+            mock_fetch.return_value = {}
+
+            leaders = build_dashboard_artifacts.build_season_hr_leaders_2026(
+                model_data_path,
+                source="live",
+                season_year=2026,
+            )
+
+            self.assertEqual([row["batter_name"] for row in leaders], ["Slugger A", "Slugger B"])
+            self.assertEqual(leaders[0]["home_runs_2026"], 3)
+
+    @patch("scripts.build_dashboard_artifacts._fetch_current_season_hitting_totals_by_player_id")
+    def test_dashboard_preserves_previous_season_leaders_when_live_lookup_empty(self, mock_fetch: object) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+            output_dir = base / "dashboard"
+            metadata_path = base / "model_metadata.json"
+            model_data_path = base / "dataset.csv"
+
+            current_path.write_text(json.dumps([self._pending_pick("2026-04-29", 1, "Alpha", "elite", 98.0)], indent=2), encoding="utf-8")
+            history_path.write_text(json.dumps([], indent=2), encoding="utf-8")
+            metadata_path.write_text(json.dumps({}, indent=2), encoding="utf-8")
+            pd.DataFrame([{"game_date": "2025-09-20", "batter_id": 1, "batter_name": "Old Row", "team": "NYY"}]).to_csv(model_data_path, index=False)
+            output_dir.mkdir(parents=True, exist_ok=True)
+            (output_dir / "dashboard.json").write_text(
+                json.dumps(
+                    {
+                        "season_hr_leaders_2026": [
+                            {
+                                "batter_name": "Existing Leader",
+                                "team": "PHI",
+                                "home_runs_2026": 20,
+                                "plate_appearances_2026": 213,
+                                "games_2026": 47,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            mock_fetch.return_value = {}
+
+            output_path = build_dashboard_artifacts.build_dashboard_artifacts(
+                current_picks_path=current_path,
+                history_path=history_path,
+                output_dir=output_dir,
+                model_data_path=model_data_path,
+                model_metadata_path=metadata_path,
+                persist_history=False,
+                season_hr_source="live",
+            )
+
+            payload = json.loads(output_path.read_text(encoding="utf-8"))
+            self.assertEqual(payload["season_hr_leaders_2026"][0]["batter_name"], "Existing Leader")
+
     def test_dashboard_payload_uses_morning_snapshot_order_and_keeps_morning_baseline(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
@@ -395,7 +464,7 @@ class DashboardArtifactTests(unittest.TestCase):
             self.assertEqual(payload["history_default_date"], "2026-03-27")
             self.assertEqual(payload["recent_successes"], [])
 
-    def test_dashboard_history_per_date_caps_public_payload_only(self) -> None:
+    def test_dashboard_history_keeps_previous_day_public_payload_only(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
             current_path = base / "current.json"
@@ -424,11 +493,12 @@ class DashboardArtifactTests(unittest.TestCase):
                 model_data_path=model_data_path,
                 model_metadata_path=metadata_path,
                 persist_history=False,
-                history_per_date=2,
             )
 
             payload = json.loads(output_path.read_text(encoding="utf-8"))
-            self.assertEqual([row["batter_name"] for row in payload["history"]], ["Delta", "Echo", "Alpha", "Bravo"])
+            self.assertEqual([row["batter_name"] for row in payload["history"]], ["Alpha", "Bravo", "Charlie"])
+            self.assertEqual(payload["history_dates"], ["2026-03-27"])
+            self.assertEqual(payload["previous_day_date"], "2026-03-27")
             self.assertEqual(payload["overview"]["tracked_picks"], 6)
             self.assertEqual(payload["overview"]["settled_picks"], 6)
             self.assertLess(output_path.read_text(encoding="utf-8").count("\n"), 2)

@@ -820,6 +820,22 @@ def top_k_by_date(rows: list[dict[str, Any]], k: int) -> list[dict[str, Any]]:
     return trimmed
 
 
+def select_previous_day_rows(rows: list[dict[str, Any]], preferred_date: str) -> tuple[str, list[dict[str, Any]]]:
+    if not rows:
+        return preferred_date, []
+
+    rows_by_date: dict[str, list[dict[str, Any]]] = {}
+    for row in rows:
+        game_date = str(row.get("game_date") or "")
+        if game_date:
+            rows_by_date.setdefault(game_date, []).append(row)
+    if not rows_by_date:
+        return preferred_date, []
+
+    selected_date = preferred_date if preferred_date in rows_by_date else max(rows_by_date)
+    return selected_date, sorted(rows_by_date[selected_date], key=history_sort_key)
+
+
 def summarize_confidence(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     order = {"elite": 0, "strong": 1, "watch": 2, "longshot": 3}
     buckets: dict[str, dict[str, Any]] = {}
@@ -1004,6 +1020,13 @@ def build_season_hr_leaders_2026(
                     "plate_appearances_2026": int(stats.get("plate_appearances_2026") or 0),
                     "games_2026": int(stats.get("games_2026") or 0),
                 }
+            )
+        if not records:
+            return build_season_hr_leaders_2026(
+                dataset_path,
+                limit=limit,
+                source="dataset",
+                season_year=season_year,
             )
         grouped = pd.DataFrame(records)
     else:
@@ -1520,6 +1543,8 @@ def build_dashboard_artifacts(
 ) -> Path:
     current_picks_path.parent.mkdir(parents=True, exist_ok=True)
     output_dir.mkdir(parents=True, exist_ok=True)
+    output_path = output_dir / "dashboard.json"
+    previous_dashboard_payload = _load_json_object(output_path) if output_path.exists() else {}
 
     current_input = load_json_array(current_picks_path)
     history_input = load_json_array(history_path)
@@ -1574,11 +1599,12 @@ def build_dashboard_artifacts(
     )
     latest_picks = list(active_current_rows)
     tracked_rows = [*dashboard_history, *active_current_rows]
-    public_dashboard_history = top_k_by_date(dashboard_history, history_per_date)
     settled_rows = [row for row in tracked_rows if row["actual_hit_hr"] is not None]
-    history_dates = build_history_date_options(public_dashboard_history)
-    default_history_date = resolve_default_history_date(history_dates)
     yesterday_value = eastern_yesterday()
+    previous_day_date, previous_day_rows = select_previous_day_rows(dashboard_history, yesterday_value)
+    public_dashboard_history = previous_day_rows
+    history_dates = [previous_day_date] if previous_day_rows else []
+    default_history_date = previous_day_date if previous_day_rows else ""
     recent_successes = [
         row
         for row in sorted(
@@ -1601,6 +1627,10 @@ def build_dashboard_artifacts(
         source=season_hr_source,
         season_year=season_year,
     )
+    if not season_hr_leaders_2026:
+        previous_leaders = previous_dashboard_payload.get("season_hr_leaders_2026")
+        if isinstance(previous_leaders, list):
+            season_hr_leaders_2026 = [dict(row) for row in previous_leaders if isinstance(row, dict)][:5]
 
     settled_count = len(settled_rows)
     homers = sum(int(row["actual_hit_hr"] or 0) for row in settled_rows)
@@ -1648,6 +1678,7 @@ def build_dashboard_artifacts(
         "history_dates": history_dates,
         "history_default_date": default_history_date,
         "yesterday_homer_date": yesterday_value,
+        "previous_day_date": previous_day_date,
         "refresh_schedule": build_refresh_schedule(),
         "overview": {
             "latest_slate_size": len(latest_picks),
@@ -1669,7 +1700,6 @@ def build_dashboard_artifacts(
         "recent_successes": to_records(recent_successes),
     }
 
-    output_path = output_dir / "dashboard.json"
     output_path.write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
     return output_path
 

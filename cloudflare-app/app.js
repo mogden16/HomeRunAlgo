@@ -1,12 +1,8 @@
 const state = {
   dashboard: null,
-  filteredHistory: [],
   filteredLatestPicks: [],
   latestBallparkWeight: 10,
-  historyBallparkWeight: 10,
   latestTierFilters: new Set(["elite", "strong"]),
-  historyTierFilters: new Set(["elite", "strong"]),
-  selectedHistoryDate: "",
 };
 
 const DEFAULT_LATEST_PICKS_EMPTY_MESSAGE =
@@ -1079,15 +1075,14 @@ function renderSeasonLeaders(rows) {
 
 function renderYesterdayRecap(dashboard) {
   const summaryTarget = document.getElementById("yesterday-summary");
-  const tableTarget = document.getElementById("yesterday-table");
-  const previousDate = dashboard?.yesterday_homer_date || dashboard?.history_default_date || "";
+  const previousDate = dashboard?.previous_day_date || dashboard?.history_default_date || dashboard?.yesterday_homer_date || "";
   const rows = (Array.isArray(dashboard?.history) ? dashboard.history : [])
     .filter((row) => row.game_date === previousDate)
     .sort((left, right) => Number(left.rank) - Number(right.rank));
 
   if (!rows.length) {
     summaryTarget.innerHTML = "";
-    tableTarget.innerHTML = `<p class="empty-state">${escapeHtml(DEFAULT_YESTERDAY_RECAP_EMPTY_MESSAGE)}</p>`;
+    document.getElementById("yesterday-table").innerHTML = `<p class="empty-state">${escapeHtml(DEFAULT_YESTERDAY_RECAP_EMPTY_MESSAGE)}</p>`;
     return;
   }
 
@@ -1111,11 +1106,7 @@ function renderYesterdayRecap(dashboard) {
       `,
     )
     .join("");
-  tableTarget.innerHTML = `
-    <p class="empty-state">
-      Full slate recap now stays summary-only here. Totals above cover ${escapeHtml(formatWholeNumber(rows.length))} tracked picks for ${escapeHtml(formatDate(previousDate))}.
-    </p>
-  `;
+  renderPicksTable("yesterday-table", rows, DEFAULT_YESTERDAY_RECAP_EMPTY_MESSAGE);
 }
 
 function renderRefreshScheduleInline(schedule) {
@@ -1318,18 +1309,11 @@ async function loadDashboard() {
   renderOverviewCards(state.dashboard);
   renderConfidenceTable(state.dashboard.confidence_summary);
   renderTierFilterControls("latest-confidence-filters", state.latestTierFilters);
-  renderTierFilterControls("history-confidence-filters", state.historyTierFilters);
-  renderHistoryDateOptions(state.dashboard.history_dates, state.dashboard.history_default_date);
   const latestWeightSlider = document.getElementById("latest-ballpark-weight");
   if (latestWeightSlider) {
     latestWeightSlider.value = String(Math.max(0, Math.min(100, Math.round(Number(state.latestBallparkWeight) || 10))));
   }
-  const historyWeightSlider = document.getElementById("history-ballpark-weight");
-  if (historyWeightSlider) {
-    historyWeightSlider.value = String(Math.max(0, Math.min(100, Math.round(Number(state.historyBallparkWeight) || 10))));
-  }
   renderLatestBallparkWeightLabel();
-  renderHistoryBallparkWeightLabel();
   applyLatestPicksFilters();
   renderLineupPanels(state.dashboard.lineup_panels || []);
   renderSeasonLeaders(state.dashboard.season_hr_leaders_2026 || []);
@@ -1337,7 +1321,6 @@ async function loadDashboard() {
   renderRefreshScheduleInline(state.dashboard.refresh_schedule);
   renderModelExplainer(state.dashboard.model_explainer);
   renderBallparkPalExplainer(state.dashboard.ballparkpal_explainer);
-  applyHistoryFilters();
 }
 
 function handleLoadError(error) {
@@ -1414,23 +1397,12 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("model-explainer-close").addEventListener("click", () => {
     modelExplainerDialog.close();
   });
-  document.getElementById("history-search").addEventListener("input", applyHistoryFilters);
-  document.getElementById("history-date-filter").addEventListener("change", (event) => {
-    state.selectedHistoryDate = event.target.value;
-    applyHistoryFilters();
-  });
   document.getElementById("latest-ballpark-weight").addEventListener("input", (event) => {
     state.latestBallparkWeight = Number(event.target.value);
     renderLatestBallparkWeightLabel();
     applyLatestPicksFilters();
   });
-  document.getElementById("history-ballpark-weight").addEventListener("input", (event) => {
-    state.historyBallparkWeight = Number(event.target.value);
-    renderHistoryBallparkWeightLabel();
-    applyHistoryFilters();
-  });
   document.getElementById("latest-confidence-filters").addEventListener("click", handleTierFilterToggle);
-  document.getElementById("history-confidence-filters").addEventListener("click", handleTierFilterToggle);
   const savedKey = localStorage.getItem(MANUAL_REFRESH_KEY_STORAGE);
   if (savedKey) {
     document.getElementById("manual-refresh-key").value = savedKey;
