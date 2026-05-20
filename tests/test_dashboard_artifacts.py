@@ -496,7 +496,7 @@ class DashboardArtifactTests(unittest.TestCase):
             )
 
             payload = json.loads(output_path.read_text(encoding="utf-8"))
-            self.assertEqual([row["batter_name"] for row in payload["history"]], ["Alpha", "Bravo", "Charlie"])
+            self.assertEqual([row["batter_name"] for row in payload["history"]], ["Alpha", "Bravo"])
             self.assertEqual(payload["history_dates"], ["2026-03-27"])
             self.assertEqual(payload["previous_day_date"], "2026-03-27")
             self.assertEqual(payload["overview"]["tracked_picks"], 6)

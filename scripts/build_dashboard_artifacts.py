@@ -821,11 +821,17 @@ def top_k_by_date(rows: list[dict[str, Any]], k: int) -> list[dict[str, Any]]:
 
 
 def select_previous_day_rows(rows: list[dict[str, Any]], preferred_date: str) -> tuple[str, list[dict[str, Any]]]:
-    if not rows:
+    allowed_tiers = {"elite", "strong"}
+    eligible_rows = [
+        row
+        for row in rows
+        if str(row.get("confidence_tier") or row.get("original_tier") or "").strip().lower() in allowed_tiers
+    ]
+    if not eligible_rows:
         return preferred_date, []
 
     rows_by_date: dict[str, list[dict[str, Any]]] = {}
-    for row in rows:
+    for row in eligible_rows:
         game_date = str(row.get("game_date") or "")
         if game_date:
             rows_by_date.setdefault(game_date, []).append(row)
