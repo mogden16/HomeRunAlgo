@@ -155,6 +155,60 @@ class RefreshModesTests(unittest.TestCase):
         self.assertEqual(result["mode"], "idle")
         self.assertEqual(result["result"]["status"], "idle")
 
+    def test_run_refresh_mode_auto_prepare_publishes_prepared_baseline(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+            board_state_path = base / "daily_board_state.json"
+            baseline_path = base / "baseline.json"
+            output_dir = base / "dashboard"
+            current_path.write_text("[]", encoding="utf-8")
+            history_path.write_text("[]", encoding="utf-8")
+
+            draft_rows = [
+                {
+                    "pick_id": "2026-03-31:1001:10:20",
+                    "game_date": "2026-03-31",
+                    "game_pk": 1001,
+                    "rank": 1,
+                    "batter_id": 10,
+                    "batter_name": "Alpha",
+                    "team": "NYY",
+                    "opponent_team": "BOS",
+                    "pitcher_id": 20,
+                    "pitcher_name": "Pitcher",
+                    "confidence_tier": "elite",
+                    "predicted_hr_score": 98.0,
+                    "predicted_hr_probability": 0.2,
+                    "result": "Pending",
+                }
+            ]
+
+            with patch("scripts.refresh_modes.resolve_auto_refresh_mode", return_value="prepare"):
+                with patch("scripts.refresh_modes.run_prepare_live_board", return_value=draft_rows):
+                    with patch("scripts.refresh_modes.fetch_schedule_games", return_value=[{"game_pk": 1001, "status": "Scheduled"}]):
+                        with patch("scripts.refresh_modes.enrich_ballparkpal_rows", side_effect=lambda rows, *, schedule_date: rows):
+                            with patch("scripts.refresh_modes.build_dashboard_artifacts", return_value=output_dir / "dashboard.json"):
+                                with patch("scripts.refresh_modes.verify_public_live_artifacts"):
+                                    result = refresh_modes.run_refresh_mode(
+                                        "auto",
+                                        current_picks_path=current_path,
+                                        history_path=history_path,
+                                        board_state_path=board_state_path,
+                                        morning_baseline_path=baseline_path,
+                                        dashboard_output_dir=output_dir,
+                                        publish_date="2026-03-31",
+                                    )
+
+            self.assertEqual(result["mode"], "prepare")
+            current_rows = json.loads(current_path.read_text(encoding="utf-8"))
+            board_state = json.loads(board_state_path.read_text(encoding="utf-8"))
+            self.assertEqual(len(current_rows), 1)
+            self.assertEqual(current_rows[0]["game_date"], "2026-03-31")
+            self.assertEqual(board_state["board_date"], "2026-03-31")
+            self.assertEqual(len(board_state["entries"]), 1)
+
     def test_run_settle_refresh_refreshes_then_settles_then_builds_and_verifies(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
@@ -278,6 +332,71 @@ class RefreshModesTests(unittest.TestCase):
             self.assertEqual(call_order, ["refresh", "settle", "publish", "build", "verify"])
             self.assertEqual(result["resolved_schedule_date"], "2026-03-31")
             self.assertEqual(result["dashboard_path"], output_dir / "dashboard.json")
+
+    def test_run_mixed_refresh_uses_same_day_baseline_when_current_is_empty(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            dataset_path = base / "dataset.csv"
+            current_path = base / "current.json"
+            history_path = base / "history.json"
+            board_state_path = base / "daily_board_state.json"
+            baseline_path = base / "baseline.json"
+            output_dir = base / "dashboard"
+            current_path.write_text("[]", encoding="utf-8")
+            history_path.write_text("[]", encoding="utf-8")
+            baseline_path.write_text(
+                json.dumps(
+                    [
+                        {
+                            "pick_id": "2026-03-31:1001:10:20",
+                            "game_date": "2026-03-31",
+                            "game_pk": 1001,
+                            "rank": 1,
+                            "batter_id": 10,
+                            "batter_name": "Alpha",
+                            "team": "NYY",
+                            "opponent_team": "BOS",
+                            "pitcher_id": 20,
+                            "pitcher_name": "Pitcher",
+                            "confidence_tier": "elite",
+                            "predicted_hr_score": 98.0,
+                            "predicted_hr_probability": 0.2,
+                            "result": "Pending",
+                        }
+                    ]
+                ),
+                encoding="utf-8",
+            )
+
+            call_order: list[str] = []
+            with patch("scripts.refresh_modes.refresh_live_dataset", side_effect=lambda **_: call_order.append("refresh")):
+                with patch(
+                    "scripts.refresh_modes.run_settle_live_results",
+                    side_effect=lambda **_: call_order.append("settle") or {"resolved_through_date": "2026-03-31"},
+                ):
+                    with patch("scripts.refresh_modes.fetch_schedule_games", return_value=[{"game_pk": 1001, "status": "Scheduled"}]):
+                        with patch("scripts.refresh_modes.load_live_dataset", return_value=pd.DataFrame([{"game_date": pd.Timestamp("2026-03-31"), "batter_id": 10, "hit_hr": 0}])):
+                            with patch("scripts.refresh_modes.enrich_ballparkpal_rows", side_effect=lambda rows, *, schedule_date: rows):
+                                with patch("scripts.refresh_modes.publish_live_picks", side_effect=lambda **_: call_order.append("publish") or []):
+                                    with patch(
+                                        "scripts.refresh_modes.build_dashboard_artifacts",
+                                        side_effect=lambda **_: call_order.append("build") or (output_dir / "dashboard.json"),
+                                    ):
+                                        with patch("scripts.refresh_modes.verify_public_live_artifacts", side_effect=lambda **_: call_order.append("verify")):
+                                            result = refresh_modes.run_mixed_refresh(
+                                                dataset_path=dataset_path,
+                                                current_picks_path=current_path,
+                                                history_path=history_path,
+                                                board_state_path=board_state_path,
+                                                morning_baseline_path=baseline_path,
+                                                dashboard_output_dir=output_dir,
+                                                schedule_date="2026-03-31",
+                                            )
+
+            self.assertEqual(call_order, ["refresh", "settle", "build", "verify"])
+            self.assertEqual(result["resolved_schedule_date"], "2026-03-31")
+            self.assertEqual(len(result["published_rows"]), 1)
+            self.assertEqual(json.loads(current_path.read_text(encoding="utf-8"))[0]["batter_name"], "Alpha")
 
     def test_run_mixed_refresh_updates_existing_board_without_republishing(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:

@@ -142,6 +142,58 @@ def _write_morning_baseline_if_needed(
     return baseline_path
 
 
+def _same_day_rows(rows: list[dict[str, Any]], schedule_date: str) -> list[dict[str, Any]]:
+    return [
+        dict(row)
+        for row in rows
+        if normalize_game_date(row.get("game_date")) == schedule_date
+    ]
+
+
+def publish_prepared_baseline_to_current(
+    *,
+    baseline_path: Path,
+    current_picks_path: Path,
+    board_state_path: Path,
+    schedule_date: str,
+    dataset_df: Any | None = None,
+    resolved_through_date: str | None = None,
+) -> list[dict[str, Any]]:
+    baseline_rows = _same_day_rows(load_json_array(baseline_path), schedule_date)
+    if not baseline_rows:
+        return []
+
+    schedule_games = fetch_schedule_games(schedule_date)
+    created_at = str(baseline_rows[0].get("created_at") or baseline_rows[0].get("published_at") or "")
+    board_state = create_daily_board_snapshot(
+        baseline_rows,
+        schedule_date,
+        created_at=created_at,
+    )
+    if dataset_df is not None and resolved_through_date:
+        board_state, _ = update_board_entry_status(
+            board_state,
+            dataset_df,
+            resolved_through_date=resolved_through_date,
+            schedule_games=schedule_games,
+        )
+    board_state, alert_count = apply_major_alerts(
+        board_state,
+        schedule_games=schedule_games,
+    )
+    write_daily_board_state(board_state, board_state_path)
+    published_rows = enrich_ballparkpal_rows(
+        board_entries_to_current_rows(board_state),
+        schedule_date=schedule_date,
+    )
+    write_current_picks(published_rows, current_picks_path)
+    print(
+        f"Published prepared baseline for {schedule_date}: "
+        f"{len(published_rows)} rows, {alert_count} alerts"
+    )
+    return published_rows
+
+
 def resolve_auto_refresh_mode(
     *,
     current_picks_path: Path = LIVE_CURRENT_PICKS_PATH,
@@ -409,21 +461,34 @@ def run_mixed_refresh(
             f"{len(published_rows)} rows kept in original order, {status_updates} status updates, {alert_count} alerts"
         )
     else:
-        published_rows = publish_live_picks(
-            dataset_path=dataset_path,
-            bundle_path=bundle_path,
-            metadata_path=metadata_path,
-            output_path=current_picks_path,
-            history_path=history_path,
-            board_state_path=board_state_path,
-            dashboard_output_dir=dashboard_output_dir,
-            schedule_date=resolved_schedule_date,
-            hitters_per_team=hitters_per_team,
-            max_picks=max_picks,
-            min_confidence_tier=min_confidence_tier,
-            max_picks_per_team=max_picks_per_team,
-            max_picks_per_game=max_picks_per_game,
-        )
+        baseline_rows = _same_day_rows(load_json_array(morning_baseline_path), resolved_schedule_date)
+        if baseline_rows:
+            dataset_df = load_live_dataset(dataset_path)
+            resolved_through_date = str(dataset_df["game_date"].max().date())
+            published_rows = publish_prepared_baseline_to_current(
+                baseline_path=morning_baseline_path,
+                current_picks_path=current_picks_path,
+                board_state_path=board_state_path,
+                schedule_date=resolved_schedule_date,
+                dataset_df=dataset_df,
+                resolved_through_date=resolved_through_date,
+            )
+        else:
+            published_rows = publish_live_picks(
+                dataset_path=dataset_path,
+                bundle_path=bundle_path,
+                metadata_path=metadata_path,
+                output_path=current_picks_path,
+                history_path=history_path,
+                board_state_path=board_state_path,
+                dashboard_output_dir=dashboard_output_dir,
+                schedule_date=resolved_schedule_date,
+                hitters_per_team=hitters_per_team,
+                max_picks=max_picks,
+                min_confidence_tier=min_confidence_tier,
+                max_picks_per_team=max_picks_per_team,
+                max_picks_per_game=max_picks_per_game,
+            )
     result: dict[str, Any] = {
         "resolved_schedule_date": resolved_schedule_date,
         "settle_result": settle_result,
@@ -511,6 +576,29 @@ def run_refresh_mode(
         )
         if resolved_mode == "idle":
             return {"mode": "idle", "result": {"status": "idle"}}
+        if resolved_mode == "prepare":
+            result = run_prepare_refresh(**kwargs)
+            current_picks_path = Path(kwargs.get("current_picks_path", LIVE_CURRENT_PICKS_PATH))
+            board_state_path = Path(kwargs.get("board_state_path", LIVE_DAILY_BOARD_STATE_PATH))
+            morning_baseline_path = Path(kwargs.get("morning_baseline_path", LIVE_MORNING_BASELINE_PICKS_PATH))
+            history_path = Path(kwargs.get("history_path", LIVE_PICK_HISTORY_PATH))
+            dashboard_output_dir = Path(kwargs.get("dashboard_output_dir", DEFAULT_OUTPUT_DIR))
+            publish_date = normalize_game_date(kwargs.get("publish_date")) or default_publish_date()
+            published_rows = publish_prepared_baseline_to_current(
+                baseline_path=morning_baseline_path,
+                current_picks_path=current_picks_path,
+                board_state_path=board_state_path,
+                schedule_date=publish_date,
+            )
+            if published_rows and kwargs.get("rebuild_dashboard", True):
+                rebuild_and_verify_public_artifacts(
+                    current_picks_path=current_picks_path,
+                    history_path=history_path,
+                    morning_baseline_path=morning_baseline_path,
+                    dashboard_output_dir=dashboard_output_dir,
+                    verify_public_artifacts=kwargs.get("verify_public_artifacts", True),
+                )
+            return {"mode": resolved_mode, "result": result, "published_rows": published_rows}
         result = run_refresh_mode(resolved_mode, **kwargs)
         return {"mode": resolved_mode, "result": result}
     if mode == "settle":
