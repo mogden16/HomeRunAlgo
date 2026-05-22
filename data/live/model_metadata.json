@@ -1,6 +1,6 @@
 {
-  "trained_through": "2026-05-19",
-  "dataset_max_game_date": "2026-05-19",
+  "trained_through": "2026-05-21",
+  "dataset_max_game_date": "2026-05-21",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v3",
   "feature_profile_variant": "live_usable_candidate_v1_candidate_1",
@@ -412,8 +412,8 @@
   "confidence_policy_search_rows": [],
   "confidence_summary": [],
   "elite_pick_metrics": {},
-  "row_count": 112376,
-  "hr_rate": 0.10545,
+  "row_count": 112832,
+  "hr_rate": 0.105387,
   "refit_strategy": "fast_refit",
   "weather_feature_coverage": {
     "warning_null_rate_threshold": 0.35,
@@ -422,21 +422,21 @@
     "all_null_features": [],
     "summary": {
       "temperature_f": {
-        "row_count": 112376,
-        "non_null_count": 86074,
-        "null_rate": 0.234054,
+        "row_count": 112832,
+        "non_null_count": 86404,
+        "null_rate": 0.234224,
         "present": true
       },
       "wind_speed_mph": {
-        "row_count": 112376,
-        "non_null_count": 86074,
-        "null_rate": 0.234054,
+        "row_count": 112832,
+        "non_null_count": 86404,
+        "null_rate": 0.234224,
         "present": true
       },
       "humidity_pct": {
-        "row_count": 112376,
-        "non_null_count": 86074,
-        "null_rate": 0.234054,
+        "row_count": 112832,
+        "non_null_count": 86404,
+        "null_rate": 0.234224,
         "present": true
       }
     },
@@ -450,5 +450,16 @@
     }
   },
   "weather_join_contract": "game_date + home_team; PARKS[home_team]; nearest available hour to 19:00 local park time",
-  "operational_alerts": []
+  "operational_alerts": [
+    {
+      "kind": "warning",
+      "code": "weather_forecast_unavailable",
+      "title": "Weather data incomplete",
+      "message": "Weather forecast data was unavailable for LAA on 2026-05-22. This slate was generated with null weather inputs for those parks. Rerun later for a weather-refreshed draft.",
+      "target_date": "2026-05-22",
+      "teams": [
+        "LAA"
+      ]
+    }
+  ]
 }
