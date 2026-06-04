@@ -1,6 +1,6 @@
 {
-  "trained_through": "2026-06-02",
-  "dataset_max_game_date": "2026-06-02",
+  "trained_through": "2026-06-03",
+  "dataset_max_game_date": "2026-06-03",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v3",
   "feature_profile_variant": "live_usable_candidate_v1_candidate_1",
@@ -412,8 +412,8 @@
   "confidence_policy_search_rows": [],
   "confidence_summary": [],
   "elite_pick_metrics": {},
-  "row_count": 116115,
-  "hr_rate": 0.105559,
+  "row_count": 116420,
+  "hr_rate": 0.105549,
   "refit_strategy": "fast_refit",
   "weather_feature_coverage": {
     "warning_null_rate_threshold": 0.35,
@@ -422,21 +422,21 @@
     "all_null_features": [],
     "summary": {
       "temperature_f": {
-        "row_count": 116115,
-        "non_null_count": 88892,
-        "null_rate": 0.234449,
+        "row_count": 116420,
+        "non_null_count": 89119,
+        "null_rate": 0.234504,
         "present": true
       },
       "wind_speed_mph": {
-        "row_count": 116115,
-        "non_null_count": 88892,
-        "null_rate": 0.234449,
+        "row_count": 116420,
+        "non_null_count": 89119,
+        "null_rate": 0.234504,
         "present": true
       },
       "humidity_pct": {
-        "row_count": 116115,
-        "non_null_count": 88892,
-        "null_rate": 0.234449,
+        "row_count": 116420,
+        "non_null_count": 89119,
+        "null_rate": 0.234504,
         "present": true
       }
     },
