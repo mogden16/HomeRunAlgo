@@ -736,14 +736,14 @@
     "ballparkpal_overlay_adjusted_rank": 12,
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 95.8,
-    "current_status": "game_in_progress",
+    "current_status": "home_run",
     "alert_flags": [],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "Peak exit velocity over the last 10 days is 112.5 mph, which points to top-end HR juice.",
     "top_reason_2": "The hitter has the platoon advantage in this matchup.",
     "top_reason_3": "The handedness-specific barrel matchup score is 0.0020, reinforcing the power-contact fit.",
-    "result": "Pending"
+    "result": "HR"
   },
   {
     "pick_id": "2026-06-13:824508:682998:695076",
@@ -1761,7 +1761,7 @@
     "opponent_team": "LAA",
     "pitcher_id": 667755,
     "pitcher_name": "Jos\u00e9 Soriano",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Angel Stadium",
     "ballpark_region_abbr": "CA",
@@ -4189,7 +4189,7 @@
     "opponent_team": "LAA",
     "pitcher_id": 667755,
     "pitcher_name": "Jos\u00e9 Soriano",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Angel Stadium",
     "ballpark_region_abbr": "CA",
@@ -4753,7 +4753,7 @@
     "opponent_team": "LAA",
     "pitcher_id": 667755,
     "pitcher_name": "Jos\u00e9 Soriano",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Angel Stadium",
     "ballpark_region_abbr": "CA",
@@ -7941,7 +7941,7 @@
     "opponent_team": "LAA",
     "pitcher_id": 667755,
     "pitcher_name": "Jos\u00e9 Soriano",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Angel Stadium",
     "ballpark_region_abbr": "CA",
@@ -7974,14 +7974,16 @@
     "ballparkpal_overlay_adjusted_rank": 128,
     "ballparkpal_overlay_direction": "neutral",
     "original_score": 51.3,
-    "current_status": "pending",
-    "alert_flags": [],
-    "inactive_flag": false,
-    "display_style": "default",
+    "current_status": "inactive",
+    "alert_flags": [
+      "lineup_alert"
+    ],
+    "inactive_flag": true,
+    "display_style": "strikethrough",
     "top_reason_1": "Peak exit velocity over the last 10 days is 113.6 mph, which points to top-end HR juice.",
     "top_reason_2": "Jos\u00e9 Soriano has allowed 91.2 mph average exit velocity recently, which the model flags as hittable contact.",
     "top_reason_3": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
-    "result": "Pending"
+    "result": "Inactive"
   },
   {
     "pick_id": "2026-06-13:824995:691720:683155",
@@ -8251,7 +8253,7 @@
     "opponent_team": "LAA",
     "pitcher_id": 667755,
     "pitcher_name": "Jos\u00e9 Soriano",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Angel Stadium",
     "ballpark_region_abbr": "CA",
@@ -11721,14 +11723,14 @@
     "ballparkpal_overlay_adjusted_rank": 188,
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 28.4,
-    "current_status": "game_in_progress",
+    "current_status": "home_run",
     "alert_flags": [],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "The handedness-specific barrel matchup score is 0.0022, reinforcing the power-contact fit.",
     "top_reason_2": "Shane Drohan has allowed homers in 5.3% of plate appearances to this batter side.",
     "top_reason_3": "This game is in a roofed park, so weather inputs are suppressed there.",
-    "result": "Pending"
+    "result": "HR"
   },
   {
     "pick_id": "2026-06-13:824828:695238:694346",
@@ -12124,7 +12126,7 @@
     "opponent_team": "LAA",
     "pitcher_id": 667755,
     "pitcher_name": "Jos\u00e9 Soriano",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Angel Stadium",
     "ballpark_region_abbr": "CA",
@@ -12157,14 +12159,16 @@
     "ballparkpal_overlay_adjusted_rank": 195,
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 25.7,
-    "current_status": "pending",
-    "alert_flags": [],
-    "inactive_flag": false,
-    "display_style": "default",
+    "current_status": "inactive",
+    "alert_flags": [
+      "lineup_alert"
+    ],
+    "inactive_flag": true,
+    "display_style": "strikethrough",
     "top_reason_1": "Barrel rate over the last 10 days is 4.3%, a above-baseline indicator of current lift-and-damage contact.",
     "top_reason_2": "Jos\u00e9 Soriano has allowed 91.2 mph average exit velocity recently, which the model flags as hittable contact.",
     "top_reason_3": "Jos\u00e9 Soriano has allowed a 43.9% hard-hit rate over the last 30 days.",
-    "result": "Pending"
+    "result": "Inactive"
   },
   {
     "pick_id": "2026-06-13:823776:666152:605400",
@@ -13217,14 +13221,14 @@
     "ballparkpal_overlay_adjusted_rank": 212,
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 19.2,
-    "current_status": "game_in_progress",
+    "current_status": "home_run",
     "alert_flags": [],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "Average exit velocity over the last 10 days is 91.5 mph, a above-baseline recent batted-ball quality marker.",
     "top_reason_2": "Mike Burrows has allowed homers in 5.9% of plate appearances over the last 30 days.",
     "top_reason_3": "Projected wind speed is 14.5 mph, which the live model treats as favorable weather context.",
-    "result": "Pending"
+    "result": "HR"
   },
   {
     "pick_id": "2026-06-13:824019:672724:643377",
@@ -13556,7 +13560,7 @@
     "opponent_team": "LAA",
     "pitcher_id": 667755,
     "pitcher_name": "Jos\u00e9 Soriano",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Angel Stadium",
     "ballpark_region_abbr": "CA",
@@ -13589,14 +13593,16 @@
     "ballparkpal_overlay_adjusted_rank": 218,
     "ballparkpal_overlay_direction": "neutral",
     "original_score": 16.9,
-    "current_status": "pending",
-    "alert_flags": [],
-    "inactive_flag": false,
-    "display_style": "default",
+    "current_status": "inactive",
+    "alert_flags": [
+      "lineup_alert"
+    ],
+    "inactive_flag": true,
+    "display_style": "strikethrough",
     "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1911, supporting loud-contact upside.",
     "top_reason_2": "Jos\u00e9 Soriano has allowed 91.2 mph average exit velocity recently, which the model flags as hittable contact.",
     "top_reason_3": "Jos\u00e9 Soriano has allowed a 43.9% hard-hit rate over the last 30 days.",
-    "result": "Pending"
+    "result": "Inactive"
   },
   {
     "pick_id": "2026-06-13:823776:650859:605400",
@@ -13872,7 +13878,7 @@
     "opponent_team": "LAA",
     "pitcher_id": 667755,
     "pitcher_name": "Jos\u00e9 Soriano",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Angel Stadium",
     "ballpark_region_abbr": "CA",
@@ -13905,14 +13911,16 @@
     "ballparkpal_overlay_adjusted_rank": 223,
     "ballparkpal_overlay_direction": "neutral",
     "original_score": 14.9,
-    "current_status": "pending",
-    "alert_flags": [],
-    "inactive_flag": false,
-    "display_style": "default",
+    "current_status": "inactive",
+    "alert_flags": [
+      "lineup_alert"
+    ],
+    "inactive_flag": true,
+    "display_style": "strikethrough",
     "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1712, supporting loud-contact upside.",
     "top_reason_2": "Jos\u00e9 Soriano has allowed 91.2 mph average exit velocity recently, which the model flags as hittable contact.",
     "top_reason_3": "Jos\u00e9 Soriano has allowed a 43.9% hard-hit rate over the last 30 days.",
-    "result": "Pending"
+    "result": "Inactive"
   },
   {
     "pick_id": "2026-06-13:822802:676391:693645",
@@ -14876,7 +14884,7 @@
     "opponent_team": "LAA",
     "pitcher_id": 667755,
     "pitcher_name": "Jos\u00e9 Soriano",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Angel Stadium",
     "ballpark_region_abbr": "CA",

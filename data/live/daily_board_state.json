@@ -766,13 +766,13 @@
       "ballparkpal_overlay_adjusted_score": 95.8,
       "ballparkpal_overlay_adjusted_rank": 12,
       "ballparkpal_overlay_direction": "unfavorable",
-      "current_status": "game_in_progress",
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
-      "result": "Pending",
-      "actual_hit_hr": null,
-      "result_label": "Pending"
+      "result": "HR",
+      "actual_hit_hr": 1,
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-06-13:824508:682998:695076",
@@ -1830,7 +1830,7 @@
       "top_reason_1": "Hard-hit rate over the last 30 days is 58.0%, showing consistent quality contact.",
       "top_reason_2": "Jos\u00e9 Soriano has allowed 91.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "95+ EV contact rate over the last 30 days is 58.0%, a strong loud-contact input for the model.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -4336,7 +4336,7 @@
       "top_reason_1": "Barrel rate over the last 30 days is 7.3%, which the model treats as sustained power quality.",
       "top_reason_2": "Jos\u00e9 Soriano has allowed 91.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 111.0 mph, which points to top-end HR juice.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -4918,7 +4918,7 @@
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.2201, supporting loud-contact upside.",
       "top_reason_2": "Jos\u00e9 Soriano has allowed 91.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -8208,7 +8208,7 @@
       "top_reason_1": "Peak exit velocity over the last 10 days is 113.6 mph, which points to top-end HR juice.",
       "top_reason_2": "Jos\u00e9 Soriano has allowed 91.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 50.0%, a top-quartile recent-contact signal.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -8236,13 +8236,15 @@
       "ballparkpal_overlay_adjusted_score": 51.3,
       "ballparkpal_overlay_adjusted_rank": 128,
       "ballparkpal_overlay_direction": "neutral",
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
-      "result": "Pending",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
+      "result": "Inactive",
       "actual_hit_hr": null,
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-06-13:824995:691720:683155",
@@ -8528,7 +8530,7 @@
       "top_reason_1": "Barrel rate over the last 10 days is 7.1%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Jos\u00e9 Soriano has allowed 91.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "The hitter has the platoon advantage in this matchup.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -12103,13 +12105,13 @@
       "ballparkpal_overlay_adjusted_score": 28.4,
       "ballparkpal_overlay_adjusted_rank": 188,
       "ballparkpal_overlay_direction": "unfavorable",
-      "current_status": "game_in_progress",
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
-      "result": "Pending",
-      "actual_hit_hr": null,
-      "result_label": "Pending"
+      "result": "HR",
+      "actual_hit_hr": 1,
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-06-13:824828:695238:694346",
@@ -12525,7 +12527,7 @@
       "top_reason_1": "Barrel rate over the last 10 days is 4.3%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "Jos\u00e9 Soriano has allowed 91.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Jos\u00e9 Soriano has allowed a 43.9% hard-hit rate over the last 30 days.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -12553,13 +12555,15 @@
       "ballparkpal_overlay_adjusted_score": 25.7,
       "ballparkpal_overlay_adjusted_rank": 195,
       "ballparkpal_overlay_direction": "unfavorable",
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
-      "result": "Pending",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
+      "result": "Inactive",
       "actual_hit_hr": null,
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-06-13:823776:666152:605400",
@@ -13647,13 +13651,13 @@
       "ballparkpal_overlay_adjusted_score": 19.2,
       "ballparkpal_overlay_adjusted_rank": 212,
       "ballparkpal_overlay_direction": "unfavorable",
-      "current_status": "game_in_progress",
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
-      "result": "Pending",
-      "actual_hit_hr": null,
-      "result_label": "Pending"
+      "result": "HR",
+      "actual_hit_hr": 1,
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-06-13:824019:672724:643377",
@@ -14003,7 +14007,7 @@
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1911, supporting loud-contact upside.",
       "top_reason_2": "Jos\u00e9 Soriano has allowed 91.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Jos\u00e9 Soriano has allowed a 43.9% hard-hit rate over the last 30 days.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -14031,13 +14035,15 @@
       "ballparkpal_overlay_adjusted_score": 16.9,
       "ballparkpal_overlay_adjusted_rank": 218,
       "ballparkpal_overlay_direction": "neutral",
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
-      "result": "Pending",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
+      "result": "Inactive",
       "actual_hit_hr": null,
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-06-13:823776:650859:605400",
@@ -14329,7 +14335,7 @@
       "top_reason_1": "The handedness-specific hard-hit matchup score is 0.1712, supporting loud-contact upside.",
       "top_reason_2": "Jos\u00e9 Soriano has allowed 91.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Jos\u00e9 Soriano has allowed a 43.9% hard-hit rate over the last 30 days.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
@@ -14357,13 +14363,15 @@
       "ballparkpal_overlay_adjusted_score": 14.9,
       "ballparkpal_overlay_adjusted_rank": 223,
       "ballparkpal_overlay_direction": "neutral",
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
-      "result": "Pending",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
+      "result": "Inactive",
       "actual_hit_hr": null,
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-06-13:822802:676391:693645",
@@ -15365,7 +15373,7 @@
       "top_reason_1": "Barrel rate over the last 10 days is 5.3%, a top-quartile indicator of current lift-and-damage contact.",
       "top_reason_2": "Jos\u00e9 Soriano has allowed 91.2 mph average exit velocity recently, which the model flags as hittable contact.",
       "top_reason_3": "Jos\u00e9 Soriano has allowed a 43.9% hard-hit rate over the last 30 days.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Angel Stadium",
       "ballpark_region_abbr": "CA",
