@@ -1,6 +1,6 @@
 {
-  "trained_through": "2026-06-11",
-  "dataset_max_game_date": "2026-06-11",
+  "trained_through": "2026-06-12",
+  "dataset_max_game_date": "2026-06-12",
   "model_family": "histgb",
   "feature_profile": "live_usable_candidate_v3",
   "feature_profile_variant": "live_usable_candidate_v1_candidate_1",
@@ -412,8 +412,8 @@
   "confidence_policy_search_rows": [],
   "confidence_summary": [],
   "elite_pick_metrics": {},
-  "row_count": 118450,
-  "hr_rate": 0.105834,
+  "row_count": 118748,
+  "hr_rate": 0.10588,
   "refit_strategy": "fast_refit",
   "weather_feature_coverage": {
     "warning_null_rate_threshold": 0.35,
@@ -422,21 +422,21 @@
     "all_null_features": [],
     "summary": {
       "temperature_f": {
-        "row_count": 118450,
-        "non_null_count": 90683,
-        "null_rate": 0.23442,
+        "row_count": 118748,
+        "non_null_count": 90940,
+        "null_rate": 0.234177,
         "present": true
       },
       "wind_speed_mph": {
-        "row_count": 118450,
-        "non_null_count": 90683,
-        "null_rate": 0.23442,
+        "row_count": 118748,
+        "non_null_count": 90940,
+        "null_rate": 0.234177,
         "present": true
       },
       "humidity_pct": {
-        "row_count": 118450,
-        "non_null_count": 90683,
-        "null_rate": 0.23442,
+        "row_count": 118748,
+        "non_null_count": 90940,
+        "null_rate": 0.234177,
         "present": true
       }
     },
@@ -450,17 +450,5 @@
     }
   },
   "weather_join_contract": "game_date + home_team; PARKS[home_team]; nearest available hour to 19:00 local park time",
-  "operational_alerts": [
-    {
-      "kind": "warning",
-      "code": "weather_forecast_unavailable",
-      "title": "Weather data incomplete",
-      "message": "Weather forecast data was unavailable for SF, WSH on 2026-06-13. This slate was generated with null weather inputs for those parks. Rerun later for a weather-refreshed draft.",
-      "target_date": "2026-06-13",
-      "teams": [
-        "SF",
-        "WSH"
-      ]
-    }
-  ]
+  "operational_alerts": []
 }
