@@ -379,6 +379,7 @@ select {
 
 .panel {
   margin-top: 18px;
+  min-width: 0;
   padding: 22px;
 }
 
@@ -397,6 +398,13 @@ select {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
+  min-width: 0;
+}
+
+.two-up > *,
+.stats-grid > *,
+.lineup-team-grid > * {
+  min-width: 0;
 }
 
 .section-head,
@@ -431,6 +439,27 @@ select {
   gap: 8px;
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+.legend-item-probability {
+  color: var(--ink);
+}
+
+.probability-key {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  flex: 0 0 auto;
+}
+
+.probability-key-confident {
+  background: rgba(185, 28, 28, 0.16);
+  border: 2px solid rgba(185, 28, 28, 0.9);
+}
+
+.probability-key-aggressive {
+  background: rgba(234, 179, 8, 0.18);
+  border: 2px solid rgba(217, 119, 6, 0.88);
 }
 
 .tier-filter-row {
@@ -731,6 +760,62 @@ td {
   border-top: 1px solid var(--line);
   vertical-align: top;
   line-height: 1.45;
+}
+
+.data-table tbody tr.row-probability-confident td,
+.data-table tbody tr.row-probability-aggressive td {
+  border-top-color: transparent;
+  border-bottom: 1px solid transparent;
+}
+
+.data-table tbody tr.row-probability-confident td {
+  background: rgba(185, 28, 28, 0.05);
+  box-shadow: inset 0 2px 0 rgba(185, 28, 28, 0.88), inset 0 -2px 0 rgba(185, 28, 28, 0.88);
+}
+
+.data-table tbody tr.row-probability-aggressive td {
+  background: rgba(234, 179, 8, 0.07);
+  box-shadow: inset 0 2px 0 rgba(217, 119, 6, 0.88), inset 0 -2px 0 rgba(217, 119, 6, 0.88);
+}
+
+.data-table tbody tr.row-probability-confident td:first-child,
+.data-table tbody tr.row-probability-aggressive td:first-child {
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+.data-table tbody tr.row-probability-confident td:last-child,
+.data-table tbody tr.row-probability-aggressive td:last-child {
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.data-table tbody tr.row-probability-confident td:first-child {
+  box-shadow:
+    inset 2px 0 0 rgba(185, 28, 28, 0.88),
+    inset 0 2px 0 rgba(185, 28, 28, 0.88),
+    inset 0 -2px 0 rgba(185, 28, 28, 0.88);
+}
+
+.data-table tbody tr.row-probability-confident td:last-child {
+  box-shadow:
+    inset -2px 0 0 rgba(185, 28, 28, 0.88),
+    inset 0 2px 0 rgba(185, 28, 28, 0.88),
+    inset 0 -2px 0 rgba(185, 28, 28, 0.88);
+}
+
+.data-table tbody tr.row-probability-aggressive td:first-child {
+  box-shadow:
+    inset 2px 0 0 rgba(217, 119, 6, 0.88),
+    inset 0 2px 0 rgba(217, 119, 6, 0.88),
+    inset 0 -2px 0 rgba(217, 119, 6, 0.88);
+}
+
+.data-table tbody tr.row-probability-aggressive td:last-child {
+  box-shadow:
+    inset -2px 0 0 rgba(217, 119, 6, 0.88),
+    inset 0 2px 0 rgba(217, 119, 6, 0.88),
+    inset 0 -2px 0 rgba(217, 119, 6, 0.88);
 }
 
 .result-hit,
