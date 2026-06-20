@@ -820,7 +820,7 @@ function renderTierLegend(entries) {
     return;
   }
   const guide = Array.isArray(entries) && entries.length ? entries : DEFAULT_TIER_GUIDE;
-  target.innerHTML = guide
+  const tierGuideMarkup = guide
     .map(
       (entry) => `
         <span class="legend-item">
@@ -830,6 +830,31 @@ function renderTierLegend(entries) {
       `,
     )
     .join("");
+  const probabilityGuideMarkup = `
+    <span class="legend-item legend-item-probability">
+      <span class="probability-key probability-key-confident" aria-hidden="true"></span>
+      <span>Confident: HR chance 10.0%+</span>
+    </span>
+    <span class="legend-item legend-item-probability">
+      <span class="probability-key probability-key-aggressive" aria-hidden="true"></span>
+      <span>Aggressive: HR chance 9.0%+</span>
+    </span>
+  `;
+  target.innerHTML = `${probabilityGuideMarkup}${tierGuideMarkup}`;
+}
+
+function probabilityHighlightClass(row) {
+  const probability = Number(row?.predicted_hr_probability);
+  if (!Number.isFinite(probability)) {
+    return "";
+  }
+  if (probability >= 0.10) {
+    return "row-probability-confident";
+  }
+  if (probability >= 0.09) {
+    return "row-probability-aggressive";
+  }
+  return "";
 }
 
 function renderSimpleTable(targetId, columns, rows, emptyMessage = "No rows available.", options = {}) {
@@ -953,7 +978,13 @@ function renderPicksTable(targetId, rows, emptyMessage, { includeGameMeta = fals
   renderSimpleTable(targetId, columns, displayRows, emptyMessage, {
     mobileCards: false,
     tableClass: "mobile-picks-table",
-    rowClass: (row) => (row.inactive_flag || row.display_style === "strikethrough" ? "row-inactive" : ""),
+    rowClass: (row) =>
+      [
+        row.inactive_flag || row.display_style === "strikethrough" ? "row-inactive" : "",
+        probabilityHighlightClass(row),
+      ]
+        .filter(Boolean)
+        .join(" "),
   });
 }
 
