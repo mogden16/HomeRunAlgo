@@ -121,6 +121,9 @@ def refresh_cloudflare_dashboard(
     dashboard_output_dir: Path,
     schedule_date: str,
     *,
+    model_bundle_path: Path = LIVE_MODEL_BUNDLE_PATH,
+    model_data_path: Path = LIVE_MODEL_DATA_PATH,
+    model_metadata_path: Path = LIVE_MODEL_METADATA_PATH,
     persist_history: bool = True,
 ) -> Path:
     dashboard_path = build_dashboard_artifacts(
@@ -131,6 +134,9 @@ def refresh_cloudflare_dashboard(
         persist_history=persist_history,
         latest_available_date_override=schedule_date,
         season_hr_source="live",
+        model_bundle_path=model_bundle_path,
+        model_data_path=model_data_path,
+        model_metadata_path=model_metadata_path,
     )
     print(f"Refreshed Cloudflare dashboard artifact at {dashboard_path}")
     return dashboard_path
@@ -375,7 +381,6 @@ def publish_live_picks(
         board_state_path=board_state_path,
         current_picks_path=output_path,
     )
-    schedule_games = fetch_schedule_games(resolved_schedule_date)
     existing_rows = load_json_array(output_path)
     if overlay_only:
         if not existing_rows:
@@ -426,6 +431,9 @@ def publish_live_picks(
                 history_path,
                 dashboard_output_dir,
                 resolved_schedule_date,
+                model_bundle_path=bundle_path,
+                model_data_path=dataset_path,
+                model_metadata_path=metadata_path,
             )
             print(
                 f"Applied Ballpark Pal overlay to {len(overlay_rows)} current picks and refreshed the dashboard for "
@@ -448,9 +456,13 @@ def publish_live_picks(
             history_path,
             dashboard_output_dir,
             resolved_schedule_date,
+            model_bundle_path=bundle_path,
+            model_data_path=dataset_path,
+            model_metadata_path=metadata_path,
             persist_history=False,
         )
         raise
+    schedule_games = fetch_schedule_games(resolved_schedule_date)
     resolved_through_date = str(dataset_df["game_date"].max().date())
     existing_same_day_rows = [
         dict(row)
@@ -484,7 +496,15 @@ def publish_live_picks(
             schedule_date=resolved_schedule_date,
         )
         write_current_picks(stable_rows, output_path)
-        refresh_cloudflare_dashboard(output_path, history_path, dashboard_output_dir, resolved_schedule_date)
+        refresh_cloudflare_dashboard(
+            output_path,
+            history_path,
+            dashboard_output_dir,
+            resolved_schedule_date,
+            model_bundle_path=bundle_path,
+            model_data_path=dataset_path,
+            model_metadata_path=metadata_path,
+        )
         print(
             f"Reused stable board for {resolved_schedule_date}: "
             f"{len(stable_rows)} entries, {status_updates} status updates, {alert_count} alerts"
@@ -512,6 +532,9 @@ def publish_live_picks(
             history_path,
             dashboard_output_dir,
             resolved_schedule_date,
+            model_bundle_path=bundle_path,
+            model_data_path=dataset_path,
+            model_metadata_path=metadata_path,
             persist_history=False,
         )
         raise
@@ -528,7 +551,15 @@ def publish_live_picks(
     stable_rows = board_entries_to_current_rows(board_state)
     write_current_picks(stable_rows, output_path)
     published_rows = load_json_array(output_path)
-    refresh_cloudflare_dashboard(output_path, history_path, dashboard_output_dir, resolved_schedule_date)
+    refresh_cloudflare_dashboard(
+        output_path,
+        history_path,
+        dashboard_output_dir,
+        resolved_schedule_date,
+        model_bundle_path=bundle_path,
+        model_data_path=dataset_path,
+        model_metadata_path=metadata_path,
+    )
     print(
         f"Published stable board with {len(published_rows)} picks to {output_path} for {resolved_schedule_date} "
         f"({alert_count} alerts)"

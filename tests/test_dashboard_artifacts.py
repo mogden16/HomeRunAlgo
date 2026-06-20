@@ -225,6 +225,7 @@ class DashboardArtifactTests(unittest.TestCase):
                 {
                     "ballpark_name": "loanDepot park",
                     "ballpark_region_abbr": "FL",
+                    "roofed_park": True,
                     "weather_code": 0,
                     "weather_label": "Clear",
                     "temperature_f": 89.1,

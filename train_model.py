@@ -122,6 +122,19 @@ LIVE_PRODUCTION_FEATURE_COLUMNS = [
     "roofed_park",
     "platoon_advantage",
 ]
+PREGAME_SAFE_PROFILE = "pregame_safe_v1"
+PREGAME_SAFE_FEATURE_COLUMNS = [
+    "hr_per_pa_last_30d",
+    "hr_per_pa_last_10d",
+    "barrels_per_pa_last_30d",
+    "barrels_per_pa_last_10d",
+    "hard_hit_rate_last_30d",
+    "hard_hit_rate_last_10d",
+    "bbe_95plus_ev_rate_last_30d",
+    "bbe_95plus_ev_rate_last_10d",
+    "avg_exit_velocity_last_10d",
+    "max_exit_velocity_last_10d",
+]
 LIVE_PLUS_FEATURE_COLUMNS = [
     *LIVE_PRODUCTION_FEATURE_COLUMNS,
     "park_factor_hr_vs_batter_hand",
@@ -421,6 +434,7 @@ FEATURE_COLUMNS = list(STABLE_FEATURE_COLUMNS)
 OPTIONAL_SECONDARY_FEATURES: list[str] = []
 FEATURE_PROFILE_CHOICES = [
     "stable",
+    PREGAME_SAFE_PROFILE,
     "live",
     "live_plus",
     "live_shrunk",
@@ -602,6 +616,8 @@ def feature_columns_for_profile(profile: str) -> list[str]:
         return list(STABLE_FEATURE_COLUMNS)
     if profile == "live":
         return list(LIVE_PRODUCTION_FEATURE_COLUMNS)
+    if profile == PREGAME_SAFE_PROFILE:
+        return list(PREGAME_SAFE_FEATURE_COLUMNS)
     if profile == "live_plus":
         return list(LIVE_PLUS_FEATURE_COLUMNS)
     if profile == "live_shrunk":
@@ -628,7 +644,11 @@ def available_feature_columns(df: pd.DataFrame, feature_profile: str = "stable")
 
 
 def prepare_feature_matrix(df: pd.DataFrame, feature_columns: list[str]) -> pd.DataFrame:
-    X = df[feature_columns].copy()
+    X = df.copy()
+    for column in feature_columns:
+        if column not in X.columns:
+            X[column] = np.nan
+    X = X[feature_columns].copy()
     binary_maps = {
         "pitch_hand_primary": {"L": 0.0, "R": 1.0},
         "starter_or_bullpen_proxy": {"bullpen_like": 0.0, "starter_like": 1.0},

@@ -97,10 +97,10 @@ class BallparkPalSnapshotAndOverlayTests(unittest.TestCase):
         self.assertEqual(overlay["ballparkpal_overlay_signed_score"], 13.0)
         self.assertEqual(overlay["ballparkpal_overlay_display_score"], 23.0)
         self.assertIsNotNone(overlay["ballparkpal_overlay_adjusted_score"])
-        self.assertEqual(overlay["ballparkpal_overlay_blend_weights"]["model"], 0.1)
-        self.assertEqual(overlay["ballparkpal_overlay_blend_weights"]["ballpark"], 0.9)
+        self.assertEqual(overlay["ballparkpal_overlay_blend_weights"]["model"], 0.9)
+        self.assertEqual(overlay["ballparkpal_overlay_blend_weights"]["ballpark"], 0.1)
         expected_adjusted = round(
-            0.1 * overlay["ballparkpal_overlay_model_score"] + 0.9 * overlay["ballparkpal_overlay_display_score"],
+            0.9 * overlay["ballparkpal_overlay_model_score"] + 0.1 * overlay["ballparkpal_overlay_display_score"],
             1,
         )
         self.assertEqual(overlay["ballparkpal_overlay_adjusted_score"], expected_adjusted)

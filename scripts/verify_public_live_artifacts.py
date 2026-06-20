@@ -24,6 +24,7 @@ TRACKING_START_DATE = DEFAULT_TRACKING_START_DATE
 CURRENT_PICK_COLUMNS = set(PUBLIC_CURRENT_PICK_COLUMNS)
 HISTORY_COLUMNS = set(PUBLIC_HISTORY_COLUMNS)
 DISPLAY_COLUMNS = list(PUBLIC_DISPLAY_COLUMNS)
+LEGACY_OPTIONAL_PREDICTION_COLUMNS = {"positive_call_threshold", "positive_hr_call"}
 
 
 def parse_args() -> argparse.Namespace:
@@ -72,12 +73,22 @@ def assert_true(condition: bool, message: str) -> None:
         raise AssertionError(message)
 
 
+def verify_migrating_columns(actual: set[str], expected: set[str], path: Path, label: str) -> None:
+    extra = actual - expected
+    missing = expected - actual
+    assert_true(not extra, f"{path} contains unexpected {label} fields: {sorted(extra)}")
+    assert_true(
+        missing <= LEGACY_OPTIONAL_PREDICTION_COLUMNS,
+        f"{path} is missing required {label} fields: {sorted(missing)}",
+    )
+
+
 def verify_current_picks(path: Path) -> None:
     rows = load_json(path)
     assert_true(isinstance(rows, list), f"{path} must contain a JSON array.")
     assert_true(rows == sorted(rows, key=current_sort_key), f"{path} is not sorted by stable board order.")
     for row in rows:
-        assert_true(set(row.keys()) == CURRENT_PICK_COLUMNS, f"{path} contains unexpected current-pick fields: {sorted(set(row.keys()) - CURRENT_PICK_COLUMNS)}")
+        verify_migrating_columns(set(row), CURRENT_PICK_COLUMNS, path, "current-pick")
         assert_true(str(row.get("game_date") or "") >= TRACKING_START_DATE, f"{path} contains pre-tracking row {row.get('pick_id')}.")
 
 
@@ -87,7 +98,7 @@ def verify_pick_history(path: Path) -> None:
     assert_true(rows == sorted(rows, key=history_sort_key), f"{path} is not deterministically ordered.")
     seen_pick_ids: set[str] = set()
     for row in rows:
-        assert_true(set(row.keys()) == HISTORY_COLUMNS, f"{path} contains unexpected history fields: {sorted(set(row.keys()) - HISTORY_COLUMNS)}")
+        verify_migrating_columns(set(row), HISTORY_COLUMNS, path, "history")
         assert_true(str(row.get("game_date") or "") >= TRACKING_START_DATE, f"{path} contains pre-tracking row {row.get('pick_id')}.")
         pick_id = str(row.get("pick_id") or "")
         assert_true(pick_id not in seen_pick_ids, f"{path} contains duplicate pick_id {pick_id}.")
@@ -111,7 +122,13 @@ def verify_dashboard(path: Path) -> None:
         f"{path} history is not sorted by date desc and stable board order.",
     )
     for row in latest_picks + history:
-        assert_true(list(row.keys()) == DISPLAY_COLUMNS, f"{path} contains unexpected dashboard row fields for pick {row.get('pick_id')}.")
+        actual_columns = list(row)
+        expected_columns = [column for column in DISPLAY_COLUMNS if column in row]
+        verify_migrating_columns(set(actual_columns), set(DISPLAY_COLUMNS), path, "dashboard row")
+        assert_true(
+            actual_columns == expected_columns,
+            f"{path} dashboard field order drifted for pick {row.get('pick_id')}.",
+        )
         assert_true(str(row.get("game_date") or "") >= TRACKING_START_DATE, f"{path} contains pre-tracking dashboard row {row.get('pick_id')}.")
 
 
