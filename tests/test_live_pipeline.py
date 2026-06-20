@@ -2606,11 +2606,12 @@ class LivePipelineTests(unittest.TestCase):
             )
             history_path.write_text("[]", encoding="utf-8")
 
-            build_dashboard_artifacts.build_dashboard_artifacts(
-                current_picks_path=current_path,
-                history_path=history_path,
-                output_dir=output_dir,
-            )
+            with patch("scripts.build_dashboard_artifacts.eastern_yesterday", return_value="2026-03-25"):
+                build_dashboard_artifacts.build_dashboard_artifacts(
+                    current_picks_path=current_path,
+                    history_path=history_path,
+                    output_dir=output_dir,
+                )
 
             current_rows = json.loads(current_path.read_text(encoding="utf-8"))
             history_rows = json.loads(history_path.read_text(encoding="utf-8"))
@@ -2639,7 +2640,7 @@ class LivePipelineTests(unittest.TestCase):
                     "opponent_team": "BOS",
                     "pitcher_id": 20,
                     "pitcher_name": "Pitcher",
-                    "confidence_tier": "watch",
+                    "confidence_tier": "strong",
                     "predicted_hr_probability": 0.10,
                     "predicted_hr_score": 99.0 - index,
                     "top_reason_1": "reason",
