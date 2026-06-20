@@ -143,7 +143,7 @@ def _park_roof_label(home_team: str) -> str:
 
 
 def _park_is_roofed(home_team: str) -> bool:
-    return _park_roof_type(home_team) != "open_air"
+    return _park_roof_type(home_team) == "dome"
 
 
 def _augment_weather_carry_fields(weather_df: pd.DataFrame) -> pd.DataFrame:
@@ -393,7 +393,7 @@ def build_weather_table(game_schedule: pd.DataFrame, force_refresh: bool = False
         park = PARKS[home_team]
         roof_type = _park_roof_type(home_team)
         roof_label = _park_roof_label(home_team)
-        roofed_park = roof_type != "open_air"
+        roofed_park = roof_type == "dome"
         tz_name = park["tz"]
         local_dates = pd.to_datetime(park_games["game_date"]).dt.normalize().drop_duplicates().sort_values()
         if local_dates.empty:

@@ -17,6 +17,7 @@ import train_model
 class FeatureProfilePlumbingTests(unittest.TestCase):
     def test_train_model_profile_choices_include_shrunk_variants(self) -> None:
         self.assertIn("live_shrunk", train_model.FEATURE_PROFILE_CHOICES)
+        self.assertIn("pregame_safe_v1", train_model.FEATURE_PROFILE_CHOICES)
         self.assertIn("live_shrunk_precise", train_model.FEATURE_PROFILE_CHOICES)
         self.assertIn("live_usable_candidate_v1", train_model.FEATURE_PROFILE_CHOICES)
         self.assertIn("live_usable_candidate_v2", train_model.FEATURE_PROFILE_CHOICES)
@@ -69,7 +70,7 @@ class FeatureProfilePlumbingTests(unittest.TestCase):
             args = prepare_live_board.parse_args()
         self.assertEqual(args.feature_profile, "live_shrunk")
 
-    def test_live_entrypoints_default_to_live_usable_candidate_v3(self) -> None:
+    def test_live_entrypoints_default_to_audited_pregame_safe_profile(self) -> None:
         with patch.object(sys, "argv", ["train_live_model.py"]):
             train_args = train_live_model.parse_args()
         with patch.object(sys, "argv", ["prepare_live_board.py"]):
@@ -77,9 +78,9 @@ class FeatureProfilePlumbingTests(unittest.TestCase):
         with patch.object(sys, "argv", ["run_daily_live_refresh.py"]):
             daily_args = run_daily_live_refresh.parse_args()
 
-        self.assertEqual(train_args.feature_profile, "live_usable_candidate_v3")
-        self.assertEqual(prepare_args.feature_profile, "live_usable_candidate_v3")
-        self.assertEqual(daily_args.feature_profile, "live_usable_candidate_v3")
+        self.assertEqual(train_args.feature_profile, "pregame_safe_v1")
+        self.assertEqual(prepare_args.feature_profile, "pregame_safe_v1")
+        self.assertEqual(daily_args.feature_profile, "pregame_safe_v1")
 
     def test_fast_refit_reuses_metadata_model_family_but_respects_requested_profile(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:

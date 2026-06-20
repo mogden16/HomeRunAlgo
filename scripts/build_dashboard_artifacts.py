@@ -7,6 +7,7 @@ import json
 import math
 import pickle
 import sys
+import warnings
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
@@ -104,6 +105,8 @@ DISPLAY_COLUMNS = [
     "wind_direction_deg",
     "field_bearing_deg",
     "predicted_hr_probability",
+    "positive_call_threshold",
+    "positive_hr_call",
     "predicted_hr_score",
     "ballparkpal_snapshot_status",
     "ballparkpal_snapshot_date",
@@ -167,6 +170,8 @@ CURRENT_PICK_COLUMNS = [
     "confidence_tier",
     "original_tier",
     "predicted_hr_probability",
+    "positive_call_threshold",
+    "positive_hr_call",
     "predicted_hr_score",
     "ballparkpal_snapshot_status",
     "ballparkpal_snapshot_date",
@@ -229,6 +234,8 @@ HISTORY_COLUMNS = [
     "confidence_tier",
     "original_tier",
     "predicted_hr_probability",
+    "positive_call_threshold",
+    "positive_hr_call",
     "predicted_hr_score",
     "ballparkpal_snapshot_status",
     "ballparkpal_snapshot_date",
@@ -554,9 +561,12 @@ def normalize_pick(row: dict[str, Any], tracking_start_date: str) -> dict[str, A
     roof_type = str(row.get("roof_type") or "open_air")
     roof_label = str(row.get("roof_label") or "")
     roofed_park = bool(row.get("roofed_park") or False)
-    if not roofed_park and ballpark_name:
+    if ballpark_name:
         inferred_roof_type = roof_type_for_ballpark_name(ballpark_name)
-        if inferred_roof_type != "open_air":
+        if roofed_park and roof_type == "open_air" and inferred_roof_type != "open_air":
+            roof_type = inferred_roof_type
+            roof_label = roof_label_for_ballpark_name(ballpark_name)
+        elif not roofed_park and inferred_roof_type == "dome":
             roof_type = inferred_roof_type
             roof_label = roof_label_for_ballpark_name(ballpark_name)
             roofed_park = True
@@ -616,6 +626,8 @@ def normalize_pick(row: dict[str, Any], tracking_start_date: str) -> dict[str, A
         "wind_direction_deg": wind_direction_deg,
         "field_bearing_deg": parse_float(row.get("field_bearing_deg")),
         "predicted_hr_probability": probability,
+        "positive_call_threshold": parse_float(row.get("positive_call_threshold")),
+        "positive_hr_call": bool(row.get("positive_hr_call", False)),
         "predicted_hr_score": parse_float(row.get("original_score")) if parse_float(row.get("original_score")) is not None else score,
         "ballparkpal_snapshot_status": str(row.get("ballparkpal_snapshot_status") or "unavailable"),
         "ballparkpal_snapshot_date": str(row.get("ballparkpal_snapshot_date") or ""),
@@ -914,8 +926,15 @@ def _fetch_current_season_hitting_totals_by_player_id(
             "personIds": ",".join(str(player_id) for player_id in chunk),
             "hydrate": f"stats(group=[hitting],type=[season],season={season_year})",
         }
-        response = session.get(MLB_PERSONS_URL, params=params, timeout=20)
-        response.raise_for_status()
+        try:
+            response = session.get(MLB_PERSONS_URL, params=params, timeout=20)
+            response.raise_for_status()
+        except requests.RequestException as exc:
+            warnings.warn(
+                f"MLB Stats API season-total lookup failed for {len(chunk)} player(s): {exc}. "
+                "Continuing without live season totals for that batch."
+            )
+            continue
         payload = response.json()
         people = payload.get("people") if isinstance(payload, dict) else []
         if not isinstance(people, list):

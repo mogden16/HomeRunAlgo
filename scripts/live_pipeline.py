@@ -57,6 +57,8 @@ from train_model import (
     LIVE_USABLE_CANDIDATE_V3_SEED_COLUMNS,
     LIVE_USABLE_CANDIDATE_SEED_COLUMNS,
     LIVE_PLUS_FEATURE_COLUMNS,
+    PREGAME_SAFE_FEATURE_COLUMNS,
+    PREGAME_SAFE_PROFILE,
     LIVE_PRODUCTION_FEATURE_COLUMNS,
     LIVE_SHRUNK_FEATURE_COLUMNS,
     LIVE_SHRUNK_PRECISE_FEATURE_COLUMNS,
@@ -158,6 +160,7 @@ LIVE_COMPATIBLE_FEATURE_COLUMNS = list(
         ]
     )
 )
+APPROVED_POSITIVE_CALL_THRESHOLDS = {PREGAME_SAFE_PROFILE: 0.20}
 LIVE_BATTER_SPLIT_SOURCE_COLUMNS = [
     "batter_hr_per_pa_vs_rhp",
     "batter_hr_per_pa_vs_lhp",
@@ -624,6 +627,8 @@ def _build_pick_record_base(row: dict[str, Any]) -> dict[str, Any]:
         "confidence_tier": original_tier,
         "original_tier": original_tier,
         "predicted_hr_probability": _coerce_float(row.get("predicted_hr_probability")),
+        "positive_call_threshold": _coerce_float(row.get("positive_call_threshold")),
+        "positive_hr_call": bool(row.get("positive_hr_call", False)),
         "predicted_hr_score": original_score,
         "original_score": original_score,
         "top_reason_1": str(row.get("top_reason_1") or ""),
@@ -964,14 +969,19 @@ def _fit_full_dataset_bundle_candidate(
     ]
 
     reference_columns = sorted(set(feature_columns) | {feature for feature in REASON_TEXT_BY_FEATURE if feature in df.columns})
+    reference_df = df.copy()
+    for column in reference_columns:
+        if column not in reference_df.columns:
+            reference_df[column] = np.nan
     bundle = {
         "model": model,
         "feature_columns": feature_columns,
-        "reference_df": df[reference_columns].copy(),
+        "reference_df": reference_df[reference_columns].copy(),
         "trained_through": str(df["game_date"].max().date()),
         "dataset_max_game_date": str(df["game_date"].max().date()),
         "model_family": model_family,
         "feature_profile": feature_profile,
+        "positive_call_threshold": APPROVED_POSITIVE_CALL_THRESHOLDS.get(feature_profile),
         "feature_profile_variant": feature_profile_variant or feature_profile,
         "missingness_threshold": float(missingness_threshold),
         "selection_metric": selection_metric,
@@ -1001,6 +1011,7 @@ def _fit_live_bundle_fast_refit(
     existing_metadata: dict[str, Any],
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     configured_feature_map = {
+        PREGAME_SAFE_PROFILE: PREGAME_SAFE_FEATURE_COLUMNS,
         "live": LIVE_PRODUCTION_FEATURE_COLUMNS,
         "live_plus": LIVE_PLUS_FEATURE_COLUMNS,
         "live_shrunk": LIVE_SHRUNK_FEATURE_COLUMNS,
@@ -1020,8 +1031,6 @@ def _fit_live_bundle_fast_refit(
             if isinstance(column, str)
             and column in df.columns
             and str(existing_metadata.get("feature_profile") or "") == feature_profile
-            and [str(item) for item in metadata_feature_columns if isinstance(item, str) and item in df.columns]
-            == configured_profile_features
         ]
         if isinstance(metadata_feature_columns, list)
         else []
@@ -1080,14 +1089,19 @@ def _fit_live_bundle_fast_refit(
         calibration_search_rows = []
 
     reference_columns = sorted(set(feature_columns) | {feature for feature in REASON_TEXT_BY_FEATURE if feature in df.columns})
+    reference_df = df.copy()
+    for column in reference_columns:
+        if column not in reference_df.columns:
+            reference_df[column] = np.nan
     bundle = {
         "model": model,
         "feature_columns": feature_columns,
-        "reference_df": df[reference_columns].copy(),
+        "reference_df": reference_df[reference_columns].copy(),
         "trained_through": str(df["game_date"].max().date()),
         "dataset_max_game_date": str(df["game_date"].max().date()),
         "model_family": model_family,
         "feature_profile": feature_profile,
+        "positive_call_threshold": APPROVED_POSITIVE_CALL_THRESHOLDS.get(feature_profile),
         "feature_profile_variant": str(existing_metadata.get("feature_profile_variant") or feature_profile),
         "missingness_threshold": float(missingness_threshold),
         "selection_metric": selection_metric,
@@ -1113,6 +1127,7 @@ def _fit_live_bundle_fast_refit(
         "dataset_max_game_date": bundle["dataset_max_game_date"],
         "model_family": bundle["model_family"],
         "feature_profile": bundle["feature_profile"],
+        "positive_call_threshold": bundle.get("positive_call_threshold"),
         "feature_profile_variant": bundle["feature_profile_variant"],
         "missingness_threshold": bundle["missingness_threshold"],
         "selection_metric": bundle["selection_metric"],
@@ -1164,7 +1179,11 @@ def train_live_model_bundle(
     if training_mode == "fast_refit":
         if existing_metadata:
             resolved_model_family = str(existing_metadata.get("model_family") or model_name or "logistic")
-            resolved_feature_profile = str(feature_profile or existing_metadata.get("feature_profile") or "live_shrunk")
+            metadata_feature_profile = existing_metadata.get("feature_profile")
+            if metadata_feature_profile and feature_profile == LIVE_USABLE_CANDIDATE_V3_PROFILE:
+                resolved_feature_profile = str(metadata_feature_profile)
+            else:
+                resolved_feature_profile = str(feature_profile or metadata_feature_profile or "live_shrunk")
             resolved_missingness_threshold = float(
                 existing_metadata.get("missingness_threshold")
                 if existing_metadata.get("missingness_threshold") is not None
@@ -1266,21 +1285,41 @@ def train_live_model_bundle(
             None,
         )
         if baseline_candidate is None:
-            baseline_candidate = evaluate_training_candidate(
-                train_df,
-                feature_profile=baseline_profile,
-                model_name="logistic",
-                missingness_threshold=MAX_MODEL_FEATURE_MISSINGNESS,
-                selection_metric=selection_metric,
+            baseline_holdout_summary = (
+                backtest.get("baseline_holdout", {}).get("summary_row", {})
+                if isinstance(backtest.get("baseline_holdout"), dict)
+                else {}
+            )
+            fallback_baseline_profile = baseline_holdout_summary.get("feature_profile")
+            fallback_baseline_model = baseline_holdout_summary.get("model_family")
+            baseline_candidate = next(
+                (
+                    result
+                    for result in candidate_results
+                    if result["summary_row"].get("model_family") == fallback_baseline_model
+                    and result["summary_row"].get("feature_profile") == fallback_baseline_profile
+                ),
+                None,
             )
             if baseline_candidate is None:
-                raise RuntimeError("Unable to evaluate the live baseline candidate.")
+                baseline_candidate = evaluate_training_candidate(
+                    train_df,
+                    feature_profile=baseline_profile,
+                    model_name="logistic",
+                    missingness_threshold=MAX_MODEL_FEATURE_MISSINGNESS,
+                    selection_metric=selection_metric,
+                )
+                if baseline_candidate is None:
+                    raise RuntimeError("Unable to evaluate the live baseline candidate.")
+        provided_baseline_holdout = backtest.get("baseline_holdout") if isinstance(backtest.get("baseline_holdout"), dict) else None
         if (
             selected_candidate["summary_row"]["model_family"] == "logistic"
             and selected_candidate["summary_row"]["feature_profile"] == baseline_profile
             and np.isclose(selected_candidate["summary_row"]["missingness_threshold"], MAX_MODEL_FEATURE_MISSINGNESS)
         ):
             baseline_holdout = backtest["final_result"]
+        elif provided_baseline_holdout is not None:
+            baseline_holdout = provided_baseline_holdout
         else:
             baseline_holdout = evaluate_model_run(
                 train_df=train_df,
@@ -1356,6 +1395,7 @@ def train_live_model_bundle(
         "dataset_max_game_date": bundle["dataset_max_game_date"],
         "model_family": bundle["model_family"],
         "feature_profile": bundle["feature_profile"],
+        "positive_call_threshold": bundle.get("positive_call_threshold"),
         "feature_profile_variant": bundle["feature_profile_variant"],
         "missingness_threshold": bundle["missingness_threshold"],
         "selection_metric": bundle["selection_metric"],
@@ -1941,7 +1981,7 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
             "home_team": home_team,
             "roof_type": roof_type,
             "roof_label": str(PARK_ROOF_TYPE_LABELS.get(roof_type, "Open air")),
-            "roofed_park": roof_type != "open_air",
+            "roofed_park": roof_type == "dome",
             "field_bearing_deg": _coerce_float(park.get("field_bearing_deg")) if park else None,
             "temperature_f": None,
             "humidity_pct": None,
@@ -1980,7 +2020,7 @@ def fetch_forecast_weather(home_teams: list[str], target_date: str) -> pd.DataFr
             continue
         roof_type = str(PARK_ROOF_TYPES.get(home_team, "open_air"))
         roof_label = str(PARK_ROOF_TYPE_LABELS.get(roof_type, "Open air"))
-        if roof_type != "open_air":
+        if roof_type == "dome":
             roofed_row = {
                 "game_date": target_date,
                 "home_team": home_team,
@@ -2708,6 +2748,35 @@ def score_live_candidates(
 
     probabilities = model.predict_proba(scored[feature_columns])[:, 1]
     scored["predicted_hr_probability"] = probabilities
+    positive_call_threshold = _coerce_float(
+        bundle.get("positive_call_threshold")
+        if bundle.get("positive_call_threshold") is not None
+        else APPROVED_POSITIVE_CALL_THRESHOLDS.get(str(bundle.get("feature_profile") or ""))
+    )
+    scored["positive_call_threshold"] = positive_call_threshold
+    scored["positive_hr_call"] = (
+        scored["predicted_hr_probability"] >= positive_call_threshold
+        if positive_call_threshold is not None
+        else False
+    )
+    for column, default_value in {
+        "ballparkpal_overlay_adjusted_score": np.nan,
+        "ballparkpal_overlay_raw_score": np.nan,
+        "ballparkpal_overlay_signed_score": np.nan,
+        "ballparkpal_overlay_display_score": np.nan,
+        "ballparkpal_overlay_direction": "neutral",
+        "ballparkpal_home_run_probability": np.nan,
+        "ballparkpal_hit_probability": np.nan,
+        "ballparkpal_team_home_runs": np.nan,
+        "ballparkpal_runs_allowed": np.nan,
+        "ballparkpal_home_runs_allowed": np.nan,
+        "ballparkpal_snapshot_status": "unavailable",
+        "ballparkpal_snapshot_date": "",
+        "ballparkpal_snapshot_path": "",
+        "ballparkpal_snapshot_pulled_at": "",
+    }.items():
+        if column not in scored.columns:
+            scored[column] = default_value
     confidence_policy = (
         bundle.get("confidence_policy")
         if isinstance(bundle.get("confidence_policy"), dict)
@@ -2817,6 +2886,8 @@ def score_live_candidates(
                 "confidence_tier": str(row["confidence_tier"]),
                 "original_tier": str(row.get("original_tier") or row.get("confidence_tier") or "watch"),
                 "predicted_hr_probability": serialize_for_json(float(row["predicted_hr_probability"])),
+                "positive_call_threshold": serialize_for_json(row.get("positive_call_threshold")),
+                "positive_hr_call": bool(row.get("positive_hr_call", False)),
                 "predicted_hr_score": serialize_for_json(float(row["predicted_hr_score"])),
                 "original_score": serialize_for_json(float(row.get("predicted_hr_score"))),
                 "ballparkpal_snapshot_status": str(row.get("ballparkpal_snapshot_status") or "unavailable"),

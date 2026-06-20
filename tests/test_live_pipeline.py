@@ -42,6 +42,31 @@ from train_model import LIVE_PLUS_FEATURE_COLUMNS, generate_reason_strings, reso
 
 
 class LivePipelineTests(unittest.TestCase):
+    def test_dashboard_refresh_uses_published_model_paths(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            bundle_path = base / "candidate.pkl"
+            dataset_path = base / "dataset.csv"
+            metadata_path = base / "candidate.json"
+            with patch(
+                "scripts.publish_live_picks.build_dashboard_artifacts",
+                return_value=base / "dashboard.json",
+            ) as build_mock:
+                publish_live_picks.refresh_cloudflare_dashboard(
+                    base / "current.json",
+                    base / "history.json",
+                    base / "dashboard",
+                    "2026-05-03",
+                    model_bundle_path=bundle_path,
+                    model_data_path=dataset_path,
+                    model_metadata_path=metadata_path,
+                )
+
+        call_kwargs = build_mock.call_args.kwargs
+        self.assertEqual(call_kwargs["model_bundle_path"], bundle_path)
+        self.assertEqual(call_kwargs["model_data_path"], dataset_path)
+        self.assertEqual(call_kwargs["model_metadata_path"], metadata_path)
+
     def test_fetch_statcast_range_rebuilds_malformed_cached_chunk(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             chunk_path = Path(tmp_dir) / "statcast_bad.csv"
@@ -176,9 +201,10 @@ class LivePipelineTests(unittest.TestCase):
 
         with patch("scripts.live_pipeline._load_forecast_weather_cache", side_effect=fake_load_cache):
             with patch("scripts.live_pipeline._write_forecast_weather_cache", side_effect=fake_write_cache):
-                with patch("scripts.live_pipeline.requests.get", return_value=FakeResponse()) as request_mock:
-                    first = fetch_forecast_weather(["NYY"], "2026-04-07")
-                    second = fetch_forecast_weather(["NYY"], "2026-04-07")
+                with patch("scripts.live_pipeline.eastern_today", return_value=pd.Timestamp("2026-04-06", tz="America/New_York")):
+                    with patch("scripts.live_pipeline.requests.get", return_value=FakeResponse()) as request_mock:
+                        first = fetch_forecast_weather(["NYY"], "2026-04-07")
+                        second = fetch_forecast_weather(["NYY"], "2026-04-07")
 
         self.assertEqual(request_mock.call_count, 1)
         self.assertEqual(first.iloc[0]["weather_label"], "Cloudy")
@@ -1253,6 +1279,9 @@ class LivePipelineTests(unittest.TestCase):
                 {
                     "game_date": "2024-09-29",
                     "home_team": "ATL",
+                    "roof_type": "open_air",
+                    "roof_label": "Open air",
+                    "roofed_park": False,
                     "field_bearing_deg": 32.0,
                     "temperature_f": None,
                     "humidity_pct": None,
@@ -2481,7 +2510,8 @@ class LivePipelineTests(unittest.TestCase):
                 str(output_dir),
             ]
             with patch.object(sys, "argv", argv):
-                build_dashboard_artifacts.main()
+                with patch("scripts.build_dashboard_artifacts._fetch_current_season_hitting_totals_by_player_id", return_value={}):
+                    build_dashboard_artifacts.main()
 
             payload = json.loads((output_dir / "dashboard.json").read_text(encoding="utf-8"))
             payload_text = json.dumps(payload)
@@ -2495,9 +2525,9 @@ class LivePipelineTests(unittest.TestCase):
             self.assertEqual(payload["tier_guide"][0]["confidence_tier"], "elite")
             self.assertEqual(payload["refresh_schedule"]["runs"][0]["time_et"], "After 6:00 AM ET")
             self.assertEqual(payload["refresh_schedule"]["runs"][0]["type"], "prepare")
-            self.assertEqual(payload["refresh_schedule"]["runs"][1]["time_et"], "Every 15 minutes until last first pitch")
+            self.assertEqual(payload["refresh_schedule"]["runs"][1]["time_et"], "Every 5 minutes until last first pitch")
             self.assertEqual(payload["refresh_schedule"]["runs"][1]["type"], "mixed")
-            self.assertEqual(payload["refresh_schedule"]["runs"][2]["time_et"], "Every 15 minutes in-game")
+            self.assertEqual(payload["refresh_schedule"]["runs"][2]["time_et"], "Every 5 minutes in-game")
             self.assertEqual(payload["refresh_schedule"]["runs"][2]["type"], "settle")
             elite_row = payload["confidence_summary"][0]
             self.assertEqual(elite_row["confidence_tier"], "elite")

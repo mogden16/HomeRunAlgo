@@ -8,10 +8,11 @@ from scripts.live_pipeline import fetch_forecast_weather
 
 class ForecastWeatherResilienceTests(unittest.TestCase):
     def test_fetch_forecast_weather_falls_back_to_null_weather_after_retries(self) -> None:
-        with patch("scripts.live_pipeline._load_forecast_weather_cache", return_value={}):
-            with patch("scripts.live_pipeline._write_forecast_weather_cache"):
-                with patch("scripts.live_pipeline.requests.get", side_effect=requests.exceptions.ReadTimeout("timed out")) as mock_get:
-                    weather = fetch_forecast_weather(["ATL"], "2026-05-03")
+        with patch("scripts.live_pipeline.eastern_today", return_value=__import__("pandas").Timestamp("2026-05-02", tz="America/New_York")):
+            with patch("scripts.live_pipeline._load_forecast_weather_cache", return_value={}):
+                with patch("scripts.live_pipeline._write_forecast_weather_cache"):
+                    with patch("scripts.live_pipeline.requests.get", side_effect=requests.exceptions.ReadTimeout("timed out")) as mock_get:
+                        weather = fetch_forecast_weather(["ATL"], "2026-05-03")
 
         self.assertEqual(mock_get.call_count, 3)
         self.assertEqual(

@@ -44,6 +44,91 @@ python train_model.py data/mlb_player_game_real.csv --model xgboost
 
 The training script preserves a clean date-boundary split so every test row occurs strictly after every training row.
 
+## Walk-forward prediction audit
+
+Use the walk-forward audit when the question is whether the model identifies actual home run hitters more accurately, especially among the top daily candidates and the model's positive HR calls.
+
+Prediction-quality only, with no sportsbook odds:
+
+```powershell
+python scripts/walk_forward_betting_backtest.py `
+  --dataset-path data/live/model_training_dataset.csv `
+  --output-path data/live/walk_forward_betting_audit.json
+```
+
+The default behavior is year-aware when at least three seasons are present. With the current dataset, `2024` trains the `2025` model/threshold selection walk-forward. The selected configuration is then frozen before daily walk-forward evaluation on the untouched `2026` period.
+
+You can also force the window explicitly:
+
+```powershell
+python scripts/walk_forward_betting_backtest.py `
+  --dataset-path data/live/model_training_dataset.csv `
+  --profiles pregame_safe_v1 live `
+  --train-years 2024 2025 `
+  --selection-years 2025 `
+  --test-years 2026 `
+  --output-path data/live/walk_forward_prediction_audit_release.json
+```
+
+Optional historical sportsbook odds side-analysis:
+
+```powershell
+python scripts/walk_forward_betting_backtest.py `
+  --dataset-path data/live/model_training_dataset.csv `
+  --train-years 2024 2025 `
+  --test-years 2026 `
+  --odds-path data/live/hr_odds_history.csv `
+  --output-path data/live/walk_forward_betting_audit.json
+```
+
+Required odds CSV columns for that optional side-analysis:
+
+- `game_date`: official game date, `YYYY-MM-DD`
+- `batter_id`: MLBAM batter id
+- `american_odds`: actual offered HR odds at the time the pick could have been made
+
+Optional odds CSV columns:
+
+- `game_pk`: preferred when available, prevents doubleheader ambiguity
+- `book` or `sportsbook`
+- `odds_timestamp`
+
+The audit simulates daily walk-forward scoring. For each test date it trains only on prior dates, scores that slate, and evaluates:
+
+- top 1, top 3, top 5, and top 10 daily picks
+- probability-threshold positive-call strategies
+- confidence-tier strategies
+- hit rate, precision, recall, false positives, positive prediction rate, average precision, Brier score, log loss, calibration buckets, and monthly performance
+- daily-cluster bootstrap confidence intervals for positive-call precision and top 1/3/5/10 hit rates
+- optional ROI, edge, and Kelly side-analysis only when real odds are supplied
+
+Interpretation:
+
+- The primary report is prediction-centric even when odds are available. Candidate models are ranked by positive-call precision, top-pick hit rate, average precision, and calibration quality.
+- The default positive-call summary is precision-first. It chooses the most selective threshold that still clears the configured minimum sample requirement.
+- A threshold must clear both `--positive-call-min-bets` and `--positive-call-min-days`; the default is 25 calls across at least 10 slate days.
+- Model and threshold selection use `2025`. Final `2026` metrics cannot change the selected model or threshold.
+- Top-k hit rate and average precision answer whether the model ranks HR candidates usefully.
+- Precision, recall, false positives, and positive prediction rate answer whether the model's direct HR calls are trustworthy.
+- Calibration buckets show whether a predicted probability means what it claims. Large predicted-vs-actual gaps make any positive-call threshold less reliable.
+
+If real odds are provided, those metrics are secondary side-analysis only. Do not use assumed or synthetic odds as proof of model quality.
+
+### Leakage-safe release profile
+
+`pregame_safe_v1` contains only shifted batter-history features. It is the current release-eligible profile because the historical dataset does not contain timestamped probable-pitcher, lineup, or forecast-weather snapshots.
+
+The `live` and expanded contextual profiles remain useful research comparisons, but their historical results are not release-eligible yet. Historical pitcher identity is the realized primary pitcher, and historical weather is an observation rather than a saved pregame forecast. The audit reports these as high-severity as-of risks instead of silently treating them as production evidence.
+
+## Deterministic release checks
+
+GitHub Actions runs `.github/workflows/production-readiness.yml` on pushes and pull requests. Run the same checks locally before a release:
+
+```powershell
+python -m unittest discover -s tests
+python scripts/verify_public_live_artifacts.py
+```
+
 ## Real sourced features currently included
 
 ### Batter features
