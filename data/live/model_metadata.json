@@ -1,6 +1,6 @@
 {
-  "trained_through": "2026-06-22",
-  "dataset_max_game_date": "2026-06-22",
+  "trained_through": "2026-06-23",
+  "dataset_max_game_date": "2026-06-23",
   "model_family": "histgb",
   "feature_profile": "pregame_safe_v1",
   "positive_call_threshold": 0.2,
@@ -345,8 +345,8 @@
   "confidence_policy_search_rows": [],
   "confidence_summary": [],
   "elite_pick_metrics": {},
-  "row_count": 121408,
-  "hr_rate": 0.106204,
+  "row_count": 121706,
+  "hr_rate": 0.106256,
   "refit_strategy": "fast_refit",
   "weather_feature_coverage": {
     "warning_null_rate_threshold": 0.35,
@@ -355,21 +355,21 @@
     "all_null_features": [],
     "summary": {
       "temperature_f": {
-        "row_count": 121408,
-        "non_null_count": 117393,
-        "null_rate": 0.03307,
+        "row_count": 121706,
+        "non_null_count": 117671,
+        "null_rate": 0.033154,
         "present": true
       },
       "wind_speed_mph": {
-        "row_count": 121408,
-        "non_null_count": 117393,
-        "null_rate": 0.03307,
+        "row_count": 121706,
+        "non_null_count": 117671,
+        "null_rate": 0.033154,
         "present": true
       },
       "humidity_pct": {
-        "row_count": 121408,
-        "non_null_count": 117393,
-        "null_rate": 0.03307,
+        "row_count": 121706,
+        "non_null_count": 117671,
+        "null_rate": 0.033154,
         "present": true
       }
     },
@@ -383,17 +383,5 @@
     }
   },
   "weather_join_contract": "game_date + home_team; PARKS[home_team]; nearest available hour to 19:00 local park time",
-  "operational_alerts": [
-    {
-      "kind": "warning",
-      "code": "weather_forecast_unavailable",
-      "title": "Weather data incomplete",
-      "message": "Weather forecast data was unavailable for SF, WSH on 2026-06-23. This slate was generated with null weather inputs for those parks. Rerun later for a weather-refreshed draft.",
-      "target_date": "2026-06-23",
-      "teams": [
-        "SF",
-        "WSH"
-      ]
-    }
-  ]
+  "operational_alerts": []
 }
