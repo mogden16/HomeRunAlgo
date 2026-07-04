@@ -137,7 +137,7 @@
     "game_pk": 822716,
     "game_date": "2026-07-04",
     "game_datetime": "2026-07-04T15:05:00Z",
-    "game_status": "Warmup",
+    "game_status": "In Progress",
     "game_state": "live",
     "rank": 3,
     "original_rank": 3,
@@ -331,7 +331,7 @@
     "game_pk": 822716,
     "game_date": "2026-07-04",
     "game_datetime": "2026-07-04T15:05:00Z",
-    "game_status": "Warmup",
+    "game_status": "In Progress",
     "game_state": "live",
     "rank": 6,
     "original_rank": 6,
@@ -505,7 +505,9 @@
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 97.3,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 30 days is 7.7%, which keeps the recent power trend elevated.",
@@ -569,7 +571,9 @@
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 96.9,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "Barrel rate over the last 10 days is 16.1%, a top-decile indicator of current lift-and-damage contact.",
@@ -843,7 +847,7 @@
     "game_pk": 822716,
     "game_date": "2026-07-04",
     "game_datetime": "2026-07-04T15:05:00Z",
-    "game_status": "Warmup",
+    "game_status": "In Progress",
     "game_state": "live",
     "rank": 14,
     "original_rank": 14,
@@ -888,14 +892,14 @@
     "ballparkpal_overlay_adjusted_rank": 14,
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 95.0,
-    "current_status": "game_in_progress",
+    "current_status": "home_run",
     "alert_flags": [],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "Hard-hit rate over the last 30 days is 62.5%, showing consistent quality contact.",
     "top_reason_2": "95+ EV contact rate over the last 30 days is 62.5%, a strong loud-contact input for the model.",
     "top_reason_3": "Peak exit velocity over the last 10 days is 113.6 mph, which points to top-end HR juice.",
-    "result": "Pending"
+    "result": "HR"
   },
   {
     "pick_id": "2026-07-04:824171:666211:656876",
@@ -1145,7 +1149,9 @@
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 93.5,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 30 days is 13.3%, which keeps the recent power trend elevated.",
@@ -1419,7 +1425,7 @@
     "game_pk": 822716,
     "game_date": "2026-07-04",
     "game_datetime": "2026-07-04T15:05:00Z",
-    "game_status": "Warmup",
+    "game_status": "In Progress",
     "game_state": "live",
     "rank": 23,
     "original_rank": 23,
@@ -1807,7 +1813,7 @@
     "game_pk": 822716,
     "game_date": "2026-07-04",
     "game_datetime": "2026-07-04T15:05:00Z",
-    "game_status": "Warmup",
+    "game_status": "In Progress",
     "game_state": "live",
     "rank": 29,
     "original_rank": 29,
@@ -1917,7 +1923,9 @@
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 88.9,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "Peak exit velocity over the last 10 days is 110.7 mph, which points to top-end HR juice.",
@@ -1981,7 +1989,9 @@
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 88.5,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "Average exit velocity over the last 10 days is 97.3 mph, a top-decile recent batted-ball quality marker.",
@@ -2751,7 +2761,9 @@
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 83.9,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "Hard-hit rate over the last 10 days is 56.0%, a top-quartile recent-contact signal.",
@@ -3071,7 +3083,9 @@
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 82.0,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 30 days is 10.7%, which keeps the recent power trend elevated.",
@@ -3729,7 +3743,7 @@
     "game_pk": 822716,
     "game_date": "2026-07-04",
     "game_datetime": "2026-07-04T15:05:00Z",
-    "game_status": "Warmup",
+    "game_status": "In Progress",
     "game_state": "live",
     "rank": 59,
     "original_rank": 59,
@@ -4371,7 +4385,7 @@
     "game_pk": 822716,
     "game_date": "2026-07-04",
     "game_datetime": "2026-07-04T15:05:00Z",
-    "game_status": "Warmup",
+    "game_status": "In Progress",
     "game_state": "live",
     "rank": 69,
     "original_rank": 69,
@@ -4755,7 +4769,7 @@
     "game_pk": 822716,
     "game_date": "2026-07-04",
     "game_datetime": "2026-07-04T15:05:00Z",
-    "game_status": "Warmup",
+    "game_status": "In Progress",
     "game_state": "live",
     "rank": 75,
     "original_rank": 75,
@@ -4819,7 +4833,7 @@
     "game_pk": 822716,
     "game_date": "2026-07-04",
     "game_datetime": "2026-07-04T15:05:00Z",
-    "game_status": "Warmup",
+    "game_status": "In Progress",
     "game_state": "live",
     "rank": 76,
     "original_rank": 76,
@@ -4995,7 +5009,9 @@
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 70.5,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 10 days is 7.1%, a top-quartile live-model signal.",
@@ -6037,7 +6053,7 @@
     "game_pk": 822716,
     "game_date": "2026-07-04",
     "game_datetime": "2026-07-04T15:05:00Z",
-    "game_status": "Warmup",
+    "game_status": "In Progress",
     "game_state": "live",
     "rank": 95,
     "original_rank": 95,
@@ -6917,7 +6933,9 @@
     "ballparkpal_overlay_direction": "neutral",
     "original_score": 59.0,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "Barrel rate over the last 30 days is 6.8%, which the model treats as sustained power quality.",
@@ -7301,7 +7319,9 @@
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 56.7,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "Average exit velocity over the last 10 days is 91.4 mph, a above-baseline recent batted-ball quality marker.",
@@ -7557,7 +7577,9 @@
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 55.2,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 10 days is 9.4%, a top-decile live-model signal.",
@@ -8069,7 +8091,9 @@
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 52.1,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "Barrel rate over the last 10 days is 5.1%, a above-baseline indicator of current lift-and-damage contact.",
@@ -8663,7 +8687,7 @@
     "game_pk": 822716,
     "game_date": "2026-07-04",
     "game_datetime": "2026-07-04T15:05:00Z",
-    "game_status": "Warmup",
+    "game_status": "In Progress",
     "game_state": "live",
     "rank": 136,
     "original_rank": 136,
@@ -8840,7 +8864,9 @@
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 47.5,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "Average exit velocity over the last 10 days is 92.6 mph, a top-quartile recent batted-ball quality marker.",
@@ -9500,7 +9526,7 @@
     "game_pk": 822716,
     "game_date": "2026-07-04",
     "game_datetime": "2026-07-04T15:05:00Z",
-    "game_status": "Warmup",
+    "game_status": "In Progress",
     "game_state": "live",
     "rank": 149,
     "original_rank": 149,
@@ -12685,7 +12711,9 @@
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 24.5,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 10 days is 0.0%, a above-baseline live-model signal.",
@@ -12895,7 +12923,7 @@
     "game_pk": 822716,
     "game_date": "2026-07-04",
     "game_datetime": "2026-07-04T15:05:00Z",
-    "game_status": "Warmup",
+    "game_status": "In Progress",
     "game_state": "live",
     "rank": 202,
     "original_rank": 202,
@@ -13135,7 +13163,9 @@
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 21.8,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "Average exit velocity over the last 10 days is 95.7 mph, a top-decile recent batted-ball quality marker.",
@@ -13153,7 +13183,7 @@
     "game_pk": 822716,
     "game_date": "2026-07-04",
     "game_datetime": "2026-07-04T15:05:00Z",
-    "game_status": "Warmup",
+    "game_status": "In Progress",
     "game_state": "live",
     "rank": 206,
     "original_rank": 206,
@@ -13281,7 +13311,7 @@
     "game_pk": 822716,
     "game_date": "2026-07-04",
     "game_datetime": "2026-07-04T15:05:00Z",
-    "game_status": "Warmup",
+    "game_status": "In Progress",
     "game_state": "live",
     "rank": 208,
     "original_rank": 208,
@@ -13585,7 +13615,9 @@
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 19.2,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 10 days is 0.0%, a above-baseline live-model signal.",
@@ -13649,7 +13681,9 @@
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 18.8,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 10 days is 3.8%, a above-baseline live-model signal.",
@@ -13859,7 +13893,7 @@
     "game_pk": 822716,
     "game_date": "2026-07-04",
     "game_datetime": "2026-07-04T15:05:00Z",
-    "game_status": "Warmup",
+    "game_status": "In Progress",
     "game_state": "live",
     "rank": 217,
     "original_rank": 217,
@@ -14053,7 +14087,7 @@
     "game_pk": 822716,
     "game_date": "2026-07-04",
     "game_datetime": "2026-07-04T15:05:00Z",
-    "game_status": "Warmup",
+    "game_status": "In Progress",
     "game_state": "live",
     "rank": 220,
     "original_rank": 220,
@@ -14229,7 +14263,9 @@
     "ballparkpal_overlay_direction": "neutral",
     "original_score": 15.3,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 10 days is 0.0%, a above-baseline live-model signal.",
@@ -14311,7 +14347,7 @@
     "game_pk": 822716,
     "game_date": "2026-07-04",
     "game_datetime": "2026-07-04T15:05:00Z",
-    "game_status": "Warmup",
+    "game_status": "In Progress",
     "game_state": "live",
     "rank": 224,
     "original_rank": 224,

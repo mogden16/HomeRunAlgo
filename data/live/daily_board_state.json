@@ -146,7 +146,7 @@
       "game_pk": 822716,
       "game_date": "2026-07-04",
       "game_datetime": "2026-07-04T15:05:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "rank": 3,
       "original_rank": 3,
@@ -346,7 +346,7 @@
       "game_pk": 822716,
       "game_date": "2026-07-04",
       "game_datetime": "2026-07-04T15:05:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "rank": 6,
       "original_rank": 6,
@@ -527,7 +527,9 @@
       "ballparkpal_overlay_adjusted_rank": 8,
       "ballparkpal_overlay_direction": "favorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -593,7 +595,9 @@
       "ballparkpal_overlay_adjusted_rank": 9,
       "ballparkpal_overlay_direction": "favorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -874,7 +878,7 @@
       "game_pk": 822716,
       "game_date": "2026-07-04",
       "game_datetime": "2026-07-04T15:05:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "rank": 14,
       "original_rank": 14,
@@ -922,13 +926,13 @@
       "ballparkpal_overlay_adjusted_score": 95.0,
       "ballparkpal_overlay_adjusted_rank": 14,
       "ballparkpal_overlay_direction": "favorable",
-      "current_status": "game_in_progress",
+      "current_status": "home_run",
       "alert_flags": [],
       "inactive_flag": false,
       "display_style": "default",
-      "result": "Pending",
-      "actual_hit_hr": null,
-      "result_label": "Pending"
+      "result": "HR",
+      "actual_hit_hr": 1,
+      "result_label": "HR"
     },
     {
       "pick_id": "2026-07-04:824171:666211:656876",
@@ -1187,7 +1191,9 @@
       "ballparkpal_overlay_adjusted_rank": 18,
       "ballparkpal_overlay_direction": "favorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -1468,7 +1474,7 @@
       "game_pk": 822716,
       "game_date": "2026-07-04",
       "game_datetime": "2026-07-04T15:05:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "rank": 23,
       "original_rank": 23,
@@ -1868,7 +1874,7 @@
       "game_pk": 822716,
       "game_date": "2026-07-04",
       "game_datetime": "2026-07-04T15:05:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "rank": 29,
       "original_rank": 29,
@@ -1983,7 +1989,9 @@
       "ballparkpal_overlay_adjusted_rank": 30,
       "ballparkpal_overlay_direction": "favorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -2049,7 +2057,9 @@
       "ballparkpal_overlay_adjusted_rank": 31,
       "ballparkpal_overlay_direction": "favorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -2843,7 +2853,9 @@
       "ballparkpal_overlay_adjusted_rank": 43,
       "ballparkpal_overlay_direction": "favorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -3173,7 +3185,9 @@
       "ballparkpal_overlay_adjusted_rank": 48,
       "ballparkpal_overlay_direction": "unfavorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -3850,7 +3864,7 @@
       "game_pk": 822716,
       "game_date": "2026-07-04",
       "game_datetime": "2026-07-04T15:05:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "rank": 59,
       "original_rank": 59,
@@ -4512,7 +4526,7 @@
       "game_pk": 822716,
       "game_date": "2026-07-04",
       "game_datetime": "2026-07-04T15:05:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "rank": 69,
       "original_rank": 69,
@@ -4908,7 +4922,7 @@
       "game_pk": 822716,
       "game_date": "2026-07-04",
       "game_datetime": "2026-07-04T15:05:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "rank": 75,
       "original_rank": 75,
@@ -4974,7 +4988,7 @@
       "game_pk": 822716,
       "game_date": "2026-07-04",
       "game_datetime": "2026-07-04T15:05:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "rank": 76,
       "original_rank": 76,
@@ -5157,7 +5171,9 @@
       "ballparkpal_overlay_adjusted_rank": 78,
       "ballparkpal_overlay_direction": "unfavorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -6230,7 +6246,7 @@
       "game_pk": 822716,
       "game_date": "2026-07-04",
       "game_datetime": "2026-07-04T15:05:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "rank": 95,
       "original_rank": 95,
@@ -7139,7 +7155,9 @@
       "ballparkpal_overlay_adjusted_rank": 108,
       "ballparkpal_overlay_direction": "neutral",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -7535,7 +7553,9 @@
       "ballparkpal_overlay_adjusted_rank": 114,
       "ballparkpal_overlay_direction": "unfavorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -7799,7 +7819,9 @@
       "ballparkpal_overlay_adjusted_rank": 118,
       "ballparkpal_overlay_direction": "unfavorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -8327,7 +8349,9 @@
       "ballparkpal_overlay_adjusted_rank": 126,
       "ballparkpal_overlay_direction": "favorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -8938,7 +8962,7 @@
       "game_pk": 822716,
       "game_date": "2026-07-04",
       "game_datetime": "2026-07-04T15:05:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "rank": 136,
       "original_rank": 136,
@@ -9122,7 +9146,9 @@
       "ballparkpal_overlay_adjusted_rank": 138,
       "ballparkpal_overlay_direction": "unfavorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -9801,7 +9827,7 @@
       "game_pk": 822716,
       "game_date": "2026-07-04",
       "game_datetime": "2026-07-04T15:05:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "rank": 149,
       "original_rank": 149,
@@ -13087,7 +13113,9 @@
       "ballparkpal_overlay_adjusted_rank": 198,
       "ballparkpal_overlay_direction": "unfavorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -13302,7 +13330,7 @@
       "game_pk": 822716,
       "game_date": "2026-07-04",
       "game_datetime": "2026-07-04T15:05:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "rank": 202,
       "original_rank": 202,
@@ -13551,7 +13579,9 @@
       "ballparkpal_overlay_adjusted_rank": 205,
       "ballparkpal_overlay_direction": "favorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -13568,7 +13598,7 @@
       "game_pk": 822716,
       "game_date": "2026-07-04",
       "game_datetime": "2026-07-04T15:05:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "rank": 206,
       "original_rank": 206,
@@ -13700,7 +13730,7 @@
       "game_pk": 822716,
       "game_date": "2026-07-04",
       "game_datetime": "2026-07-04T15:05:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "rank": 208,
       "original_rank": 208,
@@ -14015,7 +14045,9 @@
       "ballparkpal_overlay_adjusted_rank": 212,
       "ballparkpal_overlay_direction": "unfavorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -14081,7 +14113,9 @@
       "ballparkpal_overlay_adjusted_rank": 213,
       "ballparkpal_overlay_direction": "unfavorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -14296,7 +14330,7 @@
       "game_pk": 822716,
       "game_date": "2026-07-04",
       "game_datetime": "2026-07-04T15:05:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "rank": 217,
       "original_rank": 217,
@@ -14496,7 +14530,7 @@
       "game_pk": 822716,
       "game_date": "2026-07-04",
       "game_datetime": "2026-07-04T15:05:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "rank": 220,
       "original_rank": 220,
@@ -14679,7 +14713,9 @@
       "ballparkpal_overlay_adjusted_rank": 222,
       "ballparkpal_overlay_direction": "neutral",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -14762,7 +14798,7 @@
       "game_pk": 822716,
       "game_date": "2026-07-04",
       "game_datetime": "2026-07-04T15:05:00Z",
-      "game_status": "Warmup",
+      "game_status": "In Progress",
       "game_state": "live",
       "rank": 224,
       "original_rank": 224,
