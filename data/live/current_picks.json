@@ -329,8 +329,8 @@
     "game_pk": 823357,
     "game_date": "2026-07-11",
     "game_datetime": "2026-07-11T16:05:00Z",
-    "game_status": "Pre-Game",
-    "game_state": "pregame",
+    "game_status": "In Progress",
+    "game_state": "live",
     "rank": 7,
     "original_rank": 7,
     "batter_id": 641343,
@@ -374,7 +374,7 @@
     "ballparkpal_overlay_adjusted_rank": 7,
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 98.2,
-    "current_status": "pending",
+    "current_status": "game_in_progress",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -533,7 +533,7 @@
     "opponent_team": "LAA",
     "pitcher_id": 696270,
     "pitcher_name": "Ryan Johnson",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Target Field",
     "ballpark_region_abbr": "MN",
@@ -587,8 +587,8 @@
     "game_pk": 823357,
     "game_date": "2026-07-11",
     "game_datetime": "2026-07-11T16:05:00Z",
-    "game_status": "Pre-Game",
-    "game_state": "pregame",
+    "game_status": "In Progress",
+    "game_state": "live",
     "rank": 12,
     "original_rank": 12,
     "batter_id": 699013,
@@ -632,7 +632,7 @@
     "ballparkpal_overlay_adjusted_rank": 12,
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 96.4,
-    "current_status": "pending",
+    "current_status": "game_in_progress",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -1101,8 +1101,8 @@
     "game_pk": 823357,
     "game_date": "2026-07-11",
     "game_datetime": "2026-07-11T16:05:00Z",
-    "game_status": "Pre-Game",
-    "game_state": "pregame",
+    "game_status": "In Progress",
+    "game_state": "live",
     "rank": 21,
     "original_rank": 21,
     "batter_id": 669003,
@@ -1146,7 +1146,7 @@
     "ballparkpal_overlay_adjusted_rank": 21,
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 93.2,
-    "current_status": "pending",
+    "current_status": "game_in_progress",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -1213,7 +1213,9 @@
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 92.5,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 10 days is 10.8%, a top-decile live-model signal.",
@@ -1295,8 +1297,8 @@
     "game_pk": 823357,
     "game_date": "2026-07-11",
     "game_datetime": "2026-07-11T16:05:00Z",
-    "game_status": "Pre-Game",
-    "game_state": "pregame",
+    "game_status": "In Progress",
+    "game_state": "live",
     "rank": 25,
     "original_rank": 25,
     "batter_id": 694192,
@@ -2498,7 +2500,9 @@
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 84.9,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "Hard-hit rate over the last 30 days is 63.4%, showing consistent quality contact.",
@@ -2580,8 +2584,8 @@
     "game_pk": 823357,
     "game_date": "2026-07-11",
     "game_datetime": "2026-07-11T16:05:00Z",
-    "game_status": "Pre-Game",
-    "game_state": "pregame",
+    "game_status": "In Progress",
+    "game_state": "live",
     "rank": 46,
     "original_rank": 46,
     "batter_id": 664040,
@@ -2625,7 +2629,7 @@
     "ballparkpal_overlay_adjusted_rank": 46,
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 84.2,
-    "current_status": "pending",
+    "current_status": "game_in_progress",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -2774,8 +2778,8 @@
     "game_pk": 823357,
     "game_date": "2026-07-11",
     "game_datetime": "2026-07-11T16:05:00Z",
-    "game_status": "Pre-Game",
-    "game_state": "pregame",
+    "game_status": "In Progress",
+    "game_state": "live",
     "rank": 50,
     "original_rank": 50,
     "batter_id": 668804,
@@ -2819,7 +2823,7 @@
     "ballparkpal_overlay_adjusted_rank": 50,
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 82.8,
-    "current_status": "pending",
+    "current_status": "game_in_progress",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -3042,7 +3046,7 @@
     "opponent_team": "LAA",
     "pitcher_id": 696270,
     "pitcher_name": "Ryan Johnson",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Target Field",
     "ballpark_region_abbr": "MN",
@@ -3298,7 +3302,7 @@
     "opponent_team": "LAA",
     "pitcher_id": 696270,
     "pitcher_name": "Ryan Johnson",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Target Field",
     "ballpark_region_abbr": "MN",
@@ -5214,8 +5218,8 @@
     "game_pk": 823357,
     "game_date": "2026-07-11",
     "game_datetime": "2026-07-11T16:05:00Z",
-    "game_status": "Pre-Game",
-    "game_state": "pregame",
+    "game_status": "In Progress",
+    "game_state": "live",
     "rank": 89,
     "original_rank": 89,
     "batter_id": 668930,
@@ -5259,7 +5263,7 @@
     "ballparkpal_overlay_adjusted_rank": 89,
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 68.8,
-    "current_status": "pending",
+    "current_status": "game_in_progress",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -5482,7 +5486,7 @@
     "opponent_team": "LAA",
     "pitcher_id": 696270,
     "pitcher_name": "Ryan Johnson",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Target Field",
     "ballpark_region_abbr": "MN",
@@ -5994,7 +5998,7 @@
     "opponent_team": "LAA",
     "pitcher_id": 696270,
     "pitcher_name": "Ryan Johnson",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Target Field",
     "ballpark_region_abbr": "MN",
@@ -6029,14 +6033,16 @@
     "ballparkpal_overlay_adjusted_rank": 101,
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 64.2,
-    "current_status": "pending",
-    "alert_flags": [],
-    "inactive_flag": false,
-    "display_style": "default",
+    "current_status": "inactive",
+    "alert_flags": [
+      "lineup_alert"
+    ],
+    "inactive_flag": true,
+    "display_style": "strikethrough",
     "top_reason_1": "Barrel rate over the last 30 days is 5.9%, which the model treats as sustained power quality.",
     "top_reason_2": "Peak exit velocity over the last 10 days is 109.5 mph, which points to top-end HR juice.",
     "top_reason_3": "",
-    "result": "Pending"
+    "result": "Inactive"
   },
   {
     "pick_id": "2026-07-11:823276:701538:702056",
@@ -6414,7 +6420,9 @@
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 62.0,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 10 days is 9.1%, a top-decile live-model signal.",
@@ -6432,8 +6440,8 @@
     "game_pk": 823357,
     "game_date": "2026-07-11",
     "game_datetime": "2026-07-11T16:05:00Z",
-    "game_status": "Pre-Game",
-    "game_state": "pregame",
+    "game_status": "In Progress",
+    "game_state": "live",
     "rank": 109,
     "original_rank": 109,
     "batter_id": 656811,
@@ -6477,7 +6485,7 @@
     "ballparkpal_overlay_adjusted_rank": 109,
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 61.6,
-    "current_status": "pending",
+    "current_status": "game_in_progress",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -6932,7 +6940,9 @@
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 58.8,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 30 days is 4.2%, which keeps the recent power trend elevated.",
@@ -7078,8 +7088,8 @@
     "game_pk": 823357,
     "game_date": "2026-07-11",
     "game_datetime": "2026-07-11T16:05:00Z",
-    "game_status": "Pre-Game",
-    "game_state": "pregame",
+    "game_status": "In Progress",
+    "game_state": "live",
     "rank": 120,
     "original_rank": 120,
     "batter_id": 592885,
@@ -7123,7 +7133,7 @@
     "ballparkpal_overlay_adjusted_rank": 120,
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 57.7,
-    "current_status": "pending",
+    "current_status": "game_in_progress",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -7272,8 +7282,8 @@
     "game_pk": 823357,
     "game_date": "2026-07-11",
     "game_datetime": "2026-07-11T16:05:00Z",
-    "game_status": "Pre-Game",
-    "game_state": "pregame",
+    "game_status": "In Progress",
+    "game_state": "live",
     "rank": 124,
     "original_rank": 124,
     "batter_id": 661388,
@@ -7317,7 +7327,7 @@
     "ballparkpal_overlay_adjusted_rank": 124,
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 56.3,
-    "current_status": "pending",
+    "current_status": "game_in_progress",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -7896,7 +7906,9 @@
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 52.7,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 10 days is 5.7%, a top-quartile live-model signal.",
@@ -8170,8 +8182,8 @@
     "game_pk": 823357,
     "game_date": "2026-07-11",
     "game_datetime": "2026-07-11T16:05:00Z",
-    "game_status": "Pre-Game",
-    "game_state": "pregame",
+    "game_status": "In Progress",
+    "game_state": "live",
     "rank": 139,
     "original_rank": 139,
     "batter_id": 687401,
@@ -8215,7 +8227,7 @@
     "ballparkpal_overlay_adjusted_rank": 139,
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 50.9,
-    "current_status": "pending",
+    "current_status": "game_in_progress",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -8730,7 +8742,9 @@
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 47.7,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 30 days is 3.7%, which keeps the recent power trend elevated.",
@@ -9372,7 +9386,9 @@
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 44.1,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "Average exit velocity over the last 10 days is 93.4 mph, a top-quartile recent batted-ball quality marker.",
@@ -10106,7 +10122,7 @@
     "opponent_team": "LAA",
     "pitcher_id": 696270,
     "pitcher_name": "Ryan Johnson",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Target Field",
     "ballpark_region_abbr": "MN",
@@ -10610,8 +10626,8 @@
     "game_pk": 823357,
     "game_date": "2026-07-11",
     "game_datetime": "2026-07-11T16:05:00Z",
-    "game_status": "Pre-Game",
-    "game_state": "pregame",
+    "game_status": "In Progress",
+    "game_state": "live",
     "rank": 178,
     "original_rank": 178,
     "batter_id": 669707,
@@ -10655,7 +10671,7 @@
     "ballparkpal_overlay_adjusted_rank": 178,
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 36.9,
-    "current_status": "pending",
+    "current_status": "game_in_progress",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -11380,8 +11396,8 @@
     "game_pk": 823357,
     "game_date": "2026-07-11",
     "game_datetime": "2026-07-11T16:05:00Z",
-    "game_status": "Pre-Game",
-    "game_state": "pregame",
+    "game_status": "In Progress",
+    "game_state": "live",
     "rank": 191,
     "original_rank": 191,
     "batter_id": 680779,
@@ -11425,7 +11441,7 @@
     "ballparkpal_overlay_adjusted_rank": 191,
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 32.3,
-    "current_status": "pending",
+    "current_status": "game_in_progress",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -11648,7 +11664,7 @@
     "opponent_team": "LAA",
     "pitcher_id": 696270,
     "pitcher_name": "Ryan Johnson",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Target Field",
     "ballpark_region_abbr": "MN",
@@ -12602,8 +12618,8 @@
     "game_pk": 823357,
     "game_date": "2026-07-11",
     "game_datetime": "2026-07-11T16:05:00Z",
-    "game_status": "Pre-Game",
-    "game_state": "pregame",
+    "game_status": "In Progress",
+    "game_state": "live",
     "rank": 211,
     "original_rank": 211,
     "batter_id": 693304,
@@ -12647,7 +12663,7 @@
     "ballparkpal_overlay_adjusted_rank": 211,
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 25.1,
-    "current_status": "pending",
+    "current_status": "game_in_progress",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -12668,8 +12684,8 @@
     "game_pk": 823357,
     "game_date": "2026-07-11",
     "game_datetime": "2026-07-11T16:05:00Z",
-    "game_status": "Pre-Game",
-    "game_state": "pregame",
+    "game_status": "In Progress",
+    "game_state": "live",
     "rank": 213,
     "original_rank": 213,
     "batter_id": 663968,
@@ -12713,7 +12729,7 @@
     "ballparkpal_overlay_adjusted_rank": 213,
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 24.4,
-    "current_status": "pending",
+    "current_status": "game_in_progress",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -13258,7 +13274,7 @@
     "opponent_team": "LAA",
     "pitcher_id": 696270,
     "pitcher_name": "Ryan Johnson",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Target Field",
     "ballpark_region_abbr": "MN",
@@ -13514,7 +13530,7 @@
     "opponent_team": "LAA",
     "pitcher_id": 696270,
     "pitcher_name": "Ryan Johnson",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Target Field",
     "ballpark_region_abbr": "MN",
@@ -14016,8 +14032,8 @@
     "game_pk": 823357,
     "game_date": "2026-07-11",
     "game_datetime": "2026-07-11T16:05:00Z",
-    "game_status": "Pre-Game",
-    "game_state": "pregame",
+    "game_status": "In Progress",
+    "game_state": "live",
     "rank": 235,
     "original_rank": 235,
     "batter_id": 806198,
@@ -14061,7 +14077,7 @@
     "ballparkpal_overlay_adjusted_rank": 235,
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 16.5,
-    "current_status": "pending",
+    "current_status": "game_in_progress",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -14916,8 +14932,8 @@
     "game_pk": 823357,
     "game_date": "2026-07-11",
     "game_datetime": "2026-07-11T16:05:00Z",
-    "game_status": "Pre-Game",
-    "game_state": "pregame",
+    "game_status": "In Progress",
+    "game_state": "live",
     "rank": 250,
     "original_rank": 250,
     "batter_id": 682997,
@@ -14961,7 +14977,7 @@
     "ballparkpal_overlay_adjusted_rank": 250,
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 11.1,
-    "current_status": "pending",
+    "current_status": "game_in_progress",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -15238,8 +15254,8 @@
     "game_pk": 823357,
     "game_date": "2026-07-11",
     "game_datetime": "2026-07-11T16:05:00Z",
-    "game_status": "Pre-Game",
-    "game_state": "pregame",
+    "game_status": "In Progress",
+    "game_state": "live",
     "rank": 256,
     "original_rank": 256,
     "batter_id": 686217,
@@ -15283,7 +15299,7 @@
     "ballparkpal_overlay_adjusted_rank": 256,
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 9.0,
-    "current_status": "pending",
+    "current_status": "game_in_progress",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -15350,7 +15366,9 @@
     "ballparkpal_overlay_direction": "neutral",
     "original_score": 8.2,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 10 days is 0.0%, a above-baseline live-model signal.",
@@ -16374,7 +16392,9 @@
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 2.5,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 10 days is 0.0%, a above-baseline live-model signal.",
