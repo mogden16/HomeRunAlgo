@@ -837,11 +837,11 @@ function renderTierLegend(entries) {
   const probabilityGuideMarkup = `
     <span class="legend-item legend-item-probability">
       <span class="probability-key probability-key-confident" aria-hidden="true"></span>
-      <span>Confident: HR chance 10.0%+</span>
+      <span>Confident: HR chance 20.0%+</span>
     </span>
     <span class="legend-item legend-item-probability">
       <span class="probability-key probability-key-aggressive" aria-hidden="true"></span>
-      <span>Aggressive: HR chance 9.0%+</span>
+      <span>Aggressive: HR chance 18.0%+</span>
     </span>
   `;
   target.innerHTML = `${probabilityGuideMarkup}${tierGuideMarkup}`;
@@ -852,10 +852,10 @@ function probabilityHighlightClass(row) {
   if (!Number.isFinite(probability)) {
     return "";
   }
-  if (probability >= 0.10) {
+  if (probability >= 0.20) {
     return "row-probability-confident";
   }
-  if (probability >= 0.09) {
+  if (probability >= 0.18) {
     return "row-probability-aggressive";
   }
   return "";
