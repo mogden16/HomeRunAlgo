@@ -1049,6 +1049,9 @@ function renderLineupPanels(rows) {
 
 function renderTierFilterControls(targetId, selectedTiers) {
   const target = document.getElementById(targetId);
+  if (!target) {
+    return;
+  }
   target.innerHTML = CONFIDENCE_TIERS.map((tier) => {
     const active = selectedTiers.has(tier);
     return `
@@ -1069,6 +1072,9 @@ function renderHistoryDateOptions(historyDates, defaultDate) {
   const rows = Array.isArray(historyDates) ? historyDates : [];
   const resolvedDefault = rows.includes(defaultDate) ? defaultDate : (rows[0] || ALL_DATES_FILTER_VALUE);
   state.selectedHistoryDate = resolvedDefault;
+  if (!target) {
+    return;
+  }
   target.innerHTML = [
     `<option value="${ALL_DATES_FILTER_VALUE}">All dates</option>`,
     ...rows.map((value) => `<option value="${escapeHtml(value)}">${escapeHtml(formatDate(value))}</option>`),
@@ -1275,7 +1281,13 @@ function applyHistoryFilters() {
     return;
   }
 
-  const searchValue = document.getElementById("history-search").value.trim().toLowerCase();
+  const historyTarget = document.getElementById("history-table");
+  const searchInput = document.getElementById("history-search");
+  if (!historyTarget || !searchInput) {
+    return;
+  }
+
+  const searchValue = searchInput.value.trim().toLowerCase();
   const selectedDate = state.selectedHistoryDate || state.dashboard.history_default_date || ALL_DATES_FILTER_VALUE;
   const blendedRows = buildBlendedHistoryRows(state.dashboard.history, state.historyBallparkWeight);
   const tierFilteredRows = filterRowsByTierSelection(blendedRows, state.historyTierFilters);
@@ -1445,23 +1457,35 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("model-explainer-close").addEventListener("click", () => {
     modelExplainerDialog.close();
   });
-  document.getElementById("history-search").addEventListener("input", applyHistoryFilters);
-  document.getElementById("history-date-filter").addEventListener("change", (event) => {
+  const historySearch = document.getElementById("history-search");
+  if (historySearch) {
+    historySearch.addEventListener("input", applyHistoryFilters);
+  }
+  const historyDateFilter = document.getElementById("history-date-filter");
+  if (historyDateFilter) {
+    historyDateFilter.addEventListener("change", (event) => {
     state.selectedHistoryDate = event.target.value;
     applyHistoryFilters();
-  });
+    });
+  }
   document.getElementById("latest-ballpark-weight").addEventListener("input", (event) => {
     state.latestBallparkWeight = Number(event.target.value);
     renderLatestBallparkWeightLabel();
     applyLatestPicksFilters();
   });
-  document.getElementById("history-ballpark-weight").addEventListener("input", (event) => {
-    state.historyBallparkWeight = Number(event.target.value);
-    renderHistoryBallparkWeightLabel();
-    applyHistoryFilters();
-  });
+  const historyBallparkWeight = document.getElementById("history-ballpark-weight");
+  if (historyBallparkWeight) {
+    historyBallparkWeight.addEventListener("input", (event) => {
+      state.historyBallparkWeight = Number(event.target.value);
+      renderHistoryBallparkWeightLabel();
+      applyHistoryFilters();
+    });
+  }
   document.getElementById("latest-confidence-filters").addEventListener("click", handleTierFilterToggle);
-  document.getElementById("history-confidence-filters").addEventListener("click", handleTierFilterToggle);
+  const historyConfidenceFilters = document.getElementById("history-confidence-filters");
+  if (historyConfidenceFilters) {
+    historyConfidenceFilters.addEventListener("click", handleTierFilterToggle);
+  }
   const savedKey = localStorage.getItem(MANUAL_REFRESH_KEY_STORAGE);
   if (savedKey) {
     document.getElementById("manual-refresh-key").value = savedKey;
