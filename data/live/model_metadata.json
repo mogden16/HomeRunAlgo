@@ -1,6 +1,6 @@
 {
-  "trained_through": "2026-07-24",
-  "dataset_max_game_date": "2026-07-24",
+  "trained_through": "2026-07-25",
+  "dataset_max_game_date": "2026-07-25",
   "model_family": "histgb",
   "feature_profile": "pregame_safe_v1",
   "positive_call_threshold": 0.2,
@@ -345,8 +345,8 @@
   "confidence_policy_search_rows": [],
   "confidence_summary": [],
   "elite_pick_metrics": {},
-  "row_count": 129263,
-  "hr_rate": 0.106836,
+  "row_count": 129567,
+  "hr_rate": 0.106694,
   "refit_strategy": "fast_refit",
   "weather_feature_coverage": {
     "warning_null_rate_threshold": 0.35,
@@ -355,21 +355,21 @@
     "all_null_features": [],
     "summary": {
       "temperature_f": {
-        "row_count": 129263,
-        "non_null_count": 124975,
-        "null_rate": 0.033173,
+        "row_count": 129567,
+        "non_null_count": 125259,
+        "null_rate": 0.033249,
         "present": true
       },
       "wind_speed_mph": {
-        "row_count": 129263,
-        "non_null_count": 124975,
-        "null_rate": 0.033173,
+        "row_count": 129567,
+        "non_null_count": 125259,
+        "null_rate": 0.033249,
         "present": true
       },
       "humidity_pct": {
-        "row_count": 129263,
-        "non_null_count": 124975,
-        "null_rate": 0.033173,
+        "row_count": 129567,
+        "non_null_count": 125259,
+        "null_rate": 0.033249,
         "present": true
       }
     },
@@ -388,9 +388,10 @@
       "kind": "warning",
       "code": "weather_forecast_unavailable",
       "title": "Weather data incomplete",
-      "message": "Weather forecast data was unavailable for WSH on 2026-07-26. This slate was generated with null weather inputs for those parks. Rerun later for a weather-refreshed draft.",
-      "target_date": "2026-07-26",
+      "message": "Weather forecast data was unavailable for TEX, WSH on 2026-07-27. This slate was generated with null weather inputs for those parks. Rerun later for a weather-refreshed draft.",
+      "target_date": "2026-07-27",
       "teams": [
+        "TEX",
         "WSH"
       ]
     }
