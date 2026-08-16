@@ -350,26 +350,30 @@
   "refit_strategy": "fast_refit",
   "weather_feature_coverage": {
     "warning_null_rate_threshold": 0.35,
-    "high_missing_features": [],
+    "high_missing_features": [
+      "temperature_f",
+      "wind_speed_mph",
+      "humidity_pct"
+    ],
     "missing_columns": [],
     "all_null_features": [],
     "summary": {
       "temperature_f": {
         "row_count": 135362,
-        "non_null_count": 94846,
-        "null_rate": 0.299316,
+        "non_null_count": 85659,
+        "null_rate": 0.367186,
         "present": true
       },
       "wind_speed_mph": {
         "row_count": 135362,
-        "non_null_count": 94846,
-        "null_rate": 0.299316,
+        "non_null_count": 85659,
+        "null_rate": 0.367186,
         "present": true
       },
       "humidity_pct": {
         "row_count": 135362,
-        "non_null_count": 94846,
-        "null_rate": 0.299316,
+        "non_null_count": 85659,
+        "null_rate": 0.367186,
         "present": true
       }
     },
