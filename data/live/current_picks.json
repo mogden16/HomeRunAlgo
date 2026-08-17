@@ -521,8 +521,8 @@
     "game_pk": 824514,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-17T17:40:00Z",
-    "game_status": "In Progress",
-    "game_state": "live",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 10,
     "original_rank": 10,
     "batter_id": 676475,
@@ -566,7 +566,7 @@
     "ballparkpal_overlay_adjusted_rank": 10,
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 95.8,
-    "current_status": "game_in_progress",
+    "current_status": "no_home_run",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -575,7 +575,7 @@
     "top_reason_1": "Average exit velocity over the last 10 days is 96.0 mph, a top-decile recent batted-ball quality marker.",
     "top_reason_2": "Hard-hit rate over the last 10 days is 58.3%, a top-quartile recent-contact signal.",
     "top_reason_3": "95+ EV contact rate over the last 10 days is 58.3%, which supports near-term HR upside.",
-    "result": "Pending"
+    "result": "No HR"
   },
   {
     "pick_id": "2026-08-17:824320:660271:608372",
@@ -587,7 +587,7 @@
     "game_pk": 824320,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-18T00:40:00Z",
-    "game_status": "Scheduled",
+    "game_status": "Pre-Game",
     "game_state": "pregame",
     "rank": 11,
     "original_rank": 11,
@@ -651,8 +651,8 @@
     "game_pk": 824514,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-17T17:40:00Z",
-    "game_status": "In Progress",
-    "game_state": "live",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 13,
     "original_rank": 13,
     "batter_id": 695491,
@@ -696,7 +696,7 @@
     "ballparkpal_overlay_adjusted_rank": 13,
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 94.2,
-    "current_status": "game_in_progress",
+    "current_status": "no_home_run",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -705,7 +705,7 @@
     "top_reason_1": "HR rate over the last 30 days is 33.3%, which keeps the recent power trend elevated.",
     "top_reason_2": "HR rate over the last 10 days is 33.3%, a top-decile live-model signal.",
     "top_reason_3": "Hard-hit rate over the last 30 days is 83.3%, showing consistent quality contact.",
-    "result": "Pending"
+    "result": "No HR"
   },
   {
     "pick_id": "2026-08-17:824725:677800:683352",
@@ -1165,8 +1165,8 @@
     "game_pk": 824514,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-17T17:40:00Z",
-    "game_status": "In Progress",
-    "game_state": "live",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 22,
     "original_rank": 22,
     "batter_id": 682829,
@@ -1210,7 +1210,7 @@
     "ballparkpal_overlay_adjusted_rank": 22,
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 89.4,
-    "current_status": "game_in_progress",
+    "current_status": "no_home_run",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -1219,7 +1219,7 @@
     "top_reason_1": "Peak exit velocity over the last 10 days is 111.4 mph, which points to top-end HR juice.",
     "top_reason_2": "Hard-hit rate over the last 30 days is 46.7%, showing consistent quality contact.",
     "top_reason_3": "95+ EV contact rate over the last 30 days is 46.7%, a strong loud-contact input for the model.",
-    "result": "Pending"
+    "result": "No HR"
   },
   {
     "pick_id": "2026-08-17:823589:683146:621111",
@@ -1491,7 +1491,7 @@
     "game_pk": 824320,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-18T00:40:00Z",
-    "game_status": "Scheduled",
+    "game_status": "Pre-Game",
     "game_state": "pregame",
     "rank": 27,
     "original_rank": 27,
@@ -1747,8 +1747,8 @@
     "game_pk": 824514,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-17T17:40:00Z",
-    "game_status": "In Progress",
-    "game_state": "live",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 32,
     "original_rank": 32,
     "batter_id": 701398,
@@ -1792,7 +1792,7 @@
     "ballparkpal_overlay_adjusted_rank": 32,
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 84.1,
-    "current_status": "game_in_progress",
+    "current_status": "no_home_run",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -1801,7 +1801,7 @@
     "top_reason_1": "HR rate over the last 30 days is 6.2%, which keeps the recent power trend elevated.",
     "top_reason_2": "Barrel rate over the last 30 days is 6.2%, which the model treats as sustained power quality.",
     "top_reason_3": "Peak exit velocity over the last 10 days is 110.2 mph, which points to top-end HR juice.",
-    "result": "Pending"
+    "result": "No HR"
   },
   {
     "pick_id": "2026-08-17:824320:650489:605483",
@@ -1813,7 +1813,7 @@
     "game_pk": 824320,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-18T00:40:00Z",
-    "game_status": "Scheduled",
+    "game_status": "Pre-Game",
     "game_state": "pregame",
     "rank": 33,
     "original_rank": 33,
@@ -1823,7 +1823,7 @@
     "opponent_team": "LAD",
     "pitcher_id": 605483,
     "pitcher_name": "Blake Snell",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Coors Field",
     "ballpark_region_abbr": "CO",
@@ -2587,8 +2587,8 @@
     "game_pk": 824514,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-17T17:40:00Z",
-    "game_status": "In Progress",
-    "game_state": "live",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 46,
     "original_rank": 46,
     "batter_id": 691023,
@@ -2632,7 +2632,7 @@
     "ballparkpal_overlay_adjusted_rank": 46,
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 76.7,
-    "current_status": "game_in_progress",
+    "current_status": "no_home_run",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -2641,7 +2641,7 @@
     "top_reason_1": "Peak exit velocity over the last 10 days is 114.6 mph, which points to top-end HR juice.",
     "top_reason_2": "Barrel rate over the last 10 days is 10.8%, a top-decile indicator of current lift-and-damage contact.",
     "top_reason_3": "HR rate over the last 10 days is 5.4%, a top-quartile live-model signal.",
-    "result": "Pending"
+    "result": "No HR"
   },
   {
     "pick_id": "2026-08-17:824320:691728:605483",
@@ -2653,7 +2653,7 @@
     "game_pk": 824320,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-18T00:40:00Z",
-    "game_status": "Scheduled",
+    "game_status": "Pre-Game",
     "game_state": "pregame",
     "rank": 47,
     "original_rank": 47,
@@ -2663,7 +2663,7 @@
     "opponent_team": "LAD",
     "pitcher_id": 605483,
     "pitcher_name": "Blake Snell",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Coors Field",
     "ballpark_region_abbr": "CO",
@@ -2698,14 +2698,16 @@
     "ballparkpal_overlay_adjusted_rank": 47,
     "ballparkpal_overlay_direction": "neutral",
     "original_score": 75.7,
-    "current_status": "pending",
-    "alert_flags": [],
-    "inactive_flag": false,
-    "display_style": "default",
+    "current_status": "inactive",
+    "alert_flags": [
+      "lineup_alert"
+    ],
+    "inactive_flag": true,
+    "display_style": "strikethrough",
     "top_reason_1": "HR rate over the last 30 days is 15.4%, which keeps the recent power trend elevated.",
     "top_reason_2": "Barrel rate over the last 30 days is 15.4%, which the model treats as sustained power quality.",
     "top_reason_3": "HR rate over the last 10 days is 15.4%, a top-decile live-model signal.",
-    "result": "Pending"
+    "result": "Inactive"
   },
   {
     "pick_id": "2026-08-17:822939:683002:663556",
@@ -2909,8 +2911,8 @@
     "game_pk": 824514,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-17T17:40:00Z",
-    "game_status": "In Progress",
-    "game_state": "live",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 52,
     "original_rank": 52,
     "batter_id": 671056,
@@ -2954,7 +2956,7 @@
     "ballparkpal_overlay_adjusted_rank": 52,
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 73.5,
-    "current_status": "game_in_progress",
+    "current_status": "no_home_run",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -2963,7 +2965,7 @@
     "top_reason_1": "Hard-hit rate over the last 10 days is 54.8%, a top-quartile recent-contact signal.",
     "top_reason_2": "95+ EV contact rate over the last 10 days is 54.8%, which supports near-term HR upside.",
     "top_reason_3": "Average exit velocity over the last 10 days is 92.0 mph, a top-quartile recent batted-ball quality marker.",
-    "result": "Pending"
+    "result": "No HR"
   },
   {
     "pick_id": "2026-08-17:822939:691723:663556",
@@ -3233,8 +3235,8 @@
     "game_pk": 824514,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-17T17:40:00Z",
-    "game_status": "In Progress",
-    "game_state": "live",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 58,
     "original_rank": 58,
     "batter_id": 553993,
@@ -3278,7 +3280,7 @@
     "ballparkpal_overlay_adjusted_rank": 58,
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 70.4,
-    "current_status": "game_in_progress",
+    "current_status": "no_home_run",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -3287,7 +3289,7 @@
     "top_reason_1": "HR rate over the last 10 days is 11.1%, a top-decile live-model signal.",
     "top_reason_2": "HR rate over the last 30 days is 6.2%, which keeps the recent power trend elevated.",
     "top_reason_3": "Barrel rate over the last 10 days is 5.6%, a top-quartile indicator of current lift-and-damage contact.",
-    "result": "Pending"
+    "result": "No HR"
   },
   {
     "pick_id": "2026-08-17:823668:573262:641927",
@@ -3427,8 +3429,8 @@
     "game_pk": 824514,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-17T17:40:00Z",
-    "game_status": "In Progress",
-    "game_state": "live",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 62,
     "original_rank": 62,
     "batter_id": 663886,
@@ -3472,7 +3474,7 @@
     "ballparkpal_overlay_adjusted_rank": 62,
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 68.3,
-    "current_status": "game_in_progress",
+    "current_status": "no_home_run",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -3481,7 +3483,7 @@
     "top_reason_1": "Barrel rate over the last 30 days is 9.0%, which the model treats as sustained power quality.",
     "top_reason_2": "HR rate over the last 30 days is 7.7%, which keeps the recent power trend elevated.",
     "top_reason_3": "Hard-hit rate over the last 30 days is 56.2%, showing consistent quality contact.",
-    "result": "Pending"
+    "result": "No HR"
   },
   {
     "pick_id": "2026-08-17:823427:547180:676083",
@@ -3877,7 +3879,7 @@
     "game_pk": 824320,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-18T00:40:00Z",
-    "game_status": "Scheduled",
+    "game_status": "Pre-Game",
     "game_state": "pregame",
     "rank": 69,
     "original_rank": 69,
@@ -4071,7 +4073,7 @@
     "game_pk": 824320,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-18T00:40:00Z",
-    "game_status": "Scheduled",
+    "game_status": "Pre-Game",
     "game_state": "pregame",
     "rank": 72,
     "original_rank": 72,
@@ -4081,7 +4083,7 @@
     "opponent_team": "LAD",
     "pitcher_id": 605483,
     "pitcher_name": "Blake Snell",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Coors Field",
     "ballpark_region_abbr": "CO",
@@ -4116,14 +4118,16 @@
     "ballparkpal_overlay_adjusted_rank": 72,
     "ballparkpal_overlay_direction": "neutral",
     "original_score": 62.4,
-    "current_status": "pending",
-    "alert_flags": [],
-    "inactive_flag": false,
-    "display_style": "default",
+    "current_status": "inactive",
+    "alert_flags": [
+      "lineup_alert"
+    ],
+    "inactive_flag": true,
+    "display_style": "strikethrough",
     "top_reason_1": "HR rate over the last 10 days is 14.3%, a top-decile live-model signal.",
     "top_reason_2": "Barrel rate over the last 10 days is 14.3%, a top-decile indicator of current lift-and-damage contact.",
     "top_reason_3": "HR rate over the last 30 days is 7.1%, which keeps the recent power trend elevated.",
-    "result": "Pending"
+    "result": "Inactive"
   },
   {
     "pick_id": "2026-08-17:824725:682998:",
@@ -4329,7 +4333,7 @@
     "game_pk": 824320,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-18T00:40:00Z",
-    "game_status": "Scheduled",
+    "game_status": "Pre-Game",
     "game_state": "pregame",
     "rank": 76,
     "original_rank": 76,
@@ -4339,7 +4343,7 @@
     "opponent_team": "LAD",
     "pitcher_id": 605483,
     "pitcher_name": "Blake Snell",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Coors Field",
     "ballpark_region_abbr": "CO",
@@ -4374,14 +4378,16 @@
     "ballparkpal_overlay_adjusted_rank": 76,
     "ballparkpal_overlay_direction": "neutral",
     "original_score": 60.3,
-    "current_status": "pending",
-    "alert_flags": [],
-    "inactive_flag": false,
-    "display_style": "default",
+    "current_status": "inactive",
+    "alert_flags": [
+      "lineup_alert"
+    ],
+    "inactive_flag": true,
+    "display_style": "strikethrough",
     "top_reason_1": "HR rate over the last 30 days is 4.3%, which keeps the recent power trend elevated.",
     "top_reason_2": "",
     "top_reason_3": "",
-    "result": "Pending"
+    "result": "Inactive"
   },
   {
     "pick_id": "2026-08-17:824320:676439:608372",
@@ -4393,7 +4399,7 @@
     "game_pk": 824320,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-18T00:40:00Z",
-    "game_status": "Scheduled",
+    "game_status": "Pre-Game",
     "game_state": "pregame",
     "rank": 77,
     "original_rank": 77,
@@ -4971,8 +4977,8 @@
     "game_pk": 824514,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-17T17:40:00Z",
-    "game_status": "In Progress",
-    "game_state": "live",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 87,
     "original_rank": 87,
     "batter_id": 668709,
@@ -5294,7 +5300,7 @@
     "game_pk": 824320,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-18T00:40:00Z",
-    "game_status": "Scheduled",
+    "game_status": "Pre-Game",
     "game_state": "pregame",
     "rank": 92,
     "original_rank": 92,
@@ -5304,7 +5310,7 @@
     "opponent_team": "LAD",
     "pitcher_id": 605483,
     "pitcher_name": "Blake Snell",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Coors Field",
     "ballpark_region_abbr": "CO",
@@ -5358,7 +5364,7 @@
     "game_pk": 824320,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-18T00:40:00Z",
-    "game_status": "Scheduled",
+    "game_status": "Pre-Game",
     "game_state": "pregame",
     "rank": 93,
     "original_rank": 93,
@@ -5554,8 +5560,8 @@
     "game_pk": 824514,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-17T17:40:00Z",
-    "game_status": "In Progress",
-    "game_state": "live",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 97,
     "original_rank": 97,
     "batter_id": 699625,
@@ -5749,7 +5755,7 @@
     "game_pk": 824320,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-18T00:40:00Z",
-    "game_status": "Scheduled",
+    "game_status": "Pre-Game",
     "game_state": "pregame",
     "rank": 100,
     "original_rank": 100,
@@ -6007,7 +6013,7 @@
     "game_pk": 824320,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-18T00:40:00Z",
-    "game_status": "Scheduled",
+    "game_status": "Pre-Game",
     "game_state": "pregame",
     "rank": 104,
     "original_rank": 104,
@@ -6071,7 +6077,7 @@
     "game_pk": 824320,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-18T00:40:00Z",
-    "game_status": "Scheduled",
+    "game_status": "Pre-Game",
     "game_state": "pregame",
     "rank": 105,
     "original_rank": 105,
@@ -6523,8 +6529,8 @@
     "game_pk": 824514,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-17T17:40:00Z",
-    "game_status": "In Progress",
-    "game_state": "live",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 113,
     "original_rank": 113,
     "batter_id": 680574,
@@ -6568,7 +6574,7 @@
     "ballparkpal_overlay_adjusted_rank": 113,
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 41.3,
-    "current_status": "game_in_progress",
+    "current_status": "no_home_run",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -6577,7 +6583,7 @@
     "top_reason_1": "HR rate over the last 10 days is 6.1%, a top-quartile live-model signal.",
     "top_reason_2": "HR rate over the last 30 days is 5.2%, which keeps the recent power trend elevated.",
     "top_reason_3": "Barrel rate over the last 10 days is 6.1%, a top-quartile indicator of current lift-and-damage contact.",
-    "result": "Pending"
+    "result": "No HR"
   },
   {
     "pick_id": "2026-08-17:823589:650859:690997",
@@ -7555,8 +7561,8 @@
     "game_pk": 824514,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-17T17:40:00Z",
-    "game_status": "In Progress",
-    "game_state": "live",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 130,
     "original_rank": 130,
     "batter_id": 802139,
@@ -7622,8 +7628,8 @@
     "game_pk": 824514,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-17T17:40:00Z",
-    "game_status": "In Progress",
-    "game_state": "live",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 132,
     "original_rank": 132,
     "batter_id": 691458,
@@ -7667,7 +7673,7 @@
     "ballparkpal_overlay_adjusted_rank": 132,
     "ballparkpal_overlay_direction": "neutral",
     "original_score": 31.2,
-    "current_status": "game_in_progress",
+    "current_status": "no_home_run",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -7676,7 +7682,7 @@
     "top_reason_1": "HR rate over the last 10 days is 5.9%, a top-quartile live-model signal.",
     "top_reason_2": "Barrel rate over the last 10 days is 5.9%, a top-quartile indicator of current lift-and-damage contact.",
     "top_reason_3": "Barrel rate over the last 30 days is 3.8%, which the model treats as sustained power quality.",
-    "result": "Pending"
+    "result": "No HR"
   },
   {
     "pick_id": "2026-08-17:824641:803011:684007",
@@ -7752,7 +7758,7 @@
     "game_pk": 824320,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-18T00:40:00Z",
-    "game_status": "Scheduled",
+    "game_status": "Pre-Game",
     "game_state": "pregame",
     "rank": 134,
     "original_rank": 134,
@@ -7762,7 +7768,7 @@
     "opponent_team": "LAD",
     "pitcher_id": 605483,
     "pitcher_name": "Blake Snell",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Coors Field",
     "ballpark_region_abbr": "CO",
@@ -7816,7 +7822,7 @@
     "game_pk": 824320,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-18T00:40:00Z",
-    "game_status": "Scheduled",
+    "game_status": "Pre-Game",
     "game_state": "pregame",
     "rank": 135,
     "original_rank": 135,
@@ -7826,7 +7832,7 @@
     "opponent_team": "LAD",
     "pitcher_id": 605483,
     "pitcher_name": "Blake Snell",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Coors Field",
     "ballpark_region_abbr": "CO",
@@ -8716,7 +8722,7 @@
     "game_pk": 824320,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-18T00:40:00Z",
-    "game_status": "Scheduled",
+    "game_status": "Pre-Game",
     "game_state": "pregame",
     "rank": 149,
     "original_rank": 149,
@@ -9428,8 +9434,8 @@
     "game_pk": 824514,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-17T17:40:00Z",
-    "game_status": "In Progress",
-    "game_state": "live",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 161,
     "original_rank": 161,
     "batter_id": 691026,
@@ -9473,7 +9479,7 @@
     "ballparkpal_overlay_adjusted_rank": 161,
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 15.9,
-    "current_status": "game_in_progress",
+    "current_status": "no_home_run",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -9482,7 +9488,7 @@
     "top_reason_1": "Barrel rate over the last 10 days is 5.6%, a top-quartile indicator of current lift-and-damage contact.",
     "top_reason_2": "Average exit velocity over the last 10 days is 91.9 mph, a top-quartile recent batted-ball quality marker.",
     "top_reason_3": "",
-    "result": "Pending"
+    "result": "No HR"
   },
   {
     "pick_id": "2026-08-17:824478:682622:",
@@ -9494,8 +9500,8 @@
     "game_pk": 824514,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-17T17:40:00Z",
-    "game_status": "In Progress",
-    "game_state": "live",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 163,
     "original_rank": 163,
     "batter_id": 682622,
@@ -9539,7 +9545,7 @@
     "ballparkpal_overlay_adjusted_rank": 163,
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 14.8,
-    "current_status": "game_in_progress",
+    "current_status": "no_home_run",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -9548,7 +9554,7 @@
     "top_reason_1": "HR rate over the last 10 days is 0.0%, a above-baseline live-model signal.",
     "top_reason_2": "Barrel rate over the last 10 days is 0.0%, a above-baseline indicator of current lift-and-damage contact.",
     "top_reason_3": "Barrel rate over the last 30 days is 1.6%, which the model treats as sustained power quality.",
-    "result": "Pending"
+    "result": "No HR"
   },
   {
     "pick_id": "2026-08-17:823668:642086:641927",
@@ -9822,8 +9828,8 @@
     "game_pk": 824514,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-17T17:40:00Z",
-    "game_status": "In Progress",
-    "game_state": "live",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 169,
     "original_rank": 169,
     "batter_id": 667472,
@@ -10144,8 +10150,8 @@
     "game_pk": 824514,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-17T17:40:00Z",
-    "game_status": "In Progress",
-    "game_state": "live",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 175,
     "original_rank": 175,
     "batter_id": 701675,
@@ -10467,8 +10473,8 @@
     "game_pk": 824514,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-17T17:40:00Z",
-    "game_status": "In Progress",
-    "game_state": "live",
+    "game_status": "Final",
+    "game_state": "final",
     "rank": 181,
     "original_rank": 181,
     "batter_id": 669911,
@@ -10512,7 +10518,7 @@
     "ballparkpal_overlay_adjusted_rank": 181,
     "ballparkpal_overlay_direction": "neutral",
     "original_score": 5.3,
-    "current_status": "game_in_progress",
+    "current_status": "no_home_run",
     "alert_flags": [
       "pitcher_change_alert"
     ],
@@ -10521,7 +10527,7 @@
     "top_reason_1": "Hard-hit rate over the last 30 days is 42.9%, showing consistent quality contact.",
     "top_reason_2": "95+ EV contact rate over the last 30 days is 42.9%, a strong loud-contact input for the model.",
     "top_reason_3": "Hard-hit rate over the last 10 days is 42.9%, a above-baseline recent-contact signal.",
-    "result": "Pending"
+    "result": "No HR"
   },
   {
     "pick_id": "2026-08-17:824320:681393:605483",
@@ -10533,7 +10539,7 @@
     "game_pk": 824320,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-18T00:40:00Z",
-    "game_status": "Scheduled",
+    "game_status": "Pre-Game",
     "game_state": "pregame",
     "rank": 182,
     "original_rank": 182,
@@ -10543,7 +10549,7 @@
     "opponent_team": "LAD",
     "pitcher_id": 605483,
     "pitcher_name": "Blake Snell",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Coors Field",
     "ballpark_region_abbr": "CO",
@@ -10859,7 +10865,7 @@
     "game_pk": 824320,
     "game_date": "2026-08-17",
     "game_datetime": "2026-08-18T00:40:00Z",
-    "game_status": "Scheduled",
+    "game_status": "Pre-Game",
     "game_state": "pregame",
     "rank": 187,
     "original_rank": 187,
@@ -10869,7 +10875,7 @@
     "opponent_team": "LAD",
     "pitcher_id": 605483,
     "pitcher_name": "Blake Snell",
-    "lineup_source": "projected",
+    "lineup_source": "confirmed",
     "batting_order": null,
     "ballpark_name": "Coors Field",
     "ballpark_region_abbr": "CO",
@@ -10904,14 +10910,16 @@
     "ballparkpal_overlay_adjusted_rank": 187,
     "ballparkpal_overlay_direction": "neutral",
     "original_score": 1.6,
-    "current_status": "pending",
-    "alert_flags": [],
-    "inactive_flag": false,
-    "display_style": "default",
+    "current_status": "inactive",
+    "alert_flags": [
+      "lineup_alert"
+    ],
+    "inactive_flag": true,
+    "display_style": "strikethrough",
     "top_reason_1": "Barrel rate over the last 10 days is 6.7%, a top-quartile indicator of current lift-and-damage contact.",
     "top_reason_2": "",
     "top_reason_3": "",
-    "result": "Pending"
+    "result": "Inactive"
   },
   {
     "pick_id": "2026-08-17:823427:650333:676083",
