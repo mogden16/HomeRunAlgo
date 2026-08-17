@@ -1,6 +1,6 @@
 {
-  "trained_through": "2026-08-15",
-  "dataset_max_game_date": "2026-08-15",
+  "trained_through": "2026-08-16",
+  "dataset_max_game_date": "2026-08-16",
   "model_family": "histgb",
   "feature_profile": "pregame_safe_v1",
   "positive_call_threshold": 0.2,
@@ -345,35 +345,31 @@
   "confidence_policy_search_rows": [],
   "confidence_summary": [],
   "elite_pick_metrics": {},
-  "row_count": 135362,
-  "hr_rate": 0.106455,
+  "row_count": 135669,
+  "hr_rate": 0.106524,
   "refit_strategy": "fast_refit",
   "weather_feature_coverage": {
     "warning_null_rate_threshold": 0.35,
-    "high_missing_features": [
-      "temperature_f",
-      "wind_speed_mph",
-      "humidity_pct"
-    ],
+    "high_missing_features": [],
     "missing_columns": [],
     "all_null_features": [],
     "summary": {
       "temperature_f": {
-        "row_count": 135362,
-        "non_null_count": 85659,
-        "null_rate": 0.367186,
+        "row_count": 135669,
+        "non_null_count": 131154,
+        "null_rate": 0.03328,
         "present": true
       },
       "wind_speed_mph": {
-        "row_count": 135362,
-        "non_null_count": 85659,
-        "null_rate": 0.367186,
+        "row_count": 135669,
+        "non_null_count": 131154,
+        "null_rate": 0.03328,
         "present": true
       },
       "humidity_pct": {
-        "row_count": 135362,
-        "non_null_count": 85659,
-        "null_rate": 0.367186,
+        "row_count": 135669,
+        "non_null_count": 131154,
+        "null_rate": 0.03328,
         "present": true
       }
     },
@@ -387,16 +383,5 @@
     }
   },
   "weather_join_contract": "game_date + home_team; PARKS[home_team]; nearest available hour to 19:00 local park time",
-  "operational_alerts": [
-    {
-      "kind": "warning",
-      "code": "weather_forecast_unavailable",
-      "title": "Weather data incomplete",
-      "message": "Weather forecast data was unavailable for SF on 2026-08-16. This slate was generated with null weather inputs for those parks. Rerun later for a weather-refreshed draft.",
-      "target_date": "2026-08-16",
-      "teams": [
-        "SF"
-      ]
-    }
-  ]
+  "operational_alerts": []
 }
