@@ -1207,7 +1207,9 @@
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 89.4,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "Peak exit velocity over the last 10 days is 111.4 mph, which points to top-end HR juice.",
@@ -1783,7 +1785,9 @@
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 84.1,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 30 days is 6.2%, which keeps the recent power trend elevated.",
@@ -3255,7 +3259,9 @@
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 70.4,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 10 days is 11.1%, a top-decile live-model signal.",
@@ -3447,7 +3453,9 @@
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 68.3,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "Barrel rate over the last 30 days is 9.0%, which the model treats as sustained power quality.",
@@ -4983,7 +4991,9 @@
     "ballparkpal_overlay_direction": "favorable",
     "original_score": 55.0,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 30 days is 3.6%, which keeps the recent power trend elevated.",
@@ -6519,7 +6529,9 @@
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 41.3,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 10 days is 6.1%, a top-quartile live-model signal.",
@@ -9463,7 +9475,9 @@
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 14.8,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 10 days is 0.0%, a above-baseline live-model signal.",
@@ -9783,7 +9797,9 @@
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 11.6,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "HR rate over the last 10 days is 0.0%, a above-baseline live-model signal.",
@@ -10423,7 +10439,9 @@
     "ballparkpal_overlay_direction": "neutral",
     "original_score": 5.3,
     "current_status": "pending",
-    "alert_flags": [],
+    "alert_flags": [
+      "pitcher_change_alert"
+    ],
     "inactive_flag": false,
     "display_style": "default",
     "top_reason_1": "Hard-hit rate over the last 30 days is 42.9%, showing consistent quality contact.",
