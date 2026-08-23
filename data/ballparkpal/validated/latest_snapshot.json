@@ -9964,7 +9964,7 @@
       "row_count": 269,
       "saved_filename": "BallparkPal_Batters.xlsx",
       "saved_path": "data/ballparkpal/raw/2026-08-23/BallparkPal_Batters.xlsx",
-      "sha256": "6308e68897c2f136e80b0b50f5c30fd3a2063f38786b4303e582fb0b4151d60c",
+      "sha256": "90ac28147470fee2284cdd018651d0a79c85b4e5f08efa1a4dd9fbb9868d2332",
       "sheet_names": [
         "Worksheet"
       ],
@@ -9978,13 +9978,13 @@
     "games": {
       "errors": [],
       "export_name": "games",
-      "file_size_bytes": 9614,
+      "file_size_bytes": 9615,
       "original_filename": "BallparkPal_Games.xlsx",
       "requested_date": "2026-08-23",
       "row_count": 15,
       "saved_filename": "BallparkPal_Games.xlsx",
       "saved_path": "data/ballparkpal/raw/2026-08-23/BallparkPal_Games.xlsx",
-      "sha256": "6c14a6b3880be73ff92d55e62a81c923c7b88162b0c19c65a09cae5493657d35",
+      "sha256": "7b7a18eb888bf89afc9107b251c4970fb91dbe4ae4ecf0f70e48a0014528cd64",
       "sheet_names": [
         "Worksheet"
       ],
@@ -9998,13 +9998,13 @@
     "pitchers": {
       "errors": [],
       "export_name": "pitchers",
-      "file_size_bytes": 10579,
+      "file_size_bytes": 10869,
       "original_filename": "BallparkPal_Pitchers.xlsx",
       "requested_date": "2026-08-23",
-      "row_count": 28,
+      "row_count": 30,
       "saved_filename": "BallparkPal_Pitchers.xlsx",
       "saved_path": "data/ballparkpal/raw/2026-08-23/BallparkPal_Pitchers.xlsx",
-      "sha256": "ab1c2fc5d460ff792537d9787a6f2d563ca70ba2b919e785e7efb77836fd3e52",
+      "sha256": "8d92b211c116c85d9a435e64c601fee7248c0394cc9adcee56e4c2683f61d8b0",
       "sheet_names": [
         "Worksheet"
       ],
@@ -10018,13 +10018,13 @@
     "teams": {
       "errors": [],
       "export_name": "teams",
-      "file_size_bytes": 13936,
+      "file_size_bytes": 13937,
       "original_filename": "BallparkPal_Teams.xlsx",
       "requested_date": "2026-08-23",
       "row_count": 30,
       "saved_filename": "BallparkPal_Teams.xlsx",
       "saved_path": "data/ballparkpal/raw/2026-08-23/BallparkPal_Teams.xlsx",
-      "sha256": "ccb0e9fd30ff3647efe2753e976c60003bf8cafad39a3839c60ba0766fdf9f7f",
+      "sha256": "8fdb28a7b6dcd1194dd2e98b4090d028bc12db4649fbf2a3209e7cd93afe6a82",
       "sheet_names": [
         "Worksheet"
       ],
@@ -10979,6 +10979,68 @@
       "winpct": 0.142
     },
     {
+      "battersfaced": 22.846,
+      "fullname": "Carlos Rodon",
+      "game_date": "2026-08-23",
+      "game_pk": 823507,
+      "gamedate": "2026-08-23",
+      "gamepk": 823507,
+      "gametime": "1:35",
+      "hitsallowed": 4.728,
+      "home_runs_allowed": 0.775,
+      "homerunsallowed": 0.775,
+      "innings": 5.371,
+      "lastname": "Rodon",
+      "losspct": 0.322,
+      "ndpct": 0.397,
+      "opponent": "TOR",
+      "pitcher_id": 607074,
+      "pitcherhand": "L",
+      "playerid": 607074,
+      "pointsdk": 14.586,
+      "pointsfd": 27.416,
+      "qualitystart": 0.349,
+      "runs_allowed": 2.344,
+      "runsallowed": 2.344,
+      "side": "H",
+      "stolenbasesallowed": 0.452,
+      "strikeouts": 5.083,
+      "team": "NYY",
+      "walks": 2.148,
+      "winpct": 0.282
+    },
+    {
+      "battersfaced": 21.948,
+      "fullname": "Jose Soriano",
+      "game_date": "2026-08-23",
+      "game_pk": 823507,
+      "gamedate": "2026-08-23",
+      "gamepk": 823507,
+      "gametime": "1:35",
+      "hitsallowed": 4.463,
+      "home_runs_allowed": 0.606,
+      "homerunsallowed": 0.606,
+      "innings": 5.064,
+      "lastname": "Soriano",
+      "losspct": 0.318,
+      "ndpct": 0.48,
+      "opponent": "NYY",
+      "pitcher_id": 667755,
+      "pitcherhand": "R",
+      "playerid": 667755,
+      "pointsdk": 14.199,
+      "pointsfd": 26.891,
+      "qualitystart": 0.292,
+      "runs_allowed": 2.29,
+      "runsallowed": 2.29,
+      "side": "A",
+      "stolenbasesallowed": 0.372,
+      "strikeouts": 5.396,
+      "team": "TOR",
+      "walks": 2.578,
+      "winpct": 0.202
+    },
+    {
       "battersfaced": 22.326,
       "fullname": "Tyler Mahle",
       "game_date": "2026-08-23",
@@ -11599,7 +11661,7 @@
       "winpct": 0.235
     }
   ],
-  "pulled_at": "2026-08-23T10:05:25.417348+00:00",
+  "pulled_at": "2026-08-23T10:57:23.205475+00:00",
   "requested_date": "2026-08-23",
   "teams": [
     {
