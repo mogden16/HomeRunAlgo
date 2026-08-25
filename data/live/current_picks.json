@@ -5477,14 +5477,16 @@
     "ballparkpal_overlay_adjusted_rank": 85,
     "ballparkpal_overlay_direction": "unfavorable",
     "original_score": 50.9,
-    "current_status": "pending",
-    "alert_flags": [],
-    "inactive_flag": false,
-    "display_style": "default",
+    "current_status": "inactive",
+    "alert_flags": [
+      "lineup_alert"
+    ],
+    "inactive_flag": true,
+    "display_style": "strikethrough",
     "top_reason_1": "Average exit velocity over the last 10 days is 92.6 mph, a top-quartile recent batted-ball quality marker.",
     "top_reason_2": "Hard-hit rate over the last 30 days is 46.3%, showing consistent quality contact.",
     "top_reason_3": "95+ EV contact rate over the last 30 days is 46.3%, a strong loud-contact input for the model.",
-    "result": "Pending"
+    "result": "Inactive"
   },
   {
     "pick_id": "2026-08-24:822695:695734:663372",

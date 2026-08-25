@@ -5653,13 +5653,15 @@
       "ballparkpal_overlay_adjusted_score": 50.9,
       "ballparkpal_overlay_adjusted_rank": 85,
       "ballparkpal_overlay_direction": "unfavorable",
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
-      "result": "Pending",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
+      "result": "Inactive",
       "actual_hit_hr": null,
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-08-24:822695:695734:663372",
