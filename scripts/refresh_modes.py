@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import shutil
+import tempfile
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
@@ -577,28 +579,91 @@ def run_refresh_mode(
         if resolved_mode == "idle":
             return {"mode": "idle", "result": {"status": "idle"}}
         if resolved_mode == "prepare":
-            result = run_prepare_refresh(**kwargs)
-            current_picks_path = Path(kwargs.get("current_picks_path", LIVE_CURRENT_PICKS_PATH))
-            board_state_path = Path(kwargs.get("board_state_path", LIVE_DAILY_BOARD_STATE_PATH))
-            morning_baseline_path = Path(kwargs.get("morning_baseline_path", LIVE_MORNING_BASELINE_PICKS_PATH))
-            history_path = Path(kwargs.get("history_path", LIVE_PICK_HISTORY_PATH))
-            dashboard_output_dir = Path(kwargs.get("dashboard_output_dir", DEFAULT_OUTPUT_DIR))
-            publish_date = normalize_game_date(kwargs.get("publish_date")) or default_publish_date()
-            published_rows = publish_prepared_baseline_to_current(
-                baseline_path=morning_baseline_path,
-                current_picks_path=current_picks_path,
-                board_state_path=board_state_path,
-                schedule_date=publish_date,
-            )
-            if published_rows and kwargs.get("rebuild_dashboard", True):
-                rebuild_and_verify_public_artifacts(
+            artifact_paths = {
+                "dataset_path": Path(kwargs.get("dataset_path", LIVE_MODEL_DATA_PATH)),
+                "bundle_path": Path(kwargs.get("bundle_path", LIVE_MODEL_BUNDLE_PATH)),
+                "metadata_path": Path(kwargs.get("metadata_path", LIVE_MODEL_METADATA_PATH)),
+            }
+            with tempfile.TemporaryDirectory(prefix="homerunalgo-last-good-") as backup_dir:
+                backup_paths = {
+                    key: Path(backup_dir) / path.name
+                    for key, path in artifact_paths.items()
+                }
+                last_good_model_available = all(path.is_file() for path in artifact_paths.values())
+                if last_good_model_available:
+                    for key, path in artifact_paths.items():
+                        shutil.copy2(path, backup_paths[key])
+
+                try:
+                    result = run_prepare_refresh(**kwargs)
+                except Exception as prepare_error:
+                    print(
+                        "Auto prepare failed; retrying the morning prepare once: "
+                        f"{prepare_error}"
+                    )
+                    try:
+                        result = run_prepare_refresh(**kwargs)
+                    except Exception as retry_error:
+                        if not last_good_model_available:
+                            raise RuntimeError(
+                                "Auto prepare failed twice and no last successful model is available; "
+                                "no predictions were published. "
+                                f"First error: {prepare_error}. Retry error: {retry_error}"
+                            ) from retry_error
+
+                        fallback_kwargs = dict(kwargs)
+                        fallback_kwargs.update(backup_paths)
+                        fallback_kwargs["refresh_results_before_publish"] = False
+                        fallback_kwargs["schedule_date"] = (
+                            normalize_game_date(kwargs.get("schedule_date"))
+                            or normalize_game_date(kwargs.get("publish_date"))
+                            or default_publish_date()
+                        )
+                        print(
+                            "Auto prepare failed twice; publishing today's schedule with "
+                            "the last successful model: "
+                            f"{retry_error}"
+                        )
+                        try:
+                            fallback_rows = run_publish_refresh(**fallback_kwargs)
+                        except Exception as fallback_error:
+                            raise RuntimeError(
+                                "Auto prepare failed twice and the last successful model fallback "
+                                "also failed; no predictions were published. "
+                                f"Prepare retry error: {retry_error}. Fallback error: {fallback_error}"
+                            ) from fallback_error
+                        return {
+                            "mode": resolved_mode,
+                            "result": {
+                                "status": "fallback_last_successful_model",
+                                "prepare_error": str(prepare_error),
+                                "retry_error": str(retry_error),
+                                "fallback_result": fallback_rows,
+                            },
+                            "published_rows": fallback_rows,
+                        }
+
+                current_picks_path = Path(kwargs.get("current_picks_path", LIVE_CURRENT_PICKS_PATH))
+                board_state_path = Path(kwargs.get("board_state_path", LIVE_DAILY_BOARD_STATE_PATH))
+                morning_baseline_path = Path(kwargs.get("morning_baseline_path", LIVE_MORNING_BASELINE_PICKS_PATH))
+                history_path = Path(kwargs.get("history_path", LIVE_PICK_HISTORY_PATH))
+                dashboard_output_dir = Path(kwargs.get("dashboard_output_dir", DEFAULT_OUTPUT_DIR))
+                publish_date = normalize_game_date(kwargs.get("publish_date")) or default_publish_date()
+                published_rows = publish_prepared_baseline_to_current(
+                    baseline_path=morning_baseline_path,
                     current_picks_path=current_picks_path,
-                    history_path=history_path,
-                    morning_baseline_path=morning_baseline_path,
-                    dashboard_output_dir=dashboard_output_dir,
-                    verify_public_artifacts=kwargs.get("verify_public_artifacts", True),
+                    board_state_path=board_state_path,
+                    schedule_date=publish_date,
                 )
-            return {"mode": resolved_mode, "result": result, "published_rows": published_rows}
+                if published_rows and kwargs.get("rebuild_dashboard", True):
+                    rebuild_and_verify_public_artifacts(
+                        current_picks_path=current_picks_path,
+                        history_path=history_path,
+                        morning_baseline_path=morning_baseline_path,
+                        dashboard_output_dir=dashboard_output_dir,
+                        verify_public_artifacts=kwargs.get("verify_public_artifacts", True),
+                    )
+                return {"mode": resolved_mode, "result": result, "published_rows": published_rows}
         result = run_refresh_mode(resolved_mode, **kwargs)
         return {"mode": resolved_mode, "result": result}
     if mode == "settle":

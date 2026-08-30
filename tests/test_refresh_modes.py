@@ -155,6 +155,58 @@ class RefreshModesTests(unittest.TestCase):
         self.assertEqual(result["mode"], "idle")
         self.assertEqual(result["result"]["status"], "idle")
 
+    def test_run_refresh_mode_auto_retries_prepare_then_uses_last_successful_model(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            dataset_path = base / "dataset.csv"
+            bundle_path = base / "bundle.pkl"
+            metadata_path = base / "metadata.json"
+            for path in (dataset_path, bundle_path, metadata_path):
+                path.write_text("last good artifact", encoding="utf-8")
+
+            with patch("scripts.refresh_modes.resolve_auto_refresh_mode", return_value="prepare"):
+                with patch(
+                    "scripts.refresh_modes.run_prepare_refresh",
+                    side_effect=[RuntimeError("first failure"), RuntimeError("second failure")],
+                ) as prepare_mock:
+                    with patch(
+                        "scripts.refresh_modes.run_publish_refresh",
+                        return_value=[{"game_date": "2026-03-31"}],
+                    ) as fallback_mock:
+                        result = refresh_modes.run_refresh_mode(
+                            "auto",
+                            dataset_path=dataset_path,
+                            bundle_path=bundle_path,
+                            metadata_path=metadata_path,
+                            publish_date="2026-03-31",
+                        )
+
+            self.assertEqual(prepare_mock.call_count, 2)
+            fallback_mock.assert_called_once()
+            fallback_kwargs = fallback_mock.call_args.kwargs
+            self.assertEqual(fallback_kwargs["schedule_date"], "2026-03-31")
+            self.assertFalse(fallback_kwargs["refresh_results_before_publish"])
+            self.assertNotEqual(fallback_kwargs["bundle_path"], bundle_path)
+            self.assertEqual(result["result"]["status"], "fallback_last_successful_model")
+
+    def test_run_refresh_mode_auto_stops_after_two_prepare_failures_without_last_good_model(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            missing_paths = {
+                "dataset_path": base / "missing-dataset.csv",
+                "bundle_path": base / "missing-bundle.pkl",
+                "metadata_path": base / "missing-metadata.json",
+            }
+            with patch("scripts.refresh_modes.resolve_auto_refresh_mode", return_value="prepare"):
+                with patch(
+                    "scripts.refresh_modes.run_prepare_refresh",
+                    side_effect=[RuntimeError("first failure"), RuntimeError("second failure")],
+                ) as prepare_mock:
+                    with self.assertRaisesRegex(RuntimeError, "no predictions were published"):
+                        refresh_modes.run_refresh_mode("auto", **missing_paths)
+
+            self.assertEqual(prepare_mock.call_count, 2)
+
     def test_run_refresh_mode_auto_prepare_publishes_prepared_baseline(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
