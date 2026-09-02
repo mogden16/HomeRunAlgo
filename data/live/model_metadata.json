@@ -1,6 +1,6 @@
 {
-  "trained_through": "2026-08-31",
-  "dataset_max_game_date": "2026-08-31",
+  "trained_through": "2026-09-01",
+  "dataset_max_game_date": "2026-09-01",
   "model_family": "histgb",
   "feature_profile": "pregame_safe_v1",
   "positive_call_threshold": 0.2,
@@ -345,8 +345,8 @@
   "confidence_policy_search_rows": [],
   "confidence_summary": [],
   "elite_pick_metrics": {},
-  "row_count": 139747,
-  "hr_rate": 0.106263,
+  "row_count": 140068,
+  "hr_rate": 0.106277,
   "refit_strategy": "fast_refit",
   "weather_feature_coverage": {
     "warning_null_rate_threshold": 0.35,
@@ -355,21 +355,21 @@
     "all_null_features": [],
     "summary": {
       "temperature_f": {
-        "row_count": 139747,
-        "non_null_count": 135066,
-        "null_rate": 0.033496,
+        "row_count": 140068,
+        "non_null_count": 135367,
+        "null_rate": 0.033562,
         "present": true
       },
       "wind_speed_mph": {
-        "row_count": 139747,
-        "non_null_count": 135066,
-        "null_rate": 0.033496,
+        "row_count": 140068,
+        "non_null_count": 135367,
+        "null_rate": 0.033562,
         "present": true
       },
       "humidity_pct": {
-        "row_count": 139747,
-        "non_null_count": 135066,
-        "null_rate": 0.033496,
+        "row_count": 140068,
+        "non_null_count": 135367,
+        "null_rate": 0.033562,
         "present": true
       }
     },
@@ -383,5 +383,16 @@
     }
   },
   "weather_join_contract": "game_date + home_team; PARKS[home_team]; nearest available hour to 19:00 local park time",
-  "operational_alerts": []
+  "operational_alerts": [
+    {
+      "kind": "warning",
+      "code": "weather_forecast_unavailable",
+      "title": "Weather data incomplete",
+      "message": "Weather forecast data was unavailable for PIT on 2026-09-02. This slate was generated with null weather inputs for those parks. Rerun later for a weather-refreshed draft.",
+      "target_date": "2026-09-02",
+      "teams": [
+        "PIT"
+      ]
+    }
+  ]
 }
