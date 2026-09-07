@@ -254,6 +254,11 @@ The workflow lives at `.github/workflows/manual-live-refresh.yml` and supports:
 
 The GitHub Actions workflow now runs every 5 minutes and resolves the right mode automatically:
 
+The workflow also has a twice-daily UTC morning safety schedule (`10:17` and
+`11:17` UTC). GitHub can delay or drop high-frequency scheduled events; these
+extra runs give the daily post-6:00 AM ET prepare another chance to publish the
+board when that happens.
+
 - Before `06:00` ET: only settle a prior active slate if late games are still unresolved; otherwise the workflow stays idle
 - `prepare` after `06:00` ET: runs once for the new day, refreshes historical data through yesterday, retrains the live model bundle, settles any remaining late results, and saves both a private draft slate and the fixed morning movement baseline
 - Mixed auto refresh every 5 minutes until the last scheduled first pitch: refresh today's data, update live results for started games, and keep reranking only the games that have not started yet

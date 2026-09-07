@@ -14,6 +14,10 @@ on:
           - publish
   schedule:
     - cron: "*/5 * * * *"
+    # GitHub may delay or drop high-frequency scheduled events. Keep a pair of
+    # low-load morning safety runs so the daily prepare is retried after 6 AM ET
+    # even when the overnight auto queue misses the prepare window.
+    - cron: "17 10,11 * * *"
 
 permissions:
   contents: write
