@@ -1,0 +1,100 @@
+name: Morning Live Recovery
+
+on:
+  workflow_run:
+    workflows:
+      - Live Refresh
+    types:
+      - completed
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  recover:
+    if: github.event.workflow_run.event == 'schedule'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: morning-live-recovery
+      cancel-in-progress: false
+
+    steps:
+      - name: Check out production branch
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 1
+
+      - name: Check whether today needs a recovery refresh
+        id: need-recovery
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+
+          now_et = datetime.now(ZoneInfo("America/New_York"))
+          publish_date = now_et.date().isoformat()
+          current_path = Path("data/live/current_picks.json")
+          try:
+              rows = json.loads(current_path.read_text(encoding="utf-8"))
+          except (FileNotFoundError, json.JSONDecodeError):
+              rows = []
+          if not isinstance(rows, list):
+              rows = []
+
+          has_today = any(str(row.get("game_date") or "") == publish_date for row in rows if isinstance(row, dict))
+          needs_recovery = now_et.hour >= 6 and not has_today
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as handle:
+              handle.write(f"needs_recovery={'true' if needs_recovery else 'false'}\n")
+          print(
+              f"Morning recovery check: now_et={now_et.isoformat()} "
+              f"publish_date={publish_date} rows={len(rows)} has_today={has_today} "
+              f"needs_recovery={needs_recovery}"
+          )
+          PY
+
+      - name: Dispatch auto refresh when today is missing
+        if: steps.need-recovery.outputs.needs_recovery == 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const [queued, inProgress] = await Promise.all([
+              github.paginate(github.rest.actions.listWorkflowRunsForWorkflow, {
+                owner,
+                repo,
+                workflow_id: 'manual-live-refresh.yml',
+                status: 'queued',
+                per_page: 100,
+              }),
+              github.paginate(github.rest.actions.listWorkflowRunsForWorkflow, {
+                owner,
+                repo,
+                workflow_id: 'manual-live-refresh.yml',
+                status: 'in_progress',
+                per_page: 100,
+              }),
+            ]);
+
+            if (queued.length || inProgress.length) {
+              core.info(
+                `Skipping recovery because Live Refresh is already active ` +
+                `(queued=${queued.length}, in_progress=${inProgress.length}).`
+              );
+              return;
+            }
+
+            await github.rest.actions.createWorkflowDispatch({
+              owner,
+              repo,
+              workflow_id: 'manual-live-refresh.yml',
+              ref: 'master',
+              inputs: { mode: 'auto' },
+            });
+            core.info('Dispatched auto Live Refresh for the missing morning slate.');

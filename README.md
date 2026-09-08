@@ -259,6 +259,12 @@ The workflow also has a twice-daily UTC morning safety schedule (`10:17` and
 extra runs give the daily post-6:00 AM ET prepare another chance to publish the
 board when that happens.
 
+After every scheduled Live Refresh completes, a lightweight recovery workflow
+checks whether today's rows are present. If the board is still missing after
+6:00 AM ET, it dispatches an immediate `auto` refresh instead of waiting for
+another scheduled event. It skips manual runs and does not dispatch a duplicate
+while another Live Refresh is queued or running.
+
 - Before `06:00` ET: only settle a prior active slate if late games are still unresolved; otherwise the workflow stays idle
 - `prepare` after `06:00` ET: runs once for the new day, refreshes historical data through yesterday, retrains the live model bundle, settles any remaining late results, and saves both a private draft slate and the fixed morning movement baseline
 - Mixed auto refresh every 5 minutes until the last scheduled first pitch: refresh today's data, update live results for started games, and keep reranking only the games that have not started yet
