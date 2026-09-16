@@ -1,6 +1,6 @@
 {
-  "trained_through": "2026-09-14",
-  "dataset_max_game_date": "2026-09-14",
+  "trained_through": "2026-09-15",
+  "dataset_max_game_date": "2026-09-15",
   "model_family": "histgb",
   "feature_profile": "pregame_safe_v1",
   "positive_call_threshold": 0.2,
@@ -345,8 +345,8 @@
   "confidence_policy_search_rows": [],
   "confidence_summary": [],
   "elite_pick_metrics": {},
-  "row_count": 143635,
-  "hr_rate": 0.106416,
+  "row_count": 143956,
+  "hr_rate": 0.106421,
   "refit_strategy": "fast_refit",
   "weather_feature_coverage": {
     "warning_null_rate_threshold": 0.35,
@@ -355,21 +355,21 @@
     "all_null_features": [],
     "summary": {
       "temperature_f": {
-        "row_count": 143635,
-        "non_null_count": 138851,
-        "null_rate": 0.033307,
+        "row_count": 143956,
+        "non_null_count": 139152,
+        "null_rate": 0.033371,
         "present": true
       },
       "wind_speed_mph": {
-        "row_count": 143635,
-        "non_null_count": 138851,
-        "null_rate": 0.033307,
+        "row_count": 143956,
+        "non_null_count": 139152,
+        "null_rate": 0.033371,
         "present": true
       },
       "humidity_pct": {
-        "row_count": 143635,
-        "non_null_count": 138851,
-        "null_rate": 0.033307,
+        "row_count": 143956,
+        "non_null_count": 139152,
+        "null_rate": 0.033371,
         "present": true
       }
     },
