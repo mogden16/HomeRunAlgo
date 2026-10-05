@@ -6,6 +6,12 @@ on:
       - Live Refresh
     types:
       - completed
+  # Keep this check in the lightweight recovery workflow instead of relying
+  # exclusively on the high-frequency Live Refresh schedule. GitHub can delay
+  # or drop those busy scheduled events for hours, leaving no workflow_run
+  # completion for the recovery guard to inspect after 6 AM ET.
+  schedule:
+    - cron: "23 10,11 * * *"
 
 permissions:
   actions: write
@@ -13,7 +19,7 @@ permissions:
 
 jobs:
   recover:
-    if: github.event.workflow_run.event == 'schedule'
+    if: github.event_name == 'schedule' || github.event.workflow_run.event == 'schedule'
     runs-on: ubuntu-latest
     concurrency:
       group: morning-live-recovery

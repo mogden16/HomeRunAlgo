@@ -13,13 +13,17 @@ class WorkflowScheduleTests(unittest.TestCase):
         self.assertIn('- cron: "*/5 * * * *"', workflow)
         self.assertIn('- cron: "17 10,11 * * *"', workflow)
 
-    def test_morning_recovery_is_triggered_after_scheduled_refreshes(self) -> None:
+    def test_morning_recovery_has_event_driven_and_independent_scheduled_triggers(self) -> None:
         workflow = RECOVERY_WORKFLOW_PATH.read_text(encoding="utf-8")
 
         self.assertIn("workflow_run:", workflow)
         self.assertIn("- Live Refresh", workflow)
         self.assertIn("- completed", workflow)
-        self.assertIn("github.event.workflow_run.event == 'schedule'", workflow)
+        self.assertIn('- cron: "23 10,11 * * *"', workflow)
+        self.assertIn(
+            "github.event_name == 'schedule' || github.event.workflow_run.event == 'schedule'",
+            workflow,
+        )
         self.assertIn("manual-live-refresh.yml", workflow)
         self.assertIn("inputs: { mode: 'auto' }", workflow)
 
