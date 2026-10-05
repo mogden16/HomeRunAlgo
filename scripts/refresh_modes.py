@@ -579,19 +579,19 @@ def run_refresh_mode(
         if resolved_mode == "idle":
             return {"mode": "idle", "result": {"status": "idle"}}
         if resolved_mode == "prepare":
-            artifact_paths = {
-                "dataset_path": Path(kwargs.get("dataset_path", LIVE_MODEL_DATA_PATH)),
+            dataset_path = Path(kwargs.get("dataset_path", LIVE_MODEL_DATA_PATH))
+            preserved_model_paths = {
                 "bundle_path": Path(kwargs.get("bundle_path", LIVE_MODEL_BUNDLE_PATH)),
                 "metadata_path": Path(kwargs.get("metadata_path", LIVE_MODEL_METADATA_PATH)),
             }
             with tempfile.TemporaryDirectory(prefix="homerunalgo-last-good-") as backup_dir:
                 backup_paths = {
                     key: Path(backup_dir) / path.name
-                    for key, path in artifact_paths.items()
+                    for key, path in preserved_model_paths.items()
                 }
-                last_good_model_available = all(path.is_file() for path in artifact_paths.values())
+                last_good_model_available = all(path.is_file() for path in preserved_model_paths.values())
                 if last_good_model_available:
-                    for key, path in artifact_paths.items():
+                    for key, path in preserved_model_paths.items():
                         shutil.copy2(path, backup_paths[key])
 
                 try:
@@ -604,9 +604,14 @@ def run_refresh_mode(
                     try:
                         result = run_prepare_refresh(**kwargs)
                     except Exception as retry_error:
-                        if not last_good_model_available:
+                        # The training dataset is intentionally too large to keep in Git.
+                        # Each prepare attempt rebuilds it before training/publishing, so a
+                        # clean CI checkout can combine that refreshed dataset with the
+                        # preserved last-successful bundle and metadata.
+                        if not last_good_model_available or not dataset_path.is_file():
                             raise RuntimeError(
-                                "Auto prepare failed twice and no last successful model is available; "
+                                "Auto prepare failed twice and no complete last-successful model "
+                                "plus refreshed dataset is available; "
                                 "no predictions were published. "
                                 f"First error: {prepare_error}. Retry error: {retry_error}"
                             ) from retry_error

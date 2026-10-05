@@ -207,6 +207,39 @@ class RefreshModesTests(unittest.TestCase):
 
             self.assertEqual(prepare_mock.call_count, 2)
 
+    def test_run_refresh_mode_auto_uses_refreshed_dataset_with_preserved_model(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            base = Path(tmp_dir)
+            dataset_path = base / "dataset.csv"
+            bundle_path = base / "bundle.pkl"
+            metadata_path = base / "metadata.json"
+            bundle_path.write_text("last good bundle", encoding="utf-8")
+            metadata_path.write_text("last good metadata", encoding="utf-8")
+
+            def failed_prepare(**_: object) -> None:
+                dataset_path.write_text("freshly rebuilt dataset", encoding="utf-8")
+                raise RuntimeError("prepare failure")
+
+            with patch("scripts.refresh_modes.resolve_auto_refresh_mode", return_value="prepare"):
+                with patch("scripts.refresh_modes.run_prepare_refresh", side_effect=failed_prepare):
+                    with patch(
+                        "scripts.refresh_modes.run_publish_refresh",
+                        return_value=[{"game_date": "2026-10-05"}],
+                    ) as fallback_mock:
+                        result = refresh_modes.run_refresh_mode(
+                            "auto",
+                            dataset_path=dataset_path,
+                            bundle_path=bundle_path,
+                            metadata_path=metadata_path,
+                            publish_date="2026-10-05",
+                        )
+
+            fallback_kwargs = fallback_mock.call_args.kwargs
+            self.assertEqual(fallback_kwargs["dataset_path"], dataset_path)
+            self.assertNotEqual(fallback_kwargs["bundle_path"], bundle_path)
+            self.assertNotEqual(fallback_kwargs["metadata_path"], metadata_path)
+            self.assertEqual(result["result"]["status"], "fallback_last_successful_model")
+
     def test_run_refresh_mode_auto_prepare_publishes_prepared_baseline(self) -> None:
         with tempfile.TemporaryDirectory() as tmp_dir:
             base = Path(tmp_dir)
