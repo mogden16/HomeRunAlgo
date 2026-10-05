@@ -101,6 +101,9 @@ OPEN_METEO_FORECAST_CACHE_PATH = LIVE_DATA_DIR / "forecast_weather_cache.json"
 OPEN_METEO_FORECAST_CACHE_TTL_SECONDS = 5 * 60
 OPEN_METEO_FORECAST_FAILURE_CACHE_TTL_SECONDS = 2 * 60
 LIVE_PUBLISH_FRESHNESS_TOLERANCE_DAYS = 7
+LIVE_POSTSEASON_FRESHNESS_TOLERANCE_DAYS = 45
+LIVE_POSTSEASON_TRAINING_FLOOR_MONTH = 9
+LIVE_POSTSEASON_TRAINING_FLOOR_DAY = 15
 OFFSEASON_LINEUP_FALLBACK_DAYS = 210
 TERMINAL_GAME_STATUS_TOKENS = (
     "final",
@@ -1452,10 +1455,31 @@ def evaluate_live_publish_freshness(
     if pd.notna(dataset_max_game_date):
         dataset_max_game_date = dataset_max_game_date.normalize()
 
+    effective_tolerance_days = int(tolerance_days)
+    postseason_training_floor = pd.Timestamp(
+        year=schedule_timestamp.year,
+        month=LIVE_POSTSEASON_TRAINING_FLOOR_MONTH,
+        day=LIVE_POSTSEASON_TRAINING_FLOOR_DAY,
+    )
+    is_postseason_window = schedule_timestamp.month in {10, 11}
+    has_recent_same_season_training = (
+        pd.notna(metadata_trained_through)
+        and pd.notna(dataset_max_game_date)
+        and metadata_trained_through >= postseason_training_floor
+        and dataset_max_game_date >= postseason_training_floor
+        and metadata_trained_through.year == schedule_timestamp.year
+        and dataset_max_game_date.year == schedule_timestamp.year
+    )
+    if is_postseason_window and has_recent_same_season_training:
+        effective_tolerance_days = max(
+            effective_tolerance_days,
+            LIVE_POSTSEASON_FRESHNESS_TOLERANCE_DAYS,
+        )
+
     metadata_lag_days = None if pd.isna(metadata_trained_through) else int((schedule_timestamp - metadata_trained_through).days)
     dataset_lag_days = None if pd.isna(dataset_max_game_date) else int((schedule_timestamp - dataset_max_game_date).days)
-    metadata_stale = metadata_lag_days is None or metadata_lag_days > tolerance_days
-    dataset_stale = dataset_lag_days is None or dataset_lag_days > tolerance_days
+    metadata_stale = metadata_lag_days is None or metadata_lag_days > effective_tolerance_days
+    dataset_stale = dataset_lag_days is None or dataset_lag_days > effective_tolerance_days
 
     return {
         "schedule_date": str(schedule_timestamp.date()),
@@ -1463,7 +1487,7 @@ def evaluate_live_publish_freshness(
         "dataset_max_game_date": None if pd.isna(dataset_max_game_date) else str(dataset_max_game_date.date()),
         "metadata_lag_days": metadata_lag_days,
         "dataset_lag_days": dataset_lag_days,
-        "tolerance_days": int(tolerance_days),
+        "tolerance_days": effective_tolerance_days,
         "metadata_stale": bool(metadata_stale),
         "dataset_stale": bool(dataset_stale),
         "passed": bool(not metadata_stale and not dataset_stale),

@@ -1308,6 +1308,29 @@ class LivePipelineTests(unittest.TestCase):
         self.assertEqual(diagnostics["metadata_lag_days"], 1)
         self.assertEqual(diagnostics["dataset_lag_days"], 1)
 
+    def test_evaluate_live_publish_freshness_allows_recent_regular_season_model_in_postseason(self) -> None:
+        dataset_df = pd.DataFrame({"game_date": pd.to_datetime(["2026-09-27"])})
+        diagnostics = evaluate_live_publish_freshness(
+            schedule_date="2026-10-05",
+            dataset_df=dataset_df,
+            model_metadata={"trained_through": "2026-09-27"},
+        )
+
+        self.assertTrue(diagnostics["passed"])
+        self.assertEqual(diagnostics["tolerance_days"], 45)
+        self.assertEqual(diagnostics["metadata_lag_days"], 8)
+
+    def test_evaluate_live_publish_freshness_rejects_old_model_during_postseason(self) -> None:
+        dataset_df = pd.DataFrame({"game_date": pd.to_datetime(["2026-09-01"])})
+        diagnostics = evaluate_live_publish_freshness(
+            schedule_date="2026-10-05",
+            dataset_df=dataset_df,
+            model_metadata={"trained_through": "2026-09-01"},
+        )
+
+        self.assertFalse(diagnostics["passed"])
+        self.assertEqual(diagnostics["tolerance_days"], 7)
+
     def test_assert_live_publish_freshness_rejects_stale_metadata(self) -> None:
         dataset_df = pd.DataFrame({"game_date": pd.to_datetime(["2026-03-24", "2026-03-25"])})
         with self.assertRaisesRegex(RuntimeError, "schedule_date=2026-03-26"):
