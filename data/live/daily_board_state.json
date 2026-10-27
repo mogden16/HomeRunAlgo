@@ -34,7 +34,7 @@
       "top_reason_1": "Peak exit velocity over the last 10 days is 111.7 mph, which points to top-end HR juice.",
       "top_reason_2": "HR rate over the last 30 days is 5.8%, which keeps the recent power trend elevated.",
       "top_reason_3": "Barrel rate over the last 30 days is 5.8%, which the model treats as sustained power quality.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -129,7 +129,9 @@
       "ballparkpal_overlay_adjusted_rank": 2,
       "ballparkpal_overlay_direction": "unfavorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -195,7 +197,9 @@
       "ballparkpal_overlay_adjusted_rank": 3,
       "ballparkpal_overlay_direction": "favorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -232,7 +236,7 @@
       "top_reason_1": "Hard-hit rate over the last 30 days is 50.0%, showing consistent quality contact.",
       "top_reason_2": "95+ EV contact rate over the last 30 days is 50.0%, a strong loud-contact input for the model.",
       "top_reason_3": "HR rate over the last 10 days is 5.7%, a top-quartile live-model signal.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -298,7 +302,7 @@
       "top_reason_1": "Hard-hit rate over the last 30 days is 50.0%, showing consistent quality contact.",
       "top_reason_2": "95+ EV contact rate over the last 30 days is 50.0%, a strong loud-contact input for the model.",
       "top_reason_3": "HR rate over the last 10 days is 5.6%, a top-quartile live-model signal.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -394,7 +398,8 @@
       "ballparkpal_overlay_direction": "neutral",
       "current_status": "inactive",
       "alert_flags": [
-        "lineup_alert"
+        "lineup_alert",
+        "pitcher_change_alert"
       ],
       "inactive_flag": true,
       "display_style": "strikethrough",
@@ -432,7 +437,7 @@
       "top_reason_1": "Hard-hit rate over the last 30 days is 66.7%, showing consistent quality contact.",
       "top_reason_2": "95+ EV contact rate over the last 30 days is 66.7%, a strong loud-contact input for the model.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 109.6 mph, which points to top-end HR juice.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -528,7 +533,8 @@
       "ballparkpal_overlay_direction": "neutral",
       "current_status": "inactive",
       "alert_flags": [
-        "lineup_alert"
+        "lineup_alert",
+        "pitcher_change_alert"
       ],
       "inactive_flag": true,
       "display_style": "strikethrough",
@@ -596,7 +602,8 @@
       "ballparkpal_overlay_direction": "unfavorable",
       "current_status": "inactive",
       "alert_flags": [
-        "lineup_alert"
+        "lineup_alert",
+        "pitcher_change_alert"
       ],
       "inactive_flag": true,
       "display_style": "strikethrough",
@@ -634,7 +641,7 @@
       "top_reason_1": "HR rate over the last 10 days is 0.0%, a above-baseline live-model signal.",
       "top_reason_2": "Barrel rate over the last 10 days is 0.0%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_3": "Peak exit velocity over the last 10 days is 105.7 mph, which points to top-end HR juice.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -700,7 +707,7 @@
       "top_reason_1": "Barrel rate over the last 10 days is 5.0%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -795,7 +802,9 @@
       "ballparkpal_overlay_adjusted_rank": 12,
       "ballparkpal_overlay_direction": "unfavorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -832,7 +841,7 @@
       "top_reason_1": "HR rate over the last 10 days is 0.0%, a above-baseline live-model signal.",
       "top_reason_2": "Barrel rate over the last 10 days is 0.0%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_3": "Hard-hit rate over the last 30 days is 39.2%, showing consistent quality contact.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -860,13 +869,15 @@
       "ballparkpal_overlay_adjusted_score": 33.3,
       "ballparkpal_overlay_adjusted_rank": 13,
       "ballparkpal_overlay_direction": "neutral",
-      "current_status": "pending",
-      "alert_flags": [],
-      "inactive_flag": false,
-      "display_style": "default",
-      "result": "Pending",
+      "current_status": "inactive",
+      "alert_flags": [
+        "lineup_alert"
+      ],
+      "inactive_flag": true,
+      "display_style": "strikethrough",
+      "result": "Inactive",
       "actual_hit_hr": null,
-      "result_label": "Pending"
+      "result_label": "Inactive"
     },
     {
       "pick_id": "2026-10-27:849803:689414:",
@@ -927,7 +938,9 @@
       "ballparkpal_overlay_adjusted_rank": 14,
       "ballparkpal_overlay_direction": "unfavorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
@@ -994,7 +1007,8 @@
       "ballparkpal_overlay_direction": "neutral",
       "current_status": "inactive",
       "alert_flags": [
-        "lineup_alert"
+        "lineup_alert",
+        "pitcher_change_alert"
       ],
       "inactive_flag": true,
       "display_style": "strikethrough",
@@ -1032,7 +1046,7 @@
       "top_reason_1": "HR rate over the last 10 days is 4.3%, a above-baseline live-model signal.",
       "top_reason_2": "",
       "top_reason_3": "",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -1098,7 +1112,7 @@
       "top_reason_1": "HR rate over the last 10 days is 0.0%, a above-baseline live-model signal.",
       "top_reason_2": "Barrel rate over the last 10 days is 0.0%, a above-baseline indicator of current lift-and-damage contact.",
       "top_reason_3": "Hard-hit rate over the last 10 days is 33.3%, a above-baseline recent-contact signal.",
-      "lineup_source": "projected",
+      "lineup_source": "confirmed",
       "batting_order": null,
       "ballpark_name": "Tropicana Field",
       "ballpark_region_abbr": "FL",
@@ -1193,7 +1207,9 @@
       "ballparkpal_overlay_adjusted_rank": 18,
       "ballparkpal_overlay_direction": "unfavorable",
       "current_status": "pending",
-      "alert_flags": [],
+      "alert_flags": [
+        "pitcher_change_alert"
+      ],
       "inactive_flag": false,
       "display_style": "default",
       "result": "Pending",
